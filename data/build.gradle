@@ -1,7 +1,12 @@
 apply plugin: 'kotlin'
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    def networkDependencies = rootProject.ext.networkDependencies
+
+    implementation networkDependencies.retrofit2
+    implementation networkDependencies.retrofit2Moshi
+    implementation networkDependencies.okHttp3
+    implementation networkDependencies.retrofitCoroutinesAdapter
 }
 
 sourceCompatibility = 1.8
