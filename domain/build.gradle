@@ -1,7 +1,10 @@
 apply plugin: 'kotlin'
 
 dependencies {
+    def networkDependencies = rootProject.ext.networkDependencies
 
+    implementation networkDependencies.retrofit2Moshi
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 
 sourceCompatibility = 1.8
