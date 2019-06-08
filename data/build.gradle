@@ -3,6 +3,8 @@ apply plugin: 'kotlin'
 dependencies {
     def networkDependencies = rootProject.ext.networkDependencies
 
+    implementation project(':domain')
+
     implementation networkDependencies.retrofit2
     implementation networkDependencies.retrofit2Moshi
     implementation networkDependencies.okHttp3
