@@ -24,7 +24,7 @@ ext {
     paging_version = "2.1.0"
     lifecycle_version = "2.0.0"
     recyclerview_version = "1.1.0-alpha06"
-
+    
     networkDependencies = [
             retrofit2                : "com.squareup.retrofit2:retrofit:$retrofit_version",
             retrofit2Moshi           : "com.squareup.retrofit2:converter-moshi:$moshi_version",
