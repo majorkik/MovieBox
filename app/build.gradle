@@ -64,6 +64,7 @@ configurations.all {
 dependencies {
     def diDependencies = rootProject.ext.diDependencies
     def networkDependencies = rootProject.ext.networkDependencies
+    def logDependencies = rootProject.ext.logDependencies
 
     implementation project(':data')
     implementation project(':domain')
@@ -76,6 +77,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
+    implementation logDependencies.timber
     implementation diDependencies.koinScope
     implementation diDependencies.koinViewModel
     implementation diDependencies.koinAndroidExt
