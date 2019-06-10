@@ -47,20 +47,6 @@ class TVRepository(private val api: TmdbApiService) : BaseRepository() {
         return tvResponse?.results?.toMutableList()
     }
 
-    suspend fun searchTVs(
-        language: String?,
-        query: String,
-        page: Int?,
-        firstAirDateYear: Int?
-    ): MutableList<TVResponse.TV>? {
-        val tvResponse = safeApiCall(
-            call = { api.searchTVSeries(language, query, page, firstAirDateYear).await() },
-            errorMessage = "Ошибка при поиске сериалов"
-        )
-
-        return tvResponse?.results?.toMutableList()
-    }
-
     suspend fun getTVGenres(language: String?): MutableList<Genre>? {
         val tvResponse = safeApiCall(
             call = { api.getTVGenres(language).await() },

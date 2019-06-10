@@ -1,0 +1,26 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "backdrop_path": null,
+      "first_air_date": "2007-09-24",
+      "genre_ids": [
+        10759
+      ],
+      "id": 1404,
+      "original_language": "en",
+      "original_name": "Chuck",
+      "overview": "Chuck is an American action-comedy/spy-drama television series created by Josh Schwartz and Chris Fedak. The series is about an \"average computer-whiz-next-door\" named Chuck, played by Zachary Levi, who receives an encoded e-mail from an old college friend now working for the Central Intelligence Agency; the message embeds the only remaining copy of a software program containing the United States' greatest spy secrets into Chuck's brain.",
+      "origin_country": [
+        "US"
+      ],
+      "poster_path": null,
+      "popularity": 0.125125,
+      "name": "Chuck",
+      "vote_average": 8.2,
+      "vote_count": 37
+    }
+  ],
+  "total_pages": 3,
+  "total_results": 52
+}

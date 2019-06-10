@@ -1,0 +1,25 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        16
+      ],
+      "id": 9806,
+      "original_language": "en",
+      "original_title": "The Incredibles",
+      "overview": "Bob Parr has given up his superhero days to log in time as an insurance adjuster and raise his three children with his formerly heroic wife in suburbia. But when he receives a mysterious assignment, it's time to get back into costume.",
+      "release_date": "2004-11-04",
+      "poster_path": null,
+      "popularity": 0.167525,
+      "title": "The Incredibles",
+      "video": false,
+      "vote_average": 6.8,
+      "vote_count": 1584
+    }
+  ],
+  "total_pages": 4,
+  "total_results": 77
+}
