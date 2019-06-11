@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_profile">
+
+    <fragment
+        android:id="@+id/navigation_search"
+        android:name="com.majorik.moviebox.ui.search.SearchFragment"
+        android:label="@string/title_nav_search" />
+
+    <fragment
+        android:id="@+id/navigation_movie"
+        android:name="com.majorik.moviebox.ui.movie.MovieFragment"
+        android:label="@string/title_nav_movie" />
+
+    <fragment
+        android:id="@+id/navigation_tv"
+        android:name="com.majorik.moviebox.ui.tv.TVFragment"
+        android:label="@string/title_nav_tv"/>
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.majorik.moviebox.ui.profile.ProfileFragment"
+        android:label="@string/title_nav_profile" />
+</navigation>
