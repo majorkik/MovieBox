@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.majorik.moviebox.R
+import timber.log.Timber
 
 class TVFragment : Fragment() {
 

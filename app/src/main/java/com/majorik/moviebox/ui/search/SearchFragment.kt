@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.majorik.moviebox.R
+import timber.log.Timber
 
 class SearchFragment : Fragment() {
     override fun onCreateView(
@@ -13,6 +14,6 @@ class SearchFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_movie, container, false)
+        return inflater.inflate(R.layout.fragment_search, container, false)
     }
 }
