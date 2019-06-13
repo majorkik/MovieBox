@@ -1,7 +1,6 @@
 package com.majorik.moviebox.ui.movie
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.majorik.data.repositories.MovieRepository
 import com.majorik.domain.models.CollectionResponse
 import com.majorik.moviebox.ui.base.BaseViewModel

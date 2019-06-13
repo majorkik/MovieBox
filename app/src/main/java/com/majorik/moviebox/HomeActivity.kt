@@ -16,7 +16,6 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     private val fragmentProfile = ProfileFragment()
     private val fragmentSearch = SearchFragment()
     private val fragmentTV = TVFragment()
-    private val fragmentManager = supportFragmentManager
     private var activeFragment: Fragment = ProfileFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,11 +77,16 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     }
 
     private fun hideFragment(fragment: Fragment) {
-        fragmentManager.beginTransaction().add(R.id.nav_host_fragment, fragment).hide(fragment)
+        supportFragmentManager.beginTransaction()
+            .add(R.id.nav_host_fragment, fragment)
+            .hide(fragment)
             .commit()
     }
 
     private fun showFragment(fragment: Fragment) {
-        fragmentManager.beginTransaction().hide(activeFragment).show(fragment).commit()
+        supportFragmentManager.beginTransaction()
+            .hide(activeFragment)
+            .show(fragment)
+            .commit()
     }
 }

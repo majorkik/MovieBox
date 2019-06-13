@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.majorik.domain.UrlConstants
 import com.majorik.domain.models.CollectionResponse
 import com.majorik.moviebox.GlideApp
 import com.majorik.moviebox.R

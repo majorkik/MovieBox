@@ -1,3 +1,5 @@
+package com.majorik.domain
+
 class UrlConstants{
     companion object {
         const val TMDB_BASE_URL = "https://api.themoviedb.org/3/"

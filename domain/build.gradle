@@ -7,7 +7,8 @@ targetCompatibility = 1.8
 
 dependencies {
     def networkDependencies = rootProject.ext.networkDependencies
+    def kotlinDependencies = rootProject.ext.kotlinDependencies
 
     implementation networkDependencies.retrofit2Moshi
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation kotlinDependencies.kotlin
 }

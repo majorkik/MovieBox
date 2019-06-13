@@ -1,4 +1,16 @@
 ext {
+    material_version = "1.1.0-alpha07"
+    appCompat_version = "1.1.0-beta01"
+    constraintLayout_version = "2.0.0-beta1"
+    legacySupport_version = "1.0.0"
+    lifecycleExtensions_version = "2.2.0-alpha01"
+    lifecycleKtx_version = "2.0.0"
+    annotation_version = "1.1.0"
+    vectordrawable_version = "1.0.1"
+    navigation_version = "2.0.0"
+    paging_version = "2.1.0"
+    recyclerview_version = "1.1.0-alpha06"
+
     kotlin_version = "1.3.31"
     coroutines_version = "1.2.1"
     ktx_version = "1.0.2"
@@ -11,20 +23,33 @@ ext {
 
     timber_version = "4.7.1"
 
-    mockito_version = "3.0.0-beta.2"
-    espresso_version = "3.1.0"
-    robolectric_version = "4.3"
-    test_version = "1.1.0"
+    mockWebServer_version = "3.14.1"
+    junit_version = '4.12'
+    testJunit_version = '1.1.1'
+    espressoCore_version = '3.2.0'
 
     koin_version = "2.0.1"
 
-    threeTen_version = "1.4.0"
     glide_version = "4.9.0"
 
-    paging_version = "2.1.0"
-    lifecycle_version = "2.0.0"
-    recyclerview_version = "1.1.0-alpha06"
-    
+
+    androidxDependencies = [
+            material             : "com.google.android.material:material:$material_version",
+            appCompat            : "androidx.appcompat:appcompat:$appCompat_version",
+            constraintLayout     : "androidx.constraintlayout:constraintlayout:$constraintLayout_version",
+            legacySupport        : "androidx.legacy:legacy-support-v4:$legacySupport_version",
+            lifecycleExtensions  : "androidx.lifecycle:lifecycle-extensions:$lifecycleExtensions_version",
+            lifecycleKtx         : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleKtx_version",
+            annotation           : "androidx.annotation:annotation:$annotation_version",
+            vectordrawable       : "androidx.vectordrawable:vectordrawable:$vectordrawable_version",
+            navigationFragment   : "androidx.navigation:navigation-fragment:$navigation_version",
+            navigationUI         : "androidx.navigation:navigation-ui:$navigation_version",
+            navigationFragmentKtx: "androidx.navigation:navigation-fragment-ktx:$navigation_version",
+            navigationUIKtx      : "androidx.navigation:navigation-ui-ktx:$navigation_version",
+            pagingLibrary        : "androidx.paging:paging-runtime:$paging_version",
+            recyclerview         : "androidx.recyclerview:recyclerview:$recyclerview_version",
+    ]
+
     networkDependencies = [
             retrofit2                : "com.squareup.retrofit2:retrofit:$retrofit_version",
             retrofit2Moshi           : "com.squareup.retrofit2:converter-moshi:$moshi_version",
@@ -34,26 +59,35 @@ ext {
     ]
 
     kotlinDependencies = [
+            kotlin           : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+            kotlinJdk8       : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version",
             coreKtx          : "androidx.core:core-ktx:$ktx_version",
             coroutinesCore   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version",
             coroutinesAndroid: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
     ]
 
-    diDependencies = [
+    koinDependencies = [
             koinScope     : "org.koin:koin-android-scope:$koin_version",
             koinViewModel : "org.koin:koin-android-viewmodel:$koin_version",
-            koinAndroidExt: "org.koin:koin-android-ext:$koin_version"
+            koinAndroidExt: "org.koin:koin-android-ext:$koin_version",
+            koinTest      : "org.koin:koin-test:$koin_version" //testImpl
     ]
 
     logDependencies = [
-            timber       : "com.jakewharton.timber:timber:$timber_version"
+            timber     : "com.jakewharton.timber:timber:$timber_version",
+            slf4j      : 'org.slf4j:slf4j-api:1.7.25',
+            slf4jTimber: 'at.favre.lib:slf4j-timber:1.0.1'
+    ]
+
+    testingDependencies = [
+            mockWebServer: "com.squareup.okhttp3:mockwebserver:$mockWebServer_version", //testImpl
+            junit        : "junit:junit:$junit_version",// implementation, testImplementation
+            testJunit    : "androidx.test.ext:junit:$testJunit_version", //androidTestImplementation
+            espressoCore : "androidx.test.espresso:espresso-core:$espressoCore_version" //androidTestImplementation
     ]
 
     otherDependencies = [
             glide        : "com.github.bumptech.glide:glide:$glide_version",
             glideCompiler: "com.github.bumptech.glide:compiler:$glide_version",
-            pagingLibrary: "androidx.paging:paging-runtime:$paging_version",
-            recyclerview : "androidx.recyclerview:recyclerview:$recyclerview_version",
-            lifecycle    : "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     ]
 }
