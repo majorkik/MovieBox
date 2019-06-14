@@ -103,7 +103,12 @@ dependencies {
 
     implementation logDependencies.timber
 
+    implementation otherDependencies.dotsIndicator
+    implementation otherDependencies.imageViewer
+    implementation otherDependencies.photoview
     implementation otherDependencies.glide
+    implementation otherDependencies.expandableText
+
     kapt otherDependencies.glideCompiler
     annotationProcessor otherDependencies.glideCompiler
 }

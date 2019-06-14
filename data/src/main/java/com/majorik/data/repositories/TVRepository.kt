@@ -8,7 +8,7 @@ import com.majorik.domain.models.tv.TVDetails
 import com.majorik.domain.models.tv.TVResponse
 
 
-class TVRepository(private val api: TmdbApiService) : BaseRepository() {
+class  TVRepository(private val api: TmdbApiService) : BaseRepository() {
 
     suspend fun getTVById(
         tvId: Int,

@@ -10,6 +10,17 @@
     <!--    Страница Фильмы-->
     <string name="collection_popular">Популярные</string>
     <string name="collection_top_rated">Самые популярные</string>
+
+    <!--    Описание кнопок-->
     <string name="button_search">Поиск</string>
-    <string name="collection_image">Изображение коллекции</string>
+    <string name="button_expandable_text">Свернуть/развернуть</string>
+
+    <!--    Описание изображений-->
+    <string name="desc_collection_image">Изображение коллекции</string>
+    <string name="desc_backdrop">Фоновое изображение</string>
+
+    <!--    Детальная информация-->
+    <string name="overview">Описание</string>
+    <string name="persons">Актёры</string>
+    <string name="trailers">Трейлеры</string>
 </resources>

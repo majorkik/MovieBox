@@ -31,7 +31,10 @@ ext {
     koin_version = "2.0.1"
 
     glide_version = "4.9.0"
-
+    viewpagerdotsindicator_version = "3.0.3"
+    stfalcon_version = "0.1.0"
+    photoview_version = "2.3.0"
+    expandableText_version = "0.1.4"
 
     androidxDependencies = [
             material             : "com.google.android.material:material:$material_version",
@@ -87,7 +90,11 @@ ext {
     ]
 
     otherDependencies = [
-            glide        : "com.github.bumptech.glide:glide:$glide_version",
-            glideCompiler: "com.github.bumptech.glide:compiler:$glide_version",
+            glide         : "com.github.bumptech.glide:glide:$glide_version",
+            glideCompiler : "com.github.bumptech.glide:compiler:$glide_version",
+            dotsIndicator : "com.tbuonomo.andrui:viewpagerdotsindicator:$viewpagerdotsindicator_version",
+            imageViewer   : "com.github.stfalcon:stfalcon-imageviewer:$stfalcon_version",
+            photoview     : "com.github.chrisbanes:PhotoView:$photoview_version",
+            expandableText: "com.ms-square:expandableTextView:$expandableText_version"
     ]
 }
