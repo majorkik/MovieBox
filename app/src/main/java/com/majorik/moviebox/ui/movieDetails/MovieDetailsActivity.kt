@@ -22,6 +22,7 @@ class MovieDetailsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_movie_details)
 
         setSupportActionBar(toolbar_movie_details)
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
@@ -47,7 +48,7 @@ class MovieDetailsActivity : AppCompatActivity() {
             movie_budget.text = (numFormat.format(movie.budget) + " $")
             movie_date_release.text = movie.releaseDate
             movie_status.text = movie.status
-            movie_popularity.text = movie.popularity.toString()
+            movie_popularity.text = movie.popularity.toInt().toString()
             movie_runtime.text = movie.runtime.toString()
             expand_text_view.text = movie.overview
 

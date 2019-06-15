@@ -37,4 +37,8 @@
     <string name="original_language">Оригинальный язык</string>
     <string name="status">Статус</string>
     <string name="company_production">Компании производства</string>
+    <string name="number_of_episodes">Серий</string>
+    <string name="first_air_date">Дата первого эфира</string>
+    <string name="last_air_date">Дата последнего эфира</string>
+    <string name="number_of_seasons">Сезонов</string>
 </resources>
