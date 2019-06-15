@@ -8,7 +8,7 @@ import com.majorik.domain.models.tv.TVDetails
 import com.majorik.domain.models.tv.TVResponse
 
 
-class  TVRepository(private val api: TmdbApiService) : BaseRepository() {
+class TVRepository(private val api: TmdbApiService) : BaseRepository() {
 
     suspend fun getTVById(
         tvId: Int,
@@ -26,7 +26,7 @@ class  TVRepository(private val api: TmdbApiService) : BaseRepository() {
     suspend fun getPopularTVs(
         language: String?,
         page: Int?
-    ): MutableList<CollectionResponse.CollectionItem>? {
+    ): MutableList<TVResponse.TV>? {
         val tvResponse = safeApiCall(
             call = { api.getPopularTVs(language, page).await() },
             errorMessage = "Ошибка при получении популярных сериалов"
@@ -38,7 +38,7 @@ class  TVRepository(private val api: TmdbApiService) : BaseRepository() {
     suspend fun getTopRatedTVs(
         language: String?,
         page: Int?
-    ): MutableList<CollectionResponse.CollectionItem>? {
+    ): MutableList<TVResponse.TV>? {
         val tvResponse = safeApiCall(
             call = { api.getTopRatedTVs(language, page).await() },
             errorMessage = "Ошибка при получении самых популярных сериалов"
@@ -56,10 +56,15 @@ class  TVRepository(private val api: TmdbApiService) : BaseRepository() {
         return tvResponse?.genres?.toMutableList()
     }
 
-    suspend fun getAccountStatesForTV(tvId: Int, language: String?, guestSessionId: String?, sessionId: String): AccountStates? {
+    suspend fun getAccountStatesForTV(
+        tvId: Int,
+        language: String?,
+        guestSessionId: String?,
+        sessionId: String
+    ): AccountStates? {
         return safeApiCall(
             call = {
-                api.getAccountStatesForTV(tvId,language, guestSessionId, sessionId).await()
+                api.getAccountStatesForTV(tvId, language, guestSessionId, sessionId).await()
             },
             errorMessage = "Ошибка при получении данных о сериале (id:  $tvId ) в аккаунте пользователя"
         )

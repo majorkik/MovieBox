@@ -5,6 +5,7 @@ import com.majorik.domain.models.CollectionResponse
 import com.majorik.domain.models.account.AccountStates
 import com.majorik.domain.models.genre.Genre
 import com.majorik.domain.models.movie.MovieDetails
+import com.majorik.domain.models.movie.MovieResponse
 
 class MovieRepository(private val api: TmdbApiService) : BaseRepository() {
     suspend fun getMovieById(
@@ -25,7 +26,7 @@ class MovieRepository(private val api: TmdbApiService) : BaseRepository() {
         language: String?,
         page: Int?,
         region: String?
-    ): MutableList<CollectionResponse.CollectionItem>? {
+    ): MutableList<MovieResponse.Movie>? {
         val movieResponse = safeApiCall(
             call = { api.getPopularMovies(language, page, region).await() },
             errorMessage = "Ошибка при получения популярных фильмов"
@@ -38,7 +39,7 @@ class MovieRepository(private val api: TmdbApiService) : BaseRepository() {
         language: String?,
         page: Int?,
         region: String?
-    ): MutableList<CollectionResponse.CollectionItem>? {
+    ): MutableList<MovieResponse.Movie>? {
         val movieResponse = safeApiCall(
             call = { api.getTopRatedMovies(language, page, region).await() },
             errorMessage = "Ошибка при получении самых популярных фильмов"

@@ -2,13 +2,13 @@ package com.majorik.moviebox.ui.movie
 
 import androidx.lifecycle.MutableLiveData
 import com.majorik.data.repositories.MovieRepository
-import com.majorik.domain.models.CollectionResponse
+import com.majorik.domain.models.movie.MovieResponse
 import com.majorik.moviebox.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 
 class MovieViewModel(private val movieRepository: MovieRepository) : BaseViewModel() {
-    val popularMoviesLiveData = MutableLiveData<MutableList<CollectionResponse.CollectionItem>>()
-    val topRatedMoviesLiveData = MutableLiveData<MutableList<CollectionResponse.CollectionItem>>()
+    val popularMoviesLiveData = MutableLiveData<MutableList<MovieResponse.Movie>>()
+    val topRatedMoviesLiveData = MutableLiveData<MutableList<MovieResponse.Movie>>()
 
     fun fetchPopularMovies(
         language: String?,

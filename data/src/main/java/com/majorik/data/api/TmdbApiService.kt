@@ -38,14 +38,14 @@ interface TmdbApiService {
         @Query("language") language: String?,
         @Query("page") page: Int?,
         @Query("region") region: String?
-    ): Deferred<Response<CollectionResponse>>
+    ): Deferred<Response<MovieResponse>>
 
     @GET("movie/top_rated")
     fun getTopRatedMovies(
         @Query("language") language: String?,
         @Query("page") page: Int?,
         @Query("region") region: String?
-    ): Deferred<Response<CollectionResponse>>
+    ): Deferred<Response<MovieResponse>>
 
     @GET("movie/{movie_id}/account_states")
     fun getAccountStatesForMovie(
@@ -67,14 +67,14 @@ interface TmdbApiService {
     fun getPopularTVs(
         @Query("language") language: String?,
         @Query("page") page: Int?
-    ): Deferred<Response<CollectionResponse>>
+    ): Deferred<Response<TVResponse>>
 
 
     @GET("tv/top_rated")
     fun getTopRatedTVs(
         @Query("language") language: String?,
         @Query("page") page: Int?
-    ): Deferred<Response<CollectionResponse>>
+    ): Deferred<Response<TVResponse>>
 
     @GET("tv/{tv_id}/account_states")
     fun getAccountStatesForTV(

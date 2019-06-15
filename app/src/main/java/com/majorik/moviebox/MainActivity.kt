@@ -9,9 +9,9 @@ import com.majorik.moviebox.ui.movie.MovieFragment
 import com.majorik.moviebox.ui.profile.ProfileFragment
 import com.majorik.moviebox.ui.search.SearchFragment
 import com.majorik.moviebox.ui.tv.TVFragment
-import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.activity_main.*
 
-class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     private val fragmentMovie = MovieFragment()
     private val fragmentProfile = ProfileFragment()
     private val fragmentSearch = SearchFragment()
@@ -20,7 +20,7 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        setContentView(R.layout.activity_main)
 
         nav_view.setOnNavigationItemSelectedListener(this)
 

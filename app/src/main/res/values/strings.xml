@@ -18,9 +18,23 @@
     <!--    Описание изображений-->
     <string name="desc_collection_image">Изображение коллекции</string>
     <string name="desc_backdrop">Фоновое изображение</string>
+    <string name="desc_icon_play_video">Иконка воиспроизведения видео</string>
+    <string name="desc_trailer_image">Заставка трейлера</string>
 
     <!--    Детальная информация-->
     <string name="overview">Описание</string>
     <string name="persons">Актёры</string>
     <string name="trailers">Трейлеры</string>
+    <string name="facts">Факты</string>
+    <string name="vote_average">Оценка</string>
+    <string name="vote_count">Оценивших</string>
+    <string name="runtime">Минут</string>
+    <string name="original_title">Оригинальное название</string>
+    <string name="revenue">Сборы</string>
+    <string name="budget">Бюджет</string>
+    <string name="popularity">Популярность</string>
+    <string name="release_date">Дата выхода</string>
+    <string name="original_language">Оригинальный язык</string>
+    <string name="status">Статус</string>
+    <string name="company_production">Компании производства</string>
 </resources>

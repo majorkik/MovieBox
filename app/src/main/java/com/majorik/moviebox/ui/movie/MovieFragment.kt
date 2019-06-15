@@ -6,7 +6,7 @@ import android.view.MenuInflater
 import android.view.View
 import androidx.lifecycle.Observer
 import com.majorik.moviebox.R
-import com.majorik.moviebox.adapters.CollectionAdapter
+import com.majorik.moviebox.adapters.MovieCollectionAdapter
 import com.majorik.moviebox.ui.base.BaseNavigationFragment
 import kotlinx.android.synthetic.main.fragment_movie.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -36,11 +36,11 @@ class MovieFragment : BaseNavigationFragment() {
 
     override fun setObservers() {
         movieViewModel.popularMoviesLiveData.observe(this, Observer {
-            list_popular_movies.adapter = CollectionAdapter(it)
+            list_popular_movies.adapter = MovieCollectionAdapter(it)
         })
 
         movieViewModel.topRatedMoviesLiveData.observe(this, Observer {
-            list_top_rated_movies.adapter = CollectionAdapter(it)
+            list_top_rated_movies.adapter = MovieCollectionAdapter(it)
         })
     }
 

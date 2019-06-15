@@ -3,12 +3,13 @@ package com.majorik.moviebox.ui.tv
 import androidx.lifecycle.MutableLiveData
 import com.majorik.data.repositories.TVRepository
 import com.majorik.domain.models.CollectionResponse
+import com.majorik.domain.models.tv.TVResponse
 import com.majorik.moviebox.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 
 class TVViewModel(private val tvRepository: TVRepository) : BaseViewModel() {
-    val popularTVsLiveData = MutableLiveData<MutableList<CollectionResponse.CollectionItem>>()
-    val topRatedTVsLiveData = MutableLiveData<MutableList<CollectionResponse.CollectionItem>>()
+    val popularTVsLiveData = MutableLiveData<MutableList<TVResponse.TV>>()
+    val topRatedTVsLiveData = MutableLiveData<MutableList<TVResponse.TV>>()
 
 
     fun fetchPopularTVs(
