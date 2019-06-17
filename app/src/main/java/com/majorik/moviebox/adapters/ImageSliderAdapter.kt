@@ -9,7 +9,7 @@ import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.majorik.domain.UrlConstants
 import com.majorik.moviebox.R
-import com.majorik.moviebox.extensions.displayImage
+import com.majorik.moviebox.extensions.displayImageWithCenterInside
 import com.stfalcon.imageviewer.StfalconImageViewer
 
 
@@ -25,13 +25,13 @@ class ImageSliderAdapter(private val backdropImages: List<String>) : PagerAdapte
         val imageView = view.findViewById(R.id.slider_image) as ImageView
         val viewPager: ViewPager = container as ViewPager
 
-        imageView.displayImage(UrlConstants.TMDB_BACKDROP_SIZE_780 + backdropImages[position])
+        imageView.displayImageWithCenterInside(UrlConstants.TMDB_BACKDROP_SIZE_780 + backdropImages[position])
 
         viewPager.addView(view, 0)
 
         imageView.setOnClickListener {
             StfalconImageViewer.Builder<String>(container.context, backdropImages) { view, image ->
-                view.displayImage(UrlConstants.TMDB_BACKDROP_SIZE_1280 + image)
+                view.displayImageWithCenterInside(UrlConstants.TMDB_BACKDROP_SIZE_1280 + image)
             }.withStartPosition(position).show()
         }
 

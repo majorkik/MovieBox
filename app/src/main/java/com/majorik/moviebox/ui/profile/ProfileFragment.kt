@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.majorik.moviebox.R
-import timber.log.Timber
 
 class ProfileFragment : Fragment() {
     override fun onCreateView(

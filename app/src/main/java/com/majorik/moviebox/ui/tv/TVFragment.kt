@@ -6,7 +6,6 @@ import android.view.MenuInflater
 import android.view.View
 import androidx.lifecycle.Observer
 import com.majorik.moviebox.R
-import com.majorik.moviebox.adapters.MovieCollectionAdapter
 import com.majorik.moviebox.adapters.TVCollectionAdapter
 import com.majorik.moviebox.ui.base.BaseNavigationFragment
 import kotlinx.android.synthetic.main.fragment_tv.*

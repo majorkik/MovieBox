@@ -92,6 +92,7 @@ dependencies {
     implementation androidxDependencies.navigationUI
     implementation androidxDependencies.navigationFragmentKtx
     implementation androidxDependencies.navigationUIKtx
+    implementation androidxDependencies.pagingLibrary
 
     implementation kotlinDependencies.coreKtx
     implementation kotlinDependencies.coroutinesCore
@@ -114,9 +115,11 @@ dependencies {
     implementation otherDependencies.glide
     implementation otherDependencies.expandableText
     implementation otherDependencies.circleImageView
+    implementation otherDependencies.floatingsearchview
 
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt otherDependencies.glideCompiler
     annotationProcessor otherDependencies.glideCompiler
 }

@@ -11,7 +11,7 @@
         android:id="@+id/toolbar_tv_details"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:theme="@style/DartToolbarActionButton"
+        android:theme="@style/DarkToolbarActionButton"
         app:popupTheme="@style/AppTheme.PopupOverlay">
 
         <TextView

@@ -35,6 +35,8 @@ ext {
     stfalcon_version = "0.1.0"
     photoview_version = "2.3.0"
     expandableText_version = "0.1.4"
+    circleImageView_version = "3.0.0"
+    floatingSearchView_version = "2.1.1"
 
     androidxDependencies = [
             material             : "com.google.android.material:material:$material_version",
@@ -90,11 +92,13 @@ ext {
     ]
 
     otherDependencies = [
-            glide         : "com.github.bumptech.glide:glide:$glide_version",
-            glideCompiler : "com.github.bumptech.glide:compiler:$glide_version",
-            dotsIndicator : "com.tbuonomo.andrui:viewpagerdotsindicator:$viewpagerdotsindicator_version",
-            imageViewer   : "com.github.stfalcon:stfalcon-imageviewer:$stfalcon_version",
-            photoview     : "com.github.chrisbanes:PhotoView:$photoview_version",
-            expandableText: "com.ms-square:expandableTextView:$expandableText_version"
+            glide             : "com.github.bumptech.glide:glide:$glide_version",
+            glideCompiler     : "com.github.bumptech.glide:compiler:$glide_version",
+            dotsIndicator     : "com.tbuonomo.andrui:viewpagerdotsindicator:$viewpagerdotsindicator_version",
+            imageViewer       : "com.github.stfalcon:stfalcon-imageviewer:$stfalcon_version",
+            photoview         : "com.github.chrisbanes:PhotoView:$photoview_version",
+            expandableText    : "com.ms-square:expandableTextView:$expandableText_version",
+            circleImageView   : "de.hdodenhof:circleimageview:$circleImageView_version",
+            floatingsearchview: "com.github.arimorty:floatingsearchview:$floatingSearchView_version",
     ]
 }

@@ -1,7 +1,6 @@
 package com.majorik.data.repositories
 
 import com.majorik.data.api.TmdbApiService
-import com.majorik.domain.models.CollectionResponse
 import com.majorik.domain.models.account.AccountStates
 import com.majorik.domain.models.genre.Genre
 import com.majorik.domain.models.tv.TVDetails

@@ -2,7 +2,6 @@ package com.majorik.moviebox.ui.tv
 
 import androidx.lifecycle.MutableLiveData
 import com.majorik.data.repositories.TVRepository
-import com.majorik.domain.models.CollectionResponse
 import com.majorik.domain.models.tv.TVResponse
 import com.majorik.moviebox.ui.base.BaseViewModel
 import kotlinx.coroutines.launch

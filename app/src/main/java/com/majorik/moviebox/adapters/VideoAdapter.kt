@@ -15,7 +15,7 @@ import androidx.viewpager.widget.ViewPager
 import com.majorik.domain.UrlConstants
 import com.majorik.domain.models.other.Video
 import com.majorik.moviebox.R
-import com.majorik.moviebox.extensions.displayImage
+import com.majorik.moviebox.extensions.displayImageWithCenterInside
 
 class VideoAdapter(
     private val videos: List<Video>
@@ -43,7 +43,7 @@ class VideoAdapter(
 
         trailerTitle.text = video.name
 
-        trailerImage.displayImage(UrlConstants.YOUTUBE_IMAGE_LINK + video.key + UrlConstants.YOUTUBE_SIZE_MQ)
+        trailerImage.displayImageWithCenterInside(UrlConstants.YOUTUBE_IMAGE_LINK + video.key + UrlConstants.YOUTUBE_SIZE_MQ)
 
         trailerCard.setOnClickListener {
             val appIntent = Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:${video.key}"))

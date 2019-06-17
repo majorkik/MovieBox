@@ -10,9 +10,10 @@
 
     <style name="ToolbarTheme" parent="ThemeOverlay.MaterialComponents.Light" />
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar"/>
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
+
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
@@ -26,8 +27,13 @@
         <item name="android:textAlignment">center</item>
     </style>
 
-    <style name="DartToolbarActionButton" parent="AppTheme">
+    <style name="DarkToolbarActionButton" parent="AppTheme">
         <item name="android:textColorSecondary">#222222</item>
         <item name="android:homeAsUpIndicator">@drawable/ic_navigate_up</item>
+    </style>
+
+    <style name="SearchView">
+        <item name="floatingSearch_clearBtnColor">@color/colorBlack</item>
+        <item name="floatingSearch_leftActionColor">@color/colorBlack</item>
     </style>
 </resources>
