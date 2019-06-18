@@ -49,4 +49,12 @@
     <string name="retry">Повторить попытку</string>
     <string name="refresh">Обновить</string>
     <string name="empty_list">Пустой список</string>
+    <string name="tvs">Сериалы</string>
+    <string name="movies">Фильмы</string>
+    <string name="tv">Сериалы</string>
+    <string name="movie">Фильмы</string>
+    <string name="place_of_birth">Место рождения</string>
+    <string name="date_birthday">День рождения</string>
+    <string name="biography">Биография</string>
+    <string name="episodes">Эпизодов</string>
 </resources>

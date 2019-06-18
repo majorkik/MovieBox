@@ -2,6 +2,7 @@ package com.majorik.moviebox.di
 
 import com.majorik.moviebox.ui.movie.MovieViewModel
 import com.majorik.moviebox.ui.movieDetails.MovieDetailsViewModel
+import com.majorik.moviebox.ui.person.PersonDetailsViewModel
 import com.majorik.moviebox.ui.search.SearchableViewModel
 import com.majorik.moviebox.ui.tv.TVViewModel
 import com.majorik.moviebox.ui.tvDetails.TVDetailsViewModel
@@ -14,4 +15,5 @@ val viewModelModule = module {
     viewModel { MovieDetailsViewModel(get()) }
     viewModel { TVDetailsViewModel(get()) }
     viewModel { SearchableViewModel(get()) }
+    viewModel { PersonDetailsViewModel(get()) }
 }

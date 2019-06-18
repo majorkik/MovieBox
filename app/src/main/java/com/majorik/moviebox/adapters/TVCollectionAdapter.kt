@@ -5,12 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.majorik.domain.UrlConstants
 import com.majorik.domain.models.tv.TVResponse
-import com.majorik.moviebox.GlideApp
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.TVCollectionAdapter.*
+import com.majorik.moviebox.extensions.displayImageWithCenterCrop
 import com.majorik.moviebox.ui.tvDetails.TVDetailsActivity
 import kotlinx.android.synthetic.main.layout_item_card.view.*
 
@@ -31,11 +30,7 @@ class TVCollectionAdapter(private val movies: List<TVResponse.TV>) :
 
     class CollectionViewHolder(private val parent: View) : RecyclerView.ViewHolder(parent) {
         fun bindTo(tv: TVResponse.TV) {
-            GlideApp.with(itemView.collection_image)
-                .load(UrlConstants.TMDB_POSTER_SIZE_185 + tv.posterPath)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .centerCrop()
-                .into(itemView.collection_image)
+            itemView.collection_image.displayImageWithCenterCrop(UrlConstants.TMDB_POSTER_SIZE_185 + tv.posterPath)
 
             bindClickListener(tv)
         }

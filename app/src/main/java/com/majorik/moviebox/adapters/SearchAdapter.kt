@@ -11,6 +11,7 @@ import com.majorik.domain.NetworkState.SUCCESS
 import com.majorik.domain.models.MultiSearchResponse.MultiSearchItem
 import com.majorik.moviebox.R
 import com.majorik.moviebox.ui.movieDetails.MovieDetailsActivity
+import com.majorik.moviebox.ui.person.PersonDetailsActivity
 import com.majorik.moviebox.ui.tvDetails.TVDetailsActivity
 import com.majorik.moviebox.viewholders.SearchNetworkStateVH
 import com.majorik.moviebox.viewholders.SearchViewHolder
@@ -101,6 +102,9 @@ class SearchAdapter(
             }
             "tv" -> {
                 TVDetailsActivity::class.java
+            }
+            "person" -> {
+                PersonDetailsActivity::class.java
             }
             else -> throw IllegalArgumentException("Неизвестный тип обьекта: $mediaType")
         }
