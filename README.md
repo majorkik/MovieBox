@@ -6,10 +6,9 @@
 Цель проекта - разработка под OS Android с использованием современных архитектурных решений, использование покрытия кода и интеграция с различными сервисами.
 
 ## Интерфейс
-![Главный экран](screenshots/main_page.jpg)
-![Страница фильма](screenshots/movie_page.jpg)
-![Страница сериала](screenshots/tv_page.jpg)
-![Страница актёра](screenshots/person_page.jpg)
+<img src="screenshots/main_page.jpg" width="235" height="500"><img src="screenshots/movie_page.jpg" width="235" height="500">
+
+<img src="screenshots/tv_page.jpg" width="235" height="500"><img src="screenshots/person_page.jpg" width="235" height="500">
 
 ## Чистая архитектура
 ![Диаграмма clean architecture](https://rubygarage.s3.amazonaws.com/uploads/article_image/file/2060/Artboard_15587.png)
