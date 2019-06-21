@@ -5,6 +5,7 @@ import com.majorik.domain.models.account.AccountStates
 import com.majorik.domain.models.genre.Genre
 import com.majorik.domain.models.tv.TVDetails
 import com.majorik.domain.models.tv.TVResponse
+import com.majorik.domain.models.tv.TVSeasonDetails
 
 
 class TVRepository(private val api: TmdbApiService) : BaseRepository() {
@@ -53,6 +54,18 @@ class TVRepository(private val api: TmdbApiService) : BaseRepository() {
         )
 
         return tvResponse?.genres?.toMutableList()
+    }
+
+    suspend fun getTVSeasonDetails(
+        tvId: Int,
+        seasonNumber: Int,
+        language: String?,
+        appendToResponse: String?
+    ): TVSeasonDetails? {
+        return safeApiCall(
+            call = { api.getSeasonDetails(tvId, seasonNumber, language, appendToResponse).await() },
+            errorMessage = "Ошиба при получениий детальной информации о сезоне"
+        )
     }
 
     suspend fun getAccountStatesForTV(

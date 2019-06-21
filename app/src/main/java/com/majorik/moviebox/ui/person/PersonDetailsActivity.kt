@@ -12,6 +12,7 @@ import com.majorik.moviebox.adapters.MovieCreditsAdapter
 import com.majorik.moviebox.adapters.TVCollectionAdapter
 import com.majorik.moviebox.adapters.TVCreditsAdapter
 import com.majorik.moviebox.extensions.displayImageWithCenterInside
+import com.majorik.moviebox.extensions.setAdapterWithFixedSize
 import com.majorik.moviebox.extensions.setBlackAndWhite
 import com.stfalcon.imageviewer.StfalconImageViewer
 import kotlinx.android.synthetic.main.activity_person_details.*
@@ -75,10 +76,14 @@ class PersonDetailsActivity : AppCompatActivity() {
             person_count_episodes.text =
                 personDetails.tvCredits.cast.sumBy { cast -> cast.episodeCount }.toString()
 
-            person_movie_credits.adapter =
-                MovieCreditsAdapter(personDetails.movieCredits.cast)
+            person_movie_credits.setAdapterWithFixedSize(
+                MovieCreditsAdapter(personDetails.movieCredits.cast), true
+            )
 
-            person_tv_credits.adapter = TVCreditsAdapter(personDetails.tvCredits.cast)
+            person_tv_credits.setAdapterWithFixedSize(
+                TVCreditsAdapter(personDetails.tvCredits.cast),
+                true
+            )
         })
     }
 }

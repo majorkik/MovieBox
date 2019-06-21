@@ -18,6 +18,7 @@ import com.majorik.domain.models.request.RequestToken
 import com.majorik.domain.models.tv.TVDetails
 import com.majorik.domain.models.tv.TVEpisodeResponse
 import com.majorik.domain.models.tv.TVResponse
+import com.majorik.domain.models.tv.TVSeasonDetails
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import retrofit2.http.*
@@ -103,6 +104,15 @@ interface TmdbApiService {
     fun getPersonPosters(
         @Path("person_id") personId: Int
     ): Deferred<Response<PersonPostersResponse>>
+
+    //Season & Episode
+    @GET("tv/{tv_id}/season/{season_number}")
+    fun getSeasonDetails(
+        @Path("tv_id") tvId: Int,
+        @Path("season_number") seasonNumber: Int,
+        @Query("language") language: String?,
+        @Query("append_to_response") appendToResponse: String?
+    ): Deferred<Response<TVSeasonDetails>>
 
     //Genres
     @GET("genre/movie/list")

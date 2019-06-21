@@ -9,6 +9,7 @@ import com.majorik.moviebox.adapters.CompaniesAdapter
 import com.majorik.moviebox.adapters.ImageSliderAdapter
 import com.majorik.moviebox.adapters.PersonAdapter
 import com.majorik.moviebox.adapters.VideoAdapter
+import com.majorik.moviebox.extensions.setAdapterWithFixedSize
 import kotlinx.android.synthetic.main.activity_movie_details.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.text.DecimalFormat
@@ -52,9 +53,9 @@ class MovieDetailsActivity : AppCompatActivity() {
             expand_text_view.text = movie.overview
 
             setImageSlider(movie.images.backdrops.map { imageInfo -> imageInfo.filePath }.take(6))
-            company_list.adapter = CompaniesAdapter(movie.productionCompanies)
+            company_list.setAdapterWithFixedSize(CompaniesAdapter(movie.productionCompanies), true)
             setTrailerSlider(movie.videos.results)
-            movie_casts.adapter = PersonAdapter(movie.credits.casts)
+            movie_casts.setAdapterWithFixedSize(PersonAdapter(movie.credits.casts), true)
         })
     }
 

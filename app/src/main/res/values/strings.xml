@@ -57,4 +57,7 @@
     <string name="date_birthday">День рождения</string>
     <string name="biography">Биография</string>
     <string name="episodes">Эпизодов</string>
+    <string name="seasons">Сезоны</string>
+    <string name="desc_image_episode">Изобажение эпизода</string>
+    <string name="desc_poster_season">Постер сезона</string>
 </resources>

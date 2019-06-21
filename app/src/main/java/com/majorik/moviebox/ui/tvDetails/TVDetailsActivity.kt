@@ -5,10 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.majorik.domain.models.other.Video
 import com.majorik.moviebox.R
-import com.majorik.moviebox.adapters.CompaniesAdapter
-import com.majorik.moviebox.adapters.ImageSliderAdapter
-import com.majorik.moviebox.adapters.PersonAdapter
-import com.majorik.moviebox.adapters.VideoAdapter
+import com.majorik.moviebox.adapters.*
+import com.majorik.moviebox.extensions.setAdapterWithFixedSize
 import kotlinx.android.synthetic.main.activity_tv_details.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -55,6 +53,7 @@ class TVDetailsActivity : AppCompatActivity() {
             company_list.adapter = CompaniesAdapter(tv.productionCompanies)
             setTrailerSlider(tv.videos.results)
             tv_casts.adapter = PersonAdapter(tv.credits.casts)
+            tv_seasons_list.setAdapterWithFixedSize(SeasonAdapter(tv.id,tv.seasons), true)
         })
     }
 

@@ -17,6 +17,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".ui.seasonDetails.SeasonDetailsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".ui.person.PersonDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
