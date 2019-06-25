@@ -17,7 +17,8 @@ class MovieRepository(private val api: TmdbApiService) : BaseRepository() {
             call = {
                 api.getMovieById(movieId, language, appendToResponse, imageLanguages).await()
             },
-            errorMessage = "Ошибка при получении информации о фильме"
+            errorMessage = "Ошибка GET[getMovieById]\n" +
+                    "(movieId = $movieId)"
         )
     }
 
@@ -28,7 +29,7 @@ class MovieRepository(private val api: TmdbApiService) : BaseRepository() {
     ): MutableList<MovieResponse.Movie>? {
         val movieResponse = safeApiCall(
             call = { api.getPopularMovies(language, page, region).await() },
-            errorMessage = "Ошибка при получения популярных фильмов"
+            errorMessage = "Ошибка GET[getPopularMovies]"
         )
 
         return movieResponse?.results?.toMutableList()
@@ -41,7 +42,7 @@ class MovieRepository(private val api: TmdbApiService) : BaseRepository() {
     ): MutableList<MovieResponse.Movie>? {
         val movieResponse = safeApiCall(
             call = { api.getTopRatedMovies(language, page, region).await() },
-            errorMessage = "Ошибка при получении самых популярных фильмов"
+            errorMessage = "Ошибка [getTopRatedMovies]"
         )
 
         return movieResponse?.results?.toMutableList()
@@ -50,18 +51,52 @@ class MovieRepository(private val api: TmdbApiService) : BaseRepository() {
     suspend fun getMovieGenres(language: String?): MutableList<Genre>? {
         val movieResponse = safeApiCall(
             call = { api.getMovieGenres(language).await() },
-            errorMessage = "Ошибка при получении списка жанров для фильмов"
+            errorMessage = "Ошибка GET[getMovieGenres]"
         )
 
         return movieResponse?.genres?.toMutableList()
     }
 
-    suspend fun getAccountStatesForMovie(movieId: Int, sessionId: String, guestSessionId: String?): AccountStates? {
+    suspend fun getAccountStatesForMovie(
+        movieId: Int,
+        sessionId: String,
+        guestSessionId: String?
+    ): AccountStates? {
         return safeApiCall(
             call = {
                 api.getAccountStatesForMovie(movieId, sessionId, guestSessionId).await()
             },
-            errorMessage = "Ошибка при получении данных о фильме (id:  $movieId ) в аккаунте пользователя"
+            errorMessage = "Ошибка GET[getAccountStatesForMovie]\n" +
+                    "(id = $movieId, session = $sessionId, guestSessionId = $guestSessionId)"
         )
     }
+
+    suspend fun getUpcomingMovies(
+        language: String?,
+        page: Int?,
+        region: String?
+    ): MutableList<MovieResponse.Movie>? {
+        val movieResponse = safeApiCall(
+            call = {
+                api.getUpcomingMovies(language, page, region).await()
+            },
+            errorMessage = "Ошибка GET[getUpcomingMovies]"
+        )
+        return movieResponse?.results?.toMutableList()
+    }
+
+    suspend fun getNowPlayingMovies(
+        language: String?,
+        page: Int?,
+        region: String?
+    ): MutableList<MovieResponse.Movie>? {
+        val movieResponse = safeApiCall(
+            call = {
+                api.getNowPlayingMovies(language, page, region).await()
+            },
+            errorMessage = "Ошибка GET[getNowPlayingMovies]"
+        )
+        return movieResponse?.results?.toMutableList()
+    }
+
 }

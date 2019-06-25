@@ -18,7 +18,7 @@ class SearchRepository(private val api: TmdbApiService) : BaseRepository() {
             call = {
                 api.multiSearch(language, query, page, includeAdult).await()
             },
-            errorMessage = "Ошибка при поиске (multi search)"
+            errorMessage = "Ошибка GET[multiSearch]"
         )
     }
 
@@ -43,7 +43,7 @@ class SearchRepository(private val api: TmdbApiService) : BaseRepository() {
                     primaryReleaseYear
                 ).await()
             },
-            errorMessage = "Ошибка при поиске фильмов"
+            errorMessage = "Ошибка GET[searchMovies]"
         )
     }
 
@@ -57,7 +57,7 @@ class SearchRepository(private val api: TmdbApiService) : BaseRepository() {
             call = {
                 api.searchTVSeries(language, query, page, firstAirDateYear).await()
             },
-            errorMessage = "Ошибка при поиске сериалов"
+            errorMessage = "Ошибка GET[searchTVs]"
         )
     }
 
@@ -72,7 +72,7 @@ class SearchRepository(private val api: TmdbApiService) : BaseRepository() {
             call = {
                 api.searchPeoples(language, query, page, includeAdult, region).await()
             },
-            errorMessage = "Ошибка при поиске людей"
+            errorMessage = "Ошибка GET[searchPeoples]"
         )
     }
 }

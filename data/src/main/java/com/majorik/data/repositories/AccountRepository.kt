@@ -15,7 +15,8 @@ class AccountRepository(private val api: TmdbApiService) : BaseRepository() {
             call = {
                 api.getAccountDetails(sessionId).await()
             },
-            errorMessage = "Ошибка при получении информации о пользователе"
+            errorMessage = "Ошибка GET[getAccountDetails]\n" +
+                    "(sessionId = $sessionId)"
         )
     }
 
@@ -27,10 +28,11 @@ class AccountRepository(private val api: TmdbApiService) : BaseRepository() {
     ): MovieResponse? {
 
         return safeApiCall(
-        call = {
-            api.getFavoriteMovies(language, sessionId, sortBy, page).await()
-        }, errorMessage = "Ошибка при получении понравившихся фильмов"
-    )
+            call = {
+                api.getFavoriteMovies(language, sessionId, sortBy, page).await()
+            }, errorMessage = "Ошибка GET[getFavoriteMovies]\n" +
+                    "(sessionId = $sessionId)"
+        )
     }
 
     suspend fun getFavoriteTVs(
@@ -41,10 +43,11 @@ class AccountRepository(private val api: TmdbApiService) : BaseRepository() {
     ): TVResponse? {
 
         return safeApiCall(
-        call = {
-            api.getFavoriteTVs(language, sessionId, sortBy, page).await()
-        }, errorMessage = "Ошибка при получении понравившихся сериалов"
-    )
+            call = {
+                api.getFavoriteTVs(language, sessionId, sortBy, page).await()
+            }, errorMessage = "Ошибка GET[getFavoriteTVs]\n" +
+                    "(sessionId = $sessionId)"
+        )
     }
 
     suspend fun markIsFavorite(
@@ -55,10 +58,9 @@ class AccountRepository(private val api: TmdbApiService) : BaseRepository() {
             call = {
                 api.markIsFavorite(requestMarkAsFavorite, sessionId).await()
             },
-            errorMessage = "Ошибка, неудалось установить флаг 'Нарвится'" +
-                    " со значением: ${requestMarkAsFavorite.favorite} " +
-                    "для типа: ${requestMarkAsFavorite.mediaType}" +
-                    " c id: ${requestMarkAsFavorite.mediaId} "
+            errorMessage = "Ошибка POST[markIsFavorite]\n" +
+                    "(mediaType = ${requestMarkAsFavorite.mediaType}" +
+                    "mediaId = ${requestMarkAsFavorite.mediaId}, sessionId = $sessionId) "
         )
     }
 
@@ -71,7 +73,8 @@ class AccountRepository(private val api: TmdbApiService) : BaseRepository() {
         return safeApiCall(
             call = {
                 api.getRatedMovies(language, sessionId, sortBy, page).await()
-            }, errorMessage = "Ошибка при получении оцененных фильмов"
+            }, errorMessage = "Ошибка GET[getRatedMovies]\n" +
+                    "(sessionId = $sessionId)"
         )
     }
 
@@ -84,7 +87,8 @@ class AccountRepository(private val api: TmdbApiService) : BaseRepository() {
         return safeApiCall(
             call = {
                 api.getRatedTVs(language, sessionId, sortBy, page).await()
-            }, errorMessage = "Ошибка при получении оцененных сериалов"
+            }, errorMessage = "Ошибка GET[getRatedTVs]\n" +
+                    "(sessionId = $sessionId)"
         )
     }
 
@@ -97,7 +101,8 @@ class AccountRepository(private val api: TmdbApiService) : BaseRepository() {
         return safeApiCall(
             call = {
                 api.getRatedEpisodes(language, sessionId, sortBy, page).await()
-            }, errorMessage = "Ошибка при получении оценненых серий"
+            }, errorMessage = "Ошибка GET[getRatedEpisodes]\n" +
+                    "(sessionId = $sessionId)"
         )
     }
 
@@ -108,10 +113,11 @@ class AccountRepository(private val api: TmdbApiService) : BaseRepository() {
         page: Int?
     ): MovieResponse? {
         return safeApiCall(
-        call = {
-            api.getWatchlistMovies(language, sessionId, sortBy, page).await()
-        }, errorMessage = "Ошибка при получении списка фильмов 'Буду смотреть'"
-    )
+            call = {
+                api.getWatchlistMovies(language, sessionId, sortBy, page).await()
+            }, errorMessage = "Ошибка GET[getWatchlistMovies]\n" +
+                    "(sessionId = $sessionId)"
+        )
     }
 
     suspend fun getWatchlistTVs(
@@ -122,21 +128,24 @@ class AccountRepository(private val api: TmdbApiService) : BaseRepository() {
     ): TVResponse? {
 
         return safeApiCall(
-        call = {
-            api.getWatchlistTVs(language, sessionId, sortBy, page).await()
-        }, errorMessage = "Ошибка при получении списка сериалов 'Буду смотреть'"
-    )
+            call = {
+                api.getWatchlistTVs(language, sessionId, sortBy, page).await()
+            }, errorMessage = "Ошибка GET[getWatchlistTVs]\n" +
+                    "(sessionId = $sessionId)"
+        )
     }
 
-    suspend fun addToWatchlist(requestAddToWatchlist: RequestAddToWatchlist, sessionId: String): ResponseApi? {
+    suspend fun addToWatchlist(
+        requestAddToWatchlist: RequestAddToWatchlist,
+        sessionId: String
+    ): ResponseApi? {
         return safeApiCall(
             call = {
                 api.addToWatchlist(requestAddToWatchlist, sessionId).await()
             },
-            errorMessage = "Неудалось добавть в 'Избранное'" +
-                    " с значением: ${requestAddToWatchlist.watchlist} " +
-                    "с типом: ${requestAddToWatchlist.mediaType} " +
-                    "с id: ${requestAddToWatchlist.mediaId} "
+            errorMessage = "Ошибка POST[addToWatchlist]\n" +
+                    "(mediaType = ${requestAddToWatchlist.mediaType}, " +
+                    "mediaId = ${requestAddToWatchlist.mediaId}], sessionId = $sessionId)"
         )
     }
 

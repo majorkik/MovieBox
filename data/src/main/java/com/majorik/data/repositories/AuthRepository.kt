@@ -10,8 +10,9 @@ class AuthRepository(private val api: TmdbApiService) : BaseRepository() {
     suspend fun createSession(token: String): ResponseSession? {
         val requestToken = RequestToken(token)
         return safeApiCall(
-            call = {api.createSession(requestToken).await()},
-            errorMessage = "Ошибка при создании сессии"
+            call = { api.createSession(requestToken).await() },
+            errorMessage = "Ошибка POST[createSession]\n" +
+                    "(token = $token)"
         )
     }
 
@@ -20,7 +21,7 @@ class AuthRepository(private val api: TmdbApiService) : BaseRepository() {
             call = {
                 api.getRequestToken().await()
             },
-            errorMessage = "Ошибка при получении request_token"
+            errorMessage = "Ошибка GET[getRequestToken]"
         )
     }
 
@@ -29,7 +30,8 @@ class AuthRepository(private val api: TmdbApiService) : BaseRepository() {
             call = {
                 api.deleteSession(sessionIdModel).await()
             },
-            errorMessage = "Ошибка при удалении сессии"
+            errorMessage = "Ошибка DELETE[deleteSession]\n" +
+                    "(sessionId = ${sessionIdModel.sessionId})"
         )
     }
 

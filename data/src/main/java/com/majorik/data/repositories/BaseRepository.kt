@@ -41,6 +41,6 @@ open class BaseRepository {
             logger.debug(e.message)
         }
 
-        return Result.Error(IOException("Произошла ошибка при получении результата, *custom ERROR* - $errorMessage"))
+        return Result.Error(IOException("Произошла ошибка при выполнении запроса, *custom ERROR* - $errorMessage"))
     }
 }

@@ -15,7 +15,7 @@ class PersonRepository(private val api: TmdbApiService) : BaseRepository() {
             call = {
                 api.getPersonById(personId, language, appendToResponse).await()
             },
-            errorMessage = "Ошибка при получении информации об актере"
+            errorMessage = "Ошибка GET[getPersonById] (personId = $personId)"
         )
     }
 
@@ -28,7 +28,7 @@ class PersonRepository(private val api: TmdbApiService) : BaseRepository() {
             call = {
                 api.getPersonTaggedImages(personId, language, page).await()
             },
-            errorMessage = "Ошибка при получении списка картинок с актером"
+            errorMessage = "Ошибка GET[getPersonTaggedImages] (personId = $personId)"
         )
 
         return personResponse?.results?.toMutableList()
@@ -41,7 +41,7 @@ class PersonRepository(private val api: TmdbApiService) : BaseRepository() {
             call = {
                 api.getPersonPosters(personId).await()
             },
-            errorMessage = "Ошибка при получении постеров актера"
+            errorMessage = "Ошибка GET[getPersonPosters] (personId = $personId)"
         )
 
         return personResponse?.profiles?.toMutableList()

@@ -55,6 +55,20 @@ interface TmdbApiService {
         @Query("guest_session_id") guestSessionId: String?
     ): Deferred<Response<AccountStates>>
 
+    @GET("movie/upcoming")
+    fun getUpcomingMovies(
+        @Query("language") language: String?,
+        @Query("page") page: Int?,
+        @Query("region") region: String?
+    ): Deferred<Response<MovieResponse>>
+
+    @GET("movie/now_playing")
+    fun getNowPlayingMovies(
+        @Query("language") language: String?,
+        @Query("page") page: Int?,
+        @Query("region") region: String?
+    ): Deferred<Response<MovieResponse>>
+
     //TVs
     @GET("tv/{tv_id}")
     fun getTVById(
@@ -84,6 +98,18 @@ interface TmdbApiService {
         @Query("guest_session_id") guestSessionId: String?,
         @Query("session_id") sessionId: String
     ): Deferred<Response<AccountStates>>
+
+    @GET("")
+    fun getAiringTodayTVs(
+        @Query("language") language: String?,
+        @Query("page") page: Int?
+    ): Deferred<Response<TVResponse>>
+
+    @GET("")
+    fun getOnTheAirTVs(
+        @Query("language") language: String?,
+        @Query("page") page: Int?
+    ): Deferred<Response<TVResponse>>
 
     //Persons
     @GET("person/{person_id}")

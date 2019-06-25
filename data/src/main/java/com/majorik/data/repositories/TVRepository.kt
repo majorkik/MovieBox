@@ -19,7 +19,8 @@ class TVRepository(private val api: TmdbApiService) : BaseRepository() {
 
         return safeApiCall(
             call = { api.getTVById(tvId, language, appendToResponse, imageLanguages).await() },
-            errorMessage = "Ошибка при получении информации о сериале"
+            errorMessage = "Ошибка GET[getTVById]\n" +
+                    "(tvId = $tvId)"
         )
     }
 
@@ -29,7 +30,7 @@ class TVRepository(private val api: TmdbApiService) : BaseRepository() {
     ): MutableList<TVResponse.TV>? {
         val tvResponse = safeApiCall(
             call = { api.getPopularTVs(language, page).await() },
-            errorMessage = "Ошибка при получении популярных сериалов"
+            errorMessage = "Ошибка GET[getPopularTVs]"
         )
 
         return tvResponse?.results?.toMutableList()
@@ -41,7 +42,7 @@ class TVRepository(private val api: TmdbApiService) : BaseRepository() {
     ): MutableList<TVResponse.TV>? {
         val tvResponse = safeApiCall(
             call = { api.getTopRatedTVs(language, page).await() },
-            errorMessage = "Ошибка при получении самых популярных сериалов"
+            errorMessage = "Ошибка GET[getTopRatedTVs]"
         )
 
         return tvResponse?.results?.toMutableList()
@@ -50,7 +51,7 @@ class TVRepository(private val api: TmdbApiService) : BaseRepository() {
     suspend fun getTVGenres(language: String?): MutableList<Genre>? {
         val tvResponse = safeApiCall(
             call = { api.getTVGenres(language).await() },
-            errorMessage = "Ошбика при получении списка жанров для сериалов"
+            errorMessage = "Ошбика GET[getTVGenres]"
         )
 
         return tvResponse?.genres?.toMutableList()
@@ -64,7 +65,8 @@ class TVRepository(private val api: TmdbApiService) : BaseRepository() {
     ): TVSeasonDetails? {
         return safeApiCall(
             call = { api.getSeasonDetails(tvId, seasonNumber, language, appendToResponse).await() },
-            errorMessage = "Ошиба при получениий детальной информации о сезоне"
+            errorMessage = "Ошибка GET[getTVSeasonDetails]\n" +
+                    "(tvId = $tvId, seasonNumber = $seasonNumber)"
         )
     }
 
@@ -78,7 +80,30 @@ class TVRepository(private val api: TmdbApiService) : BaseRepository() {
             call = {
                 api.getAccountStatesForTV(tvId, language, guestSessionId, sessionId).await()
             },
-            errorMessage = "Ошибка при получении данных о сериале (id:  $tvId ) в аккаунте пользователя"
+            errorMessage = "Ошибка GET[getAccountStatesForTV]\n" +
+                    " (tvId = $tvId, guestSessionId = $guestSessionId, sessionId = $sessionId)"
         )
+    }
+
+    suspend fun getAiringTodayTVs(language: String?, page: Int?): MutableList<TVResponse.TV>? {
+        val tvResponse = safeApiCall(
+            call = {
+                api.getAiringTodayTVs(language, page).await()
+            },
+            errorMessage = "Ошибка GET[getAiringTodayTVs]"
+        )
+
+        return tvResponse?.results?.toMutableList()
+    }
+
+    suspend fun getOnTheAirTVs(language: String?, page: Int?): MutableList<TVResponse.TV>? {
+        val tvResponse = safeApiCall(
+            call = {
+                api.getOnTheAirTVs(language, page).await()
+            },
+            errorMessage = "Ошибка GET[getOnTheAirTVs]"
+        )
+
+        return tvResponse?.results?.toMutableList()
     }
 }
