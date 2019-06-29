@@ -105,6 +105,7 @@ dependencies {
     implementation networkDependencies.retrofit2
     implementation networkDependencies.retrofit2Moshi
     implementation networkDependencies.okHttp3
+    implementation networkDependencies.okHttp3Logging
     implementation networkDependencies.retrofitCoroutinesAdapter
 
     implementation logDependencies.timber

@@ -30,10 +30,10 @@ class SearchAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
         return when (viewType) {
-            R.layout.layout_item_multisearch -> SearchViewHolder(
+            R.layout.item_card_with_details -> SearchViewHolder(
                 view
             )
-            R.layout.layout_item_network_state -> SearchNetworkStateVH(
+            R.layout.item_network_state -> SearchNetworkStateVH(
                 view
             )
             else -> throw IllegalArgumentException("Неизвестный тип view: $viewType")
@@ -42,7 +42,7 @@ class SearchAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (getItemViewType(position)) {
-            R.layout.layout_item_multisearch -> {
+            R.layout.item_card_with_details -> {
                 (holder as SearchViewHolder).bindTo(getItem(position))
 
                 holder.itemView.setOnClickListener {
@@ -55,7 +55,7 @@ class SearchAdapter(
                     }
                 }
             }
-            R.layout.layout_item_network_state -> {
+            R.layout.item_network_state -> {
                 (holder as SearchNetworkStateVH).bindTo(
                     networkState,
                     callback
@@ -66,9 +66,9 @@ class SearchAdapter(
 
     override fun getItemViewType(position: Int): Int {
         return if (hasExtraRow() && position == itemCount - 1) {
-            R.layout.layout_item_network_state
+            R.layout.item_network_state
         } else {
-            R.layout.layout_item_multisearch
+            R.layout.item_card_with_details
         }
     }
 

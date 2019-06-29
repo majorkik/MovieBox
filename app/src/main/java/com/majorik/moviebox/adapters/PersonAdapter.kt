@@ -11,14 +11,13 @@ import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.PersonAdapter.PersonViewHolder
 import com.majorik.moviebox.extensions.displayImageWithCenterInside
 import com.majorik.moviebox.ui.person.PersonDetailsActivity
-import kotlinx.android.synthetic.main.layout_item_person.view.*
-import org.koin.core.context.startKoin
+import kotlinx.android.synthetic.main.item_person_profile_card.view.*
 
 class PersonAdapter(private val people: List<Cast>) :
     RecyclerView.Adapter<PersonViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.layout_item_person, parent, false)
+            .inflate(R.layout.item_person_profile_card, parent, false)
 
         return PersonViewHolder(view)
     }

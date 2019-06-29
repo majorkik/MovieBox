@@ -11,13 +11,13 @@ import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.SeasonAdapter.SeasonViewHolder
 import com.majorik.moviebox.extensions.displayImageWithCenterCrop
 import com.majorik.moviebox.ui.seasonDetails.SeasonDetailsActivity
-import kotlinx.android.synthetic.main.layout_item_season_card.view.*
+import kotlinx.android.synthetic.main.item_season_card.view.*
 
 class SeasonAdapter(private val tvId: Int, private val seasons: List<TVDetails.Season>) :
     RecyclerView.Adapter<SeasonViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SeasonViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.layout_item_season_card, parent, false)
+            .inflate(R.layout.item_season_card, parent, false)
 
         return SeasonViewHolder(view)
     }

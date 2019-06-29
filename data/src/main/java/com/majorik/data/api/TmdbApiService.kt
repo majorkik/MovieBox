@@ -99,13 +99,13 @@ interface TmdbApiService {
         @Query("session_id") sessionId: String
     ): Deferred<Response<AccountStates>>
 
-    @GET("")
+    @GET("tv/airing_today")
     fun getAiringTodayTVs(
         @Query("language") language: String?,
         @Query("page") page: Int?
     ): Deferred<Response<TVResponse>>
 
-    @GET("")
+    @GET("tv/on_the_air")
     fun getOnTheAirTVs(
         @Query("language") language: String?,
         @Query("page") page: Int?

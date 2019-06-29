@@ -60,4 +60,8 @@
     <string name="seasons">Сезоны</string>
     <string name="desc_image_episode">Изобажение эпизода</string>
     <string name="desc_poster_season">Постер сезона</string>
+    <string name="now_playing">Сейчас идут</string>
+    <string name="upcoming">Ожидаемые</string>
+    <string name="on_the_air">В эфире</string>
+    <string name="on_air_today">В эфире сегодня</string>
 </resources>

@@ -4,7 +4,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.majorik.domain.NetworkState
 import com.majorik.moviebox.adapters.SearchAdapter
-import kotlinx.android.synthetic.main.layout_item_network_state.view.*
+import kotlinx.android.synthetic.main.item_network_state.view.*
 
 class SearchNetworkStateVH(containerView: View) :
     RecyclerView.ViewHolder(containerView) {

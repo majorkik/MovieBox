@@ -25,7 +25,7 @@ class VideoAdapter(
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val layoutInflater =
             container.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view: View = layoutInflater.inflate(R.layout.layout_item_video, container, false)
+        val view: View = layoutInflater.inflate(R.layout.item_video_card, container, false)
         val viewPager: ViewPager = container as ViewPager
 
         bindTo(videos[position], view)

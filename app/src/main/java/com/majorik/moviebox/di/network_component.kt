@@ -5,6 +5,7 @@ import com.majorik.data.api.TmdbApiService
 import com.majorik.moviebox.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -31,6 +32,7 @@ fun createRequestInterceptor(): Interceptor = Interceptor { chain ->
 
 fun createOkHttpClient(): OkHttpClient = OkHttpClient.Builder()
     .addNetworkInterceptor(createRequestInterceptor())
+    .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
     .build()
 
 fun getRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()

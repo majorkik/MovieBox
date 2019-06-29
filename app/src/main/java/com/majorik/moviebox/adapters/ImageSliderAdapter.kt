@@ -21,7 +21,7 @@ class ImageSliderAdapter(private val backdropImages: List<String>) : PagerAdapte
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val layoutInflater =
             container.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view: View = layoutInflater.inflate(R.layout.layout_item_big_image, container, false)
+        val view: View = layoutInflater.inflate(R.layout.item_big_image, container, false)
         val imageView = view.findViewById(R.id.slider_image) as ImageView
         val viewPager: ViewPager = container as ViewPager
 
@@ -30,7 +30,7 @@ class ImageSliderAdapter(private val backdropImages: List<String>) : PagerAdapte
         viewPager.addView(view, 0)
 
         imageView.setOnClickListener {
-            StfalconImageViewer.Builder<String>(container.context, backdropImages) { view, image ->
+            StfalconImageViewer.Builder(container.context, backdropImages) { view, image ->
                 view.displayImageWithCenterInside(UrlConstants.TMDB_BACKDROP_SIZE_1280 + image)
             }.withStartPosition(position).show()
         }
@@ -39,8 +39,6 @@ class ImageSliderAdapter(private val backdropImages: List<String>) : PagerAdapte
     }
 
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
-        val viewPager = container as ViewPager
-        val view = `object` as View
-        viewPager.removeView(view)
+        container.removeView(`object` as View?)
     }
 }

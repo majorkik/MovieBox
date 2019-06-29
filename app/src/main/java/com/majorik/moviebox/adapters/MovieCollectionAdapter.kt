@@ -12,13 +12,13 @@ import com.majorik.moviebox.GlideApp
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.MovieCollectionAdapter.*
 import com.majorik.moviebox.ui.movieDetails.MovieDetailsActivity
-import kotlinx.android.synthetic.main.layout_item_card.view.*
+import kotlinx.android.synthetic.main.item_small_poster_card.view.*
 
 class MovieCollectionAdapter(private val movies: List<MovieResponse.Movie>) :
     RecyclerView.Adapter<MovieViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.layout_item_card, parent, false)
+            .inflate(R.layout.item_small_poster_card, parent, false)
 
         return MovieViewHolder(view)
     }

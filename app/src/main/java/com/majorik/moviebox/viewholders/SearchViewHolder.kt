@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.majorik.domain.UrlConstants
 import com.majorik.domain.models.MultiSearchResponse
 import com.majorik.moviebox.extensions.displayImageWithCenterCrop
-import kotlinx.android.synthetic.main.layout_item_multisearch.view.*
+import kotlinx.android.synthetic.main.item_card_with_details.view.*
 
 class SearchViewHolder(val parent: View) : RecyclerView.ViewHolder(parent) {
     fun bindTo(multiSearchItem: MultiSearchResponse.MultiSearchItem?) {

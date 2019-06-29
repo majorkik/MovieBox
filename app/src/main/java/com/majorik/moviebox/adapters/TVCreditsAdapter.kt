@@ -11,13 +11,13 @@ import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.TVCreditsAdapter.TVCreditsViewHolder
 import com.majorik.moviebox.extensions.displayImageWithCenterCrop
 import com.majorik.moviebox.ui.tvDetails.TVDetailsActivity
-import kotlinx.android.synthetic.main.layout_item_card.view.*
+import kotlinx.android.synthetic.main.item_small_poster_card.view.*
 
 class TVCreditsAdapter(private val tvCredits: List<PersonDetails.TVCredits.TVCast>) :
     RecyclerView.Adapter<TVCreditsViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TVCreditsViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.layout_item_card, parent, false)
+            .inflate(R.layout.item_small_poster_card, parent, false)
 
         return TVCreditsViewHolder(view)
     }

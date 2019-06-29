@@ -60,6 +60,7 @@ ext {
             retrofit2Moshi           : "com.squareup.retrofit2:converter-moshi:$moshi_version",
             okHttp3                  : "com.squareup.okhttp3:okhttp:$okHttp3_version",
             okHttp3MockWebServer     : "com.squareup.okhttp3:mockwebserver:$okHttp3_version",
+            okHttp3Logging :      "com.squareup.okhttp3:logging-interceptor:$okHttp3_version",
             retrofitCoroutinesAdapter: "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$retrofitCoroutines_version"
     ]
 
