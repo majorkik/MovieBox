@@ -37,9 +37,9 @@ class VideoAdapter(
     override fun getCount() = videos.size
 
     private fun bindTo(video: Video, parent: View) {
-        val trailerTitle = parent.findViewById(R.id.trailer_title) as TextView
-        val trailerImage = parent.findViewById(R.id.trailer_image) as ImageView
-        val trailerCard = parent.findViewById(R.id.trailer_card) as CardView
+        val trailerTitle: TextView = parent.findViewById(R.id.trailer_title)
+        val trailerImage: ImageView = parent.findViewById(R.id.trailer_image)
+        val trailerCard: CardView = parent.findViewById(R.id.trailer_card)
 
         trailerTitle.text = video.name
 

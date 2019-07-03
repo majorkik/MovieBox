@@ -22,7 +22,7 @@ class ImageSliderAdapter(private val backdropImages: List<String>) : PagerAdapte
         val layoutInflater =
             container.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view: View = layoutInflater.inflate(R.layout.item_big_image, container, false)
-        val imageView = view.findViewById(R.id.slider_image) as ImageView
+        val imageView: ImageView = view.findViewById<ImageView>(R.id.slider_image)
         val viewPager: ViewPager = container as ViewPager
 
         imageView.displayImageWithCenterInside(UrlConstants.TMDB_BACKDROP_SIZE_780 + backdropImages[position])

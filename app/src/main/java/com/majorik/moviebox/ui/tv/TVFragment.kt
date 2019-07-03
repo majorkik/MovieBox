@@ -1,5 +1,6 @@
 package com.majorik.moviebox.ui.tv
 
+import android.content.Intent
 import android.graphics.Point
 import android.os.Bundle
 import android.view.Menu
@@ -7,13 +8,12 @@ import android.view.MenuInflater
 import android.view.View
 import androidx.lifecycle.Observer
 import com.majorik.moviebox.R
-import com.majorik.moviebox.adapters.MovieCollectionSliderAdapter
 import com.majorik.moviebox.adapters.TVCollectionAdapter
 import com.majorik.moviebox.adapters.TVCollectionSliderAdapter
 import com.majorik.moviebox.extensions.CardsPagerTransformerShift
 import com.majorik.moviebox.extensions.setAdapterWithFixedSize
 import com.majorik.moviebox.ui.base.BaseNavigationFragment
-import kotlinx.android.synthetic.main.fragment_movie.*
+import com.majorik.moviebox.ui.tvTabCollections.TVCollectionsActivity
 import kotlinx.android.synthetic.main.fragment_tv.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -27,11 +27,27 @@ class TVFragment : BaseNavigationFragment() {
 
         fetchData()
         setObservers()
+        setClickListeners()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.main_toolbar_menu, menu)
+    }
+
+    private fun setClickListeners() {
+        more_airing_tvs.setOnClickListener {
+            openNewActivityWithTab(0)
+        }
+        more_on_the_air_tvs.setOnClickListener {
+            openNewActivityWithTab(1)
+        }
+        more_popular_tvs.setOnClickListener {
+            openNewActivityWithTab(2)
+        }
+        more_top_rated_tvs.setOnClickListener {
+            openNewActivityWithTab(3)
+        }
     }
 
     override fun fetchData() {
@@ -65,5 +81,13 @@ class TVFragment : BaseNavigationFragment() {
         tvViewModel.onTheAirTVsLiveData.observe(this, Observer {
             list_on_the_air_tvs.setAdapterWithFixedSize(TVCollectionAdapter(it), true)
         })
+    }
+
+    private fun openNewActivityWithTab(numTab: Int) {
+        val intent = Intent(context, TVCollectionsActivity::class.java)
+
+        intent.putExtra("page", numTab)
+
+        startActivity(intent)
     }
 }

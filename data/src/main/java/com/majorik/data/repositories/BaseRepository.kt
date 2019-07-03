@@ -34,10 +34,10 @@ open class BaseRepository {
             val response = call.invoke()
             if (response.isSuccessful) {
                 return Result.Success(response.body()!!)
-            }else{
+            } else {
                 logger.debug("isFailure: " + response.message())
             }
-        } catch (e: Exception) {
+        } catch (e: IOException) {
             logger.debug(e.message)
         }
 

@@ -7,18 +7,16 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.majorik.domain.NetworkState
-import com.majorik.domain.NetworkState.SUCCESS
-import com.majorik.domain.models.MultiSearchResponse.MultiSearchItem
+import com.majorik.domain.models.tv.TVResponse
 import com.majorik.moviebox.R
-import com.majorik.moviebox.ui.movieDetails.MovieDetailsActivity
-import com.majorik.moviebox.ui.person.PersonDetailsActivity
 import com.majorik.moviebox.ui.tvDetails.TVDetailsActivity
 import com.majorik.moviebox.viewholders.NetworkStateViewHolder
-import com.majorik.moviebox.viewholders.SearchViewHolder
+import com.majorik.moviebox.viewholders.TVPagedItemVH
 
-class SearchAdapter(
-    private val callback: OnClickListener
-) : PagedListAdapter<MultiSearchItem, ViewHolder>(diffCallback) {
+class PagingTVCollectionAdapter(private val callback: OnClickListener) :
+    PagedListAdapter<TVResponse.TV, ViewHolder>(
+        diffCallback
+    ) {
 
     private var networkState: NetworkState? = null
 
@@ -30,7 +28,7 @@ class SearchAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
         return when (viewType) {
-            R.layout.item_card_with_details -> SearchViewHolder(
+            R.layout.item_small_poster_card -> TVPagedItemVH(
                 view
             )
             R.layout.item_network_state -> NetworkStateViewHolder(
@@ -42,12 +40,12 @@ class SearchAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (getItemViewType(position)) {
-            R.layout.item_card_with_details -> {
-                (holder as SearchViewHolder).bindTo(getItem(position))
+            R.layout.item_small_poster_card -> {
+                (holder as TVPagedItemVH).bindTo(getItem(position))
 
                 holder.itemView.setOnClickListener {
                     getItem(position)?.let { movie ->
-                        val intent = Intent(holder.parent.context, changeScreen(movie.mediaType))
+                        val intent = Intent(holder.parent.context, TVDetailsActivity::class.java)
 
                         intent.putExtra("id", movie.id)
 
@@ -68,7 +66,7 @@ class SearchAdapter(
         return if (hasExtraRow() && position == itemCount - 1) {
             R.layout.item_network_state
         } else {
-            R.layout.item_card_with_details
+            R.layout.item_small_poster_card
         }
     }
 
@@ -77,7 +75,7 @@ class SearchAdapter(
         return super.getItemCount()
     }
 
-    private fun hasExtraRow() = networkState != null && networkState != SUCCESS
+    private fun hasExtraRow() = networkState != null && networkState != NetworkState.SUCCESS
 
     fun updateNetworkState(newNetworkState: NetworkState?) {
         val previousState = this.networkState
@@ -95,34 +93,20 @@ class SearchAdapter(
         }
     }
 
-    private fun changeScreen(mediaType: String): Class<*> {
-        return when (mediaType) {
-            "movie" -> {
-                MovieDetailsActivity::class.java
-            }
-            "tv" -> {
-                TVDetailsActivity::class.java
-            }
-            "person" -> {
-                PersonDetailsActivity::class.java
-            }
-            else -> throw IllegalArgumentException("Неизвестный тип обьекта: $mediaType")
-        }
-    }
-
     companion object {
-        private val diffCallback = object : DiffUtil.ItemCallback<MultiSearchItem>() {
-            override fun areItemsTheSame(
-                oldItem: MultiSearchItem,
-                newItem: MultiSearchItem
-            ): Boolean = oldItem == newItem
+        private val diffCallback =
+            object : DiffUtil.ItemCallback<TVResponse.TV>() {
+                override fun areItemsTheSame(
+                    oldItem: TVResponse.TV,
+                    newItem: TVResponse.TV
+                ): Boolean =
+                    oldItem == newItem
 
-            override fun areContentsTheSame(
-                oldItem: MultiSearchItem,
-                newItem: MultiSearchItem
-            ): Boolean = oldItem == newItem
-
-        }
+                override fun areContentsTheSame(
+                    oldItem: TVResponse.TV,
+                    newItem: TVResponse.TV
+                ): Boolean =
+                    oldItem == newItem
+            }
     }
-
 }

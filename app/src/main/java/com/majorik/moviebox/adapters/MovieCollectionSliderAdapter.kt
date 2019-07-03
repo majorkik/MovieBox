@@ -26,8 +26,8 @@ class MovieCollectionSliderAdapter(private val movies: List<MovieResponse.Movie>
         val view: View = layoutInflater.inflate(R.layout.item_backdrop_card, container, false)
         val viewPager: ViewPager = container as ViewPager
 
-        val backdropImage = view.findViewById(R.id.backdrop_image) as ImageView
-        val backdropTitle = view.findViewById(R.id.backdrop_title) as TextView
+        val backdropImage: ImageView = view.findViewById(R.id.backdrop_image)
+        val backdropTitle: TextView = view.findViewById(R.id.backdrop_title)
 
         backdropImage.displayImageWithCenterCrop(UrlConstants.TMDB_BACKDROP_SIZE_780 + movies[position].backdropPath)
         backdropTitle.text = movies[position].title

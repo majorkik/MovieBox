@@ -24,10 +24,10 @@ class TVCollectionSliderAdapter(private val tvs: List<TVResponse.TV>) : PagerAda
         val layoutInflater =
             container.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view: View = layoutInflater.inflate(R.layout.item_backdrop_card, container, false)
-        val viewPager: ViewPager = container as ViewPager
+        val viewPager = container as ViewPager
 
-        val backdropImage = view.findViewById(R.id.backdrop_image) as ImageView
-        val backdropTitle = view.findViewById(R.id.backdrop_title) as TextView
+        val backdropImage: ImageView = view.findViewById(R.id.backdrop_image) as ImageView
+        val backdropTitle: TextView = view.findViewById(R.id.backdrop_title) as TextView
 
         backdropImage.displayImageWithCenterCrop(UrlConstants.TMDB_BACKDROP_SIZE_780 + tvs[position].backdropPath)
         backdropTitle.text = tvs[position].name

@@ -64,4 +64,6 @@
     <string name="upcoming">Ожидаемые</string>
     <string name="on_the_air">В эфире</string>
     <string name="on_air_today">В эфире сегодня</string>
+    <string name="more">Ещё</string>
+    <string name="desc_empty_list">Пустой список</string>
 </resources>

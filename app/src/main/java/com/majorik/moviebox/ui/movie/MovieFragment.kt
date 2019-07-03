@@ -1,5 +1,6 @@
 package com.majorik.moviebox.ui.movie
 
+import android.content.Intent
 import android.graphics.Point
 import android.os.Bundle
 import android.view.Menu
@@ -12,7 +13,10 @@ import com.majorik.moviebox.adapters.MovieCollectionSliderAdapter
 import com.majorik.moviebox.extensions.CardsPagerTransformerShift
 import com.majorik.moviebox.extensions.setAdapterWithFixedSize
 import com.majorik.moviebox.ui.base.BaseNavigationFragment
+import com.majorik.moviebox.ui.movieTabCollections.MovieCollectionsActivity
+import com.majorik.moviebox.ui.tvTabCollections.TVCollectionsActivity
 import kotlinx.android.synthetic.main.fragment_movie.*
+import kotlinx.android.synthetic.main.fragment_tv.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MovieFragment : BaseNavigationFragment() {
@@ -26,6 +30,7 @@ class MovieFragment : BaseNavigationFragment() {
 
         fetchData()
         setObservers()
+        setClickListeners()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -38,6 +43,21 @@ class MovieFragment : BaseNavigationFragment() {
         movieViewModel.fetchTopRatedMovies("", 1, "")
         movieViewModel.fetchNowPlayingMovies("ru", 1, "")
         movieViewModel.fetchUpcomingMovies("", 1, "")
+    }
+
+    private fun setClickListeners() {
+        more_now_playing_movies.setOnClickListener {
+            openNewActivityWithTab(0)
+        }
+        more_upcoming_movies.setOnClickListener {
+            openNewActivityWithTab(1)
+        }
+        more_popular_movies.setOnClickListener {
+            openNewActivityWithTab(2)
+        }
+        more_top_rated_movies.setOnClickListener {
+            openNewActivityWithTab(3)
+        }
     }
 
     override fun setObservers() {
@@ -66,4 +86,11 @@ class MovieFragment : BaseNavigationFragment() {
         })
     }
 
+    private fun openNewActivityWithTab(numTab: Int) {
+        val intent = Intent(context, MovieCollectionsActivity::class.java)
+
+        intent.putExtra("page", numTab)
+
+        startActivity(intent)
+    }
 }
