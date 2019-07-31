@@ -5,7 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.majorik.domain.GenresConstants
 import com.majorik.moviebox.R
+import com.majorik.moviebox.adapters.SelectableGenresAdapter
+import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment : Fragment() {
     override fun onCreateView(
@@ -15,4 +18,5 @@ class ProfileFragment : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_profile, container, false)
     }
+
 }

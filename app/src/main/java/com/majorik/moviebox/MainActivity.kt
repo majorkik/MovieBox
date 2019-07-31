@@ -6,9 +6,9 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.majorik.moviebox.ui.discover.DiscoverFragment
 import com.majorik.moviebox.ui.movie.MovieFragment
 import com.majorik.moviebox.ui.profile.ProfileFragment
-import com.majorik.moviebox.ui.discover.DiscoverFragment
 import com.majorik.moviebox.ui.search.SearchableActivity
 import com.majorik.moviebox.ui.tv.TVFragment
 import kotlinx.android.synthetic.main.activity_main.*
@@ -71,9 +71,9 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     }
 
     private fun hideAllFragments() {
-        hideFragment(fragmentDiscover)
-        hideFragment(fragmentTV)
         hideFragment(fragmentMovie)
+        hideFragment(fragmentTV)
+        hideFragment(fragmentDiscover)
         hideFragment(fragmentProfile)
     }
 

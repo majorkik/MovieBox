@@ -117,6 +117,8 @@ dependencies {
     implementation otherDependencies.expandableText
     implementation otherDependencies.circleImageView
     implementation otherDependencies.floatingsearchview
+    implementation otherDependencies.rangeSeekBar
+    implementation otherDependencies.numberPicker
 
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
