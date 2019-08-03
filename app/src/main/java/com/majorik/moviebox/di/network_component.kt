@@ -17,7 +17,7 @@ val networkModule = module {
 
 fun createRequestInterceptor(): Interceptor = Interceptor { chain ->
     val url = chain.request()
-        .url()
+        .url
         .newBuilder()
         .addQueryParameter("api_key", BuildConfig.TMDB_API_KEY)
         .build()
@@ -30,10 +30,15 @@ fun createRequestInterceptor(): Interceptor = Interceptor { chain ->
     return@Interceptor chain.proceed(request)
 }
 
-fun createOkHttpClient(): OkHttpClient = OkHttpClient.Builder()
-    .addNetworkInterceptor(createRequestInterceptor())
-    .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-    .build()
+fun createOkHttpClient(): OkHttpClient {
+    val httpLoggingInterceptor = HttpLoggingInterceptor()
+    return OkHttpClient.Builder()
+        .addNetworkInterceptor(createRequestInterceptor())
+        .addInterceptor(httpLoggingInterceptor.apply {
+            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+        })
+        .build()
+}
 
 fun getRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
     .client(okHttpClient)

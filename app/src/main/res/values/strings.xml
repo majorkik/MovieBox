@@ -3,8 +3,8 @@
 
     <!--    Навигация-->
     <string name="title_nav_discover">Подбор</string>
-    <string name="title_nav_movie">Фильмы</string>
-    <string name="title_nav_tv">Сериалы</string>
+    <string name="title_nav_homepage">Главная</string>
+    <string name="title_nav_episodes">Серии</string>
     <string name="title_nav_profile">Профиль</string>
 
     <!--    Страница Фильмы-->
@@ -63,7 +63,9 @@
     <string name="now_playing">Сейчас идут</string>
     <string name="upcoming">Ожидаемые</string>
     <string name="on_the_air">В эфире</string>
-    <string name="on_air_today">В эфире сегодня</string>
-    <string name="more">Ещё</string>
+    <string name="air_today">Сегодня в эфире</string>
+    <string name="more">Еще</string>
     <string name="desc_empty_list">Пустой список</string>
+
+
 </resources>

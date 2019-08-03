@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_movie">
+    app:startDestination="@+id/navigation_homepage">
 
     <fragment
         android:id="@+id/navigation_discover"
@@ -10,14 +10,14 @@
         android:label="@string/title_nav_discover" />
 
     <fragment
-        android:id="@+id/navigation_movie"
-        android:name="com.majorik.moviebox.ui.movie.MovieFragment"
-        android:label="@string/title_nav_movie" />
+        android:id="@+id/navigation_homepage"
+        android:name="com.majorik.moviebox.ui.homepage.HomeFragment"
+        android:label="@string/title_nav_homepage" />
 
     <fragment
-        android:id="@+id/navigation_tv"
-        android:name="com.majorik.moviebox.ui.tv.TVFragment"
-        android:label="@string/title_nav_tv"/>
+        android:id="@+id/navigation_episodes"
+        android:name="com.majorik.moviebox.ui.calendar_episodes.CalendarEpisodesFragment"
+        android:label="@string/title_nav_episodes"/>
 
     <fragment
         android:id="@+id/navigation_profile"
