@@ -1,11 +1,11 @@
 package com.majorik.data.repositories
 
 import com.majorik.data.api.TmdbApiService
-import com.majorik.domain.models.account.AccountStates
-import com.majorik.domain.models.genre.Genre
-import com.majorik.domain.models.tv.TVDetails
-import com.majorik.domain.models.tv.TVResponse
-import com.majorik.domain.models.tv.TVSeasonDetails
+import com.majorik.domain.tmdbModels.account.AccountStates
+import com.majorik.domain.tmdbModels.genre.Genre
+import com.majorik.domain.tmdbModels.tv.TVDetails
+import com.majorik.domain.tmdbModels.tv.TVResponse
+import com.majorik.domain.tmdbModels.tv.TVSeasonDetails
 
 
 class TVRepository(private val api: TmdbApiService) : BaseRepository() {

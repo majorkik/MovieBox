@@ -13,7 +13,7 @@ import androidx.cardview.widget.CardView
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.majorik.domain.UrlConstants
-import com.majorik.domain.models.other.Video
+import com.majorik.domain.tmdbModels.other.Video
 import com.majorik.moviebox.R
 import com.majorik.moviebox.extensions.displayImageWithCenterInside
 

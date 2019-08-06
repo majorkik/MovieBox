@@ -43,10 +43,16 @@ android {
             Properties properties = new Properties()
             properties.load(project.rootProject.file("local.properties").newDataInputStream())
             def keyTmdb = properties.getProperty("keyTmdb", "")
+            def keyTrakt = properties.getProperty("keyTrakTV", "")
+            def secretKeyTrakt = properties.getProperty("secretKeyTrakTV", "")
 
             it.buildConfigField 'String', "TMDB_API_KEY", keyTmdb
+            it.buildConfigField 'String', "TRAKT_API_KEY", keyTrakt
+            it.buildConfigField 'String', "TRAKT_API_SECRET_KEY", secretKeyTrakt
 
-            it.resValue 'string', "api_key", keyTmdb
+            it.resValue 'string', "tmdb_api_key", keyTmdb
+            it.resValue 'string', "trakt_api_key", keyTrakt
+            it.resValue 'string', "trakt_api_secret_key", secretKeyTrakt
         }
     }
 
@@ -87,7 +93,6 @@ dependencies {
     implementation androidxDependencies.lifecycleExtensions
     implementation androidxDependencies.lifecycleKtx
     implementation androidxDependencies.annotation
-//    implementation 'androidx.vectordrawable:vectordrawable:1.1.0-rc01'
     implementation androidxDependencies.navigationFragment
     implementation androidxDependencies.navigationUI
     implementation androidxDependencies.navigationFragmentKtx
@@ -120,7 +125,6 @@ dependencies {
     implementation otherDependencies.rangeSeekBar
     implementation otherDependencies.numberPicker
 
-//    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt otherDependencies.glideCompiler
     annotationProcessor otherDependencies.glideCompiler
 }

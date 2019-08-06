@@ -3,13 +3,10 @@ package com.majorik.moviebox.pagination
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
-import com.majorik.data.repositories.MovieRepository
 import com.majorik.data.repositories.TVRepository
 import com.majorik.domain.NetworkState
-import com.majorik.domain.models.movie.MovieCollectionType
-import com.majorik.domain.models.movie.MovieResponse
-import com.majorik.domain.models.tv.TVCollectionType
-import com.majorik.domain.models.tv.TVResponse
+import com.majorik.domain.tmdbModels.tv.TVCollectionType
+import com.majorik.domain.tmdbModels.tv.TVResponse
 import kotlinx.coroutines.*
 import timber.log.Timber
 

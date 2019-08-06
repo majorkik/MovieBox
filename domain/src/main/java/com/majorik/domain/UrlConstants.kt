@@ -3,8 +3,10 @@ package com.majorik.domain
 class UrlConstants {
     companion object {
         const val TMDB_BASE_URL = "https://api.themoviedb.org/3/"
+        const val TRAKT_BASE_URL = "https://api.trakt.tv/"
 
         const val TMDB_AUTH_URL = "https://www.themoviedb.org/authenticate/"
+        const val TRAKT_AUTH_URL = "https://api.trakt.tv/oauth/authorize?"
 
         const val TMDB_POSTER_SIZE_92 = "https://image.tmdb.org/t/p/w92"
         const val TMDB_POSTER_SIZE_154 = "https://image.tmdb.org/t/p/w154"

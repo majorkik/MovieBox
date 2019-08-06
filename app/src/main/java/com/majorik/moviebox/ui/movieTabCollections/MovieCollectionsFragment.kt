@@ -5,7 +5,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.majorik.domain.NetworkState
-import com.majorik.domain.models.movie.MovieCollectionType
+import com.majorik.domain.tmdbModels.movie.MovieCollectionType
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.PagingMovieCollectionAdapter
 import com.majorik.moviebox.extensions.SpacingDecoration

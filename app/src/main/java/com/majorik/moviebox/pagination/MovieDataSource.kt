@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
 import com.majorik.data.repositories.MovieRepository
 import com.majorik.domain.NetworkState
-import com.majorik.domain.models.movie.MovieCollectionType
-import com.majorik.domain.models.movie.MovieResponse
+import com.majorik.domain.tmdbModels.movie.MovieCollectionType
+import com.majorik.domain.tmdbModels.movie.MovieResponse
 import kotlinx.coroutines.*
 import timber.log.Timber
 

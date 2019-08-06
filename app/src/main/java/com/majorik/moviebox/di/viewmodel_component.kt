@@ -1,8 +1,9 @@
 package com.majorik.moviebox.di
 
-import com.majorik.domain.models.movie.MovieCollectionType
-import com.majorik.domain.models.tv.TVCollectionType
+import com.majorik.domain.tmdbModels.movie.MovieCollectionType
+import com.majorik.domain.tmdbModels.tv.TVCollectionType
 import com.majorik.moviebox.ui.homepage.HomeViewModel
+import com.majorik.moviebox.ui.login.LoginPageViewModel
 import com.majorik.moviebox.ui.movieDetails.MovieDetailsViewModel
 import com.majorik.moviebox.ui.movieTabCollections.MovieCollectionsViewModel
 import com.majorik.moviebox.ui.person.PersonDetailsViewModel
@@ -20,6 +21,7 @@ val viewModelModule = module {
     viewModel { SearchableViewModel(get()) }
     viewModel { PersonDetailsViewModel(get()) }
     viewModel { SeasonDetailsViewModel(get()) }
+    viewModel { LoginPageViewModel(get()) }
     viewModel { (tvCollectionType: TVCollectionType) ->
         TVCollectionsViewModel(
             get(),

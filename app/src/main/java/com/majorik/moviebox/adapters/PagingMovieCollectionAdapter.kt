@@ -7,7 +7,7 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.majorik.domain.NetworkState
-import com.majorik.domain.models.movie.MovieResponse
+import com.majorik.domain.tmdbModels.movie.MovieResponse
 import com.majorik.moviebox.R
 import com.majorik.moviebox.ui.movieDetails.MovieDetailsActivity
 import com.majorik.moviebox.viewholders.MoviePagedItemVH

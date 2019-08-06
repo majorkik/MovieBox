@@ -1,6 +1,6 @@
 package com.majorik.domain
 
-import com.majorik.domain.models.genre.Genre
+import com.majorik.domain.tmdbModels.genre.Genre
 
 class GenresConstants {
     companion object {

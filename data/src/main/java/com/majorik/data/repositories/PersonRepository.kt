@@ -1,9 +1,8 @@
 package com.majorik.data.repositories
 
 import com.majorik.data.api.TmdbApiService
-import com.majorik.domain.models.image.ImageDetails
-import com.majorik.domain.models.image.PersonImagesResponse
-import com.majorik.domain.models.person.PersonDetails
+import com.majorik.domain.tmdbModels.image.ImageDetails
+import com.majorik.domain.tmdbModels.person.PersonDetails
 
 class PersonRepository(private val api: TmdbApiService) : BaseRepository() {
     suspend fun getPersonById(

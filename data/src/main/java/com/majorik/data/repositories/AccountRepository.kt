@@ -1,13 +1,13 @@
 package com.majorik.data.repositories
 
 import com.majorik.data.api.TmdbApiService
-import com.majorik.domain.models.ResponseApi
-import com.majorik.domain.models.account.AccountDetails
-import com.majorik.domain.models.movie.MovieResponse
-import com.majorik.domain.models.request.RequestAddToWatchlist
-import com.majorik.domain.models.request.RequestMarkAsFavorite
-import com.majorik.domain.models.tv.TVEpisodeResponse
-import com.majorik.domain.models.tv.TVResponse
+import com.majorik.domain.tmdbModels.ResponseApi
+import com.majorik.domain.tmdbModels.account.AccountDetails
+import com.majorik.domain.tmdbModels.movie.MovieResponse
+import com.majorik.domain.tmdbModels.request.RequestAddToWatchlist
+import com.majorik.domain.tmdbModels.request.RequestMarkAsFavorite
+import com.majorik.domain.tmdbModels.tv.TVEpisodeResponse
+import com.majorik.domain.tmdbModels.tv.TVResponse
 
 class AccountRepository(private val api: TmdbApiService) : BaseRepository() {
     suspend fun getAccountDetails(sessionId: String): AccountDetails? {

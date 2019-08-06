@@ -3,8 +3,8 @@ package com.majorik.moviebox.ui.homepage
 import androidx.lifecycle.MutableLiveData
 import com.majorik.data.repositories.MovieRepository
 import com.majorik.data.repositories.TVRepository
-import com.majorik.domain.models.movie.MovieResponse
-import com.majorik.domain.models.tv.TVResponse
+import com.majorik.domain.tmdbModels.movie.MovieResponse
+import com.majorik.domain.tmdbModels.tv.TVResponse
 import com.majorik.moviebox.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 

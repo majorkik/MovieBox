@@ -2,8 +2,8 @@ package com.majorik.data.repositories
 
 import com.majorik.data.base.BaseUnitTest
 import com.majorik.data.di.appComponentTest
-import com.majorik.domain.models.request.RequestAddToWatchlist
-import com.majorik.domain.models.request.RequestMarkAsFavorite
+import com.majorik.domain.tmdbModels.request.RequestAddToWatchlist
+import com.majorik.domain.tmdbModels.request.RequestMarkAsFavorite
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertNotNull
 import org.junit.Test

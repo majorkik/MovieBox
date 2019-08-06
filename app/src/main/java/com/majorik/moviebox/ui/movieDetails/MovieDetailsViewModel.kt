@@ -2,7 +2,7 @@ package com.majorik.moviebox.ui.movieDetails
 
 import androidx.lifecycle.MutableLiveData
 import com.majorik.data.repositories.MovieRepository
-import com.majorik.domain.models.movie.MovieDetails
+import com.majorik.domain.tmdbModels.movie.MovieDetails
 import com.majorik.moviebox.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 

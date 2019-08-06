@@ -1,10 +1,10 @@
 package com.majorik.data.repositories
 
 import com.majorik.data.api.TmdbApiService
-import com.majorik.domain.models.MultiSearchResponse
-import com.majorik.domain.models.movie.MovieResponse
-import com.majorik.domain.models.person.PersonResponse
-import com.majorik.domain.models.tv.TVResponse
+import com.majorik.domain.tmdbModels.MultiSearchResponse
+import com.majorik.domain.tmdbModels.movie.MovieResponse
+import com.majorik.domain.tmdbModels.person.PersonResponse
+import com.majorik.domain.tmdbModels.tv.TVResponse
 
 class SearchRepository(private val api: TmdbApiService) : BaseRepository() {
 

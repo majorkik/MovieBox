@@ -1,10 +1,10 @@
 package com.majorik.data.repositories
 
 import com.majorik.data.api.TmdbApiService
-import com.majorik.domain.models.account.AccountStates
-import com.majorik.domain.models.genre.Genre
-import com.majorik.domain.models.movie.MovieDetails
-import com.majorik.domain.models.movie.MovieResponse
+import com.majorik.domain.tmdbModels.account.AccountStates
+import com.majorik.domain.tmdbModels.genre.Genre
+import com.majorik.domain.tmdbModels.movie.MovieDetails
+import com.majorik.domain.tmdbModels.movie.MovieResponse
 
 class MovieRepository(private val api: TmdbApiService) : BaseRepository() {
     suspend fun getMovieById(

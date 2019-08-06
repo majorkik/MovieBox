@@ -3,7 +3,7 @@ package com.majorik.moviebox.ui.movieDetails
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.majorik.domain.models.other.Video
+import com.majorik.domain.tmdbModels.other.Video
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.CompaniesAdapter
 import com.majorik.moviebox.adapters.ImageSliderAdapter

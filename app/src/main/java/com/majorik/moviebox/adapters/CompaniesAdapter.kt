@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.majorik.domain.models.other.ProductionCompany
+import com.majorik.domain.tmdbModels.other.ProductionCompany
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.CompaniesAdapter.*
 import kotlinx.android.synthetic.main.item_company.view.*

@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
 import com.majorik.data.repositories.SearchRepository
 import com.majorik.domain.NetworkState
-import com.majorik.domain.models.MultiSearchResponse.MultiSearchItem
+import com.majorik.domain.tmdbModels.MultiSearchResponse.MultiSearchItem
 import kotlinx.coroutines.*
 import timber.log.Timber
 

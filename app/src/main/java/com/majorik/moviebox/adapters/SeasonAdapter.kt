@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.majorik.domain.UrlConstants
-import com.majorik.domain.models.tv.TVDetails
+import com.majorik.domain.tmdbModels.tv.TVDetails
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.SeasonAdapter.SeasonViewHolder
 import com.majorik.moviebox.extensions.displayImageWithCenterCrop

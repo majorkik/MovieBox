@@ -5,9 +5,10 @@ import org.koin.dsl.module
 
 val repositoryModule = module {
     factory { AccountRepository(get()) }
-    factory {  AuthRepository(get())}
-    factory {  MovieRepository(get())}
-    factory {  TVRepository(get())}
-    factory {  PersonRepository(get())}
-    factory {  SearchRepository(get())}
+    factory { TmdbAuthRepository(get()) }
+    factory { MovieRepository(get()) }
+    factory { TVRepository(get()) }
+    factory { PersonRepository(get()) }
+    factory { SearchRepository(get()) }
+    factory { TraktAuthRepository(get()) }
 }

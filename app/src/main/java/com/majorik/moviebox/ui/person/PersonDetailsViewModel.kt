@@ -2,7 +2,7 @@ package com.majorik.moviebox.ui.person
 
 import androidx.lifecycle.MutableLiveData
 import com.majorik.data.repositories.PersonRepository
-import com.majorik.domain.models.person.PersonDetails
+import com.majorik.domain.tmdbModels.person.PersonDetails
 import com.majorik.moviebox.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 

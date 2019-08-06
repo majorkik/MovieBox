@@ -4,12 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.majorik.domain.UrlConstants
-import com.majorik.domain.models.movie.MovieResponse
-import com.majorik.domain.models.person.PersonDetails
 import com.majorik.moviebox.R
-import com.majorik.moviebox.adapters.MovieCollectionAdapter
 import com.majorik.moviebox.adapters.MovieCreditsAdapter
-import com.majorik.moviebox.adapters.TVCollectionAdapter
 import com.majorik.moviebox.adapters.TVCreditsAdapter
 import com.majorik.moviebox.extensions.displayImageWithCenterInside
 import com.majorik.moviebox.extensions.setAdapterWithFixedSize

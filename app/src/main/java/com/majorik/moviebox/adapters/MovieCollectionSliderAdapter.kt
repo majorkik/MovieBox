@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.majorik.domain.UrlConstants
-import com.majorik.domain.models.movie.MovieResponse
+import com.majorik.domain.tmdbModels.movie.MovieResponse
 import com.majorik.moviebox.R
 import com.majorik.moviebox.extensions.displayImageWithCenterCrop
 import com.majorik.moviebox.ui.movieDetails.MovieDetailsActivity

@@ -3,9 +3,8 @@ package com.majorik.moviebox.pagination
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import com.majorik.data.repositories.MovieRepository
-import com.majorik.domain.models.MultiSearchResponse
-import com.majorik.domain.models.movie.MovieCollectionType
-import com.majorik.domain.models.movie.MovieResponse
+import com.majorik.domain.tmdbModels.movie.MovieCollectionType
+import com.majorik.domain.tmdbModels.movie.MovieResponse
 import kotlinx.coroutines.CoroutineScope
 
 class MovieDataSourceFactory(

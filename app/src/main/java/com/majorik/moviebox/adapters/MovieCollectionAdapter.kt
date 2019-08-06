@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.majorik.domain.UrlConstants
-import com.majorik.domain.models.movie.MovieResponse
+import com.majorik.domain.tmdbModels.movie.MovieResponse
 import com.majorik.moviebox.GlideApp
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.MovieCollectionAdapter.*

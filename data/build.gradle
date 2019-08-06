@@ -7,6 +7,8 @@ dependencies {
     def kotlinDependencies = rootProject.ext.kotlinDependencies
     def networkDependencies = rootProject.ext.networkDependencies
     def logDependencies = rootProject.ext.logDependencies
+    def koinDependencies = rootProject.ext.koinDependencies
+    def testingDependencies = rootProject.ext.testingDependencies
 
     implementation kotlinDependencies.kotlin
 
@@ -17,6 +19,14 @@ dependencies {
 
     implementation 'org.slf4j:slf4j-api:1.7.26'
     implementation logDependencies.slf4jTimber
+
+    implementation koinDependencies.koinScope
+    implementation koinDependencies.koinViewModel
+    implementation koinDependencies.koinAndroidExt
+    testImplementation koinDependencies.koinTest
+
+    testImplementation testingDependencies.junit
+    testImplementation testingDependencies.testJunit
 
     implementation project(':domain')
 }
