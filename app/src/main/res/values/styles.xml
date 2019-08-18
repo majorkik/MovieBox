@@ -29,7 +29,7 @@
 
     <style name="DarkToolbarActionButton" parent="AppTheme">
         <item name="android:textColorSecondary">#222222</item>
-        <item name="android:homeAsUpIndicator">@drawable/ic_navigate_up</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_back</item>
     </style>
 
     <style name="SearchView">

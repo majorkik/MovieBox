@@ -5,9 +5,10 @@
     android:id="@+id/trailer_card"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     android:clickable="true"
     android:focusable="true"
-    app:cardCornerRadius="8dp"
+    app:cardCornerRadius="4dp"
     tools:layout_height="250dp">
 
     <RelativeLayout

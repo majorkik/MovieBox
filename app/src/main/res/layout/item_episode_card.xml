@@ -9,7 +9,8 @@
     android:layout_marginRight="16dp"
     android:layout_marginBottom="12dp"
     app:cardCornerRadius="8dp"
-    app:cardElevation="8dp">
+    app:cardElevation="8dp"
+    app:cardBackgroundColor="@color/colorPrimary">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -52,6 +53,7 @@
             tools:text="С01 | Э10" />
 
         <TextView
+            android:textColor="@color/colorWhite"
             android:id="@+id/episode_air_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -62,12 +64,12 @@
             tools:text="16 марта 2019г." />
 
         <TextView
+            android:textColor="@color/colorWhite"
             android:id="@+id/episode_vote_average"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:textColor="@color/colorBlack"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -75,6 +77,7 @@
             tools:text="7.1/10" />
 
         <TextView
+            android:textColor="@color/colorWhite"
             android:id="@+id/episode_overview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -82,7 +85,6 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:textColor="@color/colorBlack"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

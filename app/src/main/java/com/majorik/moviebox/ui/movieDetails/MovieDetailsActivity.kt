@@ -40,15 +40,12 @@ class MovieDetailsActivity : AppCompatActivity() {
         movieDetailsViewModel.movieDetailsLiveData.observe(this, Observer { movie ->
             val numFormat = DecimalFormat("#,###,###")
             movie_title.text = movie.title
-            movie_vote_average.text = movie.voteAverage.toString()
-            movie_vote_count.text = movie.voteCount.toString()
             movie_original_language.text = movie.originalLanguage
             movie_original_title.text = movie.originalTitle
             movie_revenue.text = (numFormat.format(movie.revenue) + " $")
             movie_budget.text = (numFormat.format(movie.budget) + " $")
             movie_date_release.text = movie.releaseDate
             movie_status.text = movie.status
-            movie_popularity.text = movie.popularity.toInt().toString()
             movie_runtime.text = movie.runtime.toString()
             expand_text_view.text = movie.overview
 

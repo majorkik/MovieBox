@@ -35,8 +35,6 @@ class TVDetailsActivity : AppCompatActivity() {
     private fun setObserver() {
         tvDetailsViewModel.tvDetailsLiveData.observe(this, Observer { tv ->
             tv_title.text = tv.name
-            tv_vote_average.text = tv.voteAverage.toString()
-            tv_vote_count.text = tv.voteCount.toString()
             expand_text_view.text = tv.overview
             tv_original_language.text = tv.originalLanguage
             tv_original_title.text = tv.originalName
@@ -44,10 +42,8 @@ class TVDetailsActivity : AppCompatActivity() {
             tv_runtime.text = tv.episodeRunTime[0].toString()
             tv_first_air_date.text = tv.firstAirDate
             tv_date_last_air.text = tv.lastAirDate
-            tv_popularity.text = tv.popularity.toInt().toString()
             tv_count_seasons.text = tv.numberOfSeasons.toString()
             tv_count_episodes.text = tv.numberOfEpisodes.toString()
-
 
             setImageSlider(tv.images.backdrops.map { imageInfo -> imageInfo.filePath }.take(6))
             company_list.adapter = CompaniesAdapter(tv.productionCompanies)

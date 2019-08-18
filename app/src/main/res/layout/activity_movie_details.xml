@@ -1,34 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@color/colorPrimaryDark"
     tools:context=".ui.movieDetails.MovieDetailsActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_movie_details"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:theme="@style/DarkToolbarActionButton"
-        app:popupTheme="@style/AppTheme.PopupOverlay">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:textAlignment="center"
-            android:textColor="#222222"
-            android:textSize="22sp"
-            android:layout_marginEnd="?attr/actionBarSize"
-            android:textStyle="bold"
-            android:text="@string/app_name" />
-    </androidx.appcompat.widget.Toolbar>
-
-    <androidx.core.widget.NestedScrollView
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="?attr/actionBarSize"
+                android:orientation="vertical">
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/image_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:clipToPadding="false"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingBottom="16dp" />
+
+                <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
+                    android:id="@+id/worm_dots_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    app:dotsColor="@android:color/white"
+                    app:dotsCornerRadius="4dp"
+                    app:dotsSize="8dp"
+                    app:dotsSpacing="2dp"
+                    app:dotsStrokeColor="#A8ffffff"
+                    app:dotsStrokeWidth="1dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/movie_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_weight="1"
+                        android:textColor="@android:color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        tools:text="Фантастические твари: Преступления Грин-де-Вальда" />
+
+                    <ToggleButton
+                        android:id="@+id/is_watchlist_button"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/button_watchlist"
+                        android:text=""
+                        android:textOff=""
+                        android:textOn="" />
+
+                    <ToggleButton
+                        android:id="@+id/is_favorite_button"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/button_favorite"
+                        android:text=""
+                        android:textOff=""
+                        android:textOn="" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_movie_details"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/colorPrimaryDark"
+                android:theme="@style/DarkToolbarActionButton"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="?attr/actionBarSize"
+                    android:gravity="center_horizontal"
+                    android:text="@string/app_name"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="?attr/actionBarSize"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
@@ -36,133 +127,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/image_pager"
-                android:layout_width="match_parent"
-                android:layout_height="220dp"
-                android:clipToPadding="false"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:paddingBottom="16dp" />
-
-            <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
-                android:id="@+id/worm_dots_indicator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                app:dotsColor="#222222"
-                app:dotsCornerRadius="4dp"
-                app:dotsSize="8dp"
-                app:dotsSpacing="2dp"
-                app:dotsStrokeColor="#A8222222"
-                app:dotsStrokeWidth="1dp" />
-
-
-            <TextView
-                android:id="@+id/movie_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
-                android:textColor="@color/colorBlack"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                tools:text="Фантастические твари: Преступления Грин-де-Вальда" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:baselineAligned="false"
-                android:orientation="horizontal"
-                android:weightSum="3">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/movie_vote_average"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        tools:text="7.3" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="@string/vote_average"
-                        android:textColor="#666666"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/movie_vote_count"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        tools:text="4 364" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="@string/vote_count"
-                        android:textColor="#666666"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/movie_popularity"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        tools:text="169" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="@string/popularity"
-                        android:textColor="#666666"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:text="@string/overview"
-                android:textColor="@color/colorBlack"
+                android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -202,7 +172,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:text="@string/facts"
-                android:textColor="@color/colorBlack"
+                android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -212,14 +182,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="@string/original_title"
-                android:textColor="@color/colorBlack" />
+                android:textColor="@android:color/white" />
 
             <TextView
                 android:id="@+id/movie_original_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:textColor="@color/colorBlack"
+                android:textColor="@android:color/white"
                 tools:text="Fantastic Beasts: The crime of Grindewald" />
 
             <LinearLayout
@@ -242,13 +212,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/revenue"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@android:color/white" />
 
                     <TextView
                         android:id="@+id/movie_revenue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@android:color/white"
                         tools:text="152 000 000 $" />
                 </LinearLayout>
 
@@ -263,14 +233,14 @@
                         android:layout_height="wrap_content"
                         android:text="@string/budget"
                         android:textAlignment="textEnd"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@android:color/white" />
 
                     <TextView
                         android:id="@+id/movie_budget"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAlignment="textEnd"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@android:color/white"
                         tools:text="1 127 287 899 $" />
                 </LinearLayout>
             </LinearLayout>
@@ -295,14 +265,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/status"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@android:color/white" />
 
                     <TextView
                         android:id="@+id/movie_status"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAlignment="textEnd"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@android:color/white"
                         tools:text="Идет" />
                 </LinearLayout>
 
@@ -317,14 +287,14 @@
                         android:layout_height="wrap_content"
                         android:text="@string/runtime"
                         android:textAlignment="textEnd"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@android:color/white" />
 
                     <TextView
                         android:id="@+id/movie_runtime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAlignment="textEnd"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@android:color/white"
                         tools:text="564.6" />
                 </LinearLayout>
             </LinearLayout>
@@ -349,14 +319,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/release_date"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@android:color/white" />
 
                     <TextView
                         android:id="@+id/movie_date_release"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAlignment="textEnd"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@android:color/white"
                         tools:text="12 декабря 2016" />
                 </LinearLayout>
 
@@ -371,14 +341,14 @@
                         android:layout_height="wrap_content"
                         android:text="@string/original_language"
                         android:textAlignment="textEnd"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@android:color/white" />
 
                     <TextView
                         android:id="@+id/movie_original_language"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAlignment="textEnd"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@android:color/white"
                         tools:text="ru" />
                 </LinearLayout>
             </LinearLayout>
@@ -389,7 +359,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/company_production"
-                android:textColor="@color/colorBlack" />
+                android:textColor="@android:color/white" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/company_list"
@@ -408,7 +378,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:text="@string/persons"
-                android:textColor="@color/colorBlack"
+                android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -427,7 +397,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:text="@string/trailers"
-                android:textColor="@color/colorBlack"
+                android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -444,5 +414,4 @@
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

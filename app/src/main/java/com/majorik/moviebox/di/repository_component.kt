@@ -11,4 +11,5 @@ val repositoryModule = module {
     factory { PersonRepository(get()) }
     factory { SearchRepository(get()) }
     factory { TraktAuthRepository(get()) }
+    factory { TraktSyncRepository(get()) }
 }

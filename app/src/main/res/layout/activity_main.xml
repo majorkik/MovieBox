@@ -37,7 +37,7 @@
             android:id="@+id/nav_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/bottom_navigation_corner_radius"
             app:itemIconTint="@drawable/drawer_selectable_color"
             app:labelVisibilityMode="unlabeled"
             app:menu="@menu/bottom_nav_menu" />

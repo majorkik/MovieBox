@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
     tools:context=".ui.tvDetails.TVDetailsActivity">
 
@@ -55,104 +56,49 @@
                 app:dotsCornerRadius="4dp"
                 app:dotsSize="8dp"
                 app:dotsSpacing="2dp"
-                app:dotsStrokeColor="#A8222222"
+                app:dotsStrokeColor="#A8ffffff"
                 app:dotsStrokeWidth="1dp" />
-
-            <TextView
-                android:id="@+id/tv_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
-                android:textColor="@color/colorBlack"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                tools:text="Фантастические твари: Преступления Грин-де-Вальда" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:baselineAligned="false"
-                android:orientation="horizontal"
-                android:weightSum="3">
+                android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="Фантастические твари: Преступления Грин-де-Вальда" />
 
-                    <TextView
-                        android:id="@+id/tv_vote_average"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        tools:text="7.3" />
+                <ToggleButton
+                    android:id="@+id/is_watchlist_button"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/button_watchlist"
+                    android:text=""
+                    android:textOff=""
+                    android:textOn="" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="@string/vote_average"
-                        android:textColor="#666666"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_vote_count"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        tools:text="4 364" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="@string/vote_count"
-                        android:textColor="#666666"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_popularity"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        tools:text="169" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="@string/popularity"
-                        android:textColor="#666666"
-                        android:textSize="14sp" />
-                </LinearLayout>
+                <ToggleButton
+                    android:id="@+id/is_favorite_button"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/button_favorite"
+                    android:text=""
+                    android:textOff=""
+                    android:textOn="" />
             </LinearLayout>
 
             <TextView
@@ -160,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:text="@string/overview"
-                android:textColor="@color/colorBlack"
+                android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -200,7 +146,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:text="@string/facts"
-                android:textColor="@color/colorBlack"
+                android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -218,14 +164,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1.75"
                     android:text="@string/original_title"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@android:color/white" />
 
                 <TextView
                     android:id="@+id/tv_original_title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2.25"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@android:color/white" />
             </LinearLayout>
 
             <LinearLayout
@@ -242,14 +188,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1.75"
                     android:text="@string/status"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@android:color/white" />
 
                 <TextView
                     android:id="@+id/tv_status"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2.25"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@android:color/white" />
             </LinearLayout>
 
             <LinearLayout
@@ -266,14 +212,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1.75"
                     android:text="@string/first_air_date"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@android:color/white" />
 
                 <TextView
                     android:id="@+id/tv_first_air_date"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2.25"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@android:color/white" />
             </LinearLayout>
 
             <LinearLayout
@@ -290,14 +236,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1.75"
                     android:text="@string/last_air_date"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@android:color/white" />
 
                 <TextView
                     android:id="@+id/tv_date_last_air"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2.25"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@android:color/white" />
             </LinearLayout>
 
             <LinearLayout
@@ -314,14 +260,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1.75"
                     android:text="@string/runtime"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@android:color/white" />
 
                 <TextView
                     android:id="@+id/tv_runtime"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2.25"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@android:color/white" />
             </LinearLayout>
 
             <LinearLayout
@@ -338,14 +284,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1.75"
                     android:text="@string/original_language"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@android:color/white" />
 
                 <TextView
                     android:id="@+id/tv_original_language"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2.25"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@android:color/white" />
             </LinearLayout>
 
             <LinearLayout
@@ -362,14 +308,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1.75"
                     android:text="@string/number_of_seasons"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@android:color/white" />
 
                 <TextView
                     android:id="@+id/tv_count_seasons"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2.25"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@android:color/white" />
             </LinearLayout>
 
             <LinearLayout
@@ -386,14 +332,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1.75"
                     android:text="@string/number_of_episodes"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@android:color/white" />
 
                 <TextView
                     android:id="@+id/tv_count_episodes"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2.25"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@android:color/white" />
             </LinearLayout>
 
             <TextView
@@ -402,7 +348,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/company_production"
-                android:textColor="@color/colorBlack" />
+                android:textColor="@android:color/white" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/company_list"
@@ -422,7 +368,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:text="@string/persons"
-                android:textColor="@color/colorBlack"
+                android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -441,7 +387,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:text="@string/seasons"
-                android:textColor="@color/colorBlack"
+                android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 

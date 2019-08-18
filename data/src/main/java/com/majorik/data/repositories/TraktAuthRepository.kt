@@ -1,8 +1,8 @@
 package com.majorik.data.repositories
 
 import com.majorik.data.api.TraktApiService
-import com.majorik.domain.traktModels.GrantType
-import com.majorik.domain.traktModels.OAuthToken
+import com.majorik.domain.traktModels.oauth.GrantType
+import com.majorik.domain.traktModels.oauth.OAuthToken
 
 class TraktAuthRepository(private val apiTraktService: TraktApiService) : BaseRepository() {
     suspend fun exchangeCodeForAccessToken(

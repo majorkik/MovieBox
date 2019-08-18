@@ -2,6 +2,7 @@ package com.majorik.domain
 
 class UrlConstants {
     companion object {
+        const val REDIRECT_URL = "com.majorik.moviebox://redirect"
         const val TMDB_BASE_URL = "https://api.themoviedb.org/3/"
         const val TRAKT_BASE_URL = "https://api.trakt.tv/"
 

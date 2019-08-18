@@ -45,7 +45,7 @@ fun createTraktRequestInterceptor(): Interceptor = Interceptor { chain ->
         .newBuilder()
         .addHeader("Content-type", "application/json")
         .addHeader("trakt-api-version", "2")
-        .addHeader("trakt-api_key", BuildConfig.TRAKT_API_KEY)
+        .addHeader("trakt-api-key", BuildConfig.TRAKT_API_KEY)
         .build()
 
     return@Interceptor chain.proceed(request)
