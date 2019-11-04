@@ -3,6 +3,7 @@ package com.majorik.moviebox.ui.movieDetails
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import com.majorik.domain.tmdbModels.account.AccountStates
 import com.majorik.domain.tmdbModels.other.Video
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.CompaniesAdapter
@@ -10,12 +11,17 @@ import com.majorik.moviebox.adapters.ImageSliderAdapter
 import com.majorik.moviebox.adapters.PersonAdapter
 import com.majorik.moviebox.adapters.VideoAdapter
 import com.majorik.moviebox.extensions.setAdapterWithFixedSize
+import com.majorik.moviebox.utils.SharedPrefsManager
 import kotlinx.android.synthetic.main.activity_movie_details.*
+import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.text.DecimalFormat
 
 class MovieDetailsActivity : AppCompatActivity() {
     private val movieDetailsViewModel: MovieDetailsViewModel by viewModel()
+    private val sharedPrefs: SharedPrefsManager by inject()
+
+    private lateinit var movieState: AccountStates
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,17 +29,37 @@ class MovieDetailsActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar_movie_details)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.run {
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+        }
 
         fetchDetails(intent.extras)
-
+        setClickListeners()
         setObserver()
     }
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
+    }
+
+    private fun setClickListeners() {
+        is_favorite_button.setOnClickListener {
+            movieDetailsViewModel.markMovieIsFavorite(
+                movieState.id,
+                !movieState.favorite,
+                sharedPrefs.getTmdbSessionId()
+            )
+        }
+
+        is_watchlist_button.setOnClickListener {
+            movieDetailsViewModel.addMovieToWatchlist(
+                movieState.id,
+                !movieState.watchlist,
+                sharedPrefs.getTmdbSessionId()
+            )
+        }
     }
 
     private fun setObserver() {
@@ -54,6 +80,14 @@ class MovieDetailsActivity : AppCompatActivity() {
             setTrailerSlider(movie.videos.results)
             movie_casts.setAdapterWithFixedSize(PersonAdapter(movie.credits.casts), true)
         })
+
+        movieDetailsViewModel.movieStatesLiveData.observe(this, Observer {
+            it?.run{
+                movieState = this
+                is_favorite_button.isChecked = this.favorite
+                is_watchlist_button.isChecked = this.watchlist
+            }
+        })
     }
 
     private fun fetchDetails(extras: Bundle?) {
@@ -63,6 +97,11 @@ class MovieDetailsActivity : AppCompatActivity() {
                 "ru",
                 "images,credits,videos",
                 "ru,en,null"
+            )
+
+            movieDetailsViewModel.fetchAccountStateForMovie(
+                extras.getInt("id"),
+                sharedPrefs.getTmdbSessionId()
             )
         }
     }

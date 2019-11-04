@@ -65,6 +65,9 @@ android {
         jvmTarget = 1.8
     }
 
+    dexOptions {
+        preDexLibraries true
+    }
 }
 
 configurations.all {

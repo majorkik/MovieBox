@@ -73,8 +73,8 @@ class TVRepository(private val api: TmdbApiService) : BaseRepository() {
     suspend fun getAccountStatesForTV(
         tvId: Int,
         language: String?,
-        guestSessionId: String?,
-        sessionId: String
+        sessionId: String,
+        guestSessionId: String?
     ): AccountStates? {
         return safeApiCall(
             call = {

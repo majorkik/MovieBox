@@ -3,15 +3,29 @@ package com.majorik.moviebox.ui.tvDetails
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import com.majorik.domain.tmdbModels.account.AccountStates
 import com.majorik.domain.tmdbModels.other.Video
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.*
 import com.majorik.moviebox.extensions.setAdapterWithFixedSize
+import com.majorik.moviebox.utils.SharedPrefsManager
+import kotlinx.android.synthetic.main.activity_movie_details.*
 import kotlinx.android.synthetic.main.activity_tv_details.*
+import kotlinx.android.synthetic.main.activity_tv_details.company_list
+import kotlinx.android.synthetic.main.activity_tv_details.expand_text_view
+import kotlinx.android.synthetic.main.activity_tv_details.image_pager
+import kotlinx.android.synthetic.main.activity_tv_details.is_favorite_button
+import kotlinx.android.synthetic.main.activity_tv_details.is_watchlist_button
+import kotlinx.android.synthetic.main.activity_tv_details.trailer_pager
+import kotlinx.android.synthetic.main.activity_tv_details.worm_dots_indicator
+import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class TVDetailsActivity : AppCompatActivity() {
     private val tvDetailsViewModel: TVDetailsViewModel by viewModel()
+    private val sharedPrefs: SharedPrefsManager by inject()
+
+    private lateinit var tvState: AccountStates
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,11 +33,13 @@ class TVDetailsActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar_tv_details)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.run {
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+        }
 
         fetchDetails(intent.extras)
-
+        setClickListener()
         setObserver()
     }
 
@@ -49,8 +65,34 @@ class TVDetailsActivity : AppCompatActivity() {
             company_list.adapter = CompaniesAdapter(tv.productionCompanies)
             setTrailerSlider(tv.videos.results)
             tv_casts.adapter = PersonAdapter(tv.credits.casts)
-            tv_seasons_list.setAdapterWithFixedSize(SeasonAdapter(tv.id,tv.seasons), true)
+            tv_seasons_list.setAdapterWithFixedSize(SeasonAdapter(tv.id, tv.seasons), true)
         })
+
+        tvDetailsViewModel.tvStatesLiveData.observe(this, Observer {
+            it?.run {
+                tvState = this
+                is_favorite_button.isChecked = this.favorite
+                is_watchlist_button.isChecked = this.watchlist
+            }
+        })
+    }
+
+    private fun setClickListener() {
+        is_favorite_button.setOnClickListener {
+            tvDetailsViewModel.markTVIsFavorite(
+                tvState.id,
+                !tvState.favorite,
+                sharedPrefs.getTmdbSessionId()
+            )
+        }
+
+        is_watchlist_button.setOnClickListener {
+            tvDetailsViewModel.addTVToWatchlist(
+                tvState.id,
+                !tvState.watchlist,
+                sharedPrefs.getTmdbSessionId()
+            )
+        }
     }
 
     private fun fetchDetails(extras: Bundle?) {
@@ -60,6 +102,11 @@ class TVDetailsActivity : AppCompatActivity() {
                 "ru",
                 "images,credits,videos",
                 "ru,en,null"
+            )
+
+            tvDetailsViewModel.fetchAccountStateForTV(
+                extras.getInt("id"),
+                sharedPrefs.getTmdbSessionId()
             )
         }
     }
