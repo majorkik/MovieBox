@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Medium -->
+    <font
+        android:font="@font/montserrat_medium"
+        android:fontStyle="normal"
+        android:fontWeight="500"
+
+        app:font="@font/montserrat_medium"
+        app:fontStyle="normal"
+        app:fontWeight="500"/>
+
+</font-family>
