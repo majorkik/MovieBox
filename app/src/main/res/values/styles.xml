@@ -10,7 +10,7 @@
 
     <style name="ToolbarTheme" parent="ThemeOverlay.MaterialComponents.Light" />
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar"/>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
 
@@ -21,10 +21,12 @@
     </style>
 
     <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textSize">22sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">#222222</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:fontFamily">@font/cc_rubik_mono_one</item>
         <item name="android:textAlignment">center</item>
+        <item name="titleTextColor">@color/colorBlack</item>
     </style>
 
     <style name="DarkToolbarActionButton" parent="AppTheme">
@@ -36,5 +38,19 @@
         <item name="floatingSearch_clearBtnColor">@color/colorBlack</item>
         <item name="floatingSearch_leftActionColor">@color/colorBlack</item>
     </style>
-    
+
+    <style name="HeaderMedium">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily">@font/cc_montserrat_bold</item>
+    </style>
+
+    <style name="HeaderSmall">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+    </style>
+
 </resources>

@@ -1,4 +1,4 @@
-package com.majorik.moviebox.ui.discover
+package com.majorik.moviebox.ui.main_page_search
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,12 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.majorik.moviebox.R
 
-class DiscoverFragment : Fragment() {
+class SearchFragment : Fragment() {
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_discover, container, false)
+        return inflater.inflate(R.layout.fragment_search, container, false)
     }
 }

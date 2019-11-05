@@ -1,4 +1,4 @@
-package com.majorik.moviebox.ui.profile
+package com.majorik.moviebox.ui.main_page_profile
 
 import com.majorik.data.repositories.TmdbAuthRepository
 import com.majorik.moviebox.ui.base.BaseViewModel

@@ -6,17 +6,17 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.majorik.moviebox.ui.discover.DiscoverFragment
-import com.majorik.moviebox.ui.profile.ProfileFragment
+import com.majorik.moviebox.ui.main_page_tvs.TVsFragment
+import com.majorik.moviebox.ui.main_page_profile.ProfileFragment
 import com.majorik.moviebox.ui.search.SearchableActivity
-import com.majorik.moviebox.ui.calendar_episodes.CalendarEpisodesFragment
-import com.majorik.moviebox.ui.homepage.HomeFragment
+import com.majorik.moviebox.ui.main_page_search.SearchFragment
+import com.majorik.moviebox.ui.main_page_movies.MoviesFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
-    private val fragmentMovie = HomeFragment()
-    private val fragmentTV = CalendarEpisodesFragment()
-    private val fragmentDiscover = DiscoverFragment()
+    private val fragmentMovie = MoviesFragment()
+    private val fragmentTV = SearchFragment()
+    private val fragmentDiscover = TVsFragment()
     private val fragmentProfile = ProfileFragment()
     private var activeFragment: Fragment = fragmentMovie
 
@@ -29,31 +29,31 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         hideAllFragments()
 
         nav_view.selectedItemId = R.id.navigation_homepage
-        setSupportActionBar(toolbar)
+//        setSupportActionBar(toolbar)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.navigation_homepage -> {
-                toolbar.title = getString(R.string.title_nav_homepage)
+//                toolbar.title = getString(R.string.title_nav_homepage)
                 showFragment(fragmentMovie)
                 activeFragment = fragmentMovie
                 return true
             }
             R.id.navigation_discover -> {
-                toolbar.title = getString(R.string.title_nav_discover)
+//                toolbar.title = getString(R.string.title_nav_discover)
                 showFragment(fragmentDiscover)
                 activeFragment = fragmentDiscover
                 return true
             }
             R.id.navigation_episodes -> {
-                toolbar.title = getString(R.string.title_nav_episodes)
+//                toolbar.title = getString(R.string.title_nav_episodes)
                 showFragment(fragmentTV)
                 activeFragment = fragmentTV
                 return true
             }
             R.id.navigation_profile -> {
-                toolbar.title = getString(R.string.title_nav_profile)
+//                toolbar.title = getString(R.string.title_nav_profile)
                 showFragment(fragmentProfile)
                 activeFragment = fragmentProfile
                 return true
@@ -91,6 +91,8 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             .commit()
     }
 
+
+    //TODO unused
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.toolbar_search -> {

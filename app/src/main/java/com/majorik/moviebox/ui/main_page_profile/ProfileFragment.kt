@@ -1,4 +1,4 @@
-package com.majorik.moviebox.ui.profile
+package com.majorik.moviebox.ui.main_page_profile
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,9 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import com.majorik.moviebox.R
-import com.majorik.moviebox.adapters.TraktWatchlistAdapter
 import com.majorik.moviebox.ui.login.LoginActivity
 import com.majorik.moviebox.utils.SharedPrefsManager
 import kotlinx.android.synthetic.main.fragment_profile.*

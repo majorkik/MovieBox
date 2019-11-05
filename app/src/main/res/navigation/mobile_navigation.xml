@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_homepage">
+    app:startDestination="@+id/navigation_homepage"
+    tools:ignore="UnusedNavigation">
 
     <fragment
         android:id="@+id/navigation_discover"
-        android:name="com.majorik.moviebox.ui.discover.DiscoverFragment"
-        android:label="@string/title_nav_discover" />
+        android:name="com.majorik.moviebox.ui.main_page_tvs.TVsFragment"
+        android:label="@string/title_nav_tvs" />
 
     <fragment
         android:id="@+id/navigation_homepage"
-        android:name="com.majorik.moviebox.ui.homepage.HomeFragment"
-        android:label="@string/title_nav_homepage" />
+        android:name="com.majorik.moviebox.ui.main_page_movies.MoviesFragment"
+        android:label="@string/title_nav_movies" />
 
     <fragment
         android:id="@+id/navigation_episodes"
-        android:name="com.majorik.moviebox.ui.calendar_episodes.CalendarEpisodesFragment"
-        android:label="@string/title_nav_episodes"/>
+        android:name="com.majorik.moviebox.ui.main_page_search.SearchFragment"
+        android:label="@string/title_nav_search"/>
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.majorik.moviebox.ui.profile.ProfileFragment"
+        android:name="com.majorik.moviebox.ui.main_page_profile.ProfileFragment"
         android:label="@string/title_nav_profile" />
 </navigation>

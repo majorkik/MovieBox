@@ -4,18 +4,18 @@
     <item
         android:id="@+id/navigation_homepage"
         android:icon="@drawable/ic_movie"
-        android:title="@string/title_nav_homepage" />
+        android:title="@string/title_nav_movies" />
 
 
     <item
         android:id="@+id/navigation_discover"
-        android:icon="@drawable/ic_discover"
-        android:title="@string/title_nav_discover" />
+        android:icon="@drawable/ic_tv"
+        android:title="@string/title_nav_tvs" />
 
     <item
         android:id="@+id/navigation_episodes"
-        android:icon="@drawable/ic_tv"
-        android:title="@string/title_nav_episodes" />
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="@string/title_nav_search" />
 
     <item
         android:id="@+id/navigation_profile"

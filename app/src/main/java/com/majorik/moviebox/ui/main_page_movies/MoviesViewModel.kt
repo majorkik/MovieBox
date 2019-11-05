@@ -1,21 +1,17 @@
-package com.majorik.moviebox.ui.homepage
+package com.majorik.moviebox.ui.main_page_movies
 
 import androidx.lifecycle.MutableLiveData
 import com.majorik.data.repositories.MovieRepository
-import com.majorik.data.repositories.TVRepository
 import com.majorik.domain.tmdbModels.movie.MovieResponse
-import com.majorik.domain.tmdbModels.tv.TVResponse
 import com.majorik.moviebox.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 
-class HomeViewModel(
-    private val movieRepository: MovieRepository,
-    private val tvRepository: TVRepository
+class MoviesViewModel(
+    private val movieRepository: MovieRepository
 ) : BaseViewModel() {
     val popularMoviesLiveData = MutableLiveData<MutableList<MovieResponse.Movie>>()
-    val popularTVsLiveData = MutableLiveData<MutableList<TVResponse.TV>>()
     val upcomingMoviesLiveData = MutableLiveData<MutableList<MovieResponse.Movie>>()
-    val airingTodayTVLiveData = MutableLiveData<MutableList<TVResponse.TV>>()
+    val nowPlayingMoviesLiveData = MutableLiveData<MutableList<MovieResponse.Movie>>()
 
     fun fetchPopularMovies(
         language: String?,
@@ -39,23 +35,15 @@ class HomeViewModel(
         }
     }
 
-    fun fetchPopularTVs(
+    fun fetchNowPlayingMovies(
         language: String?,
-        page: Int?
+        page: Int?,
+        region: String?
     ) {
         ioScope.launch {
-            val popularTVs = tvRepository.getPopularTVs(language, page)
-            popularTVsLiveData.postValue(popularTVs)
+            val nowPlayingMovies = movieRepository.getNowPlayingMovies(language, page, region)
+            nowPlayingMoviesLiveData.postValue(nowPlayingMovies)
         }
     }
 
-    fun fetchAiringTodayTVs(
-        language: String?,
-        page: Int?
-    ) {
-        ioScope.launch {
-            val airingTodayTVs = tvRepository.getAiringTodayTVs(language, page)
-            airingTodayTVLiveData.postValue(airingTodayTVs)
-        }
-    }
 }

@@ -2,9 +2,9 @@
     <string name="app_name">MovieBox</string>
 
     <!--    Навигация-->
-    <string name="title_nav_discover">Подбор</string>
-    <string name="title_nav_homepage">Главная</string>
-    <string name="title_nav_episodes">Серии</string>
+    <string name="title_nav_movies">Фильмы</string>
+    <string name="title_nav_tvs">Сериалы</string>
+    <string name="title_nav_search">Поиск</string>
     <string name="title_nav_profile">Профиль</string>
 
     <!--    Страница Фильмы-->
@@ -64,8 +64,10 @@
     <string name="upcoming">Ожидаемые</string>
     <string name="on_the_air">В эфире</string>
     <string name="air_today">Сегодня в эфире</string>
-    <string name="more">Еще</string>
+    <string name="more">Смотреть все</string>
     <string name="desc_empty_list">Пустой список</string>
 
+    <string name="best_movies_tmdb">Лучшие фильмы за все время по рейтингу TMDB</string>
+    <string name="best_tvs_tmdb">Лучшие сериалы за все время по рейтингу TMDB</string>
 
 </resources>

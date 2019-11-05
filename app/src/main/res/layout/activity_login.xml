@@ -23,7 +23,7 @@
             android:fontFamily="@font/montserrat_black"
             android:text="MOVIEBOX"
             android:textAlignment="center"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorBlack"
             android:textSize="48dp"
             android:textStyle="normal" />
 
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="64dp"
-            android:backgroundTint="@color/colorPrimaryDark"
+            android:backgroundTint="@color/colorBlack"
             android:text="Войти с помощью TMDB"
             android:textColor="@color/colorWhite" />
     </LinearLayout>
