@@ -23,7 +23,7 @@ class MovieCardAdapter(
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val layoutInflater =
             container.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view: View = layoutInflater.inflate(R.layout.item_big_image, container, false)
+        val view: View = layoutInflater.inflate(R.layout.item_big_image_with_corners, container, false)
         val viewPager: ViewPager = container as ViewPager
 
         bindTo(movies[position], view)

@@ -1,37 +1,60 @@
 package com.majorik.moviebox.ui.movieDetails
 
+import android.animation.Animator
+import android.animation.ObjectAnimator
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.graphics.Color
+import android.graphics.Point
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.view.Menu
+import android.view.MotionEvent
+import android.view.View
+import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
 import androidx.lifecycle.Observer
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.majorik.domain.UrlConstants
 import com.majorik.domain.tmdbModels.account.AccountStates
 import com.majorik.domain.tmdbModels.other.Video
 import com.majorik.moviebox.R
-import com.majorik.moviebox.adapters.CompaniesAdapter
 import com.majorik.moviebox.adapters.ImageSliderAdapter
 import com.majorik.moviebox.adapters.PersonAdapter
-import com.majorik.moviebox.adapters.VideoAdapter
-import com.majorik.moviebox.extensions.setAdapterWithFixedSize
+import com.majorik.moviebox.extensions.*
+import com.majorik.moviebox.ui.base.BaseSlidingActivity
 import com.majorik.moviebox.utils.SharedPrefsManager
 import kotlinx.android.synthetic.main.activity_movie_details.*
+import kotlinx.android.synthetic.main.activity_movie_details.image_pager
+import kotlinx.android.synthetic.main.activity_tv_details.*
+import kotlinx.android.synthetic.main.layout_movie_details.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.text.DecimalFormat
+import kotlin.math.absoluteValue
 
-class MovieDetailsActivity : AppCompatActivity() {
+class MovieDetailsActivity : BaseSlidingActivity() {
     private val movieDetailsViewModel: MovieDetailsViewModel by viewModel()
     private val sharedPrefs: SharedPrefsManager by inject()
 
     private lateinit var movieState: AccountStates
 
+    override fun getRootView(): View = window.decorView.rootView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_details)
 
-        setSupportActionBar(toolbar_movie_details)
+        setWindowTransparency(::updateMargins)
+
+        setSupportActionBar(m_toolbar)
 
         supportActionBar?.run {
-            setDisplayHomeAsUpEnabled(true)
-            setDisplayShowHomeEnabled(true)
+            setDisplayUseLogoEnabled(true)
+            setDisplayShowTitleEnabled(false)
         }
 
         fetchDetails(intent.extras)
@@ -39,13 +62,30 @@ class MovieDetailsActivity : AppCompatActivity() {
         setObserver()
     }
 
+    private fun updateMargins(statusBarSize: Int, navigationBarSize: Int) {
+        m_toolbar.updateMargin(top = statusBarSize)
+    }
+
+    override fun onSlidingFinished() {}
+
+    override fun onSlidingStarted() {}
+
+    override fun canSlideDown(): Boolean {
+        return BottomSheetBehavior.from(bottomSheet).state == BottomSheetBehavior.STATE_COLLAPSED
+    }
+
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.details_page_menu, menu)
+        return true
+    }
+
     private fun setClickListeners() {
-        is_favorite_button.setOnClickListener {
+        toggle_favorite.setOnClickListener {
             movieDetailsViewModel.markMovieIsFavorite(
                 movieState.id,
                 !movieState.favorite,
@@ -53,7 +93,7 @@ class MovieDetailsActivity : AppCompatActivity() {
             )
         }
 
-        is_watchlist_button.setOnClickListener {
+        toggle_watchlist.setOnClickListener {
             movieDetailsViewModel.addMovieToWatchlist(
                 movieState.id,
                 !movieState.watchlist,
@@ -62,30 +102,71 @@ class MovieDetailsActivity : AppCompatActivity() {
         }
     }
 
+    private fun setTrailerButtonClickListener(video: Video) {
+        btn_watch_trailer.setOnClickListener {
+            val appIntent = Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:${video.key}"))
+            val webIntent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("http://www.youtube.com/watch?v=${video.key}")
+            )
+            try {
+                startActivity(appIntent)
+            } catch (ex: ActivityNotFoundException) {
+                startActivity(webIntent)
+            }
+        }
+    }
+
     private fun setObserver() {
         movieDetailsViewModel.movieDetailsLiveData.observe(this, Observer { movie ->
             val numFormat = DecimalFormat("#,###,###")
-            movie_title.text = movie.title
-            movie_original_language.text = movie.originalLanguage
-            movie_original_title.text = movie.originalTitle
-            movie_revenue.text = (numFormat.format(movie.revenue) + " $")
-            movie_budget.text = (numFormat.format(movie.budget) + " $")
-            movie_date_release.text = movie.releaseDate
-            movie_status.text = movie.status
-            movie_runtime.text = movie.runtime.toString()
-            expand_text_view.text = movie.overview
+            m_title.text = movie.title
+            m_original_language.text = movie.originalLanguage
+            m_original_title.text = movie.originalTitle
+            m_revenue.text = (numFormat.format(movie.revenue) + " $")
+            m_budget.text = (numFormat.format(movie.budget) + " $")
+            m_release_date.text = movie.releaseDate
+            m_status.text = movie.status
+            m_runtime.text = movie.runtime.toString()
+            m_overview.text = movie.overview
+            m_vote_average.text = movie.voteAverage.toString()
+
+            m_companies.text = movie.productionCompanies.joinToString(", ") { it.name }
+
+            m_backdrop_image.displayImageWithCenterCrop(UrlConstants.TMDB_BACKDROP_SIZE_780 + movie.backdropPath)
+            m_poster_image.displayImageWithCenterCrop(UrlConstants.TMDB_POSTER_SIZE_500 + movie.posterPath)
 
             setImageSlider(movie.images.backdrops.map { imageInfo -> imageInfo.filePath }.take(6))
-            company_list.setAdapterWithFixedSize(CompaniesAdapter(movie.productionCompanies), true)
-            setTrailerSlider(movie.videos.results)
-            movie_casts.setAdapterWithFixedSize(PersonAdapter(movie.credits.casts), true)
+
+            m_persons.setAdapterWithFixedSize(PersonAdapter(movie.credits.casts), true)
+            m_count_persons.text = movie.credits.casts.size.toString()
+            m_count_trailers.text = movie.videos.results.size.toString()
+
+            setTrailerButtonClickListener(movie.videos.results[0])
         })
 
         movieDetailsViewModel.movieStatesLiveData.observe(this, Observer {
-            it?.run{
+            it?.run {
                 movieState = this
-                is_favorite_button.isChecked = this.favorite
-                is_watchlist_button.isChecked = this.watchlist
+                toggle_favorite.isChecked = this.favorite
+                toggle_watchlist.isChecked = this.watchlist
+            }
+        })
+
+        movieDetailsViewModel.responseFavoriteLiveData.observe(this, Observer {
+            if (it.statusMessage != "success") {
+                Toast.makeText(this, "Неудалось добавить фильм в избранное", Toast.LENGTH_LONG)
+                    .show()
+            }
+        })
+
+        movieDetailsViewModel.responseWatchlistLiveData.observe(this, Observer {
+            if (it.statusMessage != "success") {
+                Toast.makeText(
+                    this,
+                    "Неудалось добавить фильм в 'Буду смотреть'",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         })
     }
@@ -108,12 +189,6 @@ class MovieDetailsActivity : AppCompatActivity() {
 
     private fun setImageSlider(images: List<String>) {
         image_pager.adapter = ImageSliderAdapter(images)
-        image_pager.pageMargin = ((16 * resources.displayMetrics.density).toInt())
-        worm_dots_indicator.setViewPager(image_pager)
-    }
-
-    private fun setTrailerSlider(videos: List<Video>) {
-        trailer_pager.adapter = VideoAdapter(videos)
-        trailer_pager.pageMargin = ((16 * resources.displayMetrics.density).toInt())
     }
 }
+

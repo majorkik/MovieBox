@@ -10,26 +10,29 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/person_profile_image"
-        android:layout_width="96dp"
-        android:layout_height="96dp" />
-
-    <TextView
-        android:id="@+id/character_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxLines="2"
-        android:textColor="@android:color/white"
-        android:textAlignment="center"
-        android:textSize="14sp"
-        tools:text="Джон Уик" />
+        android:layout_width="72dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="72dp" />
 
     <TextView
         android:id="@+id/person_name"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:maxLines="2"
         android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textSize="14sp"
+        android:textColor="@color/colorBlack"
+        android:textSize="12sp"
         tools:text="Киану Ривз" />
+
+    <TextView
+        android:id="@+id/character_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:maxLines="2"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlack"
+        android:textSize="12sp"
+        tools:text="Джон Уик" />
 </LinearLayout>

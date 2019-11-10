@@ -29,7 +29,7 @@
     <string name="facts">Факты</string>
     <string name="vote_average">Оценка</string>
     <string name="vote_count">Оценивших</string>
-    <string name="runtime">Минут</string>
+    <string name="runtime">Продолжительность</string>
     <string name="original_title">Оригинальное название</string>
     <string name="revenue">Сборы</string>
     <string name="budget">Бюджет</string>
@@ -42,6 +42,11 @@
     <string name="first_air_date">Дата первого эфира</string>
     <string name="last_air_date">Дата последнего эфира</string>
     <string name="number_of_seasons">Сезонов</string>
+    <string name="images">Изображения</string>
+    <string name="additional_options">Дополнительно</string>
+    <string name="recommendations">Рекомендации</string>
+    <string name="all_comments">Все комментарии</string>
+    <string name="reviews">Отзывы</string>
 
     <string name="network_state_error_retry">Произошла ошибка</string>
     <string name="technical_error">Техническая ошибка</string>
@@ -69,5 +74,7 @@
 
     <string name="best_movies_tmdb">Лучшие фильмы за все время по рейтингу TMDB</string>
     <string name="best_tvs_tmdb">Лучшие сериалы за все время по рейтингу TMDB</string>
+    <string name="tgl_btn_favorite">Добавить в избранное</string>
+    <string name="tgl_btn_watchlist">Буду смотреть</string>
 
 </resources>
