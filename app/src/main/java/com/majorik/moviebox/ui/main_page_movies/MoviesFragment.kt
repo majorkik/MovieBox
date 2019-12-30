@@ -60,18 +60,18 @@ class MoviesFragment : BaseNavigationFragment() {
     }
 
     override fun setObservers() {
-        moviesViewModel.popularMoviesLiveData.observe(this, Observer {
+        moviesViewModel.popularMoviesLiveData.observe(viewLifecycleOwner, Observer {
             vp_popular_movies.run {
                 adapter = MovieCardAdapter(it)
                 pageMargin = ((16 * resources.displayMetrics.density).toInt())
             }
         })
 
-        moviesViewModel.upcomingMoviesLiveData.observe(this, Observer {
+        moviesViewModel.upcomingMoviesLiveData.observe(viewLifecycleOwner, Observer {
             rv_upcoming_movies.setAdapterWithFixedSize(MovieCollectionAdapter(it), true)
         })
 
-        moviesViewModel.nowPlayingMoviesLiveData.observe(this, Observer {
+        moviesViewModel.nowPlayingMoviesLiveData.observe(viewLifecycleOwner, Observer {
             rv_now_playing_movies.setAdapterWithFixedSize(MovieCollectionAdapter(it), true)
         })
     }

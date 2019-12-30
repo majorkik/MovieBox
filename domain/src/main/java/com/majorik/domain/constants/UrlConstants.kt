@@ -38,6 +38,8 @@ object UrlConstants {
 
     //youtube
     const val YOUTUBE_IMAGE_LINK = "https://img.youtube.com/vi/"
+    const val YOUTUBE_VDN__LINK = "vnd.youtube:"
+    const val YOUTUBE_WEB__LINK = "https://www.youtube.com/watch?v="
 
     const val YOUTUBE_SIZE_DEFAULT = "/default.jpg"
     const val YOUTUBE_SIZE_HQ = "/hqdefault.jpg"

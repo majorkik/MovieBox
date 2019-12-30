@@ -55,18 +55,18 @@ class TVsFragment : BaseNavigationFragment() {
     }
 
     override fun setObservers() {
-        tvViewModel.popularTVsLiveData.observe(this, Observer {
+        tvViewModel.popularTVsLiveData.observe(viewLifecycleOwner, Observer {
             vp_popular_tvs.run {
                 adapter = TVCardAdapter(it)
                 pageMargin = ((16 * resources.displayMetrics.density).toInt())
             }
         })
 
-        tvViewModel.airTodayTVsLiveData.observe(this, Observer {
+        tvViewModel.airTodayTVsLiveData.observe(viewLifecycleOwner, Observer {
             rv_air_today_tvs.setAdapterWithFixedSize(TVCollectionAdapter(it), true)
         })
 
-        tvViewModel.onTheAirTVsLiveData.observe(this, Observer {
+        tvViewModel.onTheAirTVsLiveData.observe(viewLifecycleOwner, Observer {
             rv_on_the_air_tvs.setAdapterWithFixedSize(TVCollectionAdapter(it), true)
         })
     }

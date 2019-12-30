@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.majorik.domain.constants.UrlConstants
 import com.majorik.domain.tmdbModels.tv.TV
@@ -37,12 +38,15 @@ class TVCollectionAdapter(private val movies: List<TV>) :
 
         private fun bindClickListener(tv: TV) {
             itemView.collection_card.setOnClickListener {
-
                 val intent = Intent(parent.context, TVDetailsActivity::class.java)
 
                 intent.putExtra("id", tv.id)
 
                 parent.context.startActivity(intent)
+                (parent.context as AppCompatActivity).overridePendingTransition(
+                    R.anim.slide_in_up,
+                    R.anim.slide_out_up
+                )
             }
         }
     }

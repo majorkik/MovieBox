@@ -1,8 +1,5 @@
 package com.majorik.moviebox.ui.movieDetails
 
-import android.content.ActivityNotFoundException
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
@@ -12,17 +9,19 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.majorik.domain.constants.UrlConstants
 import com.majorik.domain.tmdbModels.account.AccountStates
 import com.majorik.domain.tmdbModels.video.Video
+import com.majorik.domain.tmdbModels.video.Videos
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.ImageSliderAdapter
 import com.majorik.moviebox.adapters.PersonAdapter
-import com.majorik.moviebox.extensions.displayImageWithCenterCrop
-import com.majorik.moviebox.extensions.setAdapterWithFixedSize
-import com.majorik.moviebox.extensions.setWindowTransparency
-import com.majorik.moviebox.extensions.updateMargin
+import com.majorik.moviebox.extensions.*
 import com.majorik.moviebox.ui.base.BaseSlidingActivity
 import com.majorik.moviebox.utils.SharedPrefsManager
 import kotlinx.android.synthetic.main.activity_movie_details.*
 import kotlinx.android.synthetic.main.layout_movie_details.*
+import kotlinx.android.synthetic.main.layout_movie_details.btn_watch_trailer
+import kotlinx.android.synthetic.main.layout_movie_details.toggle_favorite
+import kotlinx.android.synthetic.main.layout_movie_details.toggle_watchlist
+import kotlinx.android.synthetic.main.layout_tv_details.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.text.DecimalFormat
@@ -41,7 +40,7 @@ class MovieDetailsActivity : BaseSlidingActivity() {
 
         setWindowTransparency(::updateMargins)
 
-        setSupportActionBar(m_toolbar)
+        setSupportActionBar(md_toolbar)
 
         supportActionBar?.run {
             setDisplayUseLogoEnabled(true)
@@ -54,16 +53,15 @@ class MovieDetailsActivity : BaseSlidingActivity() {
     }
 
     private fun updateMargins(statusBarSize: Int, navigationBarSize: Int) {
-        m_toolbar.updateMargin(top = statusBarSize)
+        md_toolbar.updateMargin(top = statusBarSize)
     }
 
     override fun onSlidingFinished() {}
 
     override fun onSlidingStarted() {}
 
-    override fun canSlideDown(): Boolean {
-        return BottomSheetBehavior.from(bottomSheet).state == BottomSheetBehavior.STATE_COLLAPSED
-    }
+    override fun canSlideDown() =
+        BottomSheetBehavior.from(md_bottom_sheet).state == BottomSheetBehavior.STATE_COLLAPSED
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
@@ -73,6 +71,22 @@ class MovieDetailsActivity : BaseSlidingActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.details_page_menu, menu)
         return true
+    }
+
+    private fun fetchDetails(extras: Bundle?) {
+        if (extras != null) {
+            movieDetailsViewModel.fetchMovieDetails(
+                extras.getInt("id"),
+                "ru",
+                "images,credits,videos",
+                "ru,en,null"
+            )
+
+            movieDetailsViewModel.fetchAccountStateForMovie(
+                extras.getInt("id"),
+                sharedPrefs.getTmdbSessionId()
+            )
+        }
     }
 
     private fun setClickListeners() {
@@ -90,21 +104,6 @@ class MovieDetailsActivity : BaseSlidingActivity() {
                 !movieState.watchlist,
                 sharedPrefs.getTmdbSessionId()
             )
-        }
-    }
-
-    private fun setTrailerButtonClickListener(video: Video) {
-        btn_watch_trailer.setOnClickListener {
-            val appIntent = Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:${video.key}"))
-            val webIntent = Intent(
-                Intent.ACTION_VIEW,
-                Uri.parse("http://www.youtube.com/watch?v=${video.key}")
-            )
-            try {
-                startActivity(appIntent)
-            } catch (ex: ActivityNotFoundException) {
-                startActivity(webIntent)
-            }
         }
     }
 
@@ -133,11 +132,11 @@ class MovieDetailsActivity : BaseSlidingActivity() {
             m_count_persons.text = movie.credits.casts.size.toString()
             m_count_trailers.text = movie.videos.results.size.toString()
 
-            setTrailerButtonClickListener(movie.videos.results[0])
+            setTrailerButtonClickListener(movie.videos)
         })
 
         movieDetailsViewModel.movieStatesLiveData.observe(this, Observer {
-            it?.run {
+            it?.apply {
                 movieState = this
                 toggle_favorite.isChecked = this.favorite
                 toggle_watchlist.isChecked = this.watchlist
@@ -162,24 +161,16 @@ class MovieDetailsActivity : BaseSlidingActivity() {
         })
     }
 
-    private fun fetchDetails(extras: Bundle?) {
-        if (extras != null) {
-            movieDetailsViewModel.fetchMovieDetails(
-                extras.getInt("id"),
-                "ru",
-                "images,credits,videos",
-                "ru,en,null"
-            )
-
-            movieDetailsViewModel.fetchAccountStateForMovie(
-                extras.getInt("id"),
-                sharedPrefs.getTmdbSessionId()
-            )
+    private fun setTrailerButtonClickListener(videos: Videos) {
+        if (videos.results.isNotEmpty()) {
+            btn_watch_trailer.setOnClickListener {
+                openYouTube(videos.results[0].key)
+            }
         }
     }
 
     private fun setImageSlider(images: List<String>) {
-        image_pager.adapter = ImageSliderAdapter(images)
+        md_image_slider.adapter = ImageSliderAdapter(images)
     }
 }
 

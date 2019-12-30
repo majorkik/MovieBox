@@ -57,8 +57,8 @@
         <activity
             android:name=".ui.tvDetails.TVDetailsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="LockedOrientationActivity" />
+            android:theme="@style/AppTheme.Transparent.NoActionBar"
+            tools:ignore="LockedOrientationActivity"/>
         <activity
             android:name=".ui.movieDetails.MovieDetailsActivity"
             android:screenOrientation="portrait"

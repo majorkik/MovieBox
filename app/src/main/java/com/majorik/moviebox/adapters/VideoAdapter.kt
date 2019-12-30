@@ -1,9 +1,6 @@
 package com.majorik.moviebox.adapters
 
-import android.content.ActivityNotFoundException
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +13,7 @@ import com.majorik.domain.constants.UrlConstants
 import com.majorik.domain.tmdbModels.video.Video
 import com.majorik.moviebox.R
 import com.majorik.moviebox.extensions.displayImageWithCenterInside
+import com.majorik.moviebox.extensions.openYouTube
 
 class VideoAdapter(
     private val videos: List<Video>
@@ -46,16 +44,7 @@ class VideoAdapter(
         trailerImage.displayImageWithCenterInside(UrlConstants.YOUTUBE_IMAGE_LINK + video.key + UrlConstants.YOUTUBE_SIZE_MQ)
 
         trailerCard.setOnClickListener {
-            val appIntent = Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:${video.key}"))
-            val webIntent = Intent(
-                Intent.ACTION_VIEW,
-                Uri.parse("http://www.youtube.com/watch?v=${video.key}")
-            )
-            try {
-                parent.context.startActivity(appIntent)
-            } catch (ex: ActivityNotFoundException) {
-                parent.context.startActivity(webIntent)
-            }
+            it.context.openYouTube(video.key)
         }
     }
 

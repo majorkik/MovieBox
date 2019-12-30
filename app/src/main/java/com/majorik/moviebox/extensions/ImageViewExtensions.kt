@@ -22,6 +22,7 @@ fun ImageView.displayImageWithCenterInside(
             .load(url)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .placeholder(placeholder)
+            .error(placeholder)
             .centerInside()
             .into(this)
     } else {

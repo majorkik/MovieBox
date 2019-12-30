@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
@@ -23,7 +24,8 @@ class MovieCardAdapter(
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val layoutInflater =
             container.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view: View = layoutInflater.inflate(R.layout.item_big_image_with_corners, container, false)
+        val view: View =
+            layoutInflater.inflate(R.layout.item_big_image_with_corners, container, false)
         val viewPager: ViewPager = container as ViewPager
 
         bindTo(movies[position], view)
@@ -47,6 +49,9 @@ class MovieCardAdapter(
             intent.putExtra("id", movie.id)
 
             parent.context.startActivity(intent)
+            (parent.context as AppCompatActivity).overridePendingTransition(
+                R.anim.slide_in_up, R.anim.slide_out_up
+            )
         }
     }
 

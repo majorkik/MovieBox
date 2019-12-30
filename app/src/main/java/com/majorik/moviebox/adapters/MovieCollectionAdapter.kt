@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.majorik.domain.constants.UrlConstants
@@ -47,6 +48,10 @@ class MovieCollectionAdapter(private val movies: List<Movie>) :
                 intent.putExtra("id", movie.id)
 
                 parent.context.startActivity(intent)
+                (parent.context as AppCompatActivity).overridePendingTransition(
+                    R.anim.slide_in_up,
+                    R.anim.slide_out_up
+                )
             }
         }
     }

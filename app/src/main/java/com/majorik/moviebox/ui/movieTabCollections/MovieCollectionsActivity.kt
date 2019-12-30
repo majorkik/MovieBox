@@ -27,10 +27,7 @@ class MovieCollectionsActivity : BaseTabActivity() {
         )
         adapter.addFragment(MovieCollectionsFragment(MovieCollectionType.UPCOMING), "Ожидаемые")
         adapter.addFragment(MovieCollectionsFragment(MovieCollectionType.POPULAR), "Популярные")
-        adapter.addFragment(
-            MovieCollectionsFragment(MovieCollectionType.TOP_RATED),
-            "Самые популярные"
-        )
+        adapter.addFragment(MovieCollectionsFragment(MovieCollectionType.TOP_RATED), "Самые популярные")
 
 
         view_pager.adapter = adapter
