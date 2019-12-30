@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
 import com.majorik.data.repositories.MovieRepository
 import com.majorik.domain.NetworkState
-import com.majorik.domain.tmdbModels.movie.MovieCollectionType
-import com.majorik.domain.tmdbModels.movie.MovieResponse
+import com.majorik.domain.enums.movie.MovieCollectionType
+import com.majorik.domain.tmdbModels.movie.Movie
 import kotlinx.coroutines.*
 import timber.log.Timber
 
@@ -14,14 +14,14 @@ class MovieDataSource(
     private val repository: MovieRepository,
     private val scope: CoroutineScope,
     private val movieCollectionType: MovieCollectionType
-) : PageKeyedDataSource<Int, MovieResponse.Movie>() {
+) : PageKeyedDataSource<Int, Movie>() {
     private var supervisorJob = SupervisorJob()
     private val networkState = MutableLiveData<NetworkState>()
     private var retryQuery: (() -> Any)? = null
 
     override fun loadInitial(
         params: LoadInitialParams<Int>,
-        callback: LoadInitialCallback<Int, MovieResponse.Movie>
+        callback: LoadInitialCallback<Int, Movie>
     ) {
         retryQuery = { loadInitial(params, callback) }
         executeQuery(1) {
@@ -31,7 +31,7 @@ class MovieDataSource(
 
     override fun loadAfter(
         params: LoadParams<Int>,
-        callback: LoadCallback<Int, MovieResponse.Movie>
+        callback: LoadCallback<Int, Movie>
     ) {
         val page = params.key
         retryQuery = { loadAfter(params, callback) }
@@ -42,13 +42,13 @@ class MovieDataSource(
 
     override fun loadBefore(
         params: LoadParams<Int>,
-        callback: LoadCallback<Int, MovieResponse.Movie>
+        callback: LoadCallback<Int, Movie>
     ) {
     }
 
     private fun executeQuery(
         page: Int,
-        callback: (List<MovieResponse.Movie>) -> Unit
+        callback: (List<Movie>) -> Unit
     ) {
         networkState.postValue(NetworkState.RUNNING)
         scope.launch(getJobErrorHandler() + supervisorJob) {
@@ -74,7 +74,7 @@ class MovieDataSource(
         language: String?,
         page: Int?,
         region: String?
-    ): MutableList<MovieResponse.Movie>? =
+    ): MutableList<Movie>? =
         when (movieCollectionType) {
             MovieCollectionType.POPULAR -> {
                 repository.getPopularMovies(language, page, region)

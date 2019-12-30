@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.majorik.domain.NetworkState
 import com.majorik.domain.NetworkState.SUCCESS
-import com.majorik.domain.tmdbModels.MultiSearchResponse.MultiSearchItem
+import com.majorik.domain.tmdbModels.search.MultiSearchResponse.MultiSearchItem
 import com.majorik.moviebox.R
 import com.majorik.moviebox.ui.movieDetails.MovieDetailsActivity
 import com.majorik.moviebox.ui.person.PersonDetailsActivity

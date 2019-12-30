@@ -28,7 +28,7 @@
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:contentDescription="@string/desc_trailer_image"
-            android:src="@drawable/background_shape"
+            android:src="@drawable/bg_dark_shape"
             tools:background="#dddddd" />
 
         <ImageView

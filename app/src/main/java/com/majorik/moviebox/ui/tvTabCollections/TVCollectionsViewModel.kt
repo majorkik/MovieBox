@@ -6,7 +6,7 @@ import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.majorik.data.repositories.TVRepository
 import com.majorik.domain.NetworkState
-import com.majorik.domain.tmdbModels.tv.TVCollectionType
+import com.majorik.domain.enums.movie.TVCollectionType
 import com.majorik.moviebox.pagination.TVDataSourceFactory
 import com.majorik.moviebox.ui.base.BaseViewModel
 

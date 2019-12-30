@@ -49,7 +49,7 @@
                     android:layout_width="48dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@drawable/background_accent"
+                    android:background="@drawable/bg_accent"
                     android:paddingLeft="8dp"
                     android:paddingTop="4dp"
                     android:paddingRight="8dp"
@@ -83,13 +83,16 @@
                     android:layout_marginEnd="8dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/colorPrimaryDark"
+                    android:clickable="true"
+                    android:background="?attr/selectableItemBackground"
                     android:elevation="0dp"
+                    android:focusable="true"
                     app:cardCornerRadius="4dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="left|center_vertical"
+                        android:layout_gravity="start|center_vertical"
                         android:padding="8dp"
                         android:text="Смотреть трейлер" />
 
@@ -105,7 +108,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:background="@drawable/background_button"
+                    android:background="@drawable/bg_button"
                     android:padding="8dp">
 
                     <ToggleButton
@@ -121,7 +124,7 @@
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/background_button"
+                    android:background="@drawable/bg_button"
                     android:padding="8dp">
 
                     <ToggleButton
@@ -161,7 +164,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:background="@drawable/background_facts"
+                android:background="@drawable/bg_facts"
                 android:orientation="vertical"
                 android:padding="8dp">
 
@@ -344,6 +347,7 @@
                     android:id="@+id/m_companies"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:textAppearance="@style/RegularText"
                     tools:text="Sony Pictures Television, High Bridge Productions, Gran Via Productions" />
             </LinearLayout>
@@ -369,7 +373,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@drawable/background_accent"
+                    android:background="@drawable/bg_accent"
                     android:fontFamily="@font/cc_montserrat_medium"
                     android:paddingLeft="4dp"
                     android:paddingTop="2dp"
@@ -383,16 +387,16 @@
                     tools:text="9.6" />
             </LinearLayout>
 
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/m_persons"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:paddingLeft="12dp"
                 android:paddingRight="12dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:layout_height="100dp" />
+                tools:layout_height="100dp"
+                tools:listitem="@layout/item_person_profile_card" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -485,7 +489,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|end"
                         android:layout_marginEnd="4dp"
-                        android:background="@drawable/background_accent"
+                        android:background="@drawable/bg_accent"
                         android:fontFamily="@font/cc_montserrat_regular"
                         android:paddingLeft="8dp"
                         android:paddingTop="4dp"
@@ -554,7 +558,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|end"
                         android:layout_marginEnd="4dp"
-                        android:background="@drawable/background_accent"
+                        android:background="@drawable/bg_accent"
                         android:fontFamily="@font/cc_montserrat_regular"
                         android:paddingLeft="8dp"
                         android:paddingTop="4dp"
@@ -591,7 +595,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|end"
                         android:layout_marginEnd="4dp"
-                        android:background="@drawable/background_accent"
+                        android:background="@drawable/bg_accent"
                         android:fontFamily="@font/cc_montserrat_regular"
                         android:paddingLeft="8dp"
                         android:paddingTop="4dp"

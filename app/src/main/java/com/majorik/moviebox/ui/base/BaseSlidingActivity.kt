@@ -14,7 +14,7 @@ abstract class BaseSlidingActivity : AppCompatActivity() {
     private var startX = 0f
     private var startY = 0f
     private var isSliding = false
-    private val GESTURE_THRESHOLD = 10
+    private val threshold = 10
     private lateinit var screenSize: Point
 
     abstract fun getRootView(): View
@@ -84,9 +84,9 @@ abstract class BaseSlidingActivity : AppCompatActivity() {
 
     private fun isSlidingDown(startX: Float, startY: Float, ev: MotionEvent): Boolean {
         val deltaX = (startX - ev.x).absoluteValue
-        if (deltaX > GESTURE_THRESHOLD) return false
+        if (deltaX > threshold) return false
         val deltaY = ev.y - startY
-        return deltaY > GESTURE_THRESHOLD
+        return deltaY > threshold
     }
 
     private fun closeDownAndDismiss() {

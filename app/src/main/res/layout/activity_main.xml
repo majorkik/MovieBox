@@ -8,19 +8,19 @@
     android:background="@color/colorPrimary"
     android:fitsSystemWindows="true">
 
-<!--    <androidx.appcompat.widget.Toolbar-->
-<!--        android:layout_marginLeft="8dp"-->
-<!--        android:layout_marginRight="8dp"-->
-<!--        android:id="@+id/toolbar"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="?attr/actionBarSize"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        tools:text="ФИЛЬМЫ"-->
-<!--        app:popupTheme="@style/AppTheme.PopupOverlay"-->
-<!--        app:titleTextAppearance="@style/Toolbar.TitleText"-->
-<!--        app:titleTextColor="@android:color/white" />-->
+    <!--    <androidx.appcompat.widget.Toolbar-->
+    <!--        android:layout_marginLeft="8dp"-->
+    <!--        android:layout_marginRight="8dp"-->
+    <!--        android:id="@+id/toolbar"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="?attr/actionBarSize"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        tools:text="ФИЛЬМЫ"-->
+    <!--        app:popupTheme="@style/AppTheme.PopupOverlay"-->
+    <!--        app:titleTextAppearance="@style/Toolbar.TitleText"-->
+    <!--        app:titleTextColor="@android:color/white" />-->
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_nav_view"
@@ -38,13 +38,13 @@
             android:id="@+id/nav_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bottom_navigation_corner_radius"
+            android:background="@drawable/nav_bar_gradient_with_corners"
             app:itemIconTint="@drawable/drawer_selectable_color"
             app:labelVisibilityMode="unlabeled"
             app:menu="@menu/bottom_nav_menu" />
     </androidx.cardview.widget.CardView>
 
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"

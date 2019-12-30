@@ -7,7 +7,7 @@ import android.text.TextUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.majorik.domain.UrlConstants
+import com.majorik.domain.constants.UrlConstants
 import com.majorik.moviebox.R
 import com.majorik.moviebox.utils.SharedPrefsManager
 import kotlinx.android.synthetic.main.activity_login.*

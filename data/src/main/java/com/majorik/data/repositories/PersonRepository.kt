@@ -12,7 +12,7 @@ class PersonRepository(private val api: TmdbApiService) : BaseRepository() {
     ): PersonDetails? {
         return safeApiCall(
             call = {
-                api.getPersonById(personId, language, appendToResponse).await()
+                api.getPersonById(personId, language, appendToResponse)
             },
             errorMessage = "Ошибка GET[getPersonById] (personId = $personId)"
         )
@@ -25,7 +25,7 @@ class PersonRepository(private val api: TmdbApiService) : BaseRepository() {
     ): MutableList<ImageDetails>? {
         val personResponse = safeApiCall(
             call = {
-                api.getPersonTaggedImages(personId, language, page).await()
+                api.getPersonTaggedImages(personId, language, page)
             },
             errorMessage = "Ошибка GET[getPersonTaggedImages] (personId = $personId)"
         )
@@ -38,7 +38,7 @@ class PersonRepository(private val api: TmdbApiService) : BaseRepository() {
     ): MutableList<ImageDetails>?{
         val personResponse = safeApiCall(
             call = {
-                api.getPersonPosters(personId).await()
+                api.getPersonPosters(personId)
             },
             errorMessage = "Ошибка GET[getPersonPosters] (personId = $personId)"
         )

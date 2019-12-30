@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.majorik.domain.UrlConstants
-import com.majorik.domain.tmdbModels.Cast
+import com.majorik.domain.constants.UrlConstants
+import com.majorik.domain.tmdbModels.cast.Cast
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.PersonAdapter.PersonViewHolder
 import com.majorik.moviebox.extensions.displayImageWithCenterInside
@@ -33,8 +33,8 @@ class PersonAdapter(private val people: List<Cast>) :
         fun bindTo(person: Cast) {
             itemView.person_name.text = person.name
             itemView.character_name.text = person.character
-
             itemView.person_profile_image.displayImageWithCenterInside(UrlConstants.TMDB_PROFILE_SIZE_185 + person.profilePath)
+
             setClickListener(person)
         }
 
@@ -49,5 +49,4 @@ class PersonAdapter(private val people: List<Cast>) :
         }
 
     }
-
 }

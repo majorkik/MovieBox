@@ -1,7 +1,7 @@
 package com.majorik.data.repositories
 
 import com.majorik.data.api.TmdbApiService
-import com.majorik.domain.tmdbModels.MultiSearchResponse
+import com.majorik.domain.tmdbModels.search.MultiSearchResponse
 import com.majorik.domain.tmdbModels.movie.MovieResponse
 import com.majorik.domain.tmdbModels.person.PersonResponse
 import com.majorik.domain.tmdbModels.tv.TVResponse
@@ -16,7 +16,7 @@ class SearchRepository(private val api: TmdbApiService) : BaseRepository() {
     ): MultiSearchResponse? {
         return safeApiCall(
             call = {
-                api.multiSearch(language, query, page, includeAdult).await()
+                api.multiSearch(language, query, page, includeAdult)
             },
             errorMessage = "Ошибка GET[multiSearch]"
         )
@@ -41,7 +41,7 @@ class SearchRepository(private val api: TmdbApiService) : BaseRepository() {
                     region,
                     year,
                     primaryReleaseYear
-                ).await()
+                )
             },
             errorMessage = "Ошибка GET[searchMovies]"
         )
@@ -55,7 +55,7 @@ class SearchRepository(private val api: TmdbApiService) : BaseRepository() {
     ): TVResponse? {
         return safeApiCall(
             call = {
-                api.searchTVSeries(language, query, page, firstAirDateYear).await()
+                api.searchTVSeries(language, query, page, firstAirDateYear)
             },
             errorMessage = "Ошибка GET[searchTVs]"
         )
@@ -70,7 +70,7 @@ class SearchRepository(private val api: TmdbApiService) : BaseRepository() {
     ): PersonResponse? {
         return safeApiCall(
             call = {
-                api.searchPeoples(language, query, page, includeAdult, region).await()
+                api.searchPeoples(language, query, page, includeAdult, region)
             },
             errorMessage = "Ошибка GET[searchPeoples]"
         )

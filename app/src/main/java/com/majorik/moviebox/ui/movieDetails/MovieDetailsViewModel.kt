@@ -1,16 +1,16 @@
 package com.majorik.moviebox.ui.movieDetails
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.majorik.data.repositories.AccountRepository
 import com.majorik.data.repositories.MovieRepository
-import com.majorik.domain.tmdbModels.ResponseApi
+import com.majorik.domain.tmdbModels.ApiResponse
 import com.majorik.domain.tmdbModels.account.AccountStates
 import com.majorik.domain.tmdbModels.movie.MovieDetails
 import com.majorik.domain.tmdbModels.request.RequestAddToWatchlist
 import com.majorik.domain.tmdbModels.request.RequestMarkAsFavorite
 import com.majorik.moviebox.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
-import okhttp3.MediaType
 
 class MovieDetailsViewModel(
     private val movieRepository: MovieRepository,
@@ -18,8 +18,8 @@ class MovieDetailsViewModel(
 ) : BaseViewModel() {
     var movieDetailsLiveData = MutableLiveData<MovieDetails>()
     var movieStatesLiveData = MutableLiveData<AccountStates?>()
-    var responseFavoriteLiveData = MutableLiveData<ResponseApi>()
-    var responseWatchlistLiveData = MutableLiveData<ResponseApi>()
+    var responseFavoriteLiveData = MutableLiveData<ApiResponse>()
+    var responseWatchlistLiveData = MutableLiveData<ApiResponse>()
 
     fun fetchMovieDetails(
         movieId: Int,
@@ -27,7 +27,7 @@ class MovieDetailsViewModel(
         appendToResponse: String?,
         imageLanguages: String?
     ) {
-        ioScope.launch {
+        viewModelScope.launch {
             val movieDetails =
                 movieRepository.getMovieById(movieId, language, appendToResponse, imageLanguages)
 
@@ -36,7 +36,7 @@ class MovieDetailsViewModel(
     }
 
     fun fetchAccountStateForMovie(movieId: Int, sessionId: String) {
-        ioScope.launch {
+        viewModelScope.launch {
             val movieStates =
                 movieRepository.getAccountStatesForMovie(movieId, sessionId, guestSessionId = null)
 
@@ -45,7 +45,7 @@ class MovieDetailsViewModel(
     }
 
     fun markMovieIsFavorite(mediaId: Int, state: Boolean, sessionId: String) {
-        ioScope.launch {
+        viewModelScope.launch {
             val requestMarkAsFavorite = RequestMarkAsFavorite("movie", mediaId, state)
             val response = accountRepository.markIsFavorite(requestMarkAsFavorite, sessionId)
 
@@ -54,7 +54,7 @@ class MovieDetailsViewModel(
     }
 
     fun addMovieToWatchlist(mediaId: Int, state: Boolean, sessionId: String) {
-        ioScope.launch {
+        viewModelScope.launch {
             val requestAddToWatchlist = RequestAddToWatchlist("movie", mediaId, state)
             val response = accountRepository.addToWatchlist(requestAddToWatchlist, sessionId)
 

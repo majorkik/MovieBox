@@ -1,7 +1,7 @@
 package com.majorik.moviebox.di
 
-import com.majorik.domain.tmdbModels.movie.MovieCollectionType
-import com.majorik.domain.tmdbModels.tv.TVCollectionType
+import com.majorik.domain.enums.movie.MovieCollectionType
+import com.majorik.domain.enums.movie.TVCollectionType
 import com.majorik.moviebox.ui.main_page_movies.MoviesViewModel
 import com.majorik.moviebox.ui.login.LoginPageViewModel
 import com.majorik.moviebox.ui.movieDetails.MovieDetailsViewModel

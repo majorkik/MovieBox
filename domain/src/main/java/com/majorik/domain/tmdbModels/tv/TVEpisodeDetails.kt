@@ -1,7 +1,7 @@
 package com.majorik.domain.tmdbModels.tv
 
-import com.majorik.domain.tmdbModels.Cast
-import com.majorik.domain.tmdbModels.Crew
+import com.majorik.domain.tmdbModels.cast.Cast
+import com.majorik.domain.tmdbModels.crew.Crew
 import com.squareup.moshi.Json
 
 data class TVEpisodeDetails(

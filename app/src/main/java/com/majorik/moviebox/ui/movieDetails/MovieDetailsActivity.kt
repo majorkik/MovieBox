@@ -1,40 +1,31 @@
 package com.majorik.moviebox.ui.movieDetails
 
-import android.animation.Animator
-import android.animation.ObjectAnimator
 import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.Point
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.view.Menu
-import android.view.MotionEvent
 import android.view.View
-import android.view.WindowManager
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
 import androidx.lifecycle.Observer
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.majorik.domain.UrlConstants
+import com.majorik.domain.constants.UrlConstants
 import com.majorik.domain.tmdbModels.account.AccountStates
-import com.majorik.domain.tmdbModels.other.Video
+import com.majorik.domain.tmdbModels.video.Video
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.ImageSliderAdapter
 import com.majorik.moviebox.adapters.PersonAdapter
-import com.majorik.moviebox.extensions.*
+import com.majorik.moviebox.extensions.displayImageWithCenterCrop
+import com.majorik.moviebox.extensions.setAdapterWithFixedSize
+import com.majorik.moviebox.extensions.setWindowTransparency
+import com.majorik.moviebox.extensions.updateMargin
 import com.majorik.moviebox.ui.base.BaseSlidingActivity
 import com.majorik.moviebox.utils.SharedPrefsManager
 import kotlinx.android.synthetic.main.activity_movie_details.*
-import kotlinx.android.synthetic.main.activity_movie_details.image_pager
-import kotlinx.android.synthetic.main.activity_tv_details.*
 import kotlinx.android.synthetic.main.layout_movie_details.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.text.DecimalFormat
-import kotlin.math.absoluteValue
 
 class MovieDetailsActivity : BaseSlidingActivity() {
     private val movieDetailsViewModel: MovieDetailsViewModel by viewModel()

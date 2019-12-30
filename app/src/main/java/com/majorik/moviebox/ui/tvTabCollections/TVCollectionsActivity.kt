@@ -2,7 +2,7 @@ package com.majorik.moviebox.ui.tvTabCollections
 
 import android.os.Bundle
 import com.google.android.material.tabs.TabLayout
-import com.majorik.domain.tmdbModels.tv.TVCollectionType
+import com.majorik.domain.enums.movie.TVCollectionType
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.TabCollectionsAdapter
 import com.majorik.moviebox.ui.base.BaseTabActivity

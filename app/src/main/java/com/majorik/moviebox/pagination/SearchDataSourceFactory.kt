@@ -3,7 +3,7 @@ package com.majorik.moviebox.pagination
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import com.majorik.data.repositories.SearchRepository
-import com.majorik.domain.tmdbModels.MultiSearchResponse.MultiSearchItem
+import com.majorik.domain.tmdbModels.search.MultiSearchResponse.MultiSearchItem
 import kotlinx.coroutines.CoroutineScope
 
 

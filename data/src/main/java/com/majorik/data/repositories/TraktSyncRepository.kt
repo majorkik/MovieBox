@@ -10,7 +10,7 @@ class TraktSyncRepository(private val apiTraktService: TraktApiService) : BaseRe
     ): List<TraktWatchlistResponse>? {
         return safeApiCall(
         call = {
-            apiTraktService.getWatchlist(accessToken, type).await()
+            apiTraktService.getWatchlist(accessToken, type)
         },
         errorMessage = "Ошибка GET[getWatchlist]\n" +
                 "(accessToken = $accessToken)"

@@ -3,7 +3,7 @@ package com.majorik.moviebox.ui.tvDetails
 import androidx.lifecycle.MutableLiveData
 import com.majorik.data.repositories.AccountRepository
 import com.majorik.data.repositories.TVRepository
-import com.majorik.domain.tmdbModels.ResponseApi
+import com.majorik.domain.tmdbModels.ApiResponse
 import com.majorik.domain.tmdbModels.account.AccountStates
 import com.majorik.domain.tmdbModels.request.RequestAddToWatchlist
 import com.majorik.domain.tmdbModels.request.RequestMarkAsFavorite
@@ -17,8 +17,8 @@ class TVDetailsViewModel(
 ) : BaseViewModel() {
     var tvDetailsLiveData = MutableLiveData<TVDetails>()
     var tvStatesLiveData = MutableLiveData<AccountStates?>()
-    var responseFavoriteLiveData = MutableLiveData<ResponseApi>()
-    var responseWatchlistLiveData = MutableLiveData<ResponseApi>()
+    var responseFavoriteLiveData = MutableLiveData<ApiResponse>()
+    var responseWatchlistLiveData = MutableLiveData<ApiResponse>()
 
     fun fetchTVDetails(
         tvId: Int,

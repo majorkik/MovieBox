@@ -3,8 +3,8 @@ package com.majorik.data.repositories
 import com.majorik.data.api.TmdbApiService
 import com.majorik.domain.tmdbModels.account.AccountStates
 import com.majorik.domain.tmdbModels.genre.Genre
+import com.majorik.domain.tmdbModels.movie.Movie
 import com.majorik.domain.tmdbModels.movie.MovieDetails
-import com.majorik.domain.tmdbModels.movie.MovieResponse
 
 class MovieRepository(private val api: TmdbApiService) : BaseRepository() {
     suspend fun getMovieById(
@@ -15,10 +15,9 @@ class MovieRepository(private val api: TmdbApiService) : BaseRepository() {
     ): MovieDetails? {
         return safeApiCall(
             call = {
-                api.getMovieById(movieId, language, appendToResponse, imageLanguages).await()
+                api.getMovieById(movieId, language, appendToResponse, imageLanguages)
             },
-            errorMessage = "Ошибка GET[getMovieById]\n" +
-                    "(movieId = $movieId)"
+            errorMessage = "Ошибка GET[getMovieById]\n(movieId = $movieId)"
         )
     }
 
@@ -26,9 +25,9 @@ class MovieRepository(private val api: TmdbApiService) : BaseRepository() {
         language: String?,
         page: Int?,
         region: String?
-    ): MutableList<MovieResponse.Movie>? {
+    ): MutableList<Movie>? {
         val movieResponse = safeApiCall(
-            call = { api.getPopularMovies(language, page, region).await() },
+            call = { api.getPopularMovies(language, page, region) },
             errorMessage = "Ошибка GET[getPopularMovies]"
         )
 
@@ -39,9 +38,9 @@ class MovieRepository(private val api: TmdbApiService) : BaseRepository() {
         language: String?,
         page: Int?,
         region: String?
-    ): MutableList<MovieResponse.Movie>? {
+    ): MutableList<Movie>? {
         val movieResponse = safeApiCall(
-            call = { api.getTopRatedMovies(language, page, region).await() },
+            call = { api.getTopRatedMovies(language, page, region) },
             errorMessage = "Ошибка [getTopRatedMovies]"
         )
 
@@ -50,7 +49,7 @@ class MovieRepository(private val api: TmdbApiService) : BaseRepository() {
 
     suspend fun getMovieGenres(language: String?): MutableList<Genre>? {
         val movieResponse = safeApiCall(
-            call = { api.getMovieGenres(language).await() },
+            call = { api.getMovieGenres(language) },
             errorMessage = "Ошибка GET[getMovieGenres]"
         )
 
@@ -64,7 +63,7 @@ class MovieRepository(private val api: TmdbApiService) : BaseRepository() {
     ): AccountStates? {
         return safeApiCall(
             call = {
-                api.getAccountStatesForMovie(movieId, sessionId, guestSessionId).await()
+                api.getAccountStatesForMovie(movieId, sessionId, guestSessionId)
             },
             errorMessage = "Ошибка GET[getAccountStatesForMovie]\n" +
                     "(id = $movieId, session = $sessionId, guestSessionId = $guestSessionId)"
@@ -75,10 +74,10 @@ class MovieRepository(private val api: TmdbApiService) : BaseRepository() {
         language: String?,
         page: Int?,
         region: String?
-    ): MutableList<MovieResponse.Movie>? {
+    ): MutableList<Movie>? {
         val movieResponse = safeApiCall(
             call = {
-                api.getUpcomingMovies(language, page, region).await()
+                api.getUpcomingMovies(language, page, region)
             },
             errorMessage = "Ошибка GET[getUpcomingMovies]"
         )
@@ -89,10 +88,10 @@ class MovieRepository(private val api: TmdbApiService) : BaseRepository() {
         language: String?,
         page: Int?,
         region: String?
-    ): MutableList<MovieResponse.Movie>? {
+    ): MutableList<Movie>? {
         val movieResponse = safeApiCall(
             call = {
-                api.getNowPlayingMovies(language, page, region).await()
+                api.getNowPlayingMovies(language, page, region)
             },
             errorMessage = "Ошибка GET[getNowPlayingMovies]"
         )

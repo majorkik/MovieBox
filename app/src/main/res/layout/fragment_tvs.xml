@@ -202,7 +202,7 @@
                     android:layout_height="match_parent"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/background_pattern" />
+                    android:src="@drawable/bg_pattern" />
 
 
                 <TextView

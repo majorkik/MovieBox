@@ -3,7 +3,7 @@ package com.majorik.moviebox.ui.person
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.majorik.domain.UrlConstants
+import com.majorik.domain.constants.UrlConstants
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.MovieCreditsAdapter
 import com.majorik.moviebox.adapters.TVCreditsAdapter
@@ -53,7 +53,7 @@ class PersonDetailsActivity : AppCompatActivity() {
             person_profile_image.setOnClickListener {
                 StfalconImageViewer.Builder<String>(
                     this,
-                    personDetails.images.profiles.map { it.filePath }
+                    personDetails.profileImages.profiles.map { it.filePath }
                 ) { view, image ->
                     view.displayImageWithCenterInside(UrlConstants.TMDB_POSTER_SIZE_780 + image)
                 }.show()

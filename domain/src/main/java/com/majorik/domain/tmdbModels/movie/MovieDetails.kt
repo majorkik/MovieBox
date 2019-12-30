@@ -1,12 +1,12 @@
 package com.majorik.domain.tmdbModels.movie
 
-import com.majorik.domain.tmdbModels.*
+import com.majorik.domain.tmdbModels.credits.Credits
 import com.majorik.domain.tmdbModels.genre.Genre
-import com.majorik.domain.tmdbModels.image.ImageDetails
-import com.majorik.domain.tmdbModels.other.ProductionCompany
-import com.majorik.domain.tmdbModels.other.ProductionCountry
+import com.majorik.domain.tmdbModels.image.Images
 import com.majorik.domain.tmdbModels.other.SpokenLanguage
-import com.majorik.domain.tmdbModels.other.Video
+import com.majorik.domain.tmdbModels.production.ProductionCompany
+import com.majorik.domain.tmdbModels.production.ProductionCountry
+import com.majorik.domain.tmdbModels.video.Videos
 import com.squareup.moshi.Json
 
 data class MovieDetails(
@@ -35,7 +35,7 @@ data class MovieDetails(
     @field:Json(name = "video") val video: Boolean,
     @field:Json(name = "vote_average") val voteAverage: Double,
     @field:Json(name = "vote_count") val voteCount: Int,
-
+    //AppendToResponse
     @field:Json(name = "images") val images: Images,
     @field:Json(name = "credits") val credits: Credits,
     @field:Json(name = "videos") val videos: Videos
@@ -45,22 +45,5 @@ data class MovieDetails(
         @field:Json(name = "name") val name: String,
         @field:Json(name = "poster_path") val posterPath: String?,
         @field:Json(name = "backdrop_path") val backdropPath: String?
-    )
-
-    //append to response
-    data class Images(
-        @field:Json(name = "id") val id: Int,
-        @field:Json(name = "backdrops") val backdrops: List<ImageDetails>,
-        @field:Json(name = "posters") val posters: List<ImageDetails>
-    )
-
-    data class Credits(
-        @field:Json(name = "id") val id: Int,
-        @field:Json(name = "cast") val casts: List<Cast>,
-        @field:Json(name = "crew") val crews: List<Crew>
-    )
-
-    data class Videos(
-        @field:Json(name = "results") val results: List<Video>
     )
 }

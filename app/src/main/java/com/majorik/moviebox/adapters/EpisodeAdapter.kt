@@ -4,14 +4,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.majorik.domain.UrlConstants
-import com.majorik.domain.tmdbModels.tv.TVSeasonDetails
+import com.majorik.domain.constants.UrlConstants
+import com.majorik.domain.tmdbModels.tv.Episode
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.EpisodeAdapter.EpisodeViewHolder
 import com.majorik.moviebox.extensions.displayImageWithCenterCrop
 import kotlinx.android.synthetic.main.item_episode_card.view.*
 
-class EpisodeAdapter(private val episodes: List<TVSeasonDetails.Episode>) :
+class EpisodeAdapter(private val episodes: List<Episode>) :
     RecyclerView.Adapter<EpisodeViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EpisodeViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -27,7 +27,7 @@ class EpisodeAdapter(private val episodes: List<TVSeasonDetails.Episode>) :
     }
 
     class EpisodeViewHolder(parent: View) : RecyclerView.ViewHolder(parent) {
-        fun bindTo(episode: TVSeasonDetails.Episode) {
+        fun bindTo(episode: Episode) {
             itemView.episode_air_date.text = episode.airDate
             itemView.episode_overview.text = episode.overview
             itemView.episode_vote_average.text = ("${episode.voteAverage}/10")

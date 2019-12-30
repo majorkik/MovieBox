@@ -2,8 +2,8 @@ package com.majorik.moviebox.viewholders
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.majorik.domain.UrlConstants
-import com.majorik.domain.tmdbModels.MultiSearchResponse
+import com.majorik.domain.constants.UrlConstants
+import com.majorik.domain.tmdbModels.search.MultiSearchResponse
 import com.majorik.moviebox.extensions.displayImageWithCenterCrop
 import kotlinx.android.synthetic.main.item_card_with_details.view.*
 

@@ -12,23 +12,23 @@ interface TraktApiService {
     OAuth2
      */
     @POST("oauth/token")
-    fun exchangeCodeForAccessToken(
+    suspend fun exchangeCodeForAccessToken(
         @Query("code") code: String,
         @Query("client_id") clientId: String,
         @Query("client_secret") clientSecret: String,
         @Query("redirect_uri") redirectUri: String,
         @Query("grant_type") grantType: String
-    ): Deferred<Response<OAuthToken>>
+    ): Response<OAuthToken>
 
 
     @POST("oauth/token")
-    fun exchangeRefreshTokenForAccessToken(
+    suspend fun exchangeRefreshTokenForAccessToken(
         @Query("refresh_token") refreshToken: String,
         @Query("client_id") clientId: String,
         @Query("client_secret") clientSecret: String,
         @Query("redirect_uri") redirectUri: String,
         @Query("grant_type") grantType: String
-    ): Deferred<Response<OAuthToken>>
+    ): Response<OAuthToken>
 
     @POST("oauth/revoke")
     fun revokeAnAccessToken(
@@ -42,7 +42,7 @@ interface TraktApiService {
      */
 
     @GET("sync/history/")
-    fun getHistory(
+    suspend fun getHistory(
         @Header("Authorization") accessToken: String,
         @Query("type") type: String?,
         @Query("id") id: Int?,
@@ -51,65 +51,65 @@ interface TraktApiService {
         @Query("page") page: Int?,
         @Query("limit") limit: Int?
 
-    ): Deferred<Response<TraktHistoryResponse>>
+    ): Response<TraktHistoryResponse>
 
     @POST("sync/history")
-    fun addToHistory(
+    suspend fun addToHistory(
         @Header("Authorization") accessToken: String,
         @Body traktBodyRequest: TraktBodyRequest
-    ): Deferred<Response<TraktResultResponse>>
+    ): Response<TraktResultResponse>
 
     @POST("sync/history/remove")
-    fun removeFromHistory(
+    suspend fun removeFromHistory(
         @Header("Authorization") accessToken: String,
         @Body traktBodyRequest: TraktBodyRequest
-    ): Deferred<Response<TraktResultResponse>>
+    ): Response<TraktResultResponse>
 
     @GET("sync/watchlist")
-    fun getWatchlist(
+    suspend fun getWatchlist(
         @Header("Authorization") accessToken: String,
         @Query("type") type: String?
-    ): Deferred<Response<List<TraktWatchlistResponse>>>
+    ): Response<List<TraktWatchlistResponse>>
 
     @POST("sync/watchlist")
-    fun addToWatchlist(
+    suspend fun addToWatchlist(
         @Header("Authorization") accessToken: String,
         @Body traktBodyRequest: TraktBodyRequest
-    ): Deferred<Response<TraktResultResponse>>
+    ): Response<TraktResultResponse>
 
     @POST("sync/watchlist/remove")
-    fun removeFromWatchlist(
+    suspend fun removeFromWatchlist(
         @Header("Authorization") accessToken: String,
         @Body traktBodyRequest: TraktBodyRequest
-    ): Deferred<Response<TraktResultResponse>>
+    ): Response<TraktResultResponse>
 
     @GET("sync/watched")
-    fun getWatched(
+    suspend fun getWatched(
         @Header("Authorization") accessToken: String,
         @Query("type") type: String
-    ): Deferred<Response<TraktWatchedResponse>>
+    ): Response<TraktWatchedResponse>
 
     @GET("sync/rating")
-    fun getRating(
+    suspend fun getRating(
         @Header("Authorization") accessToken: String,
         @Query("type") type: String?,
         @Query("rating") rating: Int?
-    ): Deferred<Response<TraktRatingResponse>>
+    ): Response<TraktRatingResponse>
 
     @POST("sync/rating")
-    fun addToRating(
+    suspend fun addToRating(
         @Header("Authorization") accessToken: String,
         @Body traktBodyRequest: TraktBodyRequest
-    ): Deferred<Response<TraktResultResponse>>
+    ): Response<TraktResultResponse>
 
     @POST("sync/rating/remove")
-    fun removeToRating(
+    suspend fun removeToRating(
         @Header("Authorization") accessToken: String,
         @Body traktBodyRequest: TraktBodyRequest
-    ): Deferred<Response<TraktResultResponse>>
+    ): Response<TraktResultResponse>
 
     @GET("sync/last_activities")
-    fun getLastActivity(
+    suspend fun getLastActivity(
         @Header("Authorization") accessToken: String
-    ): Deferred<Response<TraktLastActivityResponse>>
+    ): Response<TraktLastActivityResponse>
 }

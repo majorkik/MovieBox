@@ -2,12 +2,16 @@ package com.majorik.moviebox.extensions
 
 import android.graphics.ColorMatrix
 import android.graphics.ColorMatrixColorFilter
+import android.graphics.Outline
+import android.os.Build
+import android.view.View
+import android.view.ViewOutlineProvider
 import android.widget.ImageView
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.majorik.moviebox.GlideApp
 import com.majorik.moviebox.R
-
 
 fun ImageView.displayImageWithCenterInside(
     url: String?,
@@ -45,4 +49,25 @@ fun ImageView.setBlackAndWhite() {
     colorMatrix.setSaturation(0F)
     val filter = ColorMatrixColorFilter(colorMatrix)
     this.colorFilter = filter
+}
+
+fun ImageView.setCorners(sizeDp: Int) {
+    val curveRadius = sizeDp.toPx()
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        this.outlineProvider = object : ViewOutlineProvider() {
+            @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+            override fun getOutline(view: View?, outline: Outline?) {
+                outline?.setRoundRect(
+                    0,
+                    0,
+                    view!!.width,
+                    (view.height + curveRadius),
+                    curveRadius.toFloat()
+                )
+            }
+        }
+
+        this.clipToOutline = true
+    }
 }

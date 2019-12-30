@@ -7,14 +7,14 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.majorik.domain.NetworkState
-import com.majorik.domain.tmdbModels.movie.MovieResponse
+import com.majorik.domain.tmdbModels.movie.Movie
 import com.majorik.moviebox.R
 import com.majorik.moviebox.ui.movieDetails.MovieDetailsActivity
 import com.majorik.moviebox.viewholders.MoviePagedItemVH
 import com.majorik.moviebox.viewholders.NetworkStateViewHolder
 
 class PagingMovieCollectionAdapter(private val callback: OnClickListener) :
-    PagedListAdapter<MovieResponse.Movie, ViewHolder>(
+    PagedListAdapter<Movie, ViewHolder>(
         diffCallback
     ) {
 
@@ -95,16 +95,16 @@ class PagingMovieCollectionAdapter(private val callback: OnClickListener) :
 
     companion object {
         private val diffCallback =
-            object : DiffUtil.ItemCallback<MovieResponse.Movie>() {
+            object : DiffUtil.ItemCallback<Movie>() {
                 override fun areItemsTheSame(
-                    oldItem: MovieResponse.Movie,
-                    newItem: MovieResponse.Movie
+                    oldItem: Movie,
+                    newItem: Movie
                 ): Boolean =
                     oldItem == newItem
 
                 override fun areContentsTheSame(
-                    oldItem: MovieResponse.Movie,
-                    newItem: MovieResponse.Movie
+                    oldItem: Movie,
+                    newItem: Movie
                 ): Boolean =
                     oldItem == newItem
             }

@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
 import com.majorik.data.repositories.TVRepository
 import com.majorik.domain.NetworkState
-import com.majorik.domain.tmdbModels.tv.TVCollectionType
-import com.majorik.domain.tmdbModels.tv.TVResponse
+import com.majorik.domain.enums.movie.TVCollectionType
+import com.majorik.domain.tmdbModels.tv.TV
 import kotlinx.coroutines.*
 import timber.log.Timber
 
@@ -14,14 +14,14 @@ class TVDataSource(
     private val repository: TVRepository,
     private val scope: CoroutineScope,
     private val tvCollectionType     : TVCollectionType
-) : PageKeyedDataSource<Int, TVResponse.TV>() {
+) : PageKeyedDataSource<Int, TV>() {
     private var supervisorJob = SupervisorJob()
     private val networkState = MutableLiveData<NetworkState>()
     private var retryQuery: (() -> Any)? = null
 
     override fun loadInitial(
         params: LoadInitialParams<Int>,
-        callback: LoadInitialCallback<Int, TVResponse.TV>
+        callback: LoadInitialCallback<Int, TV>
     ) {
         retryQuery = { loadInitial(params, callback) }
         executeQuery(1) {
@@ -31,7 +31,7 @@ class TVDataSource(
 
     override fun loadAfter(
         params: LoadParams<Int>,
-        callback: LoadCallback<Int, TVResponse.TV>
+        callback: LoadCallback<Int, TV>
     ) {
         val page = params.key
         retryQuery = { loadAfter(params, callback) }
@@ -42,13 +42,13 @@ class TVDataSource(
 
     override fun loadBefore(
         params: LoadParams<Int>,
-        callback: LoadCallback<Int, TVResponse.TV>
+        callback: LoadCallback<Int, TV>
     ) {
     }
 
     private fun executeQuery(
         page: Int,
-        callback: (List<TVResponse.TV>) -> Unit
+        callback: (List<TV>) -> Unit
     ) {
         networkState.postValue(NetworkState.RUNNING)
         scope.launch(getJobErrorHandler() + supervisorJob) {
@@ -73,7 +73,7 @@ class TVDataSource(
     private suspend fun getCurrentQuery(
         language: String?,
         page: Int?
-    ): MutableList<TVResponse.TV>? =
+    ): MutableList<TV>? =
         when (tvCollectionType) {
             TVCollectionType.POPULAR -> {
                 repository.getPopularTVs(language, page)

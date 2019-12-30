@@ -4,12 +4,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.majorik.domain.tmdbModels.account.AccountStates
-import com.majorik.domain.tmdbModels.other.Video
+import com.majorik.domain.tmdbModels.video.Video
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.*
 import com.majorik.moviebox.extensions.setAdapterWithFixedSize
 import com.majorik.moviebox.utils.SharedPrefsManager
-import kotlinx.android.synthetic.main.activity_movie_details.*
 import kotlinx.android.synthetic.main.activity_tv_details.*
 import kotlinx.android.synthetic.main.activity_tv_details.company_list
 import kotlinx.android.synthetic.main.activity_tv_details.expand_text_view

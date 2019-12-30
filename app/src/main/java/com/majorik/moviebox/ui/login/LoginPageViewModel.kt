@@ -2,10 +2,8 @@ package com.majorik.moviebox.ui.login
 
 import androidx.lifecycle.MutableLiveData
 import com.majorik.data.repositories.TmdbAuthRepository
-import com.majorik.data.repositories.TraktAuthRepository
-import com.majorik.domain.tmdbModels.RequestTokenResponse
-import com.majorik.domain.tmdbModels.ResponseSession
-import com.majorik.domain.traktModels.oauth.OAuthToken
+import com.majorik.domain.tmdbModels.auth.RequestTokenResponse
+import com.majorik.domain.tmdbModels.auth.ResponseSession
 import com.majorik.moviebox.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 

@@ -23,7 +23,7 @@ object InsetUtil {
         }
     }
 
-    fun calculateDesiredBottomInset(
+    private fun calculateDesiredBottomInset(
         view: View,
         topInset: Int,
         bottomInset: Int,

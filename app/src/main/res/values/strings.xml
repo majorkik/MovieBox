@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">MovieBox</string>
+    <string name="app_name_caps">MOVIEBOX</string>
 
     <!--    Навигация-->
     <string name="title_nav_movies">Фильмы</string>
@@ -7,9 +8,11 @@
     <string name="title_nav_search">Поиск</string>
     <string name="title_nav_profile">Профиль</string>
 
-    <!--    Страница Фильмы-->
+    <!--    Страница Фильмы & Сериалы (коллекции)-->
     <string name="collection_popular">Популярные</string>
     <string name="collection_top_rated">Самые популярные</string>
+    <string name="best_movies_tmdb">Лучшие фильмы за все время по рейтингу TMDB</string>
+    <string name="best_tvs_tmdb">Лучшие сериалы за все время по рейтингу TMDB</string>
 
     <!--    Описание кнопок-->
     <string name="button_search">Поиск</string>
@@ -72,9 +75,10 @@
     <string name="more">Смотреть все</string>
     <string name="desc_empty_list">Пустой список</string>
 
-    <string name="best_movies_tmdb">Лучшие фильмы за все время по рейтингу TMDB</string>
-    <string name="best_tvs_tmdb">Лучшие сериалы за все время по рейтингу TMDB</string>
     <string name="tgl_btn_favorite">Добавить в избранное</string>
     <string name="tgl_btn_watchlist">Буду смотреть</string>
+
+    <!--    Страница логина-->
+    <string name="login_with_tmdb_service">Войти с помощью TMDB</string>
 
 </resources>

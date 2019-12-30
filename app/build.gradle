@@ -94,6 +94,7 @@ dependencies {
     implementation androidxDependencies.constraintLayout
     implementation androidxDependencies.legacySupport
     implementation androidxDependencies.lifecycleExtensions
+    implementation androidxDependencies.lifecycleRuntimeKtx
     implementation androidxDependencies.lifecycleKtx
     implementation androidxDependencies.annotation
     implementation androidxDependencies.navigationFragment

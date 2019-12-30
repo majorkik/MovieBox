@@ -17,7 +17,7 @@ dependencies {
     implementation networkDependencies.okHttp3
     implementation networkDependencies.retrofitCoroutinesAdapter
 
-    implementation 'org.slf4j:slf4j-api:1.7.26'
+    implementation 'org.slf4j:slf4j-api:1.7.30'
     implementation logDependencies.slf4jTimber
 
     implementation koinDependencies.koinScope

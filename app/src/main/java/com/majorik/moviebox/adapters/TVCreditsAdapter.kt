@@ -5,16 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.majorik.domain.UrlConstants
-import com.majorik.domain.tmdbModels.person.PersonDetails
+import com.majorik.domain.constants.UrlConstants
+import com.majorik.domain.tmdbModels.cast.TVCast
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.TVCreditsAdapter.TVCreditsViewHolder
 import com.majorik.moviebox.extensions.displayImageWithCenterCrop
 import com.majorik.moviebox.ui.tvDetails.TVDetailsActivity
 import kotlinx.android.synthetic.main.item_small_poster_card.view.*
 
-class TVCreditsAdapter(private val tvCredits: List<PersonDetails.TVCredits.TVCast>) :
+class TVCreditsAdapter(private val tvCredits: List<TVCast>) :
     RecyclerView.Adapter<TVCreditsViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TVCreditsViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_small_poster_card, parent, false)
@@ -28,22 +29,22 @@ class TVCreditsAdapter(private val tvCredits: List<PersonDetails.TVCredits.TVCas
         holder.bindTo(tvCredits[position])
     }
 
-
-    class TVCreditsViewHolder(private val parent: View) : RecyclerView.ViewHolder(parent) {
-        fun bindTo(cast: PersonDetails.TVCredits.TVCast) {
+    class TVCreditsViewHolder(parent: View) : RecyclerView.ViewHolder(parent) {
+        fun bindTo(cast: TVCast) {
             itemView.collection_image.displayImageWithCenterCrop(UrlConstants.TMDB_POSTER_SIZE_185 + cast.posterPath)
 
             bindClickListener(cast)
         }
 
-        private fun bindClickListener(cast: PersonDetails.TVCredits.TVCast) {
+        private fun bindClickListener(cast: TVCast) {
             itemView.collection_card.setOnClickListener {
+                it.context.apply {
+                    val intent = Intent(this, TVDetailsActivity::class.java)
 
-                val intent = Intent(parent.context, TVDetailsActivity::class.java)
+                    intent.putExtra("id", cast.id)
 
-                intent.putExtra("id", cast.id)
-
-                parent.context.startActivity(intent)
+                    startActivity(intent)
+                }
             }
         }
     }

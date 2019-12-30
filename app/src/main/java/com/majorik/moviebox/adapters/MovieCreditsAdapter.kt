@@ -5,15 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.majorik.domain.UrlConstants
-import com.majorik.domain.tmdbModels.person.PersonDetails
+import com.majorik.domain.constants.UrlConstants
+import com.majorik.domain.tmdbModels.cast.MovieCast
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.MovieCreditsAdapter.MovieCreditsViewHolder
 import com.majorik.moviebox.extensions.displayImageWithCenterCrop
 import com.majorik.moviebox.ui.movieDetails.MovieDetailsActivity
 import kotlinx.android.synthetic.main.item_small_poster_card.view.*
 
-class MovieCreditsAdapter(private val movieCredits: List<PersonDetails.MovieCredits.MovieCast>) :
+class MovieCreditsAdapter(private val movieCredits: List<MovieCast>) :
     RecyclerView.Adapter<MovieCreditsViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieCreditsViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -29,13 +29,13 @@ class MovieCreditsAdapter(private val movieCredits: List<PersonDetails.MovieCred
     }
 
     class MovieCreditsViewHolder(private val parent: View) : RecyclerView.ViewHolder(parent) {
-        fun bindTo(cast: PersonDetails.MovieCredits.MovieCast) {
+        fun bindTo(cast: MovieCast) {
             itemView.collection_image.displayImageWithCenterCrop(UrlConstants.TMDB_POSTER_SIZE_185 + cast.posterPath)
 
             bindClickListener(cast)
         }
 
-        private fun bindClickListener(cast: PersonDetails.MovieCredits.MovieCast) {
+        private fun bindClickListener(cast: MovieCast) {
             itemView.collection_card.setOnClickListener {
                 val intent = Intent(parent.context, MovieDetailsActivity::class.java)
 

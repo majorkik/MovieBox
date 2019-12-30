@@ -9,16 +9,14 @@ import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
-import com.majorik.domain.UrlConstants
-import com.majorik.domain.tmdbModels.movie.MovieResponse
-import com.majorik.domain.tmdbModels.tv.TVResponse
+import com.majorik.domain.constants.UrlConstants
+import com.majorik.domain.tmdbModels.tv.TV
 import com.majorik.moviebox.R
 import com.majorik.moviebox.extensions.displayImageWithCenterInside
-import com.majorik.moviebox.ui.movieDetails.MovieDetailsActivity
 import com.majorik.moviebox.ui.tvDetails.TVDetailsActivity
 
 class TVCardAdapter(
-    private val tvs: List<TVResponse.TV>
+    private val tvs: List<TV>
 ) : PagerAdapter() {
     override fun isViewFromObject(view: View, `object`: Any): Boolean = view == `object`
 
@@ -36,7 +34,7 @@ class TVCardAdapter(
 
     override fun getCount() = tvs.size
 
-    private fun bindTo(tv: TVResponse.TV, parent: View) {
+    private fun bindTo(tv: TV, parent: View) {
         val sliderImage: ImageView = parent.findViewById(R.id.slider_image)
         val sliderLayout: CardView = parent.findViewById(R.id.slider_layout)
 

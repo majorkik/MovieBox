@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_pattern"
+    android:background="@drawable/bg_pattern"
     tools:context=".ui.login.LoginActivity">
 
     <LinearLayout
@@ -21,10 +21,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:fontFamily="@font/montserrat_black"
-            android:text="MOVIEBOX"
+            android:text="@string/app_name_caps"
             android:textAlignment="center"
             android:textColor="@color/colorBlack"
-            android:textSize="48dp"
+            android:textSize="48sp"
             android:textStyle="normal" />
 
         <Button
@@ -34,7 +34,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="64dp"
             android:backgroundTint="@color/colorBlack"
-            android:text="Войти с помощью TMDB"
+            android:text="@string/login_with_tmdb_service"
             android:textColor="@color/colorWhite" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

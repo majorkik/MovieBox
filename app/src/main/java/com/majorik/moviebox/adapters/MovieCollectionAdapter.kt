@@ -6,15 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.majorik.domain.UrlConstants
-import com.majorik.domain.tmdbModels.movie.MovieResponse
+import com.majorik.domain.constants.UrlConstants
+import com.majorik.domain.tmdbModels.movie.Movie
 import com.majorik.moviebox.GlideApp
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.MovieCollectionAdapter.*
 import com.majorik.moviebox.ui.movieDetails.MovieDetailsActivity
 import kotlinx.android.synthetic.main.item_small_poster_card.view.*
 
-class MovieCollectionAdapter(private val movies: List<MovieResponse.Movie>) :
+class MovieCollectionAdapter(private val movies: List<Movie>) :
     RecyclerView.Adapter<MovieViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -30,7 +30,7 @@ class MovieCollectionAdapter(private val movies: List<MovieResponse.Movie>) :
     }
 
     class MovieViewHolder(private val parent: View) : RecyclerView.ViewHolder(parent) {
-        fun bindTo(movie: MovieResponse.Movie) {
+        fun bindTo(movie: Movie) {
             GlideApp.with(itemView.collection_image)
                 .load(UrlConstants.TMDB_POSTER_SIZE_185 + movie.posterPath)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -40,7 +40,7 @@ class MovieCollectionAdapter(private val movies: List<MovieResponse.Movie>) :
             bindClickListener(movie)
         }
 
-        private fun bindClickListener(movie: MovieResponse.Movie) {
+        private fun bindClickListener(movie: Movie) {
             itemView.collection_card.setOnClickListener {
                 val intent = Intent(parent.context, MovieDetailsActivity::class.java)
 

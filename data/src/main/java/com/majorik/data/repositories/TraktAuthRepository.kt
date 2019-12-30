@@ -18,7 +18,7 @@ class TraktAuthRepository(private val apiTraktService: TraktApiService) : BaseRe
                 clientSecret,
                 redirectUri,
                 GrantType.AUTHORIZATION_CODE.id
-            ).await()
+            )
         },
         errorMessage = "Ошибка GET[exchangeCodeForAccessToken]\n" +
                 "(code = $code, clientId = $clientId, clientSecret = $clientSecret)"
@@ -38,7 +38,7 @@ class TraktAuthRepository(private val apiTraktService: TraktApiService) : BaseRe
                     clientSecret,
                     redirectUri,
                     GrantType.REFRESH_TOKEN.id
-                ).await()
+                )
             },
             errorMessage = "Ошибка GET[exchangeRefreshTokenForAccessToken]\n" +
                     "(code = $refreshToken, clientId = $clientId, clientSecret = $clientSecret)"

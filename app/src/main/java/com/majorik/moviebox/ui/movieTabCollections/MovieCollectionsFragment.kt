@@ -5,17 +5,21 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.majorik.domain.NetworkState
-import com.majorik.domain.tmdbModels.movie.MovieCollectionType
+import com.majorik.domain.enums.movie.MovieCollectionType
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.PagingMovieCollectionAdapter
-import com.majorik.moviebox.extensions.SpacingDecoration
+import com.majorik.moviebox.utils.SpacingDecoration
 import kotlinx.android.synthetic.main.fragment_collection_page.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
 class MovieCollectionsFragment(movieCollectionType: MovieCollectionType) : Fragment(),
     PagingMovieCollectionAdapter.OnClickListener {
-    private val movieViewModel: MovieCollectionsViewModel by viewModel { parametersOf(movieCollectionType) }
+    private val movieViewModel: MovieCollectionsViewModel by viewModel {
+        parametersOf(
+            movieCollectionType
+        )
+    }
     private lateinit var adapter: PagingMovieCollectionAdapter
 
     override fun onCreateView(
@@ -42,13 +46,24 @@ class MovieCollectionsFragment(movieCollectionType: MovieCollectionType) : Fragm
         val density = resources.displayMetrics.density
         val sizeV = ((12 * density).toInt())
         val sizeH = ((10 * density).toInt())
-        grid_items.addItemDecoration(SpacingDecoration(sizeH, sizeV, true))
+        grid_items.addItemDecoration(
+            SpacingDecoration(
+                sizeH,
+                sizeV,
+                true
+            )
+        )
         grid_items.adapter = adapter
     }
 
     private fun configureObservables() {
-        movieViewModel.networkState?.observe(this, Observer { adapter.updateNetworkState(it) })
-        movieViewModel.movieResults.observe(this, Observer { adapter.submitList(it) })
+        movieViewModel.networkState?.observe(viewLifecycleOwner, Observer {
+            adapter.updateNetworkState(it)
+        })
+
+        movieViewModel.movieResults.observe(viewLifecycleOwner, Observer {
+            adapter.submitList(it)
+        })
     }
 
     override fun onClickRetry() {

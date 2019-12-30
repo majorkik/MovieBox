@@ -2,8 +2,7 @@ package com.majorik.moviebox.utils
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.majorik.domain.tmdbModels.ResponseSession
-import com.majorik.domain.traktModels.oauth.OAuthToken
+import com.majorik.domain.tmdbModels.auth.ResponseSession
 
 class SharedPrefsManager(private val context: Context) {
     companion object {

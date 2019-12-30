@@ -8,6 +8,7 @@
     app:cardElevation="0dp">
 
     <ImageView
+        android:background="@drawable/shape_cardview_only_top_corners"
         android:id="@+id/slider_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

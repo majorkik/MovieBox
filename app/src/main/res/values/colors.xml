@@ -5,12 +5,11 @@
     <color name="colorAccent">#fed32c</color>
     <color name="colorAccentDark">#feb12c</color>
 
+    <color name="colorWhite">#ffffff</color>
     <color name="colorBlack">#212121</color>
     <color name="colorPrimaryTransparent">#a6222831</color>
-
+    <color name="colorLightGrey">#eeeeee</color>
     <color name="colorRed">#ff4d4d</color>
     <color name="colorGreen">#32ff7e</color>
     <color name="colorYellow">#fed32c</color>
-    <color name="colorWhite">#ffffff</color>
-    <color name="colorLightGrey">#eeeeee</color>
 </resources>

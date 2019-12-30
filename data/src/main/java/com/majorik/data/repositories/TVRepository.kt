@@ -3,8 +3,8 @@ package com.majorik.data.repositories
 import com.majorik.data.api.TmdbApiService
 import com.majorik.domain.tmdbModels.account.AccountStates
 import com.majorik.domain.tmdbModels.genre.Genre
+import com.majorik.domain.tmdbModels.tv.TV
 import com.majorik.domain.tmdbModels.tv.TVDetails
-import com.majorik.domain.tmdbModels.tv.TVResponse
 import com.majorik.domain.tmdbModels.tv.TVSeasonDetails
 
 
@@ -18,7 +18,7 @@ class TVRepository(private val api: TmdbApiService) : BaseRepository() {
     ): TVDetails? {
 
         return safeApiCall(
-            call = { api.getTVById(tvId, language, appendToResponse, imageLanguages).await() },
+            call = { api.getTVById(tvId, language, appendToResponse, imageLanguages) },
             errorMessage = "Ошибка GET[getTVById]\n" +
                     "(tvId = $tvId)"
         )
@@ -27,9 +27,9 @@ class TVRepository(private val api: TmdbApiService) : BaseRepository() {
     suspend fun getPopularTVs(
         language: String?,
         page: Int?
-    ): MutableList<TVResponse.TV>? {
+    ): MutableList<TV>? {
         val tvResponse = safeApiCall(
-            call = { api.getPopularTVs(language, page).await() },
+            call = { api.getPopularTVs(language, page) },
             errorMessage = "Ошибка GET[getPopularTVs]"
         )
 
@@ -39,9 +39,9 @@ class TVRepository(private val api: TmdbApiService) : BaseRepository() {
     suspend fun getTopRatedTVs(
         language: String?,
         page: Int?
-    ): MutableList<TVResponse.TV>? {
+    ): MutableList<TV>? {
         val tvResponse = safeApiCall(
-            call = { api.getTopRatedTVs(language, page).await() },
+            call = { api.getTopRatedTVs(language, page) },
             errorMessage = "Ошибка GET[getTopRatedTVs]"
         )
 
@@ -50,7 +50,7 @@ class TVRepository(private val api: TmdbApiService) : BaseRepository() {
 
     suspend fun getTVGenres(language: String?): MutableList<Genre>? {
         val tvResponse = safeApiCall(
-            call = { api.getTVGenres(language).await() },
+            call = { api.getTVGenres(language) },
             errorMessage = "Ошбика GET[getTVGenres]"
         )
 
@@ -64,7 +64,7 @@ class TVRepository(private val api: TmdbApiService) : BaseRepository() {
         appendToResponse: String?
     ): TVSeasonDetails? {
         return safeApiCall(
-            call = { api.getSeasonDetails(tvId, seasonNumber, language, appendToResponse).await() },
+            call = { api.getSeasonDetails(tvId, seasonNumber, language, appendToResponse) },
             errorMessage = "Ошибка GET[getTVSeasonDetails]\n" +
                     "(tvId = $tvId, seasonNumber = $seasonNumber)"
         )
@@ -78,17 +78,17 @@ class TVRepository(private val api: TmdbApiService) : BaseRepository() {
     ): AccountStates? {
         return safeApiCall(
             call = {
-                api.getAccountStatesForTV(tvId, language, guestSessionId, sessionId).await()
+                api.getAccountStatesForTV(tvId, language, guestSessionId, sessionId)
             },
             errorMessage = "Ошибка GET[getAccountStatesForTV]\n" +
                     " (tvId = $tvId, guestSessionId = $guestSessionId, sessionId = $sessionId)"
         )
     }
 
-    suspend fun getAiringTodayTVs(language: String?, page: Int?): MutableList<TVResponse.TV>? {
+    suspend fun getAiringTodayTVs(language: String?, page: Int?): MutableList<TV>? {
         val tvResponse = safeApiCall(
             call = {
-                api.getAiringTodayTVs(language, page).await()
+                api.getAiringTodayTVs(language, page)
             },
             errorMessage = "Ошибка GET[getAiringTodayTVs]"
         )
@@ -96,10 +96,10 @@ class TVRepository(private val api: TmdbApiService) : BaseRepository() {
         return tvResponse?.results?.toMutableList()
     }
 
-    suspend fun getOnTheAirTVs(language: String?, page: Int?): MutableList<TVResponse.TV>? {
+    suspend fun getOnTheAirTVs(language: String?, page: Int?): MutableList<TV>? {
         val tvResponse = safeApiCall(
             call = {
-                api.getOnTheAirTVs(language, page).await()
+                api.getOnTheAirTVs(language, page)
             },
             errorMessage = "Ошибка GET[getOnTheAirTVs]"
         )

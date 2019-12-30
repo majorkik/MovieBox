@@ -5,10 +5,10 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.majorik.domain.NetworkState
-import com.majorik.domain.tmdbModels.tv.TVCollectionType
+import com.majorik.domain.enums.movie.TVCollectionType
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.PagingTVCollectionAdapter
-import com.majorik.moviebox.extensions.SpacingDecoration
+import com.majorik.moviebox.utils.SpacingDecoration
 import kotlinx.android.synthetic.main.fragment_collection_page.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -42,13 +42,24 @@ class TVCollectionsFragment(tvCollectionType: TVCollectionType) : Fragment(),
         val density = resources.displayMetrics.density
         val sizeV = ((12 * density).toInt())
         val sizeH = ((10 * density).toInt())
-        grid_items.addItemDecoration(SpacingDecoration(sizeH, sizeV, true))
+        grid_items.addItemDecoration(
+            SpacingDecoration(
+                sizeH,
+                sizeV,
+                true
+            )
+        )
         grid_items.adapter = adapter
     }
 
     private fun configureObservables() {
-        tvViewModel.networkState?.observe(this, Observer { adapter.updateNetworkState(it) })
-        tvViewModel.tvResults.observe(this, Observer { adapter.submitList(it) })
+        tvViewModel.networkState?.observe(viewLifecycleOwner, Observer {
+            adapter.updateNetworkState(it)
+        })
+
+        tvViewModel.tvResults.observe(viewLifecycleOwner, Observer {
+            adapter.submitList(it)
+        })
     }
 
     override fun onClickRetry() {

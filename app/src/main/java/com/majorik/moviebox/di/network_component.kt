@@ -3,7 +3,7 @@ package com.majorik.moviebox.di
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.majorik.data.api.TmdbApiService
 import com.majorik.data.api.TraktApiService
-import com.majorik.domain.UrlConstants
+import com.majorik.domain.constants.UrlConstants
 import com.majorik.moviebox.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -19,13 +19,14 @@ val tmdbNetworkModule = module {
 
 fun getBaseOkHttpClient() = OkHttpClient()
 
-fun getHttpLoggingInterceptor(): HttpLoggingInterceptor {
+private val getHttpLoggingInterceptor = run {
     val httpLoggingInterceptor = HttpLoggingInterceptor()
-    httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-    return httpLoggingInterceptor
+    httpLoggingInterceptor.apply {
+        httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+    }
 }
 
-fun createTmdbRequestInterceptor(): Interceptor = Interceptor { chain ->
+private val getTmdbRequestInterceptor = Interceptor.invoke { chain ->
     val url = chain.request()
         .url
         .newBuilder()
@@ -37,10 +38,10 @@ fun createTmdbRequestInterceptor(): Interceptor = Interceptor { chain ->
         .url(url)
         .build()
 
-    return@Interceptor chain.proceed(request)
+    return@invoke chain.proceed(request)
 }
 
-fun createTraktRequestInterceptor(): Interceptor = Interceptor { chain ->
+private val getTraktRequestInterceptor = Interceptor.invoke { chain ->
     val request = chain.request()
         .newBuilder()
         .addHeader("Content-type", "application/json")
@@ -48,22 +49,22 @@ fun createTraktRequestInterceptor(): Interceptor = Interceptor { chain ->
         .addHeader("trakt-api-key", BuildConfig.TRAKT_API_KEY)
         .build()
 
-    return@Interceptor chain.proceed(request)
+    return@invoke chain.proceed(request)
 }
 
 fun createTmdbOkHttpClient(): OkHttpClient {
     return getBaseOkHttpClient()
         .newBuilder()
-        .addNetworkInterceptor(createTmdbRequestInterceptor())
-        .addInterceptor(getHttpLoggingInterceptor())
+        .addNetworkInterceptor(getTmdbRequestInterceptor)
+        .addInterceptor(getHttpLoggingInterceptor)
         .build()
 }
 
 fun createTraktOkHttpClient(): OkHttpClient {
     return getBaseOkHttpClient()
         .newBuilder()
-        .addNetworkInterceptor(createTraktRequestInterceptor())
-        .addInterceptor(getHttpLoggingInterceptor())
+        .addNetworkInterceptor(getTraktRequestInterceptor)
+        .addInterceptor(getHttpLoggingInterceptor)
         .build()
 }
 
