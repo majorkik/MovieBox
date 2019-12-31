@@ -10,11 +10,11 @@ import kotlinx.android.synthetic.main.item_small_poster_card.view.*
 class MoviePagedItemVH(val parent: View) : RecyclerView.ViewHolder(parent) {
     fun bindTo(movie: Movie?) {
         movie?.let {
-            if (it.posterPath != null) {
-                itemView.collection_image.displayImageWithCenterCrop(
-                    UrlConstants.TMDB_POSTER_SIZE_185 + it.posterPath
-                )
-            }
+            itemView.placeholder_text.text = movie.title
+
+            itemView.collection_image.displayImageWithCenterCrop(
+                UrlConstants.TMDB_POSTER_SIZE_185 + it.posterPath
+            )
         }
     }
 }

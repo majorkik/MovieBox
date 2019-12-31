@@ -8,13 +8,13 @@ import com.majorik.moviebox.extensions.displayImageWithCenterCrop
 import kotlinx.android.synthetic.main.item_small_poster_card.view.*
 
 class TVPagedItemVH(val parent: View) : RecyclerView.ViewHolder(parent) {
-    fun bindTo(movie: TV?) {
-        movie?.let {
-            if (it.posterPath != null) {
-                itemView.collection_image.displayImageWithCenterCrop(
-                    UrlConstants.TMDB_POSTER_SIZE_185 + it.posterPath
-                )
-            }
+    fun bindTo(tv: TV?) {
+        tv?.let {
+            itemView.placeholder_text.text = tv.name
+
+            itemView.collection_image.displayImageWithCenterCrop(
+                UrlConstants.TMDB_POSTER_SIZE_185 + it.posterPath
+            )
         }
     }
 }

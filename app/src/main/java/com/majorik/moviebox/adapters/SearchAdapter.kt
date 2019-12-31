@@ -10,6 +10,7 @@ import com.majorik.domain.NetworkState
 import com.majorik.domain.NetworkState.SUCCESS
 import com.majorik.domain.tmdbModels.search.MultiSearchResponse.MultiSearchItem
 import com.majorik.moviebox.R
+import com.majorik.moviebox.extensions.startDetailsActivityWithId
 import com.majorik.moviebox.ui.movieDetails.MovieDetailsActivity
 import com.majorik.moviebox.ui.person.PersonDetailsActivity
 import com.majorik.moviebox.ui.tvDetails.TVDetailsActivity
@@ -46,12 +47,11 @@ class SearchAdapter(
                 (holder as SearchViewHolder).bindTo(getItem(position))
 
                 holder.itemView.setOnClickListener {
-                    getItem(position)?.let { movie ->
-                        val intent = Intent(holder.parent.context, changeScreen(movie.mediaType))
-
-                        intent.putExtra("id", movie.id)
-
-                        holder.parent.context.startActivity(intent)
+                    getItem(position)?.let { item ->
+                        holder.parent.context.startDetailsActivityWithId(
+                            item.id,
+                            changeScreen(item.mediaType)
+                        )
                     }
                 }
             }

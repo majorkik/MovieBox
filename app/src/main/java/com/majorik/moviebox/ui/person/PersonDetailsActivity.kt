@@ -9,7 +9,7 @@ import com.majorik.moviebox.adapters.MovieCreditsAdapter
 import com.majorik.moviebox.adapters.TVCreditsAdapter
 import com.majorik.moviebox.extensions.displayImageWithCenterInside
 import com.majorik.moviebox.extensions.setAdapterWithFixedSize
-import com.majorik.moviebox.extensions.setBlackAndWhite
+import com.majorik.moviebox.extensions.setGrayscaleTransformation
 import com.stfalcon.imageviewer.StfalconImageViewer
 import kotlinx.android.synthetic.main.activity_person_details.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -59,7 +59,7 @@ class PersonDetailsActivity : AppCompatActivity() {
                 }.show()
             }
 
-            person_profile_image.setBlackAndWhite()
+            person_profile_image.setGrayscaleTransformation()
             person_name.text = personDetails.name
             expand_text_view.text = when {
                 personDetails.biography.isEmpty() -> "Неизвестно"

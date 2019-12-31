@@ -14,7 +14,9 @@ import com.majorik.domain.constants.UrlConstants
 import com.majorik.domain.tmdbModels.movie.Movie
 import com.majorik.moviebox.R
 import com.majorik.moviebox.extensions.displayImageWithCenterInside
+import com.majorik.moviebox.extensions.startDetailsActivityWithId
 import com.majorik.moviebox.ui.movieDetails.MovieDetailsActivity
+import kotlinx.android.synthetic.main.item_big_image_with_corners.view.*
 
 class MovieCardAdapter(
     private val movies: List<Movie>
@@ -37,20 +39,14 @@ class MovieCardAdapter(
     override fun getCount() = movies.size
 
     private fun bindTo(movie: Movie, parent: View) {
-        val sliderImage: ImageView = parent.findViewById(R.id.slider_image)
-        val sliderLayout: CardView = parent.findViewById(R.id.slider_layout)
+        parent.placeholder_text.text = movie.title
 
+        parent.slider_image.displayImageWithCenterInside(UrlConstants.TMDB_BACKDROP_SIZE_1280 + movie.backdropPath)
 
-        sliderImage.displayImageWithCenterInside(UrlConstants.TMDB_BACKDROP_SIZE_1280 + movie.backdropPath)
-
-        sliderLayout.setOnClickListener {
-            val intent = Intent(parent.context, MovieDetailsActivity::class.java)
-
-            intent.putExtra("id", movie.id)
-
-            parent.context.startActivity(intent)
-            (parent.context as AppCompatActivity).overridePendingTransition(
-                R.anim.slide_in_up, R.anim.slide_out_up
+        parent.slider_layout.setOnClickListener {
+            parent.context.startDetailsActivityWithId(
+                movie.id,
+                MovieDetailsActivity::class.java
             )
         }
     }

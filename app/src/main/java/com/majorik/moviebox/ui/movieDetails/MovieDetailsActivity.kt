@@ -8,7 +8,6 @@ import androidx.lifecycle.Observer
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.majorik.domain.constants.UrlConstants
 import com.majorik.domain.tmdbModels.account.AccountStates
-import com.majorik.domain.tmdbModels.video.Video
 import com.majorik.domain.tmdbModels.video.Videos
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.ImageSliderAdapter
@@ -21,7 +20,6 @@ import kotlinx.android.synthetic.main.layout_movie_details.*
 import kotlinx.android.synthetic.main.layout_movie_details.btn_watch_trailer
 import kotlinx.android.synthetic.main.layout_movie_details.toggle_favorite
 import kotlinx.android.synthetic.main.layout_movie_details.toggle_watchlist
-import kotlinx.android.synthetic.main.layout_tv_details.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.text.DecimalFormat

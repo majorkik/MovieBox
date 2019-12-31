@@ -8,44 +8,40 @@ import android.view.View
 import android.view.ViewOutlineProvider
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import com.majorik.moviebox.GlideApp
 import com.majorik.moviebox.R
 
 fun ImageView.displayImageWithCenterInside(
     url: String?,
-    placeholder: Int = android.R.color.darker_gray
+    placeholder: Int = R.drawable.placeholder_transparent
 ) {
-    if (url != null) {
-        GlideApp.with(this)
-            .load(url)
-            .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .placeholder(placeholder)
-            .error(placeholder)
-            .centerInside()
-            .into(this)
-    } else {
-        setImageDrawable(ContextCompat.getDrawable(context, placeholder))
-    }
+    GlideApp.with(this)
+        .load(url)
+        .diskCacheStrategy(DiskCacheStrategy.ALL)
+        .centerInside()
+        .placeholder(placeholder)
+        .error(placeholder)
+        .fallback(placeholder)
+        .into(this)
 }
 
 fun ImageView.displayImageWithCenterCrop(
-    url: String?
+    url: String?,
+    placeholder: Int = R.drawable.placeholder_transparent
 ) {
-    if (url != null) {
-        GlideApp.with(this)
-            .load(url)
-            .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .placeholder(ContextCompat.getDrawable(context, R.drawable.placeholder_triangle))
-            .centerCrop()
-            .into(this)
-    } else {
-        setImageDrawable(ContextCompat.getDrawable(context, R.drawable.placeholder_triangle))
-    }
+    GlideApp.with(this)
+        .load(url)
+        .diskCacheStrategy(DiskCacheStrategy.ALL)
+        .centerCrop()
+        .placeholder(placeholder)
+        .error(placeholder)
+        .fallback(placeholder)
+        .into(this)
 }
 
-fun ImageView.setBlackAndWhite() {
+fun ImageView.setGrayscaleTransformation() {
     val colorMatrix = ColorMatrix()
     colorMatrix.setSaturation(0F)
     val filter = ColorMatrixColorFilter(colorMatrix)

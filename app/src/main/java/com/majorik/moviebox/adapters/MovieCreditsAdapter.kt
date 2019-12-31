@@ -30,6 +30,8 @@ class MovieCreditsAdapter(private val movieCredits: List<MovieCast>) :
 
     class MovieCreditsViewHolder(private val parent: View) : RecyclerView.ViewHolder(parent) {
         fun bindTo(cast: MovieCast) {
+            itemView.placeholder_text.text = cast.title
+
             itemView.collection_image.displayImageWithCenterCrop(UrlConstants.TMDB_POSTER_SIZE_185 + cast.posterPath)
 
             bindClickListener(cast)

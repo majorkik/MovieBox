@@ -1,17 +1,15 @@
 package com.majorik.moviebox.adapters
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.majorik.domain.constants.UrlConstants
 import com.majorik.domain.tmdbModels.movie.Movie
-import com.majorik.moviebox.GlideApp
 import com.majorik.moviebox.R
-import com.majorik.moviebox.adapters.MovieCollectionAdapter.*
+import com.majorik.moviebox.adapters.MovieCollectionAdapter.MovieViewHolder
+import com.majorik.moviebox.extensions.displayImageWithCenterCrop
+import com.majorik.moviebox.extensions.startDetailsActivityWithId
 import com.majorik.moviebox.ui.movieDetails.MovieDetailsActivity
 import kotlinx.android.synthetic.main.item_small_poster_card.view.*
 
@@ -32,25 +30,20 @@ class MovieCollectionAdapter(private val movies: List<Movie>) :
 
     class MovieViewHolder(private val parent: View) : RecyclerView.ViewHolder(parent) {
         fun bindTo(movie: Movie) {
-            GlideApp.with(itemView.collection_image)
-                .load(UrlConstants.TMDB_POSTER_SIZE_185 + movie.posterPath)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .centerCrop()
-                .into(itemView.collection_image)
+            itemView.placeholder_text.text = movie.title
+
+            itemView.collection_image.displayImageWithCenterCrop(
+                UrlConstants.TMDB_POSTER_SIZE_185 + movie.posterPath
+            )
 
             bindClickListener(movie)
         }
 
         private fun bindClickListener(movie: Movie) {
             itemView.collection_card.setOnClickListener {
-                val intent = Intent(parent.context, MovieDetailsActivity::class.java)
-
-                intent.putExtra("id", movie.id)
-
-                parent.context.startActivity(intent)
-                (parent.context as AppCompatActivity).overridePendingTransition(
-                    R.anim.slide_in_up,
-                    R.anim.slide_out_up
+                parent.context.startDetailsActivityWithId(
+                    movie.id,
+                    MovieDetailsActivity::class.java
                 )
             }
         }

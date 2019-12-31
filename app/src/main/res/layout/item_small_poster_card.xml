@@ -15,6 +15,27 @@
     tools:cardBackgroundColor="#555555">
 
     <ImageView
+        android:id="@+id/placeholder_image"
+        android:layout_width="match_parent"
+        android:src="@drawable/placeholder_portrait"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/desc_collection_image" />
+
+    <TextView
+        android:id="@+id/placeholder_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/cc_montserrat_medium"
+        android:gravity="center_horizontal"
+        android:textSize="10sp"
+        tools:text="Sample name movie" />
+
+    <ImageView
         android:id="@+id/collection_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

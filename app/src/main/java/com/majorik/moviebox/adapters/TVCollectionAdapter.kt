@@ -1,16 +1,15 @@
 package com.majorik.moviebox.adapters
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.majorik.domain.constants.UrlConstants
 import com.majorik.domain.tmdbModels.tv.TV
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.TVCollectionAdapter.*
 import com.majorik.moviebox.extensions.displayImageWithCenterCrop
+import com.majorik.moviebox.extensions.startDetailsActivityWithId
 import com.majorik.moviebox.ui.tvDetails.TVDetailsActivity
 import kotlinx.android.synthetic.main.item_small_poster_card.view.*
 
@@ -31,6 +30,8 @@ class TVCollectionAdapter(private val movies: List<TV>) :
 
     class CollectionViewHolder(private val parent: View) : RecyclerView.ViewHolder(parent) {
         fun bindTo(tv: TV) {
+            itemView.placeholder_text.text = tv.name
+
             itemView.collection_image.displayImageWithCenterCrop(UrlConstants.TMDB_POSTER_SIZE_185 + tv.posterPath)
 
             bindClickListener(tv)
@@ -38,14 +39,9 @@ class TVCollectionAdapter(private val movies: List<TV>) :
 
         private fun bindClickListener(tv: TV) {
             itemView.collection_card.setOnClickListener {
-                val intent = Intent(parent.context, TVDetailsActivity::class.java)
-
-                intent.putExtra("id", tv.id)
-
-                parent.context.startActivity(intent)
-                (parent.context as AppCompatActivity).overridePendingTransition(
-                    R.anim.slide_in_up,
-                    R.anim.slide_out_up
+                parent.context.startDetailsActivityWithId(
+                    tv.id,
+                    TVDetailsActivity::class.java
                 )
             }
         }

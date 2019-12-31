@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.majorik.domain.NetworkState
 import com.majorik.domain.tmdbModels.tv.TV
 import com.majorik.moviebox.R
+import com.majorik.moviebox.extensions.startDetailsActivityWithId
+import com.majorik.moviebox.ui.movieDetails.MovieDetailsActivity
 import com.majorik.moviebox.ui.tvDetails.TVDetailsActivity
 import com.majorik.moviebox.viewholders.NetworkStateViewHolder
 import com.majorik.moviebox.viewholders.TVPagedItemVH
@@ -44,12 +46,11 @@ class PagingTVCollectionAdapter(private val callback: OnClickListener) :
                 (holder as TVPagedItemVH).bindTo(getItem(position))
 
                 holder.itemView.setOnClickListener {
-                    getItem(position)?.let { movie ->
-                        val intent = Intent(holder.parent.context, TVDetailsActivity::class.java)
-
-                        intent.putExtra("id", movie.id)
-
-                        holder.parent.context.startActivity(intent)
+                    getItem(position)?.let { tv ->
+                        holder.parent.context.startDetailsActivityWithId(
+                            tv.id,
+                            TVDetailsActivity::class.java
+                        )
                     }
                 }
             }
