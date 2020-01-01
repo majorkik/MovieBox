@@ -16,7 +16,13 @@ import com.majorik.moviebox.extensions.*
 import com.majorik.moviebox.ui.base.BaseSlidingActivity
 import com.majorik.moviebox.utils.SharedPrefsManager
 import kotlinx.android.synthetic.main.activity_tv_details.*
+import kotlinx.android.synthetic.main.layout_movie_details.*
 import kotlinx.android.synthetic.main.layout_tv_details.*
+import kotlinx.android.synthetic.main.layout_tv_details.btn_watch_trailer
+import kotlinx.android.synthetic.main.layout_tv_details.main_layout
+import kotlinx.android.synthetic.main.layout_tv_details.placeholder_main_details_page
+import kotlinx.android.synthetic.main.layout_tv_details.toggle_favorite
+import kotlinx.android.synthetic.main.layout_tv_details.toggle_watchlist
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.text.DecimalFormat
@@ -104,7 +110,10 @@ class TVDetailsActivity : BaseSlidingActivity() {
 
     private fun setObserver() {
         tvDetailsViewModel.tvDetailsLiveData.observe(this, Observer { tv ->
-            val numFormat = DecimalFormat("#,###,###")
+            placeholder_main_details_page.setVisibilityOption(false)
+
+            main_layout.setVisibilityOption(true)
+
             t_title.text = tv.name
             t_original_language.text = tv.originalLanguage
             t_original_title.text = tv.originalName

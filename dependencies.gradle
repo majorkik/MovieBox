@@ -40,6 +40,8 @@ ext {
     floatingSearchView_version = "2.1.1"
     rangeSeekBar_version = "3.0.0"
     numberPicker_version = "1.0.1"
+
+
     androidxDependencies = [
             supportDesign        : "androidx.support:design:$supportDesign_version",
             material             : "com.google.android.material:material:$material_version",

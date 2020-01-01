@@ -107,6 +107,10 @@ class MovieDetailsActivity : BaseSlidingActivity() {
 
     private fun setObserver() {
         movieDetailsViewModel.movieDetailsLiveData.observe(this, Observer { movie ->
+            placeholder_main_details_page.setVisibilityOption(false)
+
+            main_layout.setVisibilityOption(true)
+
             val numFormat = DecimalFormat("#,###,###")
             m_title.text = movie.title
             m_original_language.text = movie.originalLanguage

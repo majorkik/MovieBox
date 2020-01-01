@@ -10,3 +10,8 @@ fun View.updateMargin(
     right: Int = marginRight,
     bottom: Int = marginBottom
 ) = updateLayoutParams<ViewGroup.MarginLayoutParams> { updateMargins(left, top, right, bottom) }
+
+fun View.setVisibilityOption(visibility: Boolean) = when {
+    visibility -> this.visibility = View.VISIBLE
+    else -> this.visibility = View.GONE
+}
