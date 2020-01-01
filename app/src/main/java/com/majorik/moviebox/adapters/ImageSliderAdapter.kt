@@ -38,7 +38,7 @@ class ImageSliderAdapter(private val backdropImages: List<String>) : PagerAdapte
         imageView.setOnClickListener {
             StfalconImageViewer.Builder(container.context, backdropImages) { view, image ->
                 view.displayImageWithCenterInside(UrlConstants.TMDB_BACKDROP_SIZE_1280 + image)
-            }.withStartPosition(position).show()
+            }.withHiddenStatusBar(false).withStartPosition(position).show()
         }
 
         return view

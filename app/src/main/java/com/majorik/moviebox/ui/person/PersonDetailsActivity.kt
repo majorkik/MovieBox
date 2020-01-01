@@ -56,7 +56,7 @@ class PersonDetailsActivity : AppCompatActivity() {
                     personDetails.profileImages.profiles.map { it.filePath }
                 ) { view, image ->
                     view.displayImageWithCenterInside(UrlConstants.TMDB_POSTER_SIZE_780 + image)
-                }.show()
+                }.withHiddenStatusBar(false).show()
             }
 
             person_profile_image.setGrayscaleTransformation()

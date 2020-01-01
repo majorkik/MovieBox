@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.majorik.domain.constants.UrlConstants
 import com.majorik.domain.tmdbModels.account.AccountStates
+import com.majorik.domain.tmdbModels.image.Images
 import com.majorik.domain.tmdbModels.video.Videos
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.ImageSliderAdapter
@@ -15,6 +16,7 @@ import com.majorik.moviebox.adapters.PersonAdapter
 import com.majorik.moviebox.extensions.*
 import com.majorik.moviebox.ui.base.BaseSlidingActivity
 import com.majorik.moviebox.utils.SharedPrefsManager
+import com.stfalcon.imageviewer.StfalconImageViewer
 import kotlinx.android.synthetic.main.activity_movie_details.*
 import kotlinx.android.synthetic.main.layout_movie_details.*
 import kotlinx.android.synthetic.main.layout_movie_details.btn_watch_trailer
@@ -105,6 +107,22 @@ class MovieDetailsActivity : BaseSlidingActivity() {
         }
     }
 
+    private fun setClickListenerForImages(
+        images: Images
+    ) {
+        m_backdrop_image.setOnClickListener {
+            StfalconImageViewer.Builder(this, images.backdrops.map { it.filePath }) { view, image ->
+                view.displayImageWithCenterInside(UrlConstants.TMDB_BACKDROP_SIZE_1280 + image)
+            }.withHiddenStatusBar(false).show()
+        }
+
+        m_poster_image.setOnClickListener {
+            StfalconImageViewer.Builder(this, images.posters.map { it.filePath }) { view, image ->
+                view.displayImageWithCenterInside(UrlConstants.TMDB_BACKDROP_SIZE_1280 + image)
+            }.withHiddenStatusBar(false).show()
+        }
+    }
+
     private fun setObserver() {
         movieDetailsViewModel.movieDetailsLiveData.observe(this, Observer { movie ->
             placeholder_main_details_page.setVisibilityOption(false)
@@ -135,6 +153,8 @@ class MovieDetailsActivity : BaseSlidingActivity() {
             m_count_trailers.text = movie.videos.results.size.toString()
 
             setTrailerButtonClickListener(movie.videos)
+
+            setClickListenerForImages(movie.images)
         })
 
         movieDetailsViewModel.movieStatesLiveData.observe(this, Observer {
