@@ -13,24 +13,25 @@ class TVsViewModel(private val tvRepository: TVRepository) : BaseViewModel() {
 
     fun fetchPopularTVs(language: String?, page: Int?) {
         ioScope.launch {
-            val popularTVs = tvRepository.getPopularTVs(language, page)
+            val response = tvRepository.getPopularTVs(language, page)
 
-            popularTVsLiveData.postValue(popularTVs)
+            response?.let { popularTVsLiveData.postValue(response) }
         }
     }
 
     fun fetchAirTodayTVs(language: String?, page: Int?) {
         ioScope.launch {
-            val tvs = tvRepository.getAiringTodayTVs(language, page)
-            airTodayTVsLiveData.postValue(tvs)
+            val response = tvRepository.getAiringTodayTVs(language, page)
+
+            response?.let { airTodayTVsLiveData.postValue(response) }
         }
     }
 
     fun fetchOnTheAirTVs(language: String?, page: Int?) {
         ioScope.launch {
-            val tvs = tvRepository.getOnTheAirTVs(language, page)
+            val response = tvRepository.getOnTheAirTVs(language, page)
 
-            onTheAirTVsLiveData.postValue(tvs)
+            response?.let { onTheAirTVsLiveData.postValue(response) }
         }
     }
 }

@@ -38,7 +38,7 @@ class SearchDataSource(
     }
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, MultiSearchItem>) {
-
+        //no-op
     }
 
     private fun executeQuery(
@@ -48,10 +48,10 @@ class SearchDataSource(
         networkState.postValue(NetworkState.RUNNING)
         scope.launch(getJobErrorHandler() + supervisorJob) {
             delay(200)
-            val searchResults = repository.multiSearch("ru", query, page, false)
+            val response = repository.multiSearch("ru", query, page, false)
             retryQuery = null
             networkState.postValue(NetworkState.SUCCESS)
-            searchResults?.results?.let { callback(it) }
+            response?.results?.let { callback(it) }
         }
     }
 

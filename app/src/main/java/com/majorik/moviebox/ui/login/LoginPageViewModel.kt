@@ -14,6 +14,7 @@ class LoginPageViewModel(private val tmdbAuthRepository: TmdbAuthRepository) : B
     fun getRequestToken() {
         ioScope.launch {
             val response = tmdbAuthRepository.getRequestToken()
+
             response?.let { tmdbRequestTokenLiveData.postValue(it) }
         }
     }
@@ -21,7 +22,8 @@ class LoginPageViewModel(private val tmdbAuthRepository: TmdbAuthRepository) : B
     fun createSessionToken(requestToken: String) {
         ioScope.launch {
             val response = tmdbAuthRepository.createSession(requestToken)
-            tmdbSessionLiveData.postValue(response)
+
+            response?.let { tmdbSessionLiveData.postValue(response) }
         }
     }
 }

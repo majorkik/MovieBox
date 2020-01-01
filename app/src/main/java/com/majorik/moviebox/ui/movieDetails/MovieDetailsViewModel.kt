@@ -28,19 +28,19 @@ class MovieDetailsViewModel(
         imageLanguages: String?
     ) {
         viewModelScope.launch {
-            val movieDetails =
+            val response =
                 movieRepository.getMovieById(movieId, language, appendToResponse, imageLanguages)
 
-            movieDetailsLiveData.postValue(movieDetails)
+            response?.let { movieDetailsLiveData.postValue(it) }
         }
     }
 
     fun fetchAccountStateForMovie(movieId: Int, sessionId: String) {
         viewModelScope.launch {
-            val movieStates =
+            val response =
                 movieRepository.getAccountStatesForMovie(movieId, sessionId, guestSessionId = null)
 
-            movieStatesLiveData.postValue(movieStates)
+            response?.let { movieStatesLiveData.postValue(it) }
         }
     }
 
@@ -49,7 +49,7 @@ class MovieDetailsViewModel(
             val requestMarkAsFavorite = RequestMarkAsFavorite("movie", mediaId, state)
             val response = accountRepository.markIsFavorite(requestMarkAsFavorite, sessionId)
 
-            responseFavoriteLiveData.postValue(response)
+            response?.let { responseFavoriteLiveData.postValue(response) }
         }
     }
 
@@ -58,7 +58,7 @@ class MovieDetailsViewModel(
             val requestAddToWatchlist = RequestAddToWatchlist("movie", mediaId, state)
             val response = accountRepository.addToWatchlist(requestAddToWatchlist, sessionId)
 
-            responseWatchlistLiveData.postValue(response)
+            response?.let { responseWatchlistLiveData.postValue(response) }
         }
     }
 }

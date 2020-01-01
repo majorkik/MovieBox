@@ -40,10 +40,8 @@ class MovieDataSource(
         }
     }
 
-    override fun loadBefore(
-        params: LoadParams<Int>,
-        callback: LoadCallback<Int, Movie>
-    ) {
+    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Movie>) {
+        //no-op
     }
 
     private fun executeQuery(
@@ -52,10 +50,10 @@ class MovieDataSource(
     ) {
         networkState.postValue(NetworkState.RUNNING)
         scope.launch(getJobErrorHandler() + supervisorJob) {
-            val searchResults = getCurrentQuery("ru", page, null)
+            val response = getCurrentQuery("ru", page, null)
             retryQuery = null
             networkState.postValue(NetworkState.SUCCESS)
-            searchResults?.let { callback(it) }
+            response?.let { callback(it) }
         }
     }
 
@@ -99,5 +97,4 @@ class MovieDataSource(
         retryQuery = null
         previousQuery?.invoke()
     }
-
 }

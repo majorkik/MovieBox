@@ -19,8 +19,9 @@ class MoviesViewModel(
         region: String?
     ) {
         ioScope.launch {
-            val popularMovies = movieRepository.getPopularMovies(language, page, region)
-            popularMoviesLiveData.postValue(popularMovies)
+            val response = movieRepository.getPopularMovies(language, page, region)
+
+            response?.let { popularMoviesLiveData.postValue(response) }
         }
     }
 
@@ -30,8 +31,9 @@ class MoviesViewModel(
         region: String?
     ) {
         ioScope.launch {
-            val upcomingMovies = movieRepository.getUpcomingMovies(language, page, region)
-            upcomingMoviesLiveData.postValue(upcomingMovies)
+            val response = movieRepository.getUpcomingMovies(language, page, region)
+
+            response?.let { upcomingMoviesLiveData.postValue(response) }
         }
     }
 
@@ -41,8 +43,9 @@ class MoviesViewModel(
         region: String?
     ) {
         ioScope.launch {
-            val nowPlayingMovies = movieRepository.getNowPlayingMovies(language, page, region)
-            nowPlayingMoviesLiveData.postValue(nowPlayingMovies)
+            val response = movieRepository.getNowPlayingMovies(language, page, region)
+
+            response?.let { nowPlayingMoviesLiveData.postValue(response) }
         }
     }
 

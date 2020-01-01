@@ -13,7 +13,7 @@ import timber.log.Timber
 class TVDataSource(
     private val repository: TVRepository,
     private val scope: CoroutineScope,
-    private val tvCollectionType     : TVCollectionType
+    private val tvCollectionType: TVCollectionType
 ) : PageKeyedDataSource<Int, TV>() {
     private var supervisorJob = SupervisorJob()
     private val networkState = MutableLiveData<NetworkState>()
@@ -40,10 +40,8 @@ class TVDataSource(
         }
     }
 
-    override fun loadBefore(
-        params: LoadParams<Int>,
-        callback: LoadCallback<Int, TV>
-    ) {
+    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, TV>) {
+        //no-op
     }
 
     private fun executeQuery(
@@ -52,10 +50,10 @@ class TVDataSource(
     ) {
         networkState.postValue(NetworkState.RUNNING)
         scope.launch(getJobErrorHandler() + supervisorJob) {
-            val searchResults = getCurrentQuery("ru", page)
+            val response = getCurrentQuery("ru", page)
             retryQuery = null
             networkState.postValue(NetworkState.SUCCESS)
-            searchResults?.let { callback(it) }
+            response?.let { callback(it) }
         }
     }
 

@@ -15,9 +15,9 @@ class PersonDetailsViewModel(private val personRepository: PersonRepository) : B
         appendToResponse: String?
     ) {
         ioScope.launch {
-            val personDetails = personRepository.getPersonById(personId, language, appendToResponse)
+            val response = personRepository.getPersonById(personId, language, appendToResponse)
 
-            personDetailsLiveData.postValue(personDetails)
+            response?.let { personDetailsLiveData.postValue(response) }
         }
     }
 }

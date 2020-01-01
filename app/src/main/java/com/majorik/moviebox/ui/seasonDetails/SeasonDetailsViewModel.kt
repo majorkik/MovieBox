@@ -16,10 +16,10 @@ class SeasonDetailsViewModel(private val tvRepository: TVRepository) : BaseViewM
         appendToResponse: String?
     ) {
         ioScope.launch {
-            val seasonDetails =
+            val response =
                 tvRepository.getTVSeasonDetails(tvId, seasonNumber, language, appendToResponse)
 
-            seasonDetailsLiveData.postValue(seasonDetails)
+            response?.let { seasonDetailsLiveData.postValue(response) }
         }
     }
 }
