@@ -21,7 +21,7 @@ android {
     defaultConfig {
         applicationId "com.majorik.moviebox"
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -83,7 +83,7 @@ dependencies {
     def networkDependencies = rootProject.ext.networkDependencies
     def logDependencies = rootProject.ext.logDependencies
     def otherDependencies = rootProject.ext.otherDependencies
-
+    def testingDependencies = rootProject.ext.testingDependencies
     implementation project(':data')
     implementation project(':domain')
 
@@ -128,6 +128,12 @@ dependencies {
     implementation otherDependencies.floatingsearchview
     implementation otherDependencies.rangeSeekBar
     implementation otherDependencies.numberPicker
+
+
+    androidTestImplementation testingDependencies.testJunit
+    androidTestImplementation testingDependencies.testCore
+    androidTestImplementation testingDependencies.testRunner
+    androidTestImplementation testingDependencies.testRules
 
     kapt otherDependencies.glideCompiler
     annotationProcessor otherDependencies.glideCompiler

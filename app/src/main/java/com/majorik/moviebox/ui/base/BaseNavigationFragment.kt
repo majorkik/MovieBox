@@ -24,5 +24,4 @@ abstract class BaseNavigationFragment : Fragment() {
     abstract fun fetchData()
 
     abstract fun setObservers()
-
 }

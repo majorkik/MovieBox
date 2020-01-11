@@ -6,11 +6,11 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.majorik.moviebox.ui.main_page_tvs.TVsFragment
-import com.majorik.moviebox.ui.main_page_profile.ProfileFragment
-import com.majorik.moviebox.ui.search.SearchableActivity
-import com.majorik.moviebox.ui.main_page_search.SearchFragment
 import com.majorik.moviebox.ui.main_page_movies.MoviesFragment
+import com.majorik.moviebox.ui.main_page_profile.ProfileFragment
+import com.majorik.moviebox.ui.main_page_search.SearchFragment
+import com.majorik.moviebox.ui.main_page_tvs.TVsFragment
+import com.majorik.moviebox.ui.search.SearchableActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -91,8 +91,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             .commit()
     }
 
-
-    //TODO unused
+    // TODO unused
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.toolbar_search -> {

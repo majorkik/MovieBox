@@ -41,7 +41,7 @@ class MovieDataSource(
     }
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Movie>) {
-        //no-op
+        // no-op
     }
 
     private fun executeQuery(
@@ -56,7 +56,6 @@ class MovieDataSource(
             response?.let { callback(it) }
         }
     }
-
 
     private fun getJobErrorHandler() = CoroutineExceptionHandler { _, e ->
         Timber.e(MovieDataSource::class.java.simpleName, "Ошибка: $e")

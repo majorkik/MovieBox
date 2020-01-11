@@ -76,7 +76,6 @@ abstract class BaseSlidingActivity : AppCompatActivity() {
                 }
                 startX = 0f
                 startY = 0f
-
             }
         }
         return if (handled) true else super.dispatchTouchEvent(ev)
@@ -104,7 +103,6 @@ abstract class BaseSlidingActivity : AppCompatActivity() {
             override fun onAnimationCancel(animation: Animator) {}
 
             override fun onAnimationStart(animation: Animator) {}
-
         })
         positionAnimator.start()
     }

@@ -99,5 +99,4 @@ class TVCollectionsFragment(tvCollectionType: TVCollectionType) : Fragment(),
         movie_empty_list_progressbar.visibility =
             if (size == 0 && networkState == NetworkState.RUNNING) View.VISIBLE else View.GONE
     }
-
 }

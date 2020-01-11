@@ -1,10 +1,10 @@
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 
 ktlint {
-    version.set("0.22.0")
+    version.set("0.36.0")
     debug.set(true)
     verbose.set(true)
-    android.set(false)
+    android.set(true)
     outputToConsole.set(true)
     outputColorName.set("RED")
     ignoreFailures.set(true)
@@ -16,13 +16,9 @@ ktlint {
         reporter(ReporterType.CHECKSTYLE)
 
         customReporters {
-            register("csv") {
-                fileExtension = "csv"
-                dependency = project(":project-reporters:csv-reporter")
-            }
-            register("yaml") {
-                fileExtension = "yml"
-                dependency = "com.example:ktlint-yaml-reporter:1.0.0"
+            register("html") {
+                fileExtension = "html"
+                dependency = "me.cassiano:ktlint-html-reporter:0.2.3"
             }
         }
     }
@@ -38,4 +34,5 @@ ktlint {
 dependencies {
     ktlintRuleset("com.github.username:rulseset:master-SNAPSHOT")
     ktlintRuleset(files("/path/to/custom/rulseset.jar"))
+    ktlintRuleset(project(":chore:project-ruleset"))
 }

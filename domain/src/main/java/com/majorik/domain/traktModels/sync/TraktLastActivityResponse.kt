@@ -12,13 +12,13 @@ data class TraktLastActivityResponse(
     @field:Json(name = "lists") val listsActivity: ListActivity
 ) {
     class MoviesActivity(
-       @field:Json(name = "watched_at") val watchedAt: String,
-       @field:Json(name = "collected_at") val collectedAt: String,
-       @field:Json(name = "rated_at") val ratedAt: String,
-       @field:Json(name = "watchlisted_at") val watchlistedAt: String,
-       @field:Json(name = "commented_at") val commentedAt: String,
-       @field:Json(name = "paused_at") val pausedAt: String,
-       @field:Json(name = "hidden_at") val hiddenAt: String
+        @field:Json(name = "watched_at") val watchedAt: String,
+        @field:Json(name = "collected_at") val collectedAt: String,
+        @field:Json(name = "rated_at") val ratedAt: String,
+        @field:Json(name = "watchlisted_at") val watchlistedAt: String,
+        @field:Json(name = "commented_at") val commentedAt: String,
+        @field:Json(name = "paused_at") val pausedAt: String,
+        @field:Json(name = "hidden_at") val hiddenAt: String
     )
 
     class EpisodesActivity(

@@ -1,7 +1,7 @@
 package com.majorik.moviebox.ui.seasonDetails
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.EpisodeAdapter

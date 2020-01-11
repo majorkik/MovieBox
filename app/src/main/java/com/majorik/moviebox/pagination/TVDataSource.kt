@@ -41,7 +41,7 @@ class TVDataSource(
     }
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, TV>) {
-        //no-op
+        // no-op
     }
 
     private fun executeQuery(
@@ -56,7 +56,6 @@ class TVDataSource(
             response?.let { callback(it) }
         }
     }
-
 
     private fun getJobErrorHandler() = CoroutineExceptionHandler { _, e ->
         Timber.e(TVDataSource::class.java.simpleName, "Ошибка: $e")
@@ -96,5 +95,4 @@ class TVDataSource(
         retryQuery = null
         previousQuery?.invoke()
     }
-
 }

@@ -1,6 +1,5 @@
 package com.majorik.moviebox.adapters
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
@@ -121,8 +120,6 @@ class SearchAdapter(
                 oldItem: MultiSearchItem,
                 newItem: MultiSearchItem
             ): Boolean = oldItem == newItem
-
         }
     }
-
 }

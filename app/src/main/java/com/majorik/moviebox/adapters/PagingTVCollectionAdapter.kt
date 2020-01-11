@@ -1,6 +1,5 @@
 package com.majorik.moviebox.adapters
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
@@ -10,7 +9,6 @@ import com.majorik.domain.NetworkState
 import com.majorik.domain.tmdbModels.tv.TV
 import com.majorik.moviebox.R
 import com.majorik.moviebox.extensions.startDetailsActivityWithId
-import com.majorik.moviebox.ui.movieDetails.MovieDetailsActivity
 import com.majorik.moviebox.ui.tvDetails.TVDetailsActivity
 import com.majorik.moviebox.viewholders.NetworkStateViewHolder
 import com.majorik.moviebox.viewholders.TVPagedItemVH

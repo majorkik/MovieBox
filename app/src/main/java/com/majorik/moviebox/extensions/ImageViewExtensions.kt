@@ -9,7 +9,6 @@ import android.view.ViewOutlineProvider
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.request.RequestOptions
 import com.majorik.moviebox.GlideApp
 import com.majorik.moviebox.R
 

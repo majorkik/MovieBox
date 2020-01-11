@@ -3,7 +3,6 @@ package com.majorik.data.api
 import com.majorik.domain.traktModels.oauth.OAuthToken
 import com.majorik.domain.traktModels.oauth.TraktBodyRequest
 import com.majorik.domain.traktModels.sync.*
-import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -11,6 +10,7 @@ interface TraktApiService {
     /*
     OAuth2
      */
+
     @POST("oauth/token")
     suspend fun exchangeCodeForAccessToken(
         @Query("code") code: String,
@@ -19,7 +19,6 @@ interface TraktApiService {
         @Query("redirect_uri") redirectUri: String,
         @Query("grant_type") grantType: String
     ): Response<OAuthToken>
-
 
     @POST("oauth/token")
     suspend fun exchangeRefreshTokenForAccessToken(

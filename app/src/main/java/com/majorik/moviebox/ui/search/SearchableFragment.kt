@@ -11,12 +11,12 @@ import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.SearchAdapter
 import com.majorik.moviebox.extensions.onQueryTextChange
 import kotlinx.android.synthetic.main.fragment_searchable.*
-import org.koin.android.viewmodel.ext.android.viewModel
 import kotlinx.android.synthetic.main.fragment_searchable.fragment_search_list as recyclerView
 import kotlinx.android.synthetic.main.fragment_searchable.movie_empty_list_button as emptyListButton
 import kotlinx.android.synthetic.main.fragment_searchable.movie_empty_list_image as emptyListImage
 import kotlinx.android.synthetic.main.fragment_searchable.movie_empty_list_progressbar as progressBar
 import kotlinx.android.synthetic.main.fragment_searchable.movie_empty_list_title as emptyListTitle
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class SearchableFragment : Fragment(), SearchAdapter.OnClickListener {
     private val searchableViewModel: SearchableViewModel by viewModel()
@@ -29,7 +29,6 @@ class SearchableFragment : Fragment(), SearchAdapter.OnClickListener {
     ): View? {
         return inflater.inflate(R.layout.fragment_searchable, container, false)
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -115,5 +114,4 @@ class SearchableFragment : Fragment(), SearchAdapter.OnClickListener {
         progressBar.visibility =
             if (size == 0 && networkState == NetworkState.RUNNING) View.VISIBLE else View.GONE
     }
-
 }

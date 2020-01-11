@@ -73,8 +73,8 @@ class LoginActivity : AppCompatActivity() {
         val intent = Intent(Intent.ACTION_VIEW)
         intent.data =
             Uri.parse(
-                "https://www.themoviedb.org/authenticate/" + requestToken + "?redirect_to="
-                        + UrlConstants.REDIRECT_URL
+                "https://www.themoviedb.org/authenticate/" + requestToken + "?redirect_to=" +
+                        UrlConstants.REDIRECT_URL
 
             )
 

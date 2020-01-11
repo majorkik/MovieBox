@@ -7,7 +7,6 @@ import com.majorik.domain.tmdbModels.tv.TV
 import com.majorik.domain.tmdbModels.tv.TVDetails
 import com.majorik.domain.tmdbModels.tv.TVSeasonDetails
 
-
 class TVRepository(private val api: TmdbApiService) : BaseRepository() {
 
     suspend fun getTVById(
@@ -106,4 +105,4 @@ class TVRepository(private val api: TmdbApiService) : BaseRepository() {
 
         return tvResponse?.results?.toMutableList()
     }
-}  
+}

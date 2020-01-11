@@ -26,7 +26,6 @@ class PersonAdapter(private val people: List<Cast>) :
 
     override fun onBindViewHolder(holder: PersonViewHolder, position: Int) {
         holder.bindTo(people[position])
-
     }
 
     class PersonViewHolder(private val parent: View) : RecyclerView.ViewHolder(parent) {
@@ -47,6 +46,5 @@ class PersonAdapter(private val people: List<Cast>) :
                 parent.context.startActivity(intent)
             }
         }
-
     }
 }

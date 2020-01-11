@@ -44,5 +44,4 @@ class TraktAuthRepository(private val apiTraktService: TraktApiService) : BaseRe
                     "(code = $refreshToken, clientId = $clientId, clientSecret = $clientSecret)"
         )
     }
-
 }

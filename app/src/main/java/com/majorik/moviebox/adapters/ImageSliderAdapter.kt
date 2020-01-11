@@ -1,23 +1,16 @@
 package com.majorik.moviebox.adapters
 
 import android.content.Context
-import android.graphics.Outline
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewOutlineProvider
 import android.widget.ImageView
-import androidx.annotation.RequiresApi
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.majorik.domain.constants.UrlConstants
 import com.majorik.moviebox.R
 import com.majorik.moviebox.extensions.displayImageWithCenterInside
-import com.majorik.moviebox.extensions.setCorners
-import com.majorik.moviebox.extensions.toPx
 import com.stfalcon.imageviewer.StfalconImageViewer
-
 
 class ImageSliderAdapter(private val backdropImages: List<String>) : PagerAdapter() {
     override fun isViewFromObject(view: View, `object`: Any): Boolean = view == `object`

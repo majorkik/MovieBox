@@ -5,8 +5,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import com.majorik.moviebox.R
-import com.majorik.moviebox.adapters.MovieCardAdapter
-import com.majorik.moviebox.adapters.MovieCollectionAdapter
 import com.majorik.moviebox.adapters.TVCardAdapter
 import com.majorik.moviebox.adapters.TVCollectionAdapter
 import com.majorik.moviebox.extensions.setAdapterWithFixedSize

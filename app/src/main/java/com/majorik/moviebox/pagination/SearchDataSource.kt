@@ -38,7 +38,7 @@ class SearchDataSource(
     }
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, MultiSearchItem>) {
-        //no-op
+        // no-op
     }
 
     private fun executeQuery(
@@ -74,5 +74,4 @@ class SearchDataSource(
         retryQuery = null
         previousQuery?.invoke()
     }
-
 }

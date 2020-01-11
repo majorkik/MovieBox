@@ -36,7 +36,7 @@ object UrlConstants {
 
     const val TMDB_SIZE_ORIGINAL = "original"
 
-    //youtube
+    // youtube
     const val YOUTUBE_IMAGE_LINK = "https://img.youtube.com/vi/"
     const val YOUTUBE_VDN__LINK = "vnd.youtube:"
     const val YOUTUBE_WEB__LINK = "https://www.youtube.com/watch?v="

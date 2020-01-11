@@ -29,7 +29,6 @@ class MovieCollectionsActivity : BaseTabActivity() {
         adapter.addFragment(MovieCollectionsFragment(MovieCollectionType.POPULAR), "Популярные")
         adapter.addFragment(MovieCollectionsFragment(MovieCollectionType.TOP_RATED), "Самые популярные")
 
-
         view_pager.adapter = adapter
 
         if (adapter.count < 3) {
@@ -41,5 +40,4 @@ class MovieCollectionsActivity : BaseTabActivity() {
         tab_layout.setupWithViewPager(view_pager)
         tab_layout.getTabAt(page)?.select()
     }
-
 }

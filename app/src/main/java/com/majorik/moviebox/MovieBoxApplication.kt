@@ -8,7 +8,7 @@ import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 import timber.log.Timber
 
-class MovieBoxApplication: Application() {
+class MovieBoxApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 

@@ -37,5 +37,4 @@ class TVCollectionsActivity : BaseTabActivity() {
         tab_layout.setupWithViewPager(view_pager)
         tab_layout.getTabAt(page)?.select()
     }
-
 }

@@ -36,5 +36,4 @@ class TVCollectionsViewModel(tvRepository: TVRepository, tvCollectionType: TVCol
     fun refreshFailedRequest() = dataSourceFactory.getSource()?.retryFailedQuery()
 
     fun refreshAllList() = dataSourceFactory.getSource()?.refresh()
-
 }

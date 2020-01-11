@@ -1,7 +1,7 @@
 package com.majorik.moviebox.ui.search
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.majorik.moviebox.R
 
 class SearchableActivity : AppCompatActivity() {

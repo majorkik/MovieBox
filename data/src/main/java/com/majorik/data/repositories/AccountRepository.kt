@@ -148,5 +148,4 @@ class AccountRepository(private val api: TmdbApiService) : BaseRepository() {
                     "mediaId = ${requestAddToWatchlist.mediaId}], sessionId = $sessionId)"
         )
     }
-
 }

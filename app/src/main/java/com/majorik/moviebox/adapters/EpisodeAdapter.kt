@@ -36,5 +36,4 @@ class EpisodeAdapter(private val episodes: List<Episode>) :
             itemView.episode_backdrop.displayImageWithCenterCrop(UrlConstants.TMDB_STILL_SIZE_300 + episode.stillPath)
         }
     }
-
 }

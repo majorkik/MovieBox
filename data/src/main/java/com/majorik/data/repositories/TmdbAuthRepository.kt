@@ -34,6 +34,4 @@ class TmdbAuthRepository(private val api: TmdbApiService) : BaseRepository() {
                     "(sessionId = ${sessionIdModel.sessionId})"
         )
     }
-
-
 }

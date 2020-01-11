@@ -36,5 +36,4 @@ class MovieCollectionsViewModel(movieRepository: MovieRepository, movieCollectio
     fun refreshFailedRequest() = dataSourceFactory.getSource()?.retryFailedQuery()
 
     fun refreshAllList() = dataSourceFactory.getSource()?.refresh()
-
 }

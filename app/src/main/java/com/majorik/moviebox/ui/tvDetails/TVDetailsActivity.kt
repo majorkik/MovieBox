@@ -27,7 +27,6 @@ import kotlinx.android.synthetic.main.layout_tv_details.toggle_favorite
 import kotlinx.android.synthetic.main.layout_tv_details.toggle_watchlist
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
-import java.text.DecimalFormat
 
 class TVDetailsActivity : BaseSlidingActivity() {
     private val tvDetailsViewModel: TVDetailsViewModel by viewModel()
@@ -146,7 +145,6 @@ class TVDetailsActivity : BaseSlidingActivity() {
 
             t_companies.text = tv.productionCompanies.joinToString(", ") { it.name }
 
-
             t_backdrop_image.displayImageWithCenterCrop(UrlConstants.TMDB_BACKDROP_SIZE_780 + tv.backdropPath)
             t_poster_image.displayImageWithCenterCrop(UrlConstants.TMDB_POSTER_SIZE_500 + tv.posterPath)
 
@@ -159,7 +157,6 @@ class TVDetailsActivity : BaseSlidingActivity() {
             setTrailerButtonClickListener(tv.videos)
 
             setClickListenerForImages(tv.images)
-
         })
 
         tvDetailsViewModel.tvStatesLiveData.observe(this, Observer {

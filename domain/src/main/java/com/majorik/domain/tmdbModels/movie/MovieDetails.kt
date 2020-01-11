@@ -35,7 +35,7 @@ data class MovieDetails(
     @field:Json(name = "video") val video: Boolean,
     @field:Json(name = "vote_average") val voteAverage: Double,
     @field:Json(name = "vote_count") val voteCount: Int,
-    //AppendToResponse
+    // AppendToResponse
     @field:Json(name = "images") val images: Images,
     @field:Json(name = "credits") val credits: Credits,
     @field:Json(name = "videos") val videos: Videos

@@ -7,5 +7,4 @@ data class PersonResponse(
     @field:Json(name = "total_results") val totalResults: Int,
     @field:Json(name = "total_pages") val totalPages: Int,
     @field:Json(name = "results") val results: List<Person>
-){
-}
+)

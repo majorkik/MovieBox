@@ -35,7 +35,7 @@ class PersonRepository(private val api: TmdbApiService) : BaseRepository() {
 
     suspend fun getPersonPosters(
         personId: Int
-    ): MutableList<ImageDetails>?{
+    ): MutableList<ImageDetails>? {
         val personResponse = safeApiCall(
             call = {
                 api.getPersonPosters(personId)

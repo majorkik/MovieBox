@@ -17,6 +17,7 @@ import com.majorik.moviebox.extensions.*
 import com.majorik.moviebox.ui.base.BaseSlidingActivity
 import com.majorik.moviebox.utils.SharedPrefsManager
 import com.stfalcon.imageviewer.StfalconImageViewer
+import java.text.DecimalFormat
 import kotlinx.android.synthetic.main.activity_movie_details.*
 import kotlinx.android.synthetic.main.layout_movie_details.*
 import kotlinx.android.synthetic.main.layout_movie_details.btn_watch_trailer
@@ -24,7 +25,6 @@ import kotlinx.android.synthetic.main.layout_movie_details.toggle_favorite
 import kotlinx.android.synthetic.main.layout_movie_details.toggle_watchlist
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
-import java.text.DecimalFormat
 
 class MovieDetailsActivity : BaseSlidingActivity() {
     private val movieDetailsViewModel: MovieDetailsViewModel by viewModel()
@@ -195,4 +195,3 @@ class MovieDetailsActivity : BaseSlidingActivity() {
         md_image_slider.adapter = ImageSliderAdapter(images)
     }
 }
-

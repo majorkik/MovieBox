@@ -48,5 +48,4 @@ class MoviesViewModel(
             response?.let { nowPlayingMoviesLiveData.postValue(response) }
         }
     }
-
 }

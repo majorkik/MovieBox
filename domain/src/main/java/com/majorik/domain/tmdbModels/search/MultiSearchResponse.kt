@@ -10,11 +10,11 @@ data class MultiSearchResponse(
 ) {
     data class MultiSearchItem(
         @field:Json(name = "id") val id: Int,
-        //posterPath or profilePath
+        // posterPath or profilePath
         @field:Json(name = "poster_path") val posterPath: String?,
         @field:Json(name = "profile_path") val profilePath: String?,
         @field:Json(name = "media_type") val mediaType: String,
-        //name or title
+        // name or title
         @field:Json(name = "name") val name: String?,
         @field:Json(name = "title") val title: String?
 

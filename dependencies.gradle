@@ -26,6 +26,8 @@ ext {
 
     mockWebServer_version = "3.14.1"
     junit_version = '4.12'
+    testCore_version = "1.0.0"
+    testRules_version = "1.1.0"
     testJunit_version = '1.1.1'
     espressoCore_version = '3.2.0'
 
@@ -40,7 +42,6 @@ ext {
     floatingSearchView_version = "2.1.1"
     rangeSeekBar_version = "3.0.0"
     numberPicker_version = "1.0.1"
-
 
     androidxDependencies = [
             supportDesign        : "androidx.support:design:$supportDesign_version",
@@ -95,7 +96,10 @@ ext {
             mockWebServer: "com.squareup.okhttp3:mockwebserver:$mockWebServer_version", //testImpl
             junit        : "junit:junit:$junit_version",// implementation, testImplementation
             testJunit    : "androidx.test.ext:junit:$testJunit_version", //androidTestImplementation
-            espressoCore : "androidx.test.espresso:espresso-core:$espressoCore_version" //androidTestImplementation
+            espressoCore : "androidx.test.espresso:espresso-core:$espressoCore_version", //androidTestImplementation,
+            testCore     : "androidx.test:core:$testCore_version",
+            testRunner   : "androidx.test:runner:$testRules_version",
+            testRules    : "androidx.test:rules:$testRules_version",
     ]
 
     otherDependencies = [
@@ -108,6 +112,6 @@ ext {
             circleImageView   : "de.hdodenhof:circleimageview:$circleImageView_version",
             floatingsearchview: "com.github.arimorty:floatingsearchview:$floatingSearchView_version",
             rangeSeekBar      : "com.github.Jay-Goo:RangeSeekBar:$rangeSeekBar_version",
-            numberPicker : "com.super_rabbit.wheel_picker:NumberPicker:$numberPicker_version"
+            numberPicker      : "com.super_rabbit.wheel_picker:NumberPicker:$numberPicker_version"
     ]
 }

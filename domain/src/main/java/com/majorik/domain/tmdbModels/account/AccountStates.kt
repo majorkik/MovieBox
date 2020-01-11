@@ -8,7 +8,7 @@ data class AccountStates(
     @field:Json(name = "watchlist") val watchlist: Boolean,
     @field:Json(name = "rated") val rated: Any?
 ) {
-    fun getRated(): String{
+    fun getRated(): String {
         return when (rated) {
             is Double -> {
                 rated.toDouble().toString()

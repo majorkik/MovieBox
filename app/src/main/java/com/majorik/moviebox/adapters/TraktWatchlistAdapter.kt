@@ -25,14 +25,11 @@ class TraktWatchlistAdapter(
         holder.bindTo(watchlistResponse[position])
     }
 
-
     class TraktWatchlistVH(private val parent: View) :
         RecyclerView.ViewHolder(parent) {
         fun bindTo(watchlistResponse: TraktWatchlistResponse) {
             itemView.poster_title.text =
                     watchlistResponse.movie?.title
-
         }
     }
-
 }

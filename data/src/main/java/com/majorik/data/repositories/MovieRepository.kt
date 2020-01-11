@@ -97,5 +97,4 @@ class MovieRepository(private val api: TmdbApiService) : BaseRepository() {
         )
         return movieResponse?.results?.toMutableList()
     }
-
 }

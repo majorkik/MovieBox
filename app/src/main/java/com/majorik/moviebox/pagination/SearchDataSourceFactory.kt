@@ -6,12 +6,11 @@ import com.majorik.data.repositories.SearchRepository
 import com.majorik.domain.tmdbModels.search.MultiSearchResponse.MultiSearchItem
 import kotlinx.coroutines.CoroutineScope
 
-
-class SearchDataSourceFactory (
+class SearchDataSourceFactory(
     private val repository: SearchRepository,
     private var query: String = "",
     private val scope: CoroutineScope
-): DataSource.Factory<Int, MultiSearchItem>(){
+) : DataSource.Factory<Int, MultiSearchItem>() {
     val source = MutableLiveData<SearchDataSource>()
 
     override fun create(): DataSource<Int, MultiSearchItem> {
@@ -24,9 +23,8 @@ class SearchDataSourceFactory (
 
     fun getSource() = source.value
 
-    fun updateQuery(query: String){
+    fun updateQuery(query: String) {
         this.query = query
         getSource()?.refresh()
     }
-
 }

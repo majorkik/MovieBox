@@ -26,7 +26,8 @@ import retrofit2.http.*
 
 interface TmdbApiService {
 
-    //Movies
+    // Movies
+
     @GET("movie/{movie_id}")
     suspend fun getMovieById(
         @Path("movie_id") movieId: Int,
@@ -70,7 +71,8 @@ interface TmdbApiService {
         @Query("region") region: String?
     ): Response<MovieResponse>
 
-    //TVs
+    // TVs
+
     @GET("tv/{tv_id}")
     suspend fun getTVById(
         @Path("tv_id") tvId: Int,
@@ -84,7 +86,6 @@ interface TmdbApiService {
         @Query("language") language: String?,
         @Query("page") page: Int?
     ): Response<TVResponse>
-
 
     @GET("tv/top_rated")
     suspend fun getTopRatedTVs(
@@ -112,7 +113,8 @@ interface TmdbApiService {
         @Query("page") page: Int?
     ): Response<TVResponse>
 
-    //Persons
+    // Persons
+
     @GET("person/{person_id}")
     suspend fun getPersonById(
         @Path("person_id") personId: Int,
@@ -132,7 +134,8 @@ interface TmdbApiService {
         @Path("person_id") personId: Int
     ): Response<PersonPostersResponse>
 
-    //Season & Episode
+    // Season & Episode
+
     @GET("tv/{tv_id}/season/{season_number}")
     suspend fun getSeasonDetails(
         @Path("tv_id") tvId: Int,
@@ -141,7 +144,8 @@ interface TmdbApiService {
         @Query("append_to_response") appendToResponse: String?
     ): Response<TVSeasonDetails>
 
-    //Genres
+    // Genres
+
     @GET("genre/movie/list")
     suspend fun getMovieGenres(
         @Query("language") language: String?
@@ -152,7 +156,8 @@ interface TmdbApiService {
         @Query("language") language: String?
     ): Response<GenreResponse>
 
-    //Account
+    // Account
+
     @GET("account")
     suspend fun getAccountDetails(
         @Query("session_id") sessionId: String
@@ -226,8 +231,8 @@ interface TmdbApiService {
         @Query("session_id") sessionId: String
     ): Response<ApiResponse>
 
+    // Search
 
-    //Search
     @GET("search/movie")
     suspend fun searchMovies(
         @Query("language") language: String?,
@@ -264,7 +269,8 @@ interface TmdbApiService {
         @Query("region") region: String?
     ): Response<PersonResponse>
 
-    //Auth
+    // Auth
+
     @GET("authentication/token/new")
     suspend fun getRequestToken(): Response<RequestTokenResponse>
 

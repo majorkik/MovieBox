@@ -8,7 +8,6 @@ import com.majorik.domain.tmdbModels.image.ImagesResponse
 import com.majorik.domain.tmdbModels.image.ProfileImages
 import com.squareup.moshi.Json
 
-
 data class PersonDetails(
     @field:Json(name = "birthday") val birthday: String?,
     @field:Json(name = "known_for_department") val knownForDepartment: String,
@@ -25,7 +24,7 @@ data class PersonDetails(
     @field:Json(name = "imdb_id") val imdbId: String,
     @field:Json(name = "homepage") val homepage: String?,
 
-    //append to response
+    // append to response
     @field:Json(name = "movie_credits") val movieCredits: MovieCredits,
     @field:Json(name = "tv_credits") val tvCredits: TVCredits,
     @field:Json(name = "images") val profileImages: ProfileImages,
@@ -42,5 +41,4 @@ data class PersonDetails(
         @field:Json(name = "cast") val cast: List<TVCast>,
         @field:Json(name = "crew") val crew: List<TVCrew>
     )
-
 }
