@@ -48,12 +48,12 @@ class SearchableFragment : Fragment(), SearchAdapter.OnClickListener {
         }
 
         floating_search_view.setOnHomeActionClickListener {
-            val countBackStackEntry: Int? = fragmentManager?.backStackEntryCount
+            val countBackStackEntry: Int? = parentFragmentManager.backStackEntryCount
 
             if (countBackStackEntry?.equals(0) ?: (false)) {
                 activity?.onBackPressed()
             } else {
-                fragmentManager?.popBackStack()
+                parentFragmentManager.popBackStack()
             }
         }
     }
@@ -77,8 +77,12 @@ class SearchableFragment : Fragment(), SearchAdapter.OnClickListener {
     }
 
     private fun configureObservables() {
-        searchableViewModel.networkState?.observe(this, Observer { adapter.updateNetworkState(it) })
-        searchableViewModel.searchResults.observe(this, Observer { adapter.submitList(it) })
+        searchableViewModel.networkState?.observe(
+            viewLifecycleOwner,
+            Observer { adapter.updateNetworkState(it) })
+        searchableViewModel.searchResults.observe(
+            viewLifecycleOwner,
+            Observer { adapter.submitList(it) })
     }
 
     private fun updateUIWhenEmptyList(size: Int, networkState: NetworkState?) {

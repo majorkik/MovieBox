@@ -90,4 +90,10 @@
         <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+
 </resources>
