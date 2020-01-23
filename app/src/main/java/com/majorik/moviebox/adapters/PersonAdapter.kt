@@ -10,6 +10,7 @@ import com.majorik.domain.tmdbModels.cast.Cast
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.PersonAdapter.PersonViewHolder
 import com.majorik.moviebox.extensions.displayImageWithCenterInside
+import com.majorik.moviebox.extensions.setSafeOnClickListener
 import com.majorik.moviebox.ui.person.PersonDetailsActivity
 import kotlinx.android.synthetic.main.item_person_profile_card.view.*
 
@@ -38,7 +39,7 @@ class PersonAdapter(private val people: List<Cast>) :
         }
 
         private fun setClickListener(person: Cast) {
-            itemView.person_profile_image.setOnClickListener {
+            itemView.person_profile_image.setSafeOnClickListener {
                 val intent = Intent(parent.context, PersonDetailsActivity::class.java)
 
                 intent.putExtra("id", person.id)

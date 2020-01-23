@@ -14,6 +14,7 @@ import com.majorik.domain.tmdbModels.video.Video
 import com.majorik.moviebox.R
 import com.majorik.moviebox.extensions.displayImageWithCenterInside
 import com.majorik.moviebox.extensions.openYouTube
+import com.majorik.moviebox.extensions.setSafeOnClickListener
 
 class VideoAdapter(
     private val videos: List<Video>
@@ -43,7 +44,7 @@ class VideoAdapter(
 
         trailerImage.displayImageWithCenterInside(UrlConstants.YOUTUBE_IMAGE_LINK + video.key + UrlConstants.YOUTUBE_SIZE_MQ)
 
-        trailerCard.setOnClickListener {
+        trailerCard.setSafeOnClickListener {
             it.context.openYouTube(video.key)
         }
     }

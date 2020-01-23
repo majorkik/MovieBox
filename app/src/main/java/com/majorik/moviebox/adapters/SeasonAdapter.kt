@@ -10,6 +10,7 @@ import com.majorik.domain.tmdbModels.tv.TVDetails
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.SeasonAdapter.SeasonViewHolder
 import com.majorik.moviebox.extensions.displayImageWithCenterCrop
+import com.majorik.moviebox.extensions.setSafeOnClickListener
 import com.majorik.moviebox.ui.seasonDetails.SeasonDetailsActivity
 import kotlinx.android.synthetic.main.item_season_card.view.*
 
@@ -36,7 +37,7 @@ class SeasonAdapter(private val tvId: Int, private val seasons: List<TVDetails.S
 
             itemView.season_poster.displayImageWithCenterCrop(UrlConstants.TMDB_POSTER_SIZE_342 + season.posterPath)
 
-            itemView.season_card.setOnClickListener {
+            itemView.season_card.setSafeOnClickListener {
                 val intent = Intent(parent.context, SeasonDetailsActivity::class.java)
 
                 intent.putExtra("tv_id", tvId)

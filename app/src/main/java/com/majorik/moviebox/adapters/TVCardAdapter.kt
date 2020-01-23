@@ -10,6 +10,7 @@ import com.majorik.domain.constants.UrlConstants
 import com.majorik.domain.tmdbModels.tv.TV
 import com.majorik.moviebox.R
 import com.majorik.moviebox.extensions.displayImageWithCenterInside
+import com.majorik.moviebox.extensions.setSafeOnClickListener
 import com.majorik.moviebox.extensions.startDetailsActivityWithId
 import com.majorik.moviebox.ui.tvDetails.TVDetailsActivity
 import kotlinx.android.synthetic.main.item_big_image_with_corners.view.*
@@ -39,7 +40,7 @@ class TVCardAdapter(
 
         parent.slider_image.displayImageWithCenterInside(UrlConstants.TMDB_BACKDROP_SIZE_1280 + tv.backdropPath)
 
-        parent.slider_layout.setOnClickListener {
+        parent.slider_layout.setSafeOnClickListener {
             parent.context.startDetailsActivityWithId(
                 tv.id,
                 TVDetailsActivity::class.java

@@ -9,6 +9,7 @@ import com.majorik.domain.NetworkState
 import com.majorik.domain.NetworkState.SUCCESS
 import com.majorik.domain.tmdbModels.search.MultiSearchResponse.MultiSearchItem
 import com.majorik.moviebox.R
+import com.majorik.moviebox.extensions.setSafeOnClickListener
 import com.majorik.moviebox.extensions.startDetailsActivityWithId
 import com.majorik.moviebox.ui.movieDetails.MovieDetailsActivity
 import com.majorik.moviebox.ui.person.PersonDetailsActivity
@@ -45,7 +46,7 @@ class SearchAdapter(
             R.layout.item_card_with_details -> {
                 (holder as SearchViewHolder).bindTo(getItem(position))
 
-                holder.itemView.setOnClickListener {
+                holder.itemView.setSafeOnClickListener {
                     getItem(position)?.let { item ->
                         holder.parent.context.startDetailsActivityWithId(
                             item.id,

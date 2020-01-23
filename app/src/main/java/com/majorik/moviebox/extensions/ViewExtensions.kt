@@ -2,7 +2,13 @@ package com.majorik.moviebox.extensions
 
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.*
+import androidx.core.view.marginBottom
+import androidx.core.view.marginLeft
+import androidx.core.view.marginRight
+import androidx.core.view.marginTop
+import androidx.core.view.updateLayoutParams
+import androidx.core.view.updateMargins
+import com.majorik.moviebox.utils.DebounceSafeClickListener
 
 fun View.updateMargin(
     left: Int = marginLeft,
@@ -14,4 +20,11 @@ fun View.updateMargin(
 fun View.setVisibilityOption(visibility: Boolean) = when {
     visibility -> this.visibility = View.VISIBLE
     else -> this.visibility = View.GONE
+}
+
+fun View.setSafeOnClickListener(onSafeClick: (View) -> Unit) {
+    val safeClickListener = DebounceSafeClickListener {
+        onSafeClick(it)
+    }
+    setOnClickListener(safeClickListener)
 }

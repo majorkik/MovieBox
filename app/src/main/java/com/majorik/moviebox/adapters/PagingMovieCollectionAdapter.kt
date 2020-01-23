@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.majorik.domain.NetworkState
 import com.majorik.domain.tmdbModels.movie.Movie
 import com.majorik.moviebox.R
+import com.majorik.moviebox.extensions.setSafeOnClickListener
 import com.majorik.moviebox.extensions.startDetailsActivityWithId
 import com.majorik.moviebox.ui.movieDetails.MovieDetailsActivity
 import com.majorik.moviebox.viewholders.MoviePagedItemVH
@@ -43,7 +44,7 @@ class PagingMovieCollectionAdapter(private val callback: OnClickListener) :
             R.layout.item_small_poster_card -> {
                 (holder as MoviePagedItemVH).bindTo(getItem(position))
 
-                holder.itemView.setOnClickListener {
+                holder.itemView.setSafeOnClickListener {
                     getItem(position)?.let { movie ->
                         holder.parent.context.startDetailsActivityWithId(
                             movie.id,

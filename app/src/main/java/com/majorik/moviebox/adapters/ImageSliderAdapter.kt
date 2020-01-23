@@ -10,6 +10,7 @@ import androidx.viewpager.widget.ViewPager
 import com.majorik.domain.constants.UrlConstants
 import com.majorik.moviebox.R
 import com.majorik.moviebox.extensions.displayImageWithCenterInside
+import com.majorik.moviebox.extensions.setSafeOnClickListener
 import com.stfalcon.imageviewer.StfalconImageViewer
 
 class ImageSliderAdapter(private val backdropImages: List<String>) : PagerAdapter() {
@@ -28,7 +29,7 @@ class ImageSliderAdapter(private val backdropImages: List<String>) : PagerAdapte
 
         viewPager.addView(view, 0)
 
-        imageView.setOnClickListener {
+        imageView.setSafeOnClickListener {
             StfalconImageViewer.Builder(container.context, backdropImages) { view, image ->
                 view.displayImageWithCenterInside(UrlConstants.TMDB_BACKDROP_SIZE_1280 + image)
             }.withHiddenStatusBar(false).withStartPosition(position).show()

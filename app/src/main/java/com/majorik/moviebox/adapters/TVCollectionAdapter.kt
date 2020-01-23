@@ -9,6 +9,7 @@ import com.majorik.domain.tmdbModels.tv.TV
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.TVCollectionAdapter.*
 import com.majorik.moviebox.extensions.displayImageWithCenterCrop
+import com.majorik.moviebox.extensions.setSafeOnClickListener
 import com.majorik.moviebox.extensions.startDetailsActivityWithId
 import com.majorik.moviebox.ui.tvDetails.TVDetailsActivity
 import kotlinx.android.synthetic.main.item_small_poster_card.view.*
@@ -38,7 +39,7 @@ class TVCollectionAdapter(private val movies: List<TV>) :
         }
 
         private fun bindClickListener(tv: TV) {
-            itemView.collection_card.setOnClickListener {
+            itemView.collection_card.setSafeOnClickListener {
                 parent.context.startDetailsActivityWithId(
                     tv.id,
                     TVDetailsActivity::class.java
