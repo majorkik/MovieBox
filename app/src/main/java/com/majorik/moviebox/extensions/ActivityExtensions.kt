@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.majorik.domain.constants.UrlConstants
 import com.majorik.moviebox.R
@@ -46,4 +47,8 @@ fun Context.startDetailsActivityWithId(
 
     startActivity(intent)
     (this as? AppCompatActivity)?.overridePendingTransition(animIn, animOut)
+}
+
+fun AppCompatActivity.showToastMessage(message: String) {
+    Toast.makeText(this, message, Toast.LENGTH_LONG).show()
 }

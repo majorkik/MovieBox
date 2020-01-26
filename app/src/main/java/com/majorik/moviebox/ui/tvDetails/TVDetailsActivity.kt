@@ -13,18 +13,18 @@ import com.majorik.domain.tmdbModels.video.Videos
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.ImageSliderAdapter
 import com.majorik.moviebox.adapters.PersonAdapter
-import com.majorik.moviebox.extensions.*
+import com.majorik.moviebox.extensions.displayImageWithCenterCrop
+import com.majorik.moviebox.extensions.displayImageWithCenterInside
+import com.majorik.moviebox.extensions.openYouTube
+import com.majorik.moviebox.extensions.setAdapterWithFixedSize
+import com.majorik.moviebox.extensions.setVisibilityOption
+import com.majorik.moviebox.extensions.setWindowTransparency
+import com.majorik.moviebox.extensions.updateMargin
 import com.majorik.moviebox.ui.base.BaseSlidingActivity
 import com.majorik.moviebox.utils.SharedPrefsManager
 import com.stfalcon.imageviewer.StfalconImageViewer
 import kotlinx.android.synthetic.main.activity_tv_details.*
-import kotlinx.android.synthetic.main.layout_movie_details.*
 import kotlinx.android.synthetic.main.layout_tv_details.*
-import kotlinx.android.synthetic.main.layout_tv_details.btn_watch_trailer
-import kotlinx.android.synthetic.main.layout_tv_details.main_layout
-import kotlinx.android.synthetic.main.layout_tv_details.placeholder_main_details_page
-import kotlinx.android.synthetic.main.layout_tv_details.toggle_favorite
-import kotlinx.android.synthetic.main.layout_tv_details.toggle_watchlist
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -32,7 +32,7 @@ class TVDetailsActivity : BaseSlidingActivity() {
     private val tvDetailsViewModel: TVDetailsViewModel by viewModel()
     private val sharedPrefs: SharedPrefsManager by inject()
 
-    private lateinit var tvState: AccountStates
+    private var tvState: AccountStates? = null
 
     override fun getRootView(): View = window.decorView.rootView
 
@@ -54,7 +54,7 @@ class TVDetailsActivity : BaseSlidingActivity() {
         setObserver()
     }
 
-    private fun updateMargins(statusBarSize: Int, navigationBarSize: Int) {
+    private fun updateMargins(statusBarSize: Int, @Suppress("UNUSED_PARAMETER") navigationBarSize: Int) {
         td_toolbar.updateMargin(top = statusBarSize)
     }
 
@@ -93,19 +93,23 @@ class TVDetailsActivity : BaseSlidingActivity() {
 
     private fun setClickListeners() {
         toggle_favorite.setOnClickListener {
-            tvDetailsViewModel.markTVIsFavorite(
-                tvState.id,
-                !tvState.favorite,
-                sharedPrefs.getTmdbSessionId()
-            )
+            tvState?.let {
+                tvDetailsViewModel.markTVIsFavorite(
+                    it.id,
+                    !it.favorite,
+                    sharedPrefs.getTmdbSessionId()
+                )
+            }
         }
 
         toggle_watchlist.setOnClickListener {
-            tvDetailsViewModel.addTVToWatchlist(
-                tvState.id,
-                !tvState.watchlist,
-                sharedPrefs.getTmdbSessionId()
-            )
+            tvState?.let {
+                tvDetailsViewModel.addTVToWatchlist(
+                    it.id,
+                    !it.watchlist,
+                    sharedPrefs.getTmdbSessionId()
+                )
+            }
         }
     }
 
@@ -168,14 +172,23 @@ class TVDetailsActivity : BaseSlidingActivity() {
         })
 
         tvDetailsViewModel.responseFavoriteLiveData.observe(this, Observer {
-            if (it.statusMessage != "success") {
+            if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
+                Toast.makeText(this, "Сериал успешно добавлен в избранное", Toast.LENGTH_LONG)
+                    .show()
+            } else {
                 Toast.makeText(this, "Неудалось добавить сериал в избранное", Toast.LENGTH_LONG)
                     .show()
             }
         })
 
         tvDetailsViewModel.responseWatchlistLiveData.observe(this, Observer {
-            if (it.statusMessage != "success") {
+            if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
+                Toast.makeText(
+                    this,
+                    "Сериал успешно добавлен в 'Буду смотреть'",
+                    Toast.LENGTH_LONG
+                ).show()
+            } else {
                 Toast.makeText(
                     this,
                     "Неудалось добавить сериал в 'Буду смотреть'",

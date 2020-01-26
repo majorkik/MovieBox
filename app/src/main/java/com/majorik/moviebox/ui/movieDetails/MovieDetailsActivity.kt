@@ -3,7 +3,6 @@ package com.majorik.moviebox.ui.movieDetails
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.majorik.domain.constants.UrlConstants
@@ -13,24 +12,28 @@ import com.majorik.domain.tmdbModels.video.Videos
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.ImageSliderAdapter
 import com.majorik.moviebox.adapters.PersonAdapter
-import com.majorik.moviebox.extensions.*
+import com.majorik.moviebox.extensions.displayImageWithCenterCrop
+import com.majorik.moviebox.extensions.displayImageWithCenterInside
+import com.majorik.moviebox.extensions.openYouTube
+import com.majorik.moviebox.extensions.setAdapterWithFixedSize
+import com.majorik.moviebox.extensions.setVisibilityOption
+import com.majorik.moviebox.extensions.setWindowTransparency
+import com.majorik.moviebox.extensions.showToastMessage
+import com.majorik.moviebox.extensions.updateMargin
 import com.majorik.moviebox.ui.base.BaseSlidingActivity
 import com.majorik.moviebox.utils.SharedPrefsManager
 import com.stfalcon.imageviewer.StfalconImageViewer
-import java.text.DecimalFormat
 import kotlinx.android.synthetic.main.activity_movie_details.*
 import kotlinx.android.synthetic.main.layout_movie_details.*
-import kotlinx.android.synthetic.main.layout_movie_details.btn_watch_trailer
-import kotlinx.android.synthetic.main.layout_movie_details.toggle_favorite
-import kotlinx.android.synthetic.main.layout_movie_details.toggle_watchlist
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
+import java.text.DecimalFormat
 
 class MovieDetailsActivity : BaseSlidingActivity() {
     private val movieDetailsViewModel: MovieDetailsViewModel by viewModel()
     private val sharedPrefs: SharedPrefsManager by inject()
 
-    private lateinit var movieState: AccountStates
+    private var movieState: AccountStates? = null
 
     override fun getRootView(): View = window.decorView.rootView
 
@@ -52,7 +55,7 @@ class MovieDetailsActivity : BaseSlidingActivity() {
         setObserver()
     }
 
-    private fun updateMargins(statusBarSize: Int, navigationBarSize: Int) {
+    private fun updateMargins(statusBarSize: Int, @Suppress("UNUSED_PARAMETER") navigationBarSize: Int) {
         md_toolbar.updateMargin(top = statusBarSize)
     }
 
@@ -91,19 +94,23 @@ class MovieDetailsActivity : BaseSlidingActivity() {
 
     private fun setClickListeners() {
         toggle_favorite.setOnClickListener {
-            movieDetailsViewModel.markMovieIsFavorite(
-                movieState.id,
-                !movieState.favorite,
-                sharedPrefs.getTmdbSessionId()
-            )
+            movieState?.let {
+                movieDetailsViewModel.markMovieIsFavorite(
+                    it.id,
+                    !it.favorite,
+                    sharedPrefs.getTmdbSessionId()
+                )
+            }
         }
 
         toggle_watchlist.setOnClickListener {
-            movieDetailsViewModel.addMovieToWatchlist(
-                movieState.id,
-                !movieState.watchlist,
-                sharedPrefs.getTmdbSessionId()
-            )
+            movieState?.let {
+                movieDetailsViewModel.addMovieToWatchlist(
+                    it.id,
+                    !it.watchlist,
+                    sharedPrefs.getTmdbSessionId()
+                )
+            }
         }
     }
 
@@ -166,19 +173,18 @@ class MovieDetailsActivity : BaseSlidingActivity() {
         })
 
         movieDetailsViewModel.responseFavoriteLiveData.observe(this, Observer {
-            if (it.statusMessage != "success") {
-                Toast.makeText(this, "Неудалось добавить фильм в избранное", Toast.LENGTH_LONG)
-                    .show()
+            if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
+                showToastMessage("Фильм успешно добавлен в избранное")
+            } else {
+                showToastMessage("Неудалось добавить фильм в избранное")
             }
         })
 
         movieDetailsViewModel.responseWatchlistLiveData.observe(this, Observer {
-            if (it.statusMessage != "success") {
-                Toast.makeText(
-                    this,
-                    "Неудалось добавить фильм в 'Буду смотреть'",
-                    Toast.LENGTH_LONG
-                ).show()
+            if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
+                showToastMessage("Фильм успешно добавлен в 'Буду смотреть'")
+            } else {
+                showToastMessage("Неудалось добавить фильм в 'Буду смотреть'")
             }
         })
     }
