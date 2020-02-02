@@ -38,6 +38,7 @@
                 android:id="@+id/main_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clipChildren="false"
                 android:orientation="vertical"
                 android:visibility="gone"
                 tools:visibility="visible">
@@ -416,6 +417,7 @@
                     android:id="@+id/t_persons"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:clipToPadding="false"
                     android:orientation="horizontal"
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"

@@ -38,6 +38,7 @@
                 android:id="@+id/main_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clipChildren="false"
                 android:orientation="vertical"
                 android:visibility="gone"
                 tools:visibility="visible">
@@ -93,6 +94,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
+                    android:clipToPadding="false"
                     android:orientation="horizontal">
 
                     <androidx.cardview.widget.CardView
@@ -104,7 +106,7 @@
                         android:background="?attr/selectableItemBackground"
                         android:backgroundTint="@color/colorPrimaryDark"
                         android:clickable="true"
-                        android:elevation="0dp"
+                        android:elevation="2dp"
                         android:focusable="true"
                         app:cardCornerRadius="4dp">
 
@@ -410,6 +412,7 @@
                     android:id="@+id/m_persons"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:clipToPadding="false"
                     android:orientation="horizontal"
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
@@ -447,7 +450,8 @@
                         <ImageView
                             android:id="@+id/m_backdrop_image"
                             android:layout_width="match_parent"
-                            android:layout_height="155dp" />
+                            android:layout_height="155dp"
+                            android:layout_gravity="center" />
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
