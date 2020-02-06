@@ -43,6 +43,9 @@ ext {
     rangeSeekBar_version = "3.0.0"
     numberPicker_version = "1.0.1"
 
+    firebase_analytics_version = "17.2.2"
+    firebase_crashlytics_version = "17.0.0-beta01"
+
     androidxDependencies = [
             supportDesign        : "androidx.support:design:$supportDesign_version",
             material             : "com.google.android.material:material:$material_version",
@@ -89,7 +92,9 @@ ext {
     logDependencies = [
             timber     : "com.jakewharton.timber:timber:$timber_version",
             slf4j      : 'org.slf4j:slf4j-api:1.7.25',
-            slf4jTimber: 'at.favre.lib:slf4j-timber:1.0.1'
+            slf4jTimber: 'at.favre.lib:slf4j-timber:1.0.1',
+            firebaseAnalytics: "com.google.firebase:firebase-analytics:$firebase_analytics_version",
+            firebaseCrashlytics: "com.google.firebase:firebase-crashlytics:$firebase_crashlytics_version"
     ]
 
     testingDependencies = [

@@ -2,9 +2,11 @@ package com.majorik.moviebox.ui.main_page_movies
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.MovieCardAdapter

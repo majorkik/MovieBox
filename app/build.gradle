@@ -6,6 +6,10 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'com.google.gms.google-services'
+
+apply plugin: 'com.google.firebase.crashlytics'
+
 androidExtensions {
     experimental = true
 }
@@ -17,7 +21,7 @@ android {
         aaptOptions.cruncherEnabled = false
     }
 
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId "com.majorik.moviebox"
         minSdkVersion 21
@@ -118,6 +122,8 @@ dependencies {
     implementation networkDependencies.retrofitCoroutinesAdapter
 
     implementation logDependencies.timber
+    implementation logDependencies.firebaseAnalytics
+    implementation logDependencies.firebaseCrashlytics
 
     implementation otherDependencies.dotsIndicator
     implementation otherDependencies.imageViewer
@@ -137,4 +143,6 @@ dependencies {
 
     kapt otherDependencies.glideCompiler
     annotationProcessor otherDependencies.glideCompiler
+
+
 }
