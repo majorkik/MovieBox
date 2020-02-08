@@ -39,6 +39,7 @@ android {
         }
 
         debug {
+            minifyEnabled false
             ext.alwaysUpdateBuildId = false
             ext.enableCrashlytics = false
         }
@@ -106,6 +107,7 @@ dependencies {
     implementation androidxDependencies.navigationFragmentKtx
     implementation androidxDependencies.navigationUIKtx
     implementation androidxDependencies.pagingLibrary
+    implementation androidxDependencies.fragment
 
     implementation kotlinDependencies.coreKtx
     implementation kotlinDependencies.coroutinesCore
@@ -124,6 +126,7 @@ dependencies {
     implementation logDependencies.timber
     implementation logDependencies.firebaseAnalytics
     implementation logDependencies.firebaseCrashlytics
+    implementation logDependencies.prettyLogger
 
     implementation otherDependencies.dotsIndicator
     implementation otherDependencies.imageViewer

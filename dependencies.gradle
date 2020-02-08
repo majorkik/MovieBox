@@ -6,11 +6,12 @@ ext {
     lifecycleExtensions_version = '2.2.0'
     lifecycleKtx_version = '2.2.0'
     annotation_version = "1.1.0"
-    vectordrawable_version = "1.0.1"
-    navigation_version = '2.2.0'
+    vectordrawable_version = "1.1.0"
+    navigation_version = '2.2.1'
     paging_version = '2.1.1'
-    recyclerview_version = "1.1.0-alpha06"
+    recyclerview_version = "1.2.0-alpha01"
     supportDesign_version = "28.0.0-rc02"
+    fragment_version = "1.2.1"
 
     kotlin_version = '1.3.61'
     coroutines_version = "1.3.0"
@@ -23,6 +24,7 @@ ext {
     okHttp3_version = '4.3.1'
 
     timber_version = "4.7.1"
+    pretty_logger_version = "2.2.0"
 
     mockWebServer_version = "3.14.1"
     junit_version = '4.12'
@@ -63,6 +65,7 @@ ext {
             navigationUIKtx      : "androidx.navigation:navigation-ui-ktx:$navigation_version",
             pagingLibrary        : "androidx.paging:paging-runtime:$paging_version",
             recyclerview         : "androidx.recyclerview:recyclerview:$recyclerview_version",
+            fragment             : "androidx.fragment:fragment:$fragment_version"
     ]
 
     networkDependencies = [
@@ -90,10 +93,11 @@ ext {
     ]
 
     logDependencies = [
-            timber     : "com.jakewharton.timber:timber:$timber_version",
-            slf4j      : 'org.slf4j:slf4j-api:1.7.25',
-            slf4jTimber: 'at.favre.lib:slf4j-timber:1.0.1',
-            firebaseAnalytics: "com.google.firebase:firebase-analytics:$firebase_analytics_version",
+            timber             : "com.jakewharton.timber:timber:$timber_version",
+            prettyLogger       : "com.orhanobut:logger:$pretty_logger_version",
+            slf4j              : 'org.slf4j:slf4j-api:1.7.25',
+            slf4jTimber        : 'at.favre.lib:slf4j-timber:1.0.1',
+            firebaseAnalytics  : "com.google.firebase:firebase-analytics:$firebase_analytics_version",
             firebaseCrashlytics: "com.google.firebase:firebase-crashlytics:$firebase_crashlytics_version"
     ]
 
