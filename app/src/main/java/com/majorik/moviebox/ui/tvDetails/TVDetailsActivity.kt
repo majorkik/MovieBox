@@ -86,7 +86,7 @@ class TVDetailsActivity : BaseSlidingActivity() {
 
             tvDetailsViewModel.fetchAccountStateForTV(
                 extras.getInt("id"),
-                sharedPrefs.getTmdbSessionId()
+                sharedPrefs.getTmdbSessionID()
             )
         }
     }
@@ -97,7 +97,7 @@ class TVDetailsActivity : BaseSlidingActivity() {
                 tvDetailsViewModel.markTVIsFavorite(
                     it.id,
                     !it.favorite,
-                    sharedPrefs.getTmdbSessionId()
+                    sharedPrefs.getTmdbSessionID()
                 )
             }
         }
@@ -107,7 +107,7 @@ class TVDetailsActivity : BaseSlidingActivity() {
                 tvDetailsViewModel.addTVToWatchlist(
                     it.id,
                     !it.watchlist,
-                    sharedPrefs.getTmdbSessionId()
+                    sharedPrefs.getTmdbSessionID()
                 )
             }
         }

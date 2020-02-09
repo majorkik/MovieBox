@@ -87,7 +87,7 @@ class MovieDetailsActivity : BaseSlidingActivity() {
 
             movieDetailsViewModel.fetchAccountStateForMovie(
                 extras.getInt("id"),
-                sharedPrefs.getTmdbSessionId()
+                sharedPrefs.getTmdbSessionID()
             )
         }
     }
@@ -98,7 +98,7 @@ class MovieDetailsActivity : BaseSlidingActivity() {
                 movieDetailsViewModel.markMovieIsFavorite(
                     it.id,
                     !it.favorite,
-                    sharedPrefs.getTmdbSessionId()
+                    sharedPrefs.getTmdbSessionID()
                 )
             }
         }
@@ -108,7 +108,7 @@ class MovieDetailsActivity : BaseSlidingActivity() {
                 movieDetailsViewModel.addMovieToWatchlist(
                     it.id,
                     !it.watchlist,
-                    sharedPrefs.getTmdbSessionId()
+                    sharedPrefs.getTmdbSessionID()
                 )
             }
         }
