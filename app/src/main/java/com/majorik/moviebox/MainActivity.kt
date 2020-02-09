@@ -6,9 +6,6 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.crashlytics.CrashlyticsRegistrar
-import com.google.firebase.crashlytics.core.CrashlyticsCore
-import com.google.firebase.crashlytics.internal.CrashlyticsNativeComponent
 import com.majorik.moviebox.ui.main_page_movies.MoviesFragment
 import com.majorik.moviebox.ui.main_page_profile.ProfileFragment
 import com.majorik.moviebox.ui.main_page_search.SearchFragment
