@@ -40,4 +40,6 @@ class SharedPrefsManager(context: Context) {
     fun getTmdbLoggedStatus(): Boolean = sharedPrefs.getBoolean(TMDB_LOGGED, false)
 
     fun getTmdbGuestSessionID(): String = sharedPrefs.getString(TMDB_GUEST_SESSION_ID, "") ?: ""
+
+    fun clearAll() { sharedPrefs.edit().clear().apply() }
 }

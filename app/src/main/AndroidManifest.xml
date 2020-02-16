@@ -5,6 +5,12 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission
+        android:name="android.permission.CLEAR_APP_CACHE"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
 
     <application
         android:name=".MovieBoxApplication"
@@ -58,7 +64,7 @@
             android:name=".ui.tvDetails.TVDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Transparent.NoActionBar"
-            tools:ignore="LockedOrientationActivity"/>
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ui.movieDetails.MovieDetailsActivity"
             android:screenOrientation="portrait"

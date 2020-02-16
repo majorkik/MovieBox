@@ -41,10 +41,10 @@ android {
         }
 
         debug {
-            debuggable true
-            minifyEnabled true
-            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            debuggable true
+//            minifyEnabled true
+//            shrinkResources true
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             ext.alwaysUpdateBuildId = false
             ext.enableCrashlytics = false
         }

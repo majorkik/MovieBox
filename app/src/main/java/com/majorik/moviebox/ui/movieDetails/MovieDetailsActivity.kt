@@ -23,11 +23,11 @@ import com.majorik.moviebox.extensions.updateMargin
 import com.majorik.moviebox.ui.base.BaseSlidingActivity
 import com.majorik.moviebox.utils.SharedPrefsManager
 import com.stfalcon.imageviewer.StfalconImageViewer
-import java.text.DecimalFormat
 import kotlinx.android.synthetic.main.activity_movie_details.*
 import kotlinx.android.synthetic.main.layout_movie_details.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
+import java.text.DecimalFormat
 
 class MovieDetailsActivity : BaseSlidingActivity() {
     private val movieDetailsViewModel: MovieDetailsViewModel by viewModel()
@@ -49,6 +49,11 @@ class MovieDetailsActivity : BaseSlidingActivity() {
             setDisplayUseLogoEnabled(true)
             setDisplayShowTitleEnabled(false)
         }
+
+        // cacheDir?.deleteRecursively()
+        // codeCacheDir?.deleteRecursively()
+        // externalCacheDir?.deleteRecursively()
+        // externalCacheDirs?.forEach { it.deleteRecursively() }
 
         fetchDetails(intent.extras)
         setClickListeners()
