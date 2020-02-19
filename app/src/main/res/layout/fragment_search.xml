@@ -25,7 +25,7 @@
                 android:fontFamily="@font/cc_rubik_mono_one"
                 android:text="@string/title_nav_search"
                 android:textAllCaps="true"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/mine_shaft"
                 android:textSize="24sp"
                 android:textStyle="normal" />
 
@@ -71,7 +71,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:background="@color/colorLightGrey"
+                        android:background="@color/gallery"
                         android:padding="6dp"
                         android:rotation="90"
                         android:src="@drawable/ic_controls_tune"
@@ -102,12 +102,12 @@
                         android:contentDescription="@string/movie"
                         android:scaleType="centerCrop"
                         android:src="@drawable/backdrop_movie"
-                        tools:background="@color/colorBlack" />
+                        tools:background="@color/mine_shaft" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@color/colorBlackOpacity40"
+                        android:background="@color/mine_shaft_alpha_40"
                         android:fontFamily="@font/cc_rubik_mono_one"
                         android:gravity="center"
                         android:text="@string/movie"
@@ -131,12 +131,12 @@
                         android:contentDescription="@string/tv"
                         android:scaleType="centerCrop"
                         android:src="@drawable/backdrop_tv"
-                        tools:background="@color/colorBlack" />
+                        tools:background="@color/mine_shaft" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@color/colorBlackOpacity40"
+                        android:background="@color/mine_shaft_alpha_40"
                         android:fontFamily="@font/cc_rubik_mono_one"
                         android:gravity="center"
                         android:text="@string/tv"

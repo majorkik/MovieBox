@@ -30,7 +30,7 @@
         android:fontFamily="@font/cc_montserrat_medium"
         android:gravity="center"
         android:maxLines="2"
-        android:textColor="@color/colorBlack"
+        android:textColor="@color/mine_shaft"
         android:textSize="12sp"
         tools:text="Simple name movie" />
 

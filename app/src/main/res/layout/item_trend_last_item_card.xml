@@ -30,7 +30,7 @@
                 android:fontFamily="@font/cc_rubik_one"
                 android:text="@string/all_trends"
                 android:textAllCaps="true"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/mine_shaft"
                 android:textSize="16sp" />
 
             <TextView
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="@string/most_viewed_movies_in_the_last_month"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/mine_shaft"
                 android:textSize="10sp" />
 
         </LinearLayout>
@@ -53,7 +53,7 @@
             android:layout_marginEnd="8dp"
             android:rotation="-90"
             android:src="@drawable/ic_arrow_down"
-            app:tint="@color/colorBlack" />
+            app:tint="@color/mine_shaft" />
 
     </RelativeLayout>
 

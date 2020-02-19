@@ -35,7 +35,7 @@
         android:maxLines="2"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
-        android:textColor="@color/colorBlack"
+        android:textColor="@color/mine_shaft"
         android:textSize="8sp"
         tools:text="Star Trek: Picard | SDCC Trailer - Sir Patrick Stewart Returns" />
 

@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:textAlignment="center"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/mine_shaft"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 tools:text="Michael Fassbender" />
@@ -75,7 +75,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/mine_shaft"
                         android:textSize="24sp"
                         android:textStyle="bold"
                         tools:text="9" />
@@ -100,7 +100,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/mine_shaft"
                         android:textSize="24sp"
                         android:textStyle="bold"
                         tools:text="26" />
@@ -124,7 +124,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/mine_shaft"
                         android:textSize="24sp"
                         android:textStyle="bold"
                         tools:text="112" />
@@ -145,7 +145,7 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginRight="16dp"
                 android:text="@string/biography"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/mine_shaft"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -183,7 +183,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorBlack" />
+                android:textColor="@color/mine_shaft" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -203,14 +203,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/date_birthday"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/mine_shaft"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/person_birthday"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/mine_shaft"
                         tools:text="15-11-1996" />
                 </LinearLayout>
 
@@ -225,14 +225,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/place_of_birth"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/mine_shaft"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/person_place_of_birth"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/mine_shaft"
                         tools:text="Россия, Москва" />
                 </LinearLayout>
 
@@ -244,7 +244,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/movie"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/mine_shaft"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -266,7 +266,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/tv"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/mine_shaft"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 

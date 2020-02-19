@@ -30,7 +30,7 @@
                     android:fontFamily="@font/cc_rubik_one"
                     android:text="@string/title_nav_movies"
                     android:textAllCaps="true"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/mine_shaft"
                     android:textSize="24sp"
                     android:textStyle="normal" />
 

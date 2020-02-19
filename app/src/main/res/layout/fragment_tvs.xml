@@ -29,7 +29,7 @@
                     android:fontFamily="@font/cc_rubik_mono_one"
                     android:text="@string/title_nav_tvs"
                     android:textAllCaps="true"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/mine_shaft"
                     android:textSize="24sp"
                     android:textStyle="normal" />
 
@@ -211,7 +211,7 @@
                     android:layout_margin="8dp"
                     android:fontFamily="@font/cc_montserrat_medium"
                     android:text="@string/best_tvs_tmdb"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/mine_shaft"
                     android:textSize="16sp"
                     android:textStyle="normal" />
             </androidx.cardview.widget.CardView>

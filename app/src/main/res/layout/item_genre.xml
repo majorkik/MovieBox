@@ -6,7 +6,7 @@
     android:layout_height="36dp"
     android:layout_marginStart="4dp"
     android:layout_marginEnd="4dp"
-    app:cardBackgroundColor="@color/colorExtraLightGray"
+    app:cardBackgroundColor="@color/alabaster"
     app:cardCornerRadius="8dp"
     app:cardElevation="0dp"
     app:cardMaxElevation="0dp">
@@ -19,6 +19,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/cc_montserrat_medium"
-        android:textColor="@color/colorBlack"
+        android:textColor="@color/mine_shaft"
         tools:text="Боевик" />
 </androidx.cardview.widget.CardView>

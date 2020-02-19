@@ -58,7 +58,7 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/cc_montserrat_black"
                         android:maxLines="2"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/mine_shaft"
                         android:textSize="18sp"
                         android:textStyle="normal"
                         tools:text="Джон Уик 3" />
@@ -86,7 +86,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:fontFamily="@font/cc_montserrat_regular"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/mine_shaft"
                     android:textSize="12sp"
                     tools:text="2019 Криминал, боевик, триллер" />
 
@@ -176,7 +176,7 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
                     android:fontFamily="@font/cc_montserrat_regular"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/mine_shaft"
                     android:textSize="14sp"
                     android:textStyle="normal" />
 
@@ -270,7 +270,7 @@
                             android:fontFamily="@font/cc_montserrat_regular"
                             android:text="@string/original_language"
                             android:textAppearance="@style/MediumText"
-                            android:textColor="@color/colorBlack"
+                            android:textColor="@color/mine_shaft"
                             android:textSize="16sp"
                             android:textStyle="normal" />
 
@@ -282,7 +282,7 @@
                             android:fontFamily="@font/cc_montserrat_regular"
                             android:text="@string/release_date"
                             android:textAppearance="@style/MediumText"
-                            android:textColor="@color/colorBlack"
+                            android:textColor="@color/mine_shaft"
                             android:textSize="16sp"
                             android:textStyle="normal" />
                     </LinearLayout>
@@ -402,7 +402,7 @@
                         android:paddingBottom="2dp"
                         android:text="0"
                         android:textAlignment="center"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/mine_shaft"
                         android:textSize="12sp"
                         android:textStyle="normal"
                         tools:text="9.6" />
@@ -503,7 +503,7 @@
                             android:fontFamily="@font/cc_montserrat_medium"
                             android:padding="8dp"
                             android:text="@string/trailers"
-                            android:textColor="@color/colorBlack"
+                            android:textColor="@color/mine_shaft"
                             android:textSize="16sp" />
 
                         <TextView
@@ -520,7 +520,7 @@
                             android:paddingBottom="4dp"
                             android:text="0"
                             android:textAlignment="center"
-                            android:textColor="@color/colorBlack"
+                            android:textColor="@color/mine_shaft"
                             tools:text="12" />
 
                     </androidx.cardview.widget.CardView>
@@ -539,7 +539,7 @@
                             android:fontFamily="@font/cc_montserrat_medium"
                             android:padding="8dp"
                             android:text="@string/recommendations"
-                            android:textColor="@color/colorBlack"
+                            android:textColor="@color/mine_shaft"
                             android:textSize="16sp" />
 
                     </androidx.cardview.widget.CardView>
@@ -572,7 +572,7 @@
                             android:fontFamily="@font/cc_montserrat_medium"
                             android:padding="8dp"
                             android:text="@string/reviews"
-                            android:textColor="@color/colorBlack"
+                            android:textColor="@color/mine_shaft"
                             android:textSize="16sp" />
 
                         <TextView
@@ -589,7 +589,7 @@
                             android:paddingBottom="4dp"
                             android:text="0"
                             android:textAlignment="center"
-                            android:textColor="@color/colorBlack"
+                            android:textColor="@color/mine_shaft"
                             tools:text="32" />
 
                     </androidx.cardview.widget.CardView>
@@ -609,7 +609,7 @@
                             android:fontFamily="@font/cc_montserrat_medium"
                             android:padding="8dp"
                             android:text="@string/all_comments"
-                            android:textColor="@color/colorBlack"
+                            android:textColor="@color/mine_shaft"
                             android:textSize="16sp" />
 
                         <TextView
@@ -626,7 +626,7 @@
                             android:paddingBottom="4dp"
                             android:text="0"
                             android:textAlignment="center"
-                            android:textColor="@color/colorBlack"
+                            android:textColor="@color/mine_shaft"
                             tools:text="164" />
 
                     </androidx.cardview.widget.CardView>
