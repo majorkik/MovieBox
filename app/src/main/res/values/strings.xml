@@ -80,5 +80,10 @@
 
     <!--    Страница логина-->
     <string name="login_with_tmdb_service">Войти с помощью TMDB</string>
+    <string name="genres">Жанры</string>
+    <string name="popular_peoples">Популярные люди</string>
+    <string name="all_trends">Все тренды</string>
+    <string name="most_viewed_movies_in_the_last_month">Тренды фильмов за последний месяц</string>
+    <string name="in_trends">В тренде</string>
 
 </resources>

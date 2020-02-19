@@ -9,9 +9,28 @@
     <color name="colorBlack">#212121</color>
     <color name="colorPrimaryTransparent">#a6222831</color>
     <color name="colorLightGrey">#eeeeee</color>
+    <color name="colorExtraLightGray">#f8f8f8</color>
     <color name="colorRed">#ff4d4d</color>
     <color name="colorGreen">#32ff7e</color>
     <color name="colorYellow">#fed32c</color>
-
+    <color name="silver">#BBBBBB</color>
     <color name="colorBlackOpacity40">#66212121</color>
+    <color name="mercury">#E8E8E8</color>
+    <!--    New name for colors-->
+
+    <color name="sunglow">#FED32C</color>
+    <color name="my_sin">#FEB12C</color>
+
+    <color name="mine_shaft">#212121</color>
+    <color name="shark_alpha_65">#A6222831</color>
+    <color name="mine_shaft_alpha_40">#66212121</color>
+    <color name="alto">#DDDDDD</color>
+    <color name="gallery">#EEEEEE</color>
+    <color name="alabaster">#F8F8F8</color>
+    <color name="white">#FFFFFF</color>
+    <color name="sunset_orange">#FF4D4D</color>
+
+    <color name="caribbean_green_tmdb">#01D277</color>
+    <color name="emerald">#3EDC81</color>
+
 </resources>

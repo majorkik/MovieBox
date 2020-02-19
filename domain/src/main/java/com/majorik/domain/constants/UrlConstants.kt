@@ -4,6 +4,7 @@ object UrlConstants {
     const val REDIRECT_URL = "com.majorik.moviebox://redirect"
     const val TMDB_BASE_URL = "https://api.themoviedb.org/3/"
     const val TRAKT_BASE_URL = "https://api.trakt.tv/"
+    const val YOUTUBE_BASE_URL = "https://www.googleapis.com/youtube/v3/"
 
     const val TMDB_AUTH_URL = "https://www.themoviedb.org/authenticate/"
     const val TRAKT_AUTH_URL = "https://api.trakt.tv/oauth/authorize?"
@@ -37,6 +38,8 @@ object UrlConstants {
     const val TMDB_SIZE_ORIGINAL = "original"
 
     // youtube
+
+
     const val YOUTUBE_IMAGE_LINK = "https://img.youtube.com/vi/"
     const val YOUTUBE_VDN__LINK = "vnd.youtube:"
     const val YOUTUBE_WEB__LINK = "https://www.youtube.com/watch?v="

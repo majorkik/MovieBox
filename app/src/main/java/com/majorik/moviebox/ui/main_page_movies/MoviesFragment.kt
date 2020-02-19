@@ -2,17 +2,27 @@ package com.majorik.moviebox.ui.main_page_movies
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.util.SparseArray
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
+import androidx.core.util.isEmpty
+import androidx.core.util.putAll
 import androidx.lifecycle.Observer
+import com.majorik.data.repositories.TrendingRepository
+import com.majorik.domain.constants.GenresConstants
+import com.majorik.domain.tmdbModels.genre.Genre
 import com.majorik.moviebox.R
-import com.majorik.moviebox.adapters.MovieCardAdapter
-import com.majorik.moviebox.adapters.MovieCollectionAdapter
+import com.majorik.moviebox.adapters.*
 import com.majorik.moviebox.extensions.setAdapterWithFixedSize
+import com.majorik.moviebox.extensions.toDate
+import com.majorik.moviebox.extensions.toPx
 import com.majorik.moviebox.ui.base.BaseNavigationFragment
 import com.majorik.moviebox.ui.movieTabCollections.MovieCollectionsActivity
 import com.majorik.moviebox.ui.search.SearchableActivity
+import com.majorik.moviebox.utils.GenresStorageObject
+import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.fragment_movies.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -36,9 +46,13 @@ class MoviesFragment : BaseNavigationFragment() {
     }
 
     override fun fetchData() {
+        moviesViewModel.fetchMovieGenres("ru-RU")
         moviesViewModel.fetchPopularMovies("ru-RU", 1, "")
-        moviesViewModel.fetchUpcomingMovies("ru-RU", 1, "")
-        moviesViewModel.fetchNowPlayingMovies("ru-RU", 1, "")
+        moviesViewModel.fetchNowPlayingMovies("ru-RU", 1, "RU")
+        moviesViewModel.fetchUpcomingMovies("ru-RU", 1, "RU")
+        moviesViewModel.searchYouTubeVideosByChannel()
+        moviesViewModel.fetchTrendingMovies(TrendingRepository.TimeWindow.WEEK, 1, "ru-RU")
+        moviesViewModel.fetchPopularPeoples("ru-RU", 1)
     }
 
     private fun setClickListeners() {
@@ -63,16 +77,45 @@ class MoviesFragment : BaseNavigationFragment() {
         moviesViewModel.popularMoviesLiveData.observe(viewLifecycleOwner, Observer {
             vp_popular_movies.run {
                 adapter = MovieCardAdapter(it)
-                pageMargin = ((16 * resources.displayMetrics.density).toInt())
+                pageMargin = 16.toPx()
             }
         })
 
         moviesViewModel.upcomingMoviesLiveData.observe(viewLifecycleOwner, Observer {
-            rv_upcoming_movies.setAdapterWithFixedSize(MovieCollectionAdapter(it), true)
+            rv_upcoming_movies.setAdapterWithFixedSize(MovieDateCardAdapter(it.sortedBy { it.releaseDate.toDate() }), true)
         })
 
         moviesViewModel.nowPlayingMoviesLiveData.observe(viewLifecycleOwner, Observer {
             rv_now_playing_movies.setAdapterWithFixedSize(MovieCollectionAdapter(it), true)
+        })
+
+        moviesViewModel.genresLiveData.observe(viewLifecycleOwner, Observer {
+            if (GenresStorageObject.movieGenres.isEmpty()) {
+                it.map { genre -> GenresStorageObject.movieGenres.put(genre.id, genre.name) }
+            }
+
+            rv_movie_genres.adapter = GenreAdapter(it)
+        })
+
+        moviesViewModel.popularPeoplesLiveData.observe(viewLifecycleOwner, Observer {
+            rv_trending_peoples.adapter = PersonAdapter(it)
+        })
+
+        moviesViewModel.trailersLiveData.observe(viewLifecycleOwner, Observer {
+            rv_trailers.adapter = TrailersAdapter(it)
+        })
+
+        moviesViewModel.trendingMoviesLiveData.observe(viewLifecycleOwner, Observer {
+            if (GenresStorageObject.movieGenres.isEmpty()) {
+                GenresConstants.movieGenres.forEach {
+                    GenresStorageObject.movieGenres.put(it.id, it.name)
+                }
+            }
+
+            vp_trend_movies.run {
+                adapter = MovieTrendAdapter(it)
+                pageMargin = 16.toPx()
+            }
         })
     }
 
@@ -82,5 +125,9 @@ class MoviesFragment : BaseNavigationFragment() {
         intent.putExtra("page", numTab)
 
         startActivity(intent)
+    }
+
+    companion object {
+        fun newInstance() = MoviesFragment()
     }
 }

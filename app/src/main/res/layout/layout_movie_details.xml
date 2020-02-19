@@ -418,7 +418,7 @@
                     android:paddingRight="12dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:layout_height="100dp"
-                    tools:listitem="@layout/item_person_profile_card" />
+                    tools:listitem="@layout/item_cast_profile_card" />
 
                 <TextView
                     android:layout_width="match_parent"

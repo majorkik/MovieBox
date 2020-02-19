@@ -2,6 +2,7 @@ package com.majorik.data.repositories
 
 import com.majorik.data.api.TmdbApiService
 import com.majorik.domain.tmdbModels.image.ImageDetails
+import com.majorik.domain.tmdbModels.person.Person
 import com.majorik.domain.tmdbModels.person.PersonDetails
 
 class PersonRepository(private val api: TmdbApiService) : BaseRepository() {
@@ -36,13 +37,24 @@ class PersonRepository(private val api: TmdbApiService) : BaseRepository() {
     suspend fun getPersonPosters(
         personId: Int
     ): MutableList<ImageDetails>? {
-        val personResponse = safeApiCall(
+        val response = safeApiCall(
             call = {
                 api.getPersonPosters(personId)
             },
             errorMessage = "Ошибка GET[getPersonPosters] (personId = $personId)"
         )
 
-        return personResponse?.profiles?.toMutableList()
+        return response?.profiles?.toMutableList()
+    }
+
+    suspend fun getPopularPeoples(language: String?, page: Int?): MutableList<Person>? {
+        val response = safeApiCall(
+            call = {
+                api.getPopularPeoples(language, page)
+            },
+            errorMessage = "Ошибка GET[getPopularPeoples]"
+        )
+
+        return response?.results?.toMutableList()
     }
 }

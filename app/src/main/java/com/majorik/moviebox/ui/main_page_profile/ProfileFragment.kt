@@ -34,4 +34,8 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
         }
     }
+
+    companion object {
+        fun newInstance() = ProfileFragment()
+    }
 }

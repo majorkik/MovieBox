@@ -283,4 +283,33 @@ interface TmdbApiService {
     suspend fun deleteSession(
         @Body sessionIdModel: RequestSession
     ): Response<ResponseSession>
+
+
+    @GET("person/popular")
+    suspend fun getPopularPeoples(
+        @Query("language") language: String?,
+        @Query("page") page: Int?
+    ): Response<PersonResponse>
+
+    @GET("trending/{media_type}/{time_window}")
+    suspend fun getTrendingMovies(
+        @Path("media_type") mediaType: String,
+        @Path("time_window") timeWindow: String,
+        @Query("page") page: Int?,
+        @Query("language") language: String?
+    ): Response<MovieResponse>
+
+    @GET("trending/{media_type}/{time_window}")
+    fun getTrendingTVs(
+        @Path("media_type") mediaType: String,
+        @Path("time_window") timeWindow: String,
+        @Query("language") language: String?
+    ): Response<TVResponse>
+
+    @GET("trending/{media_type}/{time_window}")
+    fun getTrendingPeoples(
+        @Path("media_type") mediaType: String,
+        @Path("time_window") timeWindow: String,
+        @Query("language") language: String?
+    ): Response<PersonResponse>
 }

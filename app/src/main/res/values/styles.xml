@@ -48,7 +48,7 @@
     <style name="HeaderSmall">
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/colorBlack</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:fontFamily">@font/montserrat_medium</item>
     </style>
 
@@ -72,14 +72,6 @@
     </style>
 
     <style name="AppTheme.Transparent.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
-        <!--        <item name="android:windowIsTranslucent">true</item>-->
-        <!--        <item name="android:windowBackground">@android:color/transparent</item>-->
-        <!--        <item name="android:windowContentOverlay">@null</item>-->
-        <!--        <item name="windowNoTitle">true</item>-->
-        <!--        <item name="android:windowIsFloating">false</item>-->
-        <!--        <item name="android:backgroundDimEnabled">false</item>-->
-        <!--        <item name="android:windowTranslucentStatus">true</item>-->
-
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowFrame">@null</item>

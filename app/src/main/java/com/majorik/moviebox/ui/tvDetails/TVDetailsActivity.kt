@@ -12,7 +12,7 @@ import com.majorik.domain.tmdbModels.image.Images
 import com.majorik.domain.tmdbModels.video.Videos
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.ImageSliderAdapter
-import com.majorik.moviebox.adapters.PersonAdapter
+import com.majorik.moviebox.adapters.CastAdapter
 import com.majorik.moviebox.extensions.displayImageWithCenterCrop
 import com.majorik.moviebox.extensions.displayImageWithCenterInside
 import com.majorik.moviebox.extensions.openYouTube
@@ -154,7 +154,7 @@ class TVDetailsActivity : BaseSlidingActivity() {
 
             setImageSlider(tv.images.backdrops.map { imageInfo -> imageInfo.filePath }.take(6))
 
-            t_persons.setAdapterWithFixedSize(PersonAdapter(tv.credits.casts), true)
+            t_persons.setAdapterWithFixedSize(CastAdapter(tv.credits.casts), true)
             t_count_persons.text = tv.credits.casts.size.toString()
             t_count_trailers.text = tv.videos.results.size.toString()
 

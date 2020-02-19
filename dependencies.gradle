@@ -12,6 +12,7 @@ ext {
     recyclerview_version = "1.2.0-alpha01"
     supportDesign_version = "28.0.0-rc02"
     fragment_version = "1.2.1"
+    viewpager_version = "1.0.0"
 
     kotlin_version = '1.3.61'
     coroutines_version = "1.3.0"
@@ -44,6 +45,7 @@ ext {
     floatingSearchView_version = "2.1.1"
     rangeSeekBar_version = "3.0.0"
     numberPicker_version = "1.0.1"
+    klock_version = "1.8.4"
 
     firebase_analytics_version = "17.2.2"
     firebase_crashlytics_version = "17.0.0-beta01"
@@ -65,7 +67,8 @@ ext {
             navigationUIKtx      : "androidx.navigation:navigation-ui-ktx:$navigation_version",
             pagingLibrary        : "androidx.paging:paging-runtime:$paging_version",
             recyclerview         : "androidx.recyclerview:recyclerview:$recyclerview_version",
-            fragment             : "androidx.fragment:fragment:$fragment_version"
+            fragment             : "androidx.fragment:fragment:$fragment_version",
+            viewpager2           : "androidx.viewpager2:viewpager2:$viewpager_version"
     ]
 
     networkDependencies = [
@@ -121,6 +124,7 @@ ext {
             circleImageView   : "de.hdodenhof:circleimageview:$circleImageView_version",
             floatingsearchview: "com.github.arimorty:floatingsearchview:$floatingSearchView_version",
             rangeSeekBar      : "com.github.Jay-Goo:RangeSeekBar:$rangeSeekBar_version",
-            numberPicker      : "com.super_rabbit.wheel_picker:NumberPicker:$numberPicker_version"
+            numberPicker      : "com.super_rabbit.wheel_picker:NumberPicker:$numberPicker_version",
+            klock             : "com.soywiz.korlibs.klock:klock:$klock_version"
     ]
 }

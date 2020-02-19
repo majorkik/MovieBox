@@ -76,4 +76,8 @@ class TVsFragment : BaseNavigationFragment() {
 
         startActivity(intent)
     }
+
+    companion object{
+        fun newInstance() = TVsFragment()
+    }
 }

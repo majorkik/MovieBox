@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/collection_card"
-    android:layout_width="110dp"
-    android:layout_height="165dp"
+    android:layout_width="84dp"
+    android:layout_height="126dp"
     android:layout_marginLeft="4dp"
     android:layout_marginRight="4dp"
     android:clickable="true"
@@ -32,7 +32,7 @@
         android:layout_marginBottom="16dp"
         android:fontFamily="@font/cc_montserrat_medium"
         android:gravity="center_horizontal"
-        android:textSize="10sp"
+        android:textSize="8sp"
         tools:text="Sample name movie" />
 
     <ImageView

@@ -12,4 +12,6 @@ val repositoryModule = module {
     factory { SearchRepository(get()) }
     factory { TraktAuthRepository(get()) }
     factory { TraktSyncRepository(get()) }
+    factory { TrendingRepository(get()) }
+    factory { YouTubeRepository(get()) }
 }

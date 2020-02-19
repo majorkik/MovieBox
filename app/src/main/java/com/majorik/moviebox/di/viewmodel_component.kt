@@ -17,7 +17,7 @@ import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val viewModelModule = module {
-    viewModel { MoviesViewModel(get()) }
+    viewModel { MoviesViewModel(get(), get(), get(), get()) }
     viewModel { TVsViewModel(get()) }
     viewModel { ProfileViewModel(get()) }
     viewModel { MovieDetailsViewModel(get(), get()) }

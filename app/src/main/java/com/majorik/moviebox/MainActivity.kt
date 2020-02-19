@@ -22,10 +22,10 @@ import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
-    private val fragmentMovie = MoviesFragment()
-    private val fragmentTV = SearchFragment()
-    private val fragmentDiscover = TVsFragment()
-    private val fragmentProfile = ProfileFragment()
+    private val fragmentMovie = MoviesFragment.newInstance()
+    private val fragmentTV = SearchFragment.newInstance()
+    private val fragmentDiscover = TVsFragment.newInstance()
+    private val fragmentProfile = ProfileFragment.newInstance()
     private var activeFragment: Fragment = fragmentMovie
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -123,7 +123,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             Logger.i("getAppBytes ${Formatter.formatShortFileSize(this, sm.appBytes)}")
             Logger.i("getCacheBytes ${Formatter.formatShortFileSize(this, sm.cacheBytes)}")
             Logger.i("getDataBytes ${Formatter.formatShortFileSize(this, sm.dataBytes)}")
-        }else{
+        } else {
             val p = PackageStats(packageName)
             Logger.i("getCacheBytes ${Formatter.formatShortFileSize(this, p.cacheSize)}")
             Logger.i("getDataBytes ${Formatter.formatShortFileSize(this, p.dataSize)}")

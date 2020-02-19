@@ -55,14 +55,17 @@ android {
             def keyTmdb = properties.getProperty("keyTmdb", "")
             def keyTrakt = properties.getProperty("keyTrakTV", "")
             def secretKeyTrakt = properties.getProperty("secretKeyTrakTV", "")
+            def youTubeKey = properties.getProperty("youTubeKey", "")
 
             it.buildConfigField 'String', "TMDB_API_KEY", keyTmdb
             it.buildConfigField 'String', "TRAKT_API_KEY", keyTrakt
             it.buildConfigField 'String', "TRAKT_API_SECRET_KEY", secretKeyTrakt
+            it.buildConfigField 'String', "YOUTUBE_API_KEY", youTubeKey
 
             it.resValue 'string', "tmdb_api_key", keyTmdb
             it.resValue 'string', "trakt_api_key", keyTrakt
             it.resValue 'string', "trakt_api_secret_key", secretKeyTrakt
+            it.resValue 'string', "youtube_api_key", youTubeKey
         }
     }
 
@@ -113,6 +116,7 @@ dependencies {
     implementation androidxDependencies.navigationUIKtx
     implementation androidxDependencies.pagingLibrary
     implementation androidxDependencies.fragment
+    implementation androidxDependencies.viewpager2
 
     implementation kotlinDependencies.coreKtx
     implementation kotlinDependencies.coroutinesCore
@@ -142,6 +146,7 @@ dependencies {
     implementation otherDependencies.floatingsearchview
     implementation otherDependencies.rangeSeekBar
     implementation otherDependencies.numberPicker
+    implementation otherDependencies.klock
 
 
     androidTestImplementation testingDependencies.testJunit
