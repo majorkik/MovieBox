@@ -12,7 +12,7 @@ import com.majorik.moviebox.R
 import com.majorik.moviebox.extensions.setSafeOnClickListener
 import com.majorik.moviebox.extensions.startDetailsActivityWithId
 import com.majorik.moviebox.ui.movieDetails.MovieDetailsActivity
-import com.majorik.moviebox.ui.person.PersonDetailsActivity
+import com.majorik.moviebox.ui.person_details.PersonDetailsActivity
 import com.majorik.moviebox.ui.tvDetails.TVDetailsActivity
 import com.majorik.moviebox.viewholders.NetworkStateViewHolder
 import com.majorik.moviebox.viewholders.SearchViewHolder

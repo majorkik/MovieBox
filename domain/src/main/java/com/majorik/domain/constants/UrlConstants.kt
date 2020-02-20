@@ -35,7 +35,7 @@ object UrlConstants {
     const val TMDB_STILL_SIZE_185 = "https://image.tmdb.org/t/p/w185"
     const val TMDB_STILL_SIZE_300 = "https://image.tmdb.org/t/p/w300"
 
-    const val TMDB_SIZE_ORIGINAL = "original"
+    const val TMDB_SIZE_ORIGINAL = "https://image.tmdb.org/t/p/original"
 
     // youtube
 

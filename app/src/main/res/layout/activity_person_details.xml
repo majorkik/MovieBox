@@ -1,287 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.person.PersonDetailsActivity">
+    android:background="@color/mine_shaft"
+    tools:context=".ui.person_details.PersonDetailsActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_person_details"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:theme="@style/DarkToolbarActionButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-    <androidx.core.widget.NestedScrollView
+    <FrameLayout
+        android:id="@+id/person_image_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent">
+        android:foreground="@drawable/bg_gradient_dark"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/person_profile_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="80dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/person_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/cc_montserrat_black"
+            android:maxLines="3"
+            android:textColor="@color/colorWhite"
+            android:textSize="22sp"
+            tools:text="Алехандро Гонсалес Иньярриту" />
+
+        <TextView
+            android:id="@+id/person_translate_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:fontFamily="@font/cc_montserrat_bold"
+            android:maxLines="3"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp"
+            tools:text="Mark Strong" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:orientation="vertical">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/person_profile_image"
-                android:layout_width="128dp"
-                android:layout_height="128dp"
-                android:layout_gravity="center_horizontal" />
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/person_name"
-                android:layout_width="match_parent"
+                android:id="@+id/person_type"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:textAlignment="center"
-                android:textColor="@color/mine_shaft"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                tools:text="Michael Fassbender" />
+                android:layout_gravity="center"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/cc_montserrat_medium"
+                android:maxLines="3"
+                android:textColor="@color/colorWhite"
+                android:textSize="16sp"
+                tools:text="Acting" />
 
             <TextView
-                android:id="@+id/person_alternative_name"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                tools:text="Michael Fassbender" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:baselineAligned="false"
-                android:orientation="horizontal"
-                android:weightSum="3">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/person_count_movies"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:textColor="@color/mine_shaft"
-                        android:textSize="24sp"
-                        android:textStyle="bold"
-                        tools:text="9" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/movies"
-                        android:textAlignment="center" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-
-                        android:id="@+id/person_count_tvs"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:textColor="@color/mine_shaft"
-                        android:textSize="24sp"
-                        android:textStyle="bold"
-                        tools:text="26" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/tvs"
-                        android:textAlignment="center" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/person_count_episodes"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:textColor="@color/mine_shaft"
-                        android:textSize="24sp"
-                        android:textStyle="bold"
-                        tools:text="112" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/episodes"
-                        android:textAlignment="center" />
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginRight="16dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/cc_montserrat_regular"
                 android:text="@string/biography"
-                android:textColor="@color/mine_shaft"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textColor="@color/colorWhite"
+                android:textSize="12sp" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <com.ms.square.android.expandabletextview.ExpandableTextView xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/expand_text_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    expandableTextView:animDuration="200"
-                    expandableTextView:maxCollapsedLines="4">
-
-                    <TextView
-                        android:id="@id/expandable_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:textColor="#666666" />
-
-                    <ImageButton
-                        android:id="@id/expand_collapse"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end|bottom"
-                        android:background="@android:color/transparent"
-                        android:contentDescription="@string/button_expandable_text"
-                        android:padding="16dp" />
-                </com.ms.square.android.expandabletextview.ExpandableTextView>
-            </RelativeLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/mine_shaft" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:baselineAligned="false"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/date_birthday"
-                        android:textColor="@color/mine_shaft"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/person_birthday"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/mine_shaft"
-                        tools:text="15-11-1996" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/place_of_birth"
-                        android:textColor="@color/mine_shaft"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/person_place_of_birth"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/mine_shaft"
-                        tools:text="Россия, Москва" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/movie"
-                android:textColor="@color/mine_shaft"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/person_movie_credits"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:clipToPadding="false"
-                android:orientation="horizontal"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/tv"
-                android:textColor="@color/mine_shaft"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/person_tv_credits"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:clipToPadding="false"
-                android:orientation="horizontal"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
+            <ImageButton
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/btn_ripple_effect"
+                android:padding="4dp"
+                android:src="@drawable/ic_details_list" />
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
 
-</LinearLayout>
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/md_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:navigationIcon="@drawable/ic_arrow_down"
+        app:title="" />
+
+    <include layout="@layout/layout_person_credits" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

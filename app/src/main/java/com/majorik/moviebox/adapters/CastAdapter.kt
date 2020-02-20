@@ -11,7 +11,8 @@ import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.CastAdapter.CastViewHolder
 import com.majorik.moviebox.extensions.displayImageWithCenterInside
 import com.majorik.moviebox.extensions.setSafeOnClickListener
-import com.majorik.moviebox.ui.person.PersonDetailsActivity
+import com.majorik.moviebox.extensions.startDetailsActivityWithId
+import com.majorik.moviebox.ui.person_details.PersonDetailsActivity
 import kotlinx.android.synthetic.main.item_cast_profile_card.view.*
 
 class CastAdapter(private val people: List<Cast>) :
@@ -40,11 +41,10 @@ class CastAdapter(private val people: List<Cast>) :
 
         private fun setClickListener(castID: Int) {
             itemView.person_profile_image.setSafeOnClickListener {
-                val intent = Intent(parent.context, PersonDetailsActivity::class.java)
-
-                intent.putExtra("id", castID)
-
-                parent.context.startActivity(intent)
+                parent.context.startDetailsActivityWithId(
+                    castID,
+                    PersonDetailsActivity::class.java
+                )
             }
         }
     }

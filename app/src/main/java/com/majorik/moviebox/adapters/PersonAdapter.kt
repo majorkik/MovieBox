@@ -1,17 +1,17 @@
 package com.majorik.moviebox.adapters
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.majorik.domain.constants.UrlConstants
-import com.majorik.domain.tmdbModels.cast.Cast
 import com.majorik.domain.tmdbModels.person.Person
 import com.majorik.moviebox.R
 import com.majorik.moviebox.extensions.displayImageWithCenterInside
 import com.majorik.moviebox.extensions.setSafeOnClickListener
-import com.majorik.moviebox.ui.person.PersonDetailsActivity
+import com.majorik.moviebox.extensions.startDetailsActivityWithId
+import com.majorik.moviebox.ui.person_details.PersonDetailsActivity
+import com.majorik.moviebox.ui.person_details.PersonDetailsViewModel
 import kotlinx.android.synthetic.main.item_person_profile_card.view.*
 
 class PersonAdapter(private val people: List<Person>) :
@@ -39,11 +39,10 @@ class PersonAdapter(private val people: List<Person>) :
 
         private fun setClickListener(personID: Int) {
             itemView.person_profile_image.setSafeOnClickListener {
-                val intent = Intent(parent.context, PersonDetailsActivity::class.java)
-
-                intent.putExtra("id", personID)
-
-                parent.context.startActivity(intent)
+                parent.context.startDetailsActivityWithId(
+                    personID,
+                    PersonDetailsActivity::class.java
+                )
             }
         }
     }

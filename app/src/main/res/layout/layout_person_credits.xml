@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/p_bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    app:behavior_hideable="false"
+    app:behavior_peekHeight="56dp"
+    app:layout_behavior="@string/bottom_sheet_behavior">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_close"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="?attr/selectableItemBackground"
+            android:padding="16dp"
+            android:src="@drawable/ic_arrow_down"
+            android:tint="@color/mine_shaft" />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="@font/cc_rubik_one"
+            android:gravity="center"
+            android:text="@string/filmography"
+            android:textAllCaps="true"
+            android:textColor="@color/mine_shaft"
+            android:textSize="18sp" />
+
+        <ImageButton
+            android:id="@+id/btn_filter"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            tools:alpha="1"
+            android:alpha="0"
+            android:background="?attr/selectableItemBackground"
+            android:padding="16dp"
+            android:src="@drawable/ic_filter"
+            android:tint="@color/mine_shaft" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

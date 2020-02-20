@@ -85,5 +85,6 @@
     <string name="all_trends">Все тренды</string>
     <string name="most_viewed_movies_in_the_last_month">Тренды фильмов за последний месяц</string>
     <string name="in_trends">В тренде</string>
+    <string name="filmography">Фильмография</string>
 
 </resources>

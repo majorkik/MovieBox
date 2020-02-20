@@ -50,11 +50,6 @@
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".ui.person.PersonDetailsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
             android:name=".ui.search.SearchableActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
@@ -82,6 +77,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.person_details.PersonDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Transparent.NoActionBar"
+            tools:ignore="LockedOrientationActivity" />
     </application>
 
 </manifest>

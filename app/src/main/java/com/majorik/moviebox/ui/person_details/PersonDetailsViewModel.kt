@@ -1,4 +1,4 @@
-package com.majorik.moviebox.ui.person
+package com.majorik.moviebox.ui.person_details
 
 import androidx.lifecycle.MutableLiveData
 import com.majorik.data.repositories.PersonRepository

@@ -22,5 +22,7 @@
     <color name="shark_alpha_65">#A6222831</color>
     <color name="mine_shaft_alpha_40">#66212121</color>
     <color name="mine_shaft">#212121</color>
+    <color name="mine_shaft_light">#2D2D2D</color>
+
 
 </resources>
