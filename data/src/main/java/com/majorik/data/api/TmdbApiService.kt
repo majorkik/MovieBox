@@ -134,6 +134,19 @@ interface TmdbApiService {
         @Path("person_id") personId: Int
     ): Response<PersonPostersResponse>
 
+
+    @GET("person/popular")
+    suspend fun getPopularPeoples(
+        @Query("language") language: String?,
+        @Query("page") page: Int?
+    ): Response<PersonResponse>
+
+    @GET("person/{person_id}/movie_credits")
+    suspend fun getMovieCredits(@Path("person_id") personId: Int, @Query("language") language: String?): Response<PersonDetails.MovieCredits>
+
+    @GET("person/{person_id}/tv_credits")
+    suspend fun getTVCredits(@Path("person_id") personId: Int, @Query("language") language: String?): Response<PersonDetails.TVCredits>
+
     // Season & Episode
 
     @GET("tv/{tv_id}/season/{season_number}")
@@ -284,12 +297,7 @@ interface TmdbApiService {
         @Body sessionIdModel: RequestSession
     ): Response<ResponseSession>
 
-
-    @GET("person/popular")
-    suspend fun getPopularPeoples(
-        @Query("language") language: String?,
-        @Query("page") page: Int?
-    ): Response<PersonResponse>
+    // trending
 
     @GET("trending/{media_type}/{time_window}")
     suspend fun getTrendingMovies(

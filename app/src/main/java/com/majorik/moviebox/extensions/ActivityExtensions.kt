@@ -7,10 +7,16 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
+import android.os.Build
+import android.text.SpannableStringBuilder
+import android.text.Spanned
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import com.majorik.domain.constants.UrlConstants
 import com.majorik.moviebox.R
+import com.majorik.moviebox.utils.FontSpan
 import com.majorik.moviebox.utils.InsetUtil
 import com.majorik.moviebox.utils.OnSystemInsetsChangedListener
 
@@ -51,4 +57,43 @@ fun Context.startDetailsActivityWithId(
 
 fun AppCompatActivity.showToastMessage(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+}
+
+@TargetApi(23)
+fun Activity.setStatusBarModeForApi24(isDark: Boolean) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        var flags: Int = window.decorView.systemUiVisibility
+
+        flags = if (isDark) {
+            flags and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
+        } else {
+            View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        }
+
+        window.decorView.systemUiVisibility = flags
+    }
+}
+
+fun Context.convertStringForFilmograohy(
+    titleMovie: String,
+    wordDelimiter: String,
+    characterName: String
+): SpannableStringBuilder {
+    val fullText = "$titleMovie $wordDelimiter $characterName"
+    SpannableStringBuilder(fullText).apply {
+        setSpan(
+            FontSpan(
+                "cc_montserrat_regular",
+                ResourcesCompat.getFont(
+                    this@convertStringForFilmograohy,
+                    R.font.cc_montserrat_regular
+                )
+            ),
+            titleMovie.length,
+            fullText.length - characterName.length,
+            Spanned.SPAN_EXCLUSIVE_INCLUSIVE
+        )
+
+        return this
+    }
 }

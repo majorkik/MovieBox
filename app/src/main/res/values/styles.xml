@@ -89,4 +89,9 @@
         <item name="android:fontFamily">@font/montserrat_regular</item>
     </style>
 
+    <style name="AppTheme.TabTextStyle" parent="Widget.MaterialComponents.TabLayout">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/cc_montserrat_bold</item>
+    </style>
+
 </resources>

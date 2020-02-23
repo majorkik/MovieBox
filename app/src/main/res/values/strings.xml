@@ -87,4 +87,8 @@
     <string name="in_trends">В тренде</string>
     <string name="filmography">Фильмография</string>
 
+    <string name="inline_filmography_delimiter">как</string>
+
+    <string name="is_absent">Отсутствует</string>
+
 </resources>

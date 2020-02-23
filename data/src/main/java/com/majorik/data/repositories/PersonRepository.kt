@@ -57,4 +57,22 @@ class PersonRepository(private val api: TmdbApiService) : BaseRepository() {
 
         return response?.results?.toMutableList()
     }
+
+    suspend fun getPersonMovieCredits(personId: Int, language: String?): PersonDetails.MovieCredits? {
+        return safeApiCall(
+            call = {
+                api.getMovieCredits(personId, language)
+            },
+            errorMessage = "Ошибка GET[getPersonMovieCredits]"
+        )
+    }
+
+    suspend fun getPersonTVCredits(personId: Int, language: String?): PersonDetails.TVCredits? {
+        return safeApiCall(
+            call = {
+                api.getTVCredits(personId, language)
+            },
+            errorMessage = "Ошибка GET[getPersonTVCredits]"
+        )
+    }
 }

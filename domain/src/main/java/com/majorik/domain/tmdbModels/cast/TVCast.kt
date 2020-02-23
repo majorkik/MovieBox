@@ -7,7 +7,7 @@ data class TVCast(
     @field:Json(name = "character") val character: String,
     @field:Json(name = "credit_id") val creditId: String,
     @field:Json(name = "episode_count") val episodeCount: Int,
-    @field:Json(name = "first_air_date") val firstAirDate: String,
+    @field:Json(name = "first_air_date") val firstAirDate: String?,
     @field:Json(name = "genre_ids") val genreIds: List<Int>,
     @field:Json(name = "id") val id: Int,
     @field:Json(name = "name") val name: String,

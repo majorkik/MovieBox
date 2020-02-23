@@ -11,3 +11,12 @@ fun String.toDate(inputFormat: String = "yyyy-MM-dd"): DateTimeTz {
     val dateFormat = DateFormat(inputFormat)
     return dateFormat.parse(this)
 }
+
+fun String.toYear(inputFormat: String = "yyyy-MM-dd", placeholder: String = ""): String {
+    if (this.isNotBlank()) {
+        val dateFormat = DateFormat(inputFormat)
+        return dateFormat.parse(this).year.year.toString()
+    } else {
+        return placeholder
+    }
+}

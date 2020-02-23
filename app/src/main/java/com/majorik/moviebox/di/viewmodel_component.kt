@@ -8,6 +8,7 @@ import com.majorik.moviebox.ui.main_page_profile.ProfileViewModel
 import com.majorik.moviebox.ui.main_page_tvs.TVsViewModel
 import com.majorik.moviebox.ui.movieDetails.MovieDetailsViewModel
 import com.majorik.moviebox.ui.movieTabCollections.MovieCollectionsViewModel
+import com.majorik.moviebox.ui.person_details.filmography.PersonCreditsViewModel
 import com.majorik.moviebox.ui.person_details.PersonDetailsViewModel
 import com.majorik.moviebox.ui.search.SearchableViewModel
 import com.majorik.moviebox.ui.seasonDetails.SeasonDetailsViewModel
@@ -26,6 +27,11 @@ val viewModelModule = module {
     viewModel { PersonDetailsViewModel(get()) }
     viewModel { SeasonDetailsViewModel(get()) }
     viewModel { LoginPageViewModel(get()) }
+    viewModel {
+        PersonCreditsViewModel(
+            get()
+        )
+    }
     viewModel { (tvCollectionType: TVCollectionType) ->
         TVCollectionsViewModel(
             get(),
