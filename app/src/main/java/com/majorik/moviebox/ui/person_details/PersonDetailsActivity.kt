@@ -126,12 +126,12 @@ class PersonDetailsActivity : BaseSlidingActivity() {
             )
         )
 
-//        pagerAdapter.addFragment(
-//            PersonCreditsFragment.newInstance(
-//                personId,
-//                PersonCreditsFragment.CreditsType.TV
-//            )
-//        )
+        pagerAdapter.addFragment(
+            PersonCreditsFragment.newInstance(
+                personId,
+                PersonCreditsFragment.CreditsType.TV
+            )
+        )
 
         p_view_pager.adapter = pagerAdapter
 

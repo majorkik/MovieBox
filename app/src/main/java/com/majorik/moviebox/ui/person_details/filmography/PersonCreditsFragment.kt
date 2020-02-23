@@ -121,5 +121,6 @@ class PersonCreditsFragment : Fragment(), ChangeViewTypeListener {
             credits_list?.removeItemDecoration(itemDecoration)
         }
         credits_list?.adapter?.notifyItemRangeChanged(0, credits_list?.adapter?.itemCount ?: 0)
+//        credits_list?.adapter?.notifyDataSetChanged()
     }
 }
