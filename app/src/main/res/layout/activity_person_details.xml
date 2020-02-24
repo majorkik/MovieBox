@@ -19,7 +19,8 @@
             android:id="@+id/person_profile_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:adjustViewBounds="true" />
+            android:adjustViewBounds="true"
+            tools:ignore="ContentDescription" />
     </FrameLayout>
 
     <LinearLayout
@@ -90,6 +91,7 @@
                 android:layout_height="36dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/btn_ripple_effect"
+                android:contentDescription="@string/biography"
                 android:padding="4dp"
                 android:src="@drawable/ic_details_list" />
         </LinearLayout>
@@ -102,6 +104,8 @@
         app:navigationIcon="@drawable/ic_arrow_down"
         app:title="" />
 
-    <include layout="@layout/layout_person_credits" />
+    <include
+        layout="@layout/layout_person_credits"
+        android:visibility="gone" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
