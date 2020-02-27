@@ -1,14 +1,9 @@
 package com.majorik.moviebox.adapters
 
-import android.content.Context
 import android.content.Intent
-import android.text.SpannableStringBuilder
-import android.text.Spanned
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListView
-import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.majorik.domain.constants.UrlConstants
@@ -16,10 +11,11 @@ import com.majorik.domain.tmdbModels.cast.MovieCast
 import com.majorik.moviebox.R
 import com.majorik.moviebox.extensions.*
 import com.majorik.moviebox.ui.movieDetails.MovieDetailsActivity
-import com.majorik.moviebox.utils.FontSpan
 import kotlinx.android.synthetic.main.item_medium_poster_card.view.*
+import kotlinx.android.synthetic.main.item_medium_poster_card.view.collection_card
+import kotlinx.android.synthetic.main.item_medium_poster_card.view.collection_image
 import kotlinx.android.synthetic.main.item_person_credit_in_line.view.*
-import kotlinx.android.synthetic.main.item_small_poster_card.view.collection_card
+import kotlinx.android.synthetic.main.item_small_poster_card.view.*
 
 class MovieCreditsAdapter(
     private val layoutManager: GridLayoutManager?,
@@ -83,7 +79,10 @@ class MovieCreditsAdapter(
     class MovieCreditsViewHolder(private val parent: View) : RecyclerView.ViewHolder(parent) {
         fun bindTo(cast: MovieCast) {
             itemView.title.text = cast.title
-            itemView.collection_image.displayImageWithCenterCrop(UrlConstants.TMDB_POSTER_SIZE_185 + cast.posterPath)
+            itemView.collection_image.displayImageWithCenterCrop(
+                UrlConstants.TMDB_POSTER_SIZE_185 + (cast.posterPath ?: ""),
+                R.drawable.bg_placeholder_card_colored
+            )
 
             bindClickListener(cast)
         }

@@ -50,7 +50,7 @@ class MovieTrendAdapter(
     private fun bindTo(movie: Movie, view: View) {
         view.m_trend_title.text = movie.title
 
-        view.m_trend_year.text = movie.releaseDate.toDate().year.year.toString()
+        view.m_trend_year.text = movie.releaseDate?.toDate()?.yearInt?.toString() ?: ""
         view.m_trend_genres.text =
             movie.genreIds.map { GenresStorageObject.movieGenres.get(it) }
                 .take(2)

@@ -6,7 +6,7 @@ data class Movie(
     @field:Json(name = "poster_path") val posterPath: String?,
     @field:Json(name = "adult") val adult: Boolean,
     @field:Json(name = "overview") val overview: String,
-    @field:Json(name = "release_date") val releaseDate: String,
+    @field:Json(name = "release_date") val releaseDate: String?,
     @field:Json(name = "genre_ids") val genreIds: List<Int>,
     @field:Json(name = "id") val id: Int,
     @field:Json(name = "original_title") val originalTitle: String,

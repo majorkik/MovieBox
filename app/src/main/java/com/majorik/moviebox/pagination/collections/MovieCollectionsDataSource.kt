@@ -1,27 +1,27 @@
-package com.majorik.moviebox.pagination
+package com.majorik.moviebox.pagination.collections
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
-import com.majorik.data.repositories.TVRepository
+import com.majorik.data.repositories.MovieRepository
 import com.majorik.domain.NetworkState
-import com.majorik.domain.enums.movie.TVCollectionType
-import com.majorik.domain.tmdbModels.tv.TV
+import com.majorik.domain.enums.movie.MovieCollectionType
+import com.majorik.domain.tmdbModels.movie.Movie
 import kotlinx.coroutines.*
 import timber.log.Timber
 
-class TVDataSource(
-    private val repository: TVRepository,
+class MovieCollectionsDataSource(
+    private val repository: MovieRepository,
     private val scope: CoroutineScope,
-    private val tvCollectionType: TVCollectionType
-) : PageKeyedDataSource<Int, TV>() {
+    private val movieCollectionType: MovieCollectionType
+) : PageKeyedDataSource<Int, Movie>() {
     private var supervisorJob = SupervisorJob()
     private val networkState = MutableLiveData<NetworkState>()
     private var retryQuery: (() -> Any)? = null
 
     override fun loadInitial(
         params: LoadInitialParams<Int>,
-        callback: LoadInitialCallback<Int, TV>
+        callback: LoadInitialCallback<Int, Movie>
     ) {
         retryQuery = { loadInitial(params, callback) }
         executeQuery(1) {
@@ -31,7 +31,7 @@ class TVDataSource(
 
     override fun loadAfter(
         params: LoadParams<Int>,
-        callback: LoadCallback<Int, TV>
+        callback: LoadCallback<Int, Movie>
     ) {
         val page = params.key
         retryQuery = { loadAfter(params, callback) }
@@ -40,17 +40,17 @@ class TVDataSource(
         }
     }
 
-    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, TV>) {
+    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Movie>) {
         // no-op
     }
 
     private fun executeQuery(
         page: Int,
-        callback: (List<TV>) -> Unit
+        callback: (List<Movie>) -> Unit
     ) {
         networkState.postValue(NetworkState.RUNNING)
         scope.launch(getJobErrorHandler() + supervisorJob) {
-            val response = getCurrentQuery("ru", page)
+            val response = getCurrentQuery("ru", page, null)
             retryQuery = null
             networkState.postValue(NetworkState.SUCCESS)
             response?.let { callback(it) }
@@ -58,7 +58,7 @@ class TVDataSource(
     }
 
     private fun getJobErrorHandler() = CoroutineExceptionHandler { _, e ->
-        Timber.e(TVDataSource::class.java.simpleName, "Ошибка: $e")
+        Timber.e(MovieCollectionsDataSource::class.java.simpleName, "Ошибка: $e")
         networkState.postValue(NetworkState.FAILED)
     }
 
@@ -69,20 +69,21 @@ class TVDataSource(
 
     private suspend fun getCurrentQuery(
         language: String?,
-        page: Int?
-    ): MutableList<TV>? =
-        when (tvCollectionType) {
-            TVCollectionType.POPULAR -> {
-                repository.getPopularTVs(language, page)
+        page: Int?,
+        region: String?
+    ): MutableList<Movie>? =
+        when (movieCollectionType) {
+            MovieCollectionType.POPULAR -> {
+                repository.getPopularMovies(language, page, region)
             }
-            TVCollectionType.TOP_RATED -> {
-                repository.getTopRatedTVs(language, page)
+            MovieCollectionType.TOP_RATED -> {
+                repository.getTopRatedMovies(language, page, region)
             }
-            TVCollectionType.AIRING_TODAY -> {
-                repository.getAiringTodayTVs(language, page)
+            MovieCollectionType.NOW_PLAYING -> {
+                repository.getNowPlayingMovies(language, page, region)
             }
-            TVCollectionType.ON_THE_AIR -> {
-                repository.getOnTheAirTVs(language, page)
+            MovieCollectionType.UPCOMING -> {
+                repository.getUpcomingMovies(language, page, region)
             }
         }
 

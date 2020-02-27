@@ -29,55 +29,61 @@
                 android:textSize="24sp"
                 android:textStyle="normal" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal">
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:clipToPadding="false"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
 
-                <androidx.appcompat.widget.SearchView
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="16dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_searchview_with_corners"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/search_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
                     android:clickable="true"
                     android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:theme="@style/SearchViewStyle"
-                    app:defaultQueryHint="Введите запрос"
-                    app:iconifiedByDefault="false"
-                    app:queryBackground="@color/transparent"
-                    app:queryHint="Введите запрос"
-                    app:searchIcon="@null" />
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardBackgroundColor="@color/alabaster"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="0dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/cc_montserrat_medium"
+                        android:gravity="center"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:text="Введите запрос"
+                        android:textColor="@color/mine_shaft_alpha_40"
+                        android:textSize="14sp" />
+                </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="8dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
                     app:cardCornerRadius="8dp"
-                    app:cardElevation="0dp">
+                    app:cardElevation="4dp">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:background="@color/gallery"
+                        android:background="@color/colorAccent"
                         android:padding="6dp"
                         android:rotation="90"
                         android:src="@drawable/ic_controls_tune"
                         tools:ignore="ContentDescription" />
                 </androidx.cardview.widget.CardView>
-            </LinearLayout>
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

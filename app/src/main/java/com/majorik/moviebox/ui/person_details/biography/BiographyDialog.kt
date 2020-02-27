@@ -53,7 +53,7 @@ class BiographyDialog : DialogFragment() {
             view.biography.text = getString(R.string.is_absent)
         }
 
-        if (birthday.isNotEmpty()) {
+        if (birthday.isNotEmpty() && birthday != "-") {
             view.birthday.text = KlockLocale.russian.formatDateLong.format(birthday.toDate())
         } else {
             view.birthday.text = birthday

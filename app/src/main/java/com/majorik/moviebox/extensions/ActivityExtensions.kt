@@ -55,6 +55,15 @@ fun Context.startDetailsActivityWithId(
     (this as? AppCompatActivity)?.overridePendingTransition(animIn, animOut)
 }
 
+fun Context.startActivityWithAnim(
+    activity: Class<*>,
+    animIn: Int = R.anim.slide_in_up,
+    animOut: Int = R.anim.slide_out_up
+) {
+    startActivity(Intent(this, activity))
+    (this as? AppCompatActivity)?.overridePendingTransition(animIn, animOut)
+}
+
 fun AppCompatActivity.showToastMessage(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_LONG).show()
 }

@@ -6,11 +6,32 @@ import com.majorik.domain.NetworkState
 import com.majorik.moviebox.adapters.PagingMovieCollectionAdapter
 import com.majorik.moviebox.adapters.PagingTVCollectionAdapter
 import com.majorik.moviebox.adapters.SearchAdapter
+import com.majorik.moviebox.adapters.search.SearchMovieAdapter
+import com.majorik.moviebox.adapters.search.SearchPeopleAdapter
+import com.majorik.moviebox.adapters.search.SearchTVAdapter
 import kotlinx.android.synthetic.main.item_network_state.view.*
 
 class NetworkStateViewHolder(containerView: View) :
     RecyclerView.ViewHolder(containerView) {
     fun bindTo(networkState: NetworkState?, callback: SearchAdapter.OnClickListener) {
+        hideViews()
+        setVisibleRightViews(networkState)
+        itemView.item_paging_network_state_button.setOnClickListener { callback.onClickRetry() }
+    }
+
+    fun bindTo(networkState: NetworkState?, callback: SearchMovieAdapter.OnClickListener) {
+        hideViews()
+        setVisibleRightViews(networkState)
+        itemView.item_paging_network_state_button.setOnClickListener { callback.onClickRetry() }
+    }
+
+    fun bindTo(networkState: NetworkState?, callback: SearchTVAdapter.OnClickListener) {
+        hideViews()
+        setVisibleRightViews(networkState)
+        itemView.item_paging_network_state_button.setOnClickListener { callback.onClickRetry() }
+    }
+
+    fun bindTo(networkState: NetworkState?, callback: SearchPeopleAdapter.OnClickListener) {
         hideViews()
         setVisibleRightViews(networkState)
         itemView.item_paging_network_state_button.setOnClickListener { callback.onClickRetry() }

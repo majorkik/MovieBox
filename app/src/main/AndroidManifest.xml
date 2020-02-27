@@ -51,9 +51,8 @@
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ui.search.SearchableActivity"
-            android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/AppTheme.SlidingActivity"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ui.tvDetails.TVDetailsActivity"

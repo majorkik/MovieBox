@@ -16,6 +16,7 @@ import com.majorik.domain.tmdbModels.genre.Genre
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.*
 import com.majorik.moviebox.extensions.setAdapterWithFixedSize
+import com.majorik.moviebox.extensions.startActivityWithAnim
 import com.majorik.moviebox.extensions.toDate
 import com.majorik.moviebox.extensions.toPx
 import com.majorik.moviebox.ui.base.BaseNavigationFragment
@@ -57,7 +58,7 @@ class MoviesFragment : BaseNavigationFragment() {
 
     private fun setClickListeners() {
         btn_search.setOnClickListener {
-            startActivity(Intent(context, SearchableActivity::class.java))
+            context?.startActivityWithAnim(SearchableActivity::class.java)
         }
 
         btn_popular_movies.setOnClickListener {
@@ -82,7 +83,7 @@ class MoviesFragment : BaseNavigationFragment() {
         })
 
         moviesViewModel.upcomingMoviesLiveData.observe(viewLifecycleOwner, Observer {
-            rv_upcoming_movies.setAdapterWithFixedSize(MovieDateCardAdapter(it.sortedBy { it.releaseDate.toDate() }), true)
+            rv_upcoming_movies.setAdapterWithFixedSize(MovieDateCardAdapter(it.sortedBy { it.releaseDate?.toDate()?.utc?.unixMillisLong ?: 0L }), true)
         })
 
         moviesViewModel.nowPlayingMoviesLiveData.observe(viewLifecycleOwner, Observer {

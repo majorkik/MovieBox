@@ -34,11 +34,11 @@ class MovieDateCardAdapter(private val movies: List<Movie>) :
 
     class MovieViewHolder(private val parent: View) : RecyclerView.ViewHolder(parent) {
         fun bindTo(movie: Movie) {
-            val releaseDate = movie.releaseDate.toDate()
+            val releaseDate = movie.releaseDate?.toDate()
             itemView.placeholder_text.text = movie.title
 
             itemView.m_release_date.text =
-                "${releaseDate.dayOfMonth} ${releaseDate.month.localShortName(KlockLocale.russian)}"
+                "${releaseDate?.dayOfMonth ?:""} ${releaseDate?.month?.localShortName(KlockLocale.russian) ?: ""}"
 
             itemView.collection_image.displayImageWithCenterCrop(
                 UrlConstants.TMDB_POSTER_SIZE_185 + movie.posterPath

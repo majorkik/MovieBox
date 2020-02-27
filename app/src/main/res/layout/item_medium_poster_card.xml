@@ -19,16 +19,6 @@
         tools:layout_width="105dp">
 
         <ImageView
-            android:id="@+id/placeholder_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:adjustViewBounds="true"
-            android:background="@color/alabaster"
-            android:contentDescription="@string/desc_collection_image"
-            android:scaleType="center"
-            android:src="@drawable/ic_film_placeholder_colored" />
-
-        <ImageView
             android:id="@+id/collection_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

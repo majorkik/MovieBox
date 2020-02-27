@@ -81,7 +81,7 @@ class TVCreditsAdapter(
         fun bindTo(cast: TVCast) {
             itemView.title.text = cast.name
 
-            itemView.collection_image.displayImageWithCenterCrop(UrlConstants.TMDB_POSTER_SIZE_185 + cast.posterPath)
+            itemView.collection_image.displayImageWithCenterCrop(UrlConstants.TMDB_POSTER_SIZE_185 + cast.posterPath, R.drawable.ic_film_placeholder_colored)
 
             bindClickListener(cast)
         }

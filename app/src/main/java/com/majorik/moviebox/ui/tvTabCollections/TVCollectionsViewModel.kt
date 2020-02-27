@@ -7,16 +7,17 @@ import androidx.paging.PagedList
 import com.majorik.data.repositories.TVRepository
 import com.majorik.domain.NetworkState
 import com.majorik.domain.enums.movie.TVCollectionType
-import com.majorik.moviebox.pagination.TVDataSourceFactory
+import com.majorik.moviebox.pagination.collections.TVCollectionsDataSourceFactory
 import com.majorik.moviebox.ui.base.BaseViewModel
 
 class TVCollectionsViewModel(tvRepository: TVRepository, tvCollectionType: TVCollectionType) :
     BaseViewModel() {
-    private val dataSourceFactory = TVDataSourceFactory(
-        tvRepository = tvRepository,
-        scope = ioScope,
-        tvCollectionType = tvCollectionType
-    )
+    private val dataSourceFactory =
+        TVCollectionsDataSourceFactory(
+            tvRepository = tvRepository,
+            scope = ioScope,
+            tvCollectionType = tvCollectionType
+        )
 
     val tvResults = LivePagedListBuilder(dataSourceFactory, pagedConfig()).build()
 

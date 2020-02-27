@@ -90,5 +90,7 @@
     <string name="inline_filmography_delimiter">как</string>
 
     <string name="is_absent">Отсутствует</string>
+    <string name="peoples">Люди</string>
+    <string name="vote_counts">Оценивших</string>
 
 </resources>

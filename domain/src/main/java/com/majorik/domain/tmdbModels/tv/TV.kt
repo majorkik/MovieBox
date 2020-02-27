@@ -9,7 +9,7 @@ data class TV(
     @field:Json(name = "backdrop_path") val backdropPath: String?,
     @field:Json(name = "vote_average") val voteAverage: Double,
     @field:Json(name = "overview") val overview: String,
-    @field:Json(name = "first_air_date") val firstAirDate: String,
+    @field:Json(name = "first_air_date") val firstAirDate: String?,
     @field:Json(name = "origin_country") val originCountry: List<String>,
     @field:Json(name = "genre_ids") val genreIds: List<Int>,
     @field:Json(name = "original_language") val originalLanguage: String,

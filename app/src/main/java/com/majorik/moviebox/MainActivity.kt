@@ -13,6 +13,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.majorik.moviebox.extensions.startActivityWithAnim
 import com.majorik.moviebox.ui.main_page_movies.MoviesFragment
 import com.majorik.moviebox.ui.main_page_profile.ProfileFragment
 import com.majorik.moviebox.ui.main_page_search.SearchFragment
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     private val fragmentTV = SearchFragment.newInstance()
     private val fragmentDiscover = TVsFragment.newInstance()
     private val fragmentProfile = ProfileFragment.newInstance()
-    private var activeFragment: Fragment = fragmentMovie
+    private var activeFragment: Fragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,8 +97,10 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     }
 
     private fun showFragment(fragment: Fragment) {
+        if(activeFragment == null) activeFragment = fragmentMovie
+
         supportFragmentManager.beginTransaction()
-            .hide(activeFragment)
+            .hide(activeFragment!!)
             .show(fragment)
             .commit()
     }
@@ -106,7 +109,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.toolbar_search -> {
-                startActivity(Intent(this, SearchableActivity::class.java))
+                startActivityWithAnim(SearchableActivity::class.java)
             }
         }
         return false

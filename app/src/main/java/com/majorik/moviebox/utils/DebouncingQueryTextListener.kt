@@ -1,30 +1,34 @@
 package com.majorik.moviebox.utils
 
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.coroutineScope
-import com.arlib.floatingsearchview.FloatingSearchView
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 internal class DebouncingQueryTextListener(
     lifecycle: Lifecycle,
-    private val onDebouncingQueryTextChange: (String) -> Unit
-) : FloatingSearchView.OnQueryChangeListener {
+    private val onDebouncingQueryTextChange: (String?) -> Unit
+) : SearchView.OnQueryTextListener {
     private var debouncePeriod: Long = 500
 
-    private val coroutineScope: CoroutineScope = lifecycle.coroutineScope
+    private val coroutineScope = lifecycle.coroutineScope
 
     private var searchJob: Job? = null
 
-    override fun onSearchTextChanged(oldQuery: String?, newQuery: String?) {
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        return false
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
         searchJob?.cancel()
         searchJob = coroutineScope.launch {
-            newQuery?.let {
+            newText?.let {
                 delay(debouncePeriod)
-                onDebouncingQueryTextChange(newQuery)
+                onDebouncingQueryTextChange(newText)
             }
         }
+        return false
     }
 }

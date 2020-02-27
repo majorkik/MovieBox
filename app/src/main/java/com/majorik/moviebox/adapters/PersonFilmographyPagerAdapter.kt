@@ -1,28 +1,91 @@
 package com.majorik.moviebox.adapters
 
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Lifecycle
-import androidx.viewpager2.adapter.FragmentStateAdapter
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.majorik.domain.tmdbModels.cast.MovieCast
+import com.majorik.domain.tmdbModels.cast.TVCast
+import com.majorik.moviebox.R
+import com.majorik.moviebox.adapters.PersonFilmographyPagerAdapter.PageViewHolder
+import com.majorik.moviebox.extensions.toPx
+import com.majorik.moviebox.utils.SpacingDecoration
+import kotlinx.android.synthetic.main.item_filmography.view.*
 
-class PersonFilmographyPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
-    FragmentStateAdapter(fragmentManager, lifecycle) {
+class PersonFilmographyPagerAdapter(
+    private val movieCasts: List<MovieCast>,
+    private val tvCast: List<TVCast>
+) : RecyclerView.Adapter<PageViewHolder>() {
+    private var spanCount = 1
 
-    private var fragments: MutableList<Fragment> = mutableListOf()
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PageViewHolder {
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_filmography, parent, false)
 
-    override fun getItemCount(): Int = fragments.size
-
-    override fun createFragment(position: Int): Fragment {
-        return fragments[position]
+        return PageViewHolder(view)
     }
 
-    fun addFragment(fragment: Fragment) {
-        fragments.add(fragment)
+    override fun getItemCount() = 2
+
+    override fun onBindViewHolder(holder: PageViewHolder, position: Int) {
+        when (position) {
+            0 -> {
+                holder.bindMovies(spanCount, movieCasts)
+            }
+
+            else -> {
+                holder.bindTVs(spanCount, tvCast)
+            }
+        }
     }
 
-    fun updateViewType(isGrid: Boolean) {
-        fragments.forEach {
-            (it as? ChangeViewTypeListener)?.viewTypeChanged(isGrid)
+    fun changeViewType(isGrid: Boolean) {
+        if (isGrid) {
+            spanCount = 3
+        } else {
+            spanCount = 1
+        }
+
+//        notifyItemRangeChanged(0, 2)
+        notifyDataSetChanged()
+    }
+
+    class PageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        private val itemDecoration = SpacingDecoration(16.toPx(), 16.toPx(), true)
+
+        fun bindMovies(
+            spanCount: Int,
+            movieCasts: List<MovieCast>
+        ) {
+            val layoutManager = (itemView.filmographylist.layoutManager as? GridLayoutManager)
+            layoutManager?.spanCount = spanCount
+
+            if (layoutManager?.spanCount == 3) {
+                itemView.filmographylist.removeItemDecoration(itemDecoration)
+                itemView.filmographylist.addItemDecoration(itemDecoration)
+            } else {
+                itemView.filmographylist.removeItemDecoration(itemDecoration)
+            }
+
+            itemView.filmographylist.adapter = MovieCreditsAdapter(layoutManager, movieCasts)
+        }
+
+        fun bindTVs(
+            spanCount: Int,
+            tvCasts: List<TVCast>
+        ) {
+            val layoutManager = (itemView.filmographylist.layoutManager as? GridLayoutManager)
+            layoutManager?.spanCount = spanCount
+
+            if (layoutManager?.spanCount == 3) {
+                itemView.filmographylist.removeItemDecoration(itemDecoration)
+                itemView.filmographylist.addItemDecoration(itemDecoration)
+            } else {
+                itemView.filmographylist.removeItemDecoration(itemDecoration)
+            }
+
+            itemView.filmographylist.adapter = TVCreditsAdapter(layoutManager, tvCasts)
         }
     }
 }

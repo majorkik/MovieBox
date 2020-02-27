@@ -3,7 +3,6 @@ package com.majorik.moviebox.ui.person_details
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.Observer
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.tabs.TabLayoutMediator
@@ -13,11 +12,9 @@ import com.majorik.moviebox.adapters.PersonFilmographyPagerAdapter
 import com.majorik.moviebox.extensions.*
 import com.majorik.moviebox.ui.base.BaseSlidingActivity
 import com.majorik.moviebox.ui.person_details.biography.BiographyDialog
-import com.majorik.moviebox.ui.person_details.filmography.PersonCreditsFragment
 import kotlinx.android.synthetic.main.activity_person_details.*
 import kotlinx.android.synthetic.main.layout_person_credits.*
 import org.koin.android.viewmodel.ext.android.viewModel
-
 
 class PersonDetailsActivity : BaseSlidingActivity() {
 
@@ -27,8 +24,7 @@ class PersonDetailsActivity : BaseSlidingActivity() {
 
     override fun getRootView(): View = window.decorView.rootView
 
-    private var filmographyAdapter =
-        PersonFilmographyPagerAdapter(supportFragmentManager, lifecycle)
+    private var filmographyAdapter: PersonFilmographyPagerAdapter? = null
 
     private var isGrid = false
 
@@ -39,6 +35,8 @@ class PersonDetailsActivity : BaseSlidingActivity() {
         setWindowTransparency(::updateMargins)
 
         setSupportActionBar(md_toolbar)
+
+//        window.navigationBarColor = ContextCompat.getColor(this, R.color.colorAccent)
 
         supportActionBar?.run {
             setDisplayUseLogoEnabled(true)
@@ -58,7 +56,7 @@ class PersonDetailsActivity : BaseSlidingActivity() {
 
     private fun updateMargins(statusBarSize: Int, @Suppress("UNUSED_PARAMETER") navigationBarSize: Int) {
         md_toolbar.updateMargin(top = statusBarSize)
-        person_layout.updateMargin(bottom = navigationBarSize)
+//        person_layout.updateMargin(bottom = navigationBarSize)
         header_bottom_sheet.minimumHeight = statusBarSize
     }
 
@@ -83,7 +81,7 @@ class PersonDetailsActivity : BaseSlidingActivity() {
         btn_view_type.setOnClickListener {
             isGrid = !isGrid
 
-            filmographyAdapter.updateViewType(isGrid)
+            filmographyAdapter?.changeViewType(isGrid)
 
             if (isGrid) {
                 btn_view_type.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_list))
@@ -119,20 +117,6 @@ class PersonDetailsActivity : BaseSlidingActivity() {
             arrayOf(getString(R.string.movies), getString(R.string.tvs))
         val pagerAdapter = filmographyAdapter
 
-        pagerAdapter.addFragment(
-            PersonCreditsFragment.newInstance(
-                personId,
-                PersonCreditsFragment.CreditsType.MOVIE
-            )
-        )
-
-        pagerAdapter.addFragment(
-            PersonCreditsFragment.newInstance(
-                personId,
-                PersonCreditsFragment.CreditsType.TV
-            )
-        )
-
         p_view_pager.adapter = pagerAdapter
 
         TabLayoutMediator(p_tab_layout, p_view_pager) { tab, position ->
@@ -146,10 +130,8 @@ class PersonDetailsActivity : BaseSlidingActivity() {
             personViewModel.fetchPersonDetails(
                 personId,
                 "ru-RU",
-                "images,tagged_images"
+                "movie_credits,tv_credits,images,tagged_images"
             )
-
-            setupPager()
         }
     }
 
@@ -168,6 +150,15 @@ class PersonDetailsActivity : BaseSlidingActivity() {
             }
 
             displayPersonMainPhoto(personDetails.profilePath)
+
+            p_bottom_sheet.setVisibilityOption(true)
+
+            filmographyAdapter = PersonFilmographyPagerAdapter(
+                personDetails.movieCredits.cast,
+                personDetails.tvCredits.cast
+            )
+
+            setupPager()
         })
     }
 
