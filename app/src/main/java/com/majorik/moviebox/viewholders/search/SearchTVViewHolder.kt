@@ -15,7 +15,7 @@ class SearchTVViewHolder(val parent: View) : RecyclerView.ViewHolder(parent) {
             itemView.item_image.displayImageWithCenterCrop(UrlConstants.TMDB_POSTER_SIZE_185 + it.posterPath)
             itemView.title.text = it.name
 
-            if(!it.firstAirDate.isNullOrEmpty()) {
+            if (!it.firstAirDate.isNullOrEmpty()) {
                 itemView.year.text = it.firstAirDate!!.toDate().yearInt.toString()
             }
 

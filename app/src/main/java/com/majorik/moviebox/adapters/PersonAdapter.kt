@@ -11,7 +11,6 @@ import com.majorik.moviebox.extensions.displayImageWithCenterInside
 import com.majorik.moviebox.extensions.setSafeOnClickListener
 import com.majorik.moviebox.extensions.startDetailsActivityWithId
 import com.majorik.moviebox.ui.person_details.PersonDetailsActivity
-import com.majorik.moviebox.ui.person_details.PersonDetailsViewModel
 import kotlinx.android.synthetic.main.item_person_profile_card.view.*
 
 class PersonAdapter(private val people: List<Person>) :

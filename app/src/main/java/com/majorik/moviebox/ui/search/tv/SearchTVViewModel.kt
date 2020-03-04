@@ -6,7 +6,6 @@ import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.majorik.data.repositories.SearchRepository
 import com.majorik.domain.NetworkState
-import com.majorik.moviebox.pagination.search.SearchDataSourceFactory
 import com.majorik.moviebox.pagination.search.SearchTVDataSourceFactory
 import com.majorik.moviebox.ui.base.BaseViewModel
 

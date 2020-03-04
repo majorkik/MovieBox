@@ -3,10 +3,7 @@ package com.majorik.moviebox.viewholders.search
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.majorik.domain.constants.UrlConstants
-import com.majorik.domain.tmdbModels.movie.Movie
 import com.majorik.domain.tmdbModels.person.Person
-import com.majorik.domain.tmdbModels.search.MultiSearchResponse
-import com.majorik.domain.tmdbModels.tv.TV
 import com.majorik.moviebox.R
 import com.majorik.moviebox.extensions.displayImageWithCenterCrop
 import kotlinx.android.synthetic.main.item_card_with_details.view.*

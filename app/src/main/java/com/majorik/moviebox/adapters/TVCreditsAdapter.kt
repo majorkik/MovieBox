@@ -7,11 +7,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.majorik.domain.constants.UrlConstants
-import com.majorik.domain.tmdbModels.cast.MovieCast
 import com.majorik.domain.tmdbModels.cast.TVCast
 import com.majorik.moviebox.R
 import com.majorik.moviebox.extensions.*
-import com.majorik.moviebox.ui.movieDetails.MovieDetailsActivity
 import com.majorik.moviebox.ui.tvDetails.TVDetailsActivity
 import kotlinx.android.synthetic.main.item_medium_poster_card.view.*
 import kotlinx.android.synthetic.main.item_person_credit_in_line.view.*

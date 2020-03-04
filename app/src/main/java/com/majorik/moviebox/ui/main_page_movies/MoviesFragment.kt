@@ -2,17 +2,13 @@ package com.majorik.moviebox.ui.main_page_movies
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.util.SparseArray
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import androidx.core.util.isEmpty
-import androidx.core.util.putAll
 import androidx.lifecycle.Observer
 import com.majorik.data.repositories.TrendingRepository
 import com.majorik.domain.constants.GenresConstants
-import com.majorik.domain.tmdbModels.genre.Genre
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.*
 import com.majorik.moviebox.extensions.setAdapterWithFixedSize
@@ -23,7 +19,6 @@ import com.majorik.moviebox.ui.base.BaseNavigationFragment
 import com.majorik.moviebox.ui.movieTabCollections.MovieCollectionsActivity
 import com.majorik.moviebox.ui.search.SearchableActivity
 import com.majorik.moviebox.utils.GenresStorageObject
-import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.fragment_movies.*
 import org.koin.android.viewmodel.ext.android.viewModel
 

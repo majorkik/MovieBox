@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import com.majorik.data.repositories.SearchRepository
 import com.majorik.domain.tmdbModels.movie.Movie
-import com.majorik.domain.tmdbModels.search.MultiSearchResponse
 import kotlinx.coroutines.CoroutineScope
 
 class SearchMovieDataSourceFactory(

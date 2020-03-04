@@ -1,8 +1,6 @@
 package com.majorik.domain.youtubeModels
 
-
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 
 data class SearchResponse(
     @field:Json(name = "etag")

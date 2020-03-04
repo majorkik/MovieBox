@@ -6,7 +6,6 @@ import org.junit.Before
 import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
 
-
 abstract class BaseTest : KoinTest {
     protected lateinit var mockServer: MockWebServer
 
@@ -31,7 +30,7 @@ abstract class BaseTest : KoinTest {
     }
 
     private fun stopMockServer() {
-        if(isMockServerEnabled()) {
+        if (isMockServerEnabled()) {
             mockServer.shutdown()
         }
     }

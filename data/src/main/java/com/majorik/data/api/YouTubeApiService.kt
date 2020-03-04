@@ -15,5 +15,4 @@ interface YouTubeApiService {
         @Query("order") order: String,
         @Query("channelId") channelId: String
     ): Response<SearchResponse>
-
 }

@@ -5,7 +5,6 @@ import androidx.paging.DataSource
 import com.majorik.data.repositories.MovieRepository
 import com.majorik.domain.enums.movie.MovieCollectionType
 import com.majorik.domain.tmdbModels.movie.Movie
-import com.majorik.moviebox.pagination.collections.MovieCollectionsDataSource
 import kotlinx.coroutines.CoroutineScope
 
 class MovieCollectionsDataSourceFactory(

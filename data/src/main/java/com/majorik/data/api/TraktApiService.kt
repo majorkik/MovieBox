@@ -2,9 +2,9 @@ package com.majorik.data.api
 
 import com.majorik.domain.traktModels.oauth.OAuthToken
 import com.majorik.domain.traktModels.oauth.TraktBodyRequest
-import com.majorik.domain.traktModels.sync.*
+import com.majorik.domain.traktModels.sync.* // ktlint-disable no-wildcard-imports
 import retrofit2.Response
-import retrofit2.http.*
+import retrofit2.http.* // ktlint-disable no-wildcard-imports
 
 interface TraktApiService {
     /*

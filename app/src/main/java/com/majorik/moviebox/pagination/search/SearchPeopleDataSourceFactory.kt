@@ -3,16 +3,14 @@ package com.majorik.moviebox.pagination.search
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import com.majorik.data.repositories.SearchRepository
-import com.majorik.domain.tmdbModels.movie.Movie
 import com.majorik.domain.tmdbModels.person.Person
-import com.majorik.domain.tmdbModels.search.MultiSearchResponse
 import kotlinx.coroutines.CoroutineScope
 
 class SearchPeopleDataSourceFactory(
     private val repository: SearchRepository,
     private var query: String = "",
     private val scope: CoroutineScope
-): DataSource.Factory<Int, Person>() {
+) : DataSource.Factory<Int, Person>() {
     val source = MutableLiveData<SearchPeopleDataSource>()
 
     override fun create(): DataSource<Int, Person> {

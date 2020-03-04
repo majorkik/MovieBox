@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.majorik.domain.tmdbModels.genre.Genre
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.GenreAdapter.GenreViewHolder
-import kotlinx.android.synthetic.main.item_genre.view.*
 import java.util.*
+import kotlinx.android.synthetic.main.item_genre.view.*
 
 class GenreAdapter(private val genres: List<Genre>) : RecyclerView.Adapter<GenreViewHolder>() {
 

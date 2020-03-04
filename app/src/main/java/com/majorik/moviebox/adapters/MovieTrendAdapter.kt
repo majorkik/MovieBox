@@ -5,7 +5,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.majorik.domain.tmdbModels.movie.Movie
@@ -15,8 +14,8 @@ import com.majorik.moviebox.extensions.startDetailsActivityWithId
 import com.majorik.moviebox.extensions.toDate
 import com.majorik.moviebox.ui.movieDetails.MovieDetailsActivity
 import com.majorik.moviebox.utils.GenresStorageObject
-import kotlinx.android.synthetic.main.item_trend_card_with_title.view.*
 import kotlin.math.roundToInt
+import kotlinx.android.synthetic.main.item_trend_card_with_title.view.*
 
 class MovieTrendAdapter(
     private val movies: List<Movie>
@@ -35,7 +34,6 @@ class MovieTrendAdapter(
             view = layoutInflater.inflate(R.layout.item_trend_last_item_card, container, false)
             bindToWhenLastItem(view)
         }
-
 
         val viewPager: ViewPager = container as ViewPager
 
@@ -68,7 +66,6 @@ class MovieTrendAdapter(
 
     private fun bindToWhenLastItem(view: View) {
         view.m_trend_layout.setSafeOnClickListener {
-
         }
     }
 

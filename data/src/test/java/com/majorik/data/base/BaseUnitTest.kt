@@ -1,8 +1,7 @@
 package com.majorik.data.base
 
-import okhttp3.mockwebserver.MockResponse
 import java.io.File
-
+import okhttp3.mockwebserver.MockResponse
 
 abstract class BaseUnitTest : BaseTest() {
     fun mockHttpResponse(fileName: String, responseCode: Int) = mockServer.enqueue(

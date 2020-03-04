@@ -22,7 +22,7 @@ import com.majorik.domain.tmdbModels.tv.TVEpisodeResponse
 import com.majorik.domain.tmdbModels.tv.TVResponse
 import com.majorik.domain.tmdbModels.tv.TVSeasonDetails
 import retrofit2.Response
-import retrofit2.http.*
+import retrofit2.http.* // ktlint-disable no-wildcard-imports
 
 interface TmdbApiService {
 
@@ -133,7 +133,6 @@ interface TmdbApiService {
     suspend fun getPersonPosters(
         @Path("person_id") personId: Int
     ): Response<PersonPostersResponse>
-
 
     @GET("person/popular")
     suspend fun getPopularPeoples(

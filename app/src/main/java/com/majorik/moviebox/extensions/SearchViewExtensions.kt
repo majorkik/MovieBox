@@ -2,7 +2,6 @@ package com.majorik.moviebox.extensions
 
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Lifecycle
-import com.arlib.floatingsearchview.FloatingSearchView
 import com.majorik.moviebox.utils.DebouncingQueryTextListener
 import timber.log.Timber
 

@@ -3,7 +3,6 @@ package com.majorik.moviebox.utils
 import android.graphics.Paint
 import android.graphics.Typeface
 import android.text.TextPaint
-import android.text.style.MetricAffectingSpan
 import android.text.style.TypefaceSpan
 
 class FontSpan(family: String?, private val newType: Typeface?) :
@@ -33,5 +32,4 @@ class FontSpan(family: String?, private val newType: Typeface?) :
             paint.typeface = tf
         }
     }
-
 }

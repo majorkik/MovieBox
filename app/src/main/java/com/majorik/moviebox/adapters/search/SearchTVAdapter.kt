@@ -19,7 +19,6 @@ class SearchTVAdapter(
     private val callback: OnClickListener
 ) : PagedListAdapter<TV, ViewHolder>(diffCallback) {
 
-
     private var networkState: NetworkState? = null
 
     interface OnClickListener {
@@ -108,4 +107,3 @@ class SearchTVAdapter(
         }
     }
 }
-

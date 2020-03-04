@@ -1,6 +1,8 @@
 package com.majorik.domain.constants
 
 object UrlConstants {
+    const val ABOUT_TMDB = "https://www.themoviedb.org/about"
+
     const val REDIRECT_URL = "com.majorik.moviebox://redirect"
     const val TMDB_BASE_URL = "https://api.themoviedb.org/3/"
     const val TRAKT_BASE_URL = "https://api.trakt.tv/"
@@ -38,7 +40,6 @@ object UrlConstants {
     const val TMDB_SIZE_ORIGINAL = "https://image.tmdb.org/t/p/original"
 
     // youtube
-
 
     const val YOUTUBE_IMAGE_LINK = "https://img.youtube.com/vi/"
     const val YOUTUBE_VDN__LINK = "vnd.youtube:"

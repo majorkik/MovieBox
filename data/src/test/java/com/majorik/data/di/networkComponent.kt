@@ -3,20 +3,20 @@ package com.majorik.data.di
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.majorik.data.api.TmdbApiService
 import okhttp3.Interceptor
+import okhttp3.Interceptor.Companion.invoke
 import okhttp3.OkHttpClient
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-
 
 fun networkModuleTest(apiURL: String) = module {
     single { createOkHttpClient() }
     single { createWebService<TmdbApiService>(apiURL) }
 }
 
-fun createRequestInterceptor(): Interceptor = Interceptor { chain ->
+fun createRequestInterceptor(): Interceptor = invoke { chain ->
     val url = chain.request()
-        .url()
+        .url
         .newBuilder()
         .addQueryParameter("api_key", "fake")
         .build()
@@ -26,7 +26,7 @@ fun createRequestInterceptor(): Interceptor = Interceptor { chain ->
         .url(url)
         .build()
 
-    return@Interceptor chain.proceed(request)
+    return@invoke chain.proceed(request)
 }
 
 fun createOkHttpClient(): OkHttpClient = OkHttpClient.Builder()

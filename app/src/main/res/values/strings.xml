@@ -92,5 +92,8 @@
     <string name="is_absent">Отсутствует</string>
     <string name="peoples">Люди</string>
     <string name="vote_counts">Оценивших</string>
+    <string name="about_the_movie_database">Что такое <b>The Movie Database?</b></string>
+    <string name="what">Что такое</string>
+    <string name="the_movie_database">The Movie Database</string>
 
 </resources>

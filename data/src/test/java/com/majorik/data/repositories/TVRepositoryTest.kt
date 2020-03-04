@@ -2,6 +2,7 @@ package com.majorik.data.repositories
 
 import com.majorik.data.base.BaseUnitTest
 import com.majorik.data.di.appComponentTest
+import java.net.HttpURLConnection
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertNotNull
 import org.junit.Test
@@ -9,7 +10,6 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.koin.core.context.startKoin
 import org.koin.test.inject
-import java.net.HttpURLConnection
 
 @RunWith(JUnit4::class)
 class TVRepositoryTest : BaseUnitTest() {
@@ -37,7 +37,7 @@ class TVRepositoryTest : BaseUnitTest() {
     fun getPopularTVs() {
         mockHttpResponse("tvRepository/popularTVs.json", HttpURLConnection.HTTP_OK)
         runBlocking {
-            val popularTVs = tvRepository.getPopularTVs("",0)
+            val popularTVs = tvRepository.getPopularTVs("", 0)
             assertNotNull(popularTVs)
         }
     }
@@ -46,7 +46,7 @@ class TVRepositoryTest : BaseUnitTest() {
     fun getTopRatedTVs() {
         mockHttpResponse("tvRepository/topRatedTVs.json", HttpURLConnection.HTTP_OK)
         runBlocking {
-            val topRatedTVs = tvRepository.getTVById(0,"","","")
+            val topRatedTVs = tvRepository.getTVById(0, "", "", "")
             assertNotNull(topRatedTVs)
         }
     }

@@ -62,10 +62,8 @@ class SearchTVFragment : Fragment(), SearchQueryChangeListener, SearchTVAdapter.
         if (size == 0) {
             when (networkState) {
                 NetworkState.SUCCESS -> {
-
                 }
                 NetworkState.FAILED -> {
-
                 }
                 NetworkState.RUNNING -> {
                 }
@@ -76,7 +74,6 @@ class SearchTVFragment : Fragment(), SearchQueryChangeListener, SearchTVAdapter.
     }
 
     private fun updateUIWhenLoading(size: Int, networkState: NetworkState?) {
-
     }
 
     override fun onClickRetry() {
@@ -87,5 +84,4 @@ class SearchTVFragment : Fragment(), SearchQueryChangeListener, SearchTVAdapter.
         updateUIWhenLoading(size, networkState)
         updateUIWhenEmptyList(size, networkState)
     }
-
 }

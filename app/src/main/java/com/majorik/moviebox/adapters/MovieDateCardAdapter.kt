@@ -12,7 +12,6 @@ import com.majorik.moviebox.extensions.setSafeOnClickListener
 import com.majorik.moviebox.extensions.startDetailsActivityWithId
 import com.majorik.moviebox.extensions.toDate
 import com.majorik.moviebox.ui.movieDetails.MovieDetailsActivity
-import com.soywiz.klock.DateFormat
 import com.soywiz.klock.KlockLocale
 import com.soywiz.klock.locale.russian
 import kotlinx.android.synthetic.main.item_small_poster_date_card.view.*
@@ -38,7 +37,7 @@ class MovieDateCardAdapter(private val movies: List<Movie>) :
             itemView.placeholder_text.text = movie.title
 
             itemView.m_release_date.text =
-                "${releaseDate?.dayOfMonth ?:""} ${releaseDate?.month?.localShortName(KlockLocale.russian) ?: ""}"
+                "${releaseDate?.dayOfMonth ?: ""} ${releaseDate?.month?.localShortName(KlockLocale.russian) ?: ""}"
 
             itemView.collection_image.displayImageWithCenterCrop(
                 UrlConstants.TMDB_POSTER_SIZE_185 + movie.posterPath

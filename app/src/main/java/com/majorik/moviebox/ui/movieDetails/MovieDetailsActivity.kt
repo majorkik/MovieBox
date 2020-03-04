@@ -10,8 +10,8 @@ import com.majorik.domain.tmdbModels.account.AccountStates
 import com.majorik.domain.tmdbModels.image.Images
 import com.majorik.domain.tmdbModels.video.Videos
 import com.majorik.moviebox.R
-import com.majorik.moviebox.adapters.ImageSliderAdapter
 import com.majorik.moviebox.adapters.CastAdapter
+import com.majorik.moviebox.adapters.ImageSliderAdapter
 import com.majorik.moviebox.extensions.displayImageWithCenterCrop
 import com.majorik.moviebox.extensions.displayImageWithCenterInside
 import com.majorik.moviebox.extensions.openYouTube
@@ -20,14 +20,14 @@ import com.majorik.moviebox.extensions.setVisibilityOption
 import com.majorik.moviebox.extensions.setWindowTransparency
 import com.majorik.moviebox.extensions.showToastMessage
 import com.majorik.moviebox.extensions.updateMargin
+import com.majorik.moviebox.storage.SharedPrefsManager
 import com.majorik.moviebox.ui.base.BaseSlidingActivity
-import com.majorik.moviebox.utils.SharedPrefsManager
 import com.stfalcon.imageviewer.StfalconImageViewer
+import java.text.DecimalFormat
 import kotlinx.android.synthetic.main.activity_movie_details.*
 import kotlinx.android.synthetic.main.layout_movie_details.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
-import java.text.DecimalFormat
 
 class MovieDetailsActivity : BaseSlidingActivity() {
     private val movieDetailsViewModel: MovieDetailsViewModel by viewModel()

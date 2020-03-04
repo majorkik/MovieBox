@@ -63,10 +63,8 @@ class SearchPeopleFragment : Fragment(), SearchQueryChangeListener,
         if (size == 0) {
             when (networkState) {
                 NetworkState.SUCCESS -> {
-
                 }
                 NetworkState.FAILED -> {
-
                 }
                 NetworkState.RUNNING -> {
                 }
@@ -77,7 +75,6 @@ class SearchPeopleFragment : Fragment(), SearchQueryChangeListener,
     }
 
     private fun updateUIWhenLoading(size: Int, networkState: NetworkState?) {
-
     }
 
     override fun onClickRetry() {

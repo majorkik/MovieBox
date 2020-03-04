@@ -2,6 +2,7 @@ package com.majorik.data.repositories
 
 import com.majorik.data.base.BaseUnitTest
 import com.majorik.data.di.appComponentTest
+import java.net.HttpURLConnection
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertNotNull
 import org.junit.Test
@@ -9,7 +10,6 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.koin.core.context.startKoin
 import org.koin.test.inject
-import java.net.HttpURLConnection
 
 @RunWith(JUnit4::class)
 class SearchRepositoryTest : BaseUnitTest() {

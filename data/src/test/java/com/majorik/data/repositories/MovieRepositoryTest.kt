@@ -2,6 +2,7 @@ package com.majorik.data.repositories
 
 import com.majorik.data.base.BaseUnitTest
 import com.majorik.data.di.appComponentTest
+import java.net.HttpURLConnection
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertNotNull
 import org.junit.Test
@@ -9,7 +10,6 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.koin.core.context.startKoin
 import org.koin.test.inject
-import java.net.HttpURLConnection
 
 @RunWith(JUnit4::class)
 class MovieRepositoryTest : BaseUnitTest() {
@@ -28,7 +28,7 @@ class MovieRepositoryTest : BaseUnitTest() {
     fun getMovieById() {
         mockHttpResponse("movieRepository/movie.json", HttpURLConnection.HTTP_OK)
         runBlocking {
-            val movie = movieRepository.getMovieById(0, "", "","")
+            val movie = movieRepository.getMovieById(0, "", "", "")
             assertNotNull(movie)
         }
     }
@@ -37,7 +37,7 @@ class MovieRepositoryTest : BaseUnitTest() {
     fun getPopularMovies() {
         mockHttpResponse("movieRepository/popularMovies.json", HttpURLConnection.HTTP_OK)
         runBlocking {
-            val popularMovies = movieRepository.getPopularMovies("",0,"")
+            val popularMovies = movieRepository.getPopularMovies("", 0, "")
             assertNotNull(popularMovies)
         }
     }
@@ -46,7 +46,7 @@ class MovieRepositoryTest : BaseUnitTest() {
     fun getTopRatedMovies() {
         mockHttpResponse("movieRepository/topRatedMovies.json", HttpURLConnection.HTTP_OK)
         runBlocking {
-            val topRatedMovies = movieRepository.getTopRatedMovies("",0,"")
+            val topRatedMovies = movieRepository.getTopRatedMovies("", 0, "")
             assertNotNull(topRatedMovies)
         }
     }

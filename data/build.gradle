@@ -27,6 +27,7 @@ dependencies {
 
     testImplementation testingDependencies.junit
     testImplementation testingDependencies.testJunit
+    testImplementation testingDependencies.mockWebServer
 
     implementation project(':domain')
 }

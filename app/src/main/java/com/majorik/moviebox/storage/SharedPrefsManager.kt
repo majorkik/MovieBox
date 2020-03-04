@@ -1,4 +1,4 @@
-package com.majorik.moviebox.utils
+package com.majorik.moviebox.storage
 
 import android.content.Context
 import android.content.SharedPreferences

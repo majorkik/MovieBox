@@ -2,7 +2,6 @@ package com.majorik.moviebox
 
 import android.app.usage.StorageStatsManager
 import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageStats
 import android.os.Build
 import android.os.Bundle
@@ -97,7 +96,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     }
 
     private fun showFragment(fragment: Fragment) {
-        if(activeFragment == null) activeFragment = fragmentMovie
+        if (activeFragment == null) activeFragment = fragmentMovie
 
         supportFragmentManager.beginTransaction()
             .hide(activeFragment!!)
