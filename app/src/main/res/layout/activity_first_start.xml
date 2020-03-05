@@ -8,48 +8,67 @@
     android:fitsSystemWindows="true"
     tools:context=".ui.first_start.FirstStartActivity">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/bg_anim"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="false"
+        app:lottie_rawRes="@raw/bg_anim"
+        app:lottie_speed="1" />
+
     <LinearLayout
+        android:id="@+id/logo_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/btn_about_tmdb"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/rubik_one_regular"
-            android:text="Movie"
+            android:text="@string/app_logo_movie"
             android:textAllCaps="true"
             android:textColor="@color/colorWhite"
-            android:textSize="40sp" />
+            android:textSize="48sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/rubik_one_regular"
-            android:text="Box"
+            android:text="@string/app_logo_box"
             android:textAllCaps="true"
             android:textColor="@color/colorAccent"
-            android:textSize="40sp" />
+            android:textSize="48sp" />
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/btn_about_tmdb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="24dp"
         android:clickable="true"
         android:focusable="true"
         android:foreground="?attr/selectableItemBackground"
+        android:visibility="gone"
         app:cardBackgroundColor="@color/mine_shaft"
         app:cardCornerRadius="8dp"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toTopOf="@+id/login_with_tmdb"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible">
 
         <TextView
             android:id="@+id/about_tmdb"
@@ -62,26 +81,28 @@
             android:fontFamily="@font/cc_montserrat_regular"
             android:text="@string/about_the_movie_database"
             android:textColor="@color/colorWhite"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/login_with_tmdb"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="16dp"
         android:clickable="true"
         android:focusable="true"
         android:foreground="?attr/selectableItemBackground"
+        android:visibility="gone"
         app:cardBackgroundColor="@color/caribbean_green_tmdb"
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp"
         app:layout_constraintBottom_toTopOf="@+id/login_with_guest"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -95,17 +116,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cc_montserrat_medium"
-                android:text="Войти через TMDb"
+                android:text="@string/login_with_tmdb"
                 android:textColor="@color/mine_shaft"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cc_montserrat_regular"
-                android:text="Рекомендуется"
+                android:text="@string/recommendation"
                 android:textColor="@color/mine_shaft"
-                android:textSize="10sp" />
+                android:textSize="12sp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -113,19 +134,21 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/login_with_guest"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
         android:clickable="true"
         android:focusable="true"
         android:foreground="?attr/selectableItemBackground"
+        android:visibility="gone"
         app:cardBackgroundColor="@color/colorWhite"
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -139,17 +162,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cc_montserrat_medium"
-                android:text="Войти как гость"
+                android:text="@string/login_with_guest"
                 android:textColor="@color/mine_shaft"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cc_montserrat_regular"
-                android:text="Большая часть функций будет недоступна"
+                android:text="@string/most_features_will_not_be_available"
                 android:textColor="@color/mine_shaft"
-                android:textSize="10sp" />
+                android:textSize="12sp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

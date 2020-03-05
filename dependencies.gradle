@@ -46,6 +46,7 @@ ext {
     rangeSeekBar_version = "3.0.0"
     numberPicker_version = "1.0.1"
     klock_version = "1.8.4"
+    lottie_version = "3.4.0"
 
     firebase_analytics_version = "17.2.2"
     firebase_crashlytics_version = "17.0.0-beta01"
@@ -125,6 +126,7 @@ ext {
             floatingsearchview: "com.github.arimorty:floatingsearchview:$floatingSearchView_version",
             rangeSeekBar      : "com.github.Jay-Goo:RangeSeekBar:$rangeSeekBar_version",
             numberPicker      : "com.super_rabbit.wheel_picker:NumberPicker:$numberPicker_version",
-            klock             : "com.soywiz.korlibs.klock:klock:$klock_version"
+            klock             : "com.soywiz.korlibs.klock:klock:$klock_version",
+            lottie            : "com.airbnb.android:lottie:$lottie_version"
     ]
 }

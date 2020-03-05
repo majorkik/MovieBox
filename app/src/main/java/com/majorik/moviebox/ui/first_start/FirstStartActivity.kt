@@ -1,5 +1,6 @@
 package com.majorik.moviebox.ui.first_start
 
+import android.animation.Animator
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -16,11 +17,14 @@ import com.majorik.domain.constants.UrlConstants
 import com.majorik.moviebox.MainActivity
 import com.majorik.moviebox.R
 import com.majorik.moviebox.extensions.setSafeOnClickListener
+import com.majorik.moviebox.extensions.setVisibilityOption
 import com.majorik.moviebox.extensions.startActivityWithAnim
 import com.majorik.moviebox.storage.CredentialsPrefsManager
 import com.majorik.moviebox.ui.about_tmdb.AboutTheMovieDatabaseActivity
 import com.majorik.moviebox.utils.FontSpan
+import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.activity_first_start.*
+import kotlinx.coroutines.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -28,16 +32,48 @@ class FirstStartActivity : AppCompatActivity() {
     private val authViewModel: AuthViewModel by viewModel()
     private val credentialsManager: CredentialsPrefsManager by inject()
 
+    private val activityScope = CoroutineScope(Dispatchers.Main)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (credentialsManager.getTmdbLoggedStatus()) { startMainActivity() }
+//        if (credentialsManager.getTmdbLoggedStatus()) { startMainActivity() }
 
         setContentView(R.layout.activity_first_start)
 
         setAboutTmdbTextStyle()
+        setAnimation()
         setClickListener()
         setObservers()
+    }
+
+    private fun setAnimation() {
+        bg_anim.addAnimatorListener(object : Animator.AnimatorListener {
+            override fun onAnimationRepeat(animation: Animator?) {
+            }
+
+            override fun onAnimationEnd(animation: Animator?) {
+                logo_title.setVisibilityOption(true)
+
+                if (credentialsManager.getTmdbLoggedStatus()) {
+                    activityScope.launch {
+                        delay(300)
+
+                        startMainActivity()
+                    }
+                } else {
+                    btn_about_tmdb.setVisibilityOption(true)
+                    login_with_tmdb.setVisibilityOption(true)
+                    login_with_guest.setVisibilityOption(true)
+                }
+            }
+
+            override fun onAnimationCancel(animation: Animator?) {
+            }
+
+            override fun onAnimationStart(animation: Animator?) {
+            }
+        })
     }
 
     override fun onResume() {
@@ -62,6 +98,11 @@ class FirstStartActivity : AppCompatActivity() {
         }
     }
 
+    override fun onPause() {
+        activityScope.cancel()
+        super.onPause()
+    }
+
     private fun setObservers() {
         authViewModel.tmdbRequestTokenLiveData.observe(this, Observer {
             requestToken = it.requestToken
@@ -76,6 +117,9 @@ class FirstStartActivity : AppCompatActivity() {
         })
 
         authViewModel.tmdbGuestSessionLiveData.observe(this, Observer {
+
+            Logger.i(it.toString())
+
             credentialsManager.saveLoginStatus(it.success ?: false)
 
             if (it.success == true) {
@@ -135,9 +179,9 @@ class FirstStartActivity : AppCompatActivity() {
 
         login_with_guest.setSafeOnClickListener {
             credentialsManager.getTmdbGuestSessionID()?.let {
-                authViewModel.createGuestSession()
-            } ?: run {
                 startMainActivity()
+            } ?: run {
+                authViewModel.createGuestSession()
             }
         }
     }

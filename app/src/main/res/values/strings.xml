@@ -95,5 +95,11 @@
     <string name="about_the_movie_database">Что такое <b>The Movie Database?</b></string>
     <string name="what">Что такое</string>
     <string name="the_movie_database">The Movie Database</string>
+    <string name="app_logo_box">Box</string>
+    <string name="app_logo_movie">Movie</string>
+    <string name="login_with_tmdb">Войти через TMDb</string>
+    <string name="login_with_guest">Войти как гость</string>
+    <string name="recommendation">Рекомендуется</string>
+    <string name="most_features_will_not_be_available">Большая часть функций будет недоступна</string>
 
 </resources>

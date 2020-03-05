@@ -147,6 +147,7 @@ dependencies {
     implementation otherDependencies.rangeSeekBar
     implementation otherDependencies.numberPicker
     implementation otherDependencies.klock
+    implementation otherDependencies.lottie
 
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -159,6 +160,4 @@ dependencies {
 
     kapt otherDependencies.glideCompiler
     annotationProcessor otherDependencies.glideCompiler
-
-
 }
