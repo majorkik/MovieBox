@@ -18,11 +18,17 @@
     <color name="gallery">#EEEEEE</color>
     <color name="mercury">#E8E8E8</color>
     <color name="alto">#DDDDDD</color>
+    <color name="silver_light">#C4C4C4</color>
     <color name="silver">#BBBBBB</color>
+    <color name="gray">#888888</color>
     <color name="shark_alpha_65">#A6222831</color>
     <color name="mine_shaft_alpha_40">#66212121</color>
     <color name="mine_shaft">#212121</color>
     <color name="mine_shaft_light">#2D2D2D</color>
 
+
+    <color name="sunglow_alpha_33">#54FED32C</color>
+    <color name="sunset_orange_alpha_33">#54FF4D4D</color>
+    <color name="emerald_alpha_33">#543EDC81</color>
 
 </resources>

@@ -9,6 +9,7 @@ class CredentialsPrefsManager(context: Context) {
         const val SP_NAME = "moviebox"
 
         const val TMDB_LOGIN_STATUS = "tmdb_login_status"
+        const val TMDB_GUEST_STATUS = "tmdb_login_guest_status"
 
         const val TMDB_SESSION_ID = "tmdb_session_id"
 
@@ -26,7 +27,13 @@ class CredentialsPrefsManager(context: Context) {
     }
 
     fun saveLoginStatus(isLogged: Boolean) {
+        sharedPrefs.edit { putBoolean(TMDB_GUEST_STATUS, false) }
         sharedPrefs.edit { putBoolean(TMDB_LOGIN_STATUS, isLogged) }
+    }
+
+    fun saveGuestLoginStatus(isLogged: Boolean) {
+        sharedPrefs.edit { putBoolean(TMDB_LOGIN_STATUS, false) }
+        sharedPrefs.edit { putBoolean(TMDB_GUEST_STATUS, isLogged) }
     }
 
     fun saveTmdbSessionID(sessionID: String?) {
@@ -40,6 +47,8 @@ class CredentialsPrefsManager(context: Context) {
     }
 
     fun getTmdbLoggedStatus(): Boolean = sharedPrefs.getBoolean(TMDB_LOGIN_STATUS, false)
+
+    fun getTmdbGuestLoggedStatus(): Boolean = sharedPrefs.getBoolean(TMDB_GUEST_STATUS, false)
 
     fun getTmdbSessionID(): String? = sharedPrefs.getString(TMDB_SESSION_ID, null)
 

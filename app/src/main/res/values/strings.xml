@@ -101,5 +101,9 @@
     <string name="login_with_guest">Войти как гость</string>
     <string name="recommendation">Рекомендуется</string>
     <string name="most_features_will_not_be_available">Большая часть функций будет недоступна</string>
+    <string name="tmdb_account_benefits">- синхронизация с вашим аккаунтом <b>TMDb</b>;\n\n- возможность <b>добавлять в избранное</b>;\n\n- возможность <b>отслеживать фильмы и сериалы</b>;\n\n- возможность <b>оценивать фильмы, сериалы и сезоны</b>;\n\n- возможность <b>создавать свои собственные списки.</b></string>
+    <string name="tmdb_benefits_title">Преимущества аккаунта TMDb</string>
+    <string name="login_to_account">Войти в аккаунт</string>
+    <string name="guest">Гость</string>
 
 </resources>

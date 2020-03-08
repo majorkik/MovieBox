@@ -55,7 +55,7 @@ class FirstStartActivity : AppCompatActivity() {
             override fun onAnimationEnd(animation: Animator?) {
                 logo_title.setVisibilityOption(true)
 
-                if (credentialsManager.getTmdbLoggedStatus()) {
+                if (credentialsManager.getTmdbLoggedStatus() || credentialsManager.getTmdbGuestLoggedStatus()) {
                     activityScope.launch {
                         delay(300)
 
@@ -96,6 +96,8 @@ class FirstStartActivity : AppCompatActivity() {
                     .show()
             }
         }
+
+        requestToken = null
     }
 
     override fun onPause() {
@@ -117,10 +119,7 @@ class FirstStartActivity : AppCompatActivity() {
         })
 
         authViewModel.tmdbGuestSessionLiveData.observe(this, Observer {
-
-            Logger.i(it.toString())
-
-            credentialsManager.saveLoginStatus(it.success ?: false)
+            credentialsManager.saveGuestLoginStatus(it.success ?: false)
 
             if (it.success == true) {
                 credentialsManager.saveGuestSessionID(it.requestToken)
