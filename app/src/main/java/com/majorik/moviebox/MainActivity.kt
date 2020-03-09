@@ -19,6 +19,7 @@ import com.majorik.moviebox.ui.main_page_search.SearchFragment
 import com.majorik.moviebox.ui.main_page_tvs.TVsFragment
 import com.majorik.moviebox.ui.search.SearchableActivity
 import com.orhanobut.logger.Logger
+import java.util.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {

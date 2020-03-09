@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MovieBox</string>
     <string name="app_name_caps">MOVIEBOX</string>
@@ -116,21 +117,10 @@
         <item quantity="other">%1$d часов</item>
     </plurals>
 
-    <string name="yyyy_mm_dd" translatable="false">yyyy-MM-dd</string>
-
-    <!--    Mask for short info. Example 2019 Action, Drama, Fantasy-->
-    <string name="short_info_mask" translatable="false">%s %s</string>
-
-    <!--    Mask for runtime. Example 2 hour 35 minutes-->
-    <string name="runtime_mask" translatable="false">%s %s</string>
-    <string name="max_rate_with_slash">/10</string>
-    <string name="watch_trailer">Смотреть трейлер</string>
-
-
     <plurals name="minutes">
         <item quantity="one">%1$d минута</item>
-        <item quantity="few">%1$d минут</item>
-        <item quantity="many">%1$d минуты</item>
-        <item quantity="other">%1$d минуты</item>
+        <item quantity="few">%1$d минуты</item>
+        <item quantity="many">%1$d минут</item>
+        <item quantity="other">%1$d минут</item>
     </plurals>
 </resources>

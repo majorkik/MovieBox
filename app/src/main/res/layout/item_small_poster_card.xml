@@ -11,7 +11,7 @@
     android:focusable="true"
     android:foreground="?attr/selectableItemBackground"
     app:cardCornerRadius="8dp"
-    app:cardElevation="8dp"
+    app:cardElevation="0dp"
     tools:cardBackgroundColor="#555555">
 
     <ImageView

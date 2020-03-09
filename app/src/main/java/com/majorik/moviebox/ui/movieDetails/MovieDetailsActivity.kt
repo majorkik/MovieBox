@@ -3,6 +3,7 @@ package com.majorik.moviebox.ui.movieDetails
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.majorik.domain.constants.UrlConstants
@@ -12,18 +13,15 @@ import com.majorik.domain.tmdbModels.video.Videos
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.CastAdapter
 import com.majorik.moviebox.adapters.ImageSliderAdapter
-import com.majorik.moviebox.extensions.displayImageWithCenterCrop
-import com.majorik.moviebox.extensions.displayImageWithCenterInside
-import com.majorik.moviebox.extensions.openYouTube
-import com.majorik.moviebox.extensions.setAdapterWithFixedSize
-import com.majorik.moviebox.extensions.setVisibilityOption
-import com.majorik.moviebox.extensions.setWindowTransparency
-import com.majorik.moviebox.extensions.showToastMessage
-import com.majorik.moviebox.extensions.updateMargin
+import com.majorik.moviebox.extensions.*
 import com.majorik.moviebox.storage.SharedPrefsManager
 import com.majorik.moviebox.ui.base.BaseSlidingActivity
+import com.soywiz.klock.*
+import com.soywiz.klock.locale.russian
 import com.stfalcon.imageviewer.StfalconImageViewer
 import java.text.DecimalFormat
+import java.util.*
+import kotlin.math.floor
 import kotlinx.android.synthetic.main.activity_movie_details.*
 import kotlinx.android.synthetic.main.layout_movie_details.*
 import org.koin.android.ext.android.inject
@@ -49,11 +47,11 @@ class MovieDetailsActivity : BaseSlidingActivity() {
             setDisplayUseLogoEnabled(true)
             setDisplayShowTitleEnabled(false)
         }
-
-        // cacheDir?.deleteRecursively()
-        // codeCacheDir?.deleteRecursively()
-        // externalCacheDir?.deleteRecursively()
-        // externalCacheDirs?.forEach { it.deleteRecursively() }
+//
+//         cacheDir?.deleteRecursively()
+//         codeCacheDir?.deleteRecursively()
+//         externalCacheDir?.deleteRecursively()
+//         externalCacheDirs?.forEach { it.deleteRecursively() }
 
         fetchDetails(intent.extras)
         setClickListeners()
@@ -135,6 +133,7 @@ class MovieDetailsActivity : BaseSlidingActivity() {
         }
     }
 
+    @UseExperimental(ExperimentalStdlibApi::class)
     private fun setObserver() {
         movieDetailsViewModel.movieDetailsLiveData.observe(this, Observer { movie ->
             placeholder_main_details_page.setVisibilityOption(false)
@@ -143,17 +142,54 @@ class MovieDetailsActivity : BaseSlidingActivity() {
 
             val numFormat = DecimalFormat("#,###,###")
             m_title.text = movie.title
-            m_original_language.text = movie.originalLanguage
+            m_original_language.text =
+                Locale(movie.originalLanguage).displayLanguage.capitalize(Locale.getDefault())
             m_original_title.text = movie.originalTitle
             m_revenue.text = (numFormat.format(movie.revenue) + " $")
             m_budget.text = (numFormat.format(movie.budget) + " $")
-            m_release_date.text = movie.releaseDate
+            m_release_date.text =
+                KlockLocale.russian.formatDateLong.format(movie.releaseDate.toDate(getString(R.string.yyyy_mm_dd)))
             m_status.text = movie.status
-            m_runtime.text = movie.runtime.toString()
-            m_overview.text = movie.overview
+            setReleaseDate(movie.runtime)
+            setOverview(movie.overview)
             m_vote_average.text = movie.voteAverage.toString()
 
+            val genres = movie.genres.joinToString(", ") { it.name.capitalize(Locale.getDefault()) }
+
+            m_add_info.text = getString(
+                R.string.short_info_mask,
+                movie.releaseDate.toDate(getString(R.string.yyyy_mm_dd)).yearInt.toString(),
+                genres
+            )
+
             m_companies.text = movie.productionCompanies.joinToString(", ") { it.name }
+
+            when {
+                movie.voteAverage >= 8 -> {
+                    vote_average_indicator.setColorFilter(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.emerald
+                        )
+                    )
+                }
+                movie.voteAverage > 6 && movie.voteAverage < 8 -> {
+                    vote_average_indicator.setColorFilter(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.colorAccent
+                        )
+                    )
+                }
+                else -> {
+                    vote_average_indicator.setColorFilter(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.sunset_orange
+                        )
+                    )
+                }
+            }
 
             m_backdrop_image.displayImageWithCenterCrop(UrlConstants.TMDB_BACKDROP_SIZE_780 + movie.backdropPath)
             m_poster_image.displayImageWithCenterCrop(UrlConstants.TMDB_POSTER_SIZE_500 + movie.posterPath)
@@ -161,8 +197,6 @@ class MovieDetailsActivity : BaseSlidingActivity() {
             setImageSlider(movie.images.backdrops.map { imageInfo -> imageInfo.filePath }.take(6))
 
             m_persons.setAdapterWithFixedSize(CastAdapter(movie.credits.casts), true)
-            m_count_persons.text = movie.credits.casts.size.toString()
-            m_count_trailers.text = movie.videos.results.size.toString()
 
             setTrailerButtonClickListener(movie.videos)
 
@@ -204,5 +238,30 @@ class MovieDetailsActivity : BaseSlidingActivity() {
 
     private fun setImageSlider(images: List<String>) {
         md_image_slider.adapter = ImageSliderAdapter(images)
+    }
+
+    private fun setReleaseDate(runtime: Int?) {
+        if (runtime != null) {
+            val hours = floor(runtime / 60.0).toInt()
+            val stringHours = resources.getQuantityString(R.plurals.hours, hours, hours)
+
+            val minutes = runtime % 60
+            val stringMinutes = resources.getQuantityString(R.plurals.minutes, minutes, minutes)
+
+            m_runtime.text = getString(R.string.runtime_mask, stringHours, stringMinutes)
+        } else {
+            m_runtime.text = getString(R.string.unknown)
+        }
+    }
+
+    private fun setOverview(overview: String?) {
+        if (overview.isNullOrBlank()) {
+            m_overview_empty.setVisibilityOption(true)
+            m_overview.setVisibilityOption(false)
+        } else {
+            m_overview_empty.setVisibilityOption(false)
+            m_overview.setVisibilityOption(true)
+            m_overview.text = overview
+        }
     }
 }
