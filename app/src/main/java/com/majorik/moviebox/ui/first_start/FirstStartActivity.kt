@@ -138,7 +138,7 @@ class FirstStartActivity : AppCompatActivity() {
                     "cc_montserrat_bold",
                     ResourcesCompat.getFont(
                         this@FirstStartActivity,
-                        R.font.cc_montserrat_bold
+                        R.font.cc_montserrat_black
                     )
                 ),
                 what.length,

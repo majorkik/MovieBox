@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:background="@color/colorPrimary">
+    android:background="@color/colorPrimary">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -25,6 +25,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginStart="16dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/cc_rubik_one"
@@ -36,12 +37,14 @@
 
                 <ImageButton
                     android:id="@+id/btn_search"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="16dp"
-                    android:background="@color/transparent"
-                    android:src="@drawable/ic_search_circle" />
+                    android:layout_marginEnd="24dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="6dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_search_new" />
             </LinearLayout>
 
             <androidx.cardview.widget.CardView
@@ -78,6 +81,7 @@
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
                         android:text="@string/more"
+                        android:textColor="@color/colorAccent"
                         android:theme="@style/HeaderSmall" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -125,6 +129,7 @@
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
                         android:text="@string/more"
+                        android:textColor="@color/colorAccent"
                         android:theme="@style/HeaderSmall" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -176,6 +181,7 @@
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
                         android:text="@string/more"
+                        android:textColor="@color/colorAccent"
                         android:theme="@style/HeaderSmall" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -184,6 +190,7 @@
                 android:id="@+id/vp_trend_movies"
                 android:layout_width="match_parent"
                 android:layout_height="72dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="24dp"
                 android:clipChildren="false"
                 android:clipToPadding="false"
@@ -223,6 +230,7 @@
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
                         android:text="@string/more"
+                        android:textColor="@color/colorAccent"
                         android:theme="@style/HeaderSmall" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -273,6 +281,7 @@
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
                         android:text="@string/more"
+                        android:textColor="@color/colorAccent"
                         android:theme="@style/HeaderSmall" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -323,6 +332,7 @@
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
                         android:text="@string/more"
+                        android:textColor="@color/colorAccent"
                         android:theme="@style/HeaderSmall" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -373,6 +383,7 @@
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
                         android:text="@string/more"
+                        android:textColor="@color/colorAccent"
                         android:theme="@style/HeaderSmall" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     tools:context="ui.main_page_profile.ProfileFragment">
 
     <androidx.core.widget.NestedScrollView
@@ -42,13 +43,13 @@
                     android:textStyle="normal" />
 
                 <ImageButton
-                    android:id="@+id/btn_search"
+                    android:id="@+id/btn_settings"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="24dp"
                     android:background="@color/transparent"
-                    android:src="@drawable/ic_search_black_24dp" />
+                    android:src="@drawable/ic_settings" />
             </LinearLayout>
 
             <FrameLayout

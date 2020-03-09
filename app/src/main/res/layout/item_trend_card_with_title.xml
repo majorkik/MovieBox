@@ -3,14 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/m_trend_layout"
+    style="@style/BaseClickableCard"
     android:layout_width="300dp"
-    android:layout_height="72dp"
-    android:clickable="true"
-    android:focusable="true"
-    android:foreground="?attr/selectableItemBackground"
-    app:cardBackgroundColor="@color/alabaster"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="0dp">
+    android:layout_height="80dp"
+    app:cardBackgroundColor="@color/mine_shaft">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -23,7 +19,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_toStartOf="@+id/m_trend_rating"
+            android:layout_toStartOf="@+id/m_trend_rating_layout"
             android:orientation="vertical">
 
             <TextView
@@ -33,7 +29,7 @@
                 android:fontFamily="@font/cc_rubik_one"
                 android:maxLines="1"
                 android:textAllCaps="true"
-                android:textColor="@color/mine_shaft"
+                android:textColor="@color/colorWhite"
                 android:textSize="16sp"
                 tools:text="example text" />
 
@@ -49,7 +45,7 @@
                     android:fontFamily="@font/cc_montserrat_semibold"
                     android:maxLines="1"
                     android:textAllCaps="true"
-                    android:textColor="@color/mine_shaft"
+                    android:textColor="@color/colorWhite"
                     android:textSize="10sp"
                     tools:text="2019" />
 
@@ -68,29 +64,49 @@
                     android:fontFamily="@font/cc_montserrat_semibold"
                     android:maxLines="1"
                     android:textAllCaps="true"
-                    android:textColor="@color/mine_shaft"
+                    android:textColor="@color/colorWhite"
                     android:textSize="10sp"
                     tools:text="Фэнтези Экшн" />
             </LinearLayout>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/m_trend_rating"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/m_trend_rating_layout"
+            style="@style/BaseCardStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
-            android:background="@drawable/bg_rating_text_view"
-            android:fontFamily="@font/cc_montserrat_medium"
-            android:paddingStart="12dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="12dp"
-            android:paddingBottom="4dp"
-            android:textColor="@color/mine_shaft"
-            android:textSize="10sp"
-            tools:text="74%" />
+            app:cardBackgroundColor="@color/mine_shaft_extra_light"
+            app:cardCornerRadius="50dp">
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/ic_heart" />
+
+                <TextView
+                    android:id="@+id/m_trend_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cc_montserrat_medium"
+                    android:paddingStart="8dp"
+                    android:paddingTop="4dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="4dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="10sp"
+                    tools:text="74%" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
