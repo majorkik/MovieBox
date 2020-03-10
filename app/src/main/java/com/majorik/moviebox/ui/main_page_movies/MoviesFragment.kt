@@ -9,6 +9,7 @@ import androidx.core.util.isEmpty
 import androidx.lifecycle.Observer
 import com.majorik.data.repositories.TrendingRepository
 import com.majorik.domain.constants.GenresConstants
+import com.majorik.domain.enums.movie.MovieCollectionType
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.*
 import com.majorik.moviebox.extensions.setAdapterWithFixedSize
@@ -57,15 +58,24 @@ class MoviesFragment : BaseNavigationFragment() {
         }
 
         btn_popular_movies.setOnClickListener {
-            openNewActivityWithTab(MovieCollectionsActivity::class.java, 0)
+            openNewActivityWithTab(
+                MovieCollectionsActivity::class.java,
+                MovieCollectionType.POPULAR
+            )
         }
 
         btn_upcoming_movies.setOnClickListener {
-            openNewActivityWithTab(MovieCollectionsActivity::class.java, 1)
+            openNewActivityWithTab(
+                MovieCollectionsActivity::class.java,
+                MovieCollectionType.UPCOMING
+            )
         }
 
         btn_now_playing_movies.setOnClickListener {
-            openNewActivityWithTab(MovieCollectionsActivity::class.java, 2)
+            openNewActivityWithTab(
+                MovieCollectionsActivity::class.java,
+                MovieCollectionType.NOW_PLAYING
+            )
         }
     }
 
@@ -78,7 +88,9 @@ class MoviesFragment : BaseNavigationFragment() {
         })
 
         moviesViewModel.upcomingMoviesLiveData.observe(viewLifecycleOwner, Observer {
-            rv_upcoming_movies.setAdapterWithFixedSize(MovieDateCardAdapter(it.sortedBy { it.releaseDate?.toDate()?.utc?.unixMillisLong ?: 0L }), true)
+            rv_upcoming_movies.setAdapterWithFixedSize(MovieDateCardAdapter(it.sortedBy {
+                it.releaseDate?.toDate()?.utc?.unixMillisLong ?: 0L
+            }), true)
         })
 
         moviesViewModel.nowPlayingMoviesLiveData.observe(viewLifecycleOwner, Observer {
@@ -115,10 +127,13 @@ class MoviesFragment : BaseNavigationFragment() {
         })
     }
 
-    private fun openNewActivityWithTab(collectionsActivity: Class<*>, numTab: Int) {
+    private fun openNewActivityWithTab(
+        collectionsActivity: Class<*>,
+        collectionType: MovieCollectionType
+    ) {
         val intent = Intent(context, collectionsActivity)
 
-        intent.putExtra("page", numTab)
+        intent.putExtra("collection_name", collectionType.name)
 
         startActivity(intent)
     }

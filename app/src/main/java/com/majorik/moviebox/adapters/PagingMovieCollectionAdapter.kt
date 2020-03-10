@@ -29,7 +29,7 @@ class PagingMovieCollectionAdapter(private val callback: OnClickListener) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
         return when (viewType) {
-            R.layout.item_small_poster_card -> MoviePagedItemVH(
+            R.layout.item_medium_poster_card -> MoviePagedItemVH(
                 view
             )
             R.layout.item_network_state -> NetworkStateViewHolder(
@@ -41,7 +41,7 @@ class PagingMovieCollectionAdapter(private val callback: OnClickListener) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (getItemViewType(position)) {
-            R.layout.item_small_poster_card -> {
+            R.layout.item_medium_poster_card -> {
                 (holder as MoviePagedItemVH).bindTo(getItem(position))
 
                 holder.itemView.setSafeOnClickListener {
@@ -66,7 +66,7 @@ class PagingMovieCollectionAdapter(private val callback: OnClickListener) :
         return if (hasExtraRow() && position == itemCount - 1) {
             R.layout.item_network_state
         } else {
-            R.layout.item_small_poster_card
+            R.layout.item_medium_poster_card
         }
     }
 

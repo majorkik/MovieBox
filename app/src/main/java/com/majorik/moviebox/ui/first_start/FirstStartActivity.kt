@@ -22,6 +22,7 @@ import com.majorik.moviebox.extensions.startActivityWithAnim
 import com.majorik.moviebox.storage.CredentialsPrefsManager
 import com.majorik.moviebox.ui.about_tmdb.AboutTheMovieDatabaseActivity
 import com.majorik.moviebox.utils.FontSpan
+import kotlin.coroutines.CoroutineContext
 import kotlinx.android.synthetic.main.activity_first_start.*
 import kotlinx.coroutines.*
 import org.koin.android.ext.android.inject
@@ -31,7 +32,11 @@ class FirstStartActivity : AppCompatActivity() {
     private val authViewModel: AuthViewModel by viewModel()
     private val credentialsManager: CredentialsPrefsManager by inject()
 
-    private val activityScope = CoroutineScope(Dispatchers.Main)
+    private val job = SupervisorJob()
+    private val uiCoroutineContext: CoroutineContext
+        get() = job + Dispatchers.Main
+
+    private val uiScope = CoroutineScope(uiCoroutineContext)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,8 +45,9 @@ class FirstStartActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_first_start)
 
-        setAboutTmdbTextStyle()
         setAnimation()
+
+        setAboutTmdbTextStyle()
         setClickListener()
         setObservers()
     }
@@ -55,7 +61,7 @@ class FirstStartActivity : AppCompatActivity() {
                 logo_title.setVisibilityOption(true)
 
                 if (credentialsManager.getTmdbLoggedStatus() || credentialsManager.getTmdbGuestLoggedStatus()) {
-                    activityScope.launch {
+                    uiScope.launch {
                         delay(300)
 
                         startMainActivity()
@@ -100,7 +106,7 @@ class FirstStartActivity : AppCompatActivity() {
     }
 
     override fun onPause() {
-        activityScope.cancel()
+        uiScope.coroutineContext.cancelChildren(null)
         super.onPause()
     }
 

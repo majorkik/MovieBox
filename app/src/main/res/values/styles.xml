@@ -97,9 +97,14 @@
         <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
+    <style name="AppTheme.Transparent.NoActionBar.Dark" parent="AppTheme.Transparent.NoActionBar">
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+    </style>
+
     <style name="AppTheme.SlidingActivity" parent="AppTheme.NoActionBar">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
+
     </style>
 
     <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">

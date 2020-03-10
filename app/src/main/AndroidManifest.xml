@@ -45,7 +45,7 @@
         <activity
             android:name=".ui.movieTabCollections.MovieCollectionsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/AppTheme.Transparent.NoActionBar.Dark"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ui.tvTabCollections.TVCollectionsActivity"

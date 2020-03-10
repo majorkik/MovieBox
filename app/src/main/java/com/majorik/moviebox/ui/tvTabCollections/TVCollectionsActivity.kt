@@ -1,10 +1,7 @@
 package com.majorik.moviebox.ui.tvTabCollections
 
 import android.os.Bundle
-import com.google.android.material.tabs.TabLayout
-import com.majorik.domain.enums.movie.TVCollectionType
 import com.majorik.moviebox.R
-import com.majorik.moviebox.adapters.TabCollectionsAdapter
 import com.majorik.moviebox.ui.base.BaseTabActivity
 import kotlinx.android.synthetic.main.activity_tab_collections.*
 
@@ -19,22 +16,22 @@ class TVCollectionsActivity : BaseTabActivity() {
     override fun getToolbarTitle() = "Сериалы"
 
     private fun configureTabLayout(page: Int) {
-        val adapter = TabCollectionsAdapter(supportFragmentManager)
-
-        adapter.addFragment(TVCollectionsFragment(TVCollectionType.AIRING_TODAY), "Сейчас в эфире")
-        adapter.addFragment(TVCollectionsFragment(TVCollectionType.ON_THE_AIR), "В эфире")
-        adapter.addFragment(TVCollectionsFragment(TVCollectionType.POPULAR), "Полурные")
-        adapter.addFragment(TVCollectionsFragment(TVCollectionType.TOP_RATED), "Самые популярные")
-
-        view_pager.adapter = adapter
-
-        if (adapter.count < 3) {
-            tab_layout.tabMode = TabLayout.MODE_FIXED
-        } else {
-            tab_layout.tabMode = TabLayout.MODE_SCROLLABLE
-        }
-
-        tab_layout.setupWithViewPager(view_pager)
-        tab_layout.getTabAt(page)?.select()
+//        val adapter = TabCollectionsAdapter(supportFragmentManager)
+//
+//        adapter.addFragment(TVCollectionsFragment(TVCollectionType.AIRING_TODAY), "Сейчас в эфире")
+//        adapter.addFragment(TVCollectionsFragment(TVCollectionType.ON_THE_AIR), "В эфире")
+//        adapter.addFragment(TVCollectionsFragment(TVCollectionType.POPULAR), "Полурные")
+//        adapter.addFragment(TVCollectionsFragment(TVCollectionType.TOP_RATED), "Самые популярные")
+//
+//        view_pager.adapter = adapter
+//
+//        if (adapter.count < 3) {
+//            tab_layout.tabMode = TabLayout.MODE_FIXED
+//        } else {
+//            tab_layout.tabMode = TabLayout.MODE_SCROLLABLE
+//        }
+//
+//        tab_layout.setupWithViewPager(view_pager)
+//        tab_layout.getTabAt(page)?.select()
     }
 }

@@ -9,12 +9,12 @@ abstract class BaseTabActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
 
-        setSupportActionBar(toolbar_collections)
-
-        toolbar_title.text = getToolbarTitle()
-
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
+//        setSupportActionBar(toolbar_collections)
+//
+//        toolbar_title.text = getToolbarTitle()
+//
+//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//        supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
     abstract fun getLayoutId(): Int
