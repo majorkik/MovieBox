@@ -13,17 +13,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="?attr/actionBarSize"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="344dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="16dp"
@@ -37,12 +36,12 @@
 
                 <ImageButton
                     android:id="@+id/btn_search"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="24dp"
+                    android:layout_marginHorizontal="8dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:padding="6dp"
+                    android:padding="18dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_search_new" />
             </LinearLayout>
@@ -52,7 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:clickable="true"
                 android:focusable="true"

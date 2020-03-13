@@ -23,11 +23,16 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".ui.settings.SettingsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Transparent.NoActionBar.Dark"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
             android:name=".ui.about_tmdb.AboutTheMovieDatabaseActivity"
             android:theme="@style/AppTheme.Transparent.NoActionBar" />
         <activity
             android:name=".ui.first_start.FirstStartActivity"
-            android:theme="@style/AppTheme.NoActionBar.Dark" >
+            android:theme="@style/AppTheme.NoActionBar.Dark">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -78,11 +83,13 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="LockedOrientationActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".ui.person_details.PersonDetailsActivity"

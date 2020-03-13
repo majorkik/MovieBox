@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MovieBox</string>
     <string name="app_name_caps">MOVIEBOX</string>
@@ -12,12 +11,17 @@
     <!--    Страница Фильмы & Сериалы (коллекции)-->
     <string name="collection_popular">Популярные</string>
     <string name="collection_top_rated">Самые популярные</string>
-    <string name="best_movies_tmdb">Лучшие фильмы за все время по рейтингу TMDB</string>
-    <string name="best_tvs_tmdb">Лучшие сериалы за все время по рейтингу TMDB</string>
+    <string name="now_playing">Сейчас идут</string>
+    <string name="upcoming">Ожидаемые</string>
+    <string name="on_the_air">В эфире</string>
+    <string name="air_today">Сегодня в эфире</string>
+    <string name="most_viewed_movies_in_the_last_month">Тренды фильмов за последний месяц</string>
+    <string name="popular_peoples">Популярные люди</string>
+    <string name="all_trends">Все тренды</string>
+    <string name="in_trends">В тренде</string>
 
     <!--    Описание кнопок-->
     <string name="button_search">Поиск</string>
-    <string name="button_expandable_text">Свернуть/развернуть</string>
 
     <!--    Описание изображений-->
     <string name="desc_collection_image">Изображение коллекции</string>
@@ -25,102 +29,112 @@
     <string name="desc_icon_play_video">Иконка воиспроизведения видео</string>
     <string name="desc_trailer_image">Заставка трейлера</string>
     <string name="desc_poster">Постер</string>
+    <string name="desc_image_episode">Изобажение эпизода</string>
+    <string name="desc_poster_season">Постер сезона</string>
+    <string name="desc_empty_list">Пустой список</string>
 
     <!--    Детальная информация-->
     <string name="overview">Описание</string>
     <string name="persons">Актёры</string>
     <string name="trailers">Трейлеры</string>
     <string name="facts">Факты</string>
-    <string name="vote_average">Оценка</string>
-    <string name="vote_count">Оценивших</string>
     <string name="runtime">Продолжительность</string>
     <string name="original_title">Оригинальное название</string>
     <string name="revenue">Сборы</string>
     <string name="budget">Бюджет</string>
-    <string name="popularity">Популярность</string>
     <string name="release_date">Дата выхода</string>
     <string name="original_language">Оригинальный язык</string>
     <string name="status">Статус</string>
     <string name="company_production">Компании производства</string>
-    <string name="number_of_episodes">Серий</string>
-    <string name="first_air_date">Дата первого эфира</string>
-    <string name="last_air_date">Дата последнего эфира</string>
-    <string name="number_of_seasons">Сезонов</string>
     <string name="images">Изображения</string>
     <string name="additional_options">Дополнительно</string>
     <string name="recommendations">Рекомендации</string>
     <string name="all_comments">Все комментарии</string>
     <string name="reviews">Отзывы</string>
+    <string name="place_of_birth">Место рождения</string>
+    <string name="date_birthday">День рождения</string>
+    <string name="biography">Биография</string>
+    <string name="comments">Комментарии</string>
+    <string name="recommendations_and_similar">Рекомендации и похожее</string>
+    <string name="vote_counts">Оценивших</string>
 
+    <!--    Errors-->
     <string name="network_state_error_retry">Произошла ошибка</string>
     <string name="technical_error">Техническая ошибка</string>
     <string name="no_result_found">По данному запросу ничего не найдено</string>
     <string name="retry">Повторить попытку</string>
     <string name="refresh">Обновить</string>
     <string name="empty_list">Пустой список</string>
+
+    <!--    Base variable-->
     <string name="tvs">Сериалы</string>
     <string name="movies">Фильмы</string>
     <string name="tv">Сериалы</string>
     <string name="movie">Фильмы</string>
-    <string name="place_of_birth">Место рождения</string>
-    <string name="date_birthday">День рождения</string>
-    <string name="biography">Биография</string>
-    <string name="episodes">Эпизодов</string>
     <string name="seasons">Сезоны</string>
-    <string name="desc_image_episode">Изобажение эпизода</string>
-    <string name="desc_poster_season">Постер сезона</string>
-    <string name="now_playing">Сейчас идут</string>
-    <string name="upcoming">Ожидаемые</string>
-    <string name="on_the_air">В эфире</string>
-    <string name="air_today">Сегодня в эфире</string>
-    <string name="more">Смотреть все</string>
-    <string name="desc_empty_list">Пустой список</string>
-
-    <string name="tgl_btn_favorite">Добавить в избранное</string>
-    <string name="tgl_btn_watchlist">Буду смотреть</string>
+    <string name="genres">Жанры</string>
+    <string name="peoples">Люди</string>
+    <string name="the_movie_database">The Movie Database</string>
+    <string name="guest">Гость</string>
 
     <!--    Страница логина-->
-    <string name="login_with_tmdb_service">Войти с помощью TMDB</string>
-    <string name="genres">Жанры</string>
-    <string name="popular_peoples">Популярные люди</string>
-    <string name="all_trends">Все тренды</string>
-    <string name="most_viewed_movies_in_the_last_month">Тренды фильмов за последний месяц</string>
-    <string name="in_trends">В тренде</string>
-    <string name="filmography">Фильмография</string>
-
-    <string name="inline_filmography_delimiter">как</string>
-
-    <string name="is_absent">Отсутствует</string>
-    <string name="peoples">Люди</string>
-    <string name="vote_counts">Оценивших</string>
-    <string name="about_the_movie_database">Что такое <b>The Movie Database?</b></string>
-    <string name="what">Что такое</string>
-    <string name="the_movie_database">The Movie Database</string>
     <string name="app_logo_box">Box</string>
     <string name="app_logo_movie">Movie</string>
+    <string name="login_with_tmdb_service">Войти с помощью TMDB</string>
+    <string name="filmography">Фильмография</string>
+    <string name="about_the_movie_database">Что такое <b>The Movie Database?</b></string>
+    <string name="what">Что такое</string>
     <string name="login_with_tmdb">Войти через TMDb</string>
     <string name="login_with_guest">Войти как гость</string>
     <string name="recommendation">Рекомендуется</string>
     <string name="most_features_will_not_be_available">Большая часть функций будет недоступна</string>
+
+    <!--    Person page-->
+    <string name="inline_filmography_delimiter">как</string>
+
+    <!--    Profile page-->
     <string name="tmdb_account_benefits">- синхронизация с вашим аккаунтом <b>TMDb</b>;\n\n- возможность <b>добавлять в избранное</b>;\n\n- возможность <b>отслеживать фильмы и сериалы</b>;\n\n- возможность <b>оценивать фильмы, сериалы и сезоны</b>;\n\n- возможность <b>создавать свои собственные списки.</b></string>
     <string name="tmdb_benefits_title">Преимущества аккаунта TMDb</string>
     <string name="login_to_account">Войти в аккаунт</string>
-    <string name="guest">Гость</string>
-    <string name="comments">Комментарии</string>
-    <string name="recommendations_and_similar">Рекомендации и похожее</string>
+
+    <!--    Date mask-->
+    <string name="yyyy_mm_dd" translatable="false">yyyy-MM-dd</string>
+
+    <!--    Mask for short info. Example 2019 Action, Drama, Fantasy-->
+    <string name="short_info_mask" translatable="false">%s %s</string>
+
+    <!--    Mask for runtime. Example 2 hour 35 minutes-->
+    <string name="runtime_mask" translatable="false">%s %s</string>
+    <string name="max_rate_with_slash">/10</string>
+    <string name="watch_trailer">Смотреть трейлер</string>
+
+    <!--    Clear cache dialog-->
+    <string name="cache_size_with_format">Размер: %s</string>
+    <string name="flush_cache">Очистка кэша</string>
+
+    <!--    Base-->
+    <string name="cancel">Отмена</string>
+    <string name="clear">Очистить</string>
+    <string name="more">Смотреть все</string>
+    <string name="is_absent">Отсутствует</string>
     <string name="unknown">Неизвестно</string>
+
+    <!--    Actions-->
+    <string name="tgl_btn_favorite">Добавить в избранное</string>
+    <string name="tgl_btn_watchlist">Буду смотреть</string>
+
+    <!--    Plurals-->
+    <plurals name="minutes">
+        <item quantity="one">%1$d минута</item>
+        <item quantity="few">%1$d минут</item>
+        <item quantity="many">%1$d минуты</item>
+        <item quantity="other">%1$d минуты</item>
+    </plurals>
 
     <plurals name="hours">
         <item quantity="one">%1$d час</item>
         <item quantity="few">%1$d часа</item>
         <item quantity="many">%1$d часов</item>
         <item quantity="other">%1$d часов</item>
-    </plurals>
-
-    <plurals name="minutes">
-        <item quantity="one">%1$d минута</item>
-        <item quantity="few">%1$d минуты</item>
-        <item quantity="many">%1$d минут</item>
-        <item quantity="other">%1$d минут</item>
     </plurals>
 </resources>

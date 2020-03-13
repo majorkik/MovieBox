@@ -12,6 +12,7 @@ import com.majorik.moviebox.extensions.setVisibilityOption
 import com.majorik.moviebox.extensions.startActivityWithAnim
 import com.majorik.moviebox.storage.CredentialsPrefsManager
 import com.majorik.moviebox.ui.first_start.FirstStartActivity
+import com.majorik.moviebox.ui.settings.SettingsActivity
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 import org.koin.android.ext.android.inject
@@ -55,6 +56,10 @@ class ProfileFragment : Fragment() {
         btn_sign_in.setSafeOnClickListener {
             credentialsManager.clearAll()
             context?.startActivityWithAnim(FirstStartActivity::class.java)
+        }
+
+        btn_settings.setSafeOnClickListener {
+            context?.startActivityWithAnim(SettingsActivity::class.java)
         }
     }
 
