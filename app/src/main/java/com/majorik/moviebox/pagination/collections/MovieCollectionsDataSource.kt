@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
 import com.majorik.data.repositories.MovieRepository
 import com.majorik.domain.NetworkState
+import com.majorik.domain.constants.AppConfig
 import com.majorik.domain.enums.movie.MovieCollectionType
 import com.majorik.domain.tmdbModels.movie.Movie
 import kotlinx.coroutines.*
@@ -50,7 +51,7 @@ class MovieCollectionsDataSource(
     ) {
         networkState.postValue(NetworkState.RUNNING)
         scope.launch(getJobErrorHandler() + supervisorJob) {
-            val response = getCurrentQuery("ru", page, null)
+            val response = getCurrentQuery(AppConfig.REGION, page, null)
             retryQuery = null
             networkState.postValue(NetworkState.SUCCESS)
             response?.let { callback(it) }

@@ -7,9 +7,10 @@ import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import kotlin.math.absoluteValue
 
-abstract class BaseSlidingActivity : AppCompatActivity() {
+abstract class BaseSlidingActivity : LocalizationActivity() {
     private lateinit var root: View
     private var startX = 0f
     private var startY = 0f

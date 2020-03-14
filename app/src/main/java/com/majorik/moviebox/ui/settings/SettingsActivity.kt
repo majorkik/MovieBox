@@ -2,6 +2,7 @@ package com.majorik.moviebox.ui.settings
 
 import android.app.usage.StorageStatsManager
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageStats
 import android.os.Build
 import android.os.Bundle
@@ -12,8 +13,10 @@ import android.view.View
 import com.majorik.moviebox.R
 import com.majorik.moviebox.extensions.setSafeOnClickListener
 import com.majorik.moviebox.extensions.setWindowTransparency
+import com.majorik.moviebox.extensions.startActivityWithAnim
 import com.majorik.moviebox.extensions.updateMargin
 import com.majorik.moviebox.ui.base.BaseSlidingActivity
+import com.majorik.moviebox.ui.language.LanguageActivity
 import com.majorik.moviebox.ui.settings.clear_dialog.ClearCacheDialog
 import com.majorik.moviebox.ui.settings.clear_dialog.ClearDialogListener
 import com.orhanobut.logger.Logger
@@ -32,6 +35,7 @@ class SettingsActivity : BaseSlidingActivity(), ClearDialogListener {
         calculateCache()
 
         setClickListeners()
+        setCurrentLanguage()
     }
 
     private fun updateMargins(statusBarSize: Int, @Suppress("UNUSED_PARAMETER") navigationBarSize: Int) {
@@ -59,6 +63,15 @@ class SettingsActivity : BaseSlidingActivity(), ClearDialogListener {
             ClearCacheDialog.newInstance(settings_cache_size.text.toString())
                 .show(supportFragmentManager, "clear_dialog")
         }
+
+        btn_change_lang.setSafeOnClickListener {
+            startActivityWithAnim(Intent(this, LanguageActivity::class.java))
+        }
+    }
+
+    @UseExperimental(ExperimentalStdlibApi::class)
+    private fun setCurrentLanguage() {
+        tv_current_language.text = getCurrentLanguage().getDisplayName(getCurrentLanguage()).capitalize(getCurrentLanguage())
     }
 
     private fun calculateCache(): Long {

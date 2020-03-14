@@ -4,9 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
+import com.majorik.domain.constants.AppConfig
 import com.majorik.moviebox.R
-import com.majorik.moviebox.adapters.TVCardAdapter
-import com.majorik.moviebox.adapters.TVCollectionAdapter
+import com.majorik.moviebox.adapters.tv.TVCardAdapter
+import com.majorik.moviebox.adapters.tv.TVCollectionAdapter
 import com.majorik.moviebox.extensions.setAdapterWithFixedSize
 import com.majorik.moviebox.ui.base.BaseNavigationFragment
 import com.majorik.moviebox.ui.search.SearchableActivity
@@ -47,9 +48,9 @@ class TVsFragment : BaseNavigationFragment() {
     }
 
     override fun fetchData() {
-        tvViewModel.fetchPopularTVs("ru", 1)
-        tvViewModel.fetchAirTodayTVs("ru", 1)
-        tvViewModel.fetchOnTheAirTVs("ru", 1)
+        tvViewModel.fetchPopularTVs(AppConfig.REGION, 1)
+        tvViewModel.fetchAirTodayTVs(AppConfig.REGION, 1)
+        tvViewModel.fetchOnTheAirTVs(AppConfig.REGION, 1)
     }
 
     override fun setObservers() {
@@ -61,11 +62,17 @@ class TVsFragment : BaseNavigationFragment() {
         })
 
         tvViewModel.airTodayTVsLiveData.observe(viewLifecycleOwner, Observer {
-            rv_air_today_tvs.setAdapterWithFixedSize(TVCollectionAdapter(it), true)
+            rv_air_today_tvs.setAdapterWithFixedSize(
+                TVCollectionAdapter(
+                    it
+                ), true)
         })
 
         tvViewModel.onTheAirTVsLiveData.observe(viewLifecycleOwner, Observer {
-            rv_on_the_air_tvs.setAdapterWithFixedSize(TVCollectionAdapter(it), true)
+            rv_on_the_air_tvs.setAdapterWithFixedSize(
+                TVCollectionAdapter(
+                    it
+                ), true)
         })
     }
 

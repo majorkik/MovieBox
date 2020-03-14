@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">MovieBox</string>
+    <string name="app_name_caps" translatable="false">MOVIEBOX</string>
+
+    <!--    Навигация-->
+    <string name="title_nav_movies">Movies</string>
+    <string name="title_nav_tvs">TV shows</string>
+    <string name="title_nav_search">Search</string>
+    <string name="title_nav_profile">Profile</string>
+
+    <!--    Страница Фильмы & Сериалы (коллекции)-->
+    <string name="collection_popular">Popular</string>
+    <string name="collection_top_rated">Most Popular</string>
+    <string name="now_playing">Now playing</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="on_the_air">On air</string>
+    <string name="air_today">On air today</string>
+    <string name="most_viewed_movies_in_the_last_month">Film trends over the last month</string>
+    <string name="popular_peoples">Popular people</string>
+    <string name="all_trends">All trends</string>
+    <string name="in_trends">Trends</string>
+
+    <!--    Описание кнопок-->
+    <string name="button_search">Search</string>
+
+    <!--    Описание изображений-->
+    <string name="desc_collection_image">Collection Image</string>
+    <string name="desc_backdrop">Background image</string>
+    <string name="desc_icon_play_video">Video Playback Icon</string>
+    <string name="desc_trailer_image">Trailer screensaver</string>
+    <string name="desc_poster">Poster</string>
+    <string name="desc_image_episode">Episode image</string>
+    <string name="desc_poster_season">Season poster</string>
+    <string name="desc_empty_list">Empty list</string>
+
+    <!--    Детальная информация-->
+    <string name="overview">Description</string>
+    <string name="persons">Actors</string>
+    <string name="trailers">Trailers</string>
+    <string name="facts">Facts</string>
+    <string name="runtime">Runtime</string>
+    <string name="original_title">Original title</string>
+    <string name="revenue">Revenue</string>
+    <string name="budget">Budget</string>
+    <string name="release_date">Release date</string>
+    <string name="original_language">Original language</string>
+    <string name="status">Status</string>
+    <string name="company_production">Manufacturing company</string>
+    <string name="images">Images</string>
+    <string name="additional_options">Additionally</string>
+    <string name="recommendations">Recommendations</string>
+    <string name="all_comments">All comments</string>
+    <string name="reviews">Reviews</string>
+    <string name="place_of_birth">Place of Birth</string>
+    <string name="date_birthday">Birthday</string>
+    <string name="biography">Biography</string>
+    <string name="comments">Comments</string>
+    <string name="recommendations_and_similar">Recommendations and related</string>
+    <string name="vote_counts">Number of ratings</string>
+
+    <!--    Errors-->
+    <string name="network_state_error_retry">An error has occurred</string>
+    <string name="technical_error">A technical error</string>
+    <string name="no_result_found">No results were found for this request</string>
+    <string name="retry">Retry</string>
+    <string name="refresh">Refresh</string>
+    <string name="empty_list">Empty list</string>
+
+    <!--    Base variable-->
+    <string name="tvs">TV Shows</string>
+    <string name="movies">Movies</string>
+    <string name="tv">TV show</string>
+    <string name="movie">Movie</string>
+    <string name="seasons">Seasons</string>
+    <string name="genres">Genres</string>
+    <string name="peoples">People</string>
+    <string name="the_movie_database" translatable="false">The Movie Database</string>
+    <string name="guest">Guest</string>
+
+    <!--    Страница логина-->
+    <string name="app_logo_box" translatable="false">Box</string>
+    <string name="app_logo_movie" translatable="false">Movie</string>
+    <string name="login_with_tmdb_service">Sign in with TMDB</string>
+    <string name="filmography">Filmography</string>
+    <string name="about_the_movie_database">What is <b>The Movie Database?</b></string>
+    <string name="what">What is</string>
+    <string name="login_with_tmdb">Sign in with TMDb</string>
+    <string name="login_with_guest">Log in as a guest</string>
+    <string name="recommendation">Recommended</string>
+    <string name="most_features_will_not_be_available">Most features will not be available.</string>
+
+    <!--    Person page-->
+    <string name="inline_filmography_delimiter">as</string>
+
+    <!--    Profile page-->
+    <string name="tmdb_account_benefits">- синхронизация с вашим аккаунтом <b>TMDb</b>;\n\n- возможность <b>добавлять в избранное</b>;\n\n- возможность <b>отслеживать фильмы и сериалы</b>;\n\n- возможность <b>оценивать фильмы, сериалы и сезоны</b>;\n\n- возможность <b>создавать свои собственные списки.</b></string>
+    <string name="tmdb_benefits_title">Benefits of a TMDb Account</string>
+    <string name="login_to_account">Login to account</string>
+
+    <!--    Date mask-->
+    <string name="yyyy_mm_dd" translatable="false">yyyy-MM-dd</string>
+
+    <!--    Mask for short info. Example 2019 Action, Drama, Fantasy-->
+    <string name="short_info_mask" translatable="false">%s %s</string>
+
+    <!--    Mask for runtime. Example 2 hour 35 minutes-->
+    <string name="runtime_mask" translatable="false">%s %s</string>
+    <string name="max_rate_with_slash" translatable="false">/10</string>
+    <string name="watch_trailer">Watch the trailer</string>
+
+    <!--    Clear cache dialog-->
+    <string name="cache_size_with_format">Size: %s</string>
+    <string name="flush_cache">Clear cache</string>
+
+    <!--    Base-->
+    <string name="cancel">Cancel</string>
+    <string name="clear">Clear</string>
+    <string name="more">See all</string>
+    <string name="is_absent">Is absent</string>
+    <string name="unknown">Unknown</string>
+
+    <!--    Actions-->
+    <string name="tgl_btn_favorite">Add to favorites</string>
+    <string name="tgl_btn_watchlist">Add to watchlist</string>
+
+    <!--    Plurals-->
+    <plurals name="minutes">
+        <item quantity="one">%1$d minute</item>
+        <item quantity="other">%1$d minutes</item>
+    </plurals>
+
+    <plurals name="hours">
+        <item quantity="one">%1$d hour</item>
+        <item quantity="other">%1$d hours</item>
+    </plurals>
+
+    <string name="collections">Collections</string>
+    <string name="will_watch">I will watch</string>
+    <string name="favorite">Favorite</string>
+    <string name="settings">Settings</string>
+    <string name="notifications">Notifications</string>
+    <string name="language">Language</string>
+    <string name="theme">Theme</string>
+    <string name="cache">Cache</string>
+    <string name="information">Information</string>
+    <string name="under_development">Under development</string>
+    <string name="clear_cache">Clear cache</string>
+    <string name="about_app">About app</string>
+    <string name="sign_out">Sign out</string>
+    <string name="are_you_sure_you_want_to_go_out">Are you sure you want to go out?</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="languages">Languages</string>
+    <string name="votes">Ratings</string>
+    <string name="enter_your_request">Enter your request</string>
+    <string name="logout">Logout</string>
+</resources>

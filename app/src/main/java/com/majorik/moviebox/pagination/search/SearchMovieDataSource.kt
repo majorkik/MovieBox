@@ -2,6 +2,7 @@ package com.majorik.moviebox.pagination.search
 
 import com.majorik.data.repositories.SearchRepository
 import com.majorik.domain.NetworkState
+import com.majorik.domain.constants.AppConfig
 import com.majorik.domain.tmdbModels.movie.Movie
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
@@ -16,7 +17,7 @@ class SearchMovieDataSource(
         networkState.postValue(NetworkState.RUNNING)
         scope.launch(getJobErrorHandler() + supervisorJob) {
             delay(200)
-            val response = repository.searchMovies("ru", query, page, false, null, null, null)
+            val response = repository.searchMovies(AppConfig.REGION, query, page, false, null, null, null)
             retryQuery = null
             networkState.postValue(NetworkState.SUCCESS)
             response?.results?.let { callback(it) }

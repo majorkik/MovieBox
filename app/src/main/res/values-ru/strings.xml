@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MovieBox</string>
-    <string name="app_name_caps">MOVIEBOX</string>
+    <string name="app_name" translatable="false">MovieBox</string>
+    <string name="app_name_caps" translatable="false">MOVIEBOX</string>
 
     <!--    Навигация-->
     <string name="title_nav_movies">Фильмы</string>
@@ -9,9 +10,10 @@
     <string name="title_nav_profile">Профиль</string>
 
     <!--    Страница Фильмы & Сериалы (коллекции)-->
+    <string name="collections">Коллекции</string>
     <string name="collection_popular">Популярные</string>
     <string name="collection_top_rated">Самые популярные</string>
-    <string name="now_playing">Сейчас идут</string>
+    <string name="now_playing">Сейчас в кино</string>
     <string name="upcoming">Ожидаемые</string>
     <string name="on_the_air">В эфире</string>
     <string name="air_today">Сегодня в эфире</string>
@@ -21,7 +23,7 @@
     <string name="in_trends">В тренде</string>
 
     <!--    Описание кнопок-->
-    <string name="button_search">Поиск</string>
+    <string name="button_search">Search</string>
 
     <!--    Описание изображений-->
     <string name="desc_collection_image">Изображение коллекции</string>
@@ -57,6 +59,8 @@
     <string name="comments">Комментарии</string>
     <string name="recommendations_and_similar">Рекомендации и похожее</string>
     <string name="vote_counts">Оценивших</string>
+    <string name="will_watch">Буду смотреть</string>
+    <string name="favorite">Избранное</string>
 
     <!--    Errors-->
     <string name="network_state_error_retry">Произошла ошибка</string>
@@ -74,12 +78,25 @@
     <string name="seasons">Сезоны</string>
     <string name="genres">Жанры</string>
     <string name="peoples">Люди</string>
-    <string name="the_movie_database">The Movie Database</string>
+    <string name="the_movie_database" translatable="false">The Movie Database</string>
     <string name="guest">Гость</string>
+    <string name="settings">Настройки</string>
+    <string name="notifications">Уведомления</string>
+    <string name="language">Язык</string>
+    <string name="theme">Тема</string>
+    <string name="cache">Кэш</string>
+    <string name="information">Информация</string>
+    <string name="cancel">Отмена</string>
+    <string name="clear">Очистить</string>
+    <string name="more">Смотреть все</string>
+    <string name="is_absent">Отсутствует</string>
+    <string name="unknown">Неизвестно</string>
+    <string name="under_development">Находится в разработке</string>
+
 
     <!--    Страница логина-->
-    <string name="app_logo_box">Box</string>
-    <string name="app_logo_movie">Movie</string>
+    <string name="app_logo_box" translatable="false">Box</string>
+    <string name="app_logo_movie" translatable="false">Movie</string>
     <string name="login_with_tmdb_service">Войти с помощью TMDB</string>
     <string name="filmography">Фильмография</string>
     <string name="about_the_movie_database">Что такое <b>The Movie Database?</b></string>
@@ -96,6 +113,7 @@
     <string name="tmdb_account_benefits">- синхронизация с вашим аккаунтом <b>TMDb</b>;\n\n- возможность <b>добавлять в избранное</b>;\n\n- возможность <b>отслеживать фильмы и сериалы</b>;\n\n- возможность <b>оценивать фильмы, сериалы и сезоны</b>;\n\n- возможность <b>создавать свои собственные списки.</b></string>
     <string name="tmdb_benefits_title">Преимущества аккаунта TMDb</string>
     <string name="login_to_account">Войти в аккаунт</string>
+    <string name="votes">Оценки</string>
 
     <!--    Date mask-->
     <string name="yyyy_mm_dd" translatable="false">yyyy-MM-dd</string>
@@ -105,23 +123,29 @@
 
     <!--    Mask for runtime. Example 2 hour 35 minutes-->
     <string name="runtime_mask" translatable="false">%s %s</string>
-    <string name="max_rate_with_slash">/10</string>
+    <string name="max_rate_with_slash" translatable="false">/10</string>
     <string name="watch_trailer">Смотреть трейлер</string>
 
     <!--    Clear cache dialog-->
     <string name="cache_size_with_format">Размер: %s</string>
     <string name="flush_cache">Очистка кэша</string>
 
-    <!--    Base-->
-    <string name="cancel">Отмена</string>
-    <string name="clear">Очистить</string>
-    <string name="more">Смотреть все</string>
-    <string name="is_absent">Отсутствует</string>
-    <string name="unknown">Неизвестно</string>
+    <!--    Settings page-->
+    <string name="clear_cache">Очистить кэш</string>
+    <string name="about_app">О приложении</string>
+
+    <!--    Search page-->
+    <string name="enter_your_request">Введите запрос</string>
 
     <!--    Actions-->
     <string name="tgl_btn_favorite">Добавить в избранное</string>
     <string name="tgl_btn_watchlist">Буду смотреть</string>
+
+
+    <!--    Login & Logout-->
+    <string name="sign_out">Выйти из аккаунта</string>
+    <string name="logout">Выйти</string>
+    <string name="are_you_sure_you_want_to_go_out">Вы уверены что хотите выйти?</string>
 
     <!--    Plurals-->
     <plurals name="minutes">
@@ -137,4 +161,8 @@
         <item quantity="many">%1$d часов</item>
         <item quantity="other">%1$d часов</item>
     </plurals>
+
+    <string name="navigation_drawer_open">Открыть navigation drawer</string>
+    <string name="navigation_drawer_close">Закрыть navigation drawer</string>
+    <string name="languages">Языки</string>
 </resources>

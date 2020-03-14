@@ -33,13 +33,13 @@
         android:layout_marginEnd="8dp"
         android:contentDescription="@string/desc_empty_list"
         android:scaleType="fitXY"
-        android:tint="#484848"
         app:layout_constraintBottom_toTopOf="@+id/movie_empty_list_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintVertical_chainStyle="packed"
+        app:tint="@color/mine_shaft_ultra_light" />
 
     <ProgressBar
         android:id="@+id/movie_empty_list_progressbar"

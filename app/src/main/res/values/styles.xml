@@ -37,7 +37,7 @@
         <item name="android:textSize">24sp</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/mine_shaft</item>
-        <item name="android:fontFamily">@font/cc_rubik_mono_one</item>
+        <item name="android:fontFamily">@font/cc_rubik_one</item>
         <item name="android:textAlignment">center</item>
         <item name="titleTextColor">@color/mine_shaft</item>
     </style>

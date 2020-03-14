@@ -8,10 +8,15 @@ import android.view.View
 import androidx.core.util.isEmpty
 import androidx.lifecycle.Observer
 import com.majorik.data.repositories.TrendingRepository
+import com.majorik.domain.constants.AppConfig
 import com.majorik.domain.constants.GenresConstants
 import com.majorik.domain.enums.movie.MovieCollectionType
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.*
+import com.majorik.moviebox.adapters.movie.MovieCardAdapter
+import com.majorik.moviebox.adapters.movie.MovieCollectionAdapter
+import com.majorik.moviebox.adapters.movie.MovieDateCardAdapter
+import com.majorik.moviebox.adapters.movie.MovieTrendAdapter
 import com.majorik.moviebox.extensions.setAdapterWithFixedSize
 import com.majorik.moviebox.extensions.startActivityWithAnim
 import com.majorik.moviebox.extensions.toDate
@@ -43,13 +48,13 @@ class MoviesFragment : BaseNavigationFragment() {
     }
 
     override fun fetchData() {
-        moviesViewModel.fetchMovieGenres("ru-RU")
-        moviesViewModel.fetchPopularMovies("ru-RU", 1, "")
-        moviesViewModel.fetchNowPlayingMovies("ru-RU", 1, "RU")
-        moviesViewModel.fetchUpcomingMovies("ru-RU", 1, "RU")
+        moviesViewModel.fetchMovieGenres(AppConfig.REGION)
+        moviesViewModel.fetchPopularMovies(AppConfig.REGION, 1, "")
+        moviesViewModel.fetchNowPlayingMovies(AppConfig.REGION, 1, "RU")
+        moviesViewModel.fetchUpcomingMovies(AppConfig.REGION, 1, "RU")
         moviesViewModel.searchYouTubeVideosByChannel()
-        moviesViewModel.fetchTrendingMovies(TrendingRepository.TimeWindow.WEEK, 1, "ru-RU")
-        moviesViewModel.fetchPopularPeoples("ru-RU", 1)
+        moviesViewModel.fetchTrendingMovies(TrendingRepository.TimeWindow.WEEK, 1, AppConfig.REGION)
+        moviesViewModel.fetchPopularPeoples(AppConfig.REGION, 1)
     }
 
     private fun setClickListeners() {
@@ -82,19 +87,27 @@ class MoviesFragment : BaseNavigationFragment() {
     override fun setObservers() {
         moviesViewModel.popularMoviesLiveData.observe(viewLifecycleOwner, Observer {
             vp_popular_movies.run {
-                adapter = MovieCardAdapter(it)
+                adapter =
+                    MovieCardAdapter(it)
                 pageMargin = 16.toPx()
             }
         })
 
         moviesViewModel.upcomingMoviesLiveData.observe(viewLifecycleOwner, Observer {
-            rv_upcoming_movies.setAdapterWithFixedSize(MovieDateCardAdapter(it.sortedBy {
-                it.releaseDate?.toDate()?.utc?.unixMillisLong ?: 0L
-            }), true)
+            rv_upcoming_movies.setAdapterWithFixedSize(
+                MovieDateCardAdapter(
+                    it.sortedBy {
+                        it.releaseDate?.toDate()?.utc?.unixMillisLong ?: 0L
+                    }), true
+            )
         })
 
         moviesViewModel.nowPlayingMoviesLiveData.observe(viewLifecycleOwner, Observer {
-            rv_now_playing_movies.setAdapterWithFixedSize(MovieCollectionAdapter(it), true)
+            rv_now_playing_movies.setAdapterWithFixedSize(
+                MovieCollectionAdapter(
+                    it
+                ), true
+            )
         })
 
         moviesViewModel.genresLiveData.observe(viewLifecycleOwner, Observer {
@@ -121,7 +134,8 @@ class MoviesFragment : BaseNavigationFragment() {
             }
 
             vp_trend_movies.run {
-                adapter = MovieTrendAdapter(it)
+                adapter =
+                    MovieTrendAdapter(it)
                 pageMargin = 16.toPx()
             }
         })

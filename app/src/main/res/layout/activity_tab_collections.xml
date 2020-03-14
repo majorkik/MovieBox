@@ -34,7 +34,7 @@
             android:layout_marginEnd="56dp"
             android:fontFamily="@font/rubik_one_regular"
             android:gravity="center"
-            android:text="Коллекции"
+            android:text="@string/collections"
             android:textAllCaps="true"
             android:textColor="@color/mine_shaft"
             android:textSize="18sp" />

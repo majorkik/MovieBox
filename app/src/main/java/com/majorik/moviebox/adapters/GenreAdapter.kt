@@ -25,8 +25,8 @@ class GenreAdapter(private val genres: List<Genre>) : RecyclerView.Adapter<Genre
     }
 
     class GenreViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
-        @UseExperimental(ExperimentalStdlibApi::class)
 
+        @UseExperimental(ExperimentalStdlibApi::class)
         fun bindTo(genre: Genre) {
             itemView.genre_name.text = genre.name.capitalize(Locale.getDefault())
         }

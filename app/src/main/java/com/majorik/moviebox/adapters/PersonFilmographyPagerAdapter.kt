@@ -9,6 +9,8 @@ import com.majorik.domain.tmdbModels.cast.MovieCast
 import com.majorik.domain.tmdbModels.cast.TVCast
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.PersonFilmographyPagerAdapter.PageViewHolder
+import com.majorik.moviebox.adapters.movie.MovieCreditsAdapter
+import com.majorik.moviebox.adapters.tv.TVCreditsAdapter
 import com.majorik.moviebox.extensions.toPx
 import com.majorik.moviebox.utils.SpacingDecoration
 import kotlinx.android.synthetic.main.item_filmography.view.*
@@ -68,7 +70,11 @@ class PersonFilmographyPagerAdapter(
                 itemView.filmographylist.removeItemDecoration(itemDecoration)
             }
 
-            itemView.filmographylist.adapter = MovieCreditsAdapter(layoutManager, movieCasts)
+            itemView.filmographylist.adapter =
+                MovieCreditsAdapter(
+                    layoutManager,
+                    movieCasts
+                )
         }
 
         fun bindTVs(
@@ -85,7 +91,11 @@ class PersonFilmographyPagerAdapter(
                 itemView.filmographylist.removeItemDecoration(itemDecoration)
             }
 
-            itemView.filmographylist.adapter = TVCreditsAdapter(layoutManager, tvCasts)
+            itemView.filmographylist.adapter =
+                TVCreditsAdapter(
+                    layoutManager,
+                    tvCasts
+                )
         }
     }
 }

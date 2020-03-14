@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.majorik.domain.constants.AppConfig
 import com.majorik.domain.constants.UrlConstants
 import com.majorik.domain.tmdbModels.account.AccountStates
 import com.majorik.domain.tmdbModels.image.Images
@@ -79,7 +80,7 @@ class TVDetailsActivity : BaseSlidingActivity() {
         if (extras != null) {
             tvDetailsViewModel.fetchTVDetails(
                 extras.getInt("id"),
-                "ru",
+                AppConfig.REGION,
                 "images,credits,videos",
                 "ru,en,null"
             )

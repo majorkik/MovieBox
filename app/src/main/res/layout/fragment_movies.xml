@@ -22,7 +22,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="344dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="16dp"
@@ -43,7 +43,8 @@
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:padding="18dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/ic_search_new" />
+                    android:src="@drawable/ic_search_new"
+                    tools:ignore="ContentDescription" />
             </LinearLayout>
 
             <androidx.cardview.widget.CardView
@@ -118,7 +119,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Сейчас в кино"
+                        android:text="@string/now_playing"
                         android:theme="@style/HeaderMedium" />
 
                     <TextView

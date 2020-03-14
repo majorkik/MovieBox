@@ -2,19 +2,19 @@ package com.majorik.moviebox
 
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.majorik.domain.constants.AppConfig
 import com.majorik.moviebox.extensions.startActivityWithAnim
 import com.majorik.moviebox.ui.main_page_movies.MoviesFragment
 import com.majorik.moviebox.ui.main_page_profile.ProfileFragment
 import com.majorik.moviebox.ui.main_page_search.SearchFragment
 import com.majorik.moviebox.ui.main_page_tvs.TVsFragment
 import com.majorik.moviebox.ui.search.SearchableActivity
-import java.util.*
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+class MainActivity : LocalizationActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     private val fragmentMovie = MoviesFragment.newInstance()
     private val fragmentTV = SearchFragment.newInstance()
     private val fragmentDiscover = TVsFragment.newInstance()
@@ -24,6 +24,8 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        AppConfig.REGION = getCurrentLanguage().toString()
 
         nav_view.setOnNavigationItemSelectedListener(this)
 

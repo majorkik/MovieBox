@@ -6,6 +6,7 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.majorik.domain.constants.AppConfig
 import com.majorik.domain.constants.UrlConstants
 import com.majorik.domain.tmdbModels.account.AccountStates
 import com.majorik.domain.tmdbModels.image.Images
@@ -83,7 +84,7 @@ class MovieDetailsActivity : BaseSlidingActivity() {
         if (extras != null) {
             movieDetailsViewModel.fetchMovieDetails(
                 extras.getInt("id"),
-                "ru",
+                AppConfig.REGION,
                 "images,credits,videos",
                 "ru,en,null"
             )
@@ -143,7 +144,7 @@ class MovieDetailsActivity : BaseSlidingActivity() {
             val numFormat = DecimalFormat("#,###,###")
             m_title.text = movie.title
             m_original_language.text =
-                Locale(movie.originalLanguage).displayLanguage.capitalize(Locale.getDefault())
+                Locale(movie.originalLanguage).displayLanguage.capitalize(AppConfig.APP_LOCALE)
             m_original_title.text = movie.originalTitle
             m_revenue.text = (numFormat.format(movie.revenue) + " $")
             m_budget.text = (numFormat.format(movie.budget) + " $")
@@ -154,7 +155,7 @@ class MovieDetailsActivity : BaseSlidingActivity() {
             setOverview(movie.overview)
             m_vote_average.text = movie.voteAverage.toString()
 
-            val genres = movie.genres.joinToString(", ") { it.name.capitalize(Locale.getDefault()) }
+            val genres = movie.genres.joinToString(", ") { it.name.capitalize(AppConfig.APP_LOCALE) }
 
             m_add_info.text = getString(
                 R.string.short_info_mask,

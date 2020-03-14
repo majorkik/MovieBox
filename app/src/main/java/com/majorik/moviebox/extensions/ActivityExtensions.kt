@@ -19,6 +19,7 @@ import com.majorik.moviebox.R
 import com.majorik.moviebox.utils.FontSpan
 import com.majorik.moviebox.utils.InsetUtil
 import com.majorik.moviebox.utils.OnSystemInsetsChangedListener
+import java.util.*
 
 @TargetApi(21)
 fun Activity.setWindowTransparency(listener: OnSystemInsetsChangedListener = { _, _ -> }) {
@@ -113,5 +114,13 @@ fun Context.convertStringForFilmograohy(
         )
 
         return this
+    }
+}
+
+fun Context.getCurrentLocale(): Locale {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        resources.configuration.locales.get(0) ?: Locale.ENGLISH
+    } else {
+        resources.configuration.locale
     }
 }

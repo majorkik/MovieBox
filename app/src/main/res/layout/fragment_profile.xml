@@ -35,7 +35,7 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="16dp"
                     android:layout_weight="1"
-                    android:fontFamily="@font/cc_rubik_mono_one"
+                    android:fontFamily="@font/cc_rubik_one"
                     android:text="@string/title_nav_profile"
                     android:textAllCaps="true"
                     android:textColor="@color/mine_shaft"
@@ -49,7 +49,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="8dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:src="@drawable/ic_settings" />
+                    android:src="@drawable/ic_settings"
+                    tools:ignore="ContentDescription" />
             </LinearLayout>
 
             <FrameLayout
@@ -208,17 +209,18 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:src="@drawable/ic_bookmarked_profile" />
+                            android:src="@drawable/ic_bookmarked_profile"
+                            tools:ignore="ContentDescription" />
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginStart="16dp"
                             android:layout_marginEnd="16dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/rubik_one_regular"
-                            android:text="Буду смотреть"
+                            android:text="@string/will_watch"
                             android:textAllCaps="true"
                             android:textColor="@color/mine_shaft"
                             android:textSize="12sp" />
@@ -230,7 +232,7 @@
                             android:layout_marginEnd="8dp"
                             android:fontFamily="@font/cc_montserrat_regular"
                             android:textColor="@color/mine_shaft"
-                            android:textSize="10sp"
+                            android:textSize="12sp"
                             tools:text="244" />
 
                         <ImageView
@@ -239,7 +241,8 @@
                             android:layout_gravity="center"
                             android:paddingTop="4dp"
                             android:paddingBottom="4dp"
-                            android:src="@drawable/ic_arrow_right" />
+                            android:src="@drawable/ic_arrow_right"
+                            tools:ignore="ContentDescription" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -267,17 +270,18 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:src="@drawable/ic_favorite_profile" />
+                            android:src="@drawable/ic_favorite_profile"
+                            tools:ignore="ContentDescription" />
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginStart="16dp"
                             android:layout_marginEnd="16dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/rubik_one_regular"
-                            android:text="Избранное"
+                            android:text="@string/favorite"
                             android:textAllCaps="true"
                             android:textColor="@color/mine_shaft"
                             android:textSize="12sp" />
@@ -289,7 +293,7 @@
                             android:layout_marginEnd="8dp"
                             android:fontFamily="@font/cc_montserrat_regular"
                             android:textColor="@color/mine_shaft"
-                            android:textSize="10sp"
+                            android:textSize="12sp"
                             tools:text="244" />
 
                         <ImageView
@@ -326,17 +330,18 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:src="@drawable/ic_rating_profile" />
+                            android:src="@drawable/ic_rating_profile"
+                            tools:ignore="ContentDescription" />
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginStart="16dp"
                             android:layout_marginEnd="16dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/rubik_one_regular"
-                            android:text="Оценки"
+                            android:text="@string/votes"
                             android:textAllCaps="true"
                             android:textColor="@color/mine_shaft"
                             android:textSize="12sp" />
@@ -348,7 +353,7 @@
                             android:layout_marginEnd="8dp"
                             android:fontFamily="@font/cc_montserrat_regular"
                             android:textColor="@color/mine_shaft"
-                            android:textSize="10sp"
+                            android:textSize="12sp"
                             tools:text="244" />
 
                         <ImageView
@@ -395,17 +400,18 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:src="@drawable/ic_bookmarked_profile" />
+                            android:src="@drawable/ic_bookmarked_profile"
+                            tools:ignore="ContentDescription" />
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginStart="16dp"
                             android:layout_marginEnd="16dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/rubik_one_regular"
-                            android:text="Буду смотреть"
+                            android:text="@string/will_watch"
                             android:textAllCaps="true"
                             android:textColor="@color/mine_shaft"
                             android:textSize="12sp" />
@@ -417,7 +423,7 @@
                             android:layout_marginEnd="8dp"
                             android:fontFamily="@font/cc_montserrat_regular"
                             android:textColor="@color/mine_shaft"
-                            android:textSize="10sp"
+                            android:textSize="12sp"
                             tools:text="244" />
 
                         <ImageView
@@ -426,7 +432,8 @@
                             android:layout_gravity="center"
                             android:paddingTop="4dp"
                             android:paddingBottom="4dp"
-                            android:src="@drawable/ic_arrow_right" />
+                            android:src="@drawable/ic_arrow_right"
+                            tools:ignore="ContentDescription" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -454,17 +461,18 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:src="@drawable/ic_favorite_profile" />
+                            android:src="@drawable/ic_favorite_profile"
+                            tools:ignore="ContentDescription" />
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginStart="16dp"
                             android:layout_marginEnd="16dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/rubik_one_regular"
-                            android:text="Избранное"
+                            android:text="@string/favorite"
                             android:textAllCaps="true"
                             android:textColor="@color/mine_shaft"
                             android:textSize="12sp" />
@@ -476,7 +484,7 @@
                             android:layout_marginEnd="8dp"
                             android:fontFamily="@font/cc_montserrat_regular"
                             android:textColor="@color/mine_shaft"
-                            android:textSize="10sp"
+                            android:textSize="12sp"
                             tools:text="244" />
 
                         <ImageView
@@ -485,7 +493,8 @@
                             android:layout_gravity="center"
                             android:paddingTop="4dp"
                             android:paddingBottom="4dp"
-                            android:src="@drawable/ic_arrow_right" />
+                            android:src="@drawable/ic_arrow_right"
+                            tools:ignore="ContentDescription" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -513,17 +522,18 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:src="@drawable/ic_rating_profile" />
+                            android:src="@drawable/ic_rating_profile"
+                            tools:ignore="ContentDescription" />
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginStart="16dp"
                             android:layout_marginEnd="16dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/rubik_one_regular"
-                            android:text="Оценки"
+                            android:text="@string/votes"
                             android:textAllCaps="true"
                             android:textColor="@color/mine_shaft"
                             android:textSize="12sp" />
@@ -535,7 +545,7 @@
                             android:layout_marginEnd="8dp"
                             android:fontFamily="@font/cc_montserrat_regular"
                             android:textColor="@color/mine_shaft"
-                            android:textSize="10sp"
+                            android:textSize="12sp"
                             tools:text="244" />
 
                         <ImageView
@@ -544,7 +554,8 @@
                             android:layout_gravity="center"
                             android:paddingTop="4dp"
                             android:paddingBottom="4dp"
-                            android:src="@drawable/ic_arrow_right" />
+                            android:src="@drawable/ic_arrow_right"
+                            tools:ignore="ContentDescription" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -582,17 +593,18 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:src="@drawable/ic_rating_profile" />
+                            android:src="@drawable/ic_rating_profile"
+                            tools:ignore="ContentDescription" />
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginStart="16dp"
                             android:layout_marginEnd="16dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/rubik_one_regular"
-                            android:text="Оценки"
+                            android:text="@string/votes"
                             android:textAllCaps="true"
                             android:textColor="@color/mine_shaft"
                             android:textSize="12sp" />
@@ -604,7 +616,7 @@
                             android:layout_marginEnd="8dp"
                             android:fontFamily="@font/cc_montserrat_regular"
                             android:textColor="@color/mine_shaft"
-                            android:textSize="10sp"
+                            android:textSize="12sp"
                             tools:text="244" />
 
                         <ImageView
@@ -613,7 +625,8 @@
                             android:layout_gravity="center"
                             android:paddingTop="4dp"
                             android:paddingBottom="4dp"
-                            android:src="@drawable/ic_arrow_right" />
+                            android:src="@drawable/ic_arrow_right"
+                            tools:ignore="ContentDescription" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -637,7 +650,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="@font/cc_montserrat_medium"
-                        android:text="Выйти из аккаунта"
+                        android:text="@string/sign_out"
                         android:textColor="@color/gray"
                         android:textSize="12sp" />
                 </androidx.cardview.widget.CardView>

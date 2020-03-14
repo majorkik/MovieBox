@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/cc_rubik_one"
-            android:text="The Movie Database"
+            android:text="@string/the_movie_database"
             android:textAllCaps="true"
             android:textColor="@color/caribbean_green_tmdb" />
     </androidx.appcompat.widget.Toolbar>

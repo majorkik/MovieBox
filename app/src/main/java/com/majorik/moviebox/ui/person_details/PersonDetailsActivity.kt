@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.tabs.TabLayoutMediator
+import com.majorik.domain.constants.AppConfig
 import com.majorik.domain.constants.UrlConstants
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.PersonFilmographyPagerAdapter
@@ -129,7 +130,7 @@ class PersonDetailsActivity : BaseSlidingActivity() {
             personId = extras.getInt("id")
             personViewModel.fetchPersonDetails(
                 personId,
-                "ru-RU",
+                AppConfig.REGION,
                 "movie_credits,tv_credits,images,tagged_images"
             )
         }
