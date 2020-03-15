@@ -1,6 +1,8 @@
 package com.majorik.moviebox.ui.tvDetails
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.majorik.data.repositories.AccountRepository
 import com.majorik.data.repositories.TVRepository
 import com.majorik.domain.tmdbModels.ApiResponse
@@ -8,13 +10,12 @@ import com.majorik.domain.tmdbModels.account.AccountStates
 import com.majorik.domain.tmdbModels.request.RequestAddToWatchlist
 import com.majorik.domain.tmdbModels.request.RequestMarkAsFavorite
 import com.majorik.domain.tmdbModels.tv.TVDetails
-import com.majorik.moviebox.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 
 class TVDetailsViewModel(
     private val tvRepository: TVRepository,
     private val accountRepository: AccountRepository
-) : BaseViewModel() {
+) : ViewModel() {
     var tvDetailsLiveData = MutableLiveData<TVDetails>()
     var tvStatesLiveData = MutableLiveData<AccountStates?>()
     var responseFavoriteLiveData = MutableLiveData<ApiResponse>()
@@ -26,7 +27,7 @@ class TVDetailsViewModel(
         appendToResponse: String?,
         imageLanguages: String?
     ) {
-        ioScope.launch {
+        viewModelScope.launch {
             val tvDetails =
                 tvRepository.getTVById(tvId, language, appendToResponse, imageLanguages)
 
@@ -35,7 +36,7 @@ class TVDetailsViewModel(
     }
 
     fun fetchAccountStateForTV(tvId: Int, sessionId: String) {
-        ioScope.launch {
+        viewModelScope.launch {
             val tvStates =
                 tvRepository.getAccountStatesForTV(tvId, "", sessionId, "")
 
@@ -44,7 +45,7 @@ class TVDetailsViewModel(
     }
 
     fun markTVIsFavorite(mediaId: Int, state: Boolean, sessionId: String) {
-        ioScope.launch {
+        viewModelScope.launch {
             val requestMarkAsFavorite = RequestMarkAsFavorite("tv", mediaId, state)
             val response = accountRepository.markIsFavorite(requestMarkAsFavorite, sessionId)
 
@@ -53,7 +54,7 @@ class TVDetailsViewModel(
     }
 
     fun addTVToWatchlist(mediaId: Int, state: Boolean, sessionId: String) {
-        ioScope.launch {
+        viewModelScope.launch {
             val requestAddToWatchlist = RequestAddToWatchlist("tv", mediaId, state)
             val response = accountRepository.addToWatchlist(requestAddToWatchlist, sessionId)
 

@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.whenStarted
 import com.majorik.domain.constants.UrlConstants
 import com.majorik.moviebox.MainActivity
 import com.majorik.moviebox.R
@@ -31,12 +33,6 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class FirstStartActivity : AppCompatActivity() {
     private val authViewModel: AuthViewModel by viewModel()
     private val credentialsManager: CredentialsPrefsManager by inject()
-
-    private val job = SupervisorJob()
-    private val uiCoroutineContext: CoroutineContext
-        get() = job + Dispatchers.Main
-
-    private val uiScope = CoroutineScope(uiCoroutineContext)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,10 +57,12 @@ class FirstStartActivity : AppCompatActivity() {
                 logo_title.setVisibilityOption(true)
 
                 if (credentialsManager.getTmdbLoggedStatus() || credentialsManager.getTmdbGuestLoggedStatus()) {
-                    uiScope.launch {
-                        delay(300)
+                    lifecycleScope.launch {
+                        whenStarted {
+                            delay(300)
 
-                        startMainActivity()
+                            startMainActivity()
+                        }
                     }
                 } else {
                     btn_about_tmdb.setVisibilityOption(true)
@@ -103,11 +101,6 @@ class FirstStartActivity : AppCompatActivity() {
         }
 
         requestToken = null
-    }
-
-    override fun onPause() {
-        uiScope.coroutineContext.cancelChildren(null)
-        super.onPause()
     }
 
     private fun setObservers() {

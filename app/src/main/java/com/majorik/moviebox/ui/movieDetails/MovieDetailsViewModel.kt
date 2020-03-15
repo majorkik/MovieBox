@@ -1,6 +1,7 @@
 package com.majorik.moviebox.ui.movieDetails
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.majorik.data.repositories.AccountRepository
 import com.majorik.data.repositories.MovieRepository
@@ -9,13 +10,12 @@ import com.majorik.domain.tmdbModels.account.AccountStates
 import com.majorik.domain.tmdbModels.movie.MovieDetails
 import com.majorik.domain.tmdbModels.request.RequestAddToWatchlist
 import com.majorik.domain.tmdbModels.request.RequestMarkAsFavorite
-import com.majorik.moviebox.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 
 class MovieDetailsViewModel(
     private val movieRepository: MovieRepository,
     private val accountRepository: AccountRepository
-) : BaseViewModel() {
+) : ViewModel() {
     var movieDetailsLiveData = MutableLiveData<MovieDetails>()
     var movieStatesLiveData = MutableLiveData<AccountStates?>()
     var responseFavoriteLiveData = MutableLiveData<ApiResponse>()

@@ -2,20 +2,21 @@ package com.majorik.moviebox.ui.movieTabCollections
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.majorik.data.repositories.MovieRepository
 import com.majorik.domain.NetworkState
 import com.majorik.domain.enums.movie.MovieCollectionType
 import com.majorik.moviebox.pagination.collections.MovieCollectionsDataSourceFactory
-import com.majorik.moviebox.ui.base.BaseViewModel
 
 class MovieCollectionsViewModel(movieRepository: MovieRepository, movieCollectionType: MovieCollectionType) :
-    BaseViewModel() {
+    ViewModel() {
     private val dataSourceFactory =
         MovieCollectionsDataSourceFactory(
             repository = movieRepository,
-            scope = ioScope,
+            scope = viewModelScope,
             movieCollectionType = movieCollectionType
         )
 

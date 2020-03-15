@@ -1,6 +1,6 @@
 ext {
     material_version = '1.2.0-alpha05'
-    appCompat_version = '1.2.0-alpha02'
+    appCompat_version = '1.2.0-alpha03'
     constraintLayout_version = '2.0.0-beta4'
     legacySupport_version = "1.0.0"
     lifecycleExtensions_version = '2.2.0'
@@ -27,8 +27,8 @@ ext {
     timber_version = "4.7.1"
     pretty_logger_version = "2.2.0"
 
-    mockWebServer_version = "3.14.1"
-    junit_version = '4.12'
+    mockWebServer_version = '4.4.0'
+    junit_version = '4.13'
     testCore_version = '1.2.0'
     testRules_version = '1.2.0'
     testJunit_version = '1.1.1'
@@ -36,7 +36,6 @@ ext {
 
     koin_version = "2.0.1"
 
-    glide_version = '4.11.0'
     viewpagerdotsindicator_version = "3.0.3"
     stfalcon_version = "0.1.0"
     photoview_version = "2.3.0"
@@ -47,8 +46,10 @@ ext {
     numberPicker_version = "1.0.1"
     klock_version = "1.8.4"
     lottie_version = "3.4.0"
+    localization_version = "1.2.4"
+    coil_version = "0.9.5"
 
-    firebase_analytics_version = "17.2.2"
+    firebase_analytics_version = '17.2.3'
     firebase_crashlytics_version = "17.0.0-beta01"
 
     androidxDependencies = [
@@ -69,7 +70,8 @@ ext {
             pagingLibrary        : "androidx.paging:paging-runtime:$paging_version",
             recyclerview         : "androidx.recyclerview:recyclerview:$recyclerview_version",
             fragment             : "androidx.fragment:fragment:$fragment_version",
-            viewpager2           : "androidx.viewpager2:viewpager2:$viewpager_version"
+            viewpager2           : "androidx.viewpager2:viewpager2:$viewpager_version",
+            livedata             : "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleKtx_version"
     ]
 
     networkDependencies = [
@@ -116,8 +118,6 @@ ext {
     ]
 
     otherDependencies = [
-            glide             : "com.github.bumptech.glide:glide:$glide_version",
-            glideCompiler     : "com.github.bumptech.glide:compiler:$glide_version",
             dotsIndicator     : "com.tbuonomo.andrui:viewpagerdotsindicator:$viewpagerdotsindicator_version",
             imageViewer       : "com.github.stfalcon:stfalcon-imageviewer:$stfalcon_version",
             photoview         : "com.github.chrisbanes:PhotoView:$photoview_version",
@@ -128,5 +128,7 @@ ext {
             numberPicker      : "com.super_rabbit.wheel_picker:NumberPicker:$numberPicker_version",
             klock             : "com.soywiz.korlibs.klock:klock:$klock_version",
             lottie            : "com.airbnb.android:lottie:$lottie_version",
+            localization      : "com.akexorcist:localization:$localization_version",
+            coil              : "io.coil-kt:coil:$coil_version"
     ]
 }

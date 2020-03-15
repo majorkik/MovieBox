@@ -8,36 +8,28 @@ import android.view.View
 import android.view.ViewOutlineProvider
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.majorik.moviebox.GlideApp
+import coil.api.load
 import com.majorik.moviebox.R
 
 fun ImageView.displayImageWithCenterInside(
     url: String?,
     placeholder: Int = R.drawable.placeholder_transparent
 ) {
-    GlideApp.with(this)
-        .load(url)
-        .diskCacheStrategy(DiskCacheStrategy.ALL)
-        .centerInside()
-        .placeholder(placeholder)
-        .error(placeholder)
-        .fallback(placeholder)
-        .into(this)
+    load(url) {
+        placeholder(placeholder)
+    }
 }
 
 fun ImageView.displayImageWithCenterCrop(
     url: String?,
     placeholder: Int = R.drawable.placeholder_transparent
 ) {
-    GlideApp.with(this)
-        .load(url)
-        .diskCacheStrategy(DiskCacheStrategy.ALL)
-        .centerCrop()
-        .placeholder(placeholder)
-        .error(placeholder)
-        .fallback(placeholder)
-        .into(this)
+    scaleType = ImageView.ScaleType.CENTER_CROP
+
+    load(url) {
+        placeholder(placeholder)
+    }
+
 }
 
 fun ImageView.setGrayscaleTransformation() {

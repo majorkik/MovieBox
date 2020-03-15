@@ -1,12 +1,13 @@
 package com.majorik.moviebox.ui.person_details
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.majorik.data.repositories.PersonRepository
 import com.majorik.domain.tmdbModels.person.PersonDetails
-import com.majorik.moviebox.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 
-class PersonDetailsViewModel(private val personRepository: PersonRepository) : BaseViewModel() {
+class PersonDetailsViewModel(private val personRepository: PersonRepository) : ViewModel() {
     var personDetailsLiveData = MutableLiveData<PersonDetails>()
 
     fun fetchPersonDetails(
@@ -14,7 +15,7 @@ class PersonDetailsViewModel(private val personRepository: PersonRepository) : B
         language: String?,
         appendToResponse: String?
     ) {
-        ioScope.launch {
+        viewModelScope.launch {
             val response = personRepository.getPersonById(personId, language, appendToResponse)
 
             response?.let { personDetailsLiveData.postValue(response) }

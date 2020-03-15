@@ -1,6 +1,6 @@
 package com.majorik.moviebox.ui.main_page_profile
 
+import androidx.lifecycle.ViewModel
 import com.majorik.data.repositories.TmdbAuthRepository
-import com.majorik.moviebox.ui.base.BaseViewModel
 
-class ProfileViewModel(private val tmdbAuthRepository: TmdbAuthRepository) : BaseViewModel()
+class ProfileViewModel(private val tmdbAuthRepository: TmdbAuthRepository) : ViewModel()

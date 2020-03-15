@@ -1,6 +1,8 @@
 package com.majorik.moviebox.ui.main_page_movies
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.majorik.data.repositories.MovieRepository
 import com.majorik.data.repositories.PersonRepository
 import com.majorik.data.repositories.TrendingRepository
@@ -10,7 +12,6 @@ import com.majorik.domain.tmdbModels.movie.Movie
 import com.majorik.domain.tmdbModels.person.Person
 import com.majorik.domain.youtubeModels.SearchResponse
 import com.majorik.moviebox.BuildConfig
-import com.majorik.moviebox.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 
 class MoviesViewModel(
@@ -18,8 +19,8 @@ class MoviesViewModel(
     private val personRepository: PersonRepository,
     private val trendingRepository: TrendingRepository,
     private val youTubeRepository: YouTubeRepository
-) : BaseViewModel() {
-    val popularMoviesLiveData = MutableLiveData<MutableList<Movie>>()
+) : ViewModel() {
+    var popularMoviesLiveData = MutableLiveData<MutableList<Movie>>()
     val upcomingMoviesLiveData = MutableLiveData<MutableList<Movie>>()
     val nowPlayingMoviesLiveData = MutableLiveData<MutableList<Movie>>()
     val popularPeoplesLiveData = MutableLiveData<MutableList<Person>>()
@@ -32,7 +33,7 @@ class MoviesViewModel(
         page: Int?,
         region: String?
     ) {
-        ioScope.launch {
+        viewModelScope.launch {
             val response = movieRepository.getPopularMovies(language, page, region)
 
             response?.let { popularMoviesLiveData.postValue(it) }
@@ -44,7 +45,7 @@ class MoviesViewModel(
         page: Int?,
         region: String?
     ) {
-        ioScope.launch {
+        viewModelScope.launch {
             val response = movieRepository.getUpcomingMovies(language, page, region)
 
             response?.let { upcomingMoviesLiveData.postValue(it) }
@@ -56,7 +57,7 @@ class MoviesViewModel(
         page: Int?,
         region: String?
     ) {
-        ioScope.launch {
+        viewModelScope.launch {
             val response = movieRepository.getNowPlayingMovies(language, page, region)
 
             response?.let { nowPlayingMoviesLiveData.postValue(it) }
@@ -64,7 +65,7 @@ class MoviesViewModel(
     }
 
     fun fetchMovieGenres(language: String?) {
-        ioScope.launch {
+        viewModelScope.launch {
             val response = movieRepository.getMovieGenres(language)
 
             response?.let { genresLiveData.postValue(it) }
@@ -72,7 +73,7 @@ class MoviesViewModel(
     }
 
     fun fetchPopularPeoples(language: String?, page: Int?) {
-        ioScope.launch {
+        viewModelScope.launch {
             val response = personRepository.getPopularPeoples(language, page)
 
             response?.let { popularPeoplesLiveData.postValue(it) }
@@ -84,7 +85,7 @@ class MoviesViewModel(
         page: Int?,
         language: String?
     ) {
-        ioScope.launch {
+        viewModelScope.launch {
             val response = trendingRepository.getTrendingMovies(timeWindow, page, language)
 
             response?.let { trendingMoviesLiveData.postValue(it) }
@@ -92,7 +93,7 @@ class MoviesViewModel(
     }
 
     fun searchYouTubeVideosByChannel() {
-        ioScope.launch {
+        viewModelScope.launch {
             val response = youTubeRepository.searchYouTubeVideos(
                 BuildConfig.YOUTUBE_API_KEY,
                 "snippet",

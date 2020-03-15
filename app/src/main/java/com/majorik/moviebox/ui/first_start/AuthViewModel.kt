@@ -1,19 +1,20 @@
 package com.majorik.moviebox.ui.first_start
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.majorik.data.repositories.TmdbAuthRepository
 import com.majorik.domain.tmdbModels.auth.RequestTokenResponse
 import com.majorik.domain.tmdbModels.auth.ResponseSession
-import com.majorik.moviebox.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 
-class AuthViewModel(private val tmdbAuthRepository: TmdbAuthRepository) : BaseViewModel() {
+class AuthViewModel(private val tmdbAuthRepository: TmdbAuthRepository) : ViewModel() {
     var tmdbRequestTokenLiveData = MutableLiveData<RequestTokenResponse>()
     var tmdbSessionLiveData = MutableLiveData<ResponseSession>()
     var tmdbGuestSessionLiveData = MutableLiveData<RequestTokenResponse>()
 
     fun getRequestToken() {
-        ioScope.launch {
+        viewModelScope.launch {
             val response = tmdbAuthRepository.getRequestToken()
 
             response?.let { tmdbRequestTokenLiveData.postValue(it) }
@@ -21,7 +22,7 @@ class AuthViewModel(private val tmdbAuthRepository: TmdbAuthRepository) : BaseVi
     }
 
     fun createSessionToken(requestToken: String) {
-        ioScope.launch {
+        viewModelScope.launch {
             val response = tmdbAuthRepository.createSession(requestToken)
 
             response?.let { tmdbSessionLiveData.postValue(it) }
@@ -29,7 +30,7 @@ class AuthViewModel(private val tmdbAuthRepository: TmdbAuthRepository) : BaseVi
     }
 
     fun createGuestSession() {
-        ioScope.launch {
+        viewModelScope.launch {
             val response = tmdbAuthRepository.getRequestToken()
 
             response?.let { tmdbGuestSessionLiveData.postValue(it) }

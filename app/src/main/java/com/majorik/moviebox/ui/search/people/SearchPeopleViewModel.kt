@@ -2,21 +2,22 @@ package com.majorik.moviebox.ui.search.people
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations.switchMap
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.majorik.data.repositories.SearchRepository
 import com.majorik.domain.NetworkState
 import com.majorik.moviebox.pagination.search.SearchPeopleDataSourceFactory
-import com.majorik.moviebox.ui.base.BaseViewModel
 
 class SearchPeopleViewModel(
     repository: SearchRepository
-) : BaseViewModel() {
+) : ViewModel() {
 
     private val searchDataSource =
         SearchPeopleDataSourceFactory(
             repository = repository,
-            scope = ioScope
+            scope = viewModelScope
         )
 
     val searchResults = LivePagedListBuilder(searchDataSource, pagedConfig()).build()
