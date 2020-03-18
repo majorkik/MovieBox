@@ -36,5 +36,4 @@ class LanguageActivity : BaseSlidingActivity() {
     override fun onSlidingFinished() {}
 
     override fun canSlideDown(): Boolean = true
-
 }

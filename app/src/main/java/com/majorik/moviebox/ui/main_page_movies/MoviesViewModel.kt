@@ -12,6 +12,7 @@ import com.majorik.domain.tmdbModels.movie.Movie
 import com.majorik.domain.tmdbModels.person.Person
 import com.majorik.domain.youtubeModels.SearchResponse
 import com.majorik.moviebox.BuildConfig
+import com.orhanobut.logger.Logger
 import kotlinx.coroutines.launch
 
 class MoviesViewModel(
@@ -103,7 +104,9 @@ class MoviesViewModel(
                 "UCi8e0iOVk1fEOogdfu4YgfA"
             )
 
-            response?.let { trailersLiveData.postValue(it.items) }
+            if (!response?.items.isNullOrEmpty()) {
+                trailersLiveData.postValue(response!!.items)
+            }
         }
     }
 }

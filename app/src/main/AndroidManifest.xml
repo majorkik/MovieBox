@@ -23,6 +23,11 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".ui.genres.GenresActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Transparent.NoActionBar.Dark"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
             android:name=".ui.language.LanguageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Transparent.NoActionBar.Dark"

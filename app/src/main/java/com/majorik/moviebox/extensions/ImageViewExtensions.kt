@@ -29,7 +29,6 @@ fun ImageView.displayImageWithCenterCrop(
     load(url) {
         placeholder(placeholder)
     }
-
 }
 
 fun ImageView.setGrayscaleTransformation() {

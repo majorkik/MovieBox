@@ -10,8 +10,8 @@ import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.language.LanguageAdapter.LanguageViewHolder
 import com.majorik.moviebox.extensions.setSafeOnClickListener
 import com.orhanobut.logger.Logger
-import kotlinx.android.synthetic.main.item_lanugage.view.*
 import java.util.*
+import kotlinx.android.synthetic.main.item_lanugage.view.*
 
 class LanguageAdapter(private val listener: (locale: Locale) -> Unit) :
     RecyclerView.Adapter<LanguageViewHolder>() {

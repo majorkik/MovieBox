@@ -1,107 +1,20 @@
-# Add project specific ProGuard rules here.
-# You can control the set of applied configuration files using the
-# proguardFiles setting in build.gradle.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
-
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
-
-# Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
-
-# If you keep the line number information, uncomment this to
-# hide the original source file name.
-#-renamesourcefileattribute SourceFile
-
-#Timber
--dontwarn org.jetbrains.annotations.**
-# OkHttp
--keepattributes Signature
--keepattributes *Annotation*
--keep class okhttp3.** { *; }
--keep interface okhttp3.** { *; }
--dontwarn okhttp3.**
--dontwarn okio.**
-#Glide
--keep public class * implements com.bumptech.glide.module.GlideModule
--keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
-  **[] $VALUES;
-  public *;
-}
-#Crashlytics
--keep class com.crashlytics.** { *; }
--dontwarn com.crashlytics.**
-#FragmentArgs
--keep class com.hannesdorfmann.fragmentargs.** { *; }
-#Mockito
--dontwarn org.mockito.**
-#Junit
--dontwarn android.test.**
-#Turn off Logging
--assumenosideeffects class android.util.Log {
-    public static *** d(...);
-    public static *** v(...);
-    public static *** i(...);
-    public static *** e(...);
-    public static *** w(...);
-    public static *** wtf(...);
-}
-
-#############################################
-#
-# 对于一些基本指令的添加
-#
-#############################################
-# 代码混淆压缩比，在 0~7 之间，默认为 5，一般不做修改
+# copyright zhonghanwen
+#-------------------------------------------基本不用动区域--------------------------------------------
+#---------------------------------基本指令区----------------------------------
 -optimizationpasses 5
-
-# 混合时不使用大小写混合，混合后的类名为小写
--dontusemixedcaseclassnames
-
-# 指定不去忽略非公共库的类
--dontskipnonpubliclibraryclasses
-
-# 这句话能够使我们的项目混淆后产生映射文件
-# 包含有类名->混淆后类名的映射关系
--verbose
-
-# 指定不去忽略非公共库的类成员
 -dontskipnonpubliclibraryclassmembers
-
-# 不做预校验，preverify 是 proguard 的四个步骤之一，Android 不需要 preverify，去掉这一步能够加快混淆速度。
--dontpreverify
-
-# 保留 Annotation 不混淆
--keepattributes *Annotation*,InnerClasses
-
-# 避免混淆泛型
--keepattributes Signature
-
-# 抛出异常时保留代码行号
--keepattributes SourceFile,LineNumberTable
-
-# 指定混淆是采用的算法，后面的参数是一个过滤器
-# 这个过滤器是谷歌推荐的算法，一般不做更改
+-printmapping proguardMapping.txt
 -optimizations !code/simplification/cast,!field/*,!class/merging/*
+-keepattributes *Annotation*,InnerClasses
+-keepattributes Signature
+-keepattributes SourceFile,LineNumberTable
+#----------------------------------------------------------------------------
 
-
-#############################################
-#
-# Android开发中一些需要保留的公共部分
-#
-#############################################
-
-# 保留我们使用的四大组件，自定义的 Application 等等这些类不被混淆
-# 因为这些子类都有可能被外部调用
+#---------------------------------默认保留区---------------------------------
+#继承activity,application,service,broadcastReceiver,contentprovider....不进行混淆
 -keep public class * extends android.app.Activity
--keep public class * extends android.app.Appliction
+-keep public class * extends android.app.Application
+-keep public class * extends android.support.multidex.MultiDexApplication
 -keep public class * extends android.app.Service
 -keep public class * extends android.content.BroadcastReceiver
 -keep public class * extends android.content.ContentProvider
@@ -109,121 +22,117 @@
 -keep public class * extends android.preference.Preference
 -keep public class * extends android.view.View
 -keep public class com.android.vending.licensing.ILicensingService
+-keep class android.support.** {*;}
 
-
-# 保留 support 下的所有类及其内部类
--keep class android.support.** { *; }
-
-# 保留继承的
--keep public class * extends android.support.v4.**
--keep public class * extends android.support.v7.**
--keep public class * extends android.support.annotation.**
-
-# 保留 R 下面的资源
--keep class **.R$* { *; }
-
-# 保留本地 native 方法不被混淆
--keepclasseswithmembernames class * {
-    native <methods>;
-}
-
-# 保留在 Activity 中的方法参数是view的方法，
-# 这样以来我们在 layout 中写的 onClick 就不会被影响
--keepclassmembers class * extends android.app.Activity {
-    public void *(android.view.View);
-}
-
-# 保留枚举类不被混淆
--keepclassmembers enum * {
-    public static ** valueOf(java.lang.String);
-}
-
-# 保留我们自定义控件（继承自 View）不被混淆
--keep public class * extends android.view.View {
+-keep public class * extends android.view.View{
     *** get*();
     void set*(***);
     public <init>(android.content.Context);
     public <init>(android.content.Context, android.util.AttributeSet);
     public <init>(android.content.Context, android.util.AttributeSet, int);
 }
-
-# 保留 Parcelable 序列化类不被混淆
--keep class * implements android.os.Parcelable {
-    public static final android.os.Parcelable$Creator *;
+-keepclasseswithmembers class * {
+    public <init>(android.content.Context, android.util.AttributeSet);
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+}
+#这个主要是在layout 中写的onclick方法android:onclick="onClick"，不进行混淆
+-keepclassmembers class * extends android.app.Activity {
+   public void *(android.view.View);
 }
 
-# 对于带有回调函数的 onXXEvent、**On*Listener 的，不能被混淆
+-keepclassmembers class * implements java.io.Serializable {
+    static final long serialVersionUID;
+    private static final java.io.ObjectStreamField[] serialPersistentFields;
+    private void writeObject(java.io.ObjectOutputStream);
+    private void readObject(java.io.ObjectInputStream);
+    java.lang.Object writeReplace();
+    java.lang.Object readResolve();
+}
+-keep class **.R$* {
+ *;
+}
+
 -keepclassmembers class * {
-    void *(**On*Event);
-    void *(**On*Listener);
+    void *(*Event);
 }
 
-# webView 处理，项目中没有使用到 webView 忽略即可
--keepclassmembers class fqcn.of.javascript.interface.for.webview {
-    public *;
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
 }
--keepclassmembers class * extends android.webkit.webViewClient {
+-keep class * implements android.os.Parcelable {
+  public static final android.os.Parcelable$Creator *;
+}
+#// natvie 方法不混淆
+-keepclasseswithmembernames class * {
+    native <methods>;
+}
+
+#保持 Parcelable 不被混淆
+-keep class * implements android.os.Parcelable {
+  public static final android.os.Parcelable$Creator *;
+}
+
+#----------------------------------------------------------------------------
+
+#---------------------------------webview------------------------------------
+-keepclassmembers class fqcn.of.javascript.interface.for.Webview {
+   public *;
+}
+-keepclassmembers class * extends android.webkit.WebViewClient {
     public void *(android.webkit.WebView, java.lang.String, android.graphics.Bitmap);
     public boolean *(android.webkit.WebView, java.lang.String);
 }
--keepclassmembers class * extends android.webkit.webViewClient {
-    public void *(android.webkit.webView, java.lang.String);
+-keepclassmembers class * extends android.webkit.WebViewClient {
+    public void *(android.webkit.WebView, jav.lang.String);
 }
 
-# js
--keepattributes JavascriptInterface
--keep class android.webkit.JavascriptInterface { *; }
--keepclassmembers class * {
-    @android.webkit.JavascriptInterface <methods>;
-}
+#okhttp3.x
+-dontwarn com.squareup.okhttp3.**
+-keep class com.squareup.okhttp3.** { *;}
+-dontwarn okio.**
 
-# @Keep
--keep @android.support.annotation.Keep class *
--keepclassmembers class * {
-    @android.support.annotation.Keep *;
-}
-
-# https://proguard-rules.blogspot.com/2017/05/glide-proguard-rules.html
--keep public class * implements com.bumptech.glide.module.GlideModule
--keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
-  **[] $VALUES;
-  public *;
-}
-
-# for DexGuard only
-#-keepresourcexmlelements manifest/application/meta-data@value=GlideModule
-
-# https://github.com/bumptech/glide/blob/master/library/proguard-rules.txt
--keep public class * extends com.bumptech.glide.module.AppGlideModule
--keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
-  **[] $VALUES;
-  public *;
-}
-
-# https://github.com/Kotlin/kotlinx.coroutines
--keepnames class kotlinx.coroutines.internal.MainDispatcherFactory {}
--keepnames class kotlinx.coroutines.CoroutineExceptionHandler {}
--keepnames class kotlinx.coroutines.android.AndroidExceptionPreHandler {}
--keepnames class kotlinx.coroutines.android.AndroidDispatcherFactory {}
-
--keepclassmembernames class kotlinx.** {
-    volatile <fields>;
-}
-
-# https://github.com/square/okhttp
-# okhttp
--keepattributes Signature
--keepattributes *Annotation*
--keep class com.squareup.okhttp.* { *; }
--keep interface com.squareup.okhttp.** { *; }
+## okhttp
 -dontwarn com.squareup.okhttp.**
-
-# okhttp 3
+-keep class com.squareup.okhttp.{*;}
+#retrofit
+-dontwarn retrofit.**
+-keep class retrofit.** { *; }
 -keepattributes Signature
--keepattributes *Annotation*
--keep class okhttp3.** { *; }
--keep interface okhttp3.** { *; }
--dontwarn okhttp3.**
+-keepattributes Exceptions
+-dontwarn okio.**
+
+# support-v4
+#https://stackoverflow.com/questions/18978706/obfuscate-android-support-v7-widget-gridlayout-issue
+-dontwarn android.support.v4.**
+-keep class android.support.v4.app.** { *; }
+-keep interface android.support.v4.app.** { *; }
+-keep class android.support.v4.** { *; }
+
+
+# support-v7
+-dontwarn android.support.v7.**
+-keep class android.support.v7.internal.** { *; }
+-keep interface android.support.v7.internal.** { *; }
+-keep class android.support.v7.** { *; }
+
+# support design
+#@link http://stackoverflow.com/a/31028536
+-dontwarn android.support.design.**
+-keep class android.support.design.** { *; }
+-keep interface android.support.design.** { *; }
+-keep public class android.support.design.R$* { *; }
+#-------------------------------------------------------------------------
+
+#log4j
+-dontwarn org.apache.log4j.**
+-keep class  org.apache.log4j.** { *;}
+
+#retrofit2.x
+-dontwarn retrofit2.**
+-keep class retrofit2.** { *; }
+-keepattributes Signature
+-keepattributes Exceptions
 
 # Okio
 -dontwarn com.squareup.**
@@ -231,115 +140,122 @@
 -keep public class org.codehaus.* { *; }
 -keep public class java.nio.* { *; }
 
-# https://square.github.io/retrofit
-# Retrofit
--dontwarn retrofit.**
--keep class retrofit.** { *; }
--keepattributes Signature
--keepattributes Exceptions
-
-# Retrofit2
--keep class retrofit2.** { *; }
--dontwarn retrofit2.**
--keepattributes Signature
--keepattributes Exceptions
--dontwarn okio.**
+# JSR 305 annotations are for embedding nullability information.
 -dontwarn javax.annotation.**
 
--optimizationpasses 5
--dontusemixedcaseclassnames
--dontskipnonpubliclibraryclasses
--dontskipnonpubliclibraryclassmembers
--dontpreverify
--verbose
--dump class_files.txt
--printseeds seeds.txt
--printusage unused.txt
--printmapping mapping.txt
--optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
-
--allowaccessmodification
--keepattributes *Annotation*
--renamesourcefileattribute SourceFile
--keepattributes SourceFile,LineNumberTable
--repackageclasses ''
-
--keep public class * extends android.app.Activity
--keep public class * extends android.app.Application
--keep public class * extends android.app.Service
--keep public class * extends android.content.BroadcastReceiver
--keep public class * extends android.content.ContentProvider
--keep public class * extends android.app.backup.BackupAgentHelper
--keep public class * extends android.preference.Preference
--keep public class com.android.vending.licensing.ILicensingService
--dontnote com.android.vending.licensing.ILicensingService
-
-# Preserve all native method names and the names of their classes.
--keepclasseswithmembernames class * {
-    native <methods>;
+-keepclasseswithmembers class * {
+    @com.squareup.moshi.* <methods>;
 }
 
--keepclasseswithmembernames class * {
-    public <init>(android.content.Context, android.util.AttributeSet);
+-keep @com.squareup.moshi.JsonQualifier interface *
+
+# Enum field names are used by the integrated EnumJsonAdapter.
+# values() is synthesized by the Kotlin compiler and is used by EnumJsonAdapter indirectly
+# Annotate enums with @JsonClass(generateAdapter = false) to use them with Moshi.
+-keepclassmembers @com.squareup.moshi.JsonClass class * extends java.lang.Enum {
+    <fields>;
+    **[] values();
 }
 
--keepclasseswithmembernames class * {
-    public <init>(android.content.Context, android.util.AttributeSet, int);
+# ServiceLoader support
+-keepnames class kotlinx.coroutines.internal.MainDispatcherFactory {}
+-keepnames class kotlinx.coroutines.CoroutineExceptionHandler {}
+-keepnames class kotlinx.coroutines.android.AndroidExceptionPreHandler {}
+-keepnames class kotlinx.coroutines.android.AndroidDispatcherFactory {}
+
+-keep class kotlinx.coroutines.internal.MainDispatcherFactory {}
+-keep class kotlinx.coroutines.CoroutineExceptionHandler {}
+-keep class kotlinx.coroutines.android.AndroidExceptionPreHandler {}
+-keep class kotlinx.coroutines.android.AndroidDispatcherFactory {}
+
+# Most of volatile fields are updated with AFU and should not be mangled
+-keepclassmembernames class kotlinx.** {
+    volatile <fields>;
 }
 
-# Preserve static fields of inner classes of R classes that might be accessed
-# through introspection.
--keepclassmembers class **.R$* {
-  public static <fields>;
+## Android architecture components: Lifecycle
+# LifecycleObserver's empty constructor is considered to be unused by proguard
+-keepclassmembers class * implements android.arch.lifecycle.LifecycleObserver {
+    <init>(...);
+}
+# ViewModel's empty constructor is considered to be unused by proguard
+-keepclassmembers class * extends android.arch.lifecycle.ViewModel {
+    <init>(...);
+}
+# keep Lifecycle State and Event enums values
+-keepclassmembers class android.arch.lifecycle.Lifecycle$State { *; }
+-keepclassmembers class android.arch.lifecycle.Lifecycle$Event { *; }
+# keep methods annotated with @OnLifecycleEvent even if they seem to be unused
+# (Mostly for LiveData.LifecycleBoundObserver.onStateChange(), but who knows)
+-keepclassmembers class * {
+    @android.arch.lifecycle.OnLifecycleEvent *;
 }
 
-# Preserve the special static methods that are required in all enumeration classes.
+-keepclassmembers class * implements android.arch.lifecycle.LifecycleObserver {
+    <init>(...);
+}
+
+-keep class * implements android.arch.lifecycle.LifecycleObserver {
+    <init>(...);
+}
+-keepclassmembers class android.arch.** { *; }
+-keep class android.arch.** { *; }
+-dontwarn android.arch.**
+
+-keep class * implements android.arch.lifecycle.GeneratedAdapter {<init>(...);}
+
+-dontnote **
+
+-target 1.6
+-dontoptimize
+-dontobfuscate
+# -dontshrink
+
+-keep public class kotlin.reflect.* { *; }
+-keep public class kotlin.reflect.jvm.* { *; }
+-keep public class kotlin.reflect.full.* { *; }
+
+-keepattributes SourceFile,LineNumberTable,InnerClasses,Signature,Deprecated,*Annotation*,EnclosingMethod
+
+-keep class kotlin.reflect.jvm.internal.ReflectionFactoryImpl { public protected *; }
+
+-keep class * implements kotlin.reflect.jvm.internal.impl.resolve.ExternalOverridabilityCondition { public protected *; }
+-keep class * implements kotlin.reflect.jvm.internal.impl.builtins.BuiltInsLoader { public protected *; }
+
 -keepclassmembers enum * {
+    public static **[] values();
     public static ** valueOf(java.lang.String);
 }
 
--keep public class * {
-    public protected *;
+-keepclassmembers class * {
+    ** toString();
 }
 
--keep class * implements android.os.Parcelable {
-  public static final android.os.Parcelable$Creator *;
+# For tests on HashPMap, see compiler/testData/codegen/box/hashPMap
+-keepclassmembers class kotlin.reflect.jvm.internal.pcollections.HashPMap {
+    public int size();
+    public boolean containsKey(java.lang.Object);
+    public kotlin.reflect.jvm.internal.pcollections.HashPMap minus(java.lang.Object);
 }
-##---------------End: proguard configuration common for all Android apps ----------
 
-#---------------Begin: proguard configuration for support library  ----------
--keep class android.support.v4.app.** { *; }
--keep interface android.support.v4.app.** { *; }
--keep class com.actionbarsherlock.** { *; }
--keep interface com.actionbarsherlock.** { *; }
+# This is needed because otherwise ProGuard strips generic signature of this class (even though we pass `-keepattributes Signature` above)
+# See KT-23962 and https://sourceforge.net/p/proguard/bugs/482/
+-keep class kotlin.reflect.jvm.internal.impl.protobuf.GeneratedMessageLite$ExtendableMessageOrBuilder
 
-# The support library contains references to newer platform versions.
-# Don't warn about those in case this app is linking against an older
-# platform version. We know about them, and they are safe.
--dontwarn android.support.**
--dontwarn com.google.ads.**
-##---------------End: proguard configuration for Gson  ----------
+-keepclassmembers class kotlin.Metadata {
+    public <methods>;
+}
 
-##---------------Begin: proguard configuration for Gson  ----------
-# Gson uses generic type information stored in a class file when working with fields. Proguard
-# removes such information by default, so configure it to keep all of it.
--keepattributes Signature
+-keep class kotlin.reflect.jvm.internal.** { *; }
 
-# For using GSON @Expose annotation
+
 -keepattributes *Annotation*
 
-# Gson specific classes
--keep class sun.misc.Unsafe { *; }
-#-keep class com.google.gson.stream.** { *; }
+-keep class kotlin.** { *; }
+-keep class org.jetbrains.** { *; }
 
-# Application classes that will be serialized/deserialized over Gson
--keep class com.example.model.** { *; }
-
-##---------------End: proguard configuration for Gson  ----------
-
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
--keepclassmembers class fqcn.of.javascript.interface.for.webview {
-   public *;
+# Moshi
+-keepclassmembers class ** {
+  @com.squareup.moshi.FromJson *;
+  @com.squareup.moshi.ToJson *;
 }

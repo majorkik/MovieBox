@@ -1,7 +1,6 @@
 package com.majorik.moviebox.ui.base
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import kotlinx.android.synthetic.main.activity_tab_collections.*
 

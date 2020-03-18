@@ -7,13 +7,13 @@ import com.akexorcist.localizationactivity.core.LocalizationApplicationDelegate
 import com.majorik.moviebox.di.appComponent
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
+import java.util.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 import timber.log.Timber
 import timber.log.Timber.DebugTree
-import java.util.*
 
 class MovieBoxApplication : Application() {
     private var localizationDelegate = LocalizationApplicationDelegate()

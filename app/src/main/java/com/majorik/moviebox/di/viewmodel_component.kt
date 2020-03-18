@@ -3,6 +3,7 @@ package com.majorik.moviebox.di
 import com.majorik.domain.enums.movie.MovieCollectionType
 import com.majorik.domain.enums.movie.TVCollectionType
 import com.majorik.moviebox.ui.first_start.AuthViewModel
+import com.majorik.moviebox.ui.genres.GenresViewModel
 import com.majorik.moviebox.ui.main_page_movies.MoviesViewModel
 import com.majorik.moviebox.ui.main_page_profile.ProfileViewModel
 import com.majorik.moviebox.ui.main_page_tvs.TVsViewModel
@@ -30,6 +31,7 @@ val viewModelModule = module {
     viewModel { PersonDetailsViewModel(get()) }
     viewModel { SeasonDetailsViewModel(get()) }
     viewModel { AuthViewModel(get()) }
+    viewModel { GenresViewModel(get(), get()) }
     viewModel { (tvCollectionType: TVCollectionType) ->
         TVCollectionsViewModel(
             get(),

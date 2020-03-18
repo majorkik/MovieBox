@@ -6,7 +6,6 @@ import android.graphics.Point
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import kotlin.math.absoluteValue
 

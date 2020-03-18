@@ -24,7 +24,6 @@ import com.majorik.moviebox.extensions.startActivityWithAnim
 import com.majorik.moviebox.storage.CredentialsPrefsManager
 import com.majorik.moviebox.ui.about_tmdb.AboutTheMovieDatabaseActivity
 import com.majorik.moviebox.utils.FontSpan
-import kotlin.coroutines.CoroutineContext
 import kotlinx.android.synthetic.main.activity_first_start.*
 import kotlinx.coroutines.*
 import org.koin.android.ext.android.inject

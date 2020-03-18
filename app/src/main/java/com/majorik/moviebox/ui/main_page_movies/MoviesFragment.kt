@@ -17,11 +17,9 @@ import com.majorik.moviebox.adapters.movie.MovieCardAdapter
 import com.majorik.moviebox.adapters.movie.MovieCollectionAdapter
 import com.majorik.moviebox.adapters.movie.MovieDateCardAdapter
 import com.majorik.moviebox.adapters.movie.MovieTrendAdapter
-import com.majorik.moviebox.extensions.setAdapterWithFixedSize
-import com.majorik.moviebox.extensions.startActivityWithAnim
-import com.majorik.moviebox.extensions.toDate
-import com.majorik.moviebox.extensions.toPx
+import com.majorik.moviebox.extensions.*
 import com.majorik.moviebox.ui.base.BaseNavigationFragment
+import com.majorik.moviebox.ui.genres.GenresActivity
 import com.majorik.moviebox.ui.movieTabCollections.MovieCollectionsActivity
 import com.majorik.moviebox.ui.search.SearchableActivity
 import com.majorik.moviebox.utils.GenresStorageObject
@@ -81,6 +79,17 @@ class MoviesFragment : BaseNavigationFragment() {
                 MovieCollectionsActivity::class.java,
                 MovieCollectionType.NOW_PLAYING
             )
+        }
+
+        btn_movie_genres.setSafeOnClickListener {
+            val intent = Intent(context, GenresActivity::class.java)
+
+            intent.putExtra(
+                GenresActivity.SELECTED_GENRES_TYPE,
+                GenresActivity.GenresType.MOVIE_GENRES
+            )
+
+            context?.startActivityWithAnim(intent)
         }
     }
 
