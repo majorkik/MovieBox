@@ -12,6 +12,7 @@ import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.PagingMovieCollectionAdapter
 import com.majorik.moviebox.extensions.toPx
 import com.majorik.moviebox.utils.SpacingDecoration
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.fragment_collection_page.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -47,7 +48,7 @@ class MovieCollectionsFragment(collectionType: MovieCollectionType) : Fragment()
     private fun configureRecyclerView() {
         adapter = PagingMovieCollectionAdapter(this)
         grid_items.addItemDecoration(SpacingDecoration(16.toPx(), 16.toPx(), true))
-        grid_items.adapter = adapter
+        grid_items.adapter = ScaleInAnimationAdapter(adapter)
     }
 
     private fun configureObservables() {

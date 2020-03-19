@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.majorik.data.repositories.PersonRepository
 import com.majorik.domain.tmdbModels.person.PersonDetails
+import com.majorik.domain.tmdbModels.result.ResultWrapper
 import kotlinx.coroutines.launch
 
 class PersonDetailsViewModel(private val personRepository: PersonRepository) : ViewModel() {
@@ -18,7 +19,17 @@ class PersonDetailsViewModel(private val personRepository: PersonRepository) : V
         viewModelScope.launch {
             val response = personRepository.getPersonById(personId, language, appendToResponse)
 
-            response?.let { personDetailsLiveData.postValue(response) }
+            when (response) {
+                is ResultWrapper.NetworkError -> {
+                }
+
+                is ResultWrapper.GenericError -> {
+                }
+
+                is ResultWrapper.Success -> {
+                    personDetailsLiveData.postValue(response.value)
+                }
+            }
         }
     }
 }

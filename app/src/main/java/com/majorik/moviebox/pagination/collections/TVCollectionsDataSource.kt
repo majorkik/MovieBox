@@ -7,7 +7,9 @@ import com.majorik.data.repositories.TVRepository
 import com.majorik.domain.NetworkState
 import com.majorik.domain.constants.AppConfig
 import com.majorik.domain.enums.movie.TVCollectionType
+import com.majorik.domain.tmdbModels.result.ResultWrapper
 import com.majorik.domain.tmdbModels.tv.TV
+import com.majorik.domain.tmdbModels.tv.TVResponse
 import kotlinx.coroutines.*
 import timber.log.Timber
 
@@ -71,8 +73,8 @@ class TVCollectionsDataSource(
     private suspend fun getCurrentQuery(
         language: String?,
         page: Int?
-    ): MutableList<TV>? =
-        when (tvCollectionType) {
+    ): List<TV>? {
+        val response = when (tvCollectionType) {
             TVCollectionType.POPULAR -> {
                 repository.getPopularTVs(language, page)
             }
@@ -86,6 +88,16 @@ class TVCollectionsDataSource(
                 repository.getOnTheAirTVs(language, page)
             }
         }
+
+        return getResult(response)
+    }
+
+    private fun getResult(response: ResultWrapper<TVResponse>): List<TV>? {
+        return when (response) {
+            is ResultWrapper.Success -> response.value.results
+            else -> emptyList()
+        }
+    }
 
     fun getNetworkState(): LiveData<NetworkState> = networkState
 

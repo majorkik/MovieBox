@@ -4,19 +4,30 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.majorik.data.repositories.TVRepository
+import com.majorik.domain.tmdbModels.result.ResultWrapper
 import com.majorik.domain.tmdbModels.tv.TV
 import kotlinx.coroutines.launch
 
 class TVsViewModel(private val tvRepository: TVRepository) : ViewModel() {
-    val popularTVsLiveData = MutableLiveData<MutableList<TV>>()
-    val airTodayTVsLiveData = MutableLiveData<MutableList<TV>>()
-    val onTheAirTVsLiveData = MutableLiveData<MutableList<TV>>()
+    val popularTVsLiveData = MutableLiveData<List<TV>>()
+    val airTodayTVsLiveData = MutableLiveData<List<TV>>()
+    val onTheAirTVsLiveData = MutableLiveData<List<TV>>()
 
     fun fetchPopularTVs(language: String?, page: Int?) {
         viewModelScope.launch {
             val response = tvRepository.getPopularTVs(language, page)
 
-            response?.let { popularTVsLiveData.postValue(response) }
+            when (response) {
+                is ResultWrapper.NetworkError -> {
+                }
+
+                is ResultWrapper.GenericError -> {
+                }
+
+                is ResultWrapper.Success -> {
+                    popularTVsLiveData.postValue(response.value.results)
+                }
+            }
         }
     }
 
@@ -24,7 +35,17 @@ class TVsViewModel(private val tvRepository: TVRepository) : ViewModel() {
         viewModelScope.launch {
             val response = tvRepository.getAiringTodayTVs(language, page)
 
-            response?.let { airTodayTVsLiveData.postValue(response) }
+            when (response) {
+                is ResultWrapper.NetworkError -> {
+                }
+
+                is ResultWrapper.GenericError -> {
+                }
+
+                is ResultWrapper.Success -> {
+                    airTodayTVsLiveData.postValue(response.value.results)
+                }
+            }
         }
     }
 
@@ -32,7 +53,17 @@ class TVsViewModel(private val tvRepository: TVRepository) : ViewModel() {
         viewModelScope.launch {
             val response = tvRepository.getOnTheAirTVs(language, page)
 
-            response?.let { onTheAirTVsLiveData.postValue(response) }
+            when (response) {
+                is ResultWrapper.NetworkError -> {
+                }
+
+                is ResultWrapper.GenericError -> {
+                }
+
+                is ResultWrapper.Success -> {
+                    onTheAirTVsLiveData.postValue(response.value.results)
+                }
+            }
         }
     }
 }

@@ -21,7 +21,6 @@ import com.majorik.domain.tmdbModels.tv.TVDetails
 import com.majorik.domain.tmdbModels.tv.TVEpisodeResponse
 import com.majorik.domain.tmdbModels.tv.TVResponse
 import com.majorik.domain.tmdbModels.tv.TVSeasonDetails
-import retrofit2.Response
 import retrofit2.http.* // ktlint-disable no-wildcard-imports
 
 interface TmdbApiService {
@@ -34,42 +33,42 @@ interface TmdbApiService {
         @Query("language") language: String?,
         @Query("append_to_response") appendToResponse: String?,
         @Query("include_image_language") imageLanguages: String?
-    ): Response<MovieDetails>
+    ): MovieDetails
 
     @GET("movie/popular")
     suspend fun getPopularMovies(
         @Query("language") language: String?,
         @Query("page") page: Int?,
         @Query("region") region: String?
-    ): Response<MovieResponse>
+    ): MovieResponse
 
     @GET("movie/top_rated")
     suspend fun getTopRatedMovies(
         @Query("language") language: String?,
         @Query("page") page: Int?,
         @Query("region") region: String?
-    ): Response<MovieResponse>
+    ): MovieResponse
 
     @GET("movie/{movie_id}/account_states")
     suspend fun getAccountStatesForMovie(
         @Path("movie_id") movieId: Int,
         @Query("session_id") sessionId: String,
         @Query("guest_session_id") guestSessionId: String?
-    ): Response<AccountStates>
+    ): AccountStates
 
     @GET("movie/upcoming")
     suspend fun getUpcomingMovies(
         @Query("language") language: String?,
         @Query("page") page: Int?,
         @Query("region") region: String?
-    ): Response<MovieResponse>
+    ): MovieResponse
 
     @GET("movie/now_playing")
     suspend fun getNowPlayingMovies(
         @Query("language") language: String?,
         @Query("page") page: Int?,
         @Query("region") region: String?
-    ): Response<MovieResponse>
+    ): MovieResponse
 
     // TVs
 
@@ -79,19 +78,19 @@ interface TmdbApiService {
         @Query("language") language: String?,
         @Query("append_to_response") appendToResponse: String?,
         @Query("include_image_language") imageLanguages: String?
-    ): Response<TVDetails>
+    ): TVDetails
 
     @GET("tv/popular")
     suspend fun getPopularTVs(
         @Query("language") language: String?,
         @Query("page") page: Int?
-    ): Response<TVResponse>
+    ): TVResponse
 
     @GET("tv/top_rated")
     suspend fun getTopRatedTVs(
         @Query("language") language: String?,
         @Query("page") page: Int?
-    ): Response<TVResponse>
+    ): TVResponse
 
     @GET("tv/{tv_id}/account_states")
     suspend fun getAccountStatesForTV(
@@ -99,19 +98,19 @@ interface TmdbApiService {
         @Query("language") language: String?,
         @Query("guest_session_id") guestSessionId: String?,
         @Query("session_id") sessionId: String
-    ): Response<AccountStates>
+    ): AccountStates
 
     @GET("tv/airing_today")
     suspend fun getAiringTodayTVs(
         @Query("language") language: String?,
         @Query("page") page: Int?
-    ): Response<TVResponse>
+    ): TVResponse
 
     @GET("tv/on_the_air")
     suspend fun getOnTheAirTVs(
         @Query("language") language: String?,
         @Query("page") page: Int?
-    ): Response<TVResponse>
+    ): TVResponse
 
     // Persons
 
@@ -120,31 +119,31 @@ interface TmdbApiService {
         @Path("person_id") personId: Int,
         @Query("language") language: String?,
         @Query("append_to_response") appendToResponse: String?
-    ): Response<PersonDetails>
+    ): PersonDetails
 
     @GET("person/{person_id}/tagged_images")
     suspend fun getPersonTaggedImages(
         @Path("person_id") personId: Int,
         @Query("language") language: String?,
         @Query("page") page: Int?
-    ): Response<ImagesResponse>
+    ): ImagesResponse
 
     @GET("person/{person_id}/images")
     suspend fun getPersonPosters(
         @Path("person_id") personId: Int
-    ): Response<PersonPostersResponse>
+    ): PersonPostersResponse
 
     @GET("person/popular")
     suspend fun getPopularPeoples(
         @Query("language") language: String?,
         @Query("page") page: Int?
-    ): Response<PersonResponse>
+    ): PersonResponse
 
     @GET("person/{person_id}/movie_credits")
-    suspend fun getMovieCredits(@Path("person_id") personId: Int, @Query("language") language: String?): Response<PersonDetails.MovieCredits>
+    suspend fun getMovieCredits(@Path("person_id") personId: Int, @Query("language") language: String?): PersonDetails.MovieCredits
 
     @GET("person/{person_id}/tv_credits")
-    suspend fun getTVCredits(@Path("person_id") personId: Int, @Query("language") language: String?): Response<PersonDetails.TVCredits>
+    suspend fun getTVCredits(@Path("person_id") personId: Int, @Query("language") language: String?): PersonDetails.TVCredits
 
     // Season & Episode
 
@@ -154,26 +153,26 @@ interface TmdbApiService {
         @Path("season_number") seasonNumber: Int,
         @Query("language") language: String?,
         @Query("append_to_response") appendToResponse: String?
-    ): Response<TVSeasonDetails>
+    ): TVSeasonDetails
 
     // Genres
 
     @GET("genre/movie/list")
     suspend fun getMovieGenres(
         @Query("language") language: String?
-    ): Response<GenreResponse>
+    ): GenreResponse
 
     @GET("genre/tv/list")
     suspend fun getTVGenres(
         @Query("language") language: String?
-    ): Response<GenreResponse>
+    ): GenreResponse
 
     // Account
 
     @GET("account")
     suspend fun getAccountDetails(
         @Query("session_id") sessionId: String
-    ): Response<AccountDetails>
+    ): AccountDetails
 
     @GET("account/{account_id}/favorite/movies")
     suspend fun getFavoriteMovies(
@@ -181,7 +180,7 @@ interface TmdbApiService {
         @Query("session_id") sessionId: String,
         @Query("sort_by") sortBy: String?,
         @Query("page") page: Int?
-    ): Response<MovieResponse>
+    ): MovieResponse
 
     @GET("account/{account_id}/favorite/tv")
     suspend fun getFavoriteTVs(
@@ -189,13 +188,13 @@ interface TmdbApiService {
         @Query("session_id") sessionId: String,
         @Query("sort_by") sortBy: String?,
         @Query("page") page: Int?
-    ): Response<TVResponse>
+    ): TVResponse
 
     @POST("account/{account_id}/favorite")
     suspend fun markIsFavorite(
         @Body requestMarkAsFavorite: RequestMarkAsFavorite,
         @Query("session_id") sessionId: String
-    ): Response<ApiResponse>
+    ): ApiResponse
 
     @GET("account/{account_id}/rated/movies")
     suspend fun getRatedMovies(
@@ -203,7 +202,7 @@ interface TmdbApiService {
         @Query("session_id") sessionId: String,
         @Query("sort_by") sortBy: String?,
         @Query("page") page: Int?
-    ): Response<MovieResponse>
+    ): MovieResponse
 
     @GET("account/{account_id}/rated/tv")
     suspend fun getRatedTVs(
@@ -211,7 +210,7 @@ interface TmdbApiService {
         @Query("session_id") sessionId: String,
         @Query("sort_by") sortBy: String?,
         @Query("page") page: Int?
-    ): Response<TVResponse>
+    ): TVResponse
 
     @GET("account/{account_id}/rated/tv/episodes")
     suspend fun getRatedEpisodes(
@@ -219,7 +218,7 @@ interface TmdbApiService {
         @Query("session_id") sessionId: String,
         @Query("sort_by") sortBy: String?,
         @Query("page") page: Int?
-    ): Response<TVEpisodeResponse>
+    ): TVEpisodeResponse
 
     @GET("account/{account_id}/watchlist/movies")
     suspend fun getWatchlistMovies(
@@ -227,7 +226,7 @@ interface TmdbApiService {
         @Query("session_id") sessionId: String,
         @Query("sort_by") sortBy: String?,
         @Query("page") page: Int?
-    ): Response<MovieResponse>
+    ): MovieResponse
 
     @GET("account/{account_id}/watchlist/tv")
     suspend fun getWatchlistTVs(
@@ -235,13 +234,13 @@ interface TmdbApiService {
         @Query("session_id") sessionId: String,
         @Query("sort_by") sortBy: String?,
         @Query("page") page: Int?
-    ): Response<TVResponse>
+    ): TVResponse
 
     @POST("account/{account_id}/watchlist")
     suspend fun addToWatchlist(
         @Body requestAddToWatchlist: RequestAddToWatchlist,
         @Query("session_id") sessionId: String
-    ): Response<ApiResponse>
+    ): ApiResponse
 
     // Search
 
@@ -254,7 +253,7 @@ interface TmdbApiService {
         @Query("region") region: String?,
         @Query("year") year: Int?,
         @Query("primary_release_year") primaryReleaseYear: Int?
-    ): Response<MovieResponse>
+    ): MovieResponse
 
     @GET("search/tv")
     suspend fun searchTVSeries(
@@ -262,7 +261,7 @@ interface TmdbApiService {
         @Query("query") query: String,
         @Query("page") page: Int?,
         @Query("first_air_date_year") firstAirDateYear: Int?
-    ): Response<TVResponse>
+    ): TVResponse
 
     @GET("search/multi")
     suspend fun multiSearch(
@@ -270,7 +269,7 @@ interface TmdbApiService {
         @Query("query") query: String,
         @Query("page") page: Int?,
         @Query("include_adult") includeAdult: Boolean?
-    ): Response<MultiSearchResponse>
+    ): MultiSearchResponse
 
     @GET("search/person")
     suspend fun searchPeoples(
@@ -279,22 +278,22 @@ interface TmdbApiService {
         @Query("page") page: Int?,
         @Query("include_adult") includeAdult: Boolean?,
         @Query("region") region: String?
-    ): Response<PersonResponse>
+    ): PersonResponse
 
     // Auth
 
     @GET("authentication/token/new")
-    suspend fun getRequestToken(): Response<RequestTokenResponse>
+    suspend fun getRequestToken(): RequestTokenResponse
 
     @POST("authentication/session/new")
     suspend fun createSession(
         @Body requestToken: RequestToken
-    ): Response<ResponseSession>
+    ): ResponseSession
 
     @HTTP(method = "DELETE", path = "authentication/session", hasBody = true)
     suspend fun deleteSession(
         @Body sessionIdModel: RequestSession
-    ): Response<ResponseSession>
+    ): ResponseSession
 
     // trending
 
@@ -304,19 +303,19 @@ interface TmdbApiService {
         @Path("time_window") timeWindow: String,
         @Query("page") page: Int?,
         @Query("language") language: String?
-    ): Response<MovieResponse>
+    ): MovieResponse
 
     @GET("trending/{media_type}/{time_window}")
     fun getTrendingTVs(
         @Path("media_type") mediaType: String,
         @Path("time_window") timeWindow: String,
         @Query("language") language: String?
-    ): Response<TVResponse>
+    ): TVResponse
 
     @GET("trending/{media_type}/{time_window}")
     fun getTrendingPeoples(
         @Path("media_type") mediaType: String,
         @Path("time_window") timeWindow: String,
         @Query("language") language: String?
-    ): Response<PersonResponse>
+    ): PersonResponse
 }

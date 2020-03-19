@@ -9,6 +9,7 @@ import com.majorik.domain.tmdbModels.ApiResponse
 import com.majorik.domain.tmdbModels.account.AccountStates
 import com.majorik.domain.tmdbModels.request.RequestAddToWatchlist
 import com.majorik.domain.tmdbModels.request.RequestMarkAsFavorite
+import com.majorik.domain.tmdbModels.result.ResultWrapper
 import com.majorik.domain.tmdbModels.tv.TVDetails
 import kotlinx.coroutines.launch
 
@@ -28,19 +29,39 @@ class TVDetailsViewModel(
         imageLanguages: String?
     ) {
         viewModelScope.launch {
-            val tvDetails =
+            val response =
                 tvRepository.getTVById(tvId, language, appendToResponse, imageLanguages)
 
-            tvDetailsLiveData.postValue(tvDetails)
+            when (response) {
+                is ResultWrapper.NetworkError -> {
+                }
+
+                is ResultWrapper.GenericError -> {
+                }
+
+                is ResultWrapper.Success -> {
+                    tvDetailsLiveData.postValue(response.value)
+                }
+            }
         }
     }
 
     fun fetchAccountStateForTV(tvId: Int, sessionId: String) {
         viewModelScope.launch {
-            val tvStates =
+            val response =
                 tvRepository.getAccountStatesForTV(tvId, "", sessionId, "")
 
-            tvStatesLiveData.postValue(tvStates)
+            when (response) {
+                is ResultWrapper.NetworkError -> {
+                }
+
+                is ResultWrapper.GenericError -> {
+                }
+
+                is ResultWrapper.Success -> {
+                    tvStatesLiveData.postValue(response.value)
+                }
+            }
         }
     }
 
@@ -49,7 +70,17 @@ class TVDetailsViewModel(
             val requestMarkAsFavorite = RequestMarkAsFavorite("tv", mediaId, state)
             val response = accountRepository.markIsFavorite(requestMarkAsFavorite, sessionId)
 
-            responseFavoriteLiveData.postValue(response)
+            when (response) {
+                is ResultWrapper.NetworkError -> {
+                }
+
+                is ResultWrapper.GenericError -> {
+                }
+
+                is ResultWrapper.Success -> {
+                    responseFavoriteLiveData.postValue(response.value)
+                }
+            }
         }
     }
 
@@ -58,7 +89,17 @@ class TVDetailsViewModel(
             val requestAddToWatchlist = RequestAddToWatchlist("tv", mediaId, state)
             val response = accountRepository.addToWatchlist(requestAddToWatchlist, sessionId)
 
-            responseWatchlistLiveData.postValue(response)
+            when (response) {
+                is ResultWrapper.NetworkError -> {
+                }
+
+                is ResultWrapper.GenericError -> {
+                }
+
+                is ResultWrapper.Success -> {
+                    responseWatchlistLiveData.postValue(response.value)
+                }
+            }
         }
     }
 }

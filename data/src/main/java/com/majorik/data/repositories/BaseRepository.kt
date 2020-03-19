@@ -1,46 +1,51 @@
 package com.majorik.data.repositories
 
+import com.majorik.domain.tmdbModels.error.ErrorResponse
+import com.majorik.domain.tmdbModels.result.ResultWrapper
+import com.orhanobut.logger.Logger
+import com.squareup.moshi.Moshi
 import java.io.IOException
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
-import retrofit2.Response
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.withContext
+import retrofit2.HttpException
 
 open class BaseRepository {
+    suspend fun <T> safeApiCall(
+        dispatcher: CoroutineDispatcher,
+        apiCall: suspend () -> T
+    ): ResultWrapper<T> {
+        return withContext(dispatcher) {
+            try {
+                ResultWrapper.Success(apiCall.invoke())
+            } catch (throwable: Throwable) {
+                when (throwable) {
+                    is IOException -> ResultWrapper.NetworkError
+                    is HttpException -> {
+                        val code = throwable.code()
+                        val errorResponse = convertErrorBody(throwable)
 
-    companion object {
-        private val logger: Logger = LoggerFactory.getLogger(BaseRepository::class.java)
-    }
+                        Logger.d("HttpException: $code, ${errorResponse?.statusCode}, ${errorResponse?.statusMessage}")
 
-    suspend fun <T : Any> safeApiCall(call: suspend () -> Response<T>, errorMessage: String): T? {
-        val result: Result<T> = safeApiResult(call, errorMessage)
-        var data: T? = null
+                        ResultWrapper.GenericError(code, errorResponse)
+                    }
+                    else -> {
+                        Logger.d("GenericError")
 
-        when (result) {
-            is Result.Success -> data = result.data
-
-            is Result.Error -> {
-                logger.debug("$errorMessage & exception - ${result.exception}")
+                        ResultWrapper.GenericError(null, null)
+                    }
+                }
             }
         }
-
-        return data
     }
 
-    private suspend fun <T : Any> safeApiResult(
-        call: suspend () -> Response<T>,
-        errorMessage: String
-    ): Result<T> {
-        try {
-            val response = call.invoke()
-            if (response.isSuccessful) {
-                return Result.Success(response.body()!!)
-            } else {
-                logger.debug("isFailure: " + response.message())
+    private fun convertErrorBody(throwable: HttpException): ErrorResponse? {
+        return try {
+            throwable.response()?.errorBody()?.source()?.let {
+                val moshiAdapter = Moshi.Builder().build().adapter(ErrorResponse::class.java)
+                moshiAdapter.fromJson(it)
             }
-        } catch (e: IOException) {
-            logger.debug(e.message)
+        } catch (exception: Exception) {
+            null
         }
-
-        return Result.Error(IOException("Произошла ошибка при выполнении запроса, *custom ERROR* - $errorMessage"))
     }
 }

@@ -153,6 +153,8 @@ dependencies {
     implementation otherDependencies.localization
     implementation otherDependencies.coil
 
+    implementation 'jp.wasabeef:recyclerview-animators:3.0.0'
+
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     androidTestImplementation testingDependencies.testJunit

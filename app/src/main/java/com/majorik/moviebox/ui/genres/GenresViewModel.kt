@@ -6,7 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.majorik.data.repositories.MovieRepository
 import com.majorik.data.repositories.TVRepository
 import com.majorik.domain.constants.AppConfig
-import com.majorik.domain.tmdbModels.genre.Genre
+import com.majorik.domain.tmdbModels.genre.GenreResponse
+import com.majorik.domain.tmdbModels.result.ResultWrapper
 import com.majorik.moviebox.ui.genres.GenresActivity.GenresType
 import kotlinx.coroutines.launch
 
@@ -14,7 +15,7 @@ class GenresViewModel(
     private val movieRepository: MovieRepository,
     private val tvRepository: TVRepository
 ) : ViewModel() {
-    var genresLiveData = MutableLiveData<MutableList<Genre>>()
+    var genresLiveData = MutableLiveData<GenreResponse>()
 
     fun fetchGenres(genresType: Int) {
         viewModelScope.launch {
@@ -28,7 +29,17 @@ class GenresViewModel(
                 }
             }
 
-            response?.let { genresLiveData.postValue(it) }
+            when (response) {
+                is ResultWrapper.NetworkError -> {
+                }
+
+                is ResultWrapper.GenericError -> {
+                }
+
+                is ResultWrapper.Success -> {
+                    genresLiveData.postValue(response.value)
+                }
+            }
         }
     }
 }

@@ -10,6 +10,7 @@ import com.majorik.domain.NetworkState
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.search.SearchMovieAdapter
 import com.majorik.moviebox.ui.search.SearchQueryChangeListener
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.fragment_searchable.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -47,7 +48,7 @@ class SearchMovieFragment : Fragment(), SearchQueryChangeListener,
 
     private fun configureRecyclerView() {
         adapter = SearchMovieAdapter(this)
-        search_list.adapter = adapter
+        search_list.adapter = ScaleInAnimationAdapter(adapter)
     }
 
     private fun configureObservables() {

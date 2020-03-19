@@ -6,18 +6,19 @@ import com.majorik.domain.tmdbModels.account.AccountDetails
 import com.majorik.domain.tmdbModels.movie.MovieResponse
 import com.majorik.domain.tmdbModels.request.RequestAddToWatchlist
 import com.majorik.domain.tmdbModels.request.RequestMarkAsFavorite
+import com.majorik.domain.tmdbModels.result.ResultWrapper
 import com.majorik.domain.tmdbModels.tv.TVEpisodeResponse
 import com.majorik.domain.tmdbModels.tv.TVResponse
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 
 class AccountRepository(private val api: TmdbApiService) : BaseRepository() {
-    suspend fun getAccountDetails(sessionId: String): AccountDetails? {
-        return safeApiCall(
-            call = {
-                api.getAccountDetails(sessionId)
-            },
-            errorMessage = "Ошибка GET[getAccountDetails]\n" +
-                    "(sessionId = $sessionId)"
-        )
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
+
+    suspend fun getAccountDetails(sessionId: String): ResultWrapper<AccountDetails>? {
+        return safeApiCall(dispatcher) {
+            api.getAccountDetails(sessionId)
+        }
     }
 
     suspend fun getFavoriteMovies(
@@ -25,14 +26,10 @@ class AccountRepository(private val api: TmdbApiService) : BaseRepository() {
         sessionId: String,
         sortBy: String?,
         page: Int?
-    ): MovieResponse? {
-
-        return safeApiCall(
-            call = {
-                api.getFavoriteMovies(language, sessionId, sortBy, page)
-            }, errorMessage = "Ошибка GET[getFavoriteMovies]\n" +
-                    "(sessionId = $sessionId)"
-        )
+    ): ResultWrapper<MovieResponse> {
+        return safeApiCall(dispatcher) {
+            api.getFavoriteMovies(language, sessionId, sortBy, page)
+        }
     }
 
     suspend fun getFavoriteTVs(
@@ -40,28 +37,19 @@ class AccountRepository(private val api: TmdbApiService) : BaseRepository() {
         sessionId: String,
         sortBy: String?,
         page: Int?
-    ): TVResponse? {
-
-        return safeApiCall(
-            call = {
-                api.getFavoriteTVs(language, sessionId, sortBy, page)
-            }, errorMessage = "Ошибка GET[getFavoriteTVs]\n" +
-                    "(sessionId = $sessionId)"
-        )
+    ): ResultWrapper<TVResponse> {
+        return safeApiCall(dispatcher) {
+            api.getFavoriteTVs(language, sessionId, sortBy, page)
+        }
     }
 
     suspend fun markIsFavorite(
         requestMarkAsFavorite: RequestMarkAsFavorite,
         sessionId: String
-    ): ApiResponse? {
-        return safeApiCall(
-            call = {
-                api.markIsFavorite(requestMarkAsFavorite, sessionId)
-            },
-            errorMessage = "Ошибка POST[markIsFavorite]\n" +
-                    "(mediaType = ${requestMarkAsFavorite.mediaType}" +
-                    "mediaId = ${requestMarkAsFavorite.mediaId}, sessionId = $sessionId) "
-        )
+    ): ResultWrapper<ApiResponse> {
+        return safeApiCall(dispatcher) {
+            api.markIsFavorite(requestMarkAsFavorite, sessionId)
+        }
     }
 
     suspend fun getRatedMovies(
@@ -69,13 +57,10 @@ class AccountRepository(private val api: TmdbApiService) : BaseRepository() {
         sessionId: String,
         sortBy: String?,
         page: Int?
-    ): MovieResponse? {
-        return safeApiCall(
-            call = {
-                api.getRatedMovies(language, sessionId, sortBy, page)
-            }, errorMessage = "Ошибка GET[getRatedMovies]\n" +
-                    "(sessionId = $sessionId)"
-        )
+    ): ResultWrapper<MovieResponse> {
+        return safeApiCall(dispatcher) {
+            api.getRatedMovies(language, sessionId, sortBy, page)
+        }
     }
 
     suspend fun getRatedTVs(
@@ -83,13 +68,10 @@ class AccountRepository(private val api: TmdbApiService) : BaseRepository() {
         sessionId: String,
         sortBy: String?,
         page: Int?
-    ): TVResponse? {
-        return safeApiCall(
-            call = {
-                api.getRatedTVs(language, sessionId, sortBy, page)
-            }, errorMessage = "Ошибка GET[getRatedTVs]\n" +
-                    "(sessionId = $sessionId)"
-        )
+    ): ResultWrapper<TVResponse> {
+        return safeApiCall(dispatcher) {
+            api.getRatedTVs(language, sessionId, sortBy, page)
+        }
     }
 
     suspend fun getRatedEpisodes(
@@ -97,13 +79,10 @@ class AccountRepository(private val api: TmdbApiService) : BaseRepository() {
         sessionId: String,
         sortBy: String?,
         page: Int?
-    ): TVEpisodeResponse? {
-        return safeApiCall(
-            call = {
-                api.getRatedEpisodes(language, sessionId, sortBy, page)
-            }, errorMessage = "Ошибка GET[getRatedEpisodes]\n" +
-                    "(sessionId = $sessionId)"
-        )
+    ): ResultWrapper<TVEpisodeResponse> {
+        return safeApiCall(dispatcher) {
+            api.getRatedEpisodes(language, sessionId, sortBy, page)
+        }
     }
 
     suspend fun getWatchlistMovies(
@@ -111,13 +90,10 @@ class AccountRepository(private val api: TmdbApiService) : BaseRepository() {
         sessionId: String,
         sortBy: String?,
         page: Int?
-    ): MovieResponse? {
-        return safeApiCall(
-            call = {
-                api.getWatchlistMovies(language, sessionId, sortBy, page)
-            }, errorMessage = "Ошибка GET[getWatchlistMovies]\n" +
-                    "(sessionId = $sessionId)"
-        )
+    ): ResultWrapper<MovieResponse> {
+        return safeApiCall(dispatcher) {
+            api.getWatchlistMovies(language, sessionId, sortBy, page)
+        }
     }
 
     suspend fun getWatchlistTVs(
@@ -125,27 +101,18 @@ class AccountRepository(private val api: TmdbApiService) : BaseRepository() {
         sessionId: String,
         sortBy: String?,
         page: Int?
-    ): TVResponse? {
-
-        return safeApiCall(
-            call = {
-                api.getWatchlistTVs(language, sessionId, sortBy, page)
-            }, errorMessage = "Ошибка GET[getWatchlistTVs]\n" +
-                    "(sessionId = $sessionId)"
-        )
+    ): ResultWrapper<TVResponse> {
+        return safeApiCall(dispatcher) {
+            api.getWatchlistTVs(language, sessionId, sortBy, page)
+        }
     }
 
     suspend fun addToWatchlist(
         requestAddToWatchlist: RequestAddToWatchlist,
         sessionId: String
-    ): ApiResponse? {
-        return safeApiCall(
-            call = {
-                api.addToWatchlist(requestAddToWatchlist, sessionId)
-            },
-            errorMessage = "Ошибка POST[addToWatchlist]\n" +
-                    "(mediaType = ${requestAddToWatchlist.mediaType}, " +
-                    "mediaId = ${requestAddToWatchlist.mediaId}], sessionId = $sessionId)"
-        )
+    ): ResultWrapper<ApiResponse> {
+        return safeApiCall(dispatcher) {
+            api.addToWatchlist(requestAddToWatchlist, sessionId)
+        }
     }
 }

@@ -8,6 +8,8 @@ import com.majorik.domain.NetworkState
 import com.majorik.domain.constants.AppConfig
 import com.majorik.domain.enums.movie.MovieCollectionType
 import com.majorik.domain.tmdbModels.movie.Movie
+import com.majorik.domain.tmdbModels.movie.MovieResponse
+import com.majorik.domain.tmdbModels.result.ResultWrapper
 import kotlinx.coroutines.*
 import timber.log.Timber
 
@@ -72,8 +74,8 @@ class MovieCollectionsDataSource(
         language: String?,
         page: Int?,
         region: String?
-    ): MutableList<Movie>? =
-        when (movieCollectionType) {
+    ): List<Movie>? {
+        val response = when (movieCollectionType) {
             MovieCollectionType.POPULAR -> {
                 repository.getPopularMovies(language, page, region)
             }
@@ -88,6 +90,9 @@ class MovieCollectionsDataSource(
             }
         }
 
+        return getResult(response)
+    }
+
     fun getNetworkState(): LiveData<NetworkState> = networkState
 
     fun refresh() = this.invalidate()
@@ -96,5 +101,12 @@ class MovieCollectionsDataSource(
         val previousQuery = retryQuery
         retryQuery = null
         previousQuery?.invoke()
+    }
+
+    private fun getResult(response: ResultWrapper<MovieResponse>): List<Movie> {
+        return when (response) {
+            is ResultWrapper.Success -> response.value.results
+            else -> emptyList()
+        }
     }
 }

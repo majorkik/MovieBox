@@ -3,6 +3,7 @@ package com.majorik.moviebox.pagination.search
 import com.majorik.data.repositories.SearchRepository
 import com.majorik.domain.NetworkState
 import com.majorik.domain.constants.AppConfig
+import com.majorik.domain.tmdbModels.result.ResultWrapper
 import com.majorik.domain.tmdbModels.tv.TV
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
@@ -20,8 +21,17 @@ class SearchTVDataSource(
             delay(200)
             val response = repository.searchTVs(AppConfig.REGION, query, page, null)
             retryQuery = null
-            networkState.postValue(NetworkState.SUCCESS)
-            response?.results?.let { callback(it) }
+
+            when (response) {
+                is ResultWrapper.Success -> {
+                    networkState.postValue(NetworkState.SUCCESS)
+
+                    callback(response.value.results)
+                }
+                else -> {
+                    networkState.postValue(NetworkState.FAILED)
+                }
+            }
         }
     }
 }

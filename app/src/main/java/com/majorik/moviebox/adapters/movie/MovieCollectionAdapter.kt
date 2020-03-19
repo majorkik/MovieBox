@@ -14,8 +14,10 @@ import com.majorik.moviebox.extensions.startDetailsActivityWithId
 import com.majorik.moviebox.ui.movieDetails.MovieDetailsActivity
 import kotlinx.android.synthetic.main.item_small_poster_card.view.*
 
-class MovieCollectionAdapter(private val movies: List<Movie>) :
-    RecyclerView.Adapter<MovieViewHolder>() {
+class MovieCollectionAdapter : RecyclerView.Adapter<MovieViewHolder>() {
+
+    private var movies: List<Movie> = emptyList()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_small_poster_card, parent, false)
@@ -27,6 +29,11 @@ class MovieCollectionAdapter(private val movies: List<Movie>) :
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         holder.bindTo(movies[position])
+    }
+
+    internal fun addItems(items: List<Movie>) {
+        movies = items
+        notifyItemRangeInserted(0, items.size)
     }
 
     class MovieViewHolder(private val parent: View) : RecyclerView.ViewHolder(parent) {

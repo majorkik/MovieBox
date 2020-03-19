@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.majorik.data.repositories.TmdbAuthRepository
 import com.majorik.domain.tmdbModels.auth.RequestTokenResponse
 import com.majorik.domain.tmdbModels.auth.ResponseSession
+import com.majorik.domain.tmdbModels.result.ResultWrapper
 import kotlinx.coroutines.launch
 
 class AuthViewModel(private val tmdbAuthRepository: TmdbAuthRepository) : ViewModel() {
@@ -17,7 +18,17 @@ class AuthViewModel(private val tmdbAuthRepository: TmdbAuthRepository) : ViewMo
         viewModelScope.launch {
             val response = tmdbAuthRepository.getRequestToken()
 
-            response?.let { tmdbRequestTokenLiveData.postValue(it) }
+            when (response) {
+                is ResultWrapper.NetworkError -> {
+                }
+
+                is ResultWrapper.GenericError -> {
+                }
+
+                is ResultWrapper.Success -> {
+                    tmdbRequestTokenLiveData.postValue(response.value)
+                }
+            }
         }
     }
 
@@ -25,7 +36,17 @@ class AuthViewModel(private val tmdbAuthRepository: TmdbAuthRepository) : ViewMo
         viewModelScope.launch {
             val response = tmdbAuthRepository.createSession(requestToken)
 
-            response?.let { tmdbSessionLiveData.postValue(it) }
+            when (response) {
+                is ResultWrapper.NetworkError -> {
+                }
+
+                is ResultWrapper.GenericError -> {
+                }
+
+                is ResultWrapper.Success -> {
+                    tmdbSessionLiveData.postValue(response.value)
+                }
+            }
         }
     }
 
@@ -33,7 +54,17 @@ class AuthViewModel(private val tmdbAuthRepository: TmdbAuthRepository) : ViewMo
         viewModelScope.launch {
             val response = tmdbAuthRepository.getRequestToken()
 
-            response?.let { tmdbGuestSessionLiveData.postValue(it) }
+            when (response) {
+                is ResultWrapper.NetworkError -> {
+                }
+
+                is ResultWrapper.GenericError -> {
+                }
+
+                is ResultWrapper.Success -> {
+                    tmdbGuestSessionLiveData.postValue(response.value)
+                }
+            }
         }
     }
 }

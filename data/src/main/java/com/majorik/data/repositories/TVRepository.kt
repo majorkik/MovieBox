@@ -2,58 +2,50 @@ package com.majorik.data.repositories
 
 import com.majorik.data.api.TmdbApiService
 import com.majorik.domain.tmdbModels.account.AccountStates
-import com.majorik.domain.tmdbModels.genre.Genre
-import com.majorik.domain.tmdbModels.tv.TV
+import com.majorik.domain.tmdbModels.genre.GenreResponse
+import com.majorik.domain.tmdbModels.result.ResultWrapper
 import com.majorik.domain.tmdbModels.tv.TVDetails
+import com.majorik.domain.tmdbModels.tv.TVResponse
 import com.majorik.domain.tmdbModels.tv.TVSeasonDetails
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 
 class TVRepository(private val api: TmdbApiService) : BaseRepository() {
+
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 
     suspend fun getTVById(
         tvId: Int,
         language: String?,
         appendToResponse: String?,
         imageLanguages: String?
-    ): TVDetails? {
-
-        return safeApiCall(
-            call = { api.getTVById(tvId, language, appendToResponse, imageLanguages) },
-            errorMessage = "Ошибка GET[getTVById]\n" +
-                    "(tvId = $tvId)"
-        )
+    ): ResultWrapper<TVDetails> {
+        return safeApiCall(dispatcher) {
+            api.getTVById(
+                tvId,
+                language,
+                appendToResponse,
+                imageLanguages
+            )
+        }
     }
 
     suspend fun getPopularTVs(
         language: String?,
         page: Int?
-    ): MutableList<TV>? {
-        val tvResponse = safeApiCall(
-            call = { api.getPopularTVs(language, page) },
-            errorMessage = "Ошибка GET[getPopularTVs]"
-        )
-
-        return tvResponse?.results?.toMutableList()
+    ): ResultWrapper<TVResponse> {
+        return safeApiCall(dispatcher) { api.getPopularTVs(language, page) }
     }
 
     suspend fun getTopRatedTVs(
         language: String?,
         page: Int?
-    ): MutableList<TV>? {
-        val tvResponse = safeApiCall(
-            call = { api.getTopRatedTVs(language, page) },
-            errorMessage = "Ошибка GET[getTopRatedTVs]"
-        )
-
-        return tvResponse?.results?.toMutableList()
+    ): ResultWrapper<TVResponse> {
+        return safeApiCall(dispatcher) { api.getTopRatedTVs(language, page) }
     }
 
-    suspend fun getTVGenres(language: String?): MutableList<Genre>? {
-        val tvResponse = safeApiCall(
-            call = { api.getTVGenres(language) },
-            errorMessage = "Ошбика GET[getTVGenres]"
-        )
-
-        return tvResponse?.genres?.toMutableList()
+    suspend fun getTVGenres(language: String?): ResultWrapper<GenreResponse> {
+        return safeApiCall(dispatcher) { api.getTVGenres(language) }
     }
 
     suspend fun getTVSeasonDetails(
@@ -61,12 +53,15 @@ class TVRepository(private val api: TmdbApiService) : BaseRepository() {
         seasonNumber: Int,
         language: String?,
         appendToResponse: String?
-    ): TVSeasonDetails? {
-        return safeApiCall(
-            call = { api.getSeasonDetails(tvId, seasonNumber, language, appendToResponse) },
-            errorMessage = "Ошибка GET[getTVSeasonDetails]\n" +
-                    "(tvId = $tvId, seasonNumber = $seasonNumber)"
-        )
+    ): ResultWrapper<TVSeasonDetails> {
+        return safeApiCall(dispatcher) {
+            api.getSeasonDetails(
+                tvId,
+                seasonNumber,
+                language,
+                appendToResponse
+            )
+        }
     }
 
     suspend fun getAccountStatesForTV(
@@ -74,35 +69,21 @@ class TVRepository(private val api: TmdbApiService) : BaseRepository() {
         language: String?,
         sessionId: String,
         guestSessionId: String?
-    ): AccountStates? {
-        return safeApiCall(
-            call = {
-                api.getAccountStatesForTV(tvId, language, guestSessionId, sessionId)
-            },
-            errorMessage = "Ошибка GET[getAccountStatesForTV]\n" +
-                    " (tvId = $tvId, guestSessionId = $guestSessionId, sessionId = $sessionId)"
-        )
+    ): ResultWrapper<AccountStates> {
+        return safeApiCall(dispatcher) {
+            api.getAccountStatesForTV(tvId, language, guestSessionId, sessionId)
+        }
     }
 
-    suspend fun getAiringTodayTVs(language: String?, page: Int?): MutableList<TV>? {
-        val tvResponse = safeApiCall(
-            call = {
-                api.getAiringTodayTVs(language, page)
-            },
-            errorMessage = "Ошибка GET[getAiringTodayTVs]"
-        )
-
-        return tvResponse?.results?.toMutableList()
+    suspend fun getAiringTodayTVs(language: String?, page: Int?): ResultWrapper<TVResponse> {
+        return safeApiCall(dispatcher) {
+            api.getAiringTodayTVs(language, page)
+        }
     }
 
-    suspend fun getOnTheAirTVs(language: String?, page: Int?): MutableList<TV>? {
-        val tvResponse = safeApiCall(
-            call = {
-                api.getOnTheAirTVs(language, page)
-            },
-            errorMessage = "Ошибка GET[getOnTheAirTVs]"
-        )
-
-        return tvResponse?.results?.toMutableList()
+    suspend fun getOnTheAirTVs(language: String?, page: Int?): ResultWrapper<TVResponse> {
+        return safeApiCall(dispatcher) {
+            api.getOnTheAirTVs(language, page)
+        }
     }
 }

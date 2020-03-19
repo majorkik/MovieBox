@@ -5,33 +5,28 @@ import com.majorik.domain.tmdbModels.auth.RequestTokenResponse
 import com.majorik.domain.tmdbModels.auth.ResponseSession
 import com.majorik.domain.tmdbModels.request.RequestSession
 import com.majorik.domain.tmdbModels.request.RequestToken
+import com.majorik.domain.tmdbModels.result.ResultWrapper
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 
 class TmdbAuthRepository(private val api: TmdbApiService) : BaseRepository() {
-    suspend fun createSession(token: String): ResponseSession? {
+
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
+
+    suspend fun createSession(token: String): ResultWrapper<ResponseSession> {
         val requestToken = RequestToken(token)
-        return safeApiCall(
-            call = { api.createSession(requestToken) },
-            errorMessage = "Ошибка POST[createSession]\n" +
-                    "(token = $token)"
-        )
+        return safeApiCall(dispatcher) { api.createSession(requestToken) }
     }
 
-    suspend fun getRequestToken(): RequestTokenResponse? {
-        return safeApiCall(
-            call = {
-                api.getRequestToken()
-            },
-            errorMessage = "Ошибка GET[getRequestToken]"
-        )
+    suspend fun getRequestToken(): ResultWrapper<RequestTokenResponse> {
+        return safeApiCall(dispatcher) {
+            api.getRequestToken()
+        }
     }
 
-    suspend fun deleteSession(sessionIdModel: RequestSession): ResponseSession? {
-        return safeApiCall(
-            call = {
-                api.deleteSession(sessionIdModel)
-            },
-            errorMessage = "Ошибка DELETE[deleteSession]\n" +
-                    "(sessionId = ${sessionIdModel.sessionId})"
-        )
+    suspend fun deleteSession(sessionIdModel: RequestSession): ResultWrapper<ResponseSession> {
+        return safeApiCall(dispatcher) {
+            api.deleteSession(sessionIdModel)
+        }
     }
 }

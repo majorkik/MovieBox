@@ -4,6 +4,7 @@ import com.majorik.data.repositories.SearchRepository
 import com.majorik.domain.NetworkState
 import com.majorik.domain.constants.AppConfig
 import com.majorik.domain.tmdbModels.movie.Movie
+import com.majorik.domain.tmdbModels.result.ResultWrapper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -19,8 +20,17 @@ class SearchMovieDataSource(
             delay(200)
             val response = repository.searchMovies(AppConfig.REGION, query, page, false, null, null, null)
             retryQuery = null
-            networkState.postValue(NetworkState.SUCCESS)
-            response?.results?.let { callback(it) }
+
+            when (response) {
+                is ResultWrapper.Success -> {
+                    networkState.postValue(NetworkState.SUCCESS)
+
+                    callback(response.value.results)
+                }
+                else -> {
+                    networkState.postValue(NetworkState.FAILED)
+                }
+            }
         }
     }
 }

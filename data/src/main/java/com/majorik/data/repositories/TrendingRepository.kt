@@ -1,11 +1,18 @@
 package com.majorik.data.repositories
 
 import com.majorik.data.api.TmdbApiService
-import com.majorik.domain.tmdbModels.movie.Movie
-import com.majorik.domain.tmdbModels.person.Person
+import com.majorik.domain.tmdbModels.movie.MovieResponse
+import com.majorik.domain.tmdbModels.person.PersonResponse
+import com.majorik.domain.tmdbModels.result.ResultWrapper
 import com.majorik.domain.tmdbModels.tv.TV
+import com.majorik.domain.tmdbModels.tv.TVResponse
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 
 class TrendingRepository(private val api: TmdbApiService) : BaseRepository() {
+
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
+
     enum class MediaType(val path: String) {
         ALL("all"), MOVIE("movie"), TV("tv"), PERSON("person")
     }
@@ -18,39 +25,27 @@ class TrendingRepository(private val api: TmdbApiService) : BaseRepository() {
         timeWindow: TimeWindow,
         page: Int?,
         language: String?
-    ): MutableList<Movie>? {
-        val personResponse = safeApiCall(
-            call = {
-                api.getTrendingMovies(MediaType.MOVIE.path, timeWindow.path, page, language)
-            },
-            errorMessage = "Ошибка GET[getPersonTaggedImages]"
-        )
-
-        return personResponse?.results?.toMutableList()
+    ): ResultWrapper<MovieResponse> {
+        return safeApiCall(dispatcher) {
+            api.getTrendingMovies(MediaType.MOVIE.path, timeWindow.path, page, language)
+        }
     }
 
-    suspend fun getTrendingTVs(timeWindow: TimeWindow, language: String?): MutableList<TV>? {
-        val response = safeApiCall(
-            call = {
-                api.getTrendingTVs(MediaType.TV.path, timeWindow.path, language)
-            },
-            errorMessage = "ошибка GET[getTrendingTVs]"
-        )
-
-        return response?.results?.toMutableList()
+    suspend fun getTrendingTVs(
+        timeWindow: TimeWindow,
+        language: String?
+    ): ResultWrapper<TVResponse> {
+        return safeApiCall(dispatcher) {
+            api.getTrendingTVs(MediaType.TV.path, timeWindow.path, language)
+        }
     }
 
     suspend fun getTrendingPeoples(
         timeWindow: TimeWindow,
         language: String?
-    ): MutableList<Person>? {
-        val response = safeApiCall(
-            call = {
-                api.getTrendingPeoples(MediaType.PERSON.path, timeWindow.path, language)
-            },
-            errorMessage = "ошибка GET[getTrendingPeoples]"
-        )
-
-        return response?.results?.toMutableList()
+    ): ResultWrapper<PersonResponse> {
+        return safeApiCall(dispatcher) {
+            api.getTrendingPeoples(MediaType.PERSON.path, timeWindow.path, language)
+        }
     }
 }

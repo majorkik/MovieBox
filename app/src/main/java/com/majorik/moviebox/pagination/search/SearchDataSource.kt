@@ -6,6 +6,7 @@ import androidx.paging.PageKeyedDataSource
 import com.majorik.data.repositories.SearchRepository
 import com.majorik.domain.NetworkState
 import com.majorik.domain.constants.AppConfig
+import com.majorik.domain.tmdbModels.result.ResultWrapper
 import com.majorik.domain.tmdbModels.search.MultiSearchResponse.MultiSearchItem
 import com.orhanobut.logger.Logger
 import kotlinx.coroutines.*
@@ -51,8 +52,17 @@ class SearchDataSource(
             delay(200)
             val response = repository.multiSearch(AppConfig.REGION, query, page, false)
             retryQuery = null
-            networkState.postValue(NetworkState.SUCCESS)
-            response?.results?.let { callback(it) }
+
+            when (response) {
+                is ResultWrapper.Success -> {
+                    networkState.postValue(NetworkState.SUCCESS)
+
+                    callback(response.value.results)
+                }
+                else -> {
+                    networkState.postValue(NetworkState.FAILED)
+                }
+            }
         }
     }
 

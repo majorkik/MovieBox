@@ -2,99 +2,75 @@ package com.majorik.data.repositories
 
 import com.majorik.data.api.TmdbApiService
 import com.majorik.domain.tmdbModels.account.AccountStates
-import com.majorik.domain.tmdbModels.genre.Genre
-import com.majorik.domain.tmdbModels.movie.Movie
+import com.majorik.domain.tmdbModels.genre.GenreResponse
 import com.majorik.domain.tmdbModels.movie.MovieDetails
+import com.majorik.domain.tmdbModels.movie.MovieResponse
+import com.majorik.domain.tmdbModels.result.ResultWrapper
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 
 class MovieRepository(private val api: TmdbApiService) : BaseRepository() {
+
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
+
     suspend fun getMovieById(
         movieId: Int,
         language: String?,
         appendToResponse: String?,
         imageLanguages: String?
-    ): MovieDetails? {
-        return safeApiCall(
-            call = {
-                api.getMovieById(movieId, language, appendToResponse, imageLanguages)
-            },
-            errorMessage = "Ошибка GET[getMovieById]\n(movieId = $movieId)"
-        )
+    ): ResultWrapper<MovieDetails> {
+        return safeApiCall(dispatcher) {
+            api.getMovieById(movieId, language, appendToResponse, imageLanguages)
+        }
     }
 
     suspend fun getPopularMovies(
         language: String?,
         page: Int?,
         region: String?
-    ): MutableList<Movie>? {
-        val movieResponse = safeApiCall(
-            call = { api.getPopularMovies(language, page, region) },
-            errorMessage = "Ошибка GET[getPopularMovies]"
-        )
-
-        return movieResponse?.results?.toMutableList()
+    ): ResultWrapper<MovieResponse> {
+        return safeApiCall(dispatcher) { api.getPopularMovies(language, page, region) }
     }
 
     suspend fun getTopRatedMovies(
         language: String?,
         page: Int?,
         region: String?
-    ): MutableList<Movie>? {
-        val movieResponse = safeApiCall(
-            call = { api.getTopRatedMovies(language, page, region) },
-            errorMessage = "Ошибка [getTopRatedMovies]"
-        )
-
-        return movieResponse?.results?.toMutableList()
+    ): ResultWrapper<MovieResponse> {
+        return safeApiCall(dispatcher) { api.getTopRatedMovies(language, page, region) }
     }
 
-    suspend fun getMovieGenres(language: String?): MutableList<Genre>? {
-        val movieResponse = safeApiCall(
-            call = { api.getMovieGenres(language) },
-            errorMessage = "Ошибка GET[getMovieGenres]"
-        )
-
-        return movieResponse?.genres?.toMutableList()
+    suspend fun getMovieGenres(language: String?): ResultWrapper<GenreResponse> {
+        return safeApiCall(dispatcher) { api.getMovieGenres(language) }
     }
 
     suspend fun getAccountStatesForMovie(
         movieId: Int,
         sessionId: String,
         guestSessionId: String?
-    ): AccountStates? {
-        return safeApiCall(
-            call = {
-                api.getAccountStatesForMovie(movieId, sessionId, guestSessionId)
-            },
-            errorMessage = "Ошибка GET[getAccountStatesForMovie]\n" +
-                    "(id = $movieId, session = $sessionId, guestSessionId = $guestSessionId)"
-        )
+    ): ResultWrapper<AccountStates> {
+        return safeApiCall(dispatcher) {
+            api.getAccountStatesForMovie(movieId, sessionId, guestSessionId)
+        }
     }
 
     suspend fun getUpcomingMovies(
         language: String?,
         page: Int?,
         region: String?
-    ): MutableList<Movie>? {
-        val movieResponse = safeApiCall(
-            call = {
-                api.getUpcomingMovies(language, page, region)
-            },
-            errorMessage = "Ошибка GET[getUpcomingMovies]"
-        )
-        return movieResponse?.results?.toMutableList()
+    ): ResultWrapper<MovieResponse> {
+        return safeApiCall(dispatcher) {
+            api.getUpcomingMovies(language, page, region)
+        }
     }
 
     suspend fun getNowPlayingMovies(
         language: String?,
         page: Int?,
         region: String?
-    ): MutableList<Movie>? {
-        val movieResponse = safeApiCall(
-            call = {
-                api.getNowPlayingMovies(language, page, region)
-            },
-            errorMessage = "Ошибка GET[getNowPlayingMovies]"
-        )
-        return movieResponse?.results?.toMutableList()
+    ): ResultWrapper<MovieResponse> {
+        return safeApiCall(dispatcher) {
+            api.getNowPlayingMovies(language, page, region)
+        }
     }
 }

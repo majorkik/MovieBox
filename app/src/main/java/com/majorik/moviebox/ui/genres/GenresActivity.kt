@@ -35,7 +35,10 @@ class GenresActivity : BaseSlidingActivity() {
         setObservers()
     }
 
-    private fun updateMargins(statusBarSize: Int, @Suppress("UNUSED_PARAMETER") navigationBarSize: Int) {
+    private fun updateMargins(
+        statusBarSize: Int,
+        @Suppress("UNUSED_PARAMETER") navigationBarSize: Int
+    ) {
         genres_toolbar.updateMargin(top = statusBarSize)
         nested_scroll_view.updateMargin(bottom = navigationBarSize)
     }
@@ -48,7 +51,7 @@ class GenresActivity : BaseSlidingActivity() {
 
     private fun setObservers() {
         genresViewModel.genresLiveData.observe(this, Observer {
-            list_genres.adapter = GenresInlineAdapter(it)
+            list_genres.adapter = GenresInlineAdapter(it.genres)
         })
     }
 

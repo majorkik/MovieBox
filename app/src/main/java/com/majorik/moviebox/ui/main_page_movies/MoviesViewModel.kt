@@ -10,9 +10,9 @@ import com.majorik.data.repositories.YouTubeRepository
 import com.majorik.domain.tmdbModels.genre.Genre
 import com.majorik.domain.tmdbModels.movie.Movie
 import com.majorik.domain.tmdbModels.person.Person
+import com.majorik.domain.tmdbModels.result.ResultWrapper
 import com.majorik.domain.youtubeModels.SearchResponse
 import com.majorik.moviebox.BuildConfig
-import com.orhanobut.logger.Logger
 import kotlinx.coroutines.launch
 
 class MoviesViewModel(
@@ -21,12 +21,12 @@ class MoviesViewModel(
     private val trendingRepository: TrendingRepository,
     private val youTubeRepository: YouTubeRepository
 ) : ViewModel() {
-    var popularMoviesLiveData = MutableLiveData<MutableList<Movie>>()
-    val upcomingMoviesLiveData = MutableLiveData<MutableList<Movie>>()
-    val nowPlayingMoviesLiveData = MutableLiveData<MutableList<Movie>>()
-    val popularPeoplesLiveData = MutableLiveData<MutableList<Person>>()
-    val genresLiveData = MutableLiveData<MutableList<Genre>>()
-    val trendingMoviesLiveData = MutableLiveData<MutableList<Movie>>()
+    var popularMoviesLiveData = MutableLiveData<List<Movie>>()
+    val upcomingMoviesLiveData = MutableLiveData<List<Movie>>()
+    val nowPlayingMoviesLiveData = MutableLiveData<List<Movie>>()
+    val popularPeoplesLiveData = MutableLiveData<List<Person>>()
+    val genresLiveData = MutableLiveData<List<Genre>>()
+    val trendingMoviesLiveData = MutableLiveData<List<Movie>>()
     val trailersLiveData = MutableLiveData<List<SearchResponse.Item>>()
 
     fun fetchPopularMovies(
@@ -37,7 +37,17 @@ class MoviesViewModel(
         viewModelScope.launch {
             val response = movieRepository.getPopularMovies(language, page, region)
 
-            response?.let { popularMoviesLiveData.postValue(it) }
+            when (response) {
+                is ResultWrapper.NetworkError -> {
+                }
+
+                is ResultWrapper.GenericError -> {
+                }
+
+                is ResultWrapper.Success -> {
+                    popularMoviesLiveData.postValue(response.value.results)
+                }
+            }
         }
     }
 
@@ -49,7 +59,17 @@ class MoviesViewModel(
         viewModelScope.launch {
             val response = movieRepository.getUpcomingMovies(language, page, region)
 
-            response?.let { upcomingMoviesLiveData.postValue(it) }
+            when (response) {
+                is ResultWrapper.NetworkError -> {
+                }
+
+                is ResultWrapper.GenericError -> {
+                }
+
+                is ResultWrapper.Success -> {
+                    upcomingMoviesLiveData.postValue(response.value.results)
+                }
+            }
         }
     }
 
@@ -61,7 +81,17 @@ class MoviesViewModel(
         viewModelScope.launch {
             val response = movieRepository.getNowPlayingMovies(language, page, region)
 
-            response?.let { nowPlayingMoviesLiveData.postValue(it) }
+            when (response) {
+                is ResultWrapper.NetworkError -> {
+                }
+
+                is ResultWrapper.GenericError -> {
+                }
+
+                is ResultWrapper.Success -> {
+                    nowPlayingMoviesLiveData.postValue(response.value.results)
+                }
+            }
         }
     }
 
@@ -69,7 +99,17 @@ class MoviesViewModel(
         viewModelScope.launch {
             val response = movieRepository.getMovieGenres(language)
 
-            response?.let { genresLiveData.postValue(it) }
+            when (response) {
+                is ResultWrapper.NetworkError -> {
+                }
+
+                is ResultWrapper.GenericError -> {
+                }
+
+                is ResultWrapper.Success -> {
+                    genresLiveData.postValue(response.value.genres)
+                }
+            }
         }
     }
 
@@ -77,7 +117,17 @@ class MoviesViewModel(
         viewModelScope.launch {
             val response = personRepository.getPopularPeoples(language, page)
 
-            response?.let { popularPeoplesLiveData.postValue(it) }
+            when (response) {
+                is ResultWrapper.NetworkError -> {
+                }
+
+                is ResultWrapper.GenericError -> {
+                }
+
+                is ResultWrapper.Success -> {
+                    popularPeoplesLiveData.postValue(response.value.results)
+                }
+            }
         }
     }
 
@@ -89,7 +139,17 @@ class MoviesViewModel(
         viewModelScope.launch {
             val response = trendingRepository.getTrendingMovies(timeWindow, page, language)
 
-            response?.let { trendingMoviesLiveData.postValue(it) }
+            when (response) {
+                is ResultWrapper.NetworkError -> {
+                }
+
+                is ResultWrapper.GenericError -> {
+                }
+
+                is ResultWrapper.Success -> {
+                    trendingMoviesLiveData.postValue(response.value.results)
+                }
+            }
         }
     }
 
@@ -104,8 +164,16 @@ class MoviesViewModel(
                 "UCi8e0iOVk1fEOogdfu4YgfA"
             )
 
-            if (!response?.items.isNullOrEmpty()) {
-                trailersLiveData.postValue(response!!.items)
+            when (response) {
+                is ResultWrapper.NetworkError -> {
+                }
+
+                is ResultWrapper.GenericError -> {
+                }
+
+                is ResultWrapper.Success -> {
+                    trailersLiveData.postValue(response.value.items)
+                }
             }
         }
     }

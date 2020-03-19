@@ -10,6 +10,7 @@ import com.majorik.domain.tmdbModels.account.AccountStates
 import com.majorik.domain.tmdbModels.movie.MovieDetails
 import com.majorik.domain.tmdbModels.request.RequestAddToWatchlist
 import com.majorik.domain.tmdbModels.request.RequestMarkAsFavorite
+import com.majorik.domain.tmdbModels.result.ResultWrapper
 import kotlinx.coroutines.launch
 
 class MovieDetailsViewModel(
@@ -31,7 +32,15 @@ class MovieDetailsViewModel(
             val response =
                 movieRepository.getMovieById(movieId, language, appendToResponse, imageLanguages)
 
-            response?.let { movieDetailsLiveData.postValue(it) }
+            when (response) {
+                is ResultWrapper.NetworkError -> {
+                }
+                is ResultWrapper.GenericError -> {
+                }
+                is ResultWrapper.Success -> {
+                    movieDetailsLiveData.postValue(response.value)
+                }
+            }
         }
     }
 
@@ -40,7 +49,15 @@ class MovieDetailsViewModel(
             val response =
                 movieRepository.getAccountStatesForMovie(movieId, sessionId, guestSessionId = null)
 
-            response?.let { movieStatesLiveData.postValue(it) }
+            when (response) {
+                is ResultWrapper.NetworkError -> {
+                }
+                is ResultWrapper.GenericError -> {
+                }
+                is ResultWrapper.Success -> {
+                    movieStatesLiveData.postValue(response.value)
+                }
+            }
         }
     }
 
@@ -49,7 +66,15 @@ class MovieDetailsViewModel(
             val requestMarkAsFavorite = RequestMarkAsFavorite("movie", mediaId, state)
             val response = accountRepository.markIsFavorite(requestMarkAsFavorite, sessionId)
 
-            response?.let { responseFavoriteLiveData.postValue(response) }
+            when (response) {
+                is ResultWrapper.NetworkError -> {
+                }
+                is ResultWrapper.GenericError -> {
+                }
+                is ResultWrapper.Success -> {
+                    responseFavoriteLiveData.postValue(response.value)
+                }
+            }
         }
     }
 
@@ -58,7 +83,15 @@ class MovieDetailsViewModel(
             val requestAddToWatchlist = RequestAddToWatchlist("movie", mediaId, state)
             val response = accountRepository.addToWatchlist(requestAddToWatchlist, sessionId)
 
-            response?.let { responseWatchlistLiveData.postValue(response) }
+            when (response) {
+                is ResultWrapper.NetworkError -> {
+                }
+                is ResultWrapper.GenericError -> {
+                }
+                is ResultWrapper.Success -> {
+                    responseWatchlistLiveData.postValue(response.value)
+                }
+            }
         }
     }
 }

@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.majorik.data.repositories.TVRepository
+import com.majorik.domain.tmdbModels.result.ResultWrapper
 import com.majorik.domain.tmdbModels.tv.TVSeasonDetails
 import kotlinx.coroutines.launch
 
@@ -20,7 +21,17 @@ class SeasonDetailsViewModel(private val tvRepository: TVRepository) : ViewModel
             val response =
                 tvRepository.getTVSeasonDetails(tvId, seasonNumber, language, appendToResponse)
 
-            response?.let { seasonDetailsLiveData.postValue(response) }
+            when (response) {
+                is ResultWrapper.NetworkError -> {
+                }
+
+                is ResultWrapper.GenericError -> {
+                }
+
+                is ResultWrapper.Success -> {
+                    seasonDetailsLiveData.postValue(response.value)
+                }
+            }
         }
     }
 }

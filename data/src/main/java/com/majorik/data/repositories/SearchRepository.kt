@@ -3,23 +3,25 @@ package com.majorik.data.repositories
 import com.majorik.data.api.TmdbApiService
 import com.majorik.domain.tmdbModels.movie.MovieResponse
 import com.majorik.domain.tmdbModels.person.PersonResponse
+import com.majorik.domain.tmdbModels.result.ResultWrapper
 import com.majorik.domain.tmdbModels.search.MultiSearchResponse
 import com.majorik.domain.tmdbModels.tv.TVResponse
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 
 class SearchRepository(private val api: TmdbApiService) : BaseRepository() {
+
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 
     suspend fun multiSearch(
         language: String?,
         query: String,
         page: Int?,
         includeAdult: Boolean?
-    ): MultiSearchResponse? {
-        return safeApiCall(
-            call = {
-                api.multiSearch(language, query, page, includeAdult)
-            },
-            errorMessage = "Ошибка GET[multiSearch]"
-        )
+    ): ResultWrapper<MultiSearchResponse> {
+        return safeApiCall(dispatcher) {
+            api.multiSearch(language, query, page, includeAdult)
+        }
     }
 
     suspend fun searchMovies(
@@ -30,21 +32,18 @@ class SearchRepository(private val api: TmdbApiService) : BaseRepository() {
         region: String?,
         year: Int?,
         primaryReleaseYear: Int?
-    ): MovieResponse? {
-        return safeApiCall(
-            call = {
-                api.searchMovies(
-                    language,
-                    query,
-                    page,
-                    includeAdult,
-                    region,
-                    year,
-                    primaryReleaseYear
-                )
-            },
-            errorMessage = "Ошибка GET[searchMovies]"
-        )
+    ): ResultWrapper<MovieResponse> {
+        return safeApiCall(dispatcher) {
+            api.searchMovies(
+                language,
+                query,
+                page,
+                includeAdult,
+                region,
+                year,
+                primaryReleaseYear
+            )
+        }
     }
 
     suspend fun searchTVs(
@@ -52,13 +51,10 @@ class SearchRepository(private val api: TmdbApiService) : BaseRepository() {
         query: String,
         page: Int?,
         firstAirDateYear: Int?
-    ): TVResponse? {
-        return safeApiCall(
-            call = {
-                api.searchTVSeries(language, query, page, firstAirDateYear)
-            },
-            errorMessage = "Ошибка GET[searchTVs]"
-        )
+    ): ResultWrapper<TVResponse> {
+        return safeApiCall(dispatcher) {
+            api.searchTVSeries(language, query, page, firstAirDateYear)
+        }
     }
 
     suspend fun searchPeoples(
@@ -67,12 +63,9 @@ class SearchRepository(private val api: TmdbApiService) : BaseRepository() {
         page: Int?,
         includeAdult: Boolean?,
         region: String?
-    ): PersonResponse? {
-        return safeApiCall(
-            call = {
-                api.searchPeoples(language, query, page, includeAdult, region)
-            },
-            errorMessage = "Ошибка GET[searchPeoples]"
-        )
+    ): ResultWrapper<PersonResponse> {
+        return safeApiCall(dispatcher) {
+            api.searchPeoples(language, query, page, includeAdult, region)
+        }
     }
 }

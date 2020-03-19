@@ -23,6 +23,7 @@ import com.majorik.moviebox.ui.genres.GenresActivity
 import com.majorik.moviebox.ui.movieTabCollections.MovieCollectionsActivity
 import com.majorik.moviebox.ui.search.SearchableActivity
 import com.majorik.moviebox.utils.GenresStorageObject
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.fragment_movies.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -112,11 +113,12 @@ class MoviesFragment : BaseNavigationFragment() {
         })
 
         moviesViewModel.nowPlayingMoviesLiveData.observe(viewLifecycleOwner, Observer {
-            rv_now_playing_movies.setAdapterWithFixedSize(
-                MovieCollectionAdapter(
-                    it
-                ), true
-            )
+            val adapter = MovieCollectionAdapter()
+//            rv_now_playing_movies.setAdapterWithFixedSize(adapter, true)
+
+            rv_now_playing_movies.adapter = ScaleInAnimationAdapter(adapter)
+
+            adapter.addItems(it)
         })
 
         moviesViewModel.genresLiveData.observe(viewLifecycleOwner, Observer {

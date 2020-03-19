@@ -1,7 +1,6 @@
 package com.majorik.data.api
 
 import com.majorik.domain.youtubeModels.SearchResponse
-import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -14,5 +13,5 @@ interface YouTubeApiService {
         @Query("pageToken") pageToken: String?,
         @Query("order") order: String,
         @Query("channelId") channelId: String
-    ): Response<SearchResponse>
+    ): SearchResponse
 }

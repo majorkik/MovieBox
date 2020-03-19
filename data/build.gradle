@@ -35,6 +35,7 @@ android {
         def testingDependencies = rootProject.ext.testingDependencies
 
         implementation kotlinDependencies.kotlin
+        implementation kotlinDependencies.coroutinesCore
 
         implementation networkDependencies.retrofit2
         implementation networkDependencies.retrofit2Moshi
@@ -52,6 +53,9 @@ android {
         testImplementation testingDependencies.junit
         testImplementation testingDependencies.testJunit
         testImplementation testingDependencies.mockWebServer
+
+        implementation logDependencies.prettyLogger
+
 
         implementation project(':domain')
     }

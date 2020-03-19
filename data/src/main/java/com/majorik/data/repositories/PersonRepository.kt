@@ -1,78 +1,66 @@
 package com.majorik.data.repositories
 
 import com.majorik.data.api.TmdbApiService
-import com.majorik.domain.tmdbModels.image.ImageDetails
-import com.majorik.domain.tmdbModels.person.Person
+import com.majorik.domain.tmdbModels.image.ImagesResponse
+import com.majorik.domain.tmdbModels.image.PersonPostersResponse
 import com.majorik.domain.tmdbModels.person.PersonDetails
+import com.majorik.domain.tmdbModels.person.PersonResponse
+import com.majorik.domain.tmdbModels.result.ResultWrapper
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 
 class PersonRepository(private val api: TmdbApiService) : BaseRepository() {
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
+
     suspend fun getPersonById(
         personId: Int,
         language: String?,
         appendToResponse: String?
-    ): PersonDetails? {
-        return safeApiCall(
-            call = {
-                api.getPersonById(personId, language, appendToResponse)
-            },
-            errorMessage = "Ошибка GET[getPersonById] (personId = $personId)"
-        )
+    ): ResultWrapper<PersonDetails> {
+        return safeApiCall(dispatcher) {
+            api.getPersonById(personId, language, appendToResponse)
+        }
     }
 
     suspend fun getPersonTaggedImages(
         personId: Int,
         language: String?,
         page: Int?
-    ): MutableList<ImageDetails>? {
-        val personResponse = safeApiCall(
-            call = {
-                api.getPersonTaggedImages(personId, language, page)
-            },
-            errorMessage = "Ошибка GET[getPersonTaggedImages] (personId = $personId)"
-        )
-
-        return personResponse?.results?.toMutableList()
+    ): ResultWrapper<ImagesResponse> {
+        return safeApiCall(dispatcher) {
+            api.getPersonTaggedImages(personId, language, page)
+        }
     }
 
     suspend fun getPersonPosters(
         personId: Int
-    ): MutableList<ImageDetails>? {
-        val response = safeApiCall(
-            call = {
-                api.getPersonPosters(personId)
-            },
-            errorMessage = "Ошибка GET[getPersonPosters] (personId = $personId)"
-        )
-
-        return response?.profiles?.toMutableList()
+    ): ResultWrapper<PersonPostersResponse> {
+        return safeApiCall(dispatcher) {
+            api.getPersonPosters(personId)
+        }
     }
 
-    suspend fun getPopularPeoples(language: String?, page: Int?): MutableList<Person>? {
-        val response = safeApiCall(
-            call = {
-                api.getPopularPeoples(language, page)
-            },
-            errorMessage = "Ошибка GET[getPopularPeoples]"
-        )
-
-        return response?.results?.toMutableList()
+    suspend fun getPopularPeoples(language: String?, page: Int?): ResultWrapper<PersonResponse> {
+        return safeApiCall(dispatcher) {
+            api.getPopularPeoples(language, page)
+        }
     }
 
-    suspend fun getPersonMovieCredits(personId: Int, language: String?): PersonDetails.MovieCredits? {
-        return safeApiCall(
-            call = {
-                api.getMovieCredits(personId, language)
-            },
-            errorMessage = "Ошибка GET[getPersonMovieCredits]"
-        )
+    suspend fun getPersonMovieCredits(
+        personId: Int,
+        language: String?
+    ): ResultWrapper<PersonDetails.MovieCredits> {
+        return safeApiCall(dispatcher) {
+            api.getMovieCredits(personId, language)
+        }
     }
 
-    suspend fun getPersonTVCredits(personId: Int, language: String?): PersonDetails.TVCredits? {
-        return safeApiCall(
-            call = {
-                api.getTVCredits(personId, language)
-            },
-            errorMessage = "Ошибка GET[getPersonTVCredits]"
-        )
+    suspend fun getPersonTVCredits(
+        personId: Int,
+        language: String?
+    ): ResultWrapper<PersonDetails.TVCredits> {
+        return safeApiCall(dispatcher) {
+            api.getTVCredits(personId, language)
+        }
     }
 }
