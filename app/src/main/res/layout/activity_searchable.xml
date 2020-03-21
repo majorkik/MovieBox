@@ -32,7 +32,7 @@
                 android:id="@+id/searchView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_toStartOf="@+id/item_view_type_toggle"
+                android:layout_toStartOf="@+id/toggle_is_grid_type"
                 android:layout_toEndOf="@+id/btn_back"
                 android:clickable="true"
                 android:focusable="true"
@@ -69,7 +69,7 @@
                 android:background="@color/gallery" />
 
             <ToggleButton
-                android:id="@+id/item_view_type_toggle"
+                android:id="@+id/toggle_is_grid_type"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_alignParentEnd="true"

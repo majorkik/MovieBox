@@ -37,8 +37,8 @@ class SearchViewHolder(val parent: View) : RecyclerView.ViewHolder(parent) {
     }
 
     private fun setData(url: String, title: String, year: String) {
-        itemView.item_image.displayImageWithCenterCrop(url)
-        itemView.title.text = title
-        itemView.year.text = year
+        itemView.card_image.displayImageWithCenterCrop(url)
+        itemView.card_title.text = title
+        itemView.card_release_date.text = year
     }
 }

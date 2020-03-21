@@ -49,9 +49,16 @@ class SearchableActivity : AppCompatActivity() {
         btn_back.setOnClickListener {
             onBackPressed()
         }
+
+        toggle_is_grid_type.setOnCheckedChangeListener { buttonView, isChecked ->
+            pagerAdapter.changeViewType(isChecked)
+        }
     }
 
-    private fun updateMargins(statusBarSize: Int, @Suppress("UNUSED_PARAMETER") navigationBarSize: Int) {
+    private fun updateMargins(
+        statusBarSize: Int,
+        @Suppress("UNUSED_PARAMETER") navigationBarSize: Int
+    ) {
         search_bar_layout.updateMargin(top = statusBarSize)
 //        search_layout.updateMargin(bottom = navigationBarSize)
     }
@@ -95,7 +102,7 @@ class SearchableActivity : AppCompatActivity() {
         }
 
         searchView.setOnQueryTextFocusChangeListener { v, hasFocus ->
-            item_view_type_toggle.setVisibilityOption(hasFocus)
+            toggle_is_grid_type.setVisibilityOption(hasFocus)
         }
     }
 }

@@ -13,13 +13,16 @@ import com.majorik.moviebox.extensions.setSafeOnClickListener
 import com.majorik.moviebox.extensions.startDetailsActivityWithId
 import com.majorik.moviebox.ui.movieDetails.MovieDetailsActivity
 import com.majorik.moviebox.viewholders.NetworkStateViewHolder
-import com.majorik.moviebox.viewholders.search.SearchMovieViewHolder
+import com.majorik.moviebox.viewholders.search.SearchMovieDetailedVH
+import com.majorik.moviebox.viewholders.search.SearchMovieSmallVH
+import kotlinx.android.synthetic.main.item_medium_poster_card.view.*
 
 class SearchMovieAdapter(
     private val callback: OnClickListener
 ) : PagedListAdapter<Movie, ViewHolder>(diffCallback) {
 
     private var networkState: NetworkState? = null
+    private var isGrid: Boolean = false
 
     interface OnClickListener {
         fun onClickRetry()
@@ -29,30 +32,44 @@ class SearchMovieAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
         return when (viewType) {
-            R.layout.item_card_with_details -> SearchMovieViewHolder(
-                view
-            )
-            R.layout.item_network_state -> NetworkStateViewHolder(
-                view
-            )
+            R.layout.item_card_with_details -> SearchMovieDetailedVH(view)
+
+            R.layout.item_network_state -> NetworkStateViewHolder(view)
+
+            R.layout.item_medium_poster_card -> SearchMovieSmallVH(view)
+
             else -> throw IllegalArgumentException("Неизвестный тип view: $viewType")
         }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (holder) {
-            is SearchMovieViewHolder -> {
+            is SearchMovieDetailedVH -> {
                 holder.bindTo(getItem(position))
 
                 holder.itemView.setSafeOnClickListener {
                     getItem(position)?.let { item ->
-                        holder.parent.context.startDetailsActivityWithId(
+                        holder.itemView.context.startDetailsActivityWithId(
                             item.id,
                             MovieDetailsActivity::class.java
                         )
                     }
                 }
             }
+
+            is SearchMovieSmallVH -> {
+                holder.bindTo(getItem(position))
+
+                holder.itemView.collection_card.setSafeOnClickListener {
+                    getItem(position)?.let { item ->
+                        holder.itemView.context.startDetailsActivityWithId(
+                            item.id,
+                            MovieDetailsActivity::class.java
+                        )
+                    }
+                }
+            }
+
             is NetworkStateViewHolder -> {
                 holder.bindTo(
                     networkState,
@@ -66,7 +83,11 @@ class SearchMovieAdapter(
         return if (hasExtraRow() && position == itemCount - 1) {
             R.layout.item_network_state
         } else {
-            R.layout.item_card_with_details
+            if (isGrid) {
+                R.layout.item_medium_poster_card
+            } else {
+                R.layout.item_card_with_details
+            }
         }
     }
 
@@ -76,6 +97,10 @@ class SearchMovieAdapter(
     }
 
     private fun hasExtraRow() = networkState != null && networkState != SUCCESS
+
+    fun setViewType(isGrid: Boolean) {
+        this.isGrid = isGrid
+    }
 
     fun updateNetworkState(newNetworkState: NetworkState?) {
         val previousState = this.networkState

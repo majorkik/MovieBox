@@ -10,6 +10,8 @@ apply plugin: 'com.google.gms.google-services'
 
 apply plugin: 'com.google.firebase.crashlytics'
 
+apply plugin: 'com.google.firebase.appdistribution'
+
 androidExtensions {
     experimental = true
 }
@@ -41,6 +43,11 @@ android {
         }
 
         debug {
+            firebaseAppDistribution {
+                serviceCredentialsFile='C:\\Users\\major\\Downloads\\firebase_moviebox.json'
+                testers="majorik.tm@gmail.com"
+            }
+
             debuggable true
             minifyEnabled false
             shrinkResources false

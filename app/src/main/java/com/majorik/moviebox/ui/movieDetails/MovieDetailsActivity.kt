@@ -3,7 +3,6 @@ package com.majorik.moviebox.ui.movieDetails
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.majorik.domain.constants.AppConfig
@@ -59,7 +58,10 @@ class MovieDetailsActivity : BaseSlidingActivity() {
         setObserver()
     }
 
-    private fun updateMargins(statusBarSize: Int, @Suppress("UNUSED_PARAMETER") navigationBarSize: Int) {
+    private fun updateMargins(
+        statusBarSize: Int,
+        @Suppress("UNUSED_PARAMETER") navigationBarSize: Int
+    ) {
         md_toolbar.updateMargin(top = statusBarSize)
     }
 
@@ -121,10 +123,13 @@ class MovieDetailsActivity : BaseSlidingActivity() {
     private fun setClickListenerForImages(
         images: Images
     ) {
+
         m_backdrop_image.setOnClickListener {
             StfalconImageViewer.Builder(this, images.backdrops.map { it.filePath }) { view, image ->
-                view.displayImageWithCenterInside(UrlConstants.TMDB_BACKDROP_SIZE_1280 + image)
-            }.withHiddenStatusBar(false).show()
+                    view.displayImageWithCenterInside(UrlConstants.TMDB_BACKDROP_SIZE_1280 + image)
+                }.withOverlayView(layoutInflater.inflate(R.layout.item_genre_inline, null))
+                .withHiddenStatusBar(false)
+                .show()
         }
 
         m_poster_image.setOnClickListener {
@@ -155,7 +160,8 @@ class MovieDetailsActivity : BaseSlidingActivity() {
             setOverview(movie.overview)
             m_vote_average.text = movie.voteAverage.toString()
 
-            val genres = movie.genres.joinToString(", ") { it.name.capitalize(AppConfig.APP_LOCALE) }
+            val genres =
+                movie.genres.joinToString(", ") { it.name.capitalize(AppConfig.APP_LOCALE) }
 
             m_add_info.text = getString(
                 R.string.short_info_mask,
@@ -165,32 +171,7 @@ class MovieDetailsActivity : BaseSlidingActivity() {
 
             m_companies.text = movie.productionCompanies.joinToString(", ") { it.name }
 
-            when {
-                movie.voteAverage >= 8 -> {
-                    vote_average_indicator.setColorFilter(
-                        ContextCompat.getColor(
-                            this,
-                            R.color.emerald
-                        )
-                    )
-                }
-                movie.voteAverage > 6 && movie.voteAverage < 8 -> {
-                    vote_average_indicator.setColorFilter(
-                        ContextCompat.getColor(
-                            this,
-                            R.color.colorAccent
-                        )
-                    )
-                }
-                else -> {
-                    vote_average_indicator.setColorFilter(
-                        ContextCompat.getColor(
-                            this,
-                            R.color.sunset_orange
-                        )
-                    )
-                }
-            }
+            vote_average_indicator.setIndicatorColor(movie.voteAverage)
 
             m_backdrop_image.displayImageWithCenterCrop(UrlConstants.TMDB_BACKDROP_SIZE_780 + movie.backdropPath)
             m_poster_image.displayImageWithCenterCrop(UrlConstants.TMDB_POSTER_SIZE_500 + movie.posterPath)

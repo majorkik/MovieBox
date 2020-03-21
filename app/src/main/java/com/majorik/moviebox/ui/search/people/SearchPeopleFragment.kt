@@ -6,15 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import com.majorik.domain.NetworkState
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.search.SearchPeopleAdapter
+import com.majorik.moviebox.extensions.toPx
 import com.majorik.moviebox.ui.search.SearchQueryChangeListener
+import com.majorik.moviebox.ui.search.SearchViewTypeChangeListener
+import com.majorik.moviebox.utils.SpacingDecoration
 import kotlinx.android.synthetic.main.fragment_searchable.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class SearchPeopleFragment : Fragment(), SearchQueryChangeListener,
-    SearchPeopleAdapter.OnClickListener {
+    SearchPeopleAdapter.OnClickListener, SearchViewTypeChangeListener {
     private val searchViewModel: SearchPeopleViewModel by viewModel()
     private lateinit var adapter: SearchPeopleAdapter
 
@@ -47,6 +51,8 @@ class SearchPeopleFragment : Fragment(), SearchQueryChangeListener,
     private fun configureRecyclerView() {
         adapter = SearchPeopleAdapter(this)
         search_list.adapter = adapter
+
+        search_list.addItemDecoration(SpacingDecoration(16.toPx(), 16.toPx(), true))
     }
 
     private fun configureObservables() {
@@ -84,5 +90,15 @@ class SearchPeopleFragment : Fragment(), SearchQueryChangeListener,
     override fun whenListIsUpdated(size: Int, networkState: NetworkState?) {
         updateUIWhenLoading(size, networkState)
         updateUIWhenEmptyList(size, networkState)
+    }
+
+    override fun changeViewType(isGrid: Boolean) {
+        if (isGrid) {
+            search_list.layoutManager = GridLayoutManager(context, 4)
+        } else {
+            search_list.layoutManager = GridLayoutManager(context, 1)
+        }
+
+        adapter.setViewType(isGrid)
     }
 }

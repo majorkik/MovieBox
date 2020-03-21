@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/BaseClickableCard"
+    android:layout_width="match_parent"
+    android:layout_height="128dp"
+    app:cardBackgroundColor="@color/gallery">
+
+    <ImageView
+        android:id="@+id/p_image"
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/placholder_profile_image" />
+
+</androidx.cardview.widget.CardView>

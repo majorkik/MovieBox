@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewOutlineProvider
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import coil.api.load
 import com.majorik.moviebox.R
 
@@ -17,6 +18,7 @@ fun ImageView.displayImageWithCenterInside(
 ) {
     load(url) {
         placeholder(placeholder)
+        error(placeholder)
     }
 }
 
@@ -28,6 +30,7 @@ fun ImageView.displayImageWithCenterCrop(
 
     load(url) {
         placeholder(placeholder)
+        error(placeholder)
     }
 }
 
@@ -57,4 +60,27 @@ fun ImageView.setCorners(sizeDp: Int) {
 
         this.clipToOutline = true
     }
+}
+
+fun ImageView.setIndicatorColor(voteAverage: Double) {
+    val selectedColor: Int = when {
+        voteAverage >= 8.0 -> {
+            R.color.emerald
+        }
+
+        voteAverage > 6.0 && voteAverage < 8.0 -> {
+            R.color.colorAccent
+        }
+
+        else -> {
+            R.color.sunset_orange
+        }
+    }
+
+    this.setColorFilter(
+        ContextCompat.getColor(
+            this.context,
+            selectedColor
+        )
+    )
 }

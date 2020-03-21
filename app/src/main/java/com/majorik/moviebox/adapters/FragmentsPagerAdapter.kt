@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.majorik.moviebox.ui.search.SearchViewTypeChangeListener
 
 class FragmentsPagerAdapter(
     private val fragments: List<Fragment>,
@@ -14,4 +15,10 @@ class FragmentsPagerAdapter(
     override fun getItemCount(): Int = fragments.count()
 
     override fun createFragment(position: Int): Fragment = fragments[position]
+
+    fun changeViewType(isGridType: Boolean) {
+        fragments.forEach {
+            (it as? SearchViewTypeChangeListener)?.changeViewType(isGridType)
+        }
+    }
 }

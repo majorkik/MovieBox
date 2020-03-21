@@ -13,13 +13,16 @@ import com.majorik.moviebox.extensions.setSafeOnClickListener
 import com.majorik.moviebox.extensions.startDetailsActivityWithId
 import com.majorik.moviebox.ui.tvDetails.TVDetailsActivity
 import com.majorik.moviebox.viewholders.NetworkStateViewHolder
-import com.majorik.moviebox.viewholders.search.SearchTVViewHolder
+import com.majorik.moviebox.viewholders.search.SearchTVDetailedVH
+import com.majorik.moviebox.viewholders.search.SearchTVSmallVH
+import kotlinx.android.synthetic.main.item_medium_poster_card.view.*
 
 class SearchTVAdapter(
     private val callback: OnClickListener
 ) : PagedListAdapter<TV, ViewHolder>(diffCallback) {
 
     private var networkState: NetworkState? = null
+    private var isGrid: Boolean = false
 
     interface OnClickListener {
         fun onClickRetry()
@@ -28,20 +31,21 @@ class SearchTVAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
+
         return when (viewType) {
-            R.layout.item_card_with_details -> SearchTVViewHolder(
-                view
-            )
-            R.layout.item_network_state -> NetworkStateViewHolder(
-                view
-            )
+            R.layout.item_card_with_details -> SearchTVDetailedVH(view)
+
+            R.layout.item_medium_poster_card -> SearchTVSmallVH(view)
+
+            R.layout.item_network_state -> NetworkStateViewHolder(view)
+
             else -> throw IllegalArgumentException("Неизвестный тип view: $viewType")
         }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (holder) {
-            is SearchTVViewHolder -> {
+            is SearchTVDetailedVH -> {
                 holder.bindTo(getItem(position))
 
                 holder.itemView.setSafeOnClickListener {
@@ -53,6 +57,20 @@ class SearchTVAdapter(
                     }
                 }
             }
+
+            is SearchTVSmallVH -> {
+                holder.bindTo(getItem(position))
+
+                holder.itemView.collection_card.setSafeOnClickListener {
+                    getItem(position)?.let { item ->
+                        holder.parent.context.startDetailsActivityWithId(
+                            item.id,
+                            TVDetailsActivity::class.java
+                        )
+                    }
+                }
+            }
+
             is NetworkStateViewHolder -> {
                 holder.bindTo(
                     networkState,
@@ -66,7 +84,11 @@ class SearchTVAdapter(
         return if (hasExtraRow() && position == itemCount - 1) {
             R.layout.item_network_state
         } else {
-            R.layout.item_card_with_details
+            if (isGrid) {
+                R.layout.item_medium_poster_card
+            } else {
+                R.layout.item_card_with_details
+            }
         }
     }
 
@@ -76,6 +98,10 @@ class SearchTVAdapter(
     }
 
     private fun hasExtraRow() = networkState != null && networkState != SUCCESS
+
+    fun setViewType(isGrid: Boolean) {
+        this.isGrid = isGrid
+    }
 
     fun updateNetworkState(newNetworkState: NetworkState?) {
         val previousState = this.networkState

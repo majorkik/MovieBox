@@ -13,6 +13,7 @@ import com.majorik.moviebox.extensions.setSafeOnClickListener
 import com.majorik.moviebox.extensions.startDetailsActivityWithId
 import com.majorik.moviebox.ui.person_details.PersonDetailsActivity
 import com.majorik.moviebox.viewholders.NetworkStateViewHolder
+import com.majorik.moviebox.viewholders.search.SearchPeopleSmallVH
 import com.majorik.moviebox.viewholders.search.SearchPeopleViewHolder
 
 class SearchPeopleAdapter(
@@ -20,6 +21,7 @@ class SearchPeopleAdapter(
 ) : PagedListAdapter<Person, ViewHolder>(diffCallback) {
 
     private var networkState: NetworkState? = null
+    private var isGrid: Boolean = false
 
     interface OnClickListener {
         fun onClickRetry()
@@ -29,12 +31,12 @@ class SearchPeopleAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
         return when (viewType) {
-            R.layout.item_person_detailed -> SearchPeopleViewHolder(
-                view
-            )
-            R.layout.item_network_state -> NetworkStateViewHolder(
-                view
-            )
+            R.layout.item_person_detailed -> SearchPeopleViewHolder(view)
+
+            R.layout.item_person_small_card -> SearchPeopleSmallVH(view)
+
+            R.layout.item_network_state -> NetworkStateViewHolder(view)
+
             else -> throw IllegalArgumentException("Неизвестный тип view: $viewType")
         }
     }
@@ -53,6 +55,20 @@ class SearchPeopleAdapter(
                     }
                 }
             }
+
+            is SearchPeopleSmallVH -> {
+                holder.bindTo(getItem(position))
+
+                holder.itemView.setSafeOnClickListener {
+                    getItem(position)?.let { item ->
+                        holder.parent.context.startDetailsActivityWithId(
+                            item.id,
+                            PersonDetailsActivity::class.java
+                        )
+                    }
+                }
+            }
+
             is NetworkStateViewHolder -> {
                 holder.bindTo(
                     networkState,
@@ -66,7 +82,11 @@ class SearchPeopleAdapter(
         return if (hasExtraRow() && position == itemCount - 1) {
             R.layout.item_network_state
         } else {
-            R.layout.item_person_detailed
+            if (isGrid) {
+                R.layout.item_person_small_card
+            } else {
+                R.layout.item_person_detailed
+            }
         }
     }
 
@@ -76,6 +96,10 @@ class SearchPeopleAdapter(
     }
 
     private fun hasExtraRow() = networkState != null && networkState != SUCCESS
+
+    fun setViewType(isGrid: Boolean) {
+        this.isGrid = isGrid
+    }
 
     fun updateNetworkState(newNetworkState: NetworkState?) {
         val previousState = this.networkState
