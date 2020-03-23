@@ -90,6 +90,10 @@ android {
     dexOptions {
         preDexLibraries true
     }
+
+    viewBinding {
+        enabled = true
+    }
 }
 
 configurations.all {

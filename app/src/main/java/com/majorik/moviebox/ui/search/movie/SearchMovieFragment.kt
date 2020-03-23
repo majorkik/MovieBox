@@ -10,11 +10,13 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.majorik.domain.NetworkState
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.search.SearchMovieAdapter
+import com.majorik.moviebox.extensions.setAdapterWithFixedSize
 import com.majorik.moviebox.extensions.toPx
 import com.majorik.moviebox.ui.search.SearchQueryChangeListener
 import com.majorik.moviebox.ui.search.SearchViewTypeChangeListener
 import com.majorik.moviebox.utils.SpacingDecoration
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
+import jp.wasabeef.recyclerview.animators.ScaleInAnimator
 import kotlinx.android.synthetic.main.fragment_searchable.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -52,7 +54,8 @@ class SearchMovieFragment : Fragment(), SearchQueryChangeListener,
 
     private fun configureRecyclerView() {
         adapter = SearchMovieAdapter(this)
-        search_list.adapter = ScaleInAnimationAdapter(adapter)
+
+        search_list.setAdapterWithFixedSize(ScaleInAnimationAdapter(adapter), true)
         search_list.addItemDecoration(SpacingDecoration(16.toPx(), 16.toPx(), true))
     }
 

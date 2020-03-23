@@ -17,10 +17,10 @@
     <ImageView
         android:id="@+id/placeholder_image"
         android:layout_width="match_parent"
-        android:src="@drawable/placeholder_portrait"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
-        android:contentDescription="@string/desc_collection_image" />
+        android:contentDescription="@string/desc_collection_image"
+        android:src="@drawable/placeholder_portrait" />
 
     <TextView
         android:id="@+id/placeholder_text"

@@ -1,54 +1,60 @@
 package com.majorik.moviebox.adapters.movie
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.viewpager.widget.PagerAdapter
-import androidx.viewpager.widget.ViewPager
+import androidx.recyclerview.widget.RecyclerView
 import com.majorik.domain.constants.UrlConstants
 import com.majorik.domain.tmdbModels.movie.Movie
-import com.majorik.moviebox.R
-import com.majorik.moviebox.extensions.displayImageWithCenterInside
+import com.majorik.moviebox.adapters.movie.MovieCardAdapter.*
+import com.majorik.moviebox.databinding.ItemBigImageWithCornersBinding
+import com.majorik.moviebox.extensions.displayImageWithCenterCrop
 import com.majorik.moviebox.extensions.setSafeOnClickListener
 import com.majorik.moviebox.extensions.startDetailsActivityWithId
 import com.majorik.moviebox.ui.movieDetails.MovieDetailsActivity
 import kotlinx.android.synthetic.main.item_big_image_with_corners.view.*
 
-class MovieCardAdapter(
-    private val movies: List<Movie>
-) : PagerAdapter() {
-    override fun isViewFromObject(view: View, `object`: Any): Boolean = view == `object`
+class MovieCardAdapter : RecyclerView.Adapter<MovieCardViewHolder>() {
 
-    override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        val layoutInflater =
-            container.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view: View =
-            layoutInflater.inflate(R.layout.item_big_image_with_corners, container, false)
-        val viewPager: ViewPager = container as ViewPager
+    private var movies: List<Movie> = emptyList()
 
-        bindTo(movies[position], view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieCardViewHolder {
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val binding = ItemBigImageWithCornersBinding.inflate(layoutInflater, parent, false)
 
-        viewPager.addView(view, 0)
-        return view
+        return MovieCardViewHolder(binding)
     }
 
-    override fun getCount() = movies.size
+    override fun getItemCount() = movies.size
 
-    private fun bindTo(movie: Movie, parent: View) {
-        parent.placeholder_text.text = movie.title
+    override fun onBindViewHolder(holder: MovieCardViewHolder, position: Int) {
+        holder.bindTo(movies[position])
 
-        parent.slider_image.displayImageWithCenterInside(UrlConstants.TMDB_BACKDROP_SIZE_1280 + movie.backdropPath)
-
-        parent.slider_layout.setSafeOnClickListener {
-            parent.context.startDetailsActivityWithId(
-                movie.id,
+        holder.itemView.slider_layout.setSafeOnClickListener {
+            holder.itemView.context.startDetailsActivityWithId(
+                movies[position].id,
                 MovieDetailsActivity::class.java
             )
         }
     }
 
-    override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
-        container.removeView(`object` as View?)
+    internal fun addItems(items: List<Movie>) {
+        val startPosition = movies.size
+        movies = items
+        notifyItemRangeInserted(startPosition, items.size)
+    }
+
+    override fun getItemId(position: Int): Long {
+        return movies[position].id.toLong()
+    }
+
+    class MovieCardViewHolder(private val parent: ItemBigImageWithCornersBinding) :
+        RecyclerView.ViewHolder(parent.root) {
+        fun bindTo(movie: Movie) {
+            parent.placeholderText.text = movie.title
+
+            parent.sliderImage.displayImageWithCenterCrop(
+                UrlConstants.TMDB_BACKDROP_SIZE_1280 + movie.backdropPath
+            )
+        }
     }
 }

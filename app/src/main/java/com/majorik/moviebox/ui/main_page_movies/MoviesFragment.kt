@@ -7,16 +7,15 @@ import android.view.MenuInflater
 import android.view.View
 import androidx.core.util.isEmpty
 import androidx.lifecycle.Observer
-import com.majorik.data.repositories.TrendingRepository
+import androidx.lifecycle.lifecycleScope
+import com.majorik.data.repositories.TrendingRepository.*
 import com.majorik.domain.constants.AppConfig
 import com.majorik.domain.constants.GenresConstants
 import com.majorik.domain.enums.movie.MovieCollectionType
+import com.majorik.domain.enums.movie.MovieCollectionType.*
 import com.majorik.moviebox.R
 import com.majorik.moviebox.adapters.*
-import com.majorik.moviebox.adapters.movie.MovieCardAdapter
-import com.majorik.moviebox.adapters.movie.MovieCollectionAdapter
-import com.majorik.moviebox.adapters.movie.MovieDateCardAdapter
-import com.majorik.moviebox.adapters.movie.MovieTrendAdapter
+import com.majorik.moviebox.adapters.movie.*
 import com.majorik.moviebox.extensions.*
 import com.majorik.moviebox.ui.base.BaseNavigationFragment
 import com.majorik.moviebox.ui.genres.GenresActivity
@@ -25,17 +24,26 @@ import com.majorik.moviebox.ui.search.SearchableActivity
 import com.majorik.moviebox.utils.GenresStorageObject
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.fragment_movies.*
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MoviesFragment : BaseNavigationFragment() {
 
     private val moviesViewModel: MoviesViewModel by viewModel()
 
+    private val nowPlayingMoviesAdapter = MovieCollectionAdapter()
+    private val upcomingMoviesAdapter = MovieDateCardAdapter()
+    private val trailersAdapter = TrailersAdapter()
+    private val peopleAdapter = PersonAdapter()
+    private val popularMoviesAdapter = MovieCardAdapter()
+
     override fun getLayoutId() = R.layout.fragment_movies
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initAdapters()
         fetchData()
         setObservers()
         setClickListeners()
@@ -46,14 +54,51 @@ class MoviesFragment : BaseNavigationFragment() {
         inflater.inflate(R.menu.main_toolbar_menu, menu)
     }
 
+    private fun initAdapters() {
+        lifecycleScope.launchWhenCreated {
+            popularMoviesAdapter.setHasStableIds(true)
+            vp_popular_movies.setShowSideItems(16.toPx(), 16.toPx())
+            vp_popular_movies.adapter = ScaleInAnimationAdapter(popularMoviesAdapter)
+
+            nowPlayingMoviesAdapter.setHasStableIds(true)
+            rv_now_playing_movies.setAdapterWithFixedSize(
+                ScaleInAnimationAdapter(nowPlayingMoviesAdapter),
+                true
+            )
+
+            upcomingMoviesAdapter.setHasStableIds(true)
+            rv_upcoming_movies.setAdapterWithFixedSize(
+                ScaleInAnimationAdapter(upcomingMoviesAdapter),
+                true
+            )
+
+            trailersAdapter.setHasStableIds(true)
+            rv_trailers.setAdapterWithFixedSize(ScaleInAnimationAdapter(trailersAdapter), true)
+
+            peopleAdapter.setHasStableIds(true)
+            rv_trending_peoples.setAdapterWithFixedSize(
+                ScaleInAnimationAdapter(peopleAdapter),
+                false
+            )
+        }
+    }
+
     override fun fetchData() {
-        moviesViewModel.fetchMovieGenres(AppConfig.REGION)
-        moviesViewModel.fetchPopularMovies(AppConfig.REGION, 1, "")
-        moviesViewModel.fetchNowPlayingMovies(AppConfig.REGION, 1, "RU")
-        moviesViewModel.fetchUpcomingMovies(AppConfig.REGION, 1, "RU")
-        moviesViewModel.searchYouTubeVideosByChannel()
-        moviesViewModel.fetchTrendingMovies(TrendingRepository.TimeWindow.WEEK, 1, AppConfig.REGION)
-        moviesViewModel.fetchPopularPeoples(AppConfig.REGION, 1)
+        lifecycleScope.launchWhenCreated {
+            moviesViewModel.fetchPopularMovies(AppConfig.REGION, 1, "")
+
+            moviesViewModel.fetchNowPlayingMovies(AppConfig.REGION, 1, "RU")
+
+            moviesViewModel.fetchTrendingMovies(TimeWindow.WEEK, 1, AppConfig.REGION)
+
+            moviesViewModel.fetchUpcomingMovies(AppConfig.REGION, 1, "RU")
+
+            moviesViewModel.fetchMovieGenres(AppConfig.REGION)
+
+            moviesViewModel.searchYouTubeVideosByChannel()
+
+            moviesViewModel.fetchPopularPeoples(AppConfig.REGION, 1)
+        }
     }
 
     private fun setClickListeners() {
@@ -62,24 +107,15 @@ class MoviesFragment : BaseNavigationFragment() {
         }
 
         btn_popular_movies.setOnClickListener {
-            openNewActivityWithTab(
-                MovieCollectionsActivity::class.java,
-                MovieCollectionType.POPULAR
-            )
+            openNewActivityWithTab(MovieCollectionsActivity::class.java, POPULAR)
         }
 
         btn_upcoming_movies.setOnClickListener {
-            openNewActivityWithTab(
-                MovieCollectionsActivity::class.java,
-                MovieCollectionType.UPCOMING
-            )
+            openNewActivityWithTab(MovieCollectionsActivity::class.java, UPCOMING)
         }
 
         btn_now_playing_movies.setOnClickListener {
-            openNewActivityWithTab(
-                MovieCollectionsActivity::class.java,
-                MovieCollectionType.NOW_PLAYING
-            )
+            openNewActivityWithTab(MovieCollectionsActivity::class.java, NOW_PLAYING)
         }
 
         btn_movie_genres.setSafeOnClickListener {
@@ -96,58 +132,69 @@ class MoviesFragment : BaseNavigationFragment() {
 
     override fun setObservers() {
         moviesViewModel.popularMoviesLiveData.observe(viewLifecycleOwner, Observer {
-            vp_popular_movies.run {
-                adapter =
-                    MovieCardAdapter(it)
-                pageMargin = 16.toPx()
+            popularMoviesAdapter.addItems(it)
+        })
+
+        moviesViewModel.nowPlayingMoviesLiveData.observe(viewLifecycleOwner, Observer {
+            lifecycleScope.launchWhenCreated {
+                delay(150)
+
+                nowPlayingMoviesAdapter.addItems(it)
+            }
+        })
+
+        moviesViewModel.trendingMoviesLiveData.observe(viewLifecycleOwner, Observer {
+            lifecycleScope.launchWhenCreated {
+                if (GenresStorageObject.movieGenres.isEmpty()) {
+                    GenresConstants.movieGenres.forEach {
+                        GenresStorageObject.movieGenres.put(it.id, it.name)
+                    }
+                }
+
+                delay(300)
+
+                vp_trend_movies.run {
+                    adapter = MovieTrendAdapter(it)
+                    pageMargin = 16.toPx()
+                }
             }
         })
 
         moviesViewModel.upcomingMoviesLiveData.observe(viewLifecycleOwner, Observer {
-            rv_upcoming_movies.setAdapterWithFixedSize(
-                MovieDateCardAdapter(
-                    it.sortedBy {
-                        it.releaseDate?.toDate()?.utc?.unixMillisLong ?: 0L
-                    }), true
-            )
-        })
+            lifecycleScope.launch {
+                val items = it.sortedBy { it.releaseDate?.toDate()?.utc?.unixMillisLong ?: 0L }
 
-        moviesViewModel.nowPlayingMoviesLiveData.observe(viewLifecycleOwner, Observer {
-            val adapter = MovieCollectionAdapter()
-//            rv_now_playing_movies.setAdapterWithFixedSize(adapter, true)
+                delay(500)
 
-            rv_now_playing_movies.adapter = ScaleInAnimationAdapter(adapter)
-
-            adapter.addItems(it)
+                upcomingMoviesAdapter.addItems(items)
+            }
         })
 
         moviesViewModel.genresLiveData.observe(viewLifecycleOwner, Observer {
-            if (GenresStorageObject.movieGenres.isEmpty()) {
-                it.map { genre -> GenresStorageObject.movieGenres.put(genre.id, genre.name) }
+            lifecycleScope.launchWhenCreated {
+                if (GenresStorageObject.movieGenres.isEmpty()) {
+                    it.map { genre -> GenresStorageObject.movieGenres.put(genre.id, genre.name) }
+                }
+
+                delay(700)
+
+                rv_movie_genres.setAdapterWithFixedSize(GenreAdapter(it), true)
             }
-
-            rv_movie_genres.adapter = GenreAdapter(it)
-        })
-
-        moviesViewModel.popularPeoplesLiveData.observe(viewLifecycleOwner, Observer {
-            rv_trending_peoples.adapter = PersonAdapter(it)
         })
 
         moviesViewModel.trailersLiveData.observe(viewLifecycleOwner, Observer {
-            rv_trailers.adapter = TrailersAdapter(it)
+            lifecycleScope.launchWhenCreated {
+                delay(900)
+
+                trailersAdapter.addItems(it)
+            }
         })
 
-        moviesViewModel.trendingMoviesLiveData.observe(viewLifecycleOwner, Observer {
-            if (GenresStorageObject.movieGenres.isEmpty()) {
-                GenresConstants.movieGenres.forEach {
-                    GenresStorageObject.movieGenres.put(it.id, it.name)
-                }
-            }
+        moviesViewModel.popularPeoplesLiveData.observe(viewLifecycleOwner, Observer {
+            lifecycleScope.launchWhenCreated {
+                delay(1100)
 
-            vp_trend_movies.run {
-                adapter =
-                    MovieTrendAdapter(it)
-                pageMargin = 16.toPx()
+                peopleAdapter.addItems(it)
             }
         })
     }

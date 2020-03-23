@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary">
 
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -86,15 +86,14 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <androidx.viewpager.widget.ViewPager
+            <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/vp_popular_movies"
                 android:layout_width="match_parent"
                 android:layout_height="185dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="24dp"
-                android:clipToPadding="false"
-                android:paddingLeft="32dp"
-                android:paddingTop="8dp"
-                android:paddingRight="32dp" />
+                android:clipChildren="false"
+                android:clipToPadding="false" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/btn_now_playing_movies"
@@ -137,7 +136,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_now_playing_movies"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="158dp"
                 android:clipToPadding="false"
                 android:orientation="horizontal"
                 android:paddingLeft="12dp"
@@ -402,5 +401,5 @@
                 tools:listitem="@layout/item_genre" />
 
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+    </ScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -5,10 +5,10 @@
     android:id="@+id/slider_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginHorizontal="32dp"
     app:cardCornerRadius="8dp"
     app:cardElevation="0dp"
-    tools:layout_height="150dp"
-    tools:layout_width="300dp">
+    tools:layout_height="150dp">
 
     <ImageView
         android:id="@+id/placeholder_image"
