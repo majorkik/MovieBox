@@ -41,7 +41,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginHorizontal="8dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:padding="18dp"
+                    android:padding="20dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_search_new"
                     tools:ignore="ContentDescription" />
@@ -185,16 +185,14 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <androidx.viewpager.widget.ViewPager
+            <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/vp_trend_movies"
                 android:layout_width="match_parent"
                 android:layout_height="72dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="24dp"
                 android:clipChildren="false"
-                android:clipToPadding="false"
-                android:paddingStart="32dp"
-                android:paddingEnd="32dp" />
+                android:clipToPadding="false" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/btn_upcoming_movies"

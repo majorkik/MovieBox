@@ -9,10 +9,11 @@ import com.majorik.moviebox.adapters.SearchAdapter
 import com.majorik.moviebox.adapters.search.SearchMovieAdapter
 import com.majorik.moviebox.adapters.search.SearchPeopleAdapter
 import com.majorik.moviebox.adapters.search.SearchTVAdapter
+import com.majorik.moviebox.databinding.ItemNetworkStateBinding
 import kotlinx.android.synthetic.main.item_network_state.view.*
 
-class NetworkStateViewHolder(containerView: View) :
-    RecyclerView.ViewHolder(containerView) {
+class NetworkStateViewHolder(containerView: ItemNetworkStateBinding) :
+    RecyclerView.ViewHolder(containerView.root) {
     fun bindTo(networkState: NetworkState?, callback: SearchAdapter.OnClickListener) {
         hideViews()
         setVisibleRightViews(networkState)

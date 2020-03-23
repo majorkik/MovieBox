@@ -9,6 +9,9 @@ import com.majorik.domain.NetworkState
 import com.majorik.domain.NetworkState.SUCCESS
 import com.majorik.domain.tmdbModels.person.Person
 import com.majorik.moviebox.R
+import com.majorik.moviebox.databinding.ItemNetworkStateBinding
+import com.majorik.moviebox.databinding.ItemPersonDetailedBinding
+import com.majorik.moviebox.databinding.ItemPersonSmallCardBinding
 import com.majorik.moviebox.extensions.setSafeOnClickListener
 import com.majorik.moviebox.extensions.startDetailsActivityWithId
 import com.majorik.moviebox.ui.person_details.PersonDetailsActivity
@@ -29,13 +32,19 @@ class SearchPeopleAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
+        val layoutInflater = LayoutInflater.from(parent.context)
         return when (viewType) {
-            R.layout.item_person_detailed -> SearchPeopleViewHolder(view)
+            R.layout.item_person_detailed -> SearchPeopleViewHolder(
+                ItemPersonDetailedBinding.inflate(layoutInflater, parent, false)
+            )
 
-            R.layout.item_person_small_card -> SearchPeopleSmallVH(view)
+            R.layout.item_person_small_card -> SearchPeopleSmallVH(
+                ItemPersonSmallCardBinding.inflate(layoutInflater, parent, false)
+            )
 
-            R.layout.item_network_state -> NetworkStateViewHolder(view)
+            R.layout.item_network_state -> NetworkStateViewHolder(
+                ItemNetworkStateBinding.inflate(layoutInflater, parent, false)
+            )
 
             else -> throw IllegalArgumentException("Неизвестный тип view: $viewType")
         }
@@ -48,7 +57,7 @@ class SearchPeopleAdapter(
 
                 holder.itemView.setSafeOnClickListener {
                     getItem(position)?.let { item ->
-                        holder.parent.context.startDetailsActivityWithId(
+                        holder.itemView.context.startDetailsActivityWithId(
                             item.id,
                             PersonDetailsActivity::class.java
                         )
@@ -61,7 +70,7 @@ class SearchPeopleAdapter(
 
                 holder.itemView.setSafeOnClickListener {
                     getItem(position)?.let { item ->
-                        holder.parent.context.startDetailsActivityWithId(
+                        holder.itemView.context.startDetailsActivityWithId(
                             item.id,
                             PersonDetailsActivity::class.java
                         )

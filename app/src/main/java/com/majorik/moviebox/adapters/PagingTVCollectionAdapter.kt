@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.majorik.domain.NetworkState
 import com.majorik.domain.tmdbModels.tv.TV
 import com.majorik.moviebox.R
+import com.majorik.moviebox.databinding.ItemMediumPosterCardBinding
+import com.majorik.moviebox.databinding.ItemNetworkStateBinding
 import com.majorik.moviebox.extensions.setSafeOnClickListener
 import com.majorik.moviebox.extensions.startDetailsActivityWithId
 import com.majorik.moviebox.ui.tvDetails.TVDetailsActivity
@@ -27,13 +29,13 @@ class PagingTVCollectionAdapter(private val callback: OnClickListener) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
+        val layoutInfalter = LayoutInflater.from(parent.context)
         return when (viewType) {
-            R.layout.item_small_poster_card -> TVPagedItemVH(
-                view
+            R.layout.item_medium_poster_card -> TVPagedItemVH(
+                ItemMediumPosterCardBinding.inflate(layoutInfalter, parent, false)
             )
             R.layout.item_network_state -> NetworkStateViewHolder(
-                view
+                ItemNetworkStateBinding.inflate(layoutInfalter, parent, false)
             )
             else -> throw IllegalArgumentException("Неизвестный тип view: $viewType")
         }
@@ -41,12 +43,12 @@ class PagingTVCollectionAdapter(private val callback: OnClickListener) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (getItemViewType(position)) {
-            R.layout.item_small_poster_card -> {
+            R.layout.item_medium_poster_card -> {
                 (holder as TVPagedItemVH).bindTo(getItem(position))
 
                 holder.itemView.setSafeOnClickListener {
                     getItem(position)?.let { tv ->
-                        holder.parent.context.startDetailsActivityWithId(
+                        holder.itemView.context.startDetailsActivityWithId(
                             tv.id,
                             TVDetailsActivity::class.java
                         )
@@ -66,7 +68,7 @@ class PagingTVCollectionAdapter(private val callback: OnClickListener) :
         return if (hasExtraRow() && position == itemCount - 1) {
             R.layout.item_network_state
         } else {
-            R.layout.item_small_poster_card
+            R.layout.item_medium_poster_card
         }
     }
 

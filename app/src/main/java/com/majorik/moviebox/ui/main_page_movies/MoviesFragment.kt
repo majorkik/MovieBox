@@ -37,6 +37,8 @@ class MoviesFragment : BaseNavigationFragment() {
     private val trailersAdapter = TrailersAdapter()
     private val peopleAdapter = PersonAdapter()
     private val popularMoviesAdapter = MovieCardAdapter()
+    private val genresAdapter = GenreAdapter()
+    private val trendingMovieAdapter = MovieTrendAdapter()
 
     override fun getLayoutId() = R.layout.fragment_movies
 
@@ -80,24 +82,30 @@ class MoviesFragment : BaseNavigationFragment() {
                 ScaleInAnimationAdapter(peopleAdapter),
                 false
             )
+
+            genresAdapter.setHasStableIds(true)
+            rv_movie_genres.setAdapterWithFixedSize(genresAdapter, true)
+
+            trendingMovieAdapter.setHasStableIds(true)
+            vp_trend_movies.adapter = trendingMovieAdapter
         }
     }
 
     override fun fetchData() {
-        lifecycleScope.launchWhenCreated {
-            moviesViewModel.fetchPopularMovies(AppConfig.REGION, 1, "")
+        moviesViewModel.run {
+            fetchPopularMovies(AppConfig.REGION, 1, "")
 
-            moviesViewModel.fetchNowPlayingMovies(AppConfig.REGION, 1, "RU")
+            fetchNowPlayingMovies(AppConfig.REGION, 1, "RU")
 
-            moviesViewModel.fetchTrendingMovies(TimeWindow.WEEK, 1, AppConfig.REGION)
+            fetchTrendingMovies(TimeWindow.WEEK, 1, AppConfig.REGION)
 
-            moviesViewModel.fetchUpcomingMovies(AppConfig.REGION, 1, "RU")
+            fetchUpcomingMovies(AppConfig.REGION, 1, "RU")
 
-            moviesViewModel.fetchMovieGenres(AppConfig.REGION)
+            fetchMovieGenres(AppConfig.REGION)
 
-            moviesViewModel.searchYouTubeVideosByChannel()
+            searchYouTubeVideosByChannel()
 
-            moviesViewModel.fetchPopularPeoples(AppConfig.REGION, 1)
+            fetchPopularPeoples(AppConfig.REGION, 1)
         }
     }
 
@@ -131,72 +139,76 @@ class MoviesFragment : BaseNavigationFragment() {
     }
 
     override fun setObservers() {
-        moviesViewModel.popularMoviesLiveData.observe(viewLifecycleOwner, Observer {
-            popularMoviesAdapter.addItems(it)
-        })
+        moviesViewModel.run {
+            popularMoviesLiveData.observe(viewLifecycleOwner, Observer {
+                popularMoviesAdapter.addItems(it)
+            })
 
-        moviesViewModel.nowPlayingMoviesLiveData.observe(viewLifecycleOwner, Observer {
-            lifecycleScope.launchWhenCreated {
-                delay(150)
+            nowPlayingMoviesLiveData.observe(viewLifecycleOwner, Observer {
+                lifecycleScope.launchWhenCreated {
+                    delay(150)
 
-                nowPlayingMoviesAdapter.addItems(it)
-            }
-        })
+                    nowPlayingMoviesAdapter.addItems(it)
+                }
+            })
 
-        moviesViewModel.trendingMoviesLiveData.observe(viewLifecycleOwner, Observer {
-            lifecycleScope.launchWhenCreated {
-                if (GenresStorageObject.movieGenres.isEmpty()) {
-                    GenresConstants.movieGenres.forEach {
-                        GenresStorageObject.movieGenres.put(it.id, it.name)
+            trendingMoviesLiveData.observe(viewLifecycleOwner, Observer {
+                lifecycleScope.launchWhenCreated {
+                    if (GenresStorageObject.movieGenres.isEmpty()) {
+                        GenresConstants.movieGenres.forEach {
+                            GenresStorageObject.movieGenres.put(it.id, it.name)
+                        }
                     }
+
+                    delay(300)
+
+                    trendingMovieAdapter.addItems(it)
                 }
+            })
 
-                delay(300)
+            upcomingMoviesLiveData.observe(viewLifecycleOwner, Observer {
+                lifecycleScope.launch {
+                    val items = it.sortedBy { it.releaseDate?.toDate()?.utc?.unixMillisLong ?: 0L }
 
-                vp_trend_movies.run {
-                    adapter = MovieTrendAdapter(it)
-                    pageMargin = 16.toPx()
+                    delay(500)
+
+                    upcomingMoviesAdapter.addItems(items)
                 }
-            }
-        })
+            })
 
-        moviesViewModel.upcomingMoviesLiveData.observe(viewLifecycleOwner, Observer {
-            lifecycleScope.launch {
-                val items = it.sortedBy { it.releaseDate?.toDate()?.utc?.unixMillisLong ?: 0L }
+            genresLiveData.observe(viewLifecycleOwner, Observer {
+                lifecycleScope.launchWhenCreated {
+                    if (GenresStorageObject.movieGenres.isEmpty()) {
+                        it.map { genre ->
+                            GenresStorageObject.movieGenres.put(
+                                genre.id,
+                                genre.name
+                            )
+                        }
+                    }
 
-                delay(500)
+                    delay(700)
 
-                upcomingMoviesAdapter.addItems(items)
-            }
-        })
-
-        moviesViewModel.genresLiveData.observe(viewLifecycleOwner, Observer {
-            lifecycleScope.launchWhenCreated {
-                if (GenresStorageObject.movieGenres.isEmpty()) {
-                    it.map { genre -> GenresStorageObject.movieGenres.put(genre.id, genre.name) }
+                    genresAdapter.addItems(it)
                 }
+            })
 
-                delay(700)
+            trailersLiveData.observe(viewLifecycleOwner, Observer {
+                lifecycleScope.launchWhenCreated {
+                    delay(900)
 
-                rv_movie_genres.setAdapterWithFixedSize(GenreAdapter(it), true)
-            }
-        })
+                    trailersAdapter.addItems(it)
+                }
+            })
 
-        moviesViewModel.trailersLiveData.observe(viewLifecycleOwner, Observer {
-            lifecycleScope.launchWhenCreated {
-                delay(900)
+            popularPeoplesLiveData.observe(viewLifecycleOwner, Observer {
+                lifecycleScope.launchWhenCreated {
+                    delay(1100)
 
-                trailersAdapter.addItems(it)
-            }
-        })
-
-        moviesViewModel.popularPeoplesLiveData.observe(viewLifecycleOwner, Observer {
-            lifecycleScope.launchWhenCreated {
-                delay(1100)
-
-                peopleAdapter.addItems(it)
-            }
-        })
+                    peopleAdapter.addItems(it)
+                }
+            })
+        }
     }
 
     private fun openNewActivityWithTab(

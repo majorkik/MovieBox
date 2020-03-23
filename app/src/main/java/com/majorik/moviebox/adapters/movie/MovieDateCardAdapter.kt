@@ -35,7 +35,7 @@ class MovieDateCardAdapter() : RecyclerView.Adapter<MovieDateCardAdapter.MovieVi
         }
     }
 
-    internal fun addItem(item: Movie) {
+    private fun addItem(item: Movie) {
         val startedPosition = movies.size
         movies.add(item)
         notifyItemInserted(startedPosition)

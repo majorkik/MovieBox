@@ -35,7 +35,7 @@ class MovieCollectionsActivity : BaseSlidingActivity() {
 
         setWindowTransparency(::updateMargins)
 
-        setSupportActionBar(md_toolbar)
+        setSupportActionBar(m_toolbar_collections)
 
         m_toolbar_collections.navigationIcon?.setTint(
             ContextCompat.getColor(
@@ -62,8 +62,6 @@ class MovieCollectionsActivity : BaseSlidingActivity() {
     }
 
     private fun setPageByName(collectionName: String?) {
-        Logger.i(collectionName ?: "null")
-
         when (collectionName) {
             MovieCollectionType.NOW_PLAYING.name -> {
                 collection_view_pager.setCurrentItem(0, true)

@@ -140,10 +140,16 @@ interface TmdbApiService {
     ): PersonResponse
 
     @GET("person/{person_id}/movie_credits")
-    suspend fun getMovieCredits(@Path("person_id") personId: Int, @Query("language") language: String?): PersonDetails.MovieCredits
+    suspend fun getMovieCredits(
+        @Path("person_id") personId: Int,
+        @Query("language") language: String?
+    ): PersonDetails.MovieCredits
 
     @GET("person/{person_id}/tv_credits")
-    suspend fun getTVCredits(@Path("person_id") personId: Int, @Query("language") language: String?): PersonDetails.TVCredits
+    suspend fun getTVCredits(
+        @Path("person_id") personId: Int,
+        @Query("language") language: String?
+    ): PersonDetails.TVCredits
 
     // Season & Episode
 
@@ -306,14 +312,15 @@ interface TmdbApiService {
     ): MovieResponse
 
     @GET("trending/{media_type}/{time_window}")
-    fun getTrendingTVs(
+    suspend fun getTrendingTVs(
         @Path("media_type") mediaType: String,
         @Path("time_window") timeWindow: String,
+        @Query("page") page: Int?,
         @Query("language") language: String?
     ): TVResponse
 
     @GET("trending/{media_type}/{time_window}")
-    fun getTrendingPeoples(
+    suspend fun getTrendingPeoples(
         @Path("media_type") mediaType: String,
         @Path("time_window") timeWindow: String,
         @Query("language") language: String?

@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/m_trend_layout"
     style="@style/BaseClickableCard"
-    android:layout_width="300dp"
-    android:layout_height="80dp"
-    app:cardBackgroundColor="@color/mine_shaft">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginHorizontal="32dp"
+    app:cardBackgroundColor="@color/mine_shaft"
+    tools:layout_height="80dp">
 
     <RelativeLayout
         android:layout_width="match_parent"

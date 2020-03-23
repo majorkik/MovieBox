@@ -1,54 +1,60 @@
 package com.majorik.moviebox.adapters.tv
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.viewpager.widget.PagerAdapter
-import androidx.viewpager.widget.ViewPager
+import androidx.recyclerview.widget.RecyclerView
 import com.majorik.domain.constants.UrlConstants
 import com.majorik.domain.tmdbModels.tv.TV
-import com.majorik.moviebox.R
-import com.majorik.moviebox.extensions.displayImageWithCenterInside
+import com.majorik.moviebox.adapters.tv.TVCardAdapter.TVCardViewHolder
+import com.majorik.moviebox.databinding.ItemBigImageWithCornersBinding
+import com.majorik.moviebox.extensions.displayImageWithCenterCrop
 import com.majorik.moviebox.extensions.setSafeOnClickListener
 import com.majorik.moviebox.extensions.startDetailsActivityWithId
 import com.majorik.moviebox.ui.tvDetails.TVDetailsActivity
 import kotlinx.android.synthetic.main.item_big_image_with_corners.view.*
 
-class TVCardAdapter(
-    private val tvs: List<TV>
-) : PagerAdapter() {
-    override fun isViewFromObject(view: View, `object`: Any): Boolean = view == `object`
+class TVCardAdapter : RecyclerView.Adapter<TVCardViewHolder>() {
 
-    override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        val layoutInflater =
-            container.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view: View =
-            layoutInflater.inflate(R.layout.item_big_image_with_corners, container, false)
-        val viewPager: ViewPager = container as ViewPager
+    private var tvs: List<TV> = emptyList()
 
-        bindTo(tvs[position], view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TVCardViewHolder {
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val binding = ItemBigImageWithCornersBinding.inflate(layoutInflater, parent, false)
 
-        viewPager.addView(view, 0)
-        return view
+        return TVCardViewHolder(binding)
     }
 
-    override fun getCount() = tvs.size
+    override fun getItemCount() = tvs.size
 
-    private fun bindTo(tv: TV, parent: View) {
-        parent.placeholder_text.text = tv.name
+    override fun onBindViewHolder(holder: TVCardViewHolder, position: Int) {
+        holder.bindTo(tvs[position])
 
-        parent.slider_image.displayImageWithCenterInside(UrlConstants.TMDB_BACKDROP_SIZE_1280 + tv.backdropPath)
-
-        parent.slider_layout.setSafeOnClickListener {
-            parent.context.startDetailsActivityWithId(
-                tv.id,
+        holder.itemView.slider_layout.setSafeOnClickListener {
+            holder.itemView.context.startDetailsActivityWithId(
+                tvs[position].id,
                 TVDetailsActivity::class.java
             )
         }
     }
 
-    override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
-        container.removeView(`object` as View?)
+    internal fun addItems(items: List<TV>) {
+        val startPosition = tvs.size
+        tvs = items
+        notifyItemRangeInserted(startPosition, items.size)
+    }
+
+    override fun getItemId(position: Int): Long {
+        return tvs[position].id.toLong()
+    }
+
+    class TVCardViewHolder(private val parent: ItemBigImageWithCornersBinding) :
+        RecyclerView.ViewHolder(parent.root) {
+        fun bindTo(tv: TV) {
+            parent.placeholderText.text = tv.name
+
+            parent.sliderImage.displayImageWithCenterCrop(
+                UrlConstants.TMDB_BACKDROP_SIZE_1280 + tv.backdropPath
+            )
+        }
     }
 }

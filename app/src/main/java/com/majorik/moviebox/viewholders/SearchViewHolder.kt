@@ -1,13 +1,14 @@
 package com.majorik.moviebox.viewholders
 
-import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.majorik.domain.constants.UrlConstants
 import com.majorik.domain.tmdbModels.search.MultiSearchResponse
+import com.majorik.moviebox.databinding.ItemCardWithDetailsBinding
 import com.majorik.moviebox.extensions.displayImageWithCenterCrop
 import kotlinx.android.synthetic.main.item_card_with_details.view.*
 
-class SearchViewHolder(val parent: View) : RecyclerView.ViewHolder(parent) {
+class SearchViewHolder(val parent: ItemCardWithDetailsBinding) :
+    RecyclerView.ViewHolder(parent.root) {
     fun bindTo(multiSearchItem: MultiSearchResponse.MultiSearchItem?) {
         multiSearchItem?.let {
             when (it.mediaType) {
@@ -37,8 +38,8 @@ class SearchViewHolder(val parent: View) : RecyclerView.ViewHolder(parent) {
     }
 
     private fun setData(url: String, title: String, year: String) {
-        itemView.card_image.displayImageWithCenterCrop(url)
-        itemView.card_title.text = title
-        itemView.card_release_date.text = year
+        parent.cardImage.displayImageWithCenterCrop(url)
+        parent.cardTitle.text = title
+        parent.cardReleaseDate.text = year
     }
 }

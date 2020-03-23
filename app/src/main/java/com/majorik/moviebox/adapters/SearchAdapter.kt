@@ -9,6 +9,8 @@ import com.majorik.domain.NetworkState
 import com.majorik.domain.NetworkState.SUCCESS
 import com.majorik.domain.tmdbModels.search.MultiSearchResponse.MultiSearchItem
 import com.majorik.moviebox.R
+import com.majorik.moviebox.databinding.ItemCardWithDetailsBinding
+import com.majorik.moviebox.databinding.ItemNetworkStateBinding
 import com.majorik.moviebox.extensions.setSafeOnClickListener
 import com.majorik.moviebox.extensions.startDetailsActivityWithId
 import com.majorik.moviebox.ui.movieDetails.MovieDetailsActivity
@@ -29,13 +31,13 @@ class SearchAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
+        val layoutInflater = LayoutInflater.from(parent.context)
         return when (viewType) {
             R.layout.item_card_with_details -> SearchViewHolder(
-                view
+                ItemCardWithDetailsBinding.inflate(layoutInflater, parent, false)
             )
             R.layout.item_network_state -> NetworkStateViewHolder(
-                view
+                ItemNetworkStateBinding.inflate(layoutInflater, parent, false)
             )
             else -> throw IllegalArgumentException("Неизвестный тип view: $viewType")
         }
@@ -48,7 +50,7 @@ class SearchAdapter(
 
                 holder.itemView.setSafeOnClickListener {
                     getItem(position)?.let { item ->
-                        holder.parent.context.startDetailsActivityWithId(
+                        holder.itemView.context.startDetailsActivityWithId(
                             item.id,
                             changeScreen(item.mediaType)
                         )

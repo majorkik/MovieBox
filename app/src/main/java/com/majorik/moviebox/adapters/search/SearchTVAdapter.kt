@@ -9,6 +9,9 @@ import com.majorik.domain.NetworkState
 import com.majorik.domain.NetworkState.SUCCESS
 import com.majorik.domain.tmdbModels.tv.TV
 import com.majorik.moviebox.R
+import com.majorik.moviebox.databinding.ItemCardWithDetailsBinding
+import com.majorik.moviebox.databinding.ItemMediumPosterCardBinding
+import com.majorik.moviebox.databinding.ItemNetworkStateBinding
 import com.majorik.moviebox.extensions.setSafeOnClickListener
 import com.majorik.moviebox.extensions.startDetailsActivityWithId
 import com.majorik.moviebox.ui.tvDetails.TVDetailsActivity
@@ -30,14 +33,20 @@ class SearchTVAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
+        val layoutInflater = LayoutInflater.from(parent.context)
 
         return when (viewType) {
-            R.layout.item_card_with_details -> SearchTVDetailedVH(view)
+            R.layout.item_card_with_details -> SearchTVDetailedVH(
+                ItemCardWithDetailsBinding.inflate(layoutInflater, parent, false)
+            )
 
-            R.layout.item_medium_poster_card -> SearchTVSmallVH(view)
+            R.layout.item_medium_poster_card -> SearchTVSmallVH(
+                ItemMediumPosterCardBinding.inflate(layoutInflater, parent, false)
+            )
 
-            R.layout.item_network_state -> NetworkStateViewHolder(view)
+            R.layout.item_network_state -> NetworkStateViewHolder(
+                ItemNetworkStateBinding.inflate(layoutInflater, parent, false)
+            )
 
             else -> throw IllegalArgumentException("Неизвестный тип view: $viewType")
         }
@@ -50,7 +59,7 @@ class SearchTVAdapter(
 
                 holder.itemView.setSafeOnClickListener {
                     getItem(position)?.let { item ->
-                        holder.parent.context.startDetailsActivityWithId(
+                        holder.itemView.context.startDetailsActivityWithId(
                             item.id,
                             TVDetailsActivity::class.java
                         )
@@ -63,7 +72,7 @@ class SearchTVAdapter(
 
                 holder.itemView.collection_card.setSafeOnClickListener {
                     getItem(position)?.let { item ->
-                        holder.parent.context.startDetailsActivityWithId(
+                        holder.itemView.context.startDetailsActivityWithId(
                             item.id,
                             TVDetailsActivity::class.java
                         )

@@ -9,6 +9,9 @@ import com.majorik.domain.NetworkState
 import com.majorik.domain.NetworkState.SUCCESS
 import com.majorik.domain.tmdbModels.movie.Movie
 import com.majorik.moviebox.R
+import com.majorik.moviebox.databinding.ItemCardWithDetailsBinding
+import com.majorik.moviebox.databinding.ItemMediumPosterCardBinding
+import com.majorik.moviebox.databinding.ItemNetworkStateBinding
 import com.majorik.moviebox.extensions.setSafeOnClickListener
 import com.majorik.moviebox.extensions.startDetailsActivityWithId
 import com.majorik.moviebox.ui.movieDetails.MovieDetailsActivity
@@ -30,13 +33,27 @@ class SearchMovieAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
+        val layoutInflater = LayoutInflater.from(parent.context)
         return when (viewType) {
-            R.layout.item_card_with_details -> SearchMovieDetailedVH(view)
+            R.layout.item_card_with_details -> SearchMovieDetailedVH(
+                ItemCardWithDetailsBinding.inflate(layoutInflater, parent, false)
+            )
 
-            R.layout.item_network_state -> NetworkStateViewHolder(view)
+            R.layout.item_network_state -> NetworkStateViewHolder(
+                ItemNetworkStateBinding.inflate(
+                    layoutInflater,
+                    parent,
+                    false
+                )
+            )
 
-            R.layout.item_medium_poster_card -> SearchMovieSmallVH(view)
+            R.layout.item_medium_poster_card -> SearchMovieSmallVH(
+                ItemMediumPosterCardBinding.inflate(
+                    layoutInflater,
+                    parent,
+                    false
+                )
+            )
 
             else -> throw IllegalArgumentException("Неизвестный тип view: $viewType")
         }

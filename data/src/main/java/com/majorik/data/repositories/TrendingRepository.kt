@@ -33,10 +33,11 @@ class TrendingRepository(private val api: TmdbApiService) : BaseRepository() {
 
     suspend fun getTrendingTVs(
         timeWindow: TimeWindow,
+        page: Int?,
         language: String?
     ): ResultWrapper<TVResponse> {
         return safeApiCall(dispatcher) {
-            api.getTrendingTVs(MediaType.TV.path, timeWindow.path, language)
+            api.getTrendingTVs(MediaType.TV.path, timeWindow.path, page, language)
         }
     }
 

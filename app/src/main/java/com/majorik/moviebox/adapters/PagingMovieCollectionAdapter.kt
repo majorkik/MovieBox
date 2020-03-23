@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.majorik.domain.NetworkState
 import com.majorik.domain.tmdbModels.movie.Movie
 import com.majorik.moviebox.R
+import com.majorik.moviebox.databinding.ItemMediumPosterCardBinding
+import com.majorik.moviebox.databinding.ItemNetworkStateBinding
 import com.majorik.moviebox.extensions.setSafeOnClickListener
 import com.majorik.moviebox.extensions.startDetailsActivityWithId
 import com.majorik.moviebox.ui.movieDetails.MovieDetailsActivity
@@ -27,13 +29,13 @@ class PagingMovieCollectionAdapter(private val callback: OnClickListener) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
+        val layoutInflater = LayoutInflater.from(parent.context)
         return when (viewType) {
             R.layout.item_medium_poster_card -> MoviePagedItemVH(
-                view
+                ItemMediumPosterCardBinding.inflate(layoutInflater, parent, false)
             )
             R.layout.item_network_state -> NetworkStateViewHolder(
-                view
+                ItemNetworkStateBinding.inflate(layoutInflater, parent, false)
             )
             else -> throw IllegalArgumentException("Неизвестный тип view: $viewType")
         }
@@ -46,7 +48,7 @@ class PagingMovieCollectionAdapter(private val callback: OnClickListener) :
 
                 holder.itemView.setSafeOnClickListener {
                     getItem(position)?.let { movie ->
-                        holder.parent.context.startDetailsActivityWithId(
+                        holder.itemView.context.startDetailsActivityWithId(
                             movie.id,
                             MovieDetailsActivity::class.java
                         )

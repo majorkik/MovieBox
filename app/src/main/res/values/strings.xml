@@ -148,6 +148,7 @@
     <string name="sign_out">Выйти из аккаунта</string>
     <string name="logout">Выйти</string>
     <string name="are_you_sure_you_want_to_go_out">Вы уверены что хотите выйти?</string>
+    <string name="companies">Компании</string>
 
     <!--    Plurals-->
     <plurals name="minutes">

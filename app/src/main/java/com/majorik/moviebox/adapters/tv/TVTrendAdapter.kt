@@ -1,47 +1,46 @@
-package com.majorik.moviebox.adapters.movie
+package com.majorik.moviebox.adapters.tv
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.majorik.domain.tmdbModels.movie.Movie
+import com.majorik.domain.tmdbModels.tv.TV
 import com.majorik.moviebox.databinding.ItemTrendCardWithTitleBinding
 import com.majorik.moviebox.databinding.ItemTrendLastItemCardBinding
 import com.majorik.moviebox.extensions.setSafeOnClickListener
 import com.majorik.moviebox.extensions.startDetailsActivityWithId
 import com.majorik.moviebox.extensions.toDate
-import com.majorik.moviebox.ui.movieDetails.MovieDetailsActivity
+import com.majorik.moviebox.ui.tvDetails.TVDetailsActivity
 import com.majorik.moviebox.utils.GenresStorageObject
 import kotlin.math.roundToInt
 
-class MovieTrendAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class TVTrendAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     enum class TrendViewType {
         ITEM, LAST_ITEM
     }
 
-    private val movies: MutableList<Movie> = mutableListOf()
+    private val tvs: MutableList<TV> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
 
         return if (viewType == TrendViewType.ITEM.ordinal) {
             val binding = ItemTrendCardWithTitleBinding.inflate(layoutInflater, parent, false)
-            MovieTrendViewHolder(binding)
+            TVTrendViewHolder(binding)
         } else {
             val binding = ItemTrendLastItemCardBinding.inflate(layoutInflater, parent, false)
-            MovieTrendLastItemVH(binding)
+            TVTrendLastItemVH(binding)
         }
 
     }
 
     override fun getItemCount(): Int {
-        return if(movies.size > 0){
-            movies.size + 1
+        return if(tvs.size > 0){
+            tvs.size + 1
         }else{
             0
         }
     }
-
     override fun getItemViewType(position: Int): Int {
         return if (position < itemCount - 1) {
             TrendViewType.ITEM.ordinal
@@ -50,27 +49,27 @@ class MovieTrendAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    internal fun addItems(items: List<Movie>) {
+    internal fun addItems(items: List<TV>) {
         items.forEach {
             addItem(it)
         }
     }
 
-    private fun addItem(item: Movie) {
-        val startedPosition = movies.size
-        movies.add(item)
+    private fun addItem(item: TV) {
+        val startedPosition = tvs.size
+        tvs.add(item)
         notifyItemInserted(startedPosition)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is MovieTrendViewHolder -> {
-                holder.bindTo(movies[position])
+            is TVTrendViewHolder -> {
+                holder.bindTo(tvs[position])
 
                 holder.itemView.setSafeOnClickListener {
                     holder.itemView.context.startDetailsActivityWithId(
-                        movies[position].id,
-                        MovieDetailsActivity::class.java
+                        tvs[position].id,
+                        TVDetailsActivity::class.java
                     )
                 }
             }
@@ -83,22 +82,22 @@ class MovieTrendAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    class MovieTrendViewHolder(private val parent: ItemTrendCardWithTitleBinding) :
+    class TVTrendViewHolder(private val parent: ItemTrendCardWithTitleBinding) :
         RecyclerView.ViewHolder(parent.root) {
-        fun bindTo(movie: Movie) {
-            parent.mTrendTitle.text = movie.title
+        fun bindTo(tv: TV) {
+            parent.mTrendTitle.text = tv.name
 
-            parent.mTrendYear.text = movie.releaseDate?.toDate()?.yearInt?.toString() ?: ""
+            parent.mTrendYear.text = tv.firstAirDate?.toDate()?.yearInt?.toString() ?: ""
             parent.mTrendGenres.text =
-                movie.genreIds.map { GenresStorageObject.movieGenres.get(it) }
+                tv.genreIds.map { GenresStorageObject.movieGenres.get(it) }
                     .take(2)
                     .joinToString(" - ") { it ?: "" }
 
-            parent.mTrendRating.text = "${(movie.voteAverage * 10).roundToInt()}%"
+            parent.mTrendRating.text = "${(tv.voteAverage * 10).roundToInt()}%"
         }
     }
 
-    class MovieTrendLastItemVH(private val parent: ItemTrendLastItemCardBinding) :
+    class TVTrendLastItemVH(private val parent: ItemTrendLastItemCardBinding) :
         RecyclerView.ViewHolder(parent.root) {
     }
 }

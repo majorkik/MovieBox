@@ -29,7 +29,7 @@ open class BaseRepository {
                         ResultWrapper.GenericError(code, errorResponse)
                     }
                     else -> {
-                        Logger.d("GenericError")
+                        Logger.d("GenericError ${throwable.message}")
 
                         ResultWrapper.GenericError(null, null)
                     }
