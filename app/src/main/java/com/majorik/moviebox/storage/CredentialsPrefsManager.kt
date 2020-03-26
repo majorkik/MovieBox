@@ -27,13 +27,17 @@ class CredentialsPrefsManager(context: Context) {
     }
 
     fun saveLoginStatus(isLogged: Boolean) {
-        sharedPrefs.edit { putBoolean(TMDB_GUEST_STATUS, false) }
-        sharedPrefs.edit { putBoolean(TMDB_LOGIN_STATUS, isLogged) }
+        sharedPrefs.edit {
+            putBoolean(TMDB_GUEST_STATUS, false)
+            putBoolean(TMDB_LOGIN_STATUS, isLogged)
+        }
     }
 
     fun saveGuestLoginStatus(isLogged: Boolean) {
-        sharedPrefs.edit { putBoolean(TMDB_LOGIN_STATUS, false) }
-        sharedPrefs.edit { putBoolean(TMDB_GUEST_STATUS, isLogged) }
+        sharedPrefs.edit {
+            putBoolean(TMDB_LOGIN_STATUS, false)
+            putBoolean(TMDB_GUEST_STATUS, isLogged)
+        }
     }
 
     fun saveTmdbSessionID(sessionID: String?) {

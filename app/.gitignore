@@ -1,2 +1,4 @@
 /build
 google-services.json
+google_app_dist.json
+proguardMapping.txt

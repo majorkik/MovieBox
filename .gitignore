@@ -230,3 +230,6 @@ fabric.properties
 
 # End of https://www.gitignore.io/api/java,kotlin,android,androidstudio
 google-services.json
+src/main/res/drawable-v27/
+src/main/res/menu-v26/
+src/test/

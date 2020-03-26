@@ -19,11 +19,15 @@ buildscript {
     }
 }
 
+plugins {
+    id "com.jraska.module.graph.assertion" version "1.1.0"
+}
+
 apply from: 'dependencies.gradle'
 
-apply plugin: "org.jlleitschuh.gradle.ktlint"
-
 allprojects {
+    apply plugin: "org.jlleitschuh.gradle.ktlint"
+
     repositories {
         google()
         jcenter()
