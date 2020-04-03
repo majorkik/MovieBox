@@ -5,20 +5,21 @@ import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.majorik.domain.constants.AppConfig
-import com.majorik.moviebox.extensions.startActivityWithAnim
-import com.majorik.moviebox.ui.main_page_movies.MoviesFragment
-import com.majorik.moviebox.ui.main_page_profile.ProfileFragment
-import com.majorik.moviebox.ui.main_page_search.SearchFragment
-import com.majorik.moviebox.ui.main_page_tvs.TVsFragment
-import com.majorik.moviebox.ui.search.SearchableActivity
+import com.majorik.library.base.constants.AppConfig
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : LocalizationActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
-    private val fragmentMovie = MoviesFragment.newInstance()
-    private val fragmentTV = SearchFragment.newInstance()
-    private val fragmentDiscover = TVsFragment.newInstance()
-    private val fragmentProfile = ProfileFragment.newInstance()
+    private val fragmentMovie =
+        Class.forName("com.majorik.feature.navigation.presentation.main_page_movies.MoviesFragment")
+            .newInstance() as Fragment
+    private val fragmentTV =
+        Class.forName("com.majorik.feature.navigation.presentation.main_page_tvs.TVsFragment").newInstance() as Fragment
+    private val fragmentDiscover =
+        Class.forName("com.majorik.feature.navigation.presentation.main_page_search.SearchFragment")
+            .newInstance() as Fragment
+    private val fragmentProfile =
+        Class.forName("com.majorik.feature.navigation.presentation.main_page_profile.ProfileFragment")
+            .newInstance() as Fragment
     private var activeFragment: Fragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,15 +95,5 @@ class MainActivity : LocalizationActivity(), BottomNavigationView.OnNavigationIt
             .hide(activeFragment!!)
             .show(fragment)
             .commit()
-    }
-
-    // TODO unused
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item?.itemId) {
-            R.id.toolbar_search -> {
-                startActivityWithAnim(SearchableActivity::class.java)
-            }
-        }
-        return false
     }
 }

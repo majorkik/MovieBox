@@ -1,7 +1,7 @@
 package com.majorik.moviebox.di
 
-import com.majorik.moviebox.storage.CredentialsPrefsManager
-import com.majorik.moviebox.storage.SharedPrefsManager
+import com.majorik.library.base.storage.CredentialsPrefsManager
+import com.majorik.library.base.storage.SharedPrefsManager
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 

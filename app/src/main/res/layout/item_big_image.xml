@@ -12,6 +12,7 @@
         android:id="@+id/slider_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:transitionName="card_image"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:contentDescription="@string/desc_backdrop" />

@@ -1,0 +1,33 @@
+package com.majorik.feature.collections.presentation.collections
+
+import androidx.lifecycle.MutableLiveData
+import androidx.paging.DataSource
+import com.majorik.feature.collections.data.repositories.MovieRepository
+import com.majorik.feature.collections.domain.movie.MovieCollectionType
+import com.majorik.feature.collections.domain.tmdbModels.movie.Movie
+import kotlinx.coroutines.CoroutineScope
+
+class MovieCollectionsDataSourceFactory(
+    private val repository: MovieRepository,
+    private val scope: CoroutineScope,
+    private val movieCollectionType: MovieCollectionType
+) : DataSource.Factory<Int, Movie>() {
+    val source = MutableLiveData<MovieCollectionsDataSource>()
+
+    override fun create(): DataSource<Int, Movie> {
+        val source =
+            MovieCollectionsDataSource(
+                repository,
+                scope,
+                movieCollectionType
+            )
+        this.source.postValue(source)
+        return source
+    }
+
+    fun getSource() = source.value
+
+    fun refresh() {
+        getSource()?.refresh()
+    }
+}

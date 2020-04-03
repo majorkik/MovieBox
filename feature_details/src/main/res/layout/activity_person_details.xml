@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/person_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mine_shaft"
+    tools:context="com.majorik.feature.details.presentation.person_details.PersonDetailsActivity">
+
+    <FrameLayout
+        android:id="@+id/person_image_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:foreground="@drawable/bg_gradient_dark"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/person_profile_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            tools:ignore="ContentDescription" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="100dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/person_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/cc_montserrat_black"
+            android:maxLines="3"
+            android:textColor="@color/colorWhite"
+            android:textSize="22sp"
+            tools:text="Алехандро Гонсалес Иньярриту" />
+
+        <TextView
+            android:id="@+id/person_translate_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:fontFamily="@font/cc_montserrat_bold"
+            android:maxLines="3"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp"
+            tools:text="Mark Strong" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/person_type"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/cc_montserrat_medium"
+                android:maxLines="3"
+                android:textColor="@color/colorWhite"
+                android:textSize="16sp"
+                tools:text="Acting" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/cc_montserrat_regular"
+                android:text="@string/biography"
+                android:textColor="@color/colorWhite"
+                android:textSize="12sp" />
+
+            <ImageButton
+                android:id="@+id/btn_biography"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/btn_ripple_effect"
+                android:contentDescription="@string/biography"
+                android:padding="4dp"
+                android:src="@drawable/ic_details_list" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/md_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:navigationIcon="@drawable/ic_arrow_down"
+        app:title="" />
+
+    <include
+        layout="@layout/layout_person_credits"
+        android:visibility="gone" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

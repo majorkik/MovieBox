@@ -3,10 +3,10 @@ package com.majorik.moviebox.ui.first_start
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.majorik.data.repositories.TmdbAuthRepository
-import com.majorik.domain.tmdbModels.auth.RequestTokenResponse
-import com.majorik.domain.tmdbModels.auth.ResponseSession
-import com.majorik.domain.tmdbModels.result.ResultWrapper
+import com.majorik.library.base.models.results.ResultWrapper
+import com.majorik.moviebox.RequestTokenResponse
+import com.majorik.moviebox.ResponseSession
+import com.majorik.moviebox.TmdbAuthRepository
 import kotlinx.coroutines.launch
 
 class AuthViewModel(private val tmdbAuthRepository: TmdbAuthRepository) : ViewModel() {

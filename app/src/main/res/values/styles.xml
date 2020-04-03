@@ -47,10 +47,10 @@
         <item name="android:homeAsUpIndicator">@drawable/ic_back</item>
     </style>
 
-    <style name="SearchView">
-        <item name="floatingSearch_clearBtnColor">@color/mine_shaft</item>
-        <item name="floatingSearch_leftActionColor">@color/mine_shaft</item>
-    </style>
+<!--    <style name="SearchView">-->
+<!--        <item name="floatingSearch_clearBtnColor">@color/mine_shaft</item>-->
+<!--        <item name="floatingSearch_leftActionColor">@color/mine_shaft</item>-->
+<!--    </style>-->
 
     <style name="HeaderMedium">
         <item name="android:textSize">16sp</item>

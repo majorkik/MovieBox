@@ -164,4 +164,8 @@
         <item quantity="many">%1$d часов</item>
         <item quantity="other">%1$d часов</item>
     </plurals>
+    <string name="title_feature_search">Module Title</string>
+    <string name="title_feature_collections">Module Title</string>
+    <string name="title_feature_details">Module Title</string>
+    <string name="title_feature_navigation">Module Title</string>
 </resources>

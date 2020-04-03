@@ -15,19 +15,19 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenStarted
-import com.majorik.domain.constants.UrlConstants
+import com.majorik.library.base.constants.UrlConstants
 import com.majorik.moviebox.MainActivity
 import com.majorik.moviebox.R
-import com.majorik.moviebox.extensions.setSafeOnClickListener
-import com.majorik.moviebox.extensions.setVisibilityOption
-import com.majorik.moviebox.extensions.startActivityWithAnim
-import com.majorik.moviebox.storage.CredentialsPrefsManager
+import com.majorik.library.base.extensions.setSafeOnClickListener
+import com.majorik.library.base.extensions.setVisibilityOption
+import com.majorik.library.base.extensions.startActivityWithAnim
+import com.majorik.library.base.storage.CredentialsPrefsManager
 import com.majorik.moviebox.ui.about_tmdb.AboutTheMovieDatabaseActivity
-import com.majorik.moviebox.utils.FontSpan
+import com.majorik.library.base.utils.FontSpan
 import kotlinx.android.synthetic.main.activity_first_start.*
 import kotlinx.coroutines.*
 import org.koin.android.ext.android.inject
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FirstStartActivity : AppCompatActivity() {
     private val authViewModel: AuthViewModel by viewModel()

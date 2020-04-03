@@ -7,11 +7,11 @@ import android.os.Bundle
 import android.view.View
 import android.webkit.WebChromeClient
 import android.webkit.WebViewClient
-import com.majorik.domain.constants.UrlConstants
 import com.majorik.moviebox.R
-import com.majorik.moviebox.extensions.setWindowTransparency
-import com.majorik.moviebox.extensions.updateMargin
-import com.majorik.moviebox.ui.base.BaseSlidingActivity
+import com.majorik.library.base.extensions.setWindowTransparency
+import com.majorik.library.base.extensions.updateMargin
+import com.majorik.library.base.base.BaseSlidingActivity
+import com.majorik.library.base.constants.UrlConstants
 import kotlinx.android.synthetic.main.activity_about_the_movie_database.*
 
 class AboutTheMovieDatabaseActivity : BaseSlidingActivity() {

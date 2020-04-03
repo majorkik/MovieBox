@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    Main colors-->
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#eeeeee</color>
+    <color name="colorAccent">#fed32c</color>
+    <color name="colorAccentDark">#feb12c</color>
+
+    <!--Other colors-->
+    <color name="colorYellow">#fed32c</color>
+    <color name="sunset_orange">#FF4D4D</color>
+    <color name="emerald">#3EDC81</color>
+    <color name="caribbean_green_tmdb">#01D277</color>
+    <color name="dodger_blue">#11A7F0</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="alabaster_light">#FAFAFA</color>
+    <color name="alabaster">#F8F8F8</color>
+    <color name="gallery">#EEEEEE</color>
+    <color name="mercury">#E8E8E8</color>
+    <color name="alto">#DDDDDD</color>
+    <color name="silver_light">#C4C4C4</color>
+    <color name="silver">#BBBBBB</color>
+    <color name="gray">#888888</color>
+    <color name="shark_alpha_65">#A6222831</color>
+    <color name="mine_shaft_alpha_40">#66212121</color>
+    <color name="mine_shaft_alpha_66">#A8212121</color>
+    <color name="mine_shaft_ultra_light">#484848</color>
+    <color name="mine_shaft_extra_light">#3A3A3A</color>
+    <color name="mine_shaft_light">#2D2D2D</color>
+    <color name="mine_shaft_medium">#282828</color>
+    <color name="mine_shaft">#212121</color>
+    <color name="transparent">#00000000</color>
+
+
+    <color name="sunglow_alpha_33">#54FED32C</color>
+    <color name="sunset_orange_alpha_33">#54FF4D4D</color>
+    <color name="emerald_alpha_33">#543EDC81</color>
+</resources>
