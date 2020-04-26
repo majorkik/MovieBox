@@ -3,19 +3,23 @@ package com.majorik.moviebox
 import android.app.Application
 import android.content.Context
 import android.os.Build
+import androidx.multidex.MultiDex
 import com.akexorcist.localizationactivity.core.LocalizationApplicationDelegate
+import com.google.android.play.core.splitcompat.SplitCompatApplication
 import com.majorik.moviebox.di.appComponent
+import com.majorik.moviebox.feature.KoinManager
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import java.util.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 
-class MovieBoxApplication : Application() {
+class MovieBoxApplication : SplitCompatApplication() {
     private var localizationDelegate = LocalizationApplicationDelegate()
 
     override fun onCreate() {
@@ -32,7 +36,7 @@ class MovieBoxApplication : Application() {
         startKoin {
             androidLogger(Level.DEBUG)
             androidContext(this@MovieBoxApplication)
-            modules(appComponent)
+            modules(KoinManager.koinModules)
         }
     }
 
@@ -46,5 +50,7 @@ class MovieBoxApplication : Application() {
         localizationDelegate.setDefaultLanguage(base, locale)
 
         super.attachBaseContext(base)
+
+        MultiDex.install(this)
     }
 }

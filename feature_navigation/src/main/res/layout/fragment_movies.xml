@@ -144,7 +144,7 @@
                 android:paddingRight="12dp"
                 android:paddingBottom="24dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_small_poster_card" />
+                tools:listitem="@layout/item_small_poster_card_nav" />
 
 
             <androidx.cardview.widget.CardView
@@ -243,7 +243,7 @@
                 android:paddingRight="12dp"
                 android:paddingBottom="24dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_small_poster_card" />
+                tools:listitem="@layout/item_small_poster_card_nav" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/btn_movie_genres"

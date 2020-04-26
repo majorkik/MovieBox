@@ -1,30 +1,48 @@
 package com.majorik.moviebox
 
+import android.content.Context
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.play.core.splitcompat.SplitCompat
+import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
 import com.majorik.library.base.constants.AppConfig
+import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : LocalizationActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     private val fragmentMovie =
-        Class.forName("com.majorik.feature.navigation.presentation.main_page_movies.MoviesFragment")
+        Class.forName("com.majorik.moviebox.feature.navigation.presentation.main_page_movies.MoviesFragment")
             .newInstance() as Fragment
     private val fragmentTV =
-        Class.forName("com.majorik.feature.navigation.presentation.main_page_tvs.TVsFragment").newInstance() as Fragment
+        Class.forName("com.majorik.moviebox.feature.navigation.presentation.main_page_tvs.TVsFragment").newInstance() as Fragment
     private val fragmentDiscover =
-        Class.forName("com.majorik.feature.navigation.presentation.main_page_search.SearchFragment")
+        Class.forName("com.majorik.moviebox.feature.navigation.presentation.main_page_search.SearchFragment")
             .newInstance() as Fragment
     private val fragmentProfile =
-        Class.forName("com.majorik.feature.navigation.presentation.main_page_profile.ProfileFragment")
+        Class.forName("com.majorik.moviebox.feature.navigation.presentation.main_page_profile.ProfileFragment")
             .newInstance() as Fragment
     private var activeFragment: Fragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        Logger.i(SplitInstallManagerFactory.create(this).installedModules.contains("feature_collections").toString())
+        Logger.i(SplitInstallManagerFactory.create(this).installedModules.contains("feature_details").toString())
+        Logger.i(SplitInstallManagerFactory.create(this).installedModules.contains("feature_search").toString())
+        Logger.i(SplitInstallManagerFactory.create(this).installedModules.contains("feature_navigation").toString())
+        Logger.i(SplitInstallManagerFactory.create(this).installedModules.contains("feature_auth").toString())
+
+//        val intent =
+//            Intent().setClassName(
+//                this,
+//                "com.majorik.moviebox.feature.auth.presentation.ui.first_start.FirstStartActivity"
+//            )
+//
+//        startActivity(intent)
 
         AppConfig.REGION = getCurrentLanguage().toString()
 
@@ -34,6 +52,11 @@ class MainActivity : LocalizationActivity(), BottomNavigationView.OnNavigationIt
 
         nav_view.selectedItemId = R.id.navigation_homepage
 //        setSupportActionBar(toolbar)
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(newBase)
+        SplitCompat.install(this)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

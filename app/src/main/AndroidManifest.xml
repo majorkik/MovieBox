@@ -15,7 +15,7 @@
     <application
         android:name=".MovieBoxApplication"
         android:allowBackup="true"
-        android:fullBackupContent="@xml/backup_descriptor"
+        android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -38,25 +38,8 @@
             android:theme="@style/AppTheme.Transparent.NoActionBar.Dark"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".ui.about_tmdb.AboutTheMovieDatabaseActivity"
+            android:name="com.majorik.moviebox.feature.auth.presentation.ui.about_tmdb.AboutTheMovieDatabaseActivity"
             android:theme="@style/AppTheme.Transparent.NoActionBar" />
-        <activity
-            android:name=".ui.first_start.FirstStartActivity"
-            android:theme="@style/AppTheme.NoActionBar.Dark">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="com.majorik.moviebox" />
-            </intent-filter>
-        </activity>
         <activity
             android:name="com.majorik.feature.collections.movieTabCollections.MovieCollectionsActivity"
             android:screenOrientation="portrait"
@@ -94,12 +77,12 @@
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="LockedOrientationActivity">
 
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
 
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name="com.majorik.feature.details.presentation.person_details.PersonDetailsActivity"

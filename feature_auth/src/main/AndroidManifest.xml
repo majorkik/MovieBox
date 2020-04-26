@@ -1,0 +1,36 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.majorik.moviebox.feature.auth">
+
+    <dist:module
+        dist:instant="false"
+        dist:title="@string/title_feature_auth">
+        <dist:delivery>
+            <dist:on-demand />
+        </dist:delivery>
+        <dist:fusing dist:include="true" />
+    </dist:module>
+
+    <application
+        android:allowBackup="true"
+        android:fullBackupContent="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning,MissingApplicationIcon">
+
+        <activity
+            android:name=".presentation.ui.first_start.FirstStartActivity"
+            android:theme="@style/AppTheme.NoActionBar.Dark">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="com.majorik.moviebox" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
+

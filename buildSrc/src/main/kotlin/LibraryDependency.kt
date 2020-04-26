@@ -7,6 +7,10 @@ private object LibraryVersion {
     const val PAGING_LIBRARY = "2.1.2"
     const val APP_COMPAT = "1.2.0-alpha03"
     const val MATERIAL = "1.2.0-alpha05"
+    const val MULTIDEX = "1.0.3"
+    const val NAVIGATION_DYNAMIC_FEATURE_FRAGMENT = "2.3.0-alpha05"
+
+    const val PLAY_CORE = "1.6.4"
 
     const val LEGACY_SUPPORT = "1.0.0"
     const val LIFECYCLE_EXT = "2.2.0"
@@ -61,6 +65,8 @@ object LibraryDependency {
     const val RETROFIT = "com.squareup.retrofit2:retrofit:${LibraryVersion.RETROFIT}"
     const val RETROFIT_MOSHI_CONVERTER = "com.squareup.retrofit2:converter-moshi:${LibraryVersion.RETROFIT}"
 
+    const val PLAY_CORE = "com.google.android.play:core:${LibraryVersion.PLAY_CORE}"
+
     const val SUPPORT_DESIGN = "androidx.support:design:${LibraryVersion.SUPPORT_DESIGN}"
     const val MATERIAL = "com.google.android.material:material:${LibraryVersion.MATERIAL}"
     const val APP_COMPAT = "androidx.appcompat:appcompat:${LibraryVersion.APP_COMPAT}"
@@ -72,6 +78,11 @@ object LibraryDependency {
     const val LIFECYCLE_RUNTIME_KTX = "androidx.lifecycle:lifecycle-runtime-ktx:${LibraryVersion.LIFECYCLE_KTX}"
     const val LIFECYCLE_VIEWMODEL_KTX = "androidx.lifecycle:lifecycle-viewmodel-ktx:${LibraryVersion.LIFECYCLE_KTX}"
     const val LIFECYCLE_LIVEDATA_KTX = "androidx.lifecycle:lifecycle-livedata-ktx:${LibraryVersion.LIFECYCLE_KTX}"
+
+    const val DYNAMIC_FEATURE_FRAGMENT =
+        "androidx.navigation:navigation-dynamic-features-fragment:${LibraryVersion.NAVIGATION_DYNAMIC_FEATURE_FRAGMENT}"
+
+    const val MULTIDEX = "com.android.support:multidex:${LibraryVersion.MULTIDEX}"
 
     const val ANNOTATION = "androidx.annotation:annotation:${LibraryVersion.ANNOTATION}"
 

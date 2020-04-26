@@ -46,7 +46,7 @@ dependencies {
     api(LibraryDependency.KOTLIN_REFLECT)
     api(LibraryDependency.KOTLINX_COROUTINES_ANDROID)
 
-    implementation(LibraryDependency.OKHTTP_3)
+    api(LibraryDependency.OKHTTP_3)
 
     api(LibraryDependency.RETROFIT)
     api(LibraryDependency.RETROFIT_MOSHI_CONVERTER)
@@ -66,6 +66,7 @@ dependencies {
     api(LibraryDependency.RECYCLERVIEW)
     api(LibraryDependency.VIEWPAGER_2)
     api(LibraryDependency.VECTOR_DRAWABLE)
+    api(LibraryDependency.DYNAMIC_FEATURE_FRAGMENT)
 
     api(LibraryDependency.LIFECYCLE_EXT)
     api(LibraryDependency.LIFECYCLE_VIEWMODEL_KTX)

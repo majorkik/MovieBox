@@ -19,7 +19,7 @@ fun DependencyHandler.addTestDependencies() {
 /*
  * These extensions mimic the extensions that are generated on the fly by Gradle.
  * They are used here to provide above dependency syntax that mimics Gradle Kotlin DSL
- * syntax in module\build.gradle files.
+ * syntax in module\build.gradle.kts files.
  */
 @Suppress("detekt.UnusedPrivateMember")
 private fun DependencyHandler.implementation(dependencyNotation: Any): Dependency? =

@@ -3,7 +3,6 @@ package com.majorik.library.base.constants
 object UrlConstants {
     const val ABOUT_TMDB = "https://www.themoviedb.org/about"
 
-    const val REDIRECT_URL = "com.majorik.moviebox://redirect"
     const val TMDB_BASE_URL = "https://api.themoviedb.org/3/"
     const val TRAKT_BASE_URL = "https://api.trakt.tv/"
     const val YOUTUBE_BASE_URL = "https://www.googleapis.com/youtube/v3/"

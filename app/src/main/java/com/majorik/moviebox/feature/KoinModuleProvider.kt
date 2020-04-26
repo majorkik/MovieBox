@@ -4,5 +4,5 @@ import org.koin.core.module.Module
 
 interface KoinModuleProvider {
 
-    val koinModule: Module
+    val koinModule: List<Module>
 }
