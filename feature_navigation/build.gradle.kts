@@ -51,7 +51,7 @@ android {
 }
 
 dependencies {
-    implementation(project(ModuleDependency.APP))
+    api(project(ModuleDependency.APP))
 
     addTestDependencies()
 }

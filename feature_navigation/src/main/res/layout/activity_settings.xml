@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
-    tools:context="com.majorik.feature.navigation.presentation.settings.SettingsActivity">
+    tools:context="com.majorik.moviebox.feature.navigation.presentation.settings.SettingsActivity">
 
     <Toolbar
         android:id="@+id/settings_toolbar"

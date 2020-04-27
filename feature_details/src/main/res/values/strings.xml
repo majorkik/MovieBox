@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="unknown">Неизвестно</string>
+
+    <!--    Date mask-->
+    <string name="yyyy_mm_dd" translatable="false">yyyy-MM-dd</string>
+
+    <!--    Mask for short info. Example 2019 Action, Drama, Fantasy-->
+    <string name="short_info_mask" translatable="false">%s %s</string>
+
+    <!--    Mask for runtime. Example 2 hour 35 minutes-->
+    <string name="runtime_mask" translatable="false">%s %s</string>
+    <string name="max_rate_with_slash" translatable="false">/10</string>
+
+    <!--    Person page-->
+    <string name="inline_filmography_delimiter">как</string>
+
+    <!--    Plurals-->
+    <plurals name="minutes">
+        <item quantity="one">%1$d минута</item>
+        <item quantity="few">%1$d минут</item>
+        <item quantity="many">%1$d минуты</item>
+        <item quantity="other">%1$d минуты</item>
+    </plurals>
+
+    <plurals name="hours">
+        <item quantity="one">%1$d час</item>
+        <item quantity="few">%1$d часа</item>
+        <item quantity="many">%1$d часов</item>
+        <item quantity="other">%1$d часов</item>
+    </plurals>
+</resources>

@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/navigation_discover"
-        android:name="com.majorik.feature.navigation.presentation.main_page_tvs.TVsFragment"
+        android:name="com.majorik.moviebox.feature.navigation.presentation.main_page_tvs.TVsFragment"
         android:label="@string/title_nav_tvs" />
 
     <fragment
@@ -18,11 +18,11 @@
 
     <fragment
         android:id="@+id/navigation_episodes"
-        android:name="com.majorik.feature.navigation.presentation.main_page_search.SearchFragment"
+        android:name="com.majorik.moviebox.feature.navigation.presentation.main_page_search.SearchFragment"
         android:label="@string/title_nav_search"/>
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.majorik.feature.navigation.presentation.main_page_profile.ProfileFragment"
+        android:name="com.majorik.moviebox.feature.navigation.presentation.main_page_profile.ProfileFragment"
         android:label="@string/title_nav_profile" />
 </navigation>

@@ -49,7 +49,7 @@ android {
 }
 
 dependencies {
-    implementation(project(ModuleDependency.APP))
+    implementation(project(ModuleDependency.FEATURE_NAVIGATION))
 
     addTestDependencies()
 }

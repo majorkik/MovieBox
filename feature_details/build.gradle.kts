@@ -49,7 +49,9 @@ android {
 }
 
 dependencies {
-    implementation(project(ModuleDependency.APP))
+    implementation(project(ModuleDependency.FEATURE_NAVIGATION))
+    implementation(project(ModuleDependency.FEATURE_SEARCH))
+    implementation(project(ModuleDependency.FEATURE_COLLECTIONS))
 
     addTestDependencies()
 }

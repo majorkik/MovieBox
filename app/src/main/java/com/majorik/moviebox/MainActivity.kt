@@ -9,21 +9,20 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.play.core.splitcompat.SplitCompat
 import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
 import com.majorik.library.base.constants.AppConfig
+import com.majorik.library.base.extensions.loadFragmentOrReturnNull
+import com.majorik.library.base.utils.PACKAGE_NAME
 import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : LocalizationActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     private val fragmentMovie =
-        Class.forName("com.majorik.moviebox.feature.navigation.presentation.main_page_movies.MoviesFragment")
-            .newInstance() as Fragment
+        ("$PACKAGE_NAME.feature.navigation.presentation.main_page_movies.MoviesFragment").loadFragmentOrReturnNull()
     private val fragmentTV =
-        Class.forName("com.majorik.moviebox.feature.navigation.presentation.main_page_tvs.TVsFragment").newInstance() as Fragment
+        ("$PACKAGE_NAME.feature.navigation.presentation.main_page_tvs.TVsFragment").loadFragmentOrReturnNull()
     private val fragmentDiscover =
-        Class.forName("com.majorik.moviebox.feature.navigation.presentation.main_page_search.SearchFragment")
-            .newInstance() as Fragment
+        ("$PACKAGE_NAME.feature.navigation.presentation.main_page_search.SearchFragment").loadFragmentOrReturnNull()
     private val fragmentProfile =
-        Class.forName("com.majorik.moviebox.feature.navigation.presentation.main_page_profile.ProfileFragment")
-            .newInstance() as Fragment
+        ("$PACKAGE_NAME.feature.navigation.presentation.main_page_profile.ProfileFragment").loadFragmentOrReturnNull()
     private var activeFragment: Fragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,25 +62,25 @@ class MainActivity : LocalizationActivity(), BottomNavigationView.OnNavigationIt
         when (item.itemId) {
             R.id.navigation_homepage -> {
 //                toolbar.title = getString(R.string.title_nav_homepage)
-                showFragment(fragmentMovie)
+                showFragment(fragmentMovie!!)
                 activeFragment = fragmentMovie
                 return true
             }
             R.id.navigation_discover -> {
 //                toolbar.title = getString(R.string.title_nav_discover)
-                showFragment(fragmentDiscover)
+                showFragment(fragmentDiscover!!)
                 activeFragment = fragmentDiscover
                 return true
             }
             R.id.navigation_episodes -> {
 //                toolbar.title = getString(R.string.title_nav_episodes)
-                showFragment(fragmentTV)
+                showFragment(fragmentTV!!)
                 activeFragment = fragmentTV
                 return true
             }
             R.id.navigation_profile -> {
 //                toolbar.title = getString(R.string.title_nav_profile)
-                showFragment(fragmentProfile)
+                showFragment(fragmentProfile!!)
                 activeFragment = fragmentProfile
                 return true
             }
@@ -104,19 +103,23 @@ class MainActivity : LocalizationActivity(), BottomNavigationView.OnNavigationIt
         hideFragment(fragmentProfile)
     }
 
-    private fun hideFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .add(R.id.nav_host_fragment, fragment)
-            .hide(fragment)
-            .commit()
+    private fun hideFragment(fragment: Fragment?) {
+        fragment?.run {
+            supportFragmentManager.beginTransaction()
+                .add(R.id.nav_host_fragment, this)
+                .hide(this)
+                .commit()
+        }
     }
 
-    private fun showFragment(fragment: Fragment) {
+    private fun showFragment(fragment: Fragment?) {
         if (activeFragment == null) activeFragment = fragmentMovie
 
-        supportFragmentManager.beginTransaction()
-            .hide(activeFragment!!)
-            .show(fragment)
-            .commit()
+        fragment?.run {
+            supportFragmentManager.beginTransaction()
+                .hide(activeFragment!!)
+                .show(this)
+                .commit()
+        }
     }
 }
