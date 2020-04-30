@@ -10,6 +10,7 @@ import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startDetailsActivityWithId
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.movie.Movie
 import com.majorik.library.base.constants.UrlConstants
+import com.majorik.library.base.utils.PACKAGE_NAME
 import kotlinx.android.synthetic.main.item_big_image_with_corners_nav.view.*
 
 class MovieCardAdapter : RecyclerView.Adapter<MovieCardViewHolder>() {
@@ -49,10 +50,10 @@ class MovieCardAdapter : RecyclerView.Adapter<MovieCardViewHolder>() {
             )
 
             parent.sliderLayout.setSafeOnClickListener {
-                //            holder.itemView.context.startDetailsActivityWithId(
-//                movies[position].id,
-//                "com.majorik.moviebox.feature.details.presentation.movieDetails.MovieDetailsActivity"
-//            )
+                parent.root.context.startDetailsActivityWithId(
+                    movie.id,
+                    "$PACKAGE_NAME.feature.details.presentation.movieDetails.MovieDetailsActivity"
+                )
             }
         }
     }

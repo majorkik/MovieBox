@@ -2,18 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_homepage"
+        android:id="@+id/navigation_movies"
         android:icon="@drawable/ic_movie"
         android:title="@string/title_nav_movies" />
 
 
     <item
-        android:id="@+id/navigation_discover"
+        android:id="@+id/navigation_tvs"
         android:icon="@drawable/ic_tv"
         android:title="@string/title_nav_tvs" />
 
     <item
-        android:id="@+id/navigation_episodes"
+        android:id="@+id/navigation_discover"
         android:icon="@drawable/ic_search"
         android:title="@string/title_nav_search" />
 

@@ -16,5 +16,4 @@ val dataModule = module {
     factory { TrendingRepository(get()) }
     factory { TVRepository(get()) }
     factory { YouTubeRepository(get()) }
-
 }

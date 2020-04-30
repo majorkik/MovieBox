@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.majorik.moviebox.feature.details.seasonDetails.SeasonDetailsActivity">
+    tools:context="com.majorik.moviebox.feature.details.presentation.seasonDetails.SeasonDetailsActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tv_episodes_list"

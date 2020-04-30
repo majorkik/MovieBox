@@ -10,6 +10,7 @@ import com.majorik.library.base.extensions.displayImageWithCenterCrop
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startDetailsActivityWithId
 import com.majorik.library.base.extensions.toDate
+import com.majorik.library.base.utils.PACKAGE_NAME
 import com.soywiz.klock.KlockLocale
 import com.soywiz.klock.locale.russian
 
@@ -69,9 +70,9 @@ class MovieDateCardAdapter() : RecyclerView.Adapter<MovieDateCardAdapter.MovieVi
 
         private fun bindClickListener(movie: Movie) {
             parent.collectionCard.setSafeOnClickListener {
-                itemView.context.startDetailsActivityWithId(
+                parent.root.context.startDetailsActivityWithId(
                     movie.id,
-                    "com.majorik.moviebox.feature.details.presentation.movieDetails.MovieDetailsActivity"
+                    "$PACKAGE_NAME.feature.details.presentation.movieDetails.MovieDetailsActivity"
                 )
             }
         }

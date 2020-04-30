@@ -36,13 +36,12 @@ class TrailersAdapter() : RecyclerView.Adapter<TrailersAdapter.TrailerViewHolder
     override fun onBindViewHolder(holder: TrailerViewHolder, position: Int) {
         holder.bindTo(items[position])
 
-        holder.itemView.trailer_image?.setSafeOnClickListener {
+        holder.view.trailerImage.setSafeOnClickListener {
             holder.itemView.context.openYouTube(items[position].id.videoId)
         }
     }
 
-    class TrailerViewHolder(private val view: ItemTrailerSmallCardBinding) :
-        RecyclerView.ViewHolder(view.root) {
+    class TrailerViewHolder(val view: ItemTrailerSmallCardBinding) : RecyclerView.ViewHolder(view.root) {
         fun bindTo(trailerItem: SearchResponse.Item) {
             view.trailerName.text = trailerItem.snippet.title
             view.trailerImage.displayImageWithCenterCrop(trailerItem.snippet.thumbnails.high.url)

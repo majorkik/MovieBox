@@ -2,7 +2,7 @@ package com.majorik.moviebox.feature.search.domain.tmdbModels.tv
 
 import com.squareup.moshi.Json
 
-data class TV(
+internal data class TV(
     @field:Json(name = "poster_path") val posterPath: String?,
     @field:Json(name = "popularity") val popularity: Double,
     @field:Json(name = "id") val id: Int,

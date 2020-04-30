@@ -11,6 +11,7 @@ import com.majorik.moviebox.databinding.ItemBigImageWithCornersBinding
 import com.majorik.library.base.extensions.displayImageWithCenterCrop
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startDetailsActivityWithId
+import com.majorik.library.base.utils.PACKAGE_NAME
 import kotlinx.android.synthetic.main.item_big_image_with_corners_nav.view.*
 
 class TVCardAdapter(private val activity: FragmentActivity) :
@@ -33,7 +34,7 @@ class TVCardAdapter(private val activity: FragmentActivity) :
         holder.parent.sliderLayout.setSafeOnClickListener {
             holder.itemView.context.startDetailsActivityWithId(
                 tvs[position].id,
-                "com.majorik.moviebox.feature.details.presentation.tvDetails.TVDetailsActivity"
+                "$PACKAGE_NAME.feature.details.presentation.tvDetails.TVDetailsActivity"
             )
         }
     }

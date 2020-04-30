@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.fragment.app.Fragment
 import com.majorik.library.base.utils.PACKAGE_NAME
 import com.majorik.library.base.utils.loadClassOrReturnNull
+import com.orhanobut.logger.Logger
 import com.soywiz.klock.DateFormat
 import com.soywiz.klock.DateTimeTz
 import com.soywiz.klock.parse
@@ -22,7 +23,6 @@ fun String.toYear(inputFormat: String = "yyyy-MM-dd", placeholder: String = ""):
     }
 }
 
-
 /**
  * For loading intents
  */
@@ -34,6 +34,7 @@ fun String.loadIntentOrReturnNull(): Intent? =
     try {
         Class.forName(this).run { intentTo(this@loadIntentOrReturnNull) }
     } catch (e: ClassNotFoundException) {
+        Logger.e(e.message ?: "loadIntentOrReturnNull()")
         null
     }
 
@@ -45,5 +46,6 @@ fun String.loadFragmentOrReturnNull(): Fragment? =
     try {
         this.loadClassOrReturnNull<Fragment>()?.newInstance()
     } catch (e: ClassNotFoundException) {
+        Logger.e(e.message ?: "loadFragmentOrReturnNull()")
         null
     }

@@ -2,29 +2,14 @@ package com.majorik.moviebox.feature.search.presentation.viewholders
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.majorik.moviebox.feature.search.presentation.adapters.search.SearchMovieAdapter
-import com.majorik.moviebox.feature.search.presentation.adapters.search.SearchPeopleAdapter
-import com.majorik.moviebox.feature.search.presentation.adapters.search.SearchTVAdapter
 import com.majorik.moviebox.feature.search.domain.NetworkState
 import com.majorik.moviebox.databinding.ItemNetworkStateBinding
+import com.majorik.moviebox.feature.search.presentation.adapters.PaginationOnClickListener
 
-class NetworkStateViewHolder(private val containerView: ItemNetworkStateBinding) :
+internal class NetworkStateViewHolder(private val containerView: ItemNetworkStateBinding) :
     RecyclerView.ViewHolder(containerView.root) {
 
-
-    fun bindTo(networkState: NetworkState?, callback: SearchMovieAdapter.OnClickListener) {
-        hideViews()
-        setVisibleRightViews(networkState)
-        containerView.itemPagingNetworkStateButton.setOnClickListener { callback.onClickRetry() }
-    }
-
-    fun bindTo(networkState: NetworkState?, callback: SearchTVAdapter.OnClickListener) {
-        hideViews()
-        setVisibleRightViews(networkState)
-        containerView.itemPagingNetworkStateButton.setOnClickListener { callback.onClickRetry() }
-    }
-
-    fun bindTo(networkState: NetworkState?, callback: SearchPeopleAdapter.OnClickListener) {
+    fun bindTo(networkState: NetworkState?, callback: PaginationOnClickListener) {
         hideViews()
         setVisibleRightViews(networkState)
         containerView.itemPagingNetworkStateButton.setOnClickListener { callback.onClickRetry() }

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.majorik.library.base.extensions.startActivityWithAnim
+import com.majorik.library.base.utils.PACKAGE_NAME
 import kotlinx.android.synthetic.main.fragment_search.*
 
 class SearchFragment : Fragment() {
@@ -22,7 +23,7 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         search_bar.setOnClickListener {
-            context?.startActivityWithAnim("com.majorik.moviebox.feature.search.presentation.search.SearchableActivity")
+            context?.startActivityWithAnim("$PACKAGE_NAME.feature.search.presentation.ui.SearchableActivity")
         }
     }
 

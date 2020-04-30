@@ -9,7 +9,7 @@
     android:focusableInTouchMode="true"
     android:orientation="vertical"
     android:paddingTop="16dp"
-    tools:context="com.majorik.moviebox.feature.search.presentation.search.SearchableActivity">
+    tools:context="com.majorik.moviebox.feature.search.presentation.ui.SearchableActivity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/search_bar_layout"

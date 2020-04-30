@@ -9,6 +9,7 @@ import com.majorik.moviebox.databinding.ItemPersonProfileCardBinding
 import com.majorik.library.base.extensions.displayImageWithCenterInside
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startDetailsActivityWithId
+import com.majorik.library.base.utils.PACKAGE_NAME
 
 class PersonAdapter() : RecyclerView.Adapter<PersonAdapter.PersonViewHolder>() {
 
@@ -49,11 +50,10 @@ class PersonAdapter() : RecyclerView.Adapter<PersonAdapter.PersonViewHolder>() {
 
         private fun setClickListener(personID: Int) {
             parent.personProfileImage.setSafeOnClickListener {
-                //TODO
-//                itemView.context.startDetailsActivityWithId(
-//                    personID,
-//                    PersonDetailsActivity::class.java
-//                )
+                parent.root.context.startDetailsActivityWithId(
+                    personID,
+                    "$PACKAGE_NAME.feature.details.presentation.person_details.PersonDetailsActivity"
+                )
             }
         }
     }

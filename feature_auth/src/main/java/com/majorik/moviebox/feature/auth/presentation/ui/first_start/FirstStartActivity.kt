@@ -1,7 +1,6 @@
 package com.majorik.moviebox.feature.auth.presentation.ui.first_start
 
 import android.animation.Animator
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -27,12 +26,10 @@ import com.majorik.library.base.extensions.startActivityWithAnim
 import com.majorik.library.base.storage.CredentialsPrefsManager
 import com.majorik.moviebox.feature.auth.presentation.ui.about_tmdb.AboutTheMovieDatabaseActivity
 import com.majorik.library.base.utils.FontSpan
-import com.majorik.moviebox.feature.KoinManager
 import kotlinx.android.synthetic.main.activity_first_start.*
 import kotlinx.coroutines.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.core.context.loadKoinModules
 
 class FirstStartActivity : AppCompatActivity() {
     private val authViewModel: AuthViewModel by viewModel()

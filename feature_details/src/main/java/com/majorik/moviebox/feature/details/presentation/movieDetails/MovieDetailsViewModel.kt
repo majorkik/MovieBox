@@ -8,8 +8,8 @@ import com.majorik.moviebox.feature.details.domain.tmdbModels.account.AccountSta
 import com.majorik.moviebox.feature.details.domain.tmdbModels.movie.MovieDetails
 import com.majorik.moviebox.feature.details.domain.tmdbModels.request.RequestAddToWatchlist
 import com.majorik.moviebox.feature.details.domain.tmdbModels.request.RequestMarkAsFavorite
-import com.majorik.moviebox.feature.details.presentation.AccountRepository
-import com.majorik.moviebox.feature.details.presentation.MovieRepository
+import com.majorik.moviebox.feature.details.data.repositories.AccountRepository
+import com.majorik.moviebox.feature.details.data.repositories.MovieRepository
 import com.majorik.library.base.models.results.ResultWrapper
 import kotlinx.coroutines.launch
 
@@ -81,9 +81,8 @@ class MovieDetailsViewModel(
     fun addMovieToWatchlist(mediaId: Int, state: Boolean, sessionId: String) {
         viewModelScope.launch {
             val requestAddToWatchlist = RequestAddToWatchlist("movie", mediaId, state)
-            val response = accountRepository.addToWatchlist(requestAddToWatchlist, sessionId)
 
-            when (response) {
+            when (val response = accountRepository.addToWatchlist(requestAddToWatchlist, sessionId)) {
                 is ResultWrapper.NetworkError -> {
                 }
                 is ResultWrapper.GenericError -> {

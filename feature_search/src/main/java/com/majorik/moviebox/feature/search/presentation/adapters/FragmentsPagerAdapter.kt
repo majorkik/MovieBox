@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.majorik.moviebox.feature.search.presentation.search.SearchViewTypeChangeListener
+import com.majorik.moviebox.feature.search.presentation.ui.SearchViewTypeChangeListener
 
 class FragmentsPagerAdapter(
     private val fragments: List<Fragment>,

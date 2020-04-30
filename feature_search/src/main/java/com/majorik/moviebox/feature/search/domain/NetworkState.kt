@@ -1,6 +1,6 @@
 package com.majorik.moviebox.feature.search.domain
 
-enum class NetworkState {
+internal enum class NetworkState {
     RUNNING,
     SUCCESS,
     FAILED

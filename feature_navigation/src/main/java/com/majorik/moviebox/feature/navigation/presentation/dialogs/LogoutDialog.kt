@@ -10,6 +10,7 @@ import androidx.fragment.app.DialogFragment
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startActivityWithAnim
 import com.majorik.library.base.storage.CredentialsPrefsManager
+import com.majorik.library.base.utils.PACKAGE_NAME
 import kotlinx.android.synthetic.main.dialog_logout.view.*
 import org.koin.android.ext.android.inject
 
@@ -44,7 +45,7 @@ class LogoutDialog : DialogFragment() {
 
         view.btn_logout_confirm.setSafeOnClickListener {
             credentialsManager.clearAll()
-            context?.startActivityWithAnim(" com.majorik.moviebox.feature.auth.presentation.ui.first_start.FirstStartActivity")
+            context?.startActivityWithAnim("$PACKAGE_NAME.feature.auth.presentation.ui.first_start.FirstStartActivity")
             dismiss()
         }
     }

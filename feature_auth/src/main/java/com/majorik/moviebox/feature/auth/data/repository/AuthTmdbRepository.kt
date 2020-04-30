@@ -3,7 +3,10 @@ package com.majorik.moviebox.feature.auth.data.repository
 import com.majorik.moviebox.feature.auth.data.retrofit.AuthRetrofitService
 import com.majorik.library.base.base.BaseRepository
 import com.majorik.library.base.models.results.ResultWrapper
-import com.majorik.moviebox.*
+import com.majorik.moviebox.feature.auth.domain.RequestSession
+import com.majorik.moviebox.feature.auth.domain.RequestToken
+import com.majorik.moviebox.feature.auth.domain.RequestTokenResponse
+import com.majorik.moviebox.feature.auth.domain.ResponseSession
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 

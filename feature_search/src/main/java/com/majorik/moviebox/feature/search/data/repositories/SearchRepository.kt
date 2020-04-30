@@ -1,6 +1,6 @@
 package com.majorik.moviebox.feature.search.data.repositories
 
-import com.majorik.moviebox.feature.search.data.api.TmdbApiService
+import com.majorik.moviebox.feature.search.data.api.SearchApiService
 import com.majorik.moviebox.feature.search.domain.tmdbModels.movie.MovieResponse
 import com.majorik.moviebox.feature.search.domain.tmdbModels.person.PersonResponse
 import com.majorik.moviebox.feature.search.domain.tmdbModels.search.MultiSearchResponse
@@ -10,7 +10,7 @@ import com.majorik.library.base.models.results.ResultWrapper
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
-class SearchRepository(private val api: TmdbApiService) : BaseRepository() {
+internal class SearchRepository(private val api: SearchApiService) : BaseRepository() {
 
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 

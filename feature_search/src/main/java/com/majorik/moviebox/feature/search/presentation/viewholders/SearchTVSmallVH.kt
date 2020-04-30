@@ -6,7 +6,7 @@ import com.majorik.library.base.constants.UrlConstants
 import com.majorik.moviebox.databinding.ItemMediumPosterCardBinding
 import com.majorik.library.base.extensions.displayImageWithCenterCrop
 
-class SearchTVSmallVH(val parent: ItemMediumPosterCardBinding) :
+internal class SearchTVSmallVH(val parent: ItemMediumPosterCardBinding) :
     RecyclerView.ViewHolder(parent.root) {
     @UseExperimental(ExperimentalStdlibApi::class)
     fun bindTo(item: TV?) {

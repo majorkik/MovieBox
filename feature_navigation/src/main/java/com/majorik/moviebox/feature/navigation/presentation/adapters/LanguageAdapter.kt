@@ -9,7 +9,6 @@ import com.majorik.moviebox.feature.navigation.R
 import com.majorik.moviebox.feature.navigation.presentation.adapters.LanguageAdapter.LanguageViewHolder
 import com.majorik.library.base.constants.AppConfig
 import com.majorik.library.base.extensions.setSafeOnClickListener
-import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.item_lanugage.view.*
 import java.util.*
 

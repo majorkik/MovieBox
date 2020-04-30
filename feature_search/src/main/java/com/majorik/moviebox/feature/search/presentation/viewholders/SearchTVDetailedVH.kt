@@ -10,7 +10,7 @@ import com.majorik.library.base.extensions.setIndicatorColor
 import com.majorik.library.base.extensions.toDate
 import com.majorik.library.base.utils.GenresStorageObject
 
-class SearchTVDetailedVH(val parent: ItemCardWithDetailsBinding) :
+internal class SearchTVDetailedVH(val parent: ItemCardWithDetailsBinding) :
     RecyclerView.ViewHolder(parent.root) {
     @UseExperimental(ExperimentalStdlibApi::class)
     fun bindTo(item: TV?) {

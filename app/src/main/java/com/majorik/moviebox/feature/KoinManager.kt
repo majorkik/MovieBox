@@ -8,7 +8,7 @@ object KoinManager {
     private const val featurePackagePrefix = "com.majorik.moviebox.feature"
 
     val koinModules: List<Module> = BuildConfig.FEATURE_MODULE_NAMES
-        .map { "${featurePackagePrefix}.$it.FeatureKoinModule" }
+        .map { "$featurePackagePrefix.$it.FeatureKoinModule" }
         .map {
             try {
                 Class.forName(it).kotlin.objectInstance as KoinModuleProvider

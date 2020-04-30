@@ -8,8 +8,8 @@ import com.majorik.moviebox.feature.details.domain.tmdbModels.account.AccountSta
 import com.majorik.moviebox.feature.details.domain.tmdbModels.request.RequestAddToWatchlist
 import com.majorik.moviebox.feature.details.domain.tmdbModels.request.RequestMarkAsFavorite
 import com.majorik.moviebox.feature.details.domain.tmdbModels.tv.TVDetails
-import com.majorik.moviebox.feature.details.presentation.AccountRepository
-import com.majorik.moviebox.feature.details.presentation.TVRepository
+import com.majorik.moviebox.feature.details.data.repositories.AccountRepository
+import com.majorik.moviebox.feature.details.data.repositories.TVRepository
 import com.majorik.library.base.models.results.ResultWrapper
 import kotlinx.coroutines.launch
 

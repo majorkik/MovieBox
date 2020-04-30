@@ -22,54 +22,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity
-            android:name="com.majorik.moviebox.feature.collections.genres.GenresActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Transparent.NoActionBar.Dark"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name="com.majorik.moviebox.feature.navigation.presentation.language.LanguageActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Transparent.NoActionBar.Dark"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name="com.majorik.moviebox.feature.navigation.presentation.settings.SettingsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Transparent.NoActionBar.Dark"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name="com.majorik.moviebox.feature.auth.presentation.ui.about_tmdb.AboutTheMovieDatabaseActivity"
-            android:theme="@style/AppTheme.Transparent.NoActionBar" />
-        <activity
-            android:name="com.majorik.moviebox.feature.collections.movieTabCollections.MovieCollectionsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Transparent.NoActionBar.Dark"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name="com.majorik.moviebox.feature.collections.tvTabCollections.TVCollectionsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name="com.majorik.moviebox.feature.details.seasonDetails.SeasonDetailsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name="com.majorik.moviebox.feature.search.presentation.search.SearchableActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.SlidingActivity"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name="com.majorik.moviebox.feature.details.presentation.tvDetails.TVDetailsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Transparent.NoActionBar"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name="com.majorik.moviebox.feature.details.presentation.movieDetails.MovieDetailsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Transparent.NoActionBar"
-            tools:ignore="LockedOrientationActivity" />
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -84,11 +37,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.majorik.moviebox.feature.details.presentation.person_details.PersonDetailsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Transparent.NoActionBar"
-            tools:ignore="LockedOrientationActivity" />
     </application>
 
 </manifest>

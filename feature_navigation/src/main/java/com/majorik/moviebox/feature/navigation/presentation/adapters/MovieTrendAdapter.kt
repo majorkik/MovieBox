@@ -10,6 +10,7 @@ import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startDetailsActivityWithId
 import com.majorik.library.base.extensions.toDate
 import com.majorik.library.base.utils.GenresStorageObject
+import com.majorik.library.base.utils.PACKAGE_NAME
 import kotlin.math.roundToInt
 
 class MovieTrendAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -30,13 +31,12 @@ class MovieTrendAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             val binding = ItemTrendLastItemCardBinding.inflate(layoutInflater, parent, false)
             MovieTrendLastItemVH(binding)
         }
-
     }
 
     override fun getItemCount(): Int {
-        return if(movies.size > 0){
+        return if (movies.size > 0) {
             movies.size + 1
-        }else{
+        } else {
             0
         }
     }
@@ -66,23 +66,22 @@ class MovieTrendAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             is MovieTrendViewHolder -> {
                 holder.bindTo(movies[position])
 
-                holder.itemView.setSafeOnClickListener {
+                holder.parent.root.setSafeOnClickListener {
                     holder.itemView.context.startDetailsActivityWithId(
                         movies[position].id,
-                        "com.majorik.moviebox.feature.details.presentation.movieDetails.MovieDetailsActivity"
+                        "$PACKAGE_NAME.feature.details.presentation.movieDetails.MovieDetailsActivity"
                     )
                 }
             }
 
             else -> {
                 holder.itemView.setSafeOnClickListener {
-
                 }
             }
         }
     }
 
-    class MovieTrendViewHolder(private val parent: ItemTrendCardWithTitleBinding) :
+    class MovieTrendViewHolder(val parent: ItemTrendCardWithTitleBinding) :
         RecyclerView.ViewHolder(parent.root) {
         fun bindTo(movie: Movie) {
             parent.mTrendTitle.text = movie.title
@@ -98,6 +97,5 @@ class MovieTrendAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     class MovieTrendLastItemVH(private val parent: ItemTrendLastItemCardBinding) :
-        RecyclerView.ViewHolder(parent.root) {
-    }
+        RecyclerView.ViewHolder(parent.root)
 }

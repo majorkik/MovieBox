@@ -5,7 +5,7 @@ import com.majorik.moviebox.feature.auth.presentation.ui.first_start.AuthViewMod
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
-val authPresentationModule = module {
+val presentationModule = module {
     factory { AuthViewModel(get()) }
 
     single { CredentialsPrefsManager(androidContext()) }

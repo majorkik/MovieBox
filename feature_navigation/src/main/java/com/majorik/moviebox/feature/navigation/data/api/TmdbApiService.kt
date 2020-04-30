@@ -2,25 +2,13 @@ package com.majorik.moviebox.feature.navigation.data.api
 
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.ApiResponse
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.account.AccountDetails
-import com.majorik.moviebox.feature.navigation.domain.tmdbModels.account.AccountStates
-import com.majorik.moviebox.feature.navigation.domain.tmdbModels.auth.RequestTokenResponse
-import com.majorik.moviebox.feature.navigation.domain.tmdbModels.auth.ResponseSession
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.genre.GenreResponse
-import com.majorik.moviebox.feature.navigation.domain.tmdbModels.image.ImagesResponse
-import com.majorik.moviebox.feature.navigation.domain.tmdbModels.image.PersonPostersResponse
-import com.majorik.moviebox.feature.navigation.domain.tmdbModels.movie.MovieDetails
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.movie.MovieResponse
-import com.majorik.moviebox.feature.navigation.domain.tmdbModels.person.PersonDetails
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.person.PersonResponse
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.request.RequestAddToWatchlist
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.request.RequestMarkAsFavorite
-import com.majorik.moviebox.feature.navigation.domain.tmdbModels.request.RequestSession
-import com.majorik.moviebox.feature.navigation.domain.tmdbModels.request.RequestToken
-import com.majorik.moviebox.feature.navigation.domain.tmdbModels.search.MultiSearchResponse
-import com.majorik.moviebox.feature.navigation.domain.tmdbModels.tv.TVDetails
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.tv.TVEpisodeResponse
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.tv.TVResponse
-import com.majorik.moviebox.feature.navigation.domain.tmdbModels.tv.TVSeasonDetails
 import retrofit2.http.* // ktlint-disable no-wildcard-imports
 
 interface TmdbApiService {

@@ -10,6 +10,7 @@ import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startDetailsActivityWithId
 import com.majorik.library.base.extensions.toDate
 import com.majorik.library.base.utils.GenresStorageObject
+import com.majorik.library.base.utils.PACKAGE_NAME
 import kotlin.math.roundToInt
 
 class TVTrendAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -30,16 +31,16 @@ class TVTrendAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             val binding = ItemTrendLastItemCardBinding.inflate(layoutInflater, parent, false)
             TVTrendLastItemVH(binding)
         }
-
     }
 
     override fun getItemCount(): Int {
-        return if(tvs.size > 0){
+        return if (tvs.size > 0) {
             tvs.size + 1
-        }else{
+        } else {
             0
         }
     }
+
     override fun getItemViewType(position: Int): Int {
         return if (position < itemCount - 1) {
             TrendViewType.ITEM.ordinal
@@ -65,23 +66,22 @@ class TVTrendAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             is TVTrendViewHolder -> {
                 holder.bindTo(tvs[position])
 
-                holder.itemView.setSafeOnClickListener {
+                holder.parent.root.setSafeOnClickListener {
                     holder.itemView.context.startDetailsActivityWithId(
                         tvs[position].id,
-                        "com.majorik.moviebox.feature.details.presentation.tvDetails.TVDetailsActivity"
+                        "$PACKAGE_NAME.feature.details.presentation.tvDetails.TVDetailsActivity"
                     )
                 }
             }
 
             else -> {
                 holder.itemView.setSafeOnClickListener {
-
                 }
             }
         }
     }
 
-    class TVTrendViewHolder(private val parent: ItemTrendCardWithTitleBinding) :
+    class TVTrendViewHolder(val parent: ItemTrendCardWithTitleBinding) :
         RecyclerView.ViewHolder(parent.root) {
         fun bindTo(tv: TV) {
             parent.mTrendTitle.text = tv.name
@@ -97,6 +97,5 @@ class TVTrendAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     class TVTrendLastItemVH(private val parent: ItemTrendLastItemCardBinding) :
-        RecyclerView.ViewHolder(parent.root) {
-    }
+        RecyclerView.ViewHolder(parent.root)
 }

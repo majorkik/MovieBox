@@ -27,7 +27,6 @@ class TVsViewModel(
     val genresLiveData = MutableLiveData<List<Genre>>()
     val trailersLiveData = MutableLiveData<List<SearchResponse.Item>>()
 
-
     fun fetchPopularTVs(language: String?, page: Int?) {
         viewModelScope.launch {
             val response = tvRepository.getPopularTVs(language, page)

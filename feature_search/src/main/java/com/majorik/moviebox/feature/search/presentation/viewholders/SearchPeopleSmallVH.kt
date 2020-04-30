@@ -7,7 +7,7 @@ import com.majorik.library.base.constants.UrlConstants
 import com.majorik.moviebox.R
 import com.majorik.moviebox.databinding.ItemPersonSmallCardBinding
 
-class SearchPeopleSmallVH(val parent: ItemPersonSmallCardBinding) : RecyclerView.ViewHolder(parent.root) {
+internal class SearchPeopleSmallVH(val parent: ItemPersonSmallCardBinding) : RecyclerView.ViewHolder(parent.root) {
     fun bindTo(item: Person?) {
         item?.let {
             parent.pImage.load(UrlConstants.TMDB_PROFILE_SIZE_185 + it.profilePath) {

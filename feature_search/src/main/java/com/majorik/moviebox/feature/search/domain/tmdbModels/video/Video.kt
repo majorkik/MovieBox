@@ -2,7 +2,7 @@ package com.majorik.moviebox.feature.search.domain.tmdbModels.video
 
 import com.squareup.moshi.Json
 
-data class Video(
+internal data class Video(
     @field:Json(name = "id") val id: String,
     @field:Json(name = "iso_639_1") val iso_639_1: String,
     @field:Json(name = "iso_3166_1") val iso_3166_1: String,

@@ -9,6 +9,7 @@ import com.majorik.moviebox.databinding.ItemSmallPosterCardBinding
 import com.majorik.library.base.extensions.displayImageWithCenterCrop
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startDetailsActivityWithId
+import com.majorik.library.base.utils.PACKAGE_NAME
 
 class TVCollectionAdapter() : RecyclerView.Adapter<TVCollectionAdapter.CollectionViewHolder>() {
 
@@ -54,7 +55,7 @@ class TVCollectionAdapter() : RecyclerView.Adapter<TVCollectionAdapter.Collectio
             parent.collectionCard.setSafeOnClickListener {
                 itemView.context.startDetailsActivityWithId(
                     tv.id,
-                    "com.majorik.moviebox.feature.details.presentation.tvDetails.TVDetailsActivity"
+                    "$PACKAGE_NAME.feature.details.presentation.tvDetails.TVDetailsActivity"
                 )
             }
         }

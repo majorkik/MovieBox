@@ -30,7 +30,7 @@ class ClearCacheDialog : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(com.majorik.moviebox.feature.navigation.R.layout.dialog_clear_cache, container, false)
+        return inflater.inflate(R.layout.dialog_clear_cache, container, false)
     }
 
     override fun onStart() {

@@ -20,6 +20,10 @@
         tools:ignore="GoogleAppIndexingWarning,MissingApplicationIcon">
 
         <activity
+            android:name="com.majorik.moviebox.feature.auth.presentation.ui.about_tmdb.AboutTheMovieDatabaseActivity"
+            android:theme="@style/AppTheme.Transparent.NoActionBar" />
+
+        <activity
             android:name=".presentation.ui.first_start.FirstStartActivity"
             android:theme="@style/AppTheme.NoActionBar.Dark">
             <intent-filter>

@@ -10,7 +10,7 @@ import com.majorik.library.base.extensions.toDate
 import com.majorik.moviebox.databinding.ItemCardWithDetailsBinding
 import com.majorik.library.base.utils.GenresStorageObject
 
-class SearchMovieDetailedVH(val parent: ItemCardWithDetailsBinding) : RecyclerView.ViewHolder(parent.root) {
+internal class SearchMovieDetailedVH(val parent: ItemCardWithDetailsBinding) : RecyclerView.ViewHolder(parent.root) {
     @UseExperimental(ExperimentalStdlibApi::class)
     fun bindTo(item: Movie?) {
         item?.let {

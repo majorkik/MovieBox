@@ -3,21 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_homepage"
+    app:startDestination="@+id/navigation_movies"
     tools:ignore="UnusedNavigation">
 
     <fragment
-        android:id="@+id/navigation_discover"
+        android:id="@+id/navigation_tvs"
         android:name="com.majorik.moviebox.feature.navigation.presentation.main_page_tvs.TVsFragment"
         android:label="@string/title_nav_tvs" />
 
     <fragment
-        android:id="@+id/navigation_homepage"
+        android:id="@+id/navigation_movies"
         android:name="com.majorik.moviebox.feature.navigation.presentation.main_page_movies.MoviesFragment"
         android:label="@string/title_nav_movies" />
 
     <fragment
-        android:id="@+id/navigation_episodes"
+        android:id="@+id/navigation_discover"
         android:name="com.majorik.moviebox.feature.navigation.presentation.main_page_search.SearchFragment"
         android:label="@string/title_nav_search"/>
 

@@ -5,7 +5,7 @@ import com.majorik.moviebox.feature.auth.data.retrofit.AuthRetrofitService
 import com.majorik.moviebox.data.retrofit.createTmdbWebService
 import org.koin.dsl.module
 
-val authDataModule = module {
+val dataModule = module {
     single { createTmdbWebService<AuthRetrofitService>() }
 
     factory { AuthTmdbRepository(get()) }

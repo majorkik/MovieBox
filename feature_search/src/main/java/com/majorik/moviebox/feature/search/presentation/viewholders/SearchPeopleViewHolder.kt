@@ -7,7 +7,7 @@ import com.majorik.library.base.extensions.displayImageWithCenterCrop
 import com.majorik.moviebox.R
 import com.majorik.moviebox.databinding.ItemPersonDetailedBinding
 
-class SearchPeopleViewHolder(val parent: ItemPersonDetailedBinding) : RecyclerView.ViewHolder(parent.root) {
+internal class SearchPeopleViewHolder(val parent: ItemPersonDetailedBinding) : RecyclerView.ViewHolder(parent.root) {
     fun bindTo(item: Person?) {
         item?.let {
             parent.pName.text = it.name

@@ -11,7 +11,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancelChildren
 
-abstract class BaseSearchDataSource<T>(
+internal abstract class BaseSearchDataSource<T>(
     private val repository: SearchRepository,
     private val query: String,
     private val scope: CoroutineScope

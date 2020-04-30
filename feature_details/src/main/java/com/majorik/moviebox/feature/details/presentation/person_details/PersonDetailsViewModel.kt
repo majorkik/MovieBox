@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.majorik.moviebox.feature.details.domain.tmdbModels.person.PersonDetails
-import com.majorik.moviebox.feature.details.presentation.PersonRepository
+import com.majorik.moviebox.feature.details.data.repositories.PersonRepository
 import com.majorik.library.base.models.results.ResultWrapper
 import kotlinx.coroutines.launch
 

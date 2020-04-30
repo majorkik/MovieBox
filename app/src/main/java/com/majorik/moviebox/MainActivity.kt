@@ -29,19 +29,7 @@ class MainActivity : LocalizationActivity(), BottomNavigationView.OnNavigationIt
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Logger.i(SplitInstallManagerFactory.create(this).installedModules.contains("feature_collections").toString())
-        Logger.i(SplitInstallManagerFactory.create(this).installedModules.contains("feature_details").toString())
-        Logger.i(SplitInstallManagerFactory.create(this).installedModules.contains("feature_search").toString())
-        Logger.i(SplitInstallManagerFactory.create(this).installedModules.contains("feature_navigation").toString())
-        Logger.i(SplitInstallManagerFactory.create(this).installedModules.contains("feature_auth").toString())
-
-//        val intent =
-//            Intent().setClassName(
-//                this,
-//                "com.majorik.moviebox.feature.auth.presentation.ui.first_start.FirstStartActivity"
-//            )
-//
-//        startActivity(intent)
+        checkLoadModules()
 
         AppConfig.REGION = getCurrentLanguage().toString()
 
@@ -49,7 +37,7 @@ class MainActivity : LocalizationActivity(), BottomNavigationView.OnNavigationIt
 
         hideAllFragments()
 
-        nav_view.selectedItemId = R.id.navigation_homepage
+        nav_view.selectedItemId = R.id.navigation_movies
 //        setSupportActionBar(toolbar)
     }
 
@@ -60,26 +48,22 @@ class MainActivity : LocalizationActivity(), BottomNavigationView.OnNavigationIt
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.navigation_homepage -> {
-//                toolbar.title = getString(R.string.title_nav_homepage)
+            R.id.navigation_movies -> {
                 showFragment(fragmentMovie!!)
                 activeFragment = fragmentMovie
                 return true
             }
-            R.id.navigation_discover -> {
-//                toolbar.title = getString(R.string.title_nav_discover)
-                showFragment(fragmentDiscover!!)
-                activeFragment = fragmentDiscover
-                return true
-            }
-            R.id.navigation_episodes -> {
-//                toolbar.title = getString(R.string.title_nav_episodes)
+            R.id.navigation_tvs -> {
                 showFragment(fragmentTV!!)
                 activeFragment = fragmentTV
                 return true
             }
+            R.id.navigation_discover -> {
+                showFragment(fragmentDiscover!!)
+                activeFragment = fragmentDiscover
+                return true
+            }
             R.id.navigation_profile -> {
-//                toolbar.title = getString(R.string.title_nav_profile)
                 showFragment(fragmentProfile!!)
                 activeFragment = fragmentProfile
                 return true
@@ -121,5 +105,13 @@ class MainActivity : LocalizationActivity(), BottomNavigationView.OnNavigationIt
                 .show(this)
                 .commit()
         }
+    }
+
+    private fun checkLoadModules() {
+        Logger.i(SplitInstallManagerFactory.create(this).installedModules.contains("feature_collections").toString())
+        Logger.i(SplitInstallManagerFactory.create(this).installedModules.contains("feature_details").toString())
+        Logger.i(SplitInstallManagerFactory.create(this).installedModules.contains("feature_search").toString())
+        Logger.i(SplitInstallManagerFactory.create(this).installedModules.contains("feature_navigation").toString())
+        Logger.i(SplitInstallManagerFactory.create(this).installedModules.contains("feature_auth").toString())
     }
 }

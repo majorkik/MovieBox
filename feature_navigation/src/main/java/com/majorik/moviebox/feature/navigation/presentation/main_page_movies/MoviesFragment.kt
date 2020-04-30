@@ -17,9 +17,11 @@ import com.majorik.library.base.extensions.*
 import com.majorik.library.base.base.BaseNavigationFragment
 import com.majorik.library.base.constants.AppConfig
 import com.majorik.library.base.constants.GenresConstants
+import com.majorik.library.base.enums.GenresType
+import com.majorik.library.base.enums.SELECTED_GENRES_TYPE
 import com.majorik.library.base.utils.GenresStorageObject
+import com.majorik.library.base.utils.PACKAGE_NAME
 import com.majorik.moviebox.feature.navigation.presentation.adapters.MovieTrendAdapter
-import com.majorik.moviebox.feature.navigation.presentation.main_page_movies.MoviesViewModel
 import com.majorik.moviebox.feature.navigation.presentation.adapters.TrailersAdapter
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.fragment_movies.*
@@ -110,39 +112,37 @@ class MoviesFragment : BaseNavigationFragment() {
 
     private fun setClickListeners() {
         btn_search.setOnClickListener {
-            context?.startActivityWithAnim("com.majorik.moviebox.feature.search.presentation.search.SearchableActivity")
+            context?.startActivityWithAnim("$PACKAGE_NAME.feature.search.presentation.ui.SearchableActivity")
         }
 
         btn_popular_movies.setOnClickListener {
             openNewActivityWithTab(
-                "com.majorik.moviebox.feature.collections.movieTabCollections.MovieCollectionsActivity",
+                "$PACKAGE_NAME.feature.collections.presentation.movieTabCollections.MovieCollectionsActivity",
                 POPULAR
             )
         }
 
         btn_upcoming_movies.setOnClickListener {
             openNewActivityWithTab(
-                "com.majorik.moviebox.feature.collections.movieTabCollections.MovieCollectionsActivity",
+                "$PACKAGE_NAME.feature.collections.presentation.movieTabCollections.MovieCollectionsActivity",
                 UPCOMING
             )
         }
 
         btn_now_playing_movies.setOnClickListener {
             openNewActivityWithTab(
-                "com.majorik.moviebox.feature.collections.movieTabCollections.MovieCollectionsActivity",
+                "$PACKAGE_NAME.feature.collections.presentation.movieTabCollections.MovieCollectionsActivity",
                 NOW_PLAYING
             )
         }
 
         btn_movie_genres.setSafeOnClickListener {
-            val intent =
-                Intent().setClassName(requireContext(), "com.majorik.moviebox.feature.collections.genres.GenresActivity")
+            val intent = "$PACKAGE_NAME.feature.collections.presentation.genres.GenresActivity".loadIntentOrReturnNull()
 
-            //TODO
-//            intent.putExtra(
-//                GenresActivity.SELECTED_GENRES_TYPE,
-//                GenresActivity.GenresType.MOVIE_GENRES
-//            )
+            intent?.putExtra(
+                SELECTED_GENRES_TYPE,
+                GenresType.MOVIE_GENRES
+            )
 
             context?.startActivityWithAnim(intent)
         }

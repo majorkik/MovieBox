@@ -13,6 +13,7 @@ import com.majorik.library.base.extensions.*
 import com.majorik.library.base.base.BaseNavigationFragment
 import com.majorik.library.base.constants.AppConfig
 import com.majorik.library.base.utils.GenresStorageObject
+import com.majorik.library.base.utils.PACKAGE_NAME
 import com.majorik.moviebox.feature.navigation.presentation.adapters.TrailersAdapter
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.fragment_tvs.*
@@ -75,34 +76,33 @@ class TVsFragment : BaseNavigationFragment() {
             startActivity(
                 Intent().setClassName(
                     requireContext(),
-                    " com.majorik.moviebox.feature.search.presentation.search.SearchableActivity"
+                    "$PACKAGE_NAME.feature.search.presentation.ui.SearchableActivity"
                 )
             )
         }
 
         btn_popular_tvs.setSafeOnClickListener {
             openNewActivityWithTab(
-                "com.majorik.moviebox.feature.collections.tvTabCollections.TVCollectionsActivity",
+                "$PACKAGE_NAME.feature.collections.presentation.tvTabCollections.TVCollectionsActivity",
                 TVCollectionType.POPULAR
             )
         }
 
         btn_air_today_tvs.setSafeOnClickListener {
             openNewActivityWithTab(
-                "com.majorik.moviebox.feature.collections.tvTabCollections.TVCollectionsActivity",
+                "$PACKAGE_NAME.feature.collections.presentation.tvTabCollections.TVCollectionsActivity",
                 TVCollectionType.AIRING_TODAY
             )
         }
 
         btn_on_the_air_tvs.setSafeOnClickListener {
             openNewActivityWithTab(
-                "com.majorik.moviebox.feature.collections.tvTabCollections.TVCollectionsActivity",
+                "$PACKAGE_NAME.feature.collections.presentation.tvTabCollections.TVCollectionsActivity",
                 TVCollectionType.ON_THE_AIR
             )
         }
 
         btn_trending_tvs.setSafeOnClickListener {
-
         }
     }
 
@@ -165,9 +165,9 @@ class TVsFragment : BaseNavigationFragment() {
         collectionsActivity: String,
         collectionType: TVCollectionType
     ) {
-        val intent = Intent().setClassName(requireContext(), collectionsActivity)
+        val intent = collectionsActivity.loadIntentOrReturnNull()
 
-        intent.putExtra("collection_name", collectionType.name)
+        intent?.putExtra("collection_name", collectionType.name)
 
         startActivity(intent)
     }

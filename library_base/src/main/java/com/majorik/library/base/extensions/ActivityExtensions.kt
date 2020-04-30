@@ -62,16 +62,16 @@ fun Context.startDetailsActivityWithId(
     animIn: Int = R.anim.slide_in_up,
     animOut: Int = R.anim.slide_out_up
 ) {
-    val intent = Intent().setClassName(this, activity)
+    val intent = activity.loadIntentOrReturnNull()
 
-    intent.putExtra("id", id)
+    intent?.putExtra("id", id)
 
     startActivity(intent)
     (this as? AppCompatActivity)?.overridePendingTransition(animIn, animOut)
 }
 
 fun Context.startActivityWithAnim(
-    intent: Intent,
+    intent: Intent?,
     animIn: Int = R.anim.slide_in_up,
     animOut: Int = R.anim.slide_out_up
 ) {
@@ -84,7 +84,8 @@ fun Context.startActivityWithAnim(
     animIn: Int = R.anim.slide_in_up,
     animOut: Int = R.anim.slide_out_up
 ) {
-    startActivity(Intent().setClassName(this, activity))
+    val intent = activity.loadIntentOrReturnNull()
+    startActivity(intent)
     (this as? AppCompatActivity)?.overridePendingTransition(animIn, animOut)
 }
 

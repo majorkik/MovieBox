@@ -11,24 +11,21 @@ import com.majorik.moviebox.databinding.ItemMediumPosterCardBinding
 import com.majorik.moviebox.databinding.ItemNetworkStateBinding
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startDetailsActivityWithId
+import com.majorik.library.base.utils.PACKAGE_NAME
 import com.majorik.moviebox.feature.search.domain.NetworkState
 import com.majorik.moviebox.feature.search.domain.tmdbModels.movie.Movie
+import com.majorik.moviebox.feature.search.presentation.adapters.PaginationOnClickListener
 import com.majorik.moviebox.feature.search.presentation.viewholders.NetworkStateViewHolder
 import com.majorik.moviebox.feature.search.presentation.viewholders.SearchMovieDetailedVH
 import com.majorik.moviebox.feature.search.presentation.viewholders.SearchMovieSmallVH
-import kotlinx.android.synthetic.main.item_medium_poster_card.view.*
+import kotlinx.android.synthetic.main.item_search_medium_poster_card.view.*
 
-class SearchMovieAdapter(
-    private val callback: OnClickListener
+internal class SearchMovieAdapter(
+    private val callback: PaginationOnClickListener
 ) : PagedListAdapter<Movie, ViewHolder>(diffCallback) {
 
     private var networkState: NetworkState? = null
     private var isGrid: Boolean = false
-
-    interface OnClickListener {
-        fun onClickRetry()
-        fun whenListIsUpdated(size: Int, networkState: NetworkState?)
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -62,11 +59,11 @@ class SearchMovieAdapter(
             is SearchMovieDetailedVH -> {
                 holder.bindTo(getItem(position))
 
-                holder.itemView.setSafeOnClickListener {
+                holder.parent.root.setSafeOnClickListener {
                     getItem(position)?.let { item ->
                         holder.itemView.context.startDetailsActivityWithId(
                             item.id,
-                            "com.majorik.moviebox.feature.details.presentation.movieDetails.MovieDetailsActivity"
+                            "$PACKAGE_NAME.feature.details.presentation.movieDetails.MovieDetailsActivity"
                         )
                     }
                 }
@@ -75,11 +72,11 @@ class SearchMovieAdapter(
             is SearchMovieSmallVH -> {
                 holder.bindTo(getItem(position))
 
-                holder.itemView.collection_card.setSafeOnClickListener {
+                holder.parent.collectionCard.setSafeOnClickListener {
                     getItem(position)?.let { item ->
                         holder.itemView.context.startDetailsActivityWithId(
                             item.id,
-                            "com.majorik.moviebox.feature.details.presentation.movieDetails.MovieDetailsActivity"
+                            "$PACKAGE_NAME.feature.details.presentation.movieDetails.MovieDetailsActivity"
                         )
                     }
                 }

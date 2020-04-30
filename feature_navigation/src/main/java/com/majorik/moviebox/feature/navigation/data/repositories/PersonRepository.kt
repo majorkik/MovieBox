@@ -15,5 +15,4 @@ class PersonRepository(private val api: TmdbApiService) : BaseRepository() {
             api.getPopularPeoples(language, page)
         }
     }
-
 }

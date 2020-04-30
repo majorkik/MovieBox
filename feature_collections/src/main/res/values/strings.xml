@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--    Person page-->
+    <string name="inline_filmography_delimiter">как</string>
+
+    <!--    Страница Фильмы & Сериалы (коллекции)-->
+    <string name="collections">Коллекции</string>
+    <string name="collection_popular">Популярные</string>
+    <string name="collection_top_rated">Самые популярные</string>
+    <string name="now_playing">Сейчас в кино</string>
+    <string name="upcoming">Ожидаемые</string>
+    <string name="on_the_air">В эфире</string>
+    <string name="air_today">Сегодня в эфире</string>
+    <string name="most_viewed_movies_in_the_last_month">Тренды фильмов за последний месяц</string>
+    <string name="popular_peoples">Популярные люди</string>
+    <string name="all_trends">Все тренды</string>
+    <string name="in_trends">В тренде</string>
+</resources>

@@ -16,19 +16,16 @@ import com.majorik.moviebox.databinding.ItemMediumPosterCardBinding
 import com.majorik.moviebox.databinding.ItemNetworkStateBinding
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startDetailsActivityWithId
-import kotlinx.android.synthetic.main.item_medium_poster_card.view.*
+import com.majorik.library.base.utils.PACKAGE_NAME
+import com.majorik.moviebox.feature.search.presentation.adapters.PaginationOnClickListener
+import kotlinx.android.synthetic.main.item_search_medium_poster_card.view.*
 
-class SearchTVAdapter(
-    private val callback: OnClickListener
+internal class SearchTVAdapter(
+    private val callback: PaginationOnClickListener
 ) : PagedListAdapter<TV, ViewHolder>(diffCallback) {
 
     private var networkState: NetworkState? = null
     private var isGrid: Boolean = false
-
-    interface OnClickListener {
-        fun onClickRetry()
-        fun whenListIsUpdated(size: Int, networkState: NetworkState?)
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -55,11 +52,11 @@ class SearchTVAdapter(
             is SearchTVDetailedVH -> {
                 holder.bindTo(getItem(position))
 
-                holder.itemView.setSafeOnClickListener {
+                holder.parent.root.setSafeOnClickListener {
                     getItem(position)?.let { item ->
                         holder.itemView.context.startDetailsActivityWithId(
                             item.id,
-                            "com.majorik.moviebox.feature.details.presentation.tvDetails.TVDetailsActivity"
+                            "$PACKAGE_NAME.feature.details.presentation.tvDetails.TVDetailsActivity"
                         )
                     }
                 }
@@ -68,11 +65,11 @@ class SearchTVAdapter(
             is SearchTVSmallVH -> {
                 holder.bindTo(getItem(position))
 
-                holder.itemView.collection_card.setSafeOnClickListener {
+                holder.parent.collectionCard.setSafeOnClickListener {
                     getItem(position)?.let { item ->
                         holder.itemView.context.startDetailsActivityWithId(
                             item.id,
-                            "com.majorik.moviebox.feature.details.presentation.tvDetails.TVDetailsActivity"
+                            "$PACKAGE_NAME.feature.details.presentation.tvDetails.TVDetailsActivity"
                         )
                     }
                 }

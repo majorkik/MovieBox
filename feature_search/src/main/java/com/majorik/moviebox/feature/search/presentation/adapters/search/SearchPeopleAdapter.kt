@@ -16,18 +16,15 @@ import com.majorik.moviebox.feature.search.presentation.viewholders.NetworkState
 import com.majorik.moviebox.feature.search.presentation.viewholders.SearchPeopleSmallVH
 import com.majorik.moviebox.feature.search.presentation.viewholders.SearchPeopleViewHolder
 import com.majorik.library.base.extensions.startDetailsActivityWithId
+import com.majorik.library.base.utils.PACKAGE_NAME
+import com.majorik.moviebox.feature.search.presentation.adapters.PaginationOnClickListener
 
-class SearchPeopleAdapter(
-    private val callback: OnClickListener
+internal class SearchPeopleAdapter(
+    private val callback: PaginationOnClickListener
 ) : PagedListAdapter<Person, ViewHolder>(diffCallback) {
 
     private var networkState: NetworkState? = null
     private var isGrid: Boolean = false
-
-    interface OnClickListener {
-        fun onClickRetry()
-        fun whenListIsUpdated(size: Int, networkState: NetworkState?)
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -53,11 +50,11 @@ class SearchPeopleAdapter(
             is SearchPeopleViewHolder -> {
                 holder.bindTo(getItem(position))
 
-                holder.itemView.setSafeOnClickListener {
+                holder.parent.root.setSafeOnClickListener {
                     getItem(position)?.let { item ->
                         holder.itemView.context.startDetailsActivityWithId(
                             item.id,
-                            "com.majorik.moviebox.feature.details.presentation.person_details.PersonDetailsActivity"
+                            "$PACKAGE_NAME.feature.details.presentation.person_details.PersonDetailsActivity"
                         )
                     }
                 }
@@ -66,11 +63,11 @@ class SearchPeopleAdapter(
             is SearchPeopleSmallVH -> {
                 holder.bindTo(getItem(position))
 
-                holder.itemView.setSafeOnClickListener {
+                holder.parent.root.setSafeOnClickListener {
                     getItem(position)?.let { item ->
                         holder.itemView.context.startDetailsActivityWithId(
                             item.id,
-                            "com.majorik.moviebox.feature.details.presentation.person_details.PersonDetailsActivity"
+                            "$PACKAGE_NAME.feature.details.presentation.person_details.PersonDetailsActivity"
                         )
                     }
                 }

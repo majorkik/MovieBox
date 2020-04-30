@@ -2,7 +2,7 @@ package com.majorik.moviebox.feature.search.domain.tmdbModels.production
 
 import com.squareup.moshi.Json
 
-data class ProductionCompany(
+internal data class ProductionCompany(
     @field:Json(name = "id") val id: Int,
     @field:Json(name = "logo_path") val logoPath: String?,
     @field:Json(name = "name") val name: String,
