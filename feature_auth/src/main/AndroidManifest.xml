@@ -20,7 +20,7 @@
         tools:ignore="GoogleAppIndexingWarning,MissingApplicationIcon">
 
         <activity
-            android:name="com.majorik.moviebox.feature.auth.presentation.ui.about_tmdb.AboutTheMovieDatabaseActivity"
+            android:name=".presentation.ui.about_tmdb.AboutTheMovieDatabaseActivity"
             android:theme="@style/AppTheme.Transparent.NoActionBar" />
 
         <activity

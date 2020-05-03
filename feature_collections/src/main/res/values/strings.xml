@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="title_feature_collections">Collections module</string>
-
     <!--    Страница Фильмы & Сериалы (коллекции)-->
     <string name="collections_collections">Коллекции</string>
     <string name="collections_collection_popular">Популярные</string>

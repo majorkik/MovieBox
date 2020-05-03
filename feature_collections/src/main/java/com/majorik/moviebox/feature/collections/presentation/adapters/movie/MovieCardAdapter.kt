@@ -10,7 +10,7 @@ import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.extensions.startDetailsActivityWithId
 import com.majorik.library.base.utils.PACKAGE_NAME
-import com.majorik.moviebox.feature.collections.databinding.ItemBigImageWithCornersBinding
+import com.majorik.moviebox.feature.collections.databinding.ItemCollectionBigImageWithCornersBinding
 import kotlinx.android.synthetic.main.item_collection_big_image_with_corners.view.*
 
 class MovieCardAdapter : RecyclerView.Adapter<MovieCardViewHolder>() {
@@ -19,7 +19,7 @@ class MovieCardAdapter : RecyclerView.Adapter<MovieCardViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieCardViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ItemBigImageWithCornersBinding.inflate(layoutInflater, parent, false)
+        val binding = ItemCollectionBigImageWithCornersBinding.inflate(layoutInflater, parent, false)
 
         return MovieCardViewHolder(binding)
     }
@@ -47,7 +47,7 @@ class MovieCardAdapter : RecyclerView.Adapter<MovieCardViewHolder>() {
         return movies[position].id.toLong()
     }
 
-    class MovieCardViewHolder(private val parent: ItemBigImageWithCornersBinding) :
+    class MovieCardViewHolder(private val parent: ItemCollectionBigImageWithCornersBinding) :
         RecyclerView.ViewHolder(parent.root) {
         fun bindTo(movie: Movie) {
             parent.placeholderText.text = movie.title

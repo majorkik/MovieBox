@@ -7,12 +7,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.majorik.moviebox.feature.collections.domain.NetworkState
 import com.majorik.moviebox.feature.collections.domain.tmdbModels.movie.Movie
-import com.majorik.moviebox.R
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startDetailsActivityWithId
 import com.majorik.library.base.utils.PACKAGE_NAME
-import com.majorik.moviebox.feature.collections.databinding.ItemMediumPosterCardBinding
-import com.majorik.moviebox.feature.collections.databinding.ItemNetworkStateBinding
+import com.majorik.moviebox.feature.collections.databinding.ItemCollectionNetworkStateBinding
+import com.majorik.moviebox.feature.collections.databinding.ItemCollectionMediumPosterCardBinding
 import com.majorik.moviebox.feature.collections.presentation.viewholders.MoviePagedItemVH
 import com.majorik.moviebox.feature.collections.presentation.viewholders.NetworkStateViewHolder
 
@@ -31,11 +30,11 @@ class PagingMovieCollectionAdapter(private val callback: OnClickListener) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return when (viewType) {
-            com.majorik.moviebox.feature.collections.R.layout.item_medium_poster_card -> MoviePagedItemVH(
-                ItemMediumPosterCardBinding.inflate(layoutInflater, parent, false)
+            com.majorik.moviebox.feature.collections.R.layout.item_collection_medium_poster_card -> MoviePagedItemVH(
+                ItemCollectionMediumPosterCardBinding.inflate(layoutInflater, parent, false)
             )
-            com.majorik.moviebox.feature.collections.R.layout.item_network_state -> NetworkStateViewHolder(
-                ItemNetworkStateBinding.inflate(layoutInflater, parent, false)
+            com.majorik.moviebox.feature.collections.R.layout.item_collection_network_state -> NetworkStateViewHolder(
+                ItemCollectionNetworkStateBinding.inflate(layoutInflater, parent, false)
             )
             else -> throw IllegalArgumentException("Неизвестный тип view: $viewType")
         }
@@ -43,7 +42,7 @@ class PagingMovieCollectionAdapter(private val callback: OnClickListener) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (getItemViewType(position)) {
-            com.majorik.moviebox.feature.collections.R.layout.item_medium_poster_card -> {
+            com.majorik.moviebox.feature.collections.R.layout.item_collection_medium_poster_card -> {
                 (holder as MoviePagedItemVH).bindTo(getItem(position))
 
                 holder.itemView.setSafeOnClickListener {
@@ -55,7 +54,7 @@ class PagingMovieCollectionAdapter(private val callback: OnClickListener) :
                     }
                 }
             }
-            com.majorik.moviebox.feature.collections.R.layout.item_network_state -> {
+            com.majorik.moviebox.feature.collections.R.layout.item_collection_network_state -> {
                 (holder as NetworkStateViewHolder).bindTo(
                     networkState,
                     callback
@@ -66,9 +65,9 @@ class PagingMovieCollectionAdapter(private val callback: OnClickListener) :
 
     override fun getItemViewType(position: Int): Int {
         return if (hasExtraRow() && position == itemCount - 1) {
-            com.majorik.moviebox.feature.collections.R.layout.item_network_state
+            com.majorik.moviebox.feature.collections.R.layout.item_collection_network_state
         } else {
-            com.majorik.moviebox.feature.collections.R.layout.item_medium_poster_card
+            com.majorik.moviebox.feature.collections.R.layout.item_collection_medium_poster_card
         }
     }
 

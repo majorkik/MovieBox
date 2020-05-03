@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="title_feature_auth">Auth module</string>
-
     <!--    Errors-->
     <string name="nav_retry">Повторить попытку</string>
 

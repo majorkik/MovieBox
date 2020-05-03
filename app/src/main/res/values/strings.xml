@@ -11,4 +11,11 @@
 
     <!--    Описание кнопок-->
     <string name="button_search">Поиск</string>
+
+    <string name="title_feature_auth">Auth module</string>
+    <string name="title_feature_collections">Collections module</string>
+    <string name="title_feature_details">Details module</string>
+    <string name="title_feature_navigation">Navigation module</string>
+    <string name="title_feature_search">Search module</string>
+
 </resources>

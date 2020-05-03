@@ -10,7 +10,7 @@ import com.majorik.library.base.extensions.displayImageWithCenterCrop
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startDetailsActivityWithId
 import com.majorik.library.base.utils.PACKAGE_NAME
-import com.majorik.moviebox.feature.collections.databinding.ItemSmallPosterCardBinding
+import com.majorik.moviebox.feature.collections.databinding.ItemCollectionSmallPosterCardBinding
 
 class TVCollectionAdapter() : RecyclerView.Adapter<CollectionViewHolder>() {
 
@@ -19,7 +19,7 @@ class TVCollectionAdapter() : RecyclerView.Adapter<CollectionViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CollectionViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding =
-            ItemSmallPosterCardBinding.inflate(layoutInflater, parent, false)
+            ItemCollectionSmallPosterCardBinding.inflate(layoutInflater, parent, false)
 
         return CollectionViewHolder(binding)
     }
@@ -42,7 +42,7 @@ class TVCollectionAdapter() : RecyclerView.Adapter<CollectionViewHolder>() {
         holder.bindTo(tvs[position])
     }
 
-    class CollectionViewHolder(private val parent: ItemSmallPosterCardBinding) :
+    class CollectionViewHolder(private val parent: ItemCollectionSmallPosterCardBinding) :
         RecyclerView.ViewHolder(parent.root) {
         fun bindTo(tv: TV) {
             parent.placeholderText.text = tv.name

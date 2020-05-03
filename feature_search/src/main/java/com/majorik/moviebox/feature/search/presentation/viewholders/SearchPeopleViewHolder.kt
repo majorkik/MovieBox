@@ -13,7 +13,7 @@ internal class SearchPeopleViewHolder(val parent: ItemPersonDetailedBinding) : R
             parent.pName.text = it.name
             parent.pImage.displayImageWithCenterCrop(
                 UrlConstants.TMDB_PROFILE_SIZE_185 + it.profilePath,
-                R.drawable.placholder_profile_image
+                com.majorik.moviebox.feature.search.R.drawable.placholder_profile_image
             )
             parent.pKnowForDepartment.text = it.knowForDepartment
         }

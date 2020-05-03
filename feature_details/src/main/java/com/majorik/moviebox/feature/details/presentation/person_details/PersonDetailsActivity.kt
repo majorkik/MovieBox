@@ -85,7 +85,7 @@ class PersonDetailsActivity : BaseSlidingActivity() {
             filmographyAdapter?.changeViewType(isGrid)
 
             if (isGrid) {
-                btn_view_type.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_list))
+                btn_view_type.setImageDrawable(ContextCompat.getDrawable(this, com.majorik.moviebox.feature.details.R.drawable.ic_list))
             } else {
                 btn_view_type.setImageDrawable(
                     ContextCompat.getDrawable(

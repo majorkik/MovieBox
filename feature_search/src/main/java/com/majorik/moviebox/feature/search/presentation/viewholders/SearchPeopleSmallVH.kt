@@ -11,8 +11,8 @@ internal class SearchPeopleSmallVH(val parent: ItemPersonSmallCardBinding) : Rec
     fun bindTo(item: Person?) {
         item?.let {
             parent.pImage.load(UrlConstants.TMDB_PROFILE_SIZE_185 + it.profilePath) {
-                error(R.drawable.placholder_profile_image)
-                placeholder(R.drawable.placholder_profile_image)
+                error(com.majorik.moviebox.feature.search.R.drawable.placholder_profile_image)
+                placeholder(com.majorik.moviebox.feature.search.R.drawable.placholder_profile_image)
             }
         }
     }

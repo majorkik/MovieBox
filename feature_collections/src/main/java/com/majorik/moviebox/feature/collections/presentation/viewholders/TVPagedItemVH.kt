@@ -4,9 +4,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.majorik.moviebox.feature.collections.domain.tmdbModels.tv.TV
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.extensions.displayImageWithCenterCrop
-import com.majorik.moviebox.feature.collections.databinding.ItemMediumPosterCardBinding
+import com.majorik.moviebox.feature.collections.databinding.ItemCollectionMediumPosterCardBinding
 
-class TVPagedItemVH(val parent: ItemMediumPosterCardBinding) :
+class TVPagedItemVH(val parent: ItemCollectionMediumPosterCardBinding) :
     RecyclerView.ViewHolder(parent.root) {
     fun bindTo(tv: TV?) {
         tv?.let {

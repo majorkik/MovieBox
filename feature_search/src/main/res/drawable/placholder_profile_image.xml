@@ -8,7 +8,7 @@
 
     <item
         android:bottom="14dp"
-        android:drawable="@drawable/ic_profile"
+        android:drawable="@drawable/ic_search"
         android:left="14dp"
         android:right="14dp"
         android:top="14dp" />
