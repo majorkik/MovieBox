@@ -1,14 +1,12 @@
 plugins {
-    //    id(GradlePluginId.DETEKT)
-    id(GradlePluginId.KTLINT_GRADLE)
-    id(GradlePluginId.GRADLE_VERSION_PLUGIN)
-    id(GradlePluginId.KOTLIN_JVM) apply false
-    id(GradlePluginId.KOTLIN_ANDROID) apply false
-    id(GradlePluginId.KOTLIN_ANDROID_EXTENSIONS) apply false
-    id(GradlePluginId.ANDROID_APPLICATION) apply false
-    id(GradlePluginId.ANDROID_DYNAMIC_FEATURE) apply false
-    id(GradlePluginId.ANDROID_LIBRARY) apply false
-//    id(GradlePluginId.SAFE_ARGS) apply false
+    id(GradlePluginId.KTLINT_GRADLE) version GradlePluginVersion.KTLINT_GRADLE
+    id(GradlePluginId.GRADLE_VERSION_PLUGIN) version GradlePluginVersion.GRADLE_VERSION_PLUGIN
+    id(GradlePluginId.KOTLIN_JVM) version GradlePluginVersion.KOTLIN apply false
+    id(GradlePluginId.KOTLIN_ANDROID) version GradlePluginVersion.KOTLIN apply false
+    id(GradlePluginId.KOTLIN_ANDROID_EXTENSIONS) version GradlePluginVersion.KOTLIN apply false
+    id(GradlePluginId.ANDROID_APPLICATION) version GradlePluginVersion.ANDROID_GRADLE apply false
+    id(GradlePluginId.ANDROID_LIBRARY) version GradlePluginVersion.ANDROID_GRADLE apply false
+    id(GradlePluginId.ANDROID_DYNAMIC_FEATURE) version GradlePluginVersion.ANDROID_GRADLE apply false
 }
 
 // all projects = root project + sub projects
