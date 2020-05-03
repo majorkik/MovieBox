@@ -84,7 +84,7 @@
                             android:layout_gravity="bottom"
                             android:layout_marginStart="2dp"
                             android:fontFamily="@font/cc_montserrat_semibold"
-                            android:text="@string/max_rate_with_slash"
+                            android:text="@string/details_max_rate_with_slash"
                             android:textColor="@color/mercury"
                             android:textSize="12sp" />
 
@@ -134,7 +134,7 @@
                             android:drawablePadding="16dp"
                             android:fontFamily="@font/cc_montserrat_medium"
                             android:gravity="center"
-                            android:text="@string/watch_trailer"
+                            android:text="@string/details_watch_trailer"
                             android:textColor="@color/mine_shaft"
                             android:textSize="14sp" />
                     </androidx.cardview.widget.CardView>
@@ -189,7 +189,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/overview"
+                        android:text="@string/details_overview"
                         android:textAppearance="@style/Details.Header" />
 
                     <TextView
@@ -220,7 +220,7 @@
                     style="@style/Details.HeaderDimens"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/facts"
+                    android:text="@string/details_facts"
                     android:textAppearance="@style/Details.Header" />
 
                 <TextView
@@ -229,7 +229,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
-                    android:text="@string/original_title"
+                    android:text="@string/details_original_title"
                     android:textAppearance="@style/Details.InfoTextLight" />
 
                 <TextView
@@ -253,14 +253,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/status"
+                        android:text="@string/details_status"
                         android:textAppearance="@style/Details.InfoTextLight" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/runtime"
+                        android:text="@string/details_runtime"
                         android:textAppearance="@style/Details.InfoTextLight" />
                 </LinearLayout>
 
@@ -302,14 +302,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/original_language"
+                        android:text="@string/details_original_language"
                         android:textAppearance="@style/Details.InfoTextLight" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/release_date"
+                        android:text="@string/details_release_date"
                         android:textAppearance="@style/Details.InfoTextLight" />
                 </LinearLayout>
 
@@ -350,14 +350,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/budget"
+                        android:text="@string/details_budget"
                         android:textAppearance="@style/Details.InfoTextLight" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/revenue"
+                        android:text="@string/details_revenue"
                         android:textAppearance="@style/Details.InfoTextLight" />
                 </LinearLayout>
 
@@ -392,7 +392,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@string/company_production"
+                    android:text="@string/details_company_production"
                     android:textAppearance="@style/Details.InfoTextLight" />
 
                 <TextView
@@ -408,7 +408,7 @@
                     style="@style/Details.HeaderDimens"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/persons"
+                    android:text="@string/details_persons"
                     android:textAppearance="@style/Details.Header" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -428,7 +428,7 @@
                     style="@style/Details.HeaderDimens"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/images"
+                    android:text="@string/details_images"
                     android:textAppearance="@style/Details.Header" />
 
                 <LinearLayout
@@ -474,7 +474,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="24dp"
-                    android:text="@string/additional_options"
+                    android:text="@string/details_additional_options"
                     android:textAppearance="@style/Details.Header" />
 
                 <HorizontalScrollView
@@ -524,7 +524,7 @@
                                     android:layout_marginBottom="8dp"
                                     android:fontFamily="@font/cc_montserrat_semibold"
                                     android:gravity="center"
-                                    android:text="@string/trailers"
+                                    android:text="@string/details_trailers"
                                     android:textColor="@color/mine_shaft"
                                     android:textSize="10sp" />
 
@@ -562,7 +562,7 @@
                                     android:layout_marginBottom="8dp"
                                     android:fontFamily="@font/cc_montserrat_semibold"
                                     android:gravity="center"
-                                    android:text="@string/comments"
+                                    android:text="@string/details_comments"
                                     android:textColor="@color/mine_shaft"
                                     android:textSize="10sp" />
 
@@ -600,7 +600,7 @@
                                     android:layout_marginBottom="8dp"
                                     android:fontFamily="@font/cc_montserrat_semibold"
                                     android:gravity="center"
-                                    android:text="@string/reviews"
+                                    android:text="@string/details_reviews"
                                     android:textColor="@color/mine_shaft"
                                     android:textSize="10sp" />
 
@@ -638,7 +638,7 @@
                                     android:layout_marginBottom="8dp"
                                     android:fontFamily="@font/cc_montserrat_semibold"
                                     android:gravity="center"
-                                    android:text="@string/recommendations_and_similar"
+                                    android:text="@string/details_recommendations_and_similar"
                                     android:textColor="@color/mine_shaft"
                                     android:textSize="10sp" />
 

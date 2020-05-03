@@ -114,7 +114,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="start|center_vertical"
                             android:padding="8dp"
-                            android:text="@string/watch_trailer" />
+                            android:text="@string/details_watch_trailer" />
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -164,7 +164,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/overview"
+                    android:text="@string/details_overview"
                     android:textAppearance="@style/HeaderMedium" />
 
                 <TextView
@@ -190,14 +190,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/facts"
+                        android:text="@string/details_facts"
                         android:textAppearance="@style/HeaderMedium" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="@string/original_title"
+                        android:text="@string/details_original_title"
                         android:textAppearance="@style/MediumText" />
 
                     <TextView
@@ -218,7 +218,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:layout_weight="1"
-                            android:text="@string/status"
+                            android:text="@string/details_status"
                             android:textAppearance="@style/MediumText" />
 
                         <TextView
@@ -226,7 +226,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:layout_weight="1"
-                            android:text="@string/runtime"
+                            android:text="@string/details_runtime"
                             android:textAppearance="@style/MediumText" />
                     </LinearLayout>
 
@@ -266,7 +266,7 @@
                             android:layout_marginTop="8dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/cc_montserrat_regular"
-                            android:text="@string/original_language"
+                            android:text="@string/details_original_language"
                             android:textAppearance="@style/MediumText"
                             android:textColor="@color/mine_shaft"
                             android:textSize="16sp"
@@ -366,7 +366,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="@string/company_production"
+                        android:text="@string/details_company_production"
                         android:textAppearance="@style/MediumText" />
 
                     <TextView
@@ -391,7 +391,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginBottom="8dp"
-                        android:text="@string/persons"
+                        android:text="@string/details_persons"
                         android:textAppearance="@style/HeaderMedium" />
 
                     <TextView
@@ -432,7 +432,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/images"
+                    android:text="@string/details_images"
                     android:textAppearance="@style/HeaderMedium" />
 
                 <LinearLayout
@@ -477,7 +477,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
-                    android:text="@string/additional_options"
+                    android:text="@string/details_additional_options"
                     android:textAppearance="@style/HeaderMedium" />
 
                 <LinearLayout
@@ -506,7 +506,7 @@
                             android:layout_gravity="center|start"
                             android:fontFamily="@font/cc_montserrat_medium"
                             android:padding="8dp"
-                            android:text="@string/trailers"
+                            android:text="@string/details_trailers"
                             android:textColor="@color/mine_shaft"
                             android:textSize="16sp" />
 
@@ -541,7 +541,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/cc_montserrat_medium"
                             android:padding="8dp"
-                            android:text="@string/recommendations"
+                            android:text="@string/details_recommendations"
                             android:textColor="@color/mine_shaft"
                             android:textSize="16sp" />
                     </androidx.cardview.widget.CardView>
@@ -572,7 +572,7 @@
                             android:layout_gravity="center|start"
                             android:fontFamily="@font/cc_montserrat_medium"
                             android:padding="8dp"
-                            android:text="@string/reviews"
+                            android:text="@string/details_reviews"
                             android:textColor="@color/mine_shaft"
                             android:textSize="16sp" />
 
@@ -608,7 +608,7 @@
                             android:layout_gravity="center|start"
                             android:fontFamily="@font/cc_montserrat_medium"
                             android:padding="8dp"
-                            android:text="@string/all_comments"
+                            android:text="@string/details_all_comments"
                             android:textColor="@color/mine_shaft"
                             android:textSize="16sp" />
 

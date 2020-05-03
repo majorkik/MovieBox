@@ -115,7 +115,7 @@ class PersonDetailsActivity : BaseSlidingActivity() {
 
     private fun setupPager() {
         val pagerTitles: Array<String> =
-            arrayOf(getString(R.string.movies), getString(R.string.tvs))
+            arrayOf(getString(com.majorik.moviebox.feature.details.R.string.details_movies), getString(com.majorik.moviebox.feature.details.R.string.details_tvs))
         val pagerAdapter = filmographyAdapter
 
         p_view_pager.adapter = pagerAdapter

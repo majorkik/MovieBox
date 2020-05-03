@@ -109,7 +109,7 @@ class MovieCreditsAdapter(
 
             itemView.known_for_department.text = view.context.convertStringForFilmograohy(
                 cast.title,
-                view.context.getString(R.string.inline_filmography_delimiter),
+                view.context.getString(R.string.collections_inline_filmography_delimiter),
                 cast.character
             )
 

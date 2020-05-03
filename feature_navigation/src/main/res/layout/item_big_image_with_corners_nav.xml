@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
-        android:contentDescription="@string/desc_backdrop"
+        android:contentDescription="@string/navigation_desc_backdrop"
         android:scaleType="centerCrop"
         android:src="@drawable/placeholder_landscape" />
 
@@ -40,6 +40,6 @@
         android:layout_height="match_parent"
         android:transitionName="card_image"
         android:adjustViewBounds="true"
-        android:contentDescription="@string/desc_backdrop"
+        android:contentDescription="@string/navigation_desc_backdrop"
         android:scaleType="centerCrop" />
 </androidx.cardview.widget.CardView>

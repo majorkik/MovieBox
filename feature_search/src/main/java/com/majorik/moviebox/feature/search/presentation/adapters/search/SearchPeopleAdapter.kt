@@ -6,9 +6,6 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.majorik.moviebox.R
-import com.majorik.moviebox.databinding.ItemNetworkStateBinding
-import com.majorik.moviebox.databinding.ItemPersonDetailedBinding
-import com.majorik.moviebox.databinding.ItemPersonSmallCardBinding
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.moviebox.feature.search.domain.NetworkState
 import com.majorik.moviebox.feature.search.domain.tmdbModels.person.Person
@@ -17,6 +14,9 @@ import com.majorik.moviebox.feature.search.presentation.viewholders.SearchPeople
 import com.majorik.moviebox.feature.search.presentation.viewholders.SearchPeopleViewHolder
 import com.majorik.library.base.extensions.startDetailsActivityWithId
 import com.majorik.library.base.utils.PACKAGE_NAME
+import com.majorik.moviebox.feature.search.databinding.ItemNetworkStateBinding
+import com.majorik.moviebox.feature.search.databinding.ItemPersonDetailedBinding
+import com.majorik.moviebox.feature.search.databinding.ItemPersonSmallCardBinding
 import com.majorik.moviebox.feature.search.presentation.adapters.PaginationOnClickListener
 
 internal class SearchPeopleAdapter(
@@ -29,15 +29,15 @@ internal class SearchPeopleAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return when (viewType) {
-            R.layout.item_person_detailed -> SearchPeopleViewHolder(
+            com.majorik.moviebox.feature.search.R.layout.item_person_detailed -> SearchPeopleViewHolder(
                 ItemPersonDetailedBinding.inflate(layoutInflater, parent, false)
             )
 
-            R.layout.item_person_small_card -> SearchPeopleSmallVH(
+            com.majorik.moviebox.feature.search.R.layout.item_person_small_card -> SearchPeopleSmallVH(
                 ItemPersonSmallCardBinding.inflate(layoutInflater, parent, false)
             )
 
-            R.layout.item_network_state -> NetworkStateViewHolder(
+            com.majorik.moviebox.feature.search.R.layout.item_network_state -> NetworkStateViewHolder(
                 ItemNetworkStateBinding.inflate(layoutInflater, parent, false)
             )
 
@@ -84,12 +84,12 @@ internal class SearchPeopleAdapter(
 
     override fun getItemViewType(position: Int): Int {
         return if (hasExtraRow() && position == itemCount - 1) {
-            R.layout.item_network_state
+            com.majorik.moviebox.feature.search.R.layout.item_network_state
         } else {
             if (isGrid) {
-                R.layout.item_person_small_card
+                com.majorik.moviebox.feature.search.R.layout.item_person_small_card
             } else {
-                R.layout.item_person_detailed
+                com.majorik.moviebox.feature.search.R.layout.item_person_detailed
             }
         }
     }

@@ -5,7 +5,7 @@ import com.majorik.moviebox.feature.search.domain.tmdbModels.person.Person
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.extensions.displayImageWithCenterCrop
 import com.majorik.moviebox.R
-import com.majorik.moviebox.databinding.ItemPersonDetailedBinding
+import com.majorik.moviebox.feature.search.databinding.ItemPersonDetailedBinding
 
 internal class SearchPeopleViewHolder(val parent: ItemPersonDetailedBinding) : RecyclerView.ViewHolder(parent.root) {
     fun bindTo(item: Person?) {

@@ -48,7 +48,7 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/cc_montserrat_bold"
                         android:gravity="center"
-                        android:text="@string/biography"
+                        android:text="@string/details_biography"
                         android:textAlignment="center"
                         android:textColor="@color/mine_shaft"
                         android:textSize="18sp" />
@@ -69,7 +69,7 @@
                         android:fontFamily="@font/cc_montserrat_regular"
                         android:textColor="@color/mine_shaft"
                         android:textSize="14sp"
-                        android:text="@string/date_birthday" />
+                        android:text="@string/details_date_birthday" />
 
                     <TextView
                         android:id="@+id/birthday"
@@ -97,7 +97,7 @@
                         android:fontFamily="@font/cc_montserrat_regular"
                         android:textColor="@color/mine_shaft"
                         android:textSize="14sp"
-                        android:text="@string/place_of_birth" />
+                        android:text="@string/details_place_of_birth" />
 
                     <TextView
                         android:id="@+id/place_of_birth"

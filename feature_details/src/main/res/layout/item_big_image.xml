@@ -15,5 +15,5 @@
         android:transitionName="card_image"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:contentDescription="@string/desc_backdrop" />
+        android:contentDescription="@string/details_desc_backdrop" />
 </androidx.cardview.widget.CardView>

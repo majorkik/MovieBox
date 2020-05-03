@@ -14,6 +14,10 @@ android {
         versionCode = AndroidConfig.VERSION_CODE
         versionName = AndroidConfig.VERSION_NAME
         testInstrumentationRunner = AndroidConfig.TEST_INSTRUMENTATION_RUNNER
+
+        viewBinding {
+            isEnabled = true
+        }
     }
 
     buildTypes {

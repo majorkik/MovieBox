@@ -31,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cc_rubik_one"
-                android:text="@string/all_trends"
+                android:text="@string/navigation_all_trends"
                 android:textAllCaps="true"
                 android:textColor="@color/mine_shaft"
                 android:textSize="16sp" />
@@ -41,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="@string/most_viewed_movies_in_the_last_month"
+                android:text="@string/navigation_most_viewed_movies_in_the_last_month"
                 android:textColor="@color/mine_shaft"
                 android:textSize="10sp" />
 

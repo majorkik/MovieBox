@@ -110,7 +110,7 @@
     <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
         <item name="android:textColor">@color/mine_shaft</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:fontFamily">@font/cc_montserrat_regular</item>
     </style>
 
     <style name="AppTheme.TabTextStyle" parent="Widget.MaterialComponents.TabLayout">

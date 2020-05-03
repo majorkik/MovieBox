@@ -16,6 +16,10 @@ android {
         testInstrumentationRunner = AndroidConfig.TEST_INSTRUMENTATION_RUNNER
     }
 
+    viewBinding {
+        isEnabled = true
+    }
+
     buildTypes {
         getByName(BuildType.RELEASE) {
             isMinifyEnabled = BuildTypeRelease.isMinifyEnabled

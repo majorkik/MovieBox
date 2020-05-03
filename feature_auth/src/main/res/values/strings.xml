@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_feature_auth">Auth module</string>
+
+    <!--    Errors-->
+    <string name="nav_retry">Повторить попытку</string>
+
+    <!--    Base variable-->
+    <string name="nav_the_movie_database" translatable="false">The Movie Database</string>
+
+    <!--    Страница логина-->
+    <string name="nav_app_logo_box" translatable="false">Box</string>
+    <string name="nav_app_logo_movie" translatable="false">Movie</string>
+    <string name="nav_about_the_movie_database">Что такое <b>The Movie Database?</b></string>
+    <string name="nav_what">Что такое</string>
+    <string name="nav_login_with_tmdb">Войти через TMDb</string>
+    <string name="nav_login_with_guest">Войти как гость</string>
+    <string name="nav_recommendation">Рекомендуется</string>
+    <string name="nav_most_features_will_not_be_available">Большая часть функций будет недоступна</string>
+</resources>

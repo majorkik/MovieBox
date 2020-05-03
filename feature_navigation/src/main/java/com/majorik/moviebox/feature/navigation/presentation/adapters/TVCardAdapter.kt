@@ -7,11 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.tv.TV
 import com.majorik.moviebox.feature.navigation.presentation.adapters.TVCardAdapter.TVCardViewHolder
 import com.majorik.library.base.constants.UrlConstants
-import com.majorik.moviebox.databinding.ItemBigImageWithCornersBinding
 import com.majorik.library.base.extensions.displayImageWithCenterCrop
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startDetailsActivityWithId
 import com.majorik.library.base.utils.PACKAGE_NAME
+import com.majorik.moviebox.feature.navigation.databinding.ItemBigImageWithCornersBinding
 import kotlinx.android.synthetic.main.item_big_image_with_corners_nav.view.*
 
 class TVCardAdapter(private val activity: FragmentActivity) :

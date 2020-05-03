@@ -95,10 +95,10 @@ class MovieCollectionsActivity : BaseSlidingActivity() {
     private fun configureTabLayout() {
         val pagerTitles: Array<String> =
             arrayOf(
-                getString(R.string.now_playing),
-                getString(R.string.collection_popular),
-                getString(R.string.collection_top_rated),
-                getString(R.string.upcoming)
+                getString(com.majorik.moviebox.feature.collections.R.string.collections_now_playing),
+                getString(com.majorik.moviebox.feature.collections.R.string.collections_collection_popular),
+                getString(com.majorik.moviebox.feature.collections.R.string.collections_collection_top_rated),
+                getString(com.majorik.moviebox.feature.collections.R.string.collections_upcoming)
             )
 
         pagerAdapter = FragmentsPagerAdapter(

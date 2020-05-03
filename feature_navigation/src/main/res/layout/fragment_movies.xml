@@ -71,7 +71,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/collection_popular"
+                        android:text="@string/navigation_collection_popular"
                         android:theme="@style/HeaderMedium" />
 
                     <TextView
@@ -80,7 +80,7 @@
                         android:layout_gravity="center_vertical"
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
-                        android:text="@string/more"
+                        android:text="@string/navigation_more"
                         android:textColor="@color/colorAccent"
                         android:theme="@style/HeaderSmall" />
                 </LinearLayout>
@@ -118,7 +118,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/now_playing"
+                        android:text="@string/navigation_now_playing"
                         android:theme="@style/HeaderMedium" />
 
                     <TextView
@@ -127,7 +127,7 @@
                         android:layout_gravity="center_vertical"
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
-                        android:text="@string/more"
+                        android:text="@string/navigation_more"
                         android:textColor="@color/colorAccent"
                         android:theme="@style/HeaderSmall" />
                 </LinearLayout>
@@ -170,7 +170,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/in_trends"
+                        android:text="@string/navigation_in_trends"
                         android:theme="@style/HeaderMedium" />
 
                     <TextView
@@ -179,7 +179,7 @@
                         android:layout_gravity="center_vertical"
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
-                        android:text="@string/more"
+                        android:text="@string/navigation_more"
                         android:textColor="@color/colorAccent"
                         android:theme="@style/HeaderSmall" />
                 </LinearLayout>
@@ -217,7 +217,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/upcoming"
+                        android:text="@string/navigation_upcoming"
                         android:theme="@style/HeaderMedium" />
 
                     <TextView
@@ -226,7 +226,7 @@
                         android:layout_gravity="center_vertical"
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
-                        android:text="@string/more"
+                        android:text="@string/navigation_more"
                         android:textColor="@color/colorAccent"
                         android:theme="@style/HeaderSmall" />
                 </LinearLayout>
@@ -268,7 +268,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/genres"
+                        android:text="@string/navigation_genres"
                         android:theme="@style/HeaderMedium" />
 
                     <TextView
@@ -277,7 +277,7 @@
                         android:layout_gravity="center_vertical"
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
-                        android:text="@string/more"
+                        android:text="@string/navigation_more"
                         android:textColor="@color/colorAccent"
                         android:theme="@style/HeaderSmall" />
                 </LinearLayout>
@@ -319,7 +319,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/trailers"
+                        android:text="@string/navigation_trailers"
                         android:theme="@style/HeaderMedium" />
 
                     <TextView
@@ -328,7 +328,7 @@
                         android:layout_gravity="center_vertical"
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
-                        android:text="@string/more"
+                        android:text="@string/navigation_more"
                         android:textColor="@color/colorAccent"
                         android:theme="@style/HeaderSmall" />
                 </LinearLayout>
@@ -370,7 +370,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/popular_peoples"
+                        android:text="@string/navigation_popular_peoples"
                         android:theme="@style/HeaderMedium" />
 
                     <TextView
@@ -379,7 +379,7 @@
                         android:layout_gravity="center_vertical"
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
-                        android:text="@string/more"
+                        android:text="@string/navigation_more"
                         android:textColor="@color/colorAccent"
                         android:theme="@style/HeaderSmall" />
                 </LinearLayout>

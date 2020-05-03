@@ -130,8 +130,8 @@ class FirstStartActivity : AppCompatActivity() {
     }
 
     private fun setAboutTmdbTextStyle() {
-        val what = getString(R.string.what)
-        val tmdb = getString(R.string.the_movie_database)
+        val what = getString(com.majorik.moviebox.feature.auth.R.string.nav_what)
+        val tmdb = getString(com.majorik.moviebox.feature.auth.R.string.nav_the_movie_database)
 
         val fullText = "$what $tmdb?"
         SpannableStringBuilder(fullText).apply {

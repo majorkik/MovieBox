@@ -21,8 +21,8 @@ class ImageSliderAdapter(private val backdropImages: List<String>) : PagerAdapte
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val layoutInflater =
             container.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view: View = layoutInflater.inflate(R.layout.item_big_image, container, false)
-        val imageView: ImageView = view.findViewById(R.id.slider_image)
+        val view: View = layoutInflater.inflate(com.majorik.moviebox.feature.details.R.layout.item_big_image, container, false)
+        val imageView: ImageView = view.findViewById(com.majorik.moviebox.feature.details.R.id.slider_image)
         val viewPager: ViewPager = container as ViewPager
 
         imageView.displayImageWithCenterInside(UrlConstants.TMDB_BACKDROP_SIZE_780 + backdropImages[position])

@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
-            android:contentDescription="@string/desc_collection_image" />
+            android:contentDescription="@string/details_desc_collection_image" />
     </androidx.cardview.widget.CardView>
 
     <TextView

@@ -2,8 +2,8 @@ package com.majorik.moviebox.feature.search.presentation.viewholders
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.majorik.moviebox.feature.search.databinding.ItemNetworkStateBinding
 import com.majorik.moviebox.feature.search.domain.NetworkState
-import com.majorik.moviebox.databinding.ItemNetworkStateBinding
 import com.majorik.moviebox.feature.search.presentation.adapters.PaginationOnClickListener
 
 internal class NetworkStateViewHolder(private val containerView: ItemNetworkStateBinding) :

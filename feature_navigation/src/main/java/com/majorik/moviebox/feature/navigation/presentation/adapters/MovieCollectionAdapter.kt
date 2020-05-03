@@ -4,13 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.majorik.moviebox.feature.navigation.presentation.adapters.MovieCollectionAdapter.MovieViewHolder
-import com.majorik.moviebox.databinding.ItemSmallPosterCardBinding
 import com.majorik.library.base.extensions.displayImageWithCenterCrop
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startDetailsActivityWithId
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.movie.Movie
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.utils.PACKAGE_NAME
+import com.majorik.moviebox.feature.navigation.databinding.ItemSmallPosterCardBinding
 import kotlinx.android.synthetic.main.item_small_poster_card_nav.view.*
 
 class MovieCollectionAdapter : RecyclerView.Adapter<MovieViewHolder>() {

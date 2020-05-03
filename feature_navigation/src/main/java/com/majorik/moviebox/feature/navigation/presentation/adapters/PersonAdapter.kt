@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.person.Person
 import com.majorik.library.base.constants.UrlConstants
-import com.majorik.moviebox.databinding.ItemPersonProfileCardBinding
 import com.majorik.library.base.extensions.displayImageWithCenterInside
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startDetailsActivityWithId
 import com.majorik.library.base.utils.PACKAGE_NAME
+import com.majorik.moviebox.feature.navigation.databinding.ItemPersonProfileCardBinding
 
 class PersonAdapter() : RecyclerView.Adapter<PersonAdapter.PersonViewHolder>() {
 

@@ -100,10 +100,10 @@ class TVCollectionsActivity : BaseSlidingActivity() {
     private fun configureTabLayout() {
         val pagerTitles: Array<String> =
             arrayOf(
-                getString(R.string.collection_popular),
-                getString(R.string.air_today),
-                getString(R.string.on_the_air),
-                getString(R.string.collection_top_rated)
+                getString(R.string.collections_collection_popular),
+                getString(R.string.collections_air_today),
+                getString(R.string.collections_on_the_air),
+                getString(R.string.collections_collection_top_rated)
             )
 
         pagerAdapter = FragmentsPagerAdapter(

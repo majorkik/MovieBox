@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_feature_search">Search module</string>
+
+    <string name="search_retry">Повторить попытку</string>
+    <string name="search_network_state_error_retry">Произошла ошибка</string>
+
+    <string name="search_max_rate_with_slash" translatable="false">/10</string>
+    <string name="search_desc_collection_image">Изображение коллекции</string>
+    <string name="search_tvs">Сериалы</string>
+    <string name="search_movies">Фильмы</string>
+    <string name="search_peoples">Люди</string>
+</resources>

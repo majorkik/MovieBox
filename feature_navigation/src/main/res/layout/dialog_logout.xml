@@ -22,7 +22,7 @@
             android:layout_marginTop="24dp"
             android:fontFamily="@font/cc_montserrat_bold"
             android:gravity="center"
-            android:text="@string/are_you_sure_you_want_to_go_out"
+            android:text="@string/navigation_are_you_sure_you_want_to_go_out"
             android:textColor="@color/mine_shaft"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -61,7 +61,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/cc_montserrat_medium"
                     android:gravity="center"
-                    android:text="@string/cancel"
+                    android:text="@string/navigation_cancel"
                     android:textColor="@color/mine_shaft"
                     android:textSize="14sp" />
 
@@ -87,7 +87,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/cc_montserrat_medium"
                     android:gravity="center"
-                    android:text="@string/logout"
+                    android:text="@string/navigation_logout"
                     android:textColor="@color/mine_shaft"
                     android:textSize="14sp" />
 

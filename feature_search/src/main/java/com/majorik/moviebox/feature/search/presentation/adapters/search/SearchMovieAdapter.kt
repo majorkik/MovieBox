@@ -6,19 +6,18 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.majorik.moviebox.R
-import com.majorik.moviebox.databinding.ItemCardWithDetailsBinding
-import com.majorik.moviebox.databinding.ItemMediumPosterCardBinding
-import com.majorik.moviebox.databinding.ItemNetworkStateBinding
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startDetailsActivityWithId
 import com.majorik.library.base.utils.PACKAGE_NAME
+import com.majorik.moviebox.feature.search.databinding.ItemCardWithDetailsBinding
+import com.majorik.moviebox.feature.search.databinding.ItemMediumPosterCardBinding
+import com.majorik.moviebox.feature.search.databinding.ItemNetworkStateBinding
 import com.majorik.moviebox.feature.search.domain.NetworkState
 import com.majorik.moviebox.feature.search.domain.tmdbModels.movie.Movie
 import com.majorik.moviebox.feature.search.presentation.adapters.PaginationOnClickListener
 import com.majorik.moviebox.feature.search.presentation.viewholders.NetworkStateViewHolder
 import com.majorik.moviebox.feature.search.presentation.viewholders.SearchMovieDetailedVH
 import com.majorik.moviebox.feature.search.presentation.viewholders.SearchMovieSmallVH
-import kotlinx.android.synthetic.main.item_search_medium_poster_card.view.*
 
 internal class SearchMovieAdapter(
     private val callback: PaginationOnClickListener
@@ -30,11 +29,11 @@ internal class SearchMovieAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return when (viewType) {
-            R.layout.item_card_with_details -> SearchMovieDetailedVH(
+            com.majorik.moviebox.feature.search.R.layout.item_card_with_details -> SearchMovieDetailedVH(
                 ItemCardWithDetailsBinding.inflate(layoutInflater, parent, false)
             )
 
-            R.layout.item_network_state -> NetworkStateViewHolder(
+            com.majorik.moviebox.feature.search.R.layout.item_network_state -> NetworkStateViewHolder(
                 ItemNetworkStateBinding.inflate(
                     layoutInflater,
                     parent,
@@ -42,7 +41,7 @@ internal class SearchMovieAdapter(
                 )
             )
 
-            R.layout.item_medium_poster_card -> SearchMovieSmallVH(
+            com.majorik.moviebox.feature.search.R.layout.item_medium_poster_card -> SearchMovieSmallVH(
                 ItemMediumPosterCardBinding.inflate(
                     layoutInflater,
                     parent,
@@ -93,12 +92,12 @@ internal class SearchMovieAdapter(
 
     override fun getItemViewType(position: Int): Int {
         return if (hasExtraRow() && position == itemCount - 1) {
-            R.layout.item_network_state
+            com.majorik.moviebox.feature.search.R.layout.item_network_state
         } else {
             if (isGrid) {
-                R.layout.item_medium_poster_card
+                com.majorik.moviebox.feature.search.R.layout.item_medium_poster_card
             } else {
-                R.layout.item_card_with_details
+                com.majorik.moviebox.feature.search.R.layout.item_card_with_details
             }
         }
     }

@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/rubik_one_regular"
-            android:text="@string/app_logo_movie"
+            android:text="@string/nav_app_logo_movie"
             android:textAllCaps="true"
             android:textColor="@color/colorWhite"
             android:textSize="48sp" />
@@ -47,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/rubik_one_regular"
-            android:text="@string/app_logo_box"
+            android:text="@string/nav_app_logo_box"
             android:textAllCaps="true"
             android:textColor="@color/colorAccent"
             android:textSize="48sp" />
@@ -76,7 +76,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="4dp"
             android:fontFamily="@font/cc_montserrat_regular"
-            android:text="@string/about_the_movie_database"
+            android:text="@string/nav_about_the_movie_database"
             android:textColor="@color/colorWhite"
             android:textSize="14sp" />
     </androidx.cardview.widget.CardView>
@@ -113,7 +113,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cc_montserrat_medium"
-                android:text="@string/login_with_tmdb"
+                android:text="@string/nav_login_with_tmdb"
                 android:textColor="@color/mine_shaft"
                 android:textSize="18sp" />
 
@@ -121,7 +121,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cc_montserrat_regular"
-                android:text="@string/recommendation"
+                android:text="@string/nav_recommendation"
                 android:textColor="@color/mine_shaft"
                 android:textSize="12sp" />
 
@@ -159,7 +159,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cc_montserrat_medium"
-                android:text="@string/login_with_guest"
+                android:text="@string/nav_login_with_guest"
                 android:textColor="@color/mine_shaft"
                 android:textSize="18sp" />
 
@@ -167,7 +167,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cc_montserrat_regular"
-                android:text="@string/most_features_will_not_be_available"
+                android:text="@string/nav_most_features_will_not_be_available"
                 android:textColor="@color/mine_shaft"
                 android:textSize="12sp" />
 

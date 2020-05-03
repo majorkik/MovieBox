@@ -105,7 +105,7 @@
                 android:layout_gravity="bottom"
                 android:layout_marginStart="2dp"
                 android:fontFamily="@font/cc_montserrat_semibold"
-                android:text="@string/max_rate_with_slash"
+                android:text="@string/search_max_rate_with_slash"
                 android:textColor="@color/mercury"
                 android:textSize="10sp" />
 

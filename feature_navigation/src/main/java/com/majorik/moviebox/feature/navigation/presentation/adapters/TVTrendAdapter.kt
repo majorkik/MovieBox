@@ -4,13 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.tv.TV
-import com.majorik.moviebox.databinding.ItemTrendCardWithTitleBinding
-import com.majorik.moviebox.databinding.ItemTrendLastItemCardBinding
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startDetailsActivityWithId
 import com.majorik.library.base.extensions.toDate
 import com.majorik.library.base.utils.GenresStorageObject
 import com.majorik.library.base.utils.PACKAGE_NAME
+import com.majorik.moviebox.feature.navigation.databinding.ItemTrendCardWithTitleBinding
+import com.majorik.moviebox.feature.navigation.databinding.ItemTrendLastItemCardBinding
 import kotlin.math.roundToInt
 
 class TVTrendAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -96,6 +96,6 @@ class TVTrendAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    class TVTrendLastItemVH(private val parent: ItemTrendLastItemCardBinding) :
+    class TVTrendLastItemVH(parent: ItemTrendLastItemCardBinding) :
         RecyclerView.ViewHolder(parent.root)
 }

@@ -46,7 +46,7 @@ class ClearCacheDialog : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        cache_size.text = getString(com.majorik.moviebox.R.string.cache_size_with_format, cacheSize)
+        cache_size.text = getString(R.string.navigation_cache_size_with_format, cacheSize)
         setSpannableCacheSizeText()
 
         btn_cancel.setOnClickListener {

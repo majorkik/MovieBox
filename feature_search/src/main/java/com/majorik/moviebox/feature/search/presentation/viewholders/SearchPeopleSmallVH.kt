@@ -5,7 +5,7 @@ import coil.api.load
 import com.majorik.moviebox.feature.search.domain.tmdbModels.person.Person
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.moviebox.R
-import com.majorik.moviebox.databinding.ItemPersonSmallCardBinding
+import com.majorik.moviebox.feature.search.databinding.ItemPersonSmallCardBinding
 
 internal class SearchPeopleSmallVH(val parent: ItemPersonSmallCardBinding) : RecyclerView.ViewHolder(parent.root) {
     fun bindTo(item: Person?) {

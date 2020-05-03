@@ -2,10 +2,10 @@ package com.majorik.moviebox.feature.collections.presentation.viewholders
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.majorik.moviebox.feature.collections.databinding.ItemNetworkStateBinding
 import com.majorik.moviebox.feature.collections.domain.NetworkState
 import com.majorik.moviebox.feature.collections.presentation.adapters.PagingMovieCollectionAdapter
 import com.majorik.moviebox.feature.collections.presentation.adapters.PagingTVCollectionAdapter
-import com.majorik.moviebox.databinding.ItemNetworkStateBinding
 import kotlinx.android.synthetic.main.item_collection_network_state.view.*
 
 class NetworkStateViewHolder(containerView: ItemNetworkStateBinding) :

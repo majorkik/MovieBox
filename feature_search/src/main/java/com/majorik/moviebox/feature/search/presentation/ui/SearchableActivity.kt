@@ -64,9 +64,9 @@ class SearchableActivity : AppCompatActivity() {
     private fun configureTabLayout() {
         val pagerTitles: Array<String> =
             arrayOf(
-                getString(R.string.movies),
-                getString(R.string.tvs),
-                getString(R.string.peoples)
+                getString(com.majorik.moviebox.feature.search.R.string.search_movies),
+                getString(com.majorik.moviebox.feature.search.R.string.search_tvs),
+                getString(com.majorik.moviebox.feature.search.R.string.search_peoples)
             )
 
         pagerAdapter = FragmentsPagerAdapter(

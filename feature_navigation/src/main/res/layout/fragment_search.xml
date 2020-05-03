@@ -56,7 +56,7 @@
                         android:gravity="center"
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp"
-                        android:text="@string/enter_your_request"
+                        android:text="@string/navigation_enter_your_request"
                         android:textColor="@color/mine_shaft_alpha_40"
                         android:textSize="14sp" />
                 </androidx.cardview.widget.CardView>
@@ -105,7 +105,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:contentDescription="@string/movie"
+                        android:contentDescription="@string/navigation_movie"
                         android:scaleType="centerCrop"
                         android:src="@drawable/backdrop_movie"
                         tools:background="@color/mine_shaft" />
@@ -116,7 +116,7 @@
                         android:background="@color/mine_shaft_alpha_40"
                         android:fontFamily="@font/cc_rubik_one"
                         android:gravity="center"
-                        android:text="@string/movie"
+                        android:text="@string/navigation_movie"
                         android:textColor="@color/colorWhite"
                         android:textSize="24sp" />
                 </androidx.cardview.widget.CardView>
@@ -134,7 +134,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:contentDescription="@string/tv"
+                        android:contentDescription="@string/navigation_tv"
                         android:scaleType="centerCrop"
                         android:src="@drawable/backdrop_tv"
                         tools:background="@color/mine_shaft" />
@@ -145,7 +145,7 @@
                         android:background="@color/mine_shaft_alpha_40"
                         android:fontFamily="@font/cc_rubik_one"
                         android:gravity="center"
-                        android:text="@string/tv"
+                        android:text="@string/navigation_tv"
                         android:textColor="@color/colorWhite"
                         android:textSize="24sp" />
 

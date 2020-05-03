@@ -57,7 +57,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/cc_rubik_one"
             android:gravity="center"
-            android:text="@string/filmography"
+            android:text="@string/details_filmography"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@color/mine_shaft"

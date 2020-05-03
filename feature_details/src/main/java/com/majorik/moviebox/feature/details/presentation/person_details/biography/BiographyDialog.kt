@@ -20,7 +20,7 @@ class BiographyDialog : DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        biography = arguments?.getString(BIOGRAPHY_ARG) ?: getString(R.string.is_absent)
+        biography = arguments?.getString(BIOGRAPHY_ARG) ?: getString(com.majorik.moviebox.feature.details.R.string.details_is_absent)
         birthday = arguments?.getString(BIRTHDAY_ARG) ?: "-"
         placeOfBirth = arguments?.getString(PLACE_OF_BIRTH_ARG) ?: ""
     }
@@ -50,7 +50,7 @@ class BiographyDialog : DialogFragment() {
             view.biography.text = biography
         } else {
             view.biography.gravity = Gravity.CENTER
-            view.biography.text = getString(R.string.is_absent)
+            view.biography.text = getString(com.majorik.moviebox.feature.details.R.string.details_is_absent)
         }
 
         if (birthday.isNotEmpty() && birthday != "-") {

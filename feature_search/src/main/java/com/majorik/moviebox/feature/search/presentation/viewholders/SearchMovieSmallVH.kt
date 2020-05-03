@@ -3,8 +3,8 @@ package com.majorik.moviebox.feature.search.presentation.viewholders
 import androidx.recyclerview.widget.RecyclerView
 import com.majorik.moviebox.feature.search.domain.tmdbModels.movie.Movie
 import com.majorik.library.base.constants.UrlConstants
-import com.majorik.moviebox.databinding.ItemMediumPosterCardBinding
 import com.majorik.library.base.extensions.displayImageWithCenterCrop
+import com.majorik.moviebox.feature.search.databinding.ItemMediumPosterCardBinding
 
 internal class SearchMovieSmallVH(val parent: ItemMediumPosterCardBinding) :
     RecyclerView.ViewHolder(parent.root) {

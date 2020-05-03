@@ -1,19 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <!--    Person page-->
-    <string name="inline_filmography_delimiter">как</string>
+    <string name="title_feature_collections">Collections module</string>
 
     <!--    Страница Фильмы & Сериалы (коллекции)-->
-    <string name="collections">Коллекции</string>
-    <string name="collection_popular">Популярные</string>
-    <string name="collection_top_rated">Самые популярные</string>
-    <string name="now_playing">Сейчас в кино</string>
-    <string name="upcoming">Ожидаемые</string>
-    <string name="on_the_air">В эфире</string>
-    <string name="air_today">Сегодня в эфире</string>
-    <string name="most_viewed_movies_in_the_last_month">Тренды фильмов за последний месяц</string>
-    <string name="popular_peoples">Популярные люди</string>
-    <string name="all_trends">Все тренды</string>
-    <string name="in_trends">В тренде</string>
+    <string name="collections_collections">Коллекции</string>
+    <string name="collections_collection_popular">Популярные</string>
+    <string name="collections_collection_top_rated">Самые популярные</string>
+    <string name="collections_now_playing">Сейчас в кино</string>
+    <string name="collections_upcoming">Ожидаемые</string>
+    <string name="collections_on_the_air">В эфире</string>
+    <string name="collections_air_today">Сегодня в эфире</string>
+
+    <!--    Описание кнопок-->
+    <string name="collections_button_search">Поиск</string>
+
+    <!--    Описание изображений-->
+    <string name="collections_desc_collection_image">Изображение коллекции</string>
+    <string name="collections_desc_backdrop">Фоновое изображение</string>
+    <string name="collections_desc_image_episode">Изображение эпизода</string>
+    <string name="collections_desc_poster_season">Постер сезона</string>
+    <string name="collections_desc_empty_list">Пустой список</string>
+
+    <!--    Errors-->
+    <string name="collections_network_state_error_retry">Произошла ошибка</string>
+    <string name="collections_technical_error">Техническая ошибка</string>
+    <string name="collections_no_result_found">По данному запросу ничего не найдено</string>
+    <string name="collections_retry">Повторить попытку</string>
+    <string name="collections_refresh">Обновить</string>
+
+    <string name="collections_genres">Жанры</string>
+
+    <!--    Person page-->
+    <string name="collections_inline_filmography_delimiter">как</string>
 </resources>

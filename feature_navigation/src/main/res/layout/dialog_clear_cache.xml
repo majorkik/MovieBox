@@ -22,7 +22,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/cc_montserrat_bold"
-            android:text="@string/flush_cache"
+            android:text="@string/navigation_flush_cache"
             android:textColor="@color/mine_shaft"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +35,7 @@
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/cc_montserrat_regular"
             android:gravity="end"
-            android:text="@string/cache_size_with_format"
+            android:text="@string/navigation_cache_size_with_format"
             android:textColor="@color/mine_shaft"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView7"
@@ -70,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="@font/cc_montserrat_medium"
-                    android:text="@string/cancel"
+                    android:text="@string/navigation_cancel"
                     android:textColor="@color/mine_shaft"
                     android:textSize="16sp" />
             </androidx.cardview.widget.CardView>
@@ -89,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="@font/cc_montserrat_medium"
-                    android:text="@string/clear"
+                    android:text="@string/navigation_clear"
                     android:textColor="@color/mine_shaft"
                     android:textSize="16sp" />
             </androidx.cardview.widget.CardView>

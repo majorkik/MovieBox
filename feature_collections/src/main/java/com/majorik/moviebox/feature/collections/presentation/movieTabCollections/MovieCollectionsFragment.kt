@@ -77,13 +77,13 @@ class MovieCollectionsFragment(collectionType: MovieCollectionType) : Fragment()
         if (size == 0) {
             when (networkState) {
                 NetworkState.SUCCESS -> {
-                    movie_empty_list_title.text = getString(R.string.no_result_found)
+                    movie_empty_list_title.text = getString(com.majorik.moviebox.feature.collections.R.string.collections_no_result_found)
                     movie_empty_list_image.visibility = View.VISIBLE
                     movie_empty_list_title.visibility = View.VISIBLE
                     movie_empty_list_button.visibility = View.GONE
                 }
                 NetworkState.FAILED -> {
-                    movie_empty_list_title.text = getString(R.string.technical_error)
+                    movie_empty_list_title.text = getString(com.majorik.moviebox.feature.collections.R.string.collections_technical_error)
                     movie_empty_list_image.visibility = View.VISIBLE
                     movie_empty_list_title.visibility = View.VISIBLE
                     movie_empty_list_button.visibility = View.VISIBLE

@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.majorik.moviebox.feature.collections.domain.tmdbModels.movie.Movie
 import com.majorik.moviebox.feature.collections.presentation.adapters.movie.MovieCardAdapter.*
-import com.majorik.moviebox.databinding.ItemBigImageWithCornersBinding
 import com.majorik.library.base.extensions.displayImageWithCenterCrop
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.extensions.startDetailsActivityWithId
 import com.majorik.library.base.utils.PACKAGE_NAME
+import com.majorik.moviebox.feature.collections.databinding.ItemBigImageWithCornersBinding
 import kotlinx.android.synthetic.main.item_collection_big_image_with_corners.view.*
 
 class MovieCardAdapter : RecyclerView.Adapter<MovieCardViewHolder>() {

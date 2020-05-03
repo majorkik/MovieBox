@@ -2,22 +2,25 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/slider_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginHorizontal="32dp"
+    android:id="@+id/collection_card"
+    android:layout_width="84dp"
+    android:layout_height="126dp"
+    android:layout_marginLeft="4dp"
+    android:layout_marginRight="4dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
     app:cardCornerRadius="8dp"
     app:cardElevation="0dp"
-    tools:layout_height="150dp">
+    tools:cardBackgroundColor="#555555">
 
     <ImageView
         android:id="@+id/placeholder_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
-        android:contentDescription="@string/desc_backdrop"
-        android:scaleType="centerCrop"
-        android:src="@drawable/placeholder_landscape" />
+        android:contentDescription="@string/collections_desc_collection_image"
+        android:src="@drawable/placeholder_portrait" />
 
     <TextView
         android:id="@+id/placeholder_text"
@@ -28,18 +31,14 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
         android:fontFamily="@font/cc_montserrat_medium"
-        android:gravity="center"
-        android:maxLines="2"
-        android:textColor="@color/mine_shaft"
-        android:textSize="12sp"
-        tools:text="Simple name movie" />
+        android:gravity="center_horizontal"
+        android:textSize="8sp"
+        tools:text="Sample name movie" />
 
     <ImageView
-        android:id="@+id/slider_image"
+        android:id="@+id/collection_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:transitionName="card_image"
         android:adjustViewBounds="true"
-        android:contentDescription="@string/desc_backdrop"
-        android:scaleType="centerCrop" />
+        android:contentDescription="@string/collections_desc_collection_image" />
 </androidx.cardview.widget.CardView>

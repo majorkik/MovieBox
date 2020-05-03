@@ -107,7 +107,7 @@ class TVCreditsAdapter(
 
             itemView.known_for_department.text = view.context.convertStringForFilmograohy(
                 cast.name,
-                view.context.getString(R.string.inline_filmography_delimiter),
+                view.context.getString(com.majorik.moviebox.feature.details.R.string.details_inline_filmography_delimiter),
                 cast.character
             )
 

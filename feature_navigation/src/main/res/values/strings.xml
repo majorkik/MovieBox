@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_feature_navigation">Navigation module</string>
+
+    <!--    Страница Фильмы & Сериалы (коллекции)-->
+    <string name="navigation_collection_popular">Популярные</string>
+    <string name="navigation_now_playing">Сейчас в кино</string>
+    <string name="navigation_upcoming">Ожидаемые</string>
+    <string name="navigation_on_the_air">В эфире</string>
+    <string name="navigation_air_today">Сегодня в эфире</string>
+    <string name="navigation_most_viewed_movies_in_the_last_month">Тренды фильмов за последний месяц</string>
+    <string name="navigation_popular_peoples">Популярные люди</string>
+    <string name="navigation_all_trends">Все тренды</string>
+    <string name="navigation_in_trends">В тренде</string>
+
+    <!--    Описание изображений-->
+    <string name="navigation_desc_collection_image">Изображение коллекции</string>
+    <string name="navigation_desc_backdrop">Фоновое изображение</string>
+    <string name="navigation_desc_icon_play_video">Иконка воиспроизведения видео</string>
+    <string name="navigation_desc_trailer_image">Заставка трейлера</string>
+
+    <!--    Детальная информация-->
+    <string name="navigation_trailers">Трейлеры</string>
+    <string name="navigation_will_watch">Буду смотреть</string>
+    <string name="navigation_favorite">Избранное</string>
+
+    <!--    Base variable-->
+    <string name="navigation_tvs">Сериалы</string>
+    <string name="navigation_movies">Фильмы</string>
+    <string name="navigation_tv">Сериалы</string>
+    <string name="navigation_movie">Фильмы</string>
+    <string name="navigation_seasons">Сезоны</string>
+    <string name="navigation_genres">Жанры</string>
+    <string name="navigation_guest">Гость</string>
+    <string name="navigation_settings">Настройки</string>
+    <string name="navigation_notifications">Уведомления</string>
+    <string name="navigation_language">Язык</string>
+    <string name="navigation_theme">Тема</string>
+    <string name="navigation_cache">Кэш</string>
+    <string name="navigation_information">Информация</string>
+    <string name="navigation_cancel">Отмена</string>
+    <string name="navigation_clear">Очистить</string>
+    <string name="navigation_more">Смотреть все</string>
+    <string name="navigation_under_development">Находится в разработке</string>
+
+    <!--    Profile page-->
+    <string name="navigation_tmdb_account_benefits">- синхронизация с вашим аккаунтом <b>TMDb</b>;\n\n- возможность <b>добавлять в избранное</b>;\n\n- возможность <b>отслеживать фильмы и сериалы</b>;\n\n- возможность <b>оценивать фильмы, сериалы и сезоны</b>;\n\n- возможность <b>создавать свои собственные списки.</b></string>
+    <string name="navigation_tmdb_benefits_title">Преимущества аккаунта TMDb</string>
+    <string name="navigation_login_to_account" translatable="false">Войти в аккаунт</string>
+    <string name="navigation_votes">Оценки</string>
+
+    <!--    Login & Logout-->
+    <string name="navigation_sign_out">Выйти из аккаунта</string>
+    <string name="navigation_logout">Выйти</string>
+    <string name="navigation_are_you_sure_you_want_to_go_out">Вы уверены что хотите выйти?</string>
+    <string name="navigation_companies">Компании</string>
+
+    <!--    Language page-->
+    <string name="navigation_languages">Языки</string>
+
+    <!--    Search page-->
+    <string name="navigation_enter_your_request">Введите запрос</string>
+
+    <!--    Settings page-->
+    <string name="navigation_clear_cache">Очистить кэш</string>
+    <string name="navigation_about_app">О приложении</string>
+
+    <!--    Clear cache dialog-->
+    <string name="navigation_cache_size_with_format">Размер: %s</string>
+    <string name="navigation_flush_cache">Очистка кэша</string>
+
+</resources>

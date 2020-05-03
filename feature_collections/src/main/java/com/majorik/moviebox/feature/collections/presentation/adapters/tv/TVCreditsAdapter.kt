@@ -28,7 +28,7 @@ class TVCreditsAdapter(
         return when (viewType) {
             ListType.GRID.ordinal -> {
                 val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_medium_poster_card, parent, false)
+                    .inflate(com.majorik.moviebox.feature.collections.R.layout.item_medium_poster_card, parent, false)
 
                 TVCreditsViewHolder(
                     view
@@ -37,7 +37,7 @@ class TVCreditsAdapter(
 
             else -> {
                 val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_person_credit_in_line, parent, false)
+                    .inflate(com.majorik.moviebox.feature.collections.R.layout.item_person_credit_in_line, parent, false)
 
                 InlineCreditViewHolder(
                     view
@@ -109,7 +109,7 @@ class TVCreditsAdapter(
 
             itemView.known_for_department.text = view.context.convertStringForFilmograohy(
                 cast.name,
-                view.context.getString(R.string.inline_filmography_delimiter),
+                view.context.getString(com.majorik.moviebox.feature.collections.R.string.collections_inline_filmography_delimiter),
                 cast.character
             )
 

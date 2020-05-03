@@ -3,8 +3,8 @@ package com.majorik.moviebox.feature.collections.presentation.viewholders
 import androidx.recyclerview.widget.RecyclerView
 import com.majorik.moviebox.feature.collections.domain.tmdbModels.tv.TV
 import com.majorik.library.base.constants.UrlConstants
-import com.majorik.moviebox.databinding.ItemMediumPosterCardBinding
 import com.majorik.library.base.extensions.displayImageWithCenterCrop
+import com.majorik.moviebox.feature.collections.databinding.ItemMediumPosterCardBinding
 
 class TVPagedItemVH(val parent: ItemMediumPosterCardBinding) :
     RecyclerView.ViewHolder(parent.root) {

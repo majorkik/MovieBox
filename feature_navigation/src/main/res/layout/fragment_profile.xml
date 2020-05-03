@@ -75,7 +75,7 @@
                         android:layout_marginEnd="24dp"
                         android:fontFamily="@font/cc_rubik_one"
                         android:gravity="center"
-                        android:text="@string/guest"
+                        android:text="@string/navigation_guest"
                         android:textAllCaps="true"
                         android:textColor="@color/mine_shaft"
                         android:textSize="22sp"
@@ -125,7 +125,7 @@
                         android:fontFamily="@font/cc_montserrat_bold"
                         android:gravity="center"
                         android:maxLines="2"
-                        android:text="@string/tmdb_benefits_title"
+                        android:text="@string/navigation_tmdb_benefits_title"
                         android:textColor="@color/mine_shaft"
                         android:textSize="18sp" />
 
@@ -137,7 +137,7 @@
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="24dp"
                         android:fontFamily="@font/cc_montserrat_regular"
-                        android:text="@string/tmdb_account_benefits"
+                        android:text="@string/navigation_tmdb_account_benefits"
                         android:textColor="@color/mine_shaft"
                         android:textSize="14sp" />
 
@@ -158,7 +158,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:fontFamily="@font/cc_montserrat_bold"
-                            android:text="@string/login_to_account"
+                            android:text="@string/navigation_login_to_account"
                             android:textAllCaps="true"
                             android:textColor="@color/mine_shaft"
                             android:textSize="14sp" />
@@ -181,7 +181,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/cc_rubik_one"
                     android:gravity="center"
-                    android:text="@string/movies"
+                    android:text="@string/navigation_movies"
                     android:textAllCaps="true"
                     android:textColor="@color/mine_shaft"
                     android:textSize="16sp" />
@@ -220,7 +220,7 @@
                             android:layout_marginEnd="16dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/rubik_one_regular"
-                            android:text="@string/will_watch"
+                            android:text="@string/navigation_will_watch"
                             android:textAllCaps="true"
                             android:textColor="@color/mine_shaft"
                             android:textSize="12sp" />
@@ -281,7 +281,7 @@
                             android:layout_marginEnd="16dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/rubik_one_regular"
-                            android:text="@string/favorite"
+                            android:text="@string/navigation_favorite"
                             android:textAllCaps="true"
                             android:textColor="@color/mine_shaft"
                             android:textSize="12sp" />
@@ -341,7 +341,7 @@
                             android:layout_marginEnd="16dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/rubik_one_regular"
-                            android:text="@string/votes"
+                            android:text="@string/navigation_votes"
                             android:textAllCaps="true"
                             android:textColor="@color/mine_shaft"
                             android:textSize="12sp" />
@@ -372,7 +372,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/cc_rubik_one"
                     android:gravity="center"
-                    android:text="@string/tvs"
+                    android:text="@string/navigation_tvs"
                     android:textAllCaps="true"
                     android:textColor="@color/mine_shaft"
                     android:textSize="16sp" />
@@ -411,7 +411,7 @@
                             android:layout_marginEnd="16dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/rubik_one_regular"
-                            android:text="@string/will_watch"
+                            android:text="@string/navigation_will_watch"
                             android:textAllCaps="true"
                             android:textColor="@color/mine_shaft"
                             android:textSize="12sp" />
@@ -472,7 +472,7 @@
                             android:layout_marginEnd="16dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/rubik_one_regular"
-                            android:text="@string/favorite"
+                            android:text="@string/navigation_favorite"
                             android:textAllCaps="true"
                             android:textColor="@color/mine_shaft"
                             android:textSize="12sp" />
@@ -533,7 +533,7 @@
                             android:layout_marginEnd="16dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/rubik_one_regular"
-                            android:text="@string/votes"
+                            android:text="@string/navigation_votes"
                             android:textAllCaps="true"
                             android:textColor="@color/mine_shaft"
                             android:textSize="12sp" />
@@ -565,7 +565,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/cc_rubik_one"
                     android:gravity="center"
-                    android:text="@string/seasons"
+                    android:text="@string/navigation_seasons"
                     android:textAllCaps="true"
                     android:textColor="@color/mine_shaft"
                     android:textSize="16sp" />
@@ -604,7 +604,7 @@
                             android:layout_marginEnd="16dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/rubik_one_regular"
-                            android:text="@string/votes"
+                            android:text="@string/navigation_votes"
                             android:textAllCaps="true"
                             android:textColor="@color/mine_shaft"
                             android:textSize="12sp" />
@@ -650,7 +650,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="@font/cc_montserrat_medium"
-                        android:text="@string/sign_out"
+                        android:text="@string/navigation_sign_out"
                         android:textColor="@color/gray"
                         android:textSize="12sp" />
                 </androidx.cardview.widget.CardView>

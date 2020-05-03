@@ -11,12 +11,12 @@ import com.majorik.moviebox.feature.search.presentation.viewholders.NetworkState
 import com.majorik.moviebox.feature.search.presentation.viewholders.SearchTVDetailedVH
 import com.majorik.moviebox.feature.search.presentation.viewholders.SearchTVSmallVH
 import com.majorik.moviebox.R
-import com.majorik.moviebox.databinding.ItemCardWithDetailsBinding
-import com.majorik.moviebox.databinding.ItemMediumPosterCardBinding
-import com.majorik.moviebox.databinding.ItemNetworkStateBinding
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startDetailsActivityWithId
 import com.majorik.library.base.utils.PACKAGE_NAME
+import com.majorik.moviebox.feature.search.databinding.ItemCardWithDetailsBinding
+import com.majorik.moviebox.feature.search.databinding.ItemMediumPosterCardBinding
+import com.majorik.moviebox.feature.search.databinding.ItemNetworkStateBinding
 import com.majorik.moviebox.feature.search.presentation.adapters.PaginationOnClickListener
 import kotlinx.android.synthetic.main.item_search_medium_poster_card.view.*
 
@@ -31,15 +31,15 @@ internal class SearchTVAdapter(
         val layoutInflater = LayoutInflater.from(parent.context)
 
         return when (viewType) {
-            R.layout.item_card_with_details -> SearchTVDetailedVH(
+            com.majorik.moviebox.feature.search.R.layout.item_card_with_details -> SearchTVDetailedVH(
                 ItemCardWithDetailsBinding.inflate(layoutInflater, parent, false)
             )
 
-            R.layout.item_medium_poster_card -> SearchTVSmallVH(
+            com.majorik.moviebox.feature.search.R.layout.item_medium_poster_card -> SearchTVSmallVH(
                 ItemMediumPosterCardBinding.inflate(layoutInflater, parent, false)
             )
 
-            R.layout.item_network_state -> NetworkStateViewHolder(
+            com.majorik.moviebox.feature.search.R.layout.item_network_state -> NetworkStateViewHolder(
                 ItemNetworkStateBinding.inflate(layoutInflater, parent, false)
             )
 
@@ -86,12 +86,12 @@ internal class SearchTVAdapter(
 
     override fun getItemViewType(position: Int): Int {
         return if (hasExtraRow() && position == itemCount - 1) {
-            R.layout.item_network_state
+            com.majorik.moviebox.feature.search.R.layout.item_network_state
         } else {
             if (isGrid) {
-                R.layout.item_medium_poster_card
+                com.majorik.moviebox.feature.search.R.layout.item_medium_poster_card
             } else {
-                R.layout.item_card_with_details
+                com.majorik.moviebox.feature.search.R.layout.item_card_with_details
             }
         }
     }

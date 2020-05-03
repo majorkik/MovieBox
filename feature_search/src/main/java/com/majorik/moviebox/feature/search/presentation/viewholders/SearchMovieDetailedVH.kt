@@ -7,8 +7,8 @@ import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.extensions.displayImageWithCenterCrop
 import com.majorik.library.base.extensions.setIndicatorColor
 import com.majorik.library.base.extensions.toDate
-import com.majorik.moviebox.databinding.ItemCardWithDetailsBinding
 import com.majorik.library.base.utils.GenresStorageObject
+import com.majorik.moviebox.feature.search.databinding.ItemCardWithDetailsBinding
 
 internal class SearchMovieDetailedVH(val parent: ItemCardWithDetailsBinding) : RecyclerView.ViewHolder(parent.root) {
     @UseExperimental(ExperimentalStdlibApi::class)

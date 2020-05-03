@@ -25,7 +25,7 @@
             android:layout_marginEnd="56dp"
             android:fontFamily="@font/rubik_one_regular"
             android:gravity="center"
-            android:text="@string/genres"
+            android:text="@string/collections_genres"
             android:textAllCaps="true"
             android:textColor="@color/mine_shaft"
             android:textSize="18sp" />

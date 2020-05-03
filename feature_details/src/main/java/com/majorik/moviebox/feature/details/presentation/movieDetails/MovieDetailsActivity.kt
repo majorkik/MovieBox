@@ -153,7 +153,7 @@ class MovieDetailsActivity : BaseSlidingActivity() {
             m_revenue.text = (numFormat.format(movie.revenue) + " $")
             m_budget.text = (numFormat.format(movie.budget) + " $")
             m_release_date.text =
-                KlockLocale.russian.formatDateLong.format(movie.releaseDate.toDate(getString(com.majorik.moviebox.feature.details.R.string.yyyy_mm_dd)))
+                KlockLocale.russian.formatDateLong.format(movie.releaseDate.toDate(getString(com.majorik.moviebox.feature.details.R.string.details_yyyy_mm_dd)))
             m_status.text = movie.status
             setReleaseDate(movie.runtime)
             setOverview(movie.overview)
@@ -163,8 +163,8 @@ class MovieDetailsActivity : BaseSlidingActivity() {
                 movie.genres.joinToString(", ") { it.name.capitalize(AppConfig.APP_LOCALE) }
 
             m_add_info.text = getString(
-                com.majorik.moviebox.feature.details.R.string.short_info_mask,
-                movie.releaseDate.toDate(getString(com.majorik.moviebox.feature.details.R.string.yyyy_mm_dd)).yearInt.toString(),
+                com.majorik.moviebox.feature.details.R.string.details_short_info_mask,
+                movie.releaseDate.toDate(getString(com.majorik.moviebox.feature.details.R.string.details_yyyy_mm_dd)).yearInt.toString(),
                 genres
             )
 
@@ -230,9 +230,9 @@ class MovieDetailsActivity : BaseSlidingActivity() {
             val stringMinutes =
                 resources.getQuantityString(com.majorik.moviebox.feature.details.R.plurals.minutes, minutes, minutes)
 
-            m_runtime.text = getString(com.majorik.moviebox.feature.details.R.string.runtime_mask, stringHours, stringMinutes)
+            m_runtime.text = getString(com.majorik.moviebox.feature.details.R.string.details_runtime_mask, stringHours, stringMinutes)
         } else {
-            m_runtime.text = getString(com.majorik.moviebox.feature.details.R.string.unknown)
+            m_runtime.text = getString(com.majorik.moviebox.feature.details.R.string.details_unknown)
         }
     }
 

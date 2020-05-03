@@ -3,8 +3,8 @@ package com.majorik.moviebox.feature.navigation.presentation.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.majorik.moviebox.feature.navigation.databinding.ItemGenreBinding
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.genre.Genre
-import com.majorik.moviebox.databinding.ItemGenreBinding
 import java.util.*
 
 class GenreAdapter() : RecyclerView.Adapter<GenreAdapter.GenreViewHolder>() {
