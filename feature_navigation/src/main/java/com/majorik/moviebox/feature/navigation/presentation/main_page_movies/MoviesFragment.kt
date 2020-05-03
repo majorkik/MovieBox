@@ -12,7 +12,6 @@ import com.majorik.moviebox.feature.navigation.data.repositories.TrendingReposit
 import com.majorik.moviebox.feature.navigation.domain.movie.MovieCollectionType
 import com.majorik.moviebox.feature.navigation.domain.movie.MovieCollectionType.*
 import com.majorik.moviebox.feature.navigation.presentation.adapters.*
-import com.majorik.moviebox.R
 import com.majorik.library.base.extensions.*
 import com.majorik.library.base.base.BaseNavigationFragment
 import com.majorik.library.base.constants.AppConfig
@@ -26,8 +25,10 @@ import com.majorik.moviebox.feature.navigation.presentation.adapters.TrailersAda
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.fragment_movies.*
 import kotlinx.coroutines.delay
+import com.majorik.moviebox.feature.navigation.R
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import com.majorik.moviebox.R as AppResources
 
 class MoviesFragment : BaseNavigationFragment() {
 
@@ -41,7 +42,7 @@ class MoviesFragment : BaseNavigationFragment() {
     private val genresAdapter = GenreAdapter()
     private val trendingMovieAdapter = MovieTrendAdapter()
 
-    override fun getLayoutId() = com.majorik.moviebox.feature.navigation.R.layout.fragment_movies
+    override fun getLayoutId() = R.layout.fragment_movies
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -54,7 +55,7 @@ class MoviesFragment : BaseNavigationFragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.main_toolbar_menu, menu)
+        inflater.inflate(AppResources.menu.main_toolbar_menu, menu)
     }
 
     private fun initAdapters() {

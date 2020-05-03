@@ -57,7 +57,6 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
 }
 
-
 tasks {
     // Gradle versions plugin configuration
     "dependencyUpdates"(com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask::class) {
@@ -82,7 +81,6 @@ tasks {
         }
     }
 }
-
 
 task("staticCheck") {
     description =

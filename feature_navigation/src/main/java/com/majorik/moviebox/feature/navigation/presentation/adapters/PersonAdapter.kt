@@ -42,8 +42,13 @@ class PersonAdapter() : RecyclerView.Adapter<PersonAdapter.PersonViewHolder>() {
     class PersonViewHolder(private val parent: ItemPersonProfileCardBinding) :
         RecyclerView.ViewHolder(parent.root) {
         fun bindTo(person: Person) {
-            parent.personName.text = person.name
-            parent.personProfileImage.displayImageWithCenterInside(UrlConstants.TMDB_PROFILE_SIZE_185 + person.profilePath)
+            parent.run {
+                personName.text = person.name
+
+                personProfileImage.displayImageWithCenterInside(
+                    UrlConstants.TMDB_PROFILE_SIZE_185 + person.profilePath
+                )
+            }
 
             setClickListener(person.id)
         }

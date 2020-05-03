@@ -4,9 +4,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.majorik.moviebox.feature.search.domain.tmdbModels.movie.Movie
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.extensions.displayImageWithCenterCrop
-import com.majorik.moviebox.feature.search.databinding.ItemMediumPosterCardBinding
+import com.majorik.moviebox.feature.search.databinding.ItemSearchMediumPosterCardBinding
 
-internal class SearchMovieSmallVH(val parent: ItemMediumPosterCardBinding) :
+internal class SearchMovieSmallVH(val parent: ItemSearchMediumPosterCardBinding) :
     RecyclerView.ViewHolder(parent.root) {
     @UseExperimental(ExperimentalStdlibApi::class)
     fun bindTo(item: Movie?) {

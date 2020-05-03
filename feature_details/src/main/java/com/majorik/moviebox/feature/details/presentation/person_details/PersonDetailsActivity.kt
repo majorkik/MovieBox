@@ -6,7 +6,6 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.tabs.TabLayoutMediator
-import com.majorik.moviebox.R
 import com.majorik.moviebox.feature.details.presentation.adapters.PersonFilmographyPagerAdapter
 import com.majorik.library.base.extensions.*
 import com.majorik.library.base.base.BaseSlidingActivity
@@ -16,6 +15,8 @@ import com.majorik.library.base.constants.UrlConstants
 import kotlinx.android.synthetic.main.activity_person_details.*
 import kotlinx.android.synthetic.main.layout_person_credits.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import com.majorik.moviebox.feature.details.R
+import com.majorik.moviebox.R as AppResources
 
 class PersonDetailsActivity : BaseSlidingActivity() {
 
@@ -31,7 +32,7 @@ class PersonDetailsActivity : BaseSlidingActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.majorik.moviebox.feature.details.R.layout.activity_person_details)
+        setContentView(R.layout.activity_person_details)
 
         setWindowTransparency(::updateMargins)
 
@@ -85,12 +86,17 @@ class PersonDetailsActivity : BaseSlidingActivity() {
             filmographyAdapter?.changeViewType(isGrid)
 
             if (isGrid) {
-                btn_view_type.setImageDrawable(ContextCompat.getDrawable(this, com.majorik.moviebox.feature.details.R.drawable.ic_list))
+                btn_view_type.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        this,
+                        R.drawable.ic_list
+                    )
+                )
             } else {
                 btn_view_type.setImageDrawable(
                     ContextCompat.getDrawable(
                         this,
-                        R.drawable.ic_module
+                        AppResources.drawable.ic_module
                     )
                 )
             }
@@ -115,7 +121,10 @@ class PersonDetailsActivity : BaseSlidingActivity() {
 
     private fun setupPager() {
         val pagerTitles: Array<String> =
-            arrayOf(getString(com.majorik.moviebox.feature.details.R.string.details_movies), getString(com.majorik.moviebox.feature.details.R.string.details_tvs))
+            arrayOf(
+                getString(R.string.details_movies),
+                getString(R.string.details_tvs)
+            )
         val pagerAdapter = filmographyAdapter
 
         p_view_pager.adapter = pagerAdapter

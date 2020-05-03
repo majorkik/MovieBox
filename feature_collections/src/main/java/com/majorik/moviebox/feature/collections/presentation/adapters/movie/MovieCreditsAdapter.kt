@@ -36,7 +36,7 @@ class MovieCreditsAdapter(
             else -> {
                 val view = LayoutInflater.from(parent.context)
                     .inflate(
-                        com.majorik.moviebox.feature.collections.R.layout.item_collection_person_credit_in_line,
+                        R.layout.item_collection_person_credit_in_line,
                         parent,
                         false
                     )

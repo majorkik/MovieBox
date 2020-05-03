@@ -7,12 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.majorik.moviebox.feature.collections.domain.tmdbModels.production.ProductionCompany
 import com.majorik.moviebox.feature.collections.presentation.adapters.CompaniesAdapter.*
 import kotlinx.android.synthetic.main.item_company.view.*
+import com.majorik.moviebox.feature.collections.R
 
 class CompaniesAdapter(private val companies: List<ProductionCompany>) :
     RecyclerView.Adapter<CompanyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CompanyViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(com.majorik.moviebox.feature.collections.R.layout.item_company, parent, false)
+            .inflate(R.layout.item_company, parent, false)
 
         return CompanyViewHolder(view)
     }

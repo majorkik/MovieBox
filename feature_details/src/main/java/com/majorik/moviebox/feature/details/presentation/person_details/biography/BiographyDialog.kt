@@ -3,13 +3,16 @@ package com.majorik.moviebox.feature.details.presentation.person_details.biograp
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.*
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import com.majorik.moviebox.R
 import com.majorik.library.base.extensions.toDate
 import com.soywiz.klock.KlockLocale
 import com.soywiz.klock.locale.russian
 import kotlinx.android.synthetic.main.layout_biography_details.view.*
+import com.majorik.moviebox.feature.details.R
 
 class BiographyDialog : DialogFragment() {
 
@@ -20,7 +23,8 @@ class BiographyDialog : DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        biography = arguments?.getString(BIOGRAPHY_ARG) ?: getString(com.majorik.moviebox.feature.details.R.string.details_is_absent)
+        biography = arguments?.getString(BIOGRAPHY_ARG)
+            ?: getString(R.string.details_is_absent)
         birthday = arguments?.getString(BIRTHDAY_ARG) ?: "-"
         placeOfBirth = arguments?.getString(PLACE_OF_BIRTH_ARG) ?: ""
     }
@@ -30,7 +34,11 @@ class BiographyDialog : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(com.majorik.moviebox.feature.details.R.layout.layout_biography_details, container, false)
+        return inflater.inflate(
+            R.layout.layout_biography_details,
+            container,
+            false
+        )
     }
 
     override fun onStart() {
@@ -50,7 +58,7 @@ class BiographyDialog : DialogFragment() {
             view.biography.text = biography
         } else {
             view.biography.gravity = Gravity.CENTER
-            view.biography.text = getString(com.majorik.moviebox.feature.details.R.string.details_is_absent)
+            view.biography.text = getString(R.string.details_is_absent)
         }
 
         if (birthday.isNotEmpty() && birthday != "-") {

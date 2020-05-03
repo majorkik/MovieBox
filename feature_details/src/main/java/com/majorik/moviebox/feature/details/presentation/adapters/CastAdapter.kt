@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.majorik.moviebox.feature.details.domain.tmdbModels.cast.Cast
 import com.majorik.moviebox.feature.details.presentation.adapters.CastAdapter.CastViewHolder
 import com.majorik.library.base.constants.UrlConstants
+import com.majorik.moviebox.feature.details.R
 import com.majorik.library.base.extensions.displayImageWithCenterInside
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startDetailsActivityWithId
@@ -17,7 +18,7 @@ class CastAdapter(private val people: List<Cast>) :
     RecyclerView.Adapter<CastViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CastViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(com.majorik.moviebox.feature.details.R.layout.item_cast_profile_card_details, parent, false)
+            .inflate(R.layout.item_cast_profile_card_details, parent, false)
 
         return CastViewHolder(view)
     }

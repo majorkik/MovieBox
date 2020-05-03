@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.majorik.moviebox.feature.details.domain.tmdbModels.cast.MovieCast
+import com.majorik.moviebox.feature.details.R
 import com.majorik.moviebox.feature.details.domain.tmdbModels.cast.TVCast
 import com.majorik.moviebox.feature.details.presentation.adapters.PersonFilmographyPagerAdapter.PageViewHolder
 import com.majorik.moviebox.feature.details.presentation.adapters.movie.MovieCreditsAdapter
@@ -22,7 +23,7 @@ class PersonFilmographyPagerAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PageViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(com.majorik.moviebox.feature.details.R.layout.item_filmography_details, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_filmography_details, parent, false)
 
         return PageViewHolder(view)
     }

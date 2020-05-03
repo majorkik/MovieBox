@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
+import com.majorik.moviebox.feature.details.R
 import androidx.recyclerview.widget.RecyclerView
 import com.majorik.moviebox.feature.details.domain.tmdbModels.cast.MovieCast
 import com.majorik.library.base.extensions.*
@@ -28,7 +29,7 @@ class MovieCreditsAdapter(
         return when (viewType) {
             ListType.GRID.ordinal -> {
                 val view = LayoutInflater.from(parent.context)
-                    .inflate(com.majorik.moviebox.feature.details.R.layout.item_medium_poster_card_details, parent, false)
+                    .inflate(R.layout.item_medium_poster_card_details, parent, false)
 
                 MovieCreditsViewHolder(
                     view
@@ -37,7 +38,7 @@ class MovieCreditsAdapter(
 
             else -> {
                 val view = LayoutInflater.from(parent.context)
-                    .inflate(com.majorik.moviebox.feature.details.R.layout.item_person_credit_in_line_details, parent, false)
+                    .inflate(R.layout.item_person_credit_in_line_details, parent, false)
 
                 InlineCreditViewHolder(
                     view
@@ -83,7 +84,7 @@ class MovieCreditsAdapter(
             itemView.title.text = cast.title
             itemView.collection_image.displayImageWithCenterCrop(
                 UrlConstants.TMDB_POSTER_SIZE_185 + (cast.posterPath ?: ""),
-                com.majorik.moviebox.feature.details.R.drawable.bg_placeholder_card_colored
+                R.drawable.bg_placeholder_card_colored
             )
 
             bindClickListener(cast)
@@ -106,7 +107,7 @@ class MovieCreditsAdapter(
 
             itemView.known_for_department.text = view.context.convertStringForFilmograohy(
                 cast.title,
-                view.context.getString(com.majorik.moviebox.feature.details.R.string.details_inline_filmography_delimiter),
+                view.context.getString(R.string.details_inline_filmography_delimiter),
                 cast.character
             )
 

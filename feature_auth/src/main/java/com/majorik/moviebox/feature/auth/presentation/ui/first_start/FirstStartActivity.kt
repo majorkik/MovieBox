@@ -19,7 +19,6 @@ import com.majorik.moviebox.feature.auth.domain.constants.AuthUrlConstants.BASE_
 import com.majorik.moviebox.feature.auth.domain.constants.AuthUrlConstants.BASE_REDIRECT_TO_PATH
 import com.majorik.moviebox.feature.auth.domain.constants.AuthUrlConstants.REDIRECT_URL
 import com.majorik.moviebox.MainActivity
-import com.majorik.moviebox.R
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.setVisibilityOption
 import com.majorik.library.base.extensions.startActivityWithAnim
@@ -30,6 +29,8 @@ import kotlinx.android.synthetic.main.activity_first_start.*
 import kotlinx.coroutines.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import com.majorik.moviebox.R as AppResources
+import com.majorik.moviebox.feature.auth.R
 
 class FirstStartActivity : AppCompatActivity() {
     private val authViewModel: AuthViewModel by viewModel()
@@ -40,11 +41,9 @@ class FirstStartActivity : AppCompatActivity() {
 
 //        if (credentialsManager.getTmdbLoggedStatus()) { startMainActivity() }
 
-        setContentView(com.majorik.moviebox.feature.auth.R.layout.activity_first_start)
+        setContentView(R.layout.activity_first_start)
 
         setAnimation()
-
-//        loadKoinModules(KoinManager.koinModules)
 
         setAboutTmdbTextStyle()
         setClickListener()
@@ -130,8 +129,8 @@ class FirstStartActivity : AppCompatActivity() {
     }
 
     private fun setAboutTmdbTextStyle() {
-        val what = getString(com.majorik.moviebox.feature.auth.R.string.nav_what)
-        val tmdb = getString(com.majorik.moviebox.feature.auth.R.string.nav_the_movie_database)
+        val what = getString(R.string.nav_what)
+        val tmdb = getString(R.string.nav_the_movie_database)
 
         val fullText = "$what $tmdb?"
         SpannableStringBuilder(fullText).apply {
@@ -140,7 +139,7 @@ class FirstStartActivity : AppCompatActivity() {
                     "cc_montserrat_bold",
                     ResourcesCompat.getFont(
                         this@FirstStartActivity,
-                        R.font.cc_montserrat_black
+                        AppResources.font.cc_montserrat_black
                     )
                 ),
                 what.length,
@@ -152,7 +151,7 @@ class FirstStartActivity : AppCompatActivity() {
                 ForegroundColorSpan(
                     ContextCompat.getColor(
                         this@FirstStartActivity,
-                        R.color.caribbean_green_tmdb
+                        AppResources.color.caribbean_green_tmdb
                     )
                 ),
                 what.length,

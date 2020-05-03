@@ -28,7 +28,6 @@ android {
         buildConfigField("FEATURE_MODULE_NAMES", getDynamicFeatureModuleNames())
 
         multiDexEnabled = true
-
     }
 
     buildTypes {

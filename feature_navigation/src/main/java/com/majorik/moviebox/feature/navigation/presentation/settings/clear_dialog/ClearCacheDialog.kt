@@ -13,6 +13,7 @@ import androidx.fragment.app.DialogFragment
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.utils.FontSpan
 import com.majorik.moviebox.feature.navigation.R
+import com.majorik.moviebox.R as AppResources
 import kotlinx.android.synthetic.main.dialog_clear_cache.*
 
 class ClearCacheDialog : DialogFragment() {
@@ -68,7 +69,7 @@ class ClearCacheDialog : DialogFragment() {
                         "cc_montserrat_semibold",
                         ResourcesCompat.getFont(
                             this@run,
-                            com.majorik.moviebox.R.font.cc_montserrat_semibold
+                            AppResources.font.cc_montserrat_semibold
                         )
                     ),
                     cache_size.text.length - cacheSize.length,

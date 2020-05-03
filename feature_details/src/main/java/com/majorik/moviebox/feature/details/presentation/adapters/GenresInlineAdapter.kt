@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.majorik.moviebox.feature.details.R
 import com.majorik.moviebox.feature.details.domain.tmdbModels.genre.Genre
 import com.majorik.moviebox.feature.details.presentation.adapters.GenresInlineAdapter.*
 import kotlinx.android.synthetic.main.item_genre_details.view.*
@@ -15,7 +16,7 @@ class GenresInlineAdapter(private val genres: List<Genre>) :
         viewType: Int
     ): GenreViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(com.majorik.moviebox.feature.details.R.layout.item_genre_inline_details, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_genre_inline_details, parent, false)
 
         return GenreViewHolder(view)
     }

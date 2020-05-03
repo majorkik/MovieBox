@@ -1,11 +1,11 @@
 package com.majorik.moviebox.feature.search.presentation.viewholders
 
 import androidx.recyclerview.widget.RecyclerView
-import com.majorik.moviebox.feature.search.domain.tmdbModels.person.Person
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.extensions.displayImageWithCenterCrop
-import com.majorik.moviebox.R
 import com.majorik.moviebox.feature.search.databinding.ItemPersonDetailedBinding
+import com.majorik.moviebox.feature.search.domain.tmdbModels.person.Person
+import com.majorik.moviebox.feature.search.R
 
 internal class SearchPeopleViewHolder(val parent: ItemPersonDetailedBinding) : RecyclerView.ViewHolder(parent.root) {
     fun bindTo(item: Person?) {
@@ -13,7 +13,7 @@ internal class SearchPeopleViewHolder(val parent: ItemPersonDetailedBinding) : R
             parent.pName.text = it.name
             parent.pImage.displayImageWithCenterCrop(
                 UrlConstants.TMDB_PROFILE_SIZE_185 + it.profilePath,
-                com.majorik.moviebox.feature.search.R.drawable.placholder_profile_image
+                R.drawable.placholder_profile_image
             )
             parent.pKnowForDepartment.text = it.knowForDepartment
         }

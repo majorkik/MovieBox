@@ -29,7 +29,7 @@ class TVCollectionsActivity : BaseSlidingActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.majorik.moviebox.feature.collections.R.layout.activity_tab_collections)
+        setContentView(R.layout.activity_tab_collections)
 
         setWindowTransparency(::updateMargins)
 

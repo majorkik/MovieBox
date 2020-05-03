@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.majorik.moviebox.feature.collections.domain.tmdbModels.cast.TVCast
-import com.majorik.moviebox.R
 import com.majorik.library.base.extensions.*
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.utils.PACKAGE_NAME
@@ -14,6 +13,8 @@ import kotlinx.android.synthetic.main.item_collection_medium_poster_card.view.*
 import kotlinx.android.synthetic.main.item_collection_person_credit_in_line.view.*
 import kotlinx.android.synthetic.main.item_collection_small_poster_card.view.collection_card
 import kotlinx.android.synthetic.main.item_collection_small_poster_card.view.collection_image
+import com.majorik.moviebox.R as AppResources
+import com.majorik.moviebox.feature.collections.R
 
 class TVCreditsAdapter(
     private val layoutManager: GridLayoutManager?,
@@ -28,7 +29,7 @@ class TVCreditsAdapter(
         return when (viewType) {
             ListType.GRID.ordinal -> {
                 val view = LayoutInflater.from(parent.context)
-                    .inflate(com.majorik.moviebox.feature.collections.R.layout.item_collection_medium_poster_card, parent, false)
+                    .inflate(R.layout.item_collection_medium_poster_card, parent, false)
 
                 TVCreditsViewHolder(
                     view
@@ -37,7 +38,7 @@ class TVCreditsAdapter(
 
             else -> {
                 val view = LayoutInflater.from(parent.context)
-                    .inflate(com.majorik.moviebox.feature.collections.R.layout.item_collection_person_credit_in_line, parent, false)
+                    .inflate(R.layout.item_collection_person_credit_in_line, parent, false)
 
                 InlineCreditViewHolder(
                     view
@@ -84,7 +85,7 @@ class TVCreditsAdapter(
 
             itemView.collection_image.displayImageWithCenterCrop(
                 UrlConstants.TMDB_POSTER_SIZE_185 + cast.posterPath,
-                R.drawable.ic_film_placeholder_colored
+                AppResources.drawable.ic_film_placeholder_colored
             )
 
             bindClickListener(cast)
@@ -109,7 +110,7 @@ class TVCreditsAdapter(
 
             itemView.known_for_department.text = view.context.convertStringForFilmograohy(
                 cast.name,
-                view.context.getString(com.majorik.moviebox.feature.collections.R.string.collections_inline_filmography_delimiter),
+                view.context.getString(R.string.collections_inline_filmography_delimiter),
                 cast.character
             )
 

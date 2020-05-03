@@ -7,6 +7,7 @@ import com.majorik.moviebox.feature.collections.presentation.adapters.GenresInli
 import com.majorik.library.base.base.BaseSlidingActivity
 import com.majorik.library.base.enums.GenresType
 import com.majorik.library.base.enums.SELECTED_GENRES_TYPE
+import com.majorik.moviebox.feature.collections.R
 import com.majorik.library.base.extensions.setWindowTransparency
 import com.majorik.library.base.extensions.updateMargin
 import kotlinx.android.synthetic.main.activity_genres.*
@@ -20,7 +21,7 @@ class GenresActivity : BaseSlidingActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.majorik.moviebox.feature.collections.R.layout.activity_genres)
+        setContentView(R.layout.activity_genres)
 
         setWindowTransparency(::updateMargins)
 

@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.majorik.moviebox.feature.collections.domain.NetworkState
 import com.majorik.moviebox.feature.collections.domain.movie.TVCollectionType
-import com.majorik.moviebox.R
 import com.majorik.moviebox.feature.collections.presentation.adapters.PagingTVCollectionAdapter
 import com.majorik.library.base.extensions.toPx
 import com.majorik.library.base.utils.SpacingDecoration
@@ -14,6 +13,7 @@ import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.fragment_collection_page.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
+import com.majorik.moviebox.feature.collections.R
 
 class TVCollectionsFragment(tvCollectionType: TVCollectionType) : Fragment(),
     PagingTVCollectionAdapter.OnClickListener {
@@ -25,7 +25,7 @@ class TVCollectionsFragment(tvCollectionType: TVCollectionType) : Fragment(),
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(com.majorik.moviebox.feature.collections.R.layout.fragment_collection_page, container, false)
+        return inflater.inflate(R.layout.fragment_collection_page, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -71,13 +71,13 @@ class TVCollectionsFragment(tvCollectionType: TVCollectionType) : Fragment(),
         if (size == 0) {
             when (networkState) {
                 NetworkState.SUCCESS -> {
-                    movie_empty_list_title.text = getString(com.majorik.moviebox.feature.collections.R.string.collections_no_result_found)
+                    movie_empty_list_title.text = getString(R.string.collections_no_result_found)
                     movie_empty_list_image.visibility = View.VISIBLE
                     movie_empty_list_title.visibility = View.VISIBLE
                     movie_empty_list_button.visibility = View.GONE
                 }
                 NetworkState.FAILED -> {
-                    movie_empty_list_title.text = getString(com.majorik.moviebox.feature.collections.R.string.collections_technical_error)
+                    movie_empty_list_title.text = getString(R.string.collections_technical_error)
                     movie_empty_list_image.visibility = View.VISIBLE
                     movie_empty_list_title.visibility = View.VISIBLE
                     movie_empty_list_button.visibility = View.VISIBLE

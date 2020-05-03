@@ -8,7 +8,6 @@ import com.majorik.library.base.extensions.openYouTube
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.moviebox.feature.navigation.databinding.ItemTrailerSmallCardBinding
 import com.majorik.moviebox.feature.navigation.domain.youtubeModels.SearchResponse
-import kotlinx.android.synthetic.main.item_trailer_small_card_nav.view.*
 
 class TrailersAdapter() : RecyclerView.Adapter<TrailersAdapter.TrailerViewHolder>() {
 

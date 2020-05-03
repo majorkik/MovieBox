@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.majorik.moviebox.feature.details.R
 import com.majorik.moviebox.feature.details.domain.tmdbModels.tv.Episode
 import com.majorik.moviebox.feature.details.presentation.adapters.EpisodeAdapter.EpisodeViewHolder
 import com.majorik.library.base.constants.UrlConstants
@@ -14,7 +15,7 @@ class EpisodeAdapter(private val episodes: List<Episode>) :
     RecyclerView.Adapter<EpisodeViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EpisodeViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(com.majorik.moviebox.feature.details.R.layout.item_episode_card_details, parent, false)
+            .inflate(R.layout.item_episode_card_details, parent, false)
 
         return EpisodeViewHolder(view)
     }

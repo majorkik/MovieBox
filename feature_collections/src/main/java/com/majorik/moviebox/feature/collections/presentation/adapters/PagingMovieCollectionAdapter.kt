@@ -14,6 +14,7 @@ import com.majorik.moviebox.feature.collections.databinding.ItemCollectionNetwor
 import com.majorik.moviebox.feature.collections.databinding.ItemCollectionMediumPosterCardBinding
 import com.majorik.moviebox.feature.collections.presentation.viewholders.MoviePagedItemVH
 import com.majorik.moviebox.feature.collections.presentation.viewholders.NetworkStateViewHolder
+import com.majorik.moviebox.feature.collections.R
 
 class PagingMovieCollectionAdapter(private val callback: OnClickListener) :
     PagedListAdapter<Movie, ViewHolder>(
@@ -30,10 +31,10 @@ class PagingMovieCollectionAdapter(private val callback: OnClickListener) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return when (viewType) {
-            com.majorik.moviebox.feature.collections.R.layout.item_collection_medium_poster_card -> MoviePagedItemVH(
+            R.layout.item_collection_medium_poster_card -> MoviePagedItemVH(
                 ItemCollectionMediumPosterCardBinding.inflate(layoutInflater, parent, false)
             )
-            com.majorik.moviebox.feature.collections.R.layout.item_collection_network_state -> NetworkStateViewHolder(
+            R.layout.item_collection_network_state -> NetworkStateViewHolder(
                 ItemCollectionNetworkStateBinding.inflate(layoutInflater, parent, false)
             )
             else -> throw IllegalArgumentException("Неизвестный тип view: $viewType")
@@ -42,7 +43,7 @@ class PagingMovieCollectionAdapter(private val callback: OnClickListener) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (getItemViewType(position)) {
-            com.majorik.moviebox.feature.collections.R.layout.item_collection_medium_poster_card -> {
+            R.layout.item_collection_medium_poster_card -> {
                 (holder as MoviePagedItemVH).bindTo(getItem(position))
 
                 holder.itemView.setSafeOnClickListener {
@@ -54,7 +55,7 @@ class PagingMovieCollectionAdapter(private val callback: OnClickListener) :
                     }
                 }
             }
-            com.majorik.moviebox.feature.collections.R.layout.item_collection_network_state -> {
+            R.layout.item_collection_network_state -> {
                 (holder as NetworkStateViewHolder).bindTo(
                     networkState,
                     callback
@@ -65,9 +66,9 @@ class PagingMovieCollectionAdapter(private val callback: OnClickListener) :
 
     override fun getItemViewType(position: Int): Int {
         return if (hasExtraRow() && position == itemCount - 1) {
-            com.majorik.moviebox.feature.collections.R.layout.item_collection_network_state
+            R.layout.item_collection_network_state
         } else {
-            com.majorik.moviebox.feature.collections.R.layout.item_collection_medium_poster_card
+            R.layout.item_collection_medium_poster_card
         }
     }
 

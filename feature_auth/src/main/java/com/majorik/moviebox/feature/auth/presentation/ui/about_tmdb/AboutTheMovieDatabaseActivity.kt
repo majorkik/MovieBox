@@ -11,6 +11,7 @@ import com.majorik.library.base.extensions.setWindowTransparency
 import com.majorik.library.base.extensions.updateMargin
 import com.majorik.library.base.base.BaseSlidingActivity
 import com.majorik.library.base.constants.UrlConstants
+import com.majorik.moviebox.feature.auth.R.*
 import kotlinx.android.synthetic.main.activity_about_the_movie_database.*
 
 class AboutTheMovieDatabaseActivity : BaseSlidingActivity() {
@@ -20,7 +21,7 @@ class AboutTheMovieDatabaseActivity : BaseSlidingActivity() {
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.majorik.moviebox.feature.auth.R.layout.activity_about_the_movie_database)
+        setContentView(layout.activity_about_the_movie_database)
 
         setWindowTransparency(::updateMargins)
 

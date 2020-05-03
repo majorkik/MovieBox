@@ -14,8 +14,9 @@ import com.majorik.library.base.extensions.onQueryTextChange
 import com.majorik.library.base.extensions.setVisibilityOption
 import com.majorik.library.base.extensions.setWindowTransparency
 import com.majorik.library.base.extensions.updateMargin
-import com.majorik.moviebox.R
 import kotlinx.android.synthetic.main.activity_searchable.*
+import com.majorik.moviebox.R as AppResources
+import com.majorik.moviebox.feature.search.R
 
 class SearchableActivity : AppCompatActivity() {
 
@@ -30,12 +31,12 @@ class SearchableActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.majorik.moviebox.feature.search.R.layout.activity_searchable)
+        setContentView(R.layout.activity_searchable)
 
         setWindowTransparency(::updateMargins)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.navigationBarColor = ContextCompat.getColor(this, R.color.mine_shaft)
+            window.navigationBarColor = ContextCompat.getColor(this, AppResources.color.mine_shaft)
         }
 
         configureFloatingSearchView()
@@ -64,9 +65,9 @@ class SearchableActivity : AppCompatActivity() {
     private fun configureTabLayout() {
         val pagerTitles: Array<String> =
             arrayOf(
-                getString(com.majorik.moviebox.feature.search.R.string.search_movies),
-                getString(com.majorik.moviebox.feature.search.R.string.search_tvs),
-                getString(com.majorik.moviebox.feature.search.R.string.search_peoples)
+                getString(R.string.search_movies),
+                getString(R.string.search_tvs),
+                getString(R.string.search_peoples)
             )
 
         pagerAdapter = FragmentsPagerAdapter(

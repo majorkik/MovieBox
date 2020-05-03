@@ -10,17 +10,17 @@ import android.os.Process
 import android.os.storage.StorageManager
 import android.text.format.Formatter
 import android.view.View
-import com.majorik.moviebox.R
+import com.majorik.library.base.base.BaseSlidingActivity
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.setWindowTransparency
 import com.majorik.library.base.extensions.startActivityWithAnim
 import com.majorik.library.base.extensions.updateMargin
-import com.majorik.library.base.base.BaseSlidingActivity
 import com.majorik.moviebox.feature.navigation.presentation.language.LanguageActivity
 import com.majorik.moviebox.feature.navigation.presentation.settings.clear_dialog.ClearCacheDialog
 import com.majorik.moviebox.feature.navigation.presentation.settings.clear_dialog.ClearDialogListener
 import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.activity_settings.*
+import com.majorik.moviebox.feature.navigation.R
 
 class SettingsActivity : BaseSlidingActivity(), ClearDialogListener {
 
@@ -28,7 +28,7 @@ class SettingsActivity : BaseSlidingActivity(), ClearDialogListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.majorik.moviebox.feature.navigation.R.layout.activity_settings)
+        setContentView(R.layout.activity_settings)
 
         setWindowTransparency(::updateMargins)
 
@@ -71,7 +71,8 @@ class SettingsActivity : BaseSlidingActivity(), ClearDialogListener {
 
     @UseExperimental(ExperimentalStdlibApi::class)
     private fun setCurrentLanguage() {
-        tv_current_language.text = getCurrentLanguage().getDisplayName(getCurrentLanguage()).capitalize(getCurrentLanguage())
+        val currentLanguage = getCurrentLanguage()
+        tv_current_language.text = currentLanguage.getDisplayName(currentLanguage).capitalize(currentLanguage)
     }
 
     private fun calculateCache(): Long {

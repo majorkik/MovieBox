@@ -7,12 +7,13 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
 import com.majorik.moviebox.feature.collections.domain.movie.MovieCollectionType
-import com.majorik.moviebox.R
 import com.majorik.moviebox.feature.collections.presentation.adapters.FragmentsPagerAdapter
 import com.majorik.library.base.extensions.setWindowTransparency
 import com.majorik.library.base.base.BaseSlidingActivity
 import com.majorik.library.base.extensions.updateMargin
 import kotlinx.android.synthetic.main.activity_tab_collections.*
+import com.majorik.moviebox.R as AppResources
+import com.majorik.moviebox.feature.collections.R
 
 class MovieCollectionsActivity : BaseSlidingActivity() {
     private lateinit var pagerAdapter: FragmentsPagerAdapter
@@ -29,7 +30,7 @@ class MovieCollectionsActivity : BaseSlidingActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.majorik.moviebox.feature.collections.R.layout.activity_tab_collections)
+        setContentView(R.layout.activity_tab_collections)
 
         setWindowTransparency(::updateMargins)
 
@@ -38,7 +39,7 @@ class MovieCollectionsActivity : BaseSlidingActivity() {
         m_toolbar_collections.navigationIcon?.setTint(
             ContextCompat.getColor(
                 this,
-                R.color.mine_shaft
+                AppResources.color.mine_shaft
             )
         )
 
@@ -47,7 +48,7 @@ class MovieCollectionsActivity : BaseSlidingActivity() {
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.navigationBarColor = ContextCompat.getColor(this, R.color.mine_shaft)
+            window.navigationBarColor = ContextCompat.getColor(this, AppResources.color.mine_shaft)
         }
 
         supportActionBar?.run {
@@ -95,10 +96,10 @@ class MovieCollectionsActivity : BaseSlidingActivity() {
     private fun configureTabLayout() {
         val pagerTitles: Array<String> =
             arrayOf(
-                getString(com.majorik.moviebox.feature.collections.R.string.collections_now_playing),
-                getString(com.majorik.moviebox.feature.collections.R.string.collections_collection_popular),
-                getString(com.majorik.moviebox.feature.collections.R.string.collections_collection_top_rated),
-                getString(com.majorik.moviebox.feature.collections.R.string.collections_upcoming)
+                getString(R.string.collections_now_playing),
+                getString(R.string.collections_collection_popular),
+                getString(R.string.collections_collection_top_rated),
+                getString(R.string.collections_upcoming)
             )
 
         pagerAdapter = FragmentsPagerAdapter(
