@@ -2,24 +2,30 @@ package com.majorik.moviebox.feature.navigation.presentation.main_page_tvs
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.util.isEmpty
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
-import com.majorik.moviebox.feature.navigation.data.repositories.TrendingRepository
-import com.majorik.moviebox.feature.navigation.domain.movie.TVCollectionType
-import com.majorik.moviebox.feature.navigation.presentation.adapters.*
-import com.majorik.library.base.extensions.*
-import com.majorik.library.base.base.BaseNavigationFragment
 import com.majorik.library.base.constants.AppConfig
+import com.majorik.library.base.delegates.viewBinding
+import com.majorik.library.base.extensions.*
 import com.majorik.library.base.utils.GenresStorageObject
 import com.majorik.library.base.utils.PACKAGE_NAME
-import com.majorik.moviebox.feature.navigation.presentation.adapters.TrailersAdapter
+import com.majorik.moviebox.feature.navigation.R
+import com.majorik.moviebox.feature.navigation.data.repositories.TrendingRepository
+import com.majorik.moviebox.feature.navigation.databinding.FragmentTvsBinding
+import com.majorik.moviebox.feature.navigation.domain.movie.TVCollectionType
+import com.majorik.moviebox.feature.navigation.presentation.adapters.*
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
-import kotlinx.android.synthetic.main.fragment_tvs.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class TVsFragment : BaseNavigationFragment() {
+class TVsFragment : Fragment(R.layout.fragment_tvs) {
+
+    private val viewBinding: FragmentTvsBinding by viewBinding()
+
     private val tvViewModel: TVsViewModel by viewModel()
 
     private lateinit var popularTVsAdapter: TVCardAdapter
@@ -29,7 +35,11 @@ class TVsFragment : BaseNavigationFragment() {
     private val genresAdapter = GenreAdapter()
     private val trendingTVsAdapter = TVTrendAdapter()
 
-    override fun getLayoutId() = com.majorik.moviebox.feature.navigation.R.layout.fragment_tvs
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        setHasOptionsMenu(true)
+
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -45,34 +55,34 @@ class TVsFragment : BaseNavigationFragment() {
     private fun initAdapters() {
         lifecycleScope.launchWhenCreated {
             popularTVsAdapter.setHasStableIds(true)
-            vp_popular_tvs.setShowSideItems(16.toPx(), 16.toPx())
-            vp_popular_tvs.adapter = ScaleInAnimationAdapter(popularTVsAdapter)
+            viewBinding.vpPopularTvs.setShowSideItems(16.toPx(), 16.toPx())
+            viewBinding.vpPopularTvs.adapter = ScaleInAnimationAdapter(popularTVsAdapter)
 
             airTodayAdapter.setHasStableIds(true)
-            rv_air_today_tvs.setAdapterWithFixedSize(
+            viewBinding.rvAirTodayTvs.setAdapterWithFixedSize(
                 ScaleInAnimationAdapter(airTodayAdapter),
                 true
             )
 
             onTheAirAdapter.setHasStableIds(true)
-            rv_on_the_air_tvs.setAdapterWithFixedSize(
+            viewBinding.rvOnTheAirTvs.setAdapterWithFixedSize(
                 ScaleInAnimationAdapter(onTheAirAdapter),
                 true
             )
 
             trailersAdapter.setHasStableIds(true)
-            rv_trailers.setAdapterWithFixedSize(ScaleInAnimationAdapter(trailersAdapter), true)
+            viewBinding.rvTrailers.setAdapterWithFixedSize(ScaleInAnimationAdapter(trailersAdapter), true)
 
             genresAdapter.setHasStableIds(true)
-            rv_tv_genres.setAdapterWithFixedSize(genresAdapter, true)
+            viewBinding.rvTvGenres.setAdapterWithFixedSize(genresAdapter, true)
 
             trendingTVsAdapter.setHasStableIds(true)
-            vp_trend_tvs.adapter = trendingTVsAdapter
+            viewBinding.vpTrendTvs.adapter = trendingTVsAdapter
         }
     }
 
     private fun setClickListeners() {
-        btn_search.setOnClickListener {
+        viewBinding.btnSearch.setOnClickListener {
             startActivity(
                 Intent().setClassName(
                     requireContext(),
@@ -81,32 +91,32 @@ class TVsFragment : BaseNavigationFragment() {
             )
         }
 
-        btn_popular_tvs.setSafeOnClickListener {
+        viewBinding.btnPopularTvs.setSafeOnClickListener {
             openNewActivityWithTab(
                 "$PACKAGE_NAME.feature.collections.presentation.tvTabCollections.TVCollectionsActivity",
                 TVCollectionType.POPULAR
             )
         }
 
-        btn_air_today_tvs.setSafeOnClickListener {
+        viewBinding.btnAirTodayTvs.setSafeOnClickListener {
             openNewActivityWithTab(
                 "$PACKAGE_NAME.feature.collections.presentation.tvTabCollections.TVCollectionsActivity",
                 TVCollectionType.AIRING_TODAY
             )
         }
 
-        btn_on_the_air_tvs.setSafeOnClickListener {
+        viewBinding.btnOnTheAirTvs.setSafeOnClickListener {
             openNewActivityWithTab(
                 "$PACKAGE_NAME.feature.collections.presentation.tvTabCollections.TVCollectionsActivity",
                 TVCollectionType.ON_THE_AIR
             )
         }
 
-        btn_trending_tvs.setSafeOnClickListener {
+        viewBinding.btnTrendingTvs.setSafeOnClickListener {
         }
     }
 
-    override fun fetchData() {
+    private fun fetchData() {
         tvViewModel.run {
             fetchPopularTVs(AppConfig.REGION, 1)
 
@@ -122,7 +132,7 @@ class TVsFragment : BaseNavigationFragment() {
         }
     }
 
-    override fun setObservers() {
+    private fun setObservers() {
         tvViewModel.run {
             popularTVsLiveData.observe(viewLifecycleOwner, Observer {
                 popularTVsAdapter.addItems(it)
@@ -170,9 +180,5 @@ class TVsFragment : BaseNavigationFragment() {
         intent?.putExtra("collection_name", collectionType.name)
 
         startActivity(intent)
-    }
-
-    companion object {
-        fun newInstance() = TVsFragment()
     }
 }

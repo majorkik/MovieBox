@@ -144,7 +144,7 @@
                 android:paddingRight="12dp"
                 android:paddingBottom="24dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_small_poster_card_nav" />
+                tools:listitem="@layout/item_small_poster_card" />
 
 
             <androidx.cardview.widget.CardView
@@ -243,7 +243,7 @@
                 android:paddingRight="12dp"
                 android:paddingBottom="24dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_small_poster_card_nav" />
+                tools:listitem="@layout/item_small_poster_card" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/btn_movie_genres"
@@ -286,13 +286,13 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_movie_genres"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="24dp"
                 android:clipToPadding="false"
                 android:orientation="horizontal"
                 android:paddingLeft="12dp"
-                android:paddingTop="8dp"
                 android:paddingRight="12dp"
-                android:paddingBottom="24dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/item_genre" />
 

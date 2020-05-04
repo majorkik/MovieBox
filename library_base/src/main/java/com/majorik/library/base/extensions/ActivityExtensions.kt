@@ -12,7 +12,10 @@ import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.view.View
 import android.widget.Toast
+import androidx.annotation.IdRes
+import androidx.annotation.RestrictTo
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.res.ResourcesCompat
 import com.majorik.base.R
 import com.majorik.library.base.constants.UrlConstants
@@ -147,4 +150,9 @@ fun Context.getCurrentLocale(): Locale {
     } else {
         resources.configuration.locale
     }
+}
+
+@RestrictTo(RestrictTo.Scope.LIBRARY)
+internal fun <V : View> Activity.requireViewByIdCompat(@IdRes viewId: Int): V {
+    return ActivityCompat.requireViewById(this, viewId)
 }

@@ -2,35 +2,34 @@ package com.majorik.moviebox.feature.navigation.presentation.main_page_movies
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.View
+import android.view.*
 import androidx.core.util.isEmpty
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
-import com.majorik.moviebox.feature.navigation.data.repositories.TrendingRepository.*
+import com.majorik.library.base.constants.AppConfig
+import com.majorik.library.base.constants.GenresConstants
+import com.majorik.library.base.delegates.viewBinding
+import com.majorik.library.base.enums.GenresType
+import com.majorik.library.base.enums.SELECTED_GENRES_TYPE
+import com.majorik.library.base.extensions.*
+import com.majorik.library.base.utils.GenresStorageObject
+import com.majorik.library.base.utils.PACKAGE_NAME
+import com.majorik.moviebox.feature.navigation.R
+import com.majorik.moviebox.feature.navigation.data.repositories.TrendingRepository.TimeWindow
+import com.majorik.moviebox.feature.navigation.databinding.FragmentMoviesBinding
 import com.majorik.moviebox.feature.navigation.domain.movie.MovieCollectionType
 import com.majorik.moviebox.feature.navigation.domain.movie.MovieCollectionType.*
 import com.majorik.moviebox.feature.navigation.presentation.adapters.*
-import com.majorik.library.base.extensions.*
-import com.majorik.library.base.base.BaseNavigationFragment
-import com.majorik.library.base.constants.AppConfig
-import com.majorik.library.base.constants.GenresConstants
-import com.majorik.library.base.enums.GenresType
-import com.majorik.library.base.enums.SELECTED_GENRES_TYPE
-import com.majorik.library.base.utils.GenresStorageObject
-import com.majorik.library.base.utils.PACKAGE_NAME
-import com.majorik.moviebox.feature.navigation.presentation.adapters.MovieTrendAdapter
-import com.majorik.moviebox.feature.navigation.presentation.adapters.TrailersAdapter
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
-import kotlinx.android.synthetic.main.fragment_movies.*
 import kotlinx.coroutines.delay
-import com.majorik.moviebox.feature.navigation.R
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.majorik.moviebox.R as AppResources
 
-class MoviesFragment : BaseNavigationFragment() {
+class MoviesFragment : Fragment(R.layout.fragment_movies) {
+
+    private val viewBinding: FragmentMoviesBinding by viewBinding()
 
     private val moviesViewModel: MoviesViewModel by viewModel()
 
@@ -42,7 +41,15 @@ class MoviesFragment : BaseNavigationFragment() {
     private val genresAdapter = GenreAdapter()
     private val trendingMovieAdapter = MovieTrendAdapter()
 
-    override fun getLayoutId() = R.layout.fragment_movies
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        setHasOptionsMenu(true)
+
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -61,39 +68,39 @@ class MoviesFragment : BaseNavigationFragment() {
     private fun initAdapters() {
         lifecycleScope.launchWhenCreated {
             popularMoviesAdapter.setHasStableIds(true)
-            vp_popular_movies.setShowSideItems(16.toPx(), 16.toPx())
-            vp_popular_movies.adapter = ScaleInAnimationAdapter(popularMoviesAdapter)
+            viewBinding.vpPopularMovies.setShowSideItems(16.toPx(), 16.toPx())
+            viewBinding.vpPopularMovies.adapter = ScaleInAnimationAdapter(popularMoviesAdapter)
 
             nowPlayingMoviesAdapter.setHasStableIds(true)
-            rv_now_playing_movies.setAdapterWithFixedSize(
+            viewBinding.rvNowPlayingMovies.setAdapterWithFixedSize(
                 ScaleInAnimationAdapter(nowPlayingMoviesAdapter),
                 true
             )
 
             upcomingMoviesAdapter.setHasStableIds(true)
-            rv_upcoming_movies.setAdapterWithFixedSize(
+            viewBinding.rvUpcomingMovies.setAdapterWithFixedSize(
                 ScaleInAnimationAdapter(upcomingMoviesAdapter),
                 true
             )
 
             trailersAdapter.setHasStableIds(true)
-            rv_trailers.setAdapterWithFixedSize(ScaleInAnimationAdapter(trailersAdapter), true)
+            viewBinding.rvTrailers.setAdapterWithFixedSize(ScaleInAnimationAdapter(trailersAdapter), true)
 
             peopleAdapter.setHasStableIds(true)
-            rv_trending_peoples.setAdapterWithFixedSize(
+            viewBinding.rvTrendingPeoples.setAdapterWithFixedSize(
                 ScaleInAnimationAdapter(peopleAdapter),
                 false
             )
 
             genresAdapter.setHasStableIds(true)
-            rv_movie_genres.setAdapterWithFixedSize(genresAdapter, true)
+            viewBinding.rvMovieGenres.setAdapterWithFixedSize(genresAdapter, true)
 
             trendingMovieAdapter.setHasStableIds(true)
-            vp_trend_movies.adapter = trendingMovieAdapter
+            viewBinding.vpTrendMovies.adapter = trendingMovieAdapter
         }
     }
 
-    override fun fetchData() {
+    private fun fetchData() {
         moviesViewModel.run {
             fetchPopularMovies(AppConfig.REGION, 1, "")
 
@@ -112,32 +119,32 @@ class MoviesFragment : BaseNavigationFragment() {
     }
 
     private fun setClickListeners() {
-        btn_search.setOnClickListener {
+        viewBinding.btnSearch.setOnClickListener {
             context?.startActivityWithAnim("$PACKAGE_NAME.feature.search.presentation.ui.SearchableActivity")
         }
 
-        btn_popular_movies.setOnClickListener {
+        viewBinding.btnPopularMovies.setOnClickListener {
             openNewActivityWithTab(
                 "$PACKAGE_NAME.feature.collections.presentation.movieTabCollections.MovieCollectionsActivity",
                 POPULAR
             )
         }
 
-        btn_upcoming_movies.setOnClickListener {
+        viewBinding.btnUpcomingMovies.setOnClickListener {
             openNewActivityWithTab(
                 "$PACKAGE_NAME.feature.collections.presentation.movieTabCollections.MovieCollectionsActivity",
                 UPCOMING
             )
         }
 
-        btn_now_playing_movies.setOnClickListener {
+        viewBinding.btnNowPlayingMovies.setOnClickListener {
             openNewActivityWithTab(
                 "$PACKAGE_NAME.feature.collections.presentation.movieTabCollections.MovieCollectionsActivity",
                 NOW_PLAYING
             )
         }
 
-        btn_movie_genres.setSafeOnClickListener {
+        viewBinding.btnMovieGenres.setSafeOnClickListener {
             val intent = "$PACKAGE_NAME.feature.collections.presentation.genres.GenresActivity".loadIntentOrReturnNull()
 
             intent?.putExtra(
@@ -149,7 +156,7 @@ class MoviesFragment : BaseNavigationFragment() {
         }
     }
 
-    override fun setObservers() {
+    private fun setObservers() {
         moviesViewModel.run {
             popularMoviesLiveData.observe(viewLifecycleOwner, Observer {
                 popularMoviesAdapter.addItems(it)
@@ -231,9 +238,5 @@ class MoviesFragment : BaseNavigationFragment() {
         intent.putExtra("collection_name", collectionType.name)
 
         startActivity(intent)
-    }
-
-    companion object {
-        fun newInstance() = MoviesFragment()
     }
 }

@@ -1,33 +1,24 @@
 package com.majorik.moviebox.feature.navigation.presentation.main_page_search
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.majorik.library.base.delegates.viewBinding
+import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startActivityWithAnim
 import com.majorik.library.base.utils.PACKAGE_NAME
-import kotlinx.android.synthetic.main.fragment_search.*
+import com.majorik.moviebox.feature.navigation.R
+import com.majorik.moviebox.feature.navigation.databinding.FragmentSearchBinding
 
-class SearchFragment : Fragment() {
+class SearchFragment : Fragment(R.layout.fragment_search) {
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(com.majorik.moviebox.feature.navigation.R.layout.fragment_search, container, false)
-    }
+    private val viewBinding: FragmentSearchBinding by viewBinding()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        search_bar.setOnClickListener {
+        viewBinding.searchBar.setSafeOnClickListener {
             context?.startActivityWithAnim("$PACKAGE_NAME.feature.search.presentation.ui.SearchableActivity")
         }
-    }
-
-    companion object {
-        fun newInstance() = SearchFragment()
     }
 }
