@@ -11,14 +11,14 @@ import com.majorik.library.base.utils.GenresStorageObject
 import com.majorik.moviebox.feature.search.databinding.ItemCardWithDetailsBinding
 
 internal class SearchMovieDetailedVH(val parent: ItemCardWithDetailsBinding) : RecyclerView.ViewHolder(parent.root) {
-    @UseExperimental(ExperimentalStdlibApi::class)
+    @OptIn(ExperimentalStdlibApi::class)
     fun bindTo(item: Movie?) {
         item?.let {
             parent.cardImage.displayImageWithCenterCrop(UrlConstants.TMDB_BACKDROP_SIZE_1280 + it.backdropPath)
             parent.cardTitle.text = it.title
 
             if (!it.releaseDate.isNullOrEmpty()) {
-                parent.cardReleaseDate.text = it.releaseDate!!.toDate().yearInt.toString()
+                parent.cardReleaseDate.text = it.releaseDate.toDate().yearInt.toString()
             }
 
             parent.cardVoteAverage.text = it.voteAverage.toString()

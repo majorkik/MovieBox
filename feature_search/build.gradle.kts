@@ -15,9 +15,11 @@ android {
         versionName = AndroidConfig.VERSION_NAME
         testInstrumentationRunner = AndroidConfig.TEST_INSTRUMENTATION_RUNNER
 
-        viewBinding {
-            isEnabled = true
-        }
+//        android.buildFeatures.viewBinding = true
+    }
+
+    viewBinding {
+        isEnabled = true
     }
 
     buildTypes {

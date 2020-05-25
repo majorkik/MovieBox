@@ -11,7 +11,7 @@ import com.majorik.library.base.extensions.startDetailsActivityWithId
 import com.majorik.library.base.utils.PACKAGE_NAME
 import com.majorik.moviebox.feature.navigation.databinding.ItemPersonProfileCardBinding
 
-class PersonAdapter() : RecyclerView.Adapter<PersonAdapter.PersonViewHolder>() {
+class PersonAdapter : RecyclerView.Adapter<PersonAdapter.PersonViewHolder>() {
 
     private var people: List<Person> = emptyList()
 

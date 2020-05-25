@@ -36,7 +36,7 @@ class LanguageAdapter(private val listener: (locale: Locale) -> Unit) :
     }
 
     class LanguageViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
-        @UseExperimental(ExperimentalStdlibApi::class)
+        @OptIn(ExperimentalStdlibApi::class)
         fun bindTo(locale: Locale) {
             itemView.lang_name.text = locale.displayName.capitalize(AppConfig.APP_LOCALE)
             if (AppConfig.APP_LOCALE.toLanguageTag() == locale.toLanguageTag()) {

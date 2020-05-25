@@ -3,13 +3,13 @@ package com.majorik.moviebox.feature.collections.presentation.adapters.movie
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.moviebox.feature.collections.domain.tmdbModels.movie.Movie
 import com.majorik.moviebox.feature.collections.presentation.adapters.movie.MovieCardAdapter.*
 import com.majorik.library.base.extensions.displayImageWithCenterCrop
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.extensions.startDetailsActivityWithId
-import com.majorik.library.base.utils.PACKAGE_NAME
 import com.majorik.moviebox.feature.collections.databinding.ItemCollectionBigImageWithCornersBinding
 import kotlinx.android.synthetic.main.item_collection_big_image_with_corners.view.*
 
@@ -32,7 +32,7 @@ class MovieCardAdapter : RecyclerView.Adapter<MovieCardViewHolder>() {
         holder.itemView.slider_layout.setSafeOnClickListener {
             holder.itemView.context.startDetailsActivityWithId(
                 movies[position].id,
-                "$PACKAGE_NAME.feature.details.presentation.movieDetails.MovieDetailsActivity"
+                ScreenLinks.movieDetails
             )
         }
     }

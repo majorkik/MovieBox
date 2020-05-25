@@ -14,7 +14,7 @@ import com.majorik.moviebox.feature.navigation.databinding.ItemSmallPosterDateCa
 import com.soywiz.klock.KlockLocale
 import com.soywiz.klock.locale.russian
 
-class MovieDateCardAdapter() : RecyclerView.Adapter<MovieDateCardAdapter.MovieViewHolder>() {
+class MovieDateCardAdapter : RecyclerView.Adapter<MovieDateCardAdapter.MovieViewHolder>() {
     private var movies: MutableList<Movie> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {

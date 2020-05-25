@@ -5,11 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.moviebox.feature.collections.R
 import com.majorik.moviebox.feature.collections.domain.tmdbModels.cast.MovieCast
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.extensions.*
-import com.majorik.library.base.utils.PACKAGE_NAME
 import kotlinx.android.synthetic.main.item_collection_medium_poster_card.view.*
 import kotlinx.android.synthetic.main.item_collection_person_credit_in_line.view.*
 
@@ -94,7 +94,7 @@ class MovieCreditsAdapter(
         private fun bindClickListener(cast: MovieCast) {
             itemView.collection_card.setSafeOnClickListener {
                 val intent =
-                    "$PACKAGE_NAME.feature.details.presentation.movieDetails.MovieDetailsActivity".loadIntentOrReturnNull()
+                    ScreenLinks.movieDetails.loadIntentOrReturnNull()
 
                 intent?.putExtra("id", cast.id)
 
@@ -114,7 +114,7 @@ class MovieCreditsAdapter(
             )
 
             itemView.pc_year.text = if (!cast.releaseDate.isNullOrBlank()) {
-                cast.releaseDate!!.toDate().year.year.toString()
+                cast.releaseDate.toDate().year.year.toString()
             } else {
                 "????"
             }
@@ -125,7 +125,7 @@ class MovieCreditsAdapter(
         private fun bindClickListener(cast: MovieCast) {
             itemView.inline_credit_layout.setSafeOnClickListener {
                 val intent =
-                    "$PACKAGE_NAME.feature.details.presentation.movieDetails.MovieDetailsActivity".loadIntentOrReturnNull()
+                    ScreenLinks.movieDetails.loadIntentOrReturnNull()
 
                 intent?.putExtra("id", cast.id)
 

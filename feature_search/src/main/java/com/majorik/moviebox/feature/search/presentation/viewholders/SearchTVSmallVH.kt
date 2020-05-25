@@ -8,7 +8,7 @@ import com.majorik.moviebox.feature.search.databinding.ItemSearchMediumPosterCar
 
 internal class SearchTVSmallVH(val parent: ItemSearchMediumPosterCardBinding) :
     RecyclerView.ViewHolder(parent.root) {
-    @UseExperimental(ExperimentalStdlibApi::class)
+    @OptIn(ExperimentalStdlibApi::class)
     fun bindTo(item: TV?) {
         item?.let {
             parent.collectionImage.displayImageWithCenterCrop(UrlConstants.TMDB_POSTER_SIZE_185 + it.posterPath)

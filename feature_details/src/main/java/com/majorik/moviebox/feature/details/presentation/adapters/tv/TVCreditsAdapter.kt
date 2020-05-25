@@ -116,7 +116,7 @@ class TVCreditsAdapter(
             )
 
             itemView.pc_year.text = if (!cast.firstAirDate.isNullOrBlank()) {
-                cast.firstAirDate!!.toDate().year.year.toString()
+                cast.firstAirDate.toDate().year.year.toString()
             } else {
                 "????"
             }

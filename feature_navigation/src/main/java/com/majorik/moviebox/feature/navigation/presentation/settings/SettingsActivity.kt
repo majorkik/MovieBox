@@ -69,7 +69,7 @@ class SettingsActivity : BaseSlidingActivity(), ClearDialogListener {
         }
     }
 
-    @UseExperimental(ExperimentalStdlibApi::class)
+    @OptIn(ExperimentalStdlibApi::class)
     private fun setCurrentLanguage() {
         val currentLanguage = getCurrentLanguage()
         tv_current_language.text = currentLanguage.getDisplayName(currentLanguage).capitalize(currentLanguage)

@@ -45,7 +45,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
         viewBinding.btnSignIn.setSafeOnClickListener {
             credentialsManager.clearAll()
-            context?.startActivityWithAnim("$PACKAGE_NAME.feature.auth.presentation.ui.first_start.FirstStartActivity")
+            context?.startActivityWithAnim("$PACKAGE_NAME.feature.auth.presentation.ui.first_start.SplashScreenActivity")
         }
 
         viewBinding.btnSettings.setSafeOnClickListener {

@@ -1,7 +1,10 @@
 @file:Suppress("detekt.StringLiteralDuplication")
 
+import org.omg.CORBA.ACTIVITY_COMPLETED
+
 private object LibraryVersion {
-    const val FRAGMENT_KTX = "1.2.3"
+    const val ACTIVITY_KTX = "1.2.0-alpha04"
+    const val FRAGMENT_KTX = "1.3.0-alpha04"
     const val COORDINATOR_LAYOUT = "1.1.0"
     const val CONSTRAINT_LAYOUT = "2.0.0-beta4"
     const val PAGING_LIBRARY = "2.1.2"
@@ -10,15 +13,15 @@ private object LibraryVersion {
     const val MULTIDEX = "1.0.3"
     const val NAVIGATION_DYNAMIC_FEATURE_FRAGMENT = "2.3.0-alpha05"
 
-    const val PLAY_CORE = "1.6.4"
+    const val PLAY_CORE = "1.7.3"
 
     const val LEGACY_SUPPORT = "1.0.0"
     const val LIFECYCLE_EXT = "2.2.0"
     const val LIFECYCLE_KTX = "2.2.0"
     const val ANNOTATION = "1.1.0"
     const val VECTOR_DRAWABLE = "1.1.0"
-    const val NAVIGATION = "2.2.1"
-    const val RECYCLERVIEW = "1.2.0-alpha01"
+    const val NAVIGATION = "2.2.2"
+    const val RECYCLERVIEW = "1.2.0-alpha03"
     const val SUPPORT_DESIGN = "28.0.0-rc02"
     const val VIEWPAGER_2 = "1.0.0"
 
@@ -26,9 +29,9 @@ private object LibraryVersion {
 
     const val MOSHI = "2.7.1"
 
-    const val RETROFIT = "2.7.1"
+    const val RETROFIT = "2.9.0"
     const val RETROFIT_COROUTINES = "0.9.2"
-    const val OKHTTP3 = "4.4.0"
+    const val OKHTTP3 = "4.7.2"
 
     const val TIMBER = "4.7.1"
     const val PRETTY_LOGGER = "2.2.0"
@@ -36,7 +39,7 @@ private object LibraryVersion {
     const val KOIN = "2.1.5"
 
     const val VIEWPAGER_DOTS_INDICATOR = "3.0.3"
-    const val STFALCON = "0.1.0"
+    const val STFALCON = "1.0.10"
     const val PHOTOVIEW = "2.3.0"
     const val EXPANDABLE_TEXT = "0.1.4"
     const val CIRCLE_IMAGE = "3.1.0"
@@ -45,12 +48,12 @@ private object LibraryVersion {
     const val NUMBER_PICKER = "1.0.1"
     const val KLOCK = "1.8.4"
     const val LOTTIE = "3.4.0"
-    const val LOCALIZATION = "1.2.4"
-    const val COIL = "0.9.5"
+    const val LOCALIZATION = "1.2.5"
+    const val COIL = "0.11.0"
     const val RECYCLER_VIEW_ANIMATION = "3.0.0"
 
-    const val FIREBASE_ANALYTICS = "17.2.3"
-    const val FIREBASE_CRASHLYTICS = "17.0.0-beta01"
+    const val FIREBASE_ANALYTICS = "17.4.2"
+    const val FIREBASE_CRASHLYTICS = "17.0.0"
 
     const val SLF4J_API = "1.7.25"
     const val SLF4J_TIMBER = "1.0.1"
@@ -93,6 +96,7 @@ object LibraryDependency {
     const val PAGING_RUNTIME = "androidx.paging:paging-runtime:${LibraryVersion.PAGING_LIBRARY}"
     const val RECYCLERVIEW = "androidx.recyclerview:recyclerview:${LibraryVersion.RECYCLERVIEW}"
     const val FRAGMENT_KTX = "androidx.fragment:fragment-ktx:${LibraryVersion.FRAGMENT_KTX}"
+    const val ACTIVITY_KTX = "androidx.activity:activity-ktx:${LibraryVersion.ACTIVITY_KTX}"
     const val VIEWPAGER_2 = "androidx.viewpager2:viewpager2:${LibraryVersion.VIEWPAGER_2}"
 
     const val OKHTTP_3 = "com.squareup.okhttp3:okhttp:${LibraryVersion.OKHTTP3}"

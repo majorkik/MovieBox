@@ -15,7 +15,11 @@ android {
         versionName = AndroidConfig.VERSION_NAME
         testInstrumentationRunner = AndroidConfig.TEST_INSTRUMENTATION_RUNNER
 
-        viewBinding.isEnabled = true
+//        android.buildFeatures.viewBinding = true
+    }
+
+    viewBinding {
+        isEnabled = true
     }
 
     buildTypes {
@@ -65,10 +69,12 @@ dependencies {
 
     api(LibraryDependency.APP_COMPAT)
     api(LibraryDependency.FRAGMENT_KTX)
+    api(LibraryDependency.ACTIVITY_KTX)
     api(LibraryDependency.RECYCLERVIEW)
     api(LibraryDependency.VIEWPAGER_2)
     api(LibraryDependency.VECTOR_DRAWABLE)
     api(LibraryDependency.DYNAMIC_FEATURE_FRAGMENT)
+    api(LibraryDependency.MATERIAL)
 
     api(LibraryDependency.LIFECYCLE_EXT)
     api(LibraryDependency.LIFECYCLE_VIEWMODEL_KTX)

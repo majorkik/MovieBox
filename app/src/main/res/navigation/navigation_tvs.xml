@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_tvs"
+    app:startDestination="@+id/nav_tvs"
+    tools:ignore="UnusedNavigation">
+
+    <fragment
+        android:id="@+id/nav_tvs"
+        android:name="com.majorik.moviebox.feature.navigation.presentation.main_page_tvs.TVsFragment"
+        android:label="@string/title_nav_tvs" >
+    </fragment>
+</navigation>

@@ -12,14 +12,14 @@ import com.majorik.moviebox.feature.search.databinding.ItemCardWithDetailsBindin
 
 internal class SearchTVDetailedVH(val parent: ItemCardWithDetailsBinding) :
     RecyclerView.ViewHolder(parent.root) {
-    @UseExperimental(ExperimentalStdlibApi::class)
+    @OptIn(ExperimentalStdlibApi::class)
     fun bindTo(item: TV?) {
         item?.let {
             parent.cardImage.displayImageWithCenterCrop(UrlConstants.TMDB_BACKDROP_SIZE_1280 + it.backdropPath)
             parent.cardTitle.text = it.name
 
             if (!it.firstAirDate.isNullOrEmpty()) {
-                parent.cardReleaseDate.text = it.firstAirDate!!.toDate().yearInt.toString()
+                parent.cardReleaseDate.text = it.firstAirDate.toDate().yearInt.toString()
             }
 
             parent.cardVoteAverage.text = it.voteAverage.toString()

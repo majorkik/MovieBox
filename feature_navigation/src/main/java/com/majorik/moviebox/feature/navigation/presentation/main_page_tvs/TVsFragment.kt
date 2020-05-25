@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.core.util.isEmpty
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -35,6 +36,16 @@ class TVsFragment : Fragment(R.layout.fragment_tvs) {
     private val genresAdapter = GenreAdapter()
     private val trendingTVsAdapter = TVTrendAdapter()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        fetchData()
+
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            parentFragmentManager.popBackStack()
+        }
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         setHasOptionsMenu(true)
 
@@ -47,36 +58,29 @@ class TVsFragment : Fragment(R.layout.fragment_tvs) {
         popularTVsAdapter = TVCardAdapter(requireActivity())
 
         initAdapters()
-        fetchData()
         setObservers()
         setClickListeners()
     }
 
     private fun initAdapters() {
         lifecycleScope.launchWhenCreated {
-            popularTVsAdapter.setHasStableIds(true)
             viewBinding.vpPopularTvs.setShowSideItems(16.toPx(), 16.toPx())
             viewBinding.vpPopularTvs.adapter = ScaleInAnimationAdapter(popularTVsAdapter)
 
-            airTodayAdapter.setHasStableIds(true)
             viewBinding.rvAirTodayTvs.setAdapterWithFixedSize(
                 ScaleInAnimationAdapter(airTodayAdapter),
                 true
             )
 
-            onTheAirAdapter.setHasStableIds(true)
             viewBinding.rvOnTheAirTvs.setAdapterWithFixedSize(
                 ScaleInAnimationAdapter(onTheAirAdapter),
                 true
             )
 
-            trailersAdapter.setHasStableIds(true)
             viewBinding.rvTrailers.setAdapterWithFixedSize(ScaleInAnimationAdapter(trailersAdapter), true)
 
-            genresAdapter.setHasStableIds(true)
             viewBinding.rvTvGenres.setAdapterWithFixedSize(genresAdapter, true)
 
-            trendingTVsAdapter.setHasStableIds(true)
             viewBinding.vpTrendTvs.adapter = trendingTVsAdapter
         }
     }

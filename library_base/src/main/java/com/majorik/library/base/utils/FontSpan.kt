@@ -21,7 +21,7 @@ class FontSpan(family: String?, private val newType: Typeface?) :
 
             val oldStyle: Int
             val old: Typeface = paint.typeface
-            oldStyle = old.style ?: 0
+            oldStyle = old.style
             val fake = oldStyle and tf.style.inv()
             if (fake and Typeface.BOLD != 0) {
                 paint.isFakeBoldText = true

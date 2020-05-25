@@ -20,7 +20,7 @@ class PullDownLayout @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
-    private val dragger = ViewDragHelper.create(this, 1f / 8f, ViewDragCallback())
+    private val dragger = ViewDragHelper.create(this, 1f, ViewDragCallback())
     private val minimumFlingVelocity = ViewConfiguration.get(context).scaledMinimumFlingVelocity
     private var callback: Callback? = null
 
@@ -29,7 +29,11 @@ class PullDownLayout @JvmOverloads constructor(
     }
 
     override fun onInterceptTouchEvent(ev: MotionEvent): Boolean =
-        if (ev.pointerCount > 1 || !isEnabled) false else dragger.shouldInterceptTouchEvent(ev)
+        if (ev.pointerCount > 1 || !isEnabled || callback?.pullDownReady() != true) {
+            false
+        } else {
+            dragger.shouldInterceptTouchEvent(ev)
+        }
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(@NonNull event: MotionEvent): Boolean =
@@ -52,6 +56,8 @@ class PullDownLayout @JvmOverloads constructor(
         fun onPull(progress: Float)
         fun onPullCancel()
         fun onPullComplete()
+
+        fun pullDownReady(): Boolean
     }
 
     private inner class ViewDragCallback : ViewDragHelper.Callback() {

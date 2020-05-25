@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,6 +10,7 @@
         <dist:delivery>
             <dist:on-demand />
         </dist:delivery>
+
         <dist:fusing dist:include="true" />
     </dist:module>
 
@@ -18,14 +20,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning,MissingApplicationIcon">
-
         <activity
-            android:name=".presentation.ui.about_tmdb.AboutTheMovieDatabaseActivity"
-            android:theme="@style/AppTheme.Transparent.NoActionBar" />
-
-        <activity
-            android:name=".presentation.ui.first_start.FirstStartActivity"
-            android:theme="@style/AppTheme.NoActionBar.Dark">
+            android:name=".presentation.ui.authorization.AuthorizationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.SplashScreen"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -35,6 +34,9 @@
                 <data android:scheme="com.majorik.moviebox" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".presentation.ui.about_tmdb.AboutTheMovieDatabaseActivity"
+            android:theme="@style/AppTheme.Transparent.NoActionBar" />
     </application>
-</manifest>
 
+</manifest>

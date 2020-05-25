@@ -3,11 +3,11 @@ package com.majorik.moviebox.feature.navigation.presentation.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.extensions.displayImageWithCenterCrop
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startDetailsActivityWithId
-import com.majorik.library.base.utils.PACKAGE_NAME
 import com.majorik.moviebox.feature.navigation.databinding.ItemSmallPosterCardBinding
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.movie.Movie
 import com.majorik.moviebox.feature.navigation.presentation.adapters.MovieCollectionAdapter.MovieViewHolder
@@ -52,7 +52,7 @@ class MovieCollectionAdapter : RecyclerView.Adapter<MovieViewHolder>() {
             parent.collectionCard.setSafeOnClickListener {
                 parent.root.context.startDetailsActivityWithId(
                     movie.id,
-                    "$PACKAGE_NAME.feature.details.presentation.movieDetails.MovieDetailsActivity"
+                    ScreenLinks.movieDetails
                 )
             }
         }

@@ -112,7 +112,7 @@ class MovieCreditsAdapter(
             )
 
             itemView.pc_year.text = if (!cast.releaseDate.isNullOrBlank()) {
-                cast.releaseDate!!.toDate().year.year.toString()
+                cast.releaseDate.toDate().year.year.toString()
             } else {
                 "????"
             }

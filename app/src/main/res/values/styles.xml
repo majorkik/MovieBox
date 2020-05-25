@@ -47,10 +47,10 @@
         <item name="android:homeAsUpIndicator">@drawable/ic_back</item>
     </style>
 
-<!--    <style name="SearchView">-->
-<!--        <item name="floatingSearch_clearBtnColor">@color/mine_shaft</item>-->
-<!--        <item name="floatingSearch_leftActionColor">@color/mine_shaft</item>-->
-<!--    </style>-->
+    <!--    <style name="SearchView">-->
+    <!--        <item name="floatingSearch_clearBtnColor">@color/mine_shaft</item>-->
+    <!--        <item name="floatingSearch_leftActionColor">@color/mine_shaft</item>-->
+    <!--    </style>-->
 
     <style name="HeaderMedium">
         <item name="android:textSize">16sp</item>
@@ -94,6 +94,19 @@
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowNoTitle">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+    <style name="AppTheme.SplashScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
     </style>
 

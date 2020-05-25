@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.moviebox.feature.collections.domain.NetworkState
 import com.majorik.moviebox.feature.collections.domain.tmdbModels.movie.Movie
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startDetailsActivityWithId
-import com.majorik.library.base.utils.PACKAGE_NAME
 import com.majorik.moviebox.feature.collections.databinding.ItemCollectionNetworkStateBinding
 import com.majorik.moviebox.feature.collections.databinding.ItemCollectionMediumPosterCardBinding
 import com.majorik.moviebox.feature.collections.presentation.viewholders.MoviePagedItemVH
@@ -50,7 +50,7 @@ class PagingMovieCollectionAdapter(private val callback: OnClickListener) :
                     getItem(position)?.let { movie ->
                         holder.itemView.context.startDetailsActivityWithId(
                             movie.id,
-                            "$PACKAGE_NAME.feature.details.presentation.movieDetails.MovieDetailsActivity"
+                            ScreenLinks.movieDetails
                         )
                     }
                 }

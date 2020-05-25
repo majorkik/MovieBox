@@ -1,4 +1,4 @@
-package com.majorik.moviebox.feature.auth.presentation.ui.first_start
+package com.majorik.moviebox.feature.auth.presentation.ui.authorization
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,7 +9,7 @@ import com.majorik.moviebox.feature.auth.domain.ResponseSession
 import com.majorik.moviebox.feature.auth.data.repository.AuthTmdbRepository
 import kotlinx.coroutines.launch
 
-internal class AuthViewModel(private val authRepository: AuthTmdbRepository) : ViewModel() {
+internal class AuthorizationViewModel(private val authRepository: AuthTmdbRepository) : ViewModel() {
     var tmdbRequestTokenLiveData = MutableLiveData<RequestTokenResponse>()
     var tmdbSessionLiveData = MutableLiveData<ResponseSession>()
     var tmdbGuestSessionLiveData = MutableLiveData<RequestTokenResponse>()

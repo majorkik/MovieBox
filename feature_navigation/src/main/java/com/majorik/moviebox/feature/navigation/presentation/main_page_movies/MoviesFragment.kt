@@ -41,6 +41,12 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
     private val genresAdapter = GenreAdapter()
     private val trendingMovieAdapter = MovieTrendAdapter()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        fetchData()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -55,7 +61,6 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
         super.onViewCreated(view, savedInstanceState)
 
         initAdapters()
-        fetchData()
         setObservers()
         setClickListeners()
     }
@@ -67,35 +72,35 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
     private fun initAdapters() {
         lifecycleScope.launchWhenCreated {
-            popularMoviesAdapter.setHasStableIds(true)
+            //            popularMoviesAdapter.setHasStableIds(true)
             viewBinding.vpPopularMovies.setShowSideItems(16.toPx(), 16.toPx())
-            viewBinding.vpPopularMovies.adapter = ScaleInAnimationAdapter(popularMoviesAdapter)
+            viewBinding.vpPopularMovies.adapter = popularMoviesAdapter
 
-            nowPlayingMoviesAdapter.setHasStableIds(true)
+//            nowPlayingMoviesAdapter.setHasStableIds(true)
             viewBinding.rvNowPlayingMovies.setAdapterWithFixedSize(
                 ScaleInAnimationAdapter(nowPlayingMoviesAdapter),
                 true
             )
 
-            upcomingMoviesAdapter.setHasStableIds(true)
+//            upcomingMoviesAdapter.setHasStableIds(true)
             viewBinding.rvUpcomingMovies.setAdapterWithFixedSize(
-                ScaleInAnimationAdapter(upcomingMoviesAdapter),
+                upcomingMoviesAdapter,
                 true
             )
 
-            trailersAdapter.setHasStableIds(true)
-            viewBinding.rvTrailers.setAdapterWithFixedSize(ScaleInAnimationAdapter(trailersAdapter), true)
+//            trailersAdapter.setHasStableIds(true)
+            viewBinding.rvTrailers.setAdapterWithFixedSize(trailersAdapter, true)
 
-            peopleAdapter.setHasStableIds(true)
+//            peopleAdapter.setHasStableIds(true)
             viewBinding.rvTrendingPeoples.setAdapterWithFixedSize(
-                ScaleInAnimationAdapter(peopleAdapter),
+                peopleAdapter,
                 false
             )
 
-            genresAdapter.setHasStableIds(true)
+//            genresAdapter.setHasStableIds(true)
             viewBinding.rvMovieGenres.setAdapterWithFixedSize(genresAdapter, true)
 
-            trendingMovieAdapter.setHasStableIds(true)
+//            trendingMovieAdapter.setHasStableIds(true)
             viewBinding.vpTrendMovies.adapter = trendingMovieAdapter
         }
     }
@@ -120,7 +125,23 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
     private fun setClickListeners() {
         viewBinding.btnSearch.setOnClickListener {
-            context?.startActivityWithAnim("$PACKAGE_NAME.feature.search.presentation.ui.SearchableActivity")
+            //            context?.startActivityWithAnim("$PACKAGE_NAME.feature.search.presentation.ui.SearchableActivity")
+
+            parentFragmentManager.beginTransaction()
+                .setCustomAnimations(
+                    AppResources.anim.slide_in_up,
+                    AppResources.anim.slide_out_up,
+                    AppResources.anim.slide_exit_in_up,
+                    AppResources.anim.slide_exit_out_up
+                )
+                .add(
+                    AppResources.id.splash_container,
+                    "$PACKAGE_NAME.feature.navigation.presentation.main_page_tvs.TVsFragment".loadFragmentOrReturnNull()!!
+                )
+                .addToBackStack("tvs_fragment")
+                .commit()
+
+//            findNavController().navigate(AppResources.id.nav_tvs)
         }
 
         viewBinding.btnPopularMovies.setOnClickListener {

@@ -7,7 +7,7 @@ import com.majorik.moviebox.feature.navigation.databinding.ItemGenreBinding
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.genre.Genre
 import java.util.*
 
-class GenreAdapter() : RecyclerView.Adapter<GenreAdapter.GenreViewHolder>() {
+class GenreAdapter : RecyclerView.Adapter<GenreAdapter.GenreViewHolder>() {
 
     private val genres: MutableList<Genre> = mutableListOf()
 
@@ -43,7 +43,7 @@ class GenreAdapter() : RecyclerView.Adapter<GenreAdapter.GenreViewHolder>() {
     class GenreViewHolder(private val parent: ItemGenreBinding) :
         RecyclerView.ViewHolder(parent.root) {
 
-        @UseExperimental(ExperimentalStdlibApi::class)
+        @OptIn(ExperimentalStdlibApi::class)
         fun bindTo(genre: Genre) {
             parent.genreName.text = genre.name.capitalize(Locale.getDefault())
         }

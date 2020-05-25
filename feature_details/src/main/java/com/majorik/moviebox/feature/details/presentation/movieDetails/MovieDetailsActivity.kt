@@ -138,7 +138,7 @@ class MovieDetailsActivity : BaseSlidingActivity() {
         }
     }
 
-    @UseExperimental(ExperimentalStdlibApi::class)
+    @OptIn(ExperimentalStdlibApi::class)
     private fun setObserver() {
         movieDetailsViewModel.movieDetailsLiveData.observe(this, Observer { movie ->
             placeholder_main_details_page.setVisibilityOption(false)

@@ -8,7 +8,7 @@ object GradlePluginVersion {
 //    const val SAFE_ARGS = CoreVersion.NAVIGATION
 }
 
-public object GradlePluginId {
+object GradlePluginId {
     //    const val DETEKT = "io.gitlab.arturbosch.detekt"
     const val KTLINT_GRADLE = "org.jlleitschuh.gradle.ktlint"
     const val ANDROID_APPLICATION = "com.android.application"

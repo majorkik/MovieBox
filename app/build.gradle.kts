@@ -6,6 +6,8 @@ plugins {
     id(GradlePluginId.KOTLIN_ANDROID)
     id(GradlePluginId.KOTLIN_ANDROID_EXTENSIONS)
     id(GradlePluginId.KTLINT_GRADLE)
+    id("kotlin-android")
+    id("kotlin-android-extensions")
 }
 
 android {
@@ -48,6 +50,12 @@ android {
             sourceCompatibility = JavaVersion.VERSION_1_8
             targetCompatibility = JavaVersion.VERSION_1_8
         }
+
+//        android.buildFeatures.viewBinding = true
+    }
+
+    viewBinding {
+        isEnabled = true
     }
 
     // Each feature module that is included in settings.gradle.kts is added here as dynamic feature
@@ -66,10 +74,6 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
-
-    viewBinding {
-        isEnabled = true
-    }
 }
 
 dependencies {
@@ -87,7 +91,6 @@ dependencies {
 
     api(LibraryDependency.CONSTRAINT_LAYOUT)
     api(LibraryDependency.COORDINATOR_LAYOUT)
-    api(LibraryDependency.MATERIAL)
     api(LibraryDependency.VIEWPAGER_2)
     api(LibraryDependency.PAGING_RUNTIME)
 
@@ -98,13 +101,16 @@ dependencies {
     api(LibraryDependency.CIRCLE_IMAGEVIEW)
 
     api(LibraryDependency.RECYCLER_VIEW_ANIMATION)
+    api("androidx.appcompat:appcompat:1.1.0")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:${CoreVersion.KOTLIN}")
+    api("androidx.constraintlayout:constraintlayout:1.1.3")
 
     addTestDependencies()
 }
 
 fun BaseFlavor.buildConfigFieldFromGradleProperty(gradlePropertyName: String) {
     val propertyValue =
-        com.android.build.gradle.internal.cxx.configure.gradleLocalProperties(rootDir)[gradlePropertyName] as? String
+            com.android.build.gradle.internal.cxx.configure.gradleLocalProperties(rootDir)[gradlePropertyName] as? String
     checkNotNull(propertyValue) { "Gradle property $gradlePropertyName is null" }
 
     val androidResourceName = "GRADLE_${gradlePropertyName.toSnakeCase()}".toUpperCase()
@@ -112,13 +118,15 @@ fun BaseFlavor.buildConfigFieldFromGradleProperty(gradlePropertyName: String) {
 }
 
 fun getDynamicFeatureModuleNames() = ModuleDependency.getDynamicFeatureModules()
-    .map { it.replace(":feature_", "") }
-    .toSet()
+        .map { it.replace(":feature_", "") }
+        .toSet()
 
 fun String.toSnakeCase() = this.split(Regex("(?=[A-Z])")).joinToString("_") { it.toLowerCase() }
 
 fun DefaultConfig.buildConfigField(name: String, value: Set<String>) {
     // Generates String that holds Java String Array code
-    val strValue = value.joinToString(prefix = "{", separator = ",", postfix = "}", transform = { "\"$it\"" })
+    val strValue = value.joinToString(prefix = "{", separator = ",", postfix = "}", transform = {
+        "\"$it\""
+    })
     buildConfigField("String[]", name, strValue)
 }

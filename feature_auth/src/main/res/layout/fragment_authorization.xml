@@ -4,23 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mine_shaft"
-    android:fitsSystemWindows="true"
-    tools:context="com.majorik.moviebox.feature.auth.presentation.ui.first_start.FirstStartActivity">
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/bg_anim"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="false"
-        app:lottie_rawRes="@raw/bg_anim"
-        app:lottie_speed="1" />
+    android:animateLayoutChanges="true"
+    android:fitsSystemWindows="false"
+    tools:background="@color/mine_shaft">
 
     <LinearLayout
         android:id="@+id/logo_title"
@@ -57,11 +43,11 @@
         android:id="@+id/btn_about_tmdb"
         style="@style/BaseClickableCard"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="28dp"
         android:layout_marginBottom="24dp"
         android:visibility="gone"
         app:cardBackgroundColor="@color/mine_shaft_medium"
-        app:cardCornerRadius="50dp"
+        app:cardCornerRadius="14dp"
         app:layout_constraintBottom_toTopOf="@+id/login_with_tmdb"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

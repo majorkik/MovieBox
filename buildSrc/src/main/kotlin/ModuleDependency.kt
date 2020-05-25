@@ -17,7 +17,7 @@ object ModuleDependency {
 
     // False positive" function can be private"
     // See: https://youtrack.jetbrains.com/issue/KT-33610
-    public fun getAllModules() = ModuleDependency::class.memberProperties
+    fun getAllModules() = ModuleDependency::class.memberProperties
         .filter { it.isConst }
         .map { it.getter.call().toString() }
         .toSet()

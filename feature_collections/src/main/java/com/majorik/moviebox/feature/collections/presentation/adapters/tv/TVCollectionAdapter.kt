@@ -12,7 +12,7 @@ import com.majorik.library.base.extensions.startDetailsActivityWithId
 import com.majorik.library.base.utils.PACKAGE_NAME
 import com.majorik.moviebox.feature.collections.databinding.ItemCollectionSmallPosterCardBinding
 
-class TVCollectionAdapter() : RecyclerView.Adapter<CollectionViewHolder>() {
+class TVCollectionAdapter : RecyclerView.Adapter<CollectionViewHolder>() {
 
     private val tvs: MutableList<TV> = mutableListOf()
 
