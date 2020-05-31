@@ -1,8 +1,10 @@
 package com.majorik.moviebox.feature.collections.presentation.adapters.movie
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.majorik.library.base.constants.BaseIntentKeys
 import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.moviebox.feature.collections.domain.tmdbModels.movie.Movie
 import com.majorik.moviebox.feature.collections.presentation.adapters.movie.MovieCardAdapter.*
@@ -31,8 +33,10 @@ class MovieCardAdapter : RecyclerView.Adapter<MovieCardViewHolder>() {
 
         holder.itemView.slider_layout.setSafeOnClickListener {
             holder.itemView.context.startDetailsActivityWithId(
-                movies[position].id,
-                ScreenLinks.movieDetails
+                ScreenLinks.movieDetails,
+                Intent().apply {
+                    putExtra(BaseIntentKeys.ITEM_ID, movies[position].id)
+                }
             )
         }
     }

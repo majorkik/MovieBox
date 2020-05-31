@@ -1,10 +1,12 @@
 package com.majorik.moviebox.feature.search.presentation.adapters.search
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.majorik.library.base.constants.BaseIntentKeys
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startDetailsActivityWithId
 import com.majorik.library.base.utils.PACKAGE_NAME
@@ -61,8 +63,10 @@ internal class SearchMovieAdapter(
                 holder.parent.root.setSafeOnClickListener {
                     getItem(position)?.let { item ->
                         holder.itemView.context.startDetailsActivityWithId(
-                            item.id,
-                            "$PACKAGE_NAME.feature.details.presentation.movieDetails.MovieDetailsActivity"
+                            "$PACKAGE_NAME.feature.details.presentation.movieDetails.MovieDetailsActivity",
+                            Intent().apply {
+                                putExtra(BaseIntentKeys.ITEM_ID, item.id)
+                            }
                         )
                     }
                 }
@@ -74,8 +78,10 @@ internal class SearchMovieAdapter(
                 holder.parent.collectionCard.setSafeOnClickListener {
                     getItem(position)?.let { item ->
                         holder.itemView.context.startDetailsActivityWithId(
-                            item.id,
-                            "$PACKAGE_NAME.feature.details.presentation.movieDetails.MovieDetailsActivity"
+                            "$PACKAGE_NAME.feature.details.presentation.movieDetails.MovieDetailsActivity",
+                            Intent().apply {
+                                putExtra(BaseIntentKeys.ITEM_ID, item.id)
+                            }
                         )
                     }
                 }

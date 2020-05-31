@@ -1,8 +1,10 @@
 package com.majorik.moviebox.feature.navigation.presentation.adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.majorik.library.base.constants.BaseIntentKeys
 import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.extensions.displayImageWithCenterCrop
@@ -51,8 +53,10 @@ class MovieCollectionAdapter : RecyclerView.Adapter<MovieViewHolder>() {
 
             parent.collectionCard.setSafeOnClickListener {
                 parent.root.context.startDetailsActivityWithId(
-                    movie.id,
-                    ScreenLinks.movieDetails
+                    ScreenLinks.movieDetails,
+                    Intent().apply {
+                        putExtra(BaseIntentKeys.ITEM_ID, movie.id)
+                    }
                 )
             }
         }

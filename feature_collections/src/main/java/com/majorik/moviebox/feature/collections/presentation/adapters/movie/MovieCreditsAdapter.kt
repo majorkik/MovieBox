@@ -107,7 +107,7 @@ class MovieCreditsAdapter(
         fun bindTo(cast: MovieCast, withoutSpace: Boolean) {
             itemView.space_placeholder.setVisibilityOption(!withoutSpace)
 
-            itemView.known_for_department.text = view.context.convertStringForFilmograohy(
+            itemView.known_for_department.text = view.context.convertStringForFilmography(
                 cast.title,
                 view.context.getString(R.string.collections_inline_filmography_delimiter),
                 cast.character

@@ -1,8 +1,10 @@
 package com.majorik.moviebox.feature.navigation.presentation.adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.majorik.library.base.constants.BaseIntentKeys
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.movie.Movie
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startDetailsActivityWithId
@@ -68,8 +70,10 @@ class MovieTrendAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
                 holder.parent.root.setSafeOnClickListener {
                     holder.itemView.context.startDetailsActivityWithId(
-                        movies[position].id,
-                        "$PACKAGE_NAME.feature.details.presentation.movieDetails.MovieDetailsActivity"
+                        "$PACKAGE_NAME.feature.details.presentation.movieDetails.MovieDetailsActivity",
+                        Intent().apply {
+                            putExtra(BaseIntentKeys.ITEM_ID, movies[position].id)
+                        }
                     )
                 }
             }

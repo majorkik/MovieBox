@@ -109,7 +109,7 @@ class TVCreditsAdapter(
         fun bindTo(cast: TVCast, withoutSpace: Boolean) {
             itemView.space_placeholder.setVisibilityOption(!withoutSpace)
 
-            itemView.known_for_department.text = view.context.convertStringForFilmograohy(
+            itemView.known_for_department.text = view.context.convertStringForFilmography(
                 cast.name,
                 view.context.getString(R.string.details_inline_filmography_delimiter),
                 cast.character

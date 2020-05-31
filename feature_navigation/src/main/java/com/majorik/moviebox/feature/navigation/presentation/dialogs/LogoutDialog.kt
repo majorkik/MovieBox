@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startActivityWithAnim
 import com.majorik.library.base.storage.CredentialsPrefsManager
@@ -45,7 +46,8 @@ class LogoutDialog : DialogFragment() {
 
         view.btn_logout_confirm.setSafeOnClickListener {
             credentialsManager.clearAll()
-            context?.startActivityWithAnim("$PACKAGE_NAME.feature.auth.presentation.ui.first_start.FirstStartActivity")
+            context?.startActivityWithAnim(ScreenLinks.authorization)
+            activity?.finish()
             dismiss()
         }
     }

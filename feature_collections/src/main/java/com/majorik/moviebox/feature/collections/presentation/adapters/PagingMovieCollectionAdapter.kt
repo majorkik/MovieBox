@@ -1,10 +1,12 @@
 package com.majorik.moviebox.feature.collections.presentation.adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.majorik.library.base.constants.BaseIntentKeys.ITEM_ID
 import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.moviebox.feature.collections.domain.NetworkState
 import com.majorik.moviebox.feature.collections.domain.tmdbModels.movie.Movie
@@ -49,8 +51,10 @@ class PagingMovieCollectionAdapter(private val callback: OnClickListener) :
                 holder.itemView.setSafeOnClickListener {
                     getItem(position)?.let { movie ->
                         holder.itemView.context.startDetailsActivityWithId(
-                            movie.id,
-                            ScreenLinks.movieDetails
+                            ScreenLinks.movieDetails,
+                            Intent().apply {
+                                putExtra(ITEM_ID, movie.id)
+                            }
                         )
                     }
                 }

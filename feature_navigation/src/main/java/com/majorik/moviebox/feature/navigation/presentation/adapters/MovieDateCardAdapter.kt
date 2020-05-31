@@ -1,8 +1,10 @@
 package com.majorik.moviebox.feature.navigation.presentation.adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.majorik.library.base.constants.BaseIntentKeys
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.movie.Movie
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.extensions.displayImageWithCenterCrop
@@ -71,8 +73,10 @@ class MovieDateCardAdapter : RecyclerView.Adapter<MovieDateCardAdapter.MovieView
         private fun bindClickListener(movie: Movie) {
             parent.collectionCard.setSafeOnClickListener {
                 parent.root.context.startDetailsActivityWithId(
-                    movie.id,
-                    "$PACKAGE_NAME.feature.details.presentation.movieDetails.MovieDetailsActivity"
+                    "$PACKAGE_NAME.feature.details.presentation.movieDetails.MovieDetailsActivity",
+                    Intent().apply {
+                        putExtra(BaseIntentKeys.ITEM_ID, movie.id)
+                    }
                 )
             }
         }

@@ -1,8 +1,10 @@
 package com.majorik.moviebox.feature.collections.presentation.adapters.tv
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.majorik.library.base.constants.BaseIntentKeys
 import com.majorik.moviebox.feature.collections.domain.tmdbModels.tv.TV
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.moviebox.feature.collections.presentation.adapters.tv.TVCollectionAdapter.*
@@ -55,8 +57,10 @@ class TVCollectionAdapter : RecyclerView.Adapter<CollectionViewHolder>() {
         private fun bindClickListener(tv: TV) {
             parent.collectionCard.setSafeOnClickListener {
                 itemView.context.startDetailsActivityWithId(
-                    tv.id,
-                   "$PACKAGE_NAME.feature.details.presentation.tvDetails.TVDetailsActivity"
+                    "$PACKAGE_NAME.feature.details.presentation.tvDetails.TVDetailsActivity",
+                    Intent().apply {
+                        putExtra(BaseIntentKeys.ITEM_ID, tv.id)
+                    }
                 )
             }
         }
