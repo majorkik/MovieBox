@@ -14,7 +14,7 @@ internal class SearchMovieDataSource(
     private val repository: SearchRepository,
     private val query: String,
     private val scope: CoroutineScope
-) : BaseSearchDataSource<Movie>(repository, query, scope) {
+) : BaseSearchDataSource<Movie>() {
     override fun executeQuery(page: Int, callback: (List<Movie>) -> Unit) {
         networkState.postValue(NetworkState.RUNNING)
         scope.launch(getJobErrorHandler() + supervisorJob) {

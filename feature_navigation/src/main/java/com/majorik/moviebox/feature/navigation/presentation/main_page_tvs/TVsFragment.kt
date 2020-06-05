@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.majorik.library.base.constants.AppConfig
-import com.majorik.library.base.delegates.viewBinding
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.majorik.library.base.extensions.*
 import com.majorik.library.base.utils.GenresStorageObject
 import com.majorik.library.base.utils.PACKAGE_NAME

@@ -14,7 +14,7 @@ internal class SearchTVDataSource(
     private val repository: SearchRepository,
     private val query: String,
     private val scope: CoroutineScope
-) : BaseSearchDataSource<TV>(repository, query, scope) {
+) : BaseSearchDataSource<TV>() {
 
     override fun executeQuery(page: Int, callback: (List<TV>) -> Unit) {
         networkState.postValue(NetworkState.RUNNING)

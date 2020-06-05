@@ -11,6 +11,10 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 fun getBaseOkHttpClient() = OkHttpClient()
 
+
+/**
+ * Base
+ */
 private val getHttpLoggingInterceptor = run {
     val httpLoggingInterceptor = HttpLoggingInterceptor()
     httpLoggingInterceptor.apply {
@@ -18,6 +22,9 @@ private val getHttpLoggingInterceptor = run {
     }
 }
 
+/**
+ * Tmdb
+ */
 private val getTmdbRequestInterceptor = Interceptor.invoke { chain ->
     val url = chain.request()
         .url
@@ -33,6 +40,30 @@ private val getTmdbRequestInterceptor = Interceptor.invoke { chain ->
     return@invoke chain.proceed(request)
 }
 
+fun createTmdbOkHttpClient(): OkHttpClient {
+    return getBaseOkHttpClient()
+        .newBuilder()
+        .addNetworkInterceptor(getTmdbRequestInterceptor)
+        .addInterceptor(getHttpLoggingInterceptor)
+        .build()
+}
+
+
+fun getTmdbRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
+    .client(okHttpClient)
+    .baseUrl(UrlConstants.TMDB_BASE_URL)
+    .addCallAdapterFactory(CoroutineCallAdapterFactory())
+    .addConverterFactory(MoshiConverterFactory.create())
+    .build()
+
+inline fun <reified T> createTmdbWebService(): T =
+    getTmdbRetrofit(createTmdbOkHttpClient())
+        .create(T::class.java)
+
+
+/**
+ * Trakt
+ */
 private val getTraktRequestInterceptor = Interceptor.invoke { chain ->
     val request = chain.request()
         .newBuilder()
@@ -44,6 +75,29 @@ private val getTraktRequestInterceptor = Interceptor.invoke { chain ->
     return@invoke chain.proceed(request)
 }
 
+fun createTraktOkHttpClient(): OkHttpClient {
+    return getBaseOkHttpClient()
+        .newBuilder()
+        .addNetworkInterceptor(getTraktRequestInterceptor)
+        .addInterceptor(getHttpLoggingInterceptor)
+        .build()
+}
+
+fun getTraktRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
+    .client(okHttpClient)
+    .baseUrl(UrlConstants.TRAKT_BASE_URL)
+    .addCallAdapterFactory(CoroutineCallAdapterFactory())
+    .addConverterFactory(MoshiConverterFactory.create())
+    .build()
+
+inline fun <reified T> createTraktWebService(): T =
+    getTraktRetrofit(createTraktOkHttpClient())
+        .create(T::class.java)
+
+
+/**
+ * Youtube
+ */
 private val getYoutubeRequestInterceptor = Interceptor.invoke { chain ->
     val request = chain.request()
         .newBuilder()
@@ -51,22 +105,6 @@ private val getYoutubeRequestInterceptor = Interceptor.invoke { chain ->
         .build()
 
     return@invoke chain.proceed(request)
-}
-
-fun createTmdbOkHttpClient(): OkHttpClient {
-    return getBaseOkHttpClient()
-        .newBuilder()
-        .addNetworkInterceptor(getTmdbRequestInterceptor)
-        .addInterceptor(getHttpLoggingInterceptor)
-        .build()
-}
-
-fun createTraktOkHttpClient(): OkHttpClient {
-    return getBaseOkHttpClient()
-        .newBuilder()
-        .addNetworkInterceptor(getTraktRequestInterceptor)
-        .addInterceptor(getHttpLoggingInterceptor)
-        .build()
 }
 
 fun createYouTubeOkHttpClient(): OkHttpClient {
@@ -77,34 +115,12 @@ fun createYouTubeOkHttpClient(): OkHttpClient {
         .build()
 }
 
-fun getTmdbRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
-    .client(okHttpClient)
-    .baseUrl(UrlConstants.TMDB_BASE_URL)
-    .addCallAdapterFactory(CoroutineCallAdapterFactory())
-    .addConverterFactory(MoshiConverterFactory.create())
-    .build()
-
-fun getTraktRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
-    .client(okHttpClient)
-    .baseUrl(UrlConstants.TRAKT_BASE_URL)
-    .addCallAdapterFactory(CoroutineCallAdapterFactory())
-    .addConverterFactory(MoshiConverterFactory.create())
-    .build()
-
 fun getYoutubeRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
     .client(okHttpClient)
     .baseUrl(UrlConstants.YOUTUBE_BASE_URL)
     .addCallAdapterFactory(CoroutineCallAdapterFactory())
     .addConverterFactory(MoshiConverterFactory.create())
     .build()
-
-inline fun <reified T> createTmdbWebService(): T =
-    getTmdbRetrofit(createTmdbOkHttpClient())
-        .create(T::class.java)
-
-inline fun <reified T> createTraktWebService(): T =
-    getTraktRetrofit(createTraktOkHttpClient())
-        .create(T::class.java)
 
 inline fun <reified T> createYoutubeWebService(): T =
     getYoutubeRetrofit(createYouTubeOkHttpClient())

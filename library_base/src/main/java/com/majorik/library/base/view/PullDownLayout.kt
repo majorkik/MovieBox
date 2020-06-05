@@ -1,4 +1,4 @@
-package com.majorik.library.base.extensions
+package com.majorik.library.base.view
 
 import android.animation.Animator
 import android.animation.ObjectAnimator

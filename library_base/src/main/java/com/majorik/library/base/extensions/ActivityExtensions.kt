@@ -124,11 +124,6 @@ fun Context.getCurrentLocale(): Locale {
     }
 }
 
-@RestrictTo(RestrictTo.Scope.LIBRARY)
-internal fun <V : View> Activity.requireViewByIdCompat(@IdRes viewId: Int): V {
-    return ActivityCompat.requireViewById(this, viewId)
-}
-
 //YouTube intents
 fun Context.openYouTube(key: String) {
     try {

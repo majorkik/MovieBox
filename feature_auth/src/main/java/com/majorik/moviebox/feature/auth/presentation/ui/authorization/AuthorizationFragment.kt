@@ -12,7 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import com.majorik.library.base.delegates.viewBinding
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.setVisibilityOption
 import com.majorik.library.base.extensions.startActivityWithAnim

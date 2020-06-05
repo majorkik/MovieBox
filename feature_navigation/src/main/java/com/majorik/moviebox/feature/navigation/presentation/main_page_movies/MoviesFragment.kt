@@ -7,9 +7,9 @@ import androidx.core.util.isEmpty
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.majorik.library.base.constants.AppConfig
 import com.majorik.library.base.constants.GenresConstants
-import com.majorik.library.base.delegates.viewBinding
 import com.majorik.library.base.enums.GenresType
 import com.majorik.library.base.enums.SELECTED_GENRES_TYPE
 import com.majorik.library.base.extensions.*

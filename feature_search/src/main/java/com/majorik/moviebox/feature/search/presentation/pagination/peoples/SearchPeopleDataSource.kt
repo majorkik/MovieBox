@@ -14,7 +14,7 @@ internal class SearchPeopleDataSource(
     private val repository: SearchRepository,
     private val query: String,
     private val scope: CoroutineScope
-) : BaseSearchDataSource<Person>(repository, query, scope) {
+) : BaseSearchDataSource<Person>() {
     override fun executeQuery(page: Int, callback: (List<Person>) -> Unit) {
         networkState.postValue(NetworkState.RUNNING)
         scope.launch(getJobErrorHandler() + supervisorJob) {

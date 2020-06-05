@@ -3,19 +3,13 @@ package com.majorik.moviebox.feature.search.presentation.base
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
-import com.majorik.moviebox.feature.search.data.repositories.SearchRepository
 import com.majorik.moviebox.feature.search.domain.NetworkState
 import com.orhanobut.logger.Logger
 import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancelChildren
 
-internal abstract class BaseSearchDataSource<T>(
-    private val repository: SearchRepository,
-    private val query: String,
-    private val scope: CoroutineScope
-) : PageKeyedDataSource<Int, T>() {
+internal abstract class BaseSearchDataSource<T> : PageKeyedDataSource<Int, T>() {
 
     protected var supervisorJob = SupervisorJob()
     protected val networkState = MutableLiveData<NetworkState>()

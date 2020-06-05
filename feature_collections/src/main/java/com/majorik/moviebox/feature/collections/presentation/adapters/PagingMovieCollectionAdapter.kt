@@ -17,6 +17,7 @@ import com.majorik.moviebox.feature.collections.databinding.ItemCollectionMedium
 import com.majorik.moviebox.feature.collections.presentation.viewholders.MoviePagedItemVH
 import com.majorik.moviebox.feature.collections.presentation.viewholders.NetworkStateViewHolder
 import com.majorik.moviebox.feature.collections.R
+import kotlinx.android.synthetic.main.item_collection_medium_poster_card.view.*
 
 class PagingMovieCollectionAdapter(private val callback: OnClickListener) :
     PagedListAdapter<Movie, ViewHolder>(
@@ -48,7 +49,7 @@ class PagingMovieCollectionAdapter(private val callback: OnClickListener) :
             R.layout.item_collection_medium_poster_card -> {
                 (holder as MoviePagedItemVH).bindTo(getItem(position))
 
-                holder.itemView.setSafeOnClickListener {
+                holder.itemView.collection_card.setSafeOnClickListener {
                     getItem(position)?.let { movie ->
                         holder.itemView.context.startDetailsActivityWithId(
                             ScreenLinks.movieDetails,

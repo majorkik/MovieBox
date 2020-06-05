@@ -3,13 +3,12 @@ package com.majorik.moviebox.feature.navigation.presentation.main_page_profile
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.majorik.library.base.constants.ScreenLinks
-import com.majorik.library.base.delegates.viewBinding
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.setVisibilityOption
 import com.majorik.library.base.extensions.startActivityWithAnim
 import com.majorik.library.base.storage.CredentialsPrefsManager
-import com.majorik.library.base.utils.PACKAGE_NAME
 import com.majorik.moviebox.feature.navigation.R
 import com.majorik.moviebox.feature.navigation.databinding.FragmentProfileBinding
 import com.majorik.moviebox.feature.navigation.presentation.dialogs.LogoutDialog

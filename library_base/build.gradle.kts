@@ -75,6 +75,7 @@ dependencies {
     api(LibraryDependency.VECTOR_DRAWABLE)
     api(LibraryDependency.DYNAMIC_FEATURE_FRAGMENT)
     api(LibraryDependency.MATERIAL)
+    api(LibraryDependency.VIEWBINDING_DELEGATES)
 
     api(LibraryDependency.LIFECYCLE_EXT)
     api(LibraryDependency.LIFECYCLE_VIEWMODEL_KTX)
