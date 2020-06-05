@@ -9,7 +9,7 @@ import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.extensions.displayImageWithCenterCrop
 import com.majorik.library.base.extensions.setSafeOnClickListener
-import com.majorik.library.base.extensions.startDetailsActivityWithId
+import com.majorik.library.base.extensions.startActivityWithAnim
 import com.majorik.moviebox.feature.navigation.databinding.ItemSmallPosterCardBinding
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.movie.Movie
 import com.majorik.moviebox.feature.navigation.presentation.adapters.MovieCollectionAdapter.MovieViewHolder
@@ -52,7 +52,7 @@ class MovieCollectionAdapter : RecyclerView.Adapter<MovieViewHolder>() {
             )
 
             parent.collectionCard.setSafeOnClickListener {
-                parent.root.context.startDetailsActivityWithId(
+                parent.root.context.startActivityWithAnim(
                     ScreenLinks.movieDetails,
                     Intent().apply {
                         putExtra(BaseIntentKeys.ITEM_ID, movie.id)

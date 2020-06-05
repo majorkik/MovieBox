@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.majorik.moviebox.feature.details.R
 import androidx.recyclerview.widget.RecyclerView
+import com.majorik.library.base.constants.BaseIntentKeys
 import com.majorik.moviebox.feature.details.domain.tmdbModels.cast.MovieCast
 import com.majorik.library.base.extensions.*
 import com.majorik.moviebox.feature.details.presentation.movieDetails.MovieDetailsActivity
 import com.majorik.library.base.constants.UrlConstants
+import com.majorik.moviebox.feature.details.presentation.tvDetails.TVDetailsActivity
 import kotlinx.android.synthetic.main.item_medium_poster_card_details.view.*
 import kotlinx.android.synthetic.main.item_medium_poster_card_details.view.collection_card
 import kotlinx.android.synthetic.main.item_medium_poster_card_details.view.collection_image
@@ -92,11 +94,9 @@ class MovieCreditsAdapter(
 
         private fun bindClickListener(cast: MovieCast) {
             itemView.collection_card.setSafeOnClickListener {
-                val intent = Intent(parent.context, MovieDetailsActivity::class.java)
-
-                intent.putExtra("id", cast.id)
-
-                parent.context.startActivity(intent)
+                it.context.startActivityWithAnim(MovieDetailsActivity::class.java, Intent().apply {
+                    putExtra(BaseIntentKeys.ITEM_ID, cast.id)
+                })
             }
         }
     }
@@ -122,11 +122,9 @@ class MovieCreditsAdapter(
 
         private fun bindClickListener(cast: MovieCast) {
             itemView.inline_credit_layout.setSafeOnClickListener {
-                val intent = Intent(view.context, MovieDetailsActivity::class.java)
-
-                intent.putExtra("id", cast.id)
-
-                view.context.startActivity(intent)
+                it.context.startActivityWithAnim(MovieDetailsActivity::class.java, Intent().apply {
+                    putExtra(BaseIntentKeys.ITEM_ID, cast.id)
+                })
             }
         }
     }

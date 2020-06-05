@@ -5,12 +5,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.majorik.library.base.constants.BaseIntentKeys
+import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.movie.Movie
 import com.majorik.library.base.extensions.setSafeOnClickListener
-import com.majorik.library.base.extensions.startDetailsActivityWithId
+import com.majorik.library.base.extensions.startActivityWithAnim
 import com.majorik.library.base.extensions.toDate
 import com.majorik.library.base.utils.GenresStorageObject
-import com.majorik.library.base.utils.PACKAGE_NAME
 import com.majorik.moviebox.feature.navigation.databinding.ItemTrendCardWithTitleBinding
 import com.majorik.moviebox.feature.navigation.databinding.ItemTrendLastItemCardBinding
 import kotlin.math.roundToInt
@@ -69,8 +69,8 @@ class MovieTrendAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 holder.bindTo(movies[position])
 
                 holder.parent.root.setSafeOnClickListener {
-                    holder.itemView.context.startDetailsActivityWithId(
-                        "$PACKAGE_NAME.feature.details.presentation.movieDetails.MovieDetailsActivity",
+                    holder.itemView.context.startActivityWithAnim(
+                        ScreenLinks.movieDetails,
                         Intent().apply {
                             putExtra(BaseIntentKeys.ITEM_ID, movies[position].id)
                         }

@@ -5,12 +5,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.majorik.library.base.constants.BaseIntentKeys
+import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.person.Person
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.extensions.displayImageWithCenterInside
 import com.majorik.library.base.extensions.setSafeOnClickListener
-import com.majorik.library.base.extensions.startDetailsActivityWithId
-import com.majorik.library.base.utils.PACKAGE_NAME
+import com.majorik.library.base.extensions.startActivityWithAnim
 import com.majorik.moviebox.feature.navigation.databinding.ItemPersonProfileCardBinding
 
 class PersonAdapter : RecyclerView.Adapter<PersonAdapter.PersonViewHolder>() {
@@ -57,8 +57,8 @@ class PersonAdapter : RecyclerView.Adapter<PersonAdapter.PersonViewHolder>() {
 
         private fun setClickListener(personID: Int) {
             parent.personProfileImage.setSafeOnClickListener {
-                parent.root.context.startDetailsActivityWithId(
-                    "$PACKAGE_NAME.feature.details.presentation.person_details.PersonDetailsActivity",
+                parent.root.context.startActivityWithAnim(
+                    ScreenLinks.peopleDetails,
                     Intent().apply {
                         putExtra(BaseIntentKeys.ITEM_ID, personID)
                     }

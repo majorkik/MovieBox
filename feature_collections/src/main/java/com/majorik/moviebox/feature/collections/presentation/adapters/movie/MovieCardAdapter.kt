@@ -11,7 +11,7 @@ import com.majorik.moviebox.feature.collections.presentation.adapters.movie.Movi
 import com.majorik.library.base.extensions.displayImageWithCenterCrop
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.constants.UrlConstants
-import com.majorik.library.base.extensions.startDetailsActivityWithId
+import com.majorik.library.base.extensions.startActivityWithAnim
 import com.majorik.moviebox.feature.collections.databinding.ItemCollectionBigImageWithCornersBinding
 import kotlinx.android.synthetic.main.item_collection_big_image_with_corners.view.*
 
@@ -32,7 +32,7 @@ class MovieCardAdapter : RecyclerView.Adapter<MovieCardViewHolder>() {
         holder.bindTo(movies[position])
 
         holder.itemView.slider_layout.setSafeOnClickListener {
-            holder.itemView.context.startDetailsActivityWithId(
+            holder.itemView.context.startActivityWithAnim(
                 ScreenLinks.movieDetails,
                 Intent().apply {
                     putExtra(BaseIntentKeys.ITEM_ID, movies[position].id)

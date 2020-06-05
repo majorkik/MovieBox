@@ -10,11 +10,11 @@ import androidx.core.util.isEmpty
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
-import com.majorik.library.base.constants.AppConfig
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.majorik.library.base.constants.AppConfig
+import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.library.base.extensions.*
 import com.majorik.library.base.utils.GenresStorageObject
-import com.majorik.library.base.utils.PACKAGE_NAME
 import com.majorik.moviebox.feature.navigation.R
 import com.majorik.moviebox.feature.navigation.data.repositories.TrendingRepository
 import com.majorik.moviebox.feature.navigation.databinding.FragmentTvsBinding
@@ -90,28 +90,28 @@ class TVsFragment : Fragment(R.layout.fragment_tvs) {
             startActivity(
                 Intent().setClassName(
                     requireContext(),
-                    "$PACKAGE_NAME.feature.search.presentation.ui.SearchableActivity"
+                    ScreenLinks.searchableActivity
                 )
             )
         }
 
         viewBinding.btnPopularTvs.setSafeOnClickListener {
             openNewActivityWithTab(
-                "$PACKAGE_NAME.feature.collections.presentation.tvTabCollections.TVCollectionsActivity",
+                ScreenLinks.tvCollection,
                 TVCollectionType.POPULAR
             )
         }
 
         viewBinding.btnAirTodayTvs.setSafeOnClickListener {
             openNewActivityWithTab(
-                "$PACKAGE_NAME.feature.collections.presentation.tvTabCollections.TVCollectionsActivity",
+                ScreenLinks.tvCollection,
                 TVCollectionType.AIRING_TODAY
             )
         }
 
         viewBinding.btnOnTheAirTvs.setSafeOnClickListener {
             openNewActivityWithTab(
-                "$PACKAGE_NAME.feature.collections.presentation.tvTabCollections.TVCollectionsActivity",
+                ScreenLinks.tvCollection,
                 TVCollectionType.ON_THE_AIR
             )
         }

@@ -5,13 +5,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.majorik.library.base.constants.BaseIntentKeys
+import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.moviebox.feature.collections.domain.tmdbModels.tv.TV
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.moviebox.feature.collections.presentation.adapters.tv.TVCollectionAdapter.*
 import com.majorik.library.base.extensions.displayImageWithCenterCrop
 import com.majorik.library.base.extensions.setSafeOnClickListener
-import com.majorik.library.base.extensions.startDetailsActivityWithId
-import com.majorik.library.base.utils.PACKAGE_NAME
+import com.majorik.library.base.extensions.startActivityWithAnim
 import com.majorik.moviebox.feature.collections.databinding.ItemCollectionSmallPosterCardBinding
 
 class TVCollectionAdapter : RecyclerView.Adapter<CollectionViewHolder>() {
@@ -56,8 +56,8 @@ class TVCollectionAdapter : RecyclerView.Adapter<CollectionViewHolder>() {
 
         private fun bindClickListener(tv: TV) {
             parent.collectionCard.setSafeOnClickListener {
-                itemView.context.startDetailsActivityWithId(
-                    "$PACKAGE_NAME.feature.details.presentation.tvDetails.TVDetailsActivity",
+                itemView.context.startActivityWithAnim(
+                    ScreenLinks.tvDetails,
                     Intent().apply {
                         putExtra(BaseIntentKeys.ITEM_ID, tv.id)
                     }

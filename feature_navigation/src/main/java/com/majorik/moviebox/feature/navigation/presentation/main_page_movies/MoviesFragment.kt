@@ -10,11 +10,11 @@ import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.majorik.library.base.constants.AppConfig
 import com.majorik.library.base.constants.GenresConstants
+import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.library.base.enums.GenresType
 import com.majorik.library.base.enums.SELECTED_GENRES_TYPE
 import com.majorik.library.base.extensions.*
 import com.majorik.library.base.utils.GenresStorageObject
-import com.majorik.library.base.utils.PACKAGE_NAME
 import com.majorik.moviebox.feature.navigation.R
 import com.majorik.moviebox.feature.navigation.data.repositories.TrendingRepository.TimeWindow
 import com.majorik.moviebox.feature.navigation.databinding.FragmentMoviesBinding
@@ -125,53 +125,45 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
     private fun setClickListeners() {
         viewBinding.btnSearch.setOnClickListener {
-            //            context?.startActivityWithAnim("$PACKAGE_NAME.feature.search.presentation.ui.SearchableActivity")
+            context?.startActivityWithAnim(ScreenLinks.searchableActivity)
 
-            parentFragmentManager.beginTransaction()
-                .setCustomAnimations(
-                    AppResources.anim.slide_in_up,
-                    AppResources.anim.slide_out_up,
-                    AppResources.anim.slide_exit_in_up,
-                    AppResources.anim.slide_exit_out_up
-                )
-                .add(
-                    AppResources.id.splash_container,
-                    "$PACKAGE_NAME.feature.navigation.presentation.main_page_tvs.TVsFragment".loadFragmentOrReturnNull()!!
-                )
-                .addToBackStack("tvs_fragment")
-                .commit()
+//            parentFragmentManager.beginTransaction()
+//                .setCustomAnimations(
+//                    AppResources.anim.slide_in_up,
+//                    AppResources.anim.slide_out_up,
+//                    AppResources.anim.slide_exit_in_up,
+//                    AppResources.anim.slide_exit_out_up
+//                )
+//                .add(
+//                    AppResources.id.splash_container,
+//                    "$PACKAGE_NAME.feature.navigation.presentation.main_page_tvs.TVsFragment".loadFragmentOrReturnNull()!!
+//                )
+//                .addToBackStack("tvs_fragment")
+//                .commit()
 
 //            findNavController().navigate(AppResources.id.nav_tvs)
         }
 
-        viewBinding.btnPopularMovies.setOnClickListener {
-            openNewActivityWithTab(
-                "$PACKAGE_NAME.feature.collections.presentation.movieTabCollections.MovieCollectionsActivity",
-                POPULAR
-            )
-        }
+        viewBinding.btnPopularMovies.setOnClickListener { openNewActivityWithTab(ScreenLinks.movieCollection, POPULAR) }
 
         viewBinding.btnUpcomingMovies.setOnClickListener {
             openNewActivityWithTab(
-                "$PACKAGE_NAME.feature.collections.presentation.movieTabCollections.MovieCollectionsActivity",
+                ScreenLinks.movieCollection,
                 UPCOMING
             )
         }
 
         viewBinding.btnNowPlayingMovies.setOnClickListener {
             openNewActivityWithTab(
-                "$PACKAGE_NAME.feature.collections.presentation.movieTabCollections.MovieCollectionsActivity",
+                ScreenLinks.movieCollection,
                 NOW_PLAYING
             )
         }
 
         viewBinding.btnMovieGenres.setSafeOnClickListener {
-            val intent = "$PACKAGE_NAME.feature.collections.presentation.genres.GenresActivity".loadIntentOrReturnNull()
+            val intent = ScreenLinks.genresActivity.loadIntentOrReturnNull()
 
-            intent?.putExtra(
-                SELECTED_GENRES_TYPE,
-                GenresType.MOVIE_GENRES
-            )
+            intent?.putExtra(SELECTED_GENRES_TYPE, GenresType.MOVIE_GENRES)
 
             context?.startActivityWithAnim(intent)
         }

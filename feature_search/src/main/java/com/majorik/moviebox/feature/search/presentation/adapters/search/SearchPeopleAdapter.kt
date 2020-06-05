@@ -7,9 +7,9 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.majorik.library.base.constants.BaseIntentKeys
+import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.library.base.extensions.setSafeOnClickListener
-import com.majorik.library.base.extensions.startDetailsActivityWithId
-import com.majorik.library.base.utils.PACKAGE_NAME
+import com.majorik.library.base.extensions.startActivityWithAnim
 import com.majorik.moviebox.feature.search.databinding.ItemNetworkStateBinding
 import com.majorik.moviebox.feature.search.databinding.ItemPersonDetailedBinding
 import com.majorik.moviebox.feature.search.databinding.ItemPersonSmallCardBinding
@@ -54,8 +54,8 @@ internal class SearchPeopleAdapter(
 
                 holder.parent.root.setSafeOnClickListener {
                     getItem(position)?.let { item ->
-                        holder.itemView.context.startDetailsActivityWithId(
-                            "$PACKAGE_NAME.feature.details.presentation.person_details.PersonDetailsActivity",
+                        holder.itemView.context.startActivityWithAnim(
+                            ScreenLinks.peopleDetails,
                             Intent().apply {
                                 putExtra(BaseIntentKeys.ITEM_ID, item.id)
                             }
@@ -69,8 +69,8 @@ internal class SearchPeopleAdapter(
 
                 holder.parent.root.setSafeOnClickListener {
                     getItem(position)?.let { item ->
-                        holder.itemView.context.startDetailsActivityWithId(
-                            "$PACKAGE_NAME.feature.details.presentation.person_details.PersonDetailsActivity",
+                        holder.itemView.context.startActivityWithAnim(
+                            ScreenLinks.peopleDetails,
                             Intent().apply {
                                 putExtra(BaseIntentKeys.ITEM_ID, item.id)
                             }

@@ -1,10 +1,13 @@
 package com.majorik.moviebox.feature.collections.presentation.adapters.movie
 
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.majorik.library.base.constants.BaseIntentKeys.ITEM_ID
 import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.moviebox.feature.collections.R
 import com.majorik.moviebox.feature.collections.domain.tmdbModels.cast.MovieCast
@@ -93,12 +96,9 @@ class MovieCreditsAdapter(
 
         private fun bindClickListener(cast: MovieCast) {
             itemView.collection_card.setSafeOnClickListener {
-                val intent =
-                    ScreenLinks.movieDetails.loadIntentOrReturnNull()
-
-                intent?.putExtra("id", cast.id)
-
-                parent.context.startActivity(intent)
+                it.context.startActivityWithAnim(ScreenLinks.movieDetails, Intent().apply {
+                    putExtra(ITEM_ID, cast.id)
+                })
             }
         }
     }
@@ -124,12 +124,9 @@ class MovieCreditsAdapter(
 
         private fun bindClickListener(cast: MovieCast) {
             itemView.inline_credit_layout.setSafeOnClickListener {
-                val intent =
-                    ScreenLinks.movieDetails.loadIntentOrReturnNull()
-
-                intent?.putExtra("id", cast.id)
-
-                view.context.startActivity(intent)
+                it.context.startActivityWithAnim(ScreenLinks.movieDetails, Intent().apply {
+                    putExtra(ITEM_ID, cast.id)
+                })
             }
         }
     }

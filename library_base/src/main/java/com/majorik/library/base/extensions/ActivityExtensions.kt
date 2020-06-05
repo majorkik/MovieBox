@@ -1,7 +1,6 @@
 package com.majorik.library.base.extensions
 
 import android.annotation.TargetApi
-import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
@@ -12,13 +11,9 @@ import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.view.View
 import android.widget.Toast
-import androidx.annotation.IdRes
-import androidx.annotation.RestrictTo
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.content.res.ResourcesCompat
 import com.majorik.base.R
-import com.majorik.library.base.constants.BaseIntentKeys.ITEM_ID
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.utils.FontSpan
 import com.majorik.library.base.utils.InsetUtil
@@ -31,15 +26,29 @@ fun AppCompatActivity.setWindowTransparency(listener: OnSystemInsetsChangedListe
     window.statusBarColor = Color.TRANSPARENT
 }
 
-fun Context.startDetailsActivityWithId(
-    activity: String,
-    intent: Intent?,
+fun Context.startActivityWithAnim(
+    activityLink: String,
+    intent: Intent? = null,
     animIn: Int = R.anim.slide_in_up,
     animOut: Int = R.anim.slide_out_up
 ) {
-    val activityIntent = activity.loadIntentOrReturnNull()
+    val activityIntent = activityLink.loadIntentOrReturnNull()
 
     intent?.let { activityIntent?.putExtras(it) }
+
+    startActivity(activityIntent)
+    (this as? AppCompatActivity)?.overridePendingTransition(animIn, animOut)
+}
+
+fun Context.startActivityWithAnim(
+    activity: Class<*>,
+    intent: Intent? = null,
+    animIn: Int = R.anim.slide_in_up,
+    animOut: Int = R.anim.slide_out_up
+) {
+    val activityIntent = Intent(this, activity)
+
+    intent?.let { activityIntent.putExtras(it) }
 
     startActivity(activityIntent)
     (this as? AppCompatActivity)?.overridePendingTransition(animIn, animOut)

@@ -6,11 +6,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.majorik.library.base.constants.BaseIntentKeys
+import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.extensions.displayImageWithCenterCrop
 import com.majorik.library.base.extensions.setSafeOnClickListener
-import com.majorik.library.base.extensions.startDetailsActivityWithId
-import com.majorik.library.base.utils.PACKAGE_NAME
+import com.majorik.library.base.extensions.startActivityWithAnim
 import com.majorik.moviebox.feature.navigation.databinding.ItemBigImageWithCornersBinding
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.tv.TV
 import com.majorik.moviebox.feature.navigation.presentation.adapters.TVCardAdapter.TVCardViewHolder
@@ -33,8 +33,8 @@ class TVCardAdapter(private val activity: FragmentActivity) :
         holder.bindTo(tvs[position])
 
         holder.parent.sliderLayout.setSafeOnClickListener {
-            holder.itemView.context.startDetailsActivityWithId(
-                "$PACKAGE_NAME.feature.details.presentation.tvDetails.TVDetailsActivity",
+            holder.itemView.context.startActivityWithAnim(
+                ScreenLinks.tvDetails,
                 Intent().apply {
                     putExtra(BaseIntentKeys.ITEM_ID, tvs[position].id)
                 }

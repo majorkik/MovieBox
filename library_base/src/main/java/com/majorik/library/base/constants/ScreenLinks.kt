@@ -15,6 +15,11 @@ object ScreenLinks {
     //   Authorization module
     const val authorization = "$PACKAGE_NAME.feature.auth.presentation.ui.authorization.AuthorizationActivity"
 
+    //Navigation module
+    const val movieCollection = "$PACKAGE_NAME.feature.collections.presentation.movieTabCollections.MovieCollectionsActivity"
+    const val tvCollection = "$PACKAGE_NAME.feature.collections.presentation.tvTabCollections.TVCollectionsActivity"
+    const val genresActivity = "$PACKAGE_NAME.feature.collections.presentation.genres.GenresActivity"
+    const val searchableActivity = "$PACKAGE_NAME.feature.search.presentation.ui.SearchableActivity"
     /**
      * Fragments
      */

@@ -11,7 +11,7 @@ import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.moviebox.feature.collections.domain.NetworkState
 import com.majorik.moviebox.feature.collections.domain.tmdbModels.movie.Movie
 import com.majorik.library.base.extensions.setSafeOnClickListener
-import com.majorik.library.base.extensions.startDetailsActivityWithId
+import com.majorik.library.base.extensions.startActivityWithAnim
 import com.majorik.moviebox.feature.collections.databinding.ItemCollectionNetworkStateBinding
 import com.majorik.moviebox.feature.collections.databinding.ItemCollectionMediumPosterCardBinding
 import com.majorik.moviebox.feature.collections.presentation.viewholders.MoviePagedItemVH
@@ -51,7 +51,7 @@ class PagingMovieCollectionAdapter(private val callback: OnClickListener) :
 
                 holder.itemView.collection_card.setSafeOnClickListener {
                     getItem(position)?.let { movie ->
-                        holder.itemView.context.startDetailsActivityWithId(
+                        holder.itemView.context.startActivityWithAnim(
                             ScreenLinks.movieDetails,
                             Intent().apply {
                                 putExtra(ITEM_ID, movie.id)

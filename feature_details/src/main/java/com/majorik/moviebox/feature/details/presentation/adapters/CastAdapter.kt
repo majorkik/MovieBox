@@ -13,7 +13,6 @@ import com.majorik.moviebox.feature.details.R
 import com.majorik.library.base.extensions.displayImageWithCenterInside
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startActivityWithAnim
-import com.majorik.library.base.extensions.startDetailsActivityWithId
 import com.majorik.moviebox.feature.details.presentation.person_details.PersonDetailsActivity
 import kotlinx.android.synthetic.main.item_cast_profile_card_details.view.*
 
