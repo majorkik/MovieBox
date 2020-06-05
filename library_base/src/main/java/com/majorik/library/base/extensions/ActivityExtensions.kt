@@ -55,15 +55,6 @@ fun Context.startActivityWithAnim(
 }
 
 fun Context.startActivityWithAnim(
-    intent: Intent?,
-    animIn: Int = R.anim.slide_in_up,
-    animOut: Int = R.anim.slide_out_up
-) {
-    startActivity(intent)
-    (this as? AppCompatActivity)?.overridePendingTransition(animIn, animOut)
-}
-
-fun Context.startActivityWithAnim(
     activity: String,
     animIn: Int = R.anim.slide_in_up,
     animOut: Int = R.anim.slide_out_up

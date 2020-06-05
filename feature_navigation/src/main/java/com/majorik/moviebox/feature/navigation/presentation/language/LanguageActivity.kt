@@ -7,6 +7,7 @@ import com.majorik.library.base.extensions.setWindowTransparency
 import com.majorik.library.base.extensions.updateLanguage
 import com.majorik.library.base.extensions.updateMargin
 import com.majorik.library.base.base.BaseSlidingActivity
+import com.majorik.moviebox.feature.navigation.R
 import kotlinx.android.synthetic.main.activity_languages.*
 
 class LanguageActivity : BaseSlidingActivity() {
@@ -15,7 +16,7 @@ class LanguageActivity : BaseSlidingActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.majorik.moviebox.feature.navigation.R.layout.activity_languages)
+        setContentView(R.layout.activity_languages)
 
         setWindowTransparency(::updateMargins)
 

@@ -9,7 +9,7 @@ pluginManagement {
             when (requested.id.id) {
                 "com.android.application",
                 "com.android.library",
-                "com.android.dynamic-feature" -> useModule("com.android.tools.build:gradle:3.6.1")
+                "com.android.dynamic-feature" -> useModule("com.android.tools.build:gradle:4.0.0")
             }
         }
     }

@@ -161,11 +161,9 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
         }
 
         viewBinding.btnMovieGenres.setSafeOnClickListener {
-            val intent = ScreenLinks.genresActivity.loadIntentOrReturnNull()
-
-            intent?.putExtra(SELECTED_GENRES_TYPE, GenresType.MOVIE_GENRES)
-
-            context?.startActivityWithAnim(intent)
+            context?.startActivityWithAnim(ScreenLinks.genresActivity, Intent().apply {
+                putExtra(SELECTED_GENRES_TYPE, GenresType.MOVIE_GENRES)
+            })
         }
     }
 

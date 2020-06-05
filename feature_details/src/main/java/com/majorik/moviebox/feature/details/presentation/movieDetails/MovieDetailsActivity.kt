@@ -4,30 +4,36 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.View
 import androidx.lifecycle.Observer
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.majorik.library.base.base.BaseSlidingActivity
+import com.majorik.library.base.constants.AppConfig
+import com.majorik.library.base.constants.UrlConstants
+import com.majorik.library.base.extensions.*
+import com.majorik.library.base.storage.CredentialsPrefsManager
+import com.majorik.moviebox.feature.details.R
+import com.majorik.moviebox.feature.details.databinding.ActivityMovieDetailsBinding
+import com.majorik.moviebox.feature.details.databinding.LayoutMovieDetailsBinding
 import com.majorik.moviebox.feature.details.domain.tmdbModels.account.AccountStates
 import com.majorik.moviebox.feature.details.domain.tmdbModels.image.Images
 import com.majorik.moviebox.feature.details.domain.tmdbModels.video.Videos
 import com.majorik.moviebox.feature.details.presentation.adapters.CastAdapter
 import com.majorik.moviebox.feature.details.presentation.adapters.ImageSliderAdapter
-import com.majorik.library.base.extensions.*
-import com.majorik.library.base.base.BaseSlidingActivity
-import com.majorik.library.base.constants.AppConfig
-import com.majorik.library.base.constants.UrlConstants
-import com.majorik.library.base.storage.CredentialsPrefsManager
-import com.soywiz.klock.*
+import com.soywiz.klock.KlockLocale
 import com.soywiz.klock.locale.russian
 import com.stfalcon.imageviewer.StfalconImageViewer
-import java.text.DecimalFormat
-import java.util.*
-import kotlin.math.floor
 import kotlinx.android.synthetic.main.activity_movie_details.*
 import kotlinx.android.synthetic.main.layout_movie_details.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.text.DecimalFormat
+import java.util.*
+import kotlin.math.floor
 
 class MovieDetailsActivity : BaseSlidingActivity() {
+
     private val movieDetailsViewModel: MovieDetailsViewModel by viewModel()
+
     private val sharedPrefs: CredentialsPrefsManager by inject()
 
     private var movieState: AccountStates? = null
@@ -36,7 +42,7 @@ class MovieDetailsActivity : BaseSlidingActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.majorik.moviebox.feature.details.R.layout.activity_movie_details)
+        setContentView(R.layout.activity_movie_details)
 
         setWindowTransparency(::updateMargins)
 
@@ -77,7 +83,7 @@ class MovieDetailsActivity : BaseSlidingActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(com.majorik.moviebox.feature.details.R.menu.details_page_menu, menu)
+        menuInflater.inflate(R.menu.details_page_menu, menu)
         return true
     }
 
@@ -126,7 +132,12 @@ class MovieDetailsActivity : BaseSlidingActivity() {
         m_backdrop_image.setOnClickListener {
             StfalconImageViewer.Builder(this, images.backdrops.map { it.filePath }) { view, image ->
                 view.displayImageWithCenterInside(UrlConstants.TMDB_BACKDROP_SIZE_1280 + image)
-            }.withOverlayView(layoutInflater.inflate(com.majorik.moviebox.feature.details.R.layout.item_genre_inline_details, null))
+            }.withOverlayView(
+                layoutInflater.inflate(
+                    R.layout.item_genre_inline_details,
+                    null
+                )
+            )
                 .withHiddenStatusBar(false)
                 .show()
         }
@@ -153,7 +164,7 @@ class MovieDetailsActivity : BaseSlidingActivity() {
             m_revenue.text = (numFormat.format(movie.revenue) + " $")
             m_budget.text = (numFormat.format(movie.budget) + " $")
             m_release_date.text =
-                KlockLocale.russian.formatDateLong.format(movie.releaseDate.toDate(getString(com.majorik.moviebox.feature.details.R.string.details_yyyy_mm_dd)))
+                KlockLocale.russian.formatDateLong.format(movie.releaseDate.toDate(getString(R.string.details_yyyy_mm_dd)))
             m_status.text = movie.status
             setReleaseDate(movie.runtime)
             setOverview(movie.overview)
@@ -163,8 +174,8 @@ class MovieDetailsActivity : BaseSlidingActivity() {
                 movie.genres.joinToString(", ") { it.name.capitalize(AppConfig.APP_LOCALE) }
 
             m_add_info.text = getString(
-                com.majorik.moviebox.feature.details.R.string.details_short_info_mask,
-                movie.releaseDate.toDate(getString(com.majorik.moviebox.feature.details.R.string.details_yyyy_mm_dd)).yearInt.toString(),
+                R.string.details_short_info_mask,
+                movie.releaseDate.toDate(getString(R.string.details_yyyy_mm_dd)).yearInt.toString(),
                 genres
             )
 
@@ -224,15 +235,20 @@ class MovieDetailsActivity : BaseSlidingActivity() {
     private fun setReleaseDate(runtime: Int?) {
         if (runtime != null) {
             val hours = floor(runtime / 60.0).toInt()
-            val stringHours = resources.getQuantityString(com.majorik.moviebox.feature.details.R.plurals.hours, hours, hours)
+            val stringHours =
+                resources.getQuantityString(R.plurals.hours, hours, hours)
 
             val minutes = runtime % 60
             val stringMinutes =
-                resources.getQuantityString(com.majorik.moviebox.feature.details.R.plurals.minutes, minutes, minutes)
+                resources.getQuantityString(R.plurals.minutes, minutes, minutes)
 
-            m_runtime.text = getString(com.majorik.moviebox.feature.details.R.string.details_runtime_mask, stringHours, stringMinutes)
+            m_runtime.text = getString(
+                R.string.details_runtime_mask,
+                stringHours,
+                stringMinutes
+            )
         } else {
-            m_runtime.text = getString(com.majorik.moviebox.feature.details.R.string.details_unknown)
+            m_runtime.text = getString(R.string.details_unknown)
         }
     }
 

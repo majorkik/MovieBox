@@ -23,6 +23,7 @@ internal class SearchMovieFragment : Fragment(), SearchQueryChangeListener,
     PaginationOnClickListener, SearchViewTypeChangeListener {
 
     private val searchViewModel: SearchMovieViewModel by viewModel()
+
     private lateinit var adapter: SearchMovieAdapter
 
     override fun onCreateView(

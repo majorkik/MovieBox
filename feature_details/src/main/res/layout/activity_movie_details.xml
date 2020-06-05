@@ -30,6 +30,6 @@
         app:navigationIcon="@drawable/ic_arrow_down"
         app:title="" />
 
-    <include layout="@layout/layout_movie_details" />
+    <include android:id="@+id/layout_movie_details" layout="@layout/layout_movie_details" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

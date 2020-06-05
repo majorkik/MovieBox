@@ -23,7 +23,7 @@ private object LibraryVersion {
     const val SUPPORT_DESIGN = "28.0.0-rc02"
     const val VIEWPAGER_2 = "1.0.0"
 
-    const val KOTLIN_KTX = "1.2.0"
+    const val KOTLIN_KTX = "1.3.0"
 
     const val RETROFIT = "2.9.0"
     const val RETROFIT_COROUTINES = "0.9.2"

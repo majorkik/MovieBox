@@ -65,7 +65,7 @@ class SettingsActivity : BaseSlidingActivity(), ClearDialogListener {
         }
 
         btn_change_lang.setSafeOnClickListener {
-            startActivityWithAnim(Intent(this, LanguageActivity::class.java))
+            startActivityWithAnim(LanguageActivity::class.java)
         }
     }
 

@@ -32,11 +32,9 @@ class MovieCardAdapter : RecyclerView.Adapter<MovieCardViewHolder>() {
         holder.bindTo(movies[position])
 
         holder.itemView.slider_layout.setSafeOnClickListener {
-            holder.itemView.context.startActivityWithAnim(
-                Intent(holder.itemView.context, MovieDetailsActivity::class.java).apply {
-                    putExtra(ITEM_ID, movies[position].id)
-                }
-            )
+            holder.itemView.context.startActivityWithAnim(MovieDetailsActivity::class.java, Intent().apply {
+                putExtra(ITEM_ID, movies[position].id)
+            })
         }
     }
 

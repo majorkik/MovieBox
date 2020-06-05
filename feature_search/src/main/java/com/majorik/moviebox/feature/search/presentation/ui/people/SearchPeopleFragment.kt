@@ -19,7 +19,9 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 internal class SearchPeopleFragment : Fragment(), SearchQueryChangeListener,
     PaginationOnClickListener, SearchViewTypeChangeListener {
+
     private val searchViewModel: SearchPeopleViewModel by viewModel()
+
     private lateinit var adapter: SearchPeopleAdapter
 
     override fun onCreateView(
