@@ -16,7 +16,6 @@ import com.majorik.library.base.constants.AppConfig
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.storage.CredentialsPrefsManager
 import com.soywiz.klock.*
-import com.soywiz.klock.locale.russian
 import com.stfalcon.imageviewer.StfalconImageViewer
 import kotlinx.android.synthetic.main.activity_movie_details.*
 import kotlinx.android.synthetic.main.layout_movie_details.*
@@ -30,7 +29,7 @@ import com.majorik.moviebox.feature.details.domain.tmdbModels.cast.Cast
 import com.majorik.moviebox.feature.details.domain.tmdbModels.genre.Genre
 import com.majorik.moviebox.feature.details.domain.tmdbModels.movie.MovieDetails
 import com.majorik.moviebox.feature.details.domain.tmdbModels.production.ProductionCompany
-import com.orhanobut.logger.Logger
+import com.majorik.moviebox.feature.details.presentation.watch_online.WatchOnlineDialog
 
 class MovieDetailsActivity : BaseSlidingActivity() {
     private val movieDetailsViewModel: MovieDetailsViewModel by viewModel()
@@ -58,10 +57,8 @@ class MovieDetailsActivity : BaseSlidingActivity() {
         setObserver()
     }
 
-    private fun updateMargins(
-        statusBarSize: Int,
-        @Suppress("UNUSED_PARAMETER") navigationBarSize: Int
-    ) {
+    private fun updateMargins(statusBarSize: Int, navigationBarSize: Int) {
+        bottom_bar.updateMargin(bottom = navigationBarSize)
         md_toolbar.updateMargin(top = statusBarSize)
     }
 
@@ -180,6 +177,24 @@ class MovieDetailsActivity : BaseSlidingActivity() {
                 )
             }
         }
+
+        btn_extra_menu.setSafeOnClickListener {
+            openExtraMenuDialog()
+        }
+
+        bottom_bar.setSafeOnClickListener {
+            openWatchOnlineDialog()
+        }
+    }
+
+    private fun openWatchOnlineDialog() {
+        val watchOnlineDialog = WatchOnlineDialog()
+        watchOnlineDialog.show(supportFragmentManager, "watch_online_dialog")
+    }
+
+    private fun openExtraMenuDialog() {
+        val extraMenuBottomDialog = MovieExtraMenuBottomDialog()
+        extraMenuBottomDialog.show(supportFragmentManager, "extra_menu_dialog")
     }
 
     private fun setClickListenerForImages(images: Images) {

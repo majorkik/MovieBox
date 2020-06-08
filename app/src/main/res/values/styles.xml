@@ -185,4 +185,11 @@
         <item name="android:layout_marginEnd">16dp</item>
     </style>
 
+    <style name="Widget.AppTheme.BottomSheet" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item> <!-- This is important -->
+        <item name="android:statusBarColor">@color/transparent</item> <!-- And then this will be needed -->
+        <item name="android:navigationBarColor">@color/colorWhite</item>
+        <item name="android:colorBackground">@color/colorWhite</item>
+    </style>
+
 </resources>

@@ -7,5 +7,11 @@
         </shape>
     </item>
 
-    <item android:drawable="@drawable/ic_menu_black_yellow" android:top="4dp" android:bottom="4dp" android:right="4dp" android:left="4dp"/>
+    <item
+        android:bottom="8dp"
+        android:drawable="@drawable/ic_menu_black_yellow"
+        android:gravity="center"
+        android:left="8dp"
+        android:right="8dp"
+        android:top="8dp" />
 </layer-list>

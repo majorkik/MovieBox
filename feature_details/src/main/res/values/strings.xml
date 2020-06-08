@@ -34,7 +34,6 @@
     <string name="details_recommendations_and_similar">Рекомендации и похожее</string>
 
 
-
     <string name="details_fact_first_air_date">Дата первого эфира</string>
     <string name="details_fact_last_air_date">Дата последнего эфира</string>
     <string name="details_fact_seasons_and_episodes">Сезоны и серии</string>
@@ -65,6 +64,26 @@
     <string name="details_max_rate_with_slash" translatable="false">/10</string>
     <string name="details_watch_trailer">Смотреть трейлер</string>
     <string name="movie_details_screen_watch_online">Смотреть онлайн</string>
+
+    <!--    Extra menu-->
+    <string name="details_extra_menu_title">Дополнительно</string>
+    
+    <string name="details_extra_menu_will_watch">Добавить в Буду смотреть</string>
+    <string name="details_extra_menu_add_to_favorites">Добавить в избраноое</string>
+    <string name="details_extra_menu_recommendation_and_similar">Рекомендации и похожее</string>
+    <string name="details_extra_menu_reviews">Отзывы</string>
+    <string name="details_extra_menu_comments">Комментарии</string>
+    <string name="details_extra_menu_trailers">Трейлеры</string>
+    <string name="details_extra_menu_share">Поделиться</string>
+
+    <string name="details_movie_extra_menu_rate">Оценить фильм</string>
+
+    <string name="details_tv_extra_menu_rate_tv">Оценить сериал</string>
+
+    <!--    Watch online-->
+    <string name="details_watch_online_add_site">Добавить сайт</string>
+    <string name="details_watch_online_google_search">Найти в Google</string>
+    <string name="details_watch_online_title">Где посмотреть</string>
 
     <!--    Plurals-->
     <plurals name="minutes">

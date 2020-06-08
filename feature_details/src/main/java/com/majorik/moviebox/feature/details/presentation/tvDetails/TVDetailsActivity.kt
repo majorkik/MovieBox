@@ -21,9 +21,12 @@ import com.majorik.moviebox.feature.details.domain.tmdbModels.tv.TVDetails
 import com.majorik.moviebox.feature.details.domain.tmdbModels.video.Videos
 import com.majorik.moviebox.feature.details.presentation.adapters.CastAdapter
 import com.majorik.moviebox.feature.details.presentation.adapters.ImageSliderAdapter
+import com.majorik.moviebox.feature.details.presentation.movieDetails.MovieExtraMenuBottomDialog
+import com.majorik.moviebox.feature.details.presentation.watch_online.WatchOnlineDialog
 import com.soywiz.klock.KlockLocale
 import com.stfalcon.imageviewer.StfalconImageViewer
 import kotlinx.android.synthetic.main.activity_tv_details.*
+import kotlinx.android.synthetic.main.activity_tv_details.bottom_bar
 import kotlinx.android.synthetic.main.layout_tv_details.*
 import kotlinx.android.synthetic.main.layout_tv_details.btn_watch_trailer
 import kotlinx.android.synthetic.main.layout_tv_details.main_layout
@@ -61,7 +64,8 @@ class TVDetailsActivity : BaseSlidingActivity() {
         setObserver()
     }
 
-    private fun updateMargins(statusBarSize: Int, @Suppress("UNUSED_PARAMETER") navigationBarSize: Int) {
+    private fun updateMargins(statusBarSize: Int, navigationBarSize: Int) {
+        bottom_bar.updateMargin(bottom = navigationBarSize)
         td_toolbar.updateMargin(top = statusBarSize)
     }
 
@@ -118,6 +122,24 @@ class TVDetailsActivity : BaseSlidingActivity() {
                 )
             }
         }
+
+        btn_extra_menu.setSafeOnClickListener {
+            openExtraMenuDialog()
+        }
+
+        bottom_bar.setSafeOnClickListener {
+            openWatchOnlineDialog()
+        }
+    }
+
+    private fun openWatchOnlineDialog() {
+        val watchOnlineDialog = WatchOnlineDialog()
+        watchOnlineDialog.show(supportFragmentManager, "watch_online_dialog")
+    }
+
+    private fun openExtraMenuDialog() {
+        val extraMenuBottomDialog = TVExtraMenuBottomDialog()
+        extraMenuBottomDialog.show(supportFragmentManager, "extra_menu_dialog")
     }
 
     private fun setClickListenerForImages(
