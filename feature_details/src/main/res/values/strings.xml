@@ -33,6 +33,12 @@
     <string name="details_comments">Комментарии</string>
     <string name="details_recommendations_and_similar">Рекомендации и похожее</string>
 
+
+
+    <string name="details_fact_first_air_date">Дата первого эфира</string>
+    <string name="details_fact_last_air_date">Дата последнего эфира</string>
+    <string name="details_fact_seasons_and_episodes">Сезоны и серии</string>
+
     <!--    Errors-->
     <string name="details_network_state_error_retry">Произошла ошибка</string>
     <string name="details_nav_retry">Повторить попытку</string>
@@ -58,6 +64,7 @@
     <string name="details_runtime_mask" translatable="false">%s %s</string>
     <string name="details_max_rate_with_slash" translatable="false">/10</string>
     <string name="details_watch_trailer">Смотреть трейлер</string>
+    <string name="movie_details_screen_watch_online">Смотреть онлайн</string>
 
     <!--    Plurals-->
     <plurals name="minutes">

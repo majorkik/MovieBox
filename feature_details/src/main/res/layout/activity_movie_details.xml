@@ -30,6 +30,44 @@
         app:navigationIcon="@drawable/ic_arrow_down"
         app:title="" />
 
-    <include android:id="@+id/layout_movie_details" layout="@layout/layout_movie_details" />
+    <include layout="@layout/layout_movie_details" />
 
+    <androidx.cardview.widget.CardView
+        style="@style/BaseClickableCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/colorWhite"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <FrameLayout
+            android:id="@+id/bottom_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:layout_gravity="top|center_horizontal"
+                android:drawableEnd="@drawable/ic_play_with_border"
+                android:drawablePadding="16dp"
+                android:fontFamily="@font/cc_rubik_one"
+                android:gravity="center"
+                android:text="@string/movie_details_screen_watch_online"
+                android:textAllCaps="true"
+                android:textColor="@color/mine_shaft"
+                android:textSize="18sp" />
+
+            <ImageButton
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_menu_black_yellow_with_bg" />
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

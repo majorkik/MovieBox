@@ -4,36 +4,36 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.View
 import androidx.lifecycle.Observer
-import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.majorik.library.base.base.BaseSlidingActivity
-import com.majorik.library.base.constants.AppConfig
-import com.majorik.library.base.constants.UrlConstants
-import com.majorik.library.base.extensions.*
-import com.majorik.library.base.storage.CredentialsPrefsManager
-import com.majorik.moviebox.feature.details.R
-import com.majorik.moviebox.feature.details.databinding.ActivityMovieDetailsBinding
-import com.majorik.moviebox.feature.details.databinding.LayoutMovieDetailsBinding
 import com.majorik.moviebox.feature.details.domain.tmdbModels.account.AccountStates
 import com.majorik.moviebox.feature.details.domain.tmdbModels.image.Images
 import com.majorik.moviebox.feature.details.domain.tmdbModels.video.Videos
 import com.majorik.moviebox.feature.details.presentation.adapters.CastAdapter
 import com.majorik.moviebox.feature.details.presentation.adapters.ImageSliderAdapter
-import com.soywiz.klock.KlockLocale
+import com.majorik.library.base.extensions.*
+import com.majorik.library.base.base.BaseSlidingActivity
+import com.majorik.library.base.constants.AppConfig
+import com.majorik.library.base.constants.UrlConstants
+import com.majorik.library.base.storage.CredentialsPrefsManager
+import com.soywiz.klock.*
 import com.soywiz.klock.locale.russian
 import com.stfalcon.imageviewer.StfalconImageViewer
 import kotlinx.android.synthetic.main.activity_movie_details.*
 import kotlinx.android.synthetic.main.layout_movie_details.*
-import org.koin.android.ext.android.inject
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.DecimalFormat
 import java.util.*
 import kotlin.math.floor
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import com.majorik.moviebox.feature.details.R
+import com.majorik.moviebox.feature.details.domain.tmdbModels.cast.Cast
+import com.majorik.moviebox.feature.details.domain.tmdbModels.genre.Genre
+import com.majorik.moviebox.feature.details.domain.tmdbModels.movie.MovieDetails
+import com.majorik.moviebox.feature.details.domain.tmdbModels.production.ProductionCompany
+import com.orhanobut.logger.Logger
 
 class MovieDetailsActivity : BaseSlidingActivity() {
-
     private val movieDetailsViewModel: MovieDetailsViewModel by viewModel()
-
     private val sharedPrefs: CredentialsPrefsManager by inject()
 
     private var movieState: AccountStates? = null
@@ -52,11 +52,6 @@ class MovieDetailsActivity : BaseSlidingActivity() {
             setDisplayUseLogoEnabled(true)
             setDisplayShowTitleEnabled(false)
         }
-//
-//         cacheDir?.deleteRecursively()
-//         codeCacheDir?.deleteRecursively()
-//         externalCacheDir?.deleteRecursively()
-//         externalCacheDirs?.forEach { it.deleteRecursively() }
 
         fetchDetails(intent.extras)
         setClickListeners()
@@ -103,6 +98,68 @@ class MovieDetailsActivity : BaseSlidingActivity() {
         }
     }
 
+    private fun setObserver() {
+        movieDetailsViewModel.movieDetailsLiveData.observe(this, Observer { movie ->
+            setVisibilityPlaceholder(false)
+
+            setHeader(movie.title, movie.voteAverage, movie.status, movie.genres, movie.releaseDate)
+            setOverview(movie.overview)
+            setFacts(movie)
+            setImages(movie.images, movie.backdropPath, movie.posterPath)
+            setPeoples(movie.credits.casts)
+            setTrailerButtonClickListener(movie.videos)
+        })
+
+        movieDetailsViewModel.movieStatesLiveData.observe(this, Observer {
+            it?.apply { setAccountStates(this) }
+        })
+
+        movieDetailsViewModel.responseFavoriteLiveData.observe(this, Observer {
+            if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
+                showToastMessage("Фильм успешно добавлен в избранное")
+            } else {
+                showToastMessage("Неудалось добавить фильм в избранное")
+            }
+        })
+
+        movieDetailsViewModel.responseWatchlistLiveData.observe(this, Observer {
+            if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
+                showToastMessage("Фильм успешно добавлен в 'Буду смотреть'")
+            } else {
+                showToastMessage("Неудалось добавить фильм в 'Буду смотреть'")
+            }
+        })
+    }
+
+    private fun setPeoples(casts: List<Cast>) {
+        m_persons.setAdapterWithFixedSize(CastAdapter(casts), true)
+    }
+
+    private fun setImages(images: Images, backdropPath: String?, posterPath: String?) {
+        m_backdrop_image.displayImageWithCenterCrop(UrlConstants.TMDB_BACKDROP_SIZE_780 + backdropPath)
+        m_poster_image.displayImageWithCenterCrop(UrlConstants.TMDB_POSTER_SIZE_500 + posterPath)
+        setImageSlider(images.backdrops.map { imageInfo -> imageInfo.filePath }.take(6))
+        setClickListenerForImages(images)
+    }
+
+    private fun setFacts(movie: MovieDetails?) {
+        if (movie == null) return
+
+        setOriginalLanguage(movie.originalLanguage)
+        setOriginalTitle(movie.originalTitle)
+        setRevenue(movie.revenue)
+        setBudget(movie.budget)
+        setReleaseDate(movie.releaseDate)
+        setRuntime(movie.runtime)
+        setCompanies(movie.productionCompanies)
+    }
+
+    private fun setAccountStates(accountStates: AccountStates) {
+        movieState = accountStates
+        toggle_favorite.isChecked = accountStates.favorite
+        toggle_watchlist.isChecked = accountStates.watchlist
+    }
+
     private fun setClickListeners() {
         toggle_favorite.setOnClickListener {
             movieState?.let {
@@ -125,10 +182,7 @@ class MovieDetailsActivity : BaseSlidingActivity() {
         }
     }
 
-    private fun setClickListenerForImages(
-        images: Images
-    ) {
-
+    private fun setClickListenerForImages(images: Images) {
         m_backdrop_image.setOnClickListener {
             StfalconImageViewer.Builder(this, images.backdrops.map { it.filePath }) { view, image ->
                 view.displayImageWithCenterInside(UrlConstants.TMDB_BACKDROP_SIZE_1280 + image)
@@ -149,90 +203,78 @@ class MovieDetailsActivity : BaseSlidingActivity() {
         }
     }
 
-    @OptIn(ExperimentalStdlibApi::class)
-    private fun setObserver() {
-        movieDetailsViewModel.movieDetailsLiveData.observe(this, Observer { movie ->
-            placeholder_main_details_page.setVisibilityOption(false)
+    private fun setVisibilityPlaceholder(isVisible: Boolean) {
+        placeholder_main_details_page.setVisibilityOption(isVisible)
+        main_layout.setVisibilityOption(!isVisible)
+    }
 
-            main_layout.setVisibilityOption(true)
+    private fun setHeader(
+        title: String,
+        voteAverage: Double,
+        status: String,
+        genres: List<Genre>,
+        releaseDate: String
+    ) {
+        m_title.text = title
+        m_vote_average.text = voteAverage.toString()
+        m_status.text = combineString(getString(R.string.details_status), status)
+        vote_average_indicator.setIndicatorColor(voteAverage)
 
-            val numFormat = DecimalFormat("#,###,###")
-            m_title.text = movie.title
-            m_original_language.text =
-                Locale(movie.originalLanguage).displayLanguage.capitalize(AppConfig.APP_LOCALE)
-            m_original_title.text = movie.originalTitle
-            m_revenue.text = (numFormat.format(movie.revenue) + " $")
-            m_budget.text = (numFormat.format(movie.budget) + " $")
-            m_release_date.text =
-                KlockLocale.russian.formatDateLong.format(movie.releaseDate.toDate(getString(R.string.details_yyyy_mm_dd)))
-            m_status.text = movie.status
-            setReleaseDate(movie.runtime)
-            setOverview(movie.overview)
-            m_vote_average.text = movie.voteAverage.toString()
+        setGenres(genres, releaseDate)
+    }
 
-            val genres =
-                movie.genres.joinToString(", ") { it.name.capitalize(AppConfig.APP_LOCALE) }
+    private fun setCompanies(productionCompanies: List<ProductionCompany>) {
+        m_companies.text = combineString(
+            getString(R.string.details_company_production),
+            productionCompanies.joinToString(", ") { it.name })
+    }
 
-            m_add_info.text = getString(
-                R.string.details_short_info_mask,
-                movie.releaseDate.toDate(getString(R.string.details_yyyy_mm_dd)).yearInt.toString(),
-                genres
+    private fun setOriginalTitle(originalTitle: String) {
+        m_original_title.text = combineString(getString(R.string.details_original_title), originalTitle)
+    }
+
+    private fun setRevenue(revenue: Long) {
+        val numFormat = DecimalFormat("#,###,###")
+
+        m_revenue.text =
+            combineString(getString(R.string.details_revenue), (numFormat.format(revenue) + " $"))
+    }
+
+    private fun setBudget(budget: Int) {
+        val numFormat = DecimalFormat("#,###,###")
+
+        m_budget.text = combineString(getString(R.string.details_budget), (numFormat.format(budget) + " $"))
+    }
+
+    private fun setReleaseDate(releaseDate: String) {
+        m_release_date.text =
+            combineString(
+                getString(R.string.details_release_date),
+                KlockLocale.default.formatDateLong.format(releaseDate.toDate(getString(R.string.details_yyyy_mm_dd)))
             )
-
-            m_companies.text = movie.productionCompanies.joinToString(", ") { it.name }
-
-            vote_average_indicator.setIndicatorColor(movie.voteAverage)
-
-            m_backdrop_image.displayImageWithCenterCrop(UrlConstants.TMDB_BACKDROP_SIZE_780 + movie.backdropPath)
-            m_poster_image.displayImageWithCenterCrop(UrlConstants.TMDB_POSTER_SIZE_500 + movie.posterPath)
-
-            setImageSlider(movie.images.backdrops.map { imageInfo -> imageInfo.filePath }.take(6))
-
-            m_persons.setAdapterWithFixedSize(CastAdapter(movie.credits.casts), true)
-
-            setTrailerButtonClickListener(movie.videos)
-
-            setClickListenerForImages(movie.images)
-        })
-
-        movieDetailsViewModel.movieStatesLiveData.observe(this, Observer {
-            it?.apply {
-                movieState = this
-                toggle_favorite.isChecked = this.favorite
-                toggle_watchlist.isChecked = this.watchlist
-            }
-        })
-
-        movieDetailsViewModel.responseFavoriteLiveData.observe(this, Observer {
-            if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
-                showToastMessage("Фильм успешно добавлен в избранное")
-            } else {
-                showToastMessage("Неудалось добавить фильм в избранное")
-            }
-        })
-
-        movieDetailsViewModel.responseWatchlistLiveData.observe(this, Observer {
-            if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
-                showToastMessage("Фильм успешно добавлен в 'Буду смотреть'")
-            } else {
-                showToastMessage("Неудалось добавить фильм в 'Буду смотреть'")
-            }
-        })
     }
 
-    private fun setTrailerButtonClickListener(videos: Videos) {
-        if (videos.results.isNotEmpty()) {
-            btn_watch_trailer.setOnClickListener {
-                openYouTube(videos.results[0].key)
-            }
-        }
+    @OptIn(ExperimentalStdlibApi::class)
+    private fun setOriginalLanguage(originalLanguage: String) {
+        m_original_language.text =
+            combineString(
+                getString(R.string.details_original_language),
+                Locale(originalLanguage).displayLanguage.capitalize(AppConfig.APP_LOCALE)
+            )
     }
 
-    private fun setImageSlider(images: List<String>) {
-        md_image_slider.adapter = ImageSliderAdapter(images)
+    @OptIn(ExperimentalStdlibApi::class)
+    private fun setGenres(genres: List<Genre>, releaseDate: String) {
+        val genresFormat = genres.joinToString(", ") { it.name.capitalize(AppConfig.APP_LOCALE) }
+
+        m_add_info.text = getString(
+            R.string.details_short_info_mask,
+            releaseDate.toDate(getString(R.string.details_yyyy_mm_dd)).yearInt.toString(),
+            genresFormat
+        )
     }
 
-    private fun setReleaseDate(runtime: Int?) {
+    private fun setRuntime(runtime: Int?) {
         if (runtime != null) {
             val hours = floor(runtime / 60.0).toInt()
             val stringHours =
@@ -242,13 +284,18 @@ class MovieDetailsActivity : BaseSlidingActivity() {
             val stringMinutes =
                 resources.getQuantityString(R.plurals.minutes, minutes, minutes)
 
-            m_runtime.text = getString(
-                R.string.details_runtime_mask,
-                stringHours,
-                stringMinutes
+            m_runtime.text = combineString(
+                getString(R.string.details_runtime), getString(
+                    R.string.details_runtime_mask,
+                    stringHours,
+                    stringMinutes
+                )
             )
         } else {
-            m_runtime.text = getString(R.string.details_unknown)
+            m_runtime.text = combineString(
+                getString(R.string.details_runtime),
+                getString(R.string.details_unknown)
+            )
         }
     }
 
@@ -260,6 +307,18 @@ class MovieDetailsActivity : BaseSlidingActivity() {
             m_overview_empty.setVisibilityOption(false)
             m_overview.setVisibilityOption(true)
             m_overview.text = overview
+        }
+    }
+
+    private fun setImageSlider(images: List<String>) {
+        md_image_slider.adapter = ImageSliderAdapter(images)
+    }
+
+    private fun setTrailerButtonClickListener(videos: Videos) {
+        if (videos.results.isNotEmpty()) {
+            btn_watch_trailer.setOnClickListener {
+                openYouTube(videos.results[0].key)
+            }
         }
     }
 }

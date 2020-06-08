@@ -1,7 +1,16 @@
 package com.majorik.library.base.extensions
 
+import android.content.Context
 import android.content.Intent
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.ForegroundColorSpan
+import android.text.style.TypefaceSpan
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import com.majorik.base.R
+import com.majorik.library.base.utils.FontSpan
 import com.majorik.library.base.utils.PACKAGE_NAME
 import com.majorik.library.base.utils.loadClassOrReturnNull
 import com.orhanobut.logger.Logger
@@ -49,3 +58,51 @@ fun String.loadFragmentOrReturnNull(): Fragment? =
         Logger.e(e.message ?: "loadFragmentOrReturnNull()")
         null
     }
+
+/**
+ * Combine string with fonts
+ */
+
+fun Context.combineString(
+    leftString: String,
+    rightString: String,
+    leftFont: Int = R.font.cc_montserrat_regular,
+    rightFont: Int = R.font.cc_montserrat_semibold,
+    nameLeftFont: String = "cc_montserrat_regular",
+    nameRightFont: String = "cc_montserrat_semibold",
+    leftColor: Int = R.color.mine_shaft_alpha_66,
+    rightColor: Int = R.color.mine_shaft,
+    delimiter: String = ":"
+): SpannableString {
+    val spannableString = SpannableString("$leftString$delimiter $rightString")
+
+    spannableString.setSpan(
+        FontSpan(nameLeftFont, ResourcesCompat.getFont(this, leftFont)),
+        0,
+        leftString.length + 1,
+        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+    )
+
+    spannableString.setSpan(
+        ForegroundColorSpan(ContextCompat.getColor(this, leftColor)),
+    0,
+        leftString.length + 1,
+        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+    )
+
+    spannableString.setSpan(
+        FontSpan(nameRightFont, ResourcesCompat.getFont(this, rightFont)),
+        leftString.length + 1,
+        spannableString.length,
+        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+    )
+
+    spannableString.setSpan(
+        ForegroundColorSpan(ContextCompat.getColor(this, rightColor)),
+        leftString.length + 1,
+        spannableString.length,
+        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+    )
+
+    return spannableString
+}

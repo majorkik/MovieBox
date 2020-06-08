@@ -23,6 +23,7 @@
     <color name="gray">#888888</color>
     <color name="shark_alpha_65">#A6222831</color>
     <color name="mine_shaft_alpha_40">#66212121</color>
+    <color name="mine_shaft_alpha_50">#80212121</color>
     <color name="mine_shaft_alpha_66">#A8212121</color>
     <color name="mine_shaft_ultra_light">#484848</color>
     <color name="mine_shaft_extra_light">#3A3A3A</color>

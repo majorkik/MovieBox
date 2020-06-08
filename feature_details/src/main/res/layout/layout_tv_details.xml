@@ -38,16 +38,16 @@
                 android:id="@+id/main_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="56dp"
                 android:clipChildren="false"
                 android:orientation="vertical"
                 android:visibility="gone"
                 tools:visibility="visible">
 
                 <LinearLayout
+                    style="@style/Details.HorizontalDimens"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
                     android:weightSum="1">
 
                     <TextView
@@ -61,68 +61,90 @@
                         android:textColor="@color/mine_shaft"
                         android:textSize="18sp"
                         android:textStyle="normal"
-                        tools:text="Каратель" />
+                        tools:text="Джон Уик 3" />
 
 
-                    <TextView
-                        android:id="@+id/t_vote_average"
-                        android:layout_width="48dp"
+                    <LinearLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="top"
-                        android:background="@drawable/bg_accent"
-                        android:gravity="center"
-                        android:paddingLeft="8dp"
-                        android:paddingTop="4dp"
-                        android:paddingRight="8dp"
-                        android:paddingBottom="4dp"
-                        android:textAppearance="@style/MediumText"
-                        tools:text="9.6" />
-                </LinearLayout>
+                        android:layout_gravity="center"
+                        android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/t_add_info"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:fontFamily="@font/cc_montserrat_regular"
-                    android:textColor="@color/mine_shaft"
-                    android:textSize="12sp"
-                    tools:text="2019 Криминал, боевик, триллер" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:orientation="horizontal">
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/btn_watch_trailer"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_weight="1"
-                        android:background="?attr/selectableItemBackground"
-                        android:backgroundTint="@color/colorPrimaryDark"
-                        android:clickable="true"
-                        android:elevation="0dp"
-                        android:focusable="true"
-                        app:cardCornerRadius="4dp">
+                        <TextView
+                            android:id="@+id/t_vote_average"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/cc_montserrat_black"
+                            android:textColor="@color/mine_shaft"
+                            android:textSize="18sp"
+                            tools:text="8.1" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="start|center_vertical"
-                            android:padding="8dp"
-                            android:text="@string/details_watch_trailer" />
+                            android:layout_gravity="bottom"
+                            android:layout_marginStart="2dp"
+                            android:fontFamily="@font/cc_montserrat_semibold"
+                            android:text="@string/details_max_rate_with_slash"
+                            android:textColor="@color/mercury"
+                            android:textSize="12sp" />
 
                         <ImageView
+                            android:id="@+id/vote_average_indicator"
+                            android:layout_width="6dp"
+                            android:layout_height="6dp"
+                            android:src="@drawable/indicator_vote_average"
+                            tools:ignore="ContentDescription" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/t_add_info"
+                    style="@style/Details.HorizontalDimens"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/cc_montserrat_medium"
+                    android:textColor="@color/silver"
+                    android:textSize="12sp"
+                    tools:text="2019 Криминал, боевик, триллер"
+                    tools:visibility="visible" />
+
+                <LinearLayout
+                    style="@style/Details.HorizontalDimens"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/btn_watch_trailer"
+                        style="@style/BaseClickableCard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        app:cardBackgroundColor="@color/alabaster_light">
+
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:padding="8dp"
-                            android:src="@drawable/ic_play_video" />
+                            android:layout_gravity="center"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:drawableEnd="@drawable/ic_play"
+                            android:drawablePadding="16dp"
+                            android:fontFamily="@font/cc_montserrat_medium"
+                            android:gravity="center"
+                            android:text="@string/details_watch_trailer"
+                            android:textColor="@color/mine_shaft"
+                            android:textSize="14sp" />
                     </androidx.cardview.widget.CardView>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1" />
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
@@ -158,14 +180,30 @@
                     </RelativeLayout>
                 </LinearLayout>
 
-                <TextView
+                <LinearLayout
+                    style="@style/Details.HeaderDimens"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="@string/details_overview"
-                    android:textAppearance="@style/HeaderMedium" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/details_overview"
+                        android:textAppearance="@style/Details.Header" />
+
+                    <TextView
+                        android:id="@+id/t_overview_empty"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/cc_montserrat_regular"
+                        android:text="Отсутствует"
+                        android:textColor="@color/mine_shaft"
+                        android:textSize="12sp"
+                        android:visibility="gone" />
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/t_overview"
@@ -173,224 +211,102 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
                     android:fontFamily="@font/cc_montserrat_regular"
-                    android:textColor="@color/mine_shaft"
+                    android:textColor="@color/mine_shaft_alpha_50"
                     android:textSize="14sp"
                     android:textStyle="normal" />
 
-                <LinearLayout
+                <TextView
+                    style="@style/Details.HeaderDimens"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:background="@drawable/bg_facts"
-                    android:orientation="vertical"
-                    android:padding="8dp">
+                    android:text="@string/details_facts"
+                    android:textAppearance="@style/HeaderMedium" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/details_facts"
-                        android:textAppearance="@style/HeaderMedium" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="@string/details_original_title"
-                        android:textAppearance="@style/MediumText" />
-
-                    <TextView
-                        android:id="@+id/t_original_title"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="@style/RegularText"
-                        tools:text="John WicK: Chapter 3 - Parabellum" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:layout_weight="1"
-                            android:text="@string/details_status"
-                            android:textAppearance="@style/MediumText" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:layout_weight="1"
-                            android:text="@string/details_runtime"
-                            android:textAppearance="@style/MediumText" />
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
-
-                        <TextView
-                            android:id="@+id/t_status"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:textAppearance="@style/RegularText"
-                            tools:text="Выпущено" />
-
-                        <TextView
-                            android:id="@+id/t_runtime"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:textAppearance="@style/RegularText"
-                            tools:text="2 часа 11 минут" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/cc_montserrat_regular"
-                            android:text="@string/details_original_language"
-                            android:textAppearance="@style/MediumText"
-                            android:textColor="@color/mine_shaft"
-                            android:textSize="16sp"
-                            android:textStyle="normal" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/cc_montserrat_regular"
-                            android:text="Сезоны и сериалы"
-                            android:textAppearance="@style/MediumText"
-                            android:textColor="@color/mine_shaft"
-                            android:textSize="16sp"
-                            android:textStyle="normal" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
-
-                        <TextView
-                            android:id="@+id/t_original_language"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:textAppearance="@style/RegularText"
-                            tools:text="Английский" />
-
-                        <TextView
-                            android:id="@+id/t_seasons_and_series"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:textAppearance="@style/RegularText"
-                            tools:text="25 декабря 2019" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:layout_weight="1"
-                            android:text="Дата первого эфира"
-                            android:textAppearance="@style/MediumText" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:layout_weight="1"
-                            android:text="Дата последнего эфира"
-                            android:textAppearance="@style/MediumText" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
-
-                        <TextView
-                            android:id="@+id/t_first_air_date"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:textAppearance="@style/RegularText"
-                            tools:text="$55,000,000" />
-
-                        <TextView
-                            android:id="@+id/t_last_air_date"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:textAppearance="@style/RegularText"
-                            tools:text="$293,061,998" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/t_count_seasons_series"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:textAppearance="@style/MediumText"
-                        tools:text="3 сезона 182 серии" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="@string/details_company_production"
-                        android:textAppearance="@style/MediumText" />
-
-                    <TextView
-                        android:id="@+id/t_companies"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:textAppearance="@style/RegularText"
-                        tools:text="Sony Pictures Television, High Bridge Productions, Gran Via Productions" />
-                </LinearLayout>
-
-                <LinearLayout
+                <TextView
+                    android:id="@+id/t_original_title"
+                    style="@style/Details.HorizontalDimens"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:textAppearance="@style/RegularText"
+                    tools:text="John WicK: Chapter 3 - Parabellum" />
+
+                <TextView
+                    android:id="@+id/t_status"
+                    style="@style/Details.HorizontalDimens"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textAppearance="@style/RegularText"
+                    tools:text="Выпущено" />
+
+                <TextView
+                    android:id="@+id/t_runtime"
+                    style="@style/Details.HorizontalDimens"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textAppearance="@style/RegularText"
+                    tools:text="2 часа 11 минут" />
+
+                <TextView
+                    android:id="@+id/t_original_language"
+                    style="@style/Details.HorizontalDimens"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textAppearance="@style/RegularText"
+                    tools:text="Английский" />
+
+                <TextView
+                    android:id="@+id/t_seasons_and_series"
+                    style="@style/Details.HorizontalDimens"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textAppearance="@style/RegularText"
+                    tools:text="25 декабря 2019" />
+
+                <TextView
+                    android:id="@+id/t_first_air_date"
+                    style="@style/Details.HorizontalDimens"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textAppearance="@style/RegularText"
+                    tools:text="$55,000,000" />
+
+                <TextView
+                    android:id="@+id/t_last_air_date"
+                    style="@style/Details.HorizontalDimens"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textAppearance="@style/RegularText"
+                    tools:text="$293,061,998" />
+
+                <TextView
+                    android:id="@+id/t_companies"
+                    style="@style/Details.HorizontalDimens"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="8dp"
+                    android:textAppearance="@style/RegularText"
+                    tools:text="Sony Pictures Television, High Bridge Productions, Gran Via Productions" />
+
+                <LinearLayout
+                    style="@style/Details.HeaderDimens"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginBottom="8dp"
                         android:text="@string/details_persons"
                         android:textAppearance="@style/HeaderMedium" />
 
@@ -399,15 +315,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:background="@drawable/bg_accent"
+                        android:layout_marginStart="12dp"
+                        android:background="@drawable/bg_count_block_black"
                         android:fontFamily="@font/cc_montserrat_medium"
+                        android:gravity="center"
+                        android:minWidth="32dp"
                         android:paddingLeft="4dp"
                         android:paddingTop="2dp"
                         android:paddingRight="4dp"
                         android:paddingBottom="2dp"
                         android:text="0"
                         android:textAlignment="center"
-                        android:textColor="@color/mine_shaft"
+                        android:textColor="@color/colorWhite"
                         android:textSize="12sp"
                         android:textStyle="normal"
                         tools:text="9.6" />
@@ -417,6 +336,7 @@
                     android:id="@+id/t_persons"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
                     android:clipToPadding="false"
                     android:orientation="horizontal"
                     android:paddingLeft="12dp"
@@ -438,6 +358,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
                     android:orientation="horizontal"
                     android:paddingStart="16dp"
                     android:paddingTop="8dp"
@@ -468,166 +389,6 @@
                             android:id="@+id/t_poster_image"
                             android:layout_width="match_parent"
                             android:layout_height="155dp" />
-                    </androidx.cardview.widget.CardView>
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="@string/details_additional_options"
-                    android:textAppearance="@style/HeaderMedium" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:orientation="horizontal"
-                    android:paddingStart="16dp"
-                    android:paddingTop="8dp"
-                    android:paddingEnd="16dp"
-                    android:paddingBottom="4dp"
-                    android:weightSum="1">
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/t_btn_trailers"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_weight="0.6"
-                        android:backgroundTint="@color/colorPrimaryDark"
-                        app:cardCornerRadius="4dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center|start"
-                            android:fontFamily="@font/cc_montserrat_medium"
-                            android:padding="8dp"
-                            android:text="@string/details_trailers"
-                            android:textColor="@color/mine_shaft"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:id="@+id/t_count_trailers"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center|end"
-                            android:layout_marginEnd="4dp"
-                            android:background="@drawable/bg_accent"
-                            android:fontFamily="@font/cc_montserrat_regular"
-                            android:paddingLeft="8dp"
-                            android:paddingTop="4dp"
-                            android:paddingRight="8dp"
-                            android:paddingBottom="4dp"
-                            android:text="0"
-                            android:textAlignment="center"
-                            android:textColor="@color/mine_shaft"
-                            tools:text="12" />
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/t_btn_recommends"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.4"
-                        android:backgroundTint="@color/colorPrimaryDark"
-                        app:cardCornerRadius="4dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/cc_montserrat_medium"
-                            android:padding="8dp"
-                            android:text="@string/details_recommendations"
-                            android:textColor="@color/mine_shaft"
-                            android:textSize="16sp" />
-                    </androidx.cardview.widget.CardView>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingStart="16dp"
-                    android:paddingTop="4dp"
-                    android:paddingEnd="16dp"
-                    android:paddingBottom="16dp"
-                    android:weightSum="1">
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/t_btn_reviews"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_weight="0.6"
-                        android:backgroundTint="@color/colorPrimaryDark"
-                        app:cardCornerRadius="4dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center|start"
-                            android:fontFamily="@font/cc_montserrat_medium"
-                            android:padding="8dp"
-                            android:text="@string/details_reviews"
-                            android:textColor="@color/mine_shaft"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:id="@+id/t_count_reviews"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center|end"
-                            android:layout_marginEnd="4dp"
-                            android:background="@drawable/bg_accent"
-                            android:fontFamily="@font/cc_montserrat_regular"
-                            android:paddingLeft="8dp"
-                            android:paddingTop="4dp"
-                            android:paddingRight="8dp"
-                            android:paddingBottom="4dp"
-                            android:text="0"
-                            android:textAlignment="center"
-                            android:textColor="@color/mine_shaft"
-                            tools:text="32" />
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/t_btn_comments"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.4"
-                        android:backgroundTint="@color/colorPrimaryDark"
-                        app:cardCornerRadius="4dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center|start"
-                            android:fontFamily="@font/cc_montserrat_medium"
-                            android:padding="8dp"
-                            android:text="@string/details_all_comments"
-                            android:textColor="@color/mine_shaft"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:id="@+id/t_count_comments"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center|end"
-                            android:layout_marginEnd="4dp"
-                            android:background="@drawable/bg_accent"
-                            android:fontFamily="@font/cc_montserrat_regular"
-                            android:paddingLeft="8dp"
-                            android:paddingTop="4dp"
-                            android:paddingRight="8dp"
-                            android:paddingBottom="4dp"
-                            android:text="0"
-                            android:textAlignment="center"
-                            android:textColor="@color/mine_shaft"
-                            tools:text="164" />
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
             </LinearLayout>

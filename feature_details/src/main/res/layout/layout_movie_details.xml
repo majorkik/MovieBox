@@ -12,6 +12,7 @@
     app:layout_behavior="@string/bottom_sheet_behavior">
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:clipToPadding="true"
@@ -38,6 +39,7 @@
                 android:id="@+id/main_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="56dp"
                 android:clipChildren="false"
                 android:orientation="vertical"
                 android:visibility="gone"
@@ -211,7 +213,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/cc_montserrat_regular"
-                    android:textColor="@color/mine_shaft"
+                    android:textColor="@color/mine_shaft_alpha_50"
                     android:textSize="14sp"
                     android:textStyle="normal"
                     android:visibility="gone" />
@@ -224,184 +226,53 @@
                     android:textAppearance="@style/Details.Header" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="@string/details_original_title"
-                    android:textAppearance="@style/Details.InfoTextLight" />
-
-                <TextView
                     android:id="@+id/m_original_title"
-                    style="@style/Details.HorizontalDimens"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:textAppearance="@style/Details.InfoTextBold"
+                    style="@style/Details.FactsStyle"
+                    android:layout_marginTop="12dp"
+                    android:textSize="14sp"
                     tools:text="John WicK: Chapter 3 - Parabellum" />
 
-                <LinearLayout
-                    style="@style/Details.HorizontalDimens"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
+                <TextView
+                    android:id="@+id/m_status"
+                    style="@style/Details.FactsStyle"
+                    android:textSize="14sp"
+                    tools:text="Выпущено" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/details_status"
-                        android:textAppearance="@style/Details.InfoTextLight" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/details_runtime"
-                        android:textAppearance="@style/Details.InfoTextLight" />
-                </LinearLayout>
-
-
-                <LinearLayout
-                    style="@style/Details.HorizontalDimens"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-                    <TextView
-                        android:id="@+id/m_status"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textAppearance="@style/Details.InfoTextBold"
-                        tools:text="Выпущено" />
-
-                    <TextView
-                        android:id="@+id/m_runtime"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textAppearance="@style/Details.InfoTextBold"
-                        tools:text="2 часа 11 минут" />
-                </LinearLayout>
-
-                <LinearLayout
-                    style="@style/Details.HorizontalDimens"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/details_original_language"
-                        android:textAppearance="@style/Details.InfoTextLight" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/details_release_date"
-                        android:textAppearance="@style/Details.InfoTextLight" />
-                </LinearLayout>
-
-                <LinearLayout
-                    style="@style/Details.HorizontalDimens"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-                    <TextView
-                        android:id="@+id/m_original_language"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textAppearance="@style/Details.InfoTextBold"
-                        tools:text="Английский" />
-
-                    <TextView
-                        android:id="@+id/m_release_date"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textAppearance="@style/Details.InfoTextBold"
-                        tools:text="25 декабря 2019" />
-                </LinearLayout>
-
-                <LinearLayout
-                    style="@style/Details.HorizontalDimens"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/details_budget"
-                        android:textAppearance="@style/Details.InfoTextLight" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/details_revenue"
-                        android:textAppearance="@style/Details.InfoTextLight" />
-                </LinearLayout>
-
-                <LinearLayout
-                    style="@style/Details.HorizontalDimens"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-                    <TextView
-                        android:id="@+id/m_budget"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textAppearance="@style/Details.InfoTextBold"
-                        tools:text="$55,000,000" />
-
-                    <TextView
-                        android:id="@+id/m_revenue"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textAppearance="@style/Details.InfoTextBold"
-                        tools:text="$293,061,998" />
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/m_runtime"
+                    style="@style/Details.FactsStyle"
+                    android:textSize="14sp"
+                    tools:text="2 часа 11 минут" />
 
 
                 <TextView
-                    style="@style/Details.HorizontalDimens"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/details_company_production"
-                    android:textAppearance="@style/Details.InfoTextLight" />
+                    android:id="@+id/m_original_language"
+                    style="@style/Details.FactsStyle"
+                    android:textSize="14sp"
+                    tools:text="Английский" />
+
+                <TextView
+                    android:id="@+id/m_release_date"
+                    style="@style/Details.FactsStyle"
+                    android:textSize="14sp"
+                    tools:text="25 декабря 2019" />
+
+                <TextView
+                    android:id="@+id/m_budget"
+                    style="@style/Details.FactsStyle"
+                    android:textSize="14sp"
+                    tools:text="$55,000,000" />
+
+                <TextView
+                    android:id="@+id/m_revenue"
+                    style="@style/Details.FactsStyle"
+                    android:textSize="14sp"
+                    tools:text="$293,061,998" />
 
                 <TextView
                     android:id="@+id/m_companies"
-                    style="@style/Details.HorizontalDimens"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:textAppearance="@style/Details.InfoTextBold"
+                    style="@style/Details.FactsStyle"
+                    android:textSize="14sp"
                     tools:text="Sony Pictures Television, High Bridge Productions, Gran Via Productions" />
 
                 <TextView
@@ -434,6 +305,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
                     android:clipToPadding="false"
                     android:orientation="horizontal"
                     android:paddingStart="16dp"
@@ -468,184 +340,6 @@
                             tools:ignore="ContentDescription" />
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
-
-                <TextView
-                    style="@style/Details.HeaderDimens"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="24dp"
-                    android:text="@string/details_additional_options"
-                    android:textAppearance="@style/Details.Header" />
-
-                <HorizontalScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="24dp"
-                    android:scrollbars="none">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clipChildren="false"
-                        android:clipToPadding="false"
-                        android:orientation="horizontal"
-                        android:paddingStart="8dp"
-                        android:paddingEnd="8dp"
-                        android:weightSum="4">
-
-                        <androidx.cardview.widget.CardView
-                            style="@style/BaseClickableCard"
-                            android:layout_width="96dp"
-                            android:layout_height="112dp"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginEnd="8dp"
-                            android:foreground="?attr/selectableItemBackground"
-                            app:cardBackgroundColor="@color/alabaster">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="48dp"
-                                    android:layout_height="48dp"
-                                    android:layout_marginTop="16dp"
-                                    android:src="@drawable/ic_video_player"
-                                    tools:ignore="ContentDescription" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginStart="4dp"
-                                    android:layout_marginTop="8dp"
-                                    android:layout_marginEnd="4dp"
-                                    android:layout_marginBottom="8dp"
-                                    android:fontFamily="@font/cc_montserrat_semibold"
-                                    android:gravity="center"
-                                    android:text="@string/details_trailers"
-                                    android:textColor="@color/mine_shaft"
-                                    android:textSize="10sp" />
-
-                            </LinearLayout>
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
-                            style="@style/BaseClickableCard"
-                            android:layout_width="96dp"
-                            android:layout_height="112dp"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginEnd="8dp"
-                            android:foreground="?attr/selectableItemBackground"
-                            app:cardBackgroundColor="@color/alabaster">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="48dp"
-                                    android:layout_height="48dp"
-                                    android:layout_marginTop="16dp"
-                                    android:src="@drawable/ic_comments"
-                                    tools:ignore="ContentDescription" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginStart="4dp"
-                                    android:layout_marginTop="8dp"
-                                    android:layout_marginEnd="4dp"
-                                    android:layout_marginBottom="8dp"
-                                    android:fontFamily="@font/cc_montserrat_semibold"
-                                    android:gravity="center"
-                                    android:text="@string/details_comments"
-                                    android:textColor="@color/mine_shaft"
-                                    android:textSize="10sp" />
-
-                            </LinearLayout>
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
-                            style="@style/BaseClickableCard"
-                            android:layout_width="96dp"
-                            android:layout_height="112dp"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginEnd="8dp"
-                            android:foreground="?attr/selectableItemBackground"
-                            app:cardBackgroundColor="@color/alabaster">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="48dp"
-                                    android:layout_height="48dp"
-                                    android:layout_marginTop="16dp"
-                                    android:src="@drawable/ic_review"
-                                    tools:ignore="ContentDescription" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginStart="4dp"
-                                    android:layout_marginTop="8dp"
-                                    android:layout_marginEnd="4dp"
-                                    android:layout_marginBottom="8dp"
-                                    android:fontFamily="@font/cc_montserrat_semibold"
-                                    android:gravity="center"
-                                    android:text="@string/details_reviews"
-                                    android:textColor="@color/mine_shaft"
-                                    android:textSize="10sp" />
-
-                            </LinearLayout>
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
-                            style="@style/BaseClickableCard"
-                            android:layout_width="96dp"
-                            android:layout_height="112dp"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginEnd="8dp"
-                            android:foreground="?attr/selectableItemBackground"
-                            app:cardBackgroundColor="@color/alabaster">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="48dp"
-                                    android:layout_height="48dp"
-                                    android:layout_marginTop="16dp"
-                                    android:src="@drawable/ic_extras"
-                                    tools:ignore="ContentDescription" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginStart="4dp"
-                                    android:layout_marginTop="8dp"
-                                    android:layout_marginEnd="4dp"
-                                    android:layout_marginBottom="8dp"
-                                    android:fontFamily="@font/cc_montserrat_semibold"
-                                    android:gravity="center"
-                                    android:text="@string/details_recommendations_and_similar"
-                                    android:textColor="@color/mine_shaft"
-                                    android:textSize="10sp" />
-
-                            </LinearLayout>
-                        </androidx.cardview.widget.CardView>
-                    </LinearLayout>
-                </HorizontalScrollView>
             </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
