@@ -23,9 +23,9 @@ private val getHttpLoggingInterceptor = run {
 }
 
 /**
- * Tmdb
+ * Tmdb V3
  */
-private val getTmdbRequestInterceptor = Interceptor.invoke { chain ->
+private val getTmdbV3RequestInterceptor = Interceptor.invoke { chain ->
     val url = chain.request()
         .url
         .newBuilder()
@@ -40,24 +40,57 @@ private val getTmdbRequestInterceptor = Interceptor.invoke { chain ->
     return@invoke chain.proceed(request)
 }
 
-fun createTmdbOkHttpClient(): OkHttpClient {
+fun createTmdbV3OkHttpClient(): OkHttpClient {
     return getBaseOkHttpClient()
         .newBuilder()
-        .addNetworkInterceptor(getTmdbRequestInterceptor)
+        .addNetworkInterceptor(getTmdbV3RequestInterceptor)
         .addInterceptor(getHttpLoggingInterceptor)
         .build()
 }
 
 
-fun getTmdbRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
+fun getTmdbV3Retrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
     .client(okHttpClient)
-    .baseUrl(UrlConstants.TMDB_BASE_URL)
+    .baseUrl(UrlConstants.TMDB_BASE_URL_V3)
     .addCallAdapterFactory(CoroutineCallAdapterFactory())
     .addConverterFactory(MoshiConverterFactory.create())
     .build()
 
-inline fun <reified T> createTmdbWebService(): T =
-    getTmdbRetrofit(createTmdbOkHttpClient())
+inline fun <reified T> createTmdbV3WebService(): T =
+    getTmdbV3Retrofit(createTmdbV3OkHttpClient())
+        .create(T::class.java)
+
+/**
+ * Tmdb V4
+ */
+private val getTmdbV4RequestInterceptor = Interceptor.invoke { chain ->
+    val request = chain.request()
+        .newBuilder()
+        .addHeader("Authorization", "Bearer ${BuildConfig.GRADLE_KEY_TMDBV4}")
+        .addHeader("Content-Type", "application/json;charset=utf-8")
+        .build()
+
+    return@invoke chain.proceed(request)
+}
+
+fun createTmdbV4OkHttpClient(): OkHttpClient {
+    return getBaseOkHttpClient()
+        .newBuilder()
+        .addNetworkInterceptor(getTmdbV4RequestInterceptor)
+        .addInterceptor(getHttpLoggingInterceptor)
+        .build()
+}
+
+
+fun getTmdbV4Retrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
+    .client(okHttpClient)
+    .baseUrl(UrlConstants.TMDB_BASE_URL_V4)
+    .addCallAdapterFactory(CoroutineCallAdapterFactory())
+    .addConverterFactory(MoshiConverterFactory.create())
+    .build()
+
+inline fun <reified T> createTmdbV4WebService(): T =
+    getTmdbV4Retrofit(createTmdbV4OkHttpClient())
         .create(T::class.java)
 
 

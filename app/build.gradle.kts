@@ -24,6 +24,7 @@ android {
         testInstrumentationRunner = AndroidConfig.TEST_INSTRUMENTATION_RUNNER
 
         buildConfigFieldFromGradleProperty("keyTmdb")
+        buildConfigFieldFromGradleProperty("keyTmdbv4")
         buildConfigFieldFromGradleProperty("youTubeKey")
         buildConfigFieldFromGradleProperty("keyTrakTv")
 

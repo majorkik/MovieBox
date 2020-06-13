@@ -1,14 +1,17 @@
 package com.majorik.library.base.constants
 
 object UrlConstants {
+    /**
+     * TMDB links
+     */
     const val ABOUT_TMDB = "https://www.themoviedb.org/about"
 
-    const val TMDB_BASE_URL = "https://api.themoviedb.org/3/"
-    const val TRAKT_BASE_URL = "https://api.trakt.tv/"
+    const val TMDB_BASE_URL_V3 = "https://api.themoviedb.org/3/"
+    const val TMDB_BASE_URL_V4 = "https://api.themoviedb.org/4/"
+
     const val YOUTUBE_BASE_URL = "https://www.googleapis.com/youtube/v3/"
 
     const val TMDB_AUTH_URL = "https://www.themoviedb.org/authenticate/"
-    const val TRAKT_AUTH_URL = "https://api.trakt.tv/oauth/authorize?"
 
     const val TMDB_POSTER_SIZE_92 = "https://image.tmdb.org/t/p/w92"
     const val TMDB_POSTER_SIZE_154 = "https://image.tmdb.org/t/p/w154"
@@ -38,7 +41,15 @@ object UrlConstants {
 
     const val TMDB_SIZE_ORIGINAL = "https://image.tmdb.org/t/p/original"
 
-    // youtube
+    /**
+     * Trakt links
+     */
+    const val TRAKT_AUTH_URL = "https://api.trakt.tv/oauth/authorize?"
+
+    /**
+     * YouTube links
+     */
+    const val TRAKT_BASE_URL = "https://api.trakt.tv/"
 
     const val YOUTUBE_IMAGE_LINK = "https://img.youtube.com/vi/"
     const val YOUTUBE_VDN__LINK = "vnd.youtube:"

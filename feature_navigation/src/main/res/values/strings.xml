@@ -66,5 +66,15 @@
     <!--    Clear cache dialog-->
     <string name="navigation_cache_size_with_format">Размер: %s</string>
     <string name="navigation_flush_cache">Очистка кэша</string>
+    <string name="navigation_profile_screen_guest">Гость</string>
+    <string name="navigation_profile_screen_will_watch">Буду смотреть</string>
+    <string name="navigation_profile_screen_movies">Фильмы</string>
+    <string name="navigation_profile_screen_watch_all">Смотреть все</string>
+    <string name="navigation_profile_screen_tvs">Сериалы</string>
+    <string name="navigation_profile_screen_favorite">Избранное</string>
+    <string name="navigation_profile_screen_rating">Рейтинг</string>
+    <string name="navigation_profile_screen_movies_tvs_seasons">Фильмы, сериалы, сезоны</string>
+    <string name="navigation_profile_screen_settings">Настройки</string>
+    <string name="navigation_profile_screen_logout">Выход</string>
 
 </resources>

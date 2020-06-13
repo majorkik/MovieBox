@@ -5,17 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
+    android:paddingBottom="?attr/actionBarSize"
     tools:context="com.majorik.moviebox.feature.navigation.presentation.main_page_profile.ProfileFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:paddingBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -23,7 +25,7 @@
             <LinearLayout
                 android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="56dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -33,13 +35,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="64dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/cc_rubik_one"
+                    android:gravity="center"
                     android:text="@string/title_nav_profile"
                     android:textAllCaps="true"
                     android:textColor="@color/mine_shaft"
-                    android:textSize="24sp"
+                    android:textSize="20sp"
                     android:textStyle="normal" />
 
                 <ImageButton
@@ -48,613 +51,626 @@
                     android:layout_height="56dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="8dp"
-                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:background="?attr/selectableItemBackground"
                     android:src="@drawable/ic_settings"
                     tools:ignore="ContentDescription" />
             </LinearLayout>
 
-            <FrameLayout
-                android:id="@+id/frameLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@color/gallery">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_profile_username"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/profile_full_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
-                        android:layout_marginEnd="24dp"
-                        android:fontFamily="@font/cc_rubik_one"
-                        android:gravity="center"
-                        android:text="@string/navigation_guest"
-                        android:textAllCaps="true"
-                        android:textColor="@color/mine_shaft"
-                        android:textSize="22sp"
-                        tools:text="Travis bell" />
-
-                    <TextView
-                        android:id="@+id/profile_username"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:fontFamily="@font/cc_montserrat_medium"
-                        android:gravity="center"
-                        android:textColor="@color/silver"
-                        android:textSize="12sp"
-                        android:visibility="gone"
-                        tools:text="\@username" />
-                </LinearLayout>
-
-            </FrameLayout>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/benefits_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+            <TextView
+                android:id="@+id/icon_name_letter"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
-                android:visibility="gone"
-                app:cardBackgroundColor="@color/alabaster"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_profile_name_with_corners"
+                android:fontFamily="@font/cc_montserrat_black"
+                android:gravity="center"
+                android:textAllCaps="true"
+                android:textColor="@color/mine_shaft"
+                android:textSize="28sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frameLayout"
-                app:layout_constraintVertical_bias="0.0">
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+                tools:text="T" />
 
-                <LinearLayout
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="@+id/icon_name_letter"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/icon_name_letter"
+                app:layout_constraintTop_toTopOf="@+id/icon_name_letter">
+
+                <TextView
+                    android:id="@+id/account_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:fontFamily="@font/cc_montserrat_black"
+                    android:maxLines="1"
+                    android:text="@string/navigation_profile_screen_guest"
+                    android:textAllCaps="true"
+                    android:textColor="@color/mine_shaft"
+                    android:textSize="18sp"
+                    tools:text="Travis Bell" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="16dp"
-                        android:fontFamily="@font/cc_montserrat_bold"
-                        android:gravity="center"
-                        android:maxLines="2"
-                        android:text="@string/navigation_tmdb_benefits_title"
-                        android:textColor="@color/mine_shaft"
-                        android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/account_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cc_montserrat_regular"
+                    android:maxLines="1"
+                    android:textColor="@color/silver"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    tools:text="\@travisbell" />
+            </LinearLayout>
 
-                    <TextView
-                        android:layout_width="match_parent"
+            <LinearLayout
+                android:id="@+id/profile_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/icon_name_letter">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/will_watch_movies_block"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:focusable="true"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="16dp">
+
+                    <ImageView
+                        android:id="@+id/will_watch_movies_icon"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="4dp"
+                        android:src="@drawable/ic_bookmark_with_bg"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
+
+                    <LinearLayout
+                        android:id="@+id/will_watch_movies_title_layout"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="8dp"
                         android:layout_marginEnd="16dp"
-                        android:layout_marginBottom="24dp"
-                        android:fontFamily="@font/cc_montserrat_regular"
-                        android:text="@string/navigation_tmdb_account_benefits"
-                        android:textColor="@color/mine_shaft"
-                        android:textSize="14sp" />
-
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/btn_sign_in"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:foreground="?attr/selectableItemBackground"
-                        app:cardBackgroundColor="@color/colorAccent"
-                        app:cardCornerRadius="0dp"
-                        app:cardElevation="0dp">
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="@+id/will_watch_movies_icon"
+                        app:layout_constraintEnd_toStartOf="@+id/will_watch_movies_all"
+                        app:layout_constraintStart_toEndOf="@+id/will_watch_movies_icon"
+                        app:layout_constraintTop_toTopOf="@+id/will_watch_movies_icon">
 
                         <TextView
+                            android:id="@+id/will_watch_movies_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/cc_montserrat_regular"
+                            android:text="@string/navigation_profile_screen_will_watch"
+                            android:textColor="@color/silver_light"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/will_watch_movies_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/cc_montserrat_bold"
+                            android:text="@string/navigation_profile_screen_movies"
+                            android:textColor="@color/mine_shaft"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/will_watch_movies_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="4dp"
+                        android:fontFamily="@font/cc_montserrat_black"
+                        android:gravity="center"
+                        android:text="@string/navigation_profile_screen_watch_all"
+                        android:textAllCaps="true"
+                        android:textColor="@color/mine_shaft"
+                        android:textSize="10sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/will_watch_movies_icon"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/will_watch_movies_icon" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/will_watch_movies_list"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:clipToPadding="false"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/will_watch_movies_icon"
+                        tools:listitem="@layout/item_profile_card" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/will_watch_movies_stub"
+                        style="@style/BaseClickableCard"
+                        android:layout_width="64dp"
+                        android:layout_height="96dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="16dp"
+                        app:cardBackgroundColor="@color/alabaster"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/will_watch_movies_icon">
+
+                        <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:fontFamily="@font/cc_montserrat_bold"
-                            android:text="@string/navigation_login_to_account"
-                            android:textAllCaps="true"
-                            android:textColor="@color/mine_shaft"
-                            android:textSize="14sp" />
+                            android:scaleType="center"
+                            android:src="@drawable/ic_round_add"
+                            app:tint="@color/silver_light"
+                            tools:ignore="ContentDescription" />
                     </androidx.cardview.widget.CardView>
-                </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/will_watch_tvs_block"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:focusable="true"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="16dp">
+
+                    <ImageView
+                        android:id="@+id/will_watch_tvs_icon"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="4dp"
+                        android:src="@drawable/ic_bookmark_with_bg"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/will_watch_tvs_title_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="@+id/will_watch_tvs_icon"
+                        app:layout_constraintEnd_toStartOf="@+id/will_watch_tvs_all"
+                        app:layout_constraintStart_toEndOf="@+id/will_watch_tvs_icon"
+                        app:layout_constraintTop_toTopOf="@+id/will_watch_tvs_icon">
+
+                        <TextView
+                            android:id="@+id/will_watch_tvs_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/cc_montserrat_regular"
+                            android:text="@string/navigation_profile_screen_will_watch"
+                            android:textColor="@color/silver_light"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/will_watch_tvs_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/cc_montserrat_bold"
+                            android:text="@string/navigation_profile_screen_tvs"
+                            android:textColor="@color/mine_shaft"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/will_watch_tvs_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="4dp"
+                        android:fontFamily="@font/cc_montserrat_black"
+                        android:gravity="center"
+                        android:text="@string/navigation_profile_screen_watch_all"
+                        android:textAllCaps="true"
+                        android:textColor="@color/mine_shaft"
+                        android:textSize="10sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/will_watch_tvs_icon"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/will_watch_tvs_icon" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/will_watch_tvs_list"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:clipToPadding="false"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/will_watch_tvs_icon"
+                        tools:listitem="@layout/item_profile_card" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/will_watch_tvs_stub"
+                        style="@style/BaseClickableCard"
+                        android:layout_width="64dp"
+                        android:layout_height="96dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="16dp"
+                        app:cardBackgroundColor="@color/alabaster"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/will_watch_tvs_icon">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:scaleType="center"
+                            android:src="@drawable/ic_round_add"
+                            app:tint="@color/silver_light"
+                            tools:ignore="ContentDescription" />
+                    </androidx.cardview.widget.CardView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/favorite_movies_block"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:focusable="true"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="16dp">
+
+                    <ImageView
+                        android:id="@+id/favorite_movies_icon"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="4dp"
+                        android:src="@drawable/ic_favorite_with_bg"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/favorite_movies_title_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="@+id/favorite_movies_icon"
+                        app:layout_constraintEnd_toStartOf="@+id/favorite_movies_all"
+                        app:layout_constraintStart_toEndOf="@+id/favorite_movies_icon"
+                        app:layout_constraintTop_toTopOf="@+id/favorite_movies_icon">
+
+                        <TextView
+                            android:id="@+id/favorite_movies_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/cc_montserrat_regular"
+                            android:text="@string/navigation_profile_screen_favorite"
+                            android:textColor="@color/silver_light"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/favorite_movies_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/cc_montserrat_bold"
+                            android:text="@string/navigation_profile_screen_movies"
+                            android:textColor="@color/mine_shaft"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/favorite_movies_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="4dp"
+                        android:fontFamily="@font/cc_montserrat_black"
+                        android:gravity="center"
+                        android:text="@string/navigation_profile_screen_watch_all"
+                        android:textAllCaps="true"
+                        android:textColor="@color/mine_shaft"
+                        android:textSize="10sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/favorite_movies_icon"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/favorite_movies_icon" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/favorite_movies_list"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:clipToPadding="false"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/favorite_movies_icon"
+                        tools:listitem="@layout/item_profile_card" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/favorite_movies_stub"
+                        style="@style/BaseClickableCard"
+                        android:layout_width="64dp"
+                        android:layout_height="96dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="16dp"
+                        app:cardBackgroundColor="@color/alabaster"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/favorite_movies_icon">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:scaleType="center"
+                            android:src="@drawable/ic_round_add"
+                            app:tint="@color/silver_light"
+                            tools:ignore="ContentDescription" />
+                    </androidx.cardview.widget.CardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/favorite_tvs_block"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:focusable="true"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="16dp">
+
+                    <ImageView
+                        android:id="@+id/favorite_tvs_icon"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="4dp"
+                        android:src="@drawable/ic_favorite_with_bg"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
+
+                    <LinearLayout
+                        android:id="@+id/favorite_tvs_title_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="@+id/favorite_tvs_icon"
+                        app:layout_constraintEnd_toStartOf="@+id/favorite_tvs_all"
+                        app:layout_constraintStart_toEndOf="@+id/favorite_tvs_icon"
+                        app:layout_constraintTop_toTopOf="@+id/favorite_tvs_icon">
+
+                        <TextView
+                            android:id="@+id/favorite_tvs_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/cc_montserrat_regular"
+                            android:text="@string/navigation_profile_screen_favorite"
+                            android:textColor="@color/silver_light"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/favorite_tvs_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/cc_montserrat_bold"
+                            android:text="@string/navigation_profile_screen_tvs"
+                            android:textColor="@color/mine_shaft"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/favorite_tvs_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="4dp"
+                        android:fontFamily="@font/cc_montserrat_black"
+                        android:gravity="center"
+                        android:text="@string/navigation_profile_screen_watch_all"
+                        android:textAllCaps="true"
+                        android:textColor="@color/mine_shaft"
+                        android:textSize="10sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/favorite_tvs_icon"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/favorite_tvs_icon" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/favorite_tvs_list"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:clipToPadding="false"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/favorite_tvs_icon"
+                        tools:listitem="@layout/item_profile_card" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/favorite_tvs_stub"
+                        style="@style/BaseClickableCard"
+                        android:layout_width="64dp"
+                        android:layout_height="96dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="16dp"
+                        app:cardBackgroundColor="@color/alabaster"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/favorite_tvs_icon">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:scaleType="center"
+                            android:src="@drawable/ic_round_add"
+                            app:tint="@color/silver_light"
+                            tools:ignore="ContentDescription" />
+                    </androidx.cardview.widget.CardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btn_rating"
+                style="@style/BaseClickableCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="0dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_layout">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="8dp">
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="8dp"
+                        android:src="@drawable/ic_star_with_bg"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/imageView3"
+                        app:layout_constraintStart_toEndOf="@+id/imageView2"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/cc_montserrat_bold"
+                            android:text="@string/navigation_profile_screen_rating"
+                            android:textColor="@color/mine_shaft"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/cc_montserrat_regular"
+                            android:text="@string/navigation_profile_screen_movies_tvs_seasons"
+                            android:textColor="@color/silver_light"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/ic_arrow_right"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
 
-            <LinearLayout
-                android:id="@+id/layout_profile_buttons"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btn_settings_with_text"
+                style="@style/BaseClickableCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="12dp"
-                android:orientation="vertical">
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="4dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="0dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_rating">
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/cc_rubik_one"
-                    android:gravity="center"
-                    android:text="@string/navigation_movies"
-                    android:textAllCaps="true"
+                    android:layout_height="32dp"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginVertical="8dp"
+                    android:drawableStart="@drawable/ic_settings_with_bg"
+                    android:drawablePadding="8dp"
+                    android:fontFamily="@font/cc_montserrat_bold"
+                    android:gravity="center_vertical"
+                    android:text="@string/navigation_profile_screen_settings"
                     android:textColor="@color/mine_shaft"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
+            </androidx.cardview.widget.CardView>
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/btn_bookmarked_movie"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="12dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?attr/selectableItemBackground"
-                    app:cardBackgroundColor="@color/colorWhite"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="0dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_bookmarked_profile"
-                            tools:ignore="ContentDescription" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/rubik_one_regular"
-                            android:text="@string/navigation_will_watch"
-                            android:textAllCaps="true"
-                            android:textColor="@color/mine_shaft"
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginEnd="8dp"
-                            android:fontFamily="@font/cc_montserrat_regular"
-                            android:textColor="@color/mine_shaft"
-                            android:textSize="12sp"
-                            tools:text="244" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:paddingTop="4dp"
-                            android:paddingBottom="4dp"
-                            android:src="@drawable/ic_arrow_right"
-                            tools:ignore="ContentDescription" />
-
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/btn_favorite_movie"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="12dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?attr/selectableItemBackground"
-                    app:cardBackgroundColor="@color/colorWhite"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="0dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_favorite_profile"
-                            tools:ignore="ContentDescription" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/rubik_one_regular"
-                            android:text="@string/navigation_favorite"
-                            android:textAllCaps="true"
-                            android:textColor="@color/mine_shaft"
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginEnd="8dp"
-                            android:fontFamily="@font/cc_montserrat_regular"
-                            android:textColor="@color/mine_shaft"
-                            android:textSize="12sp"
-                            tools:text="244" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:paddingTop="4dp"
-                            android:paddingBottom="4dp"
-                            android:src="@drawable/ic_arrow_right" />
-
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/btn_rating_movie"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="12dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?attr/selectableItemBackground"
-                    app:cardBackgroundColor="@color/colorWhite"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="0dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_rating_profile"
-                            tools:ignore="ContentDescription" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/rubik_one_regular"
-                            android:text="@string/navigation_votes"
-                            android:textAllCaps="true"
-                            android:textColor="@color/mine_shaft"
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginEnd="8dp"
-                            android:fontFamily="@font/cc_montserrat_regular"
-                            android:textColor="@color/mine_shaft"
-                            android:textSize="12sp"
-                            tools:text="244" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:paddingTop="4dp"
-                            android:paddingBottom="4dp"
-                            android:src="@drawable/ic_arrow_right" />
-
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btn_auth"
+                style="@style/BaseClickableCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="24dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="0dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_settings_with_text">
 
                 <TextView
+                    android:id="@+id/btn_auth_title"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/cc_rubik_one"
-                    android:gravity="center"
-                    android:text="@string/navigation_tvs"
-                    android:textAllCaps="true"
+                    android:layout_height="32dp"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginVertical="8dp"
+                    android:drawableStart="@drawable/ic_exit_with_bg"
+                    android:drawablePadding="8dp"
+                    android:fontFamily="@font/cc_montserrat_bold"
+                    android:gravity="center_vertical"
+                    android:text="@string/navigation_profile_screen_logout"
                     android:textColor="@color/mine_shaft"
-                    android:textSize="16sp" />
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/btn_bookmarked_tv"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="12dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?attr/selectableItemBackground"
-                    app:cardBackgroundColor="@color/colorWhite"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="0dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_bookmarked_profile"
-                            tools:ignore="ContentDescription" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/rubik_one_regular"
-                            android:text="@string/navigation_will_watch"
-                            android:textAllCaps="true"
-                            android:textColor="@color/mine_shaft"
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginEnd="8dp"
-                            android:fontFamily="@font/cc_montserrat_regular"
-                            android:textColor="@color/mine_shaft"
-                            android:textSize="12sp"
-                            tools:text="244" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:paddingTop="4dp"
-                            android:paddingBottom="4dp"
-                            android:src="@drawable/ic_arrow_right"
-                            tools:ignore="ContentDescription" />
-
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/btn_favorite_tv"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="12dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?attr/selectableItemBackground"
-                    app:cardBackgroundColor="@color/colorWhite"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="0dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_favorite_profile"
-                            tools:ignore="ContentDescription" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/rubik_one_regular"
-                            android:text="@string/navigation_favorite"
-                            android:textAllCaps="true"
-                            android:textColor="@color/mine_shaft"
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginEnd="8dp"
-                            android:fontFamily="@font/cc_montserrat_regular"
-                            android:textColor="@color/mine_shaft"
-                            android:textSize="12sp"
-                            tools:text="244" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:paddingTop="4dp"
-                            android:paddingBottom="4dp"
-                            android:src="@drawable/ic_arrow_right"
-                            tools:ignore="ContentDescription" />
-
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/btn_rating_tv"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="12dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?attr/selectableItemBackground"
-                    app:cardBackgroundColor="@color/colorWhite"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="0dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_rating_profile"
-                            tools:ignore="ContentDescription" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/rubik_one_regular"
-                            android:text="@string/navigation_votes"
-                            android:textAllCaps="true"
-                            android:textColor="@color/mine_shaft"
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginEnd="8dp"
-                            android:fontFamily="@font/cc_montserrat_regular"
-                            android:textColor="@color/mine_shaft"
-                            android:textSize="12sp"
-                            tools:text="244" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:paddingTop="4dp"
-                            android:paddingBottom="4dp"
-                            android:src="@drawable/ic_arrow_right"
-                            tools:ignore="ContentDescription" />
-
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/cc_rubik_one"
-                    android:gravity="center"
-                    android:text="@string/navigation_seasons"
-                    android:textAllCaps="true"
-                    android:textColor="@color/mine_shaft"
-                    android:textSize="16sp" />
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/btn_rating_seasons"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="12dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?attr/selectableItemBackground"
-                    app:cardBackgroundColor="@color/colorWhite"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="0dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_rating_profile"
-                            tools:ignore="ContentDescription" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/rubik_one_regular"
-                            android:text="@string/navigation_votes"
-                            android:textAllCaps="true"
-                            android:textColor="@color/mine_shaft"
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginEnd="8dp"
-                            android:fontFamily="@font/cc_montserrat_regular"
-                            android:textColor="@color/mine_shaft"
-                            android:textSize="12sp"
-                            tools:text="244" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:paddingTop="4dp"
-                            android:paddingBottom="4dp"
-                            android:src="@drawable/ic_arrow_right"
-                            tools:ignore="ContentDescription" />
-
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/btn_logout"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="8dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?attr/selectableItemBackground"
-                    app:cardBackgroundColor="@color/alabaster"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="0dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/cc_montserrat_medium"
-                        android:text="@string/navigation_sign_out"
-                        android:textColor="@color/gray"
-                        android:textSize="12sp" />
-                </androidx.cardview.widget.CardView>
-            </LinearLayout>
-        </LinearLayout>
+                    android:textSize="18sp" />
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -98,7 +98,7 @@ interface TmdbApiService {
         @Query("session_id") sessionId: String
     ): AccountDetails
 
-    @GET("account/{account_id}/favorite/movies")
+    @GET("account/{session_id}/favorite/movies")
     suspend fun getFavoriteMovies(
         @Query("language") language: String?,
         @Query("session_id") sessionId: String,
@@ -106,7 +106,7 @@ interface TmdbApiService {
         @Query("page") page: Int?
     ): MovieResponse
 
-    @GET("account/{account_id}/favorite/tv")
+    @GET("account/{session_id}/favorite/tv")
     suspend fun getFavoriteTVs(
         @Query("language") language: String?,
         @Query("session_id") sessionId: String,
@@ -114,13 +114,13 @@ interface TmdbApiService {
         @Query("page") page: Int?
     ): TVResponse
 
-    @POST("account/{account_id}/favorite")
+    @POST("account/{session_id}/favorite")
     suspend fun markIsFavorite(
         @Body requestMarkAsFavorite: RequestMarkAsFavorite,
         @Query("session_id") sessionId: String
     ): ApiResponse
 
-    @GET("account/{account_id}/rated/movies")
+    @GET("account/{session_id}/rated/movies")
     suspend fun getRatedMovies(
         @Query("language") language: String?,
         @Query("session_id") sessionId: String,
@@ -128,7 +128,7 @@ interface TmdbApiService {
         @Query("page") page: Int?
     ): MovieResponse
 
-    @GET("account/{account_id}/rated/tv")
+    @GET("account/{session_id}/rated/tv")
     suspend fun getRatedTVs(
         @Query("language") language: String?,
         @Query("session_id") sessionId: String,
@@ -136,7 +136,7 @@ interface TmdbApiService {
         @Query("page") page: Int?
     ): TVResponse
 
-    @GET("account/{account_id}/rated/tv/episodes")
+    @GET("account/{session_id}/rated/tv/episodes")
     suspend fun getRatedEpisodes(
         @Query("language") language: String?,
         @Query("session_id") sessionId: String,
@@ -144,7 +144,7 @@ interface TmdbApiService {
         @Query("page") page: Int?
     ): TVEpisodeResponse
 
-    @GET("account/{account_id}/watchlist/movies")
+    @GET("account/{session_id}/watchlist/movies")
     suspend fun getWatchlistMovies(
         @Query("language") language: String?,
         @Query("session_id") sessionId: String,
@@ -152,7 +152,7 @@ interface TmdbApiService {
         @Query("page") page: Int?
     ): MovieResponse
 
-    @GET("account/{account_id}/watchlist/tv")
+    @GET("account/{session_id}/watchlist/tv")
     suspend fun getWatchlistTVs(
         @Query("language") language: String?,
         @Query("session_id") sessionId: String,
@@ -160,7 +160,7 @@ interface TmdbApiService {
         @Query("page") page: Int?
     ): TVResponse
 
-    @POST("account/{account_id}/watchlist")
+    @POST("account/{session_id}/watchlist")
     suspend fun addToWatchlist(
         @Body requestAddToWatchlist: RequestAddToWatchlist,
         @Query("session_id") sessionId: String

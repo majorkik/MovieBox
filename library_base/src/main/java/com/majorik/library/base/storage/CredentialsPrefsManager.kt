@@ -3,6 +3,7 @@ package com.majorik.library.base.storage
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
+import com.orhanobut.logger.Logger
 
 class CredentialsPrefsManager(context: Context) {
     companion object {
@@ -54,7 +55,11 @@ class CredentialsPrefsManager(context: Context) {
 
     fun getTmdbGuestLoggedStatus(): Boolean = sharedPrefs.getBoolean(TMDB_GUEST_STATUS, false)
 
-    fun getTmdbSessionID(): String? = sharedPrefs.getString(TMDB_SESSION_ID, null)
+    fun getTmdbSessionID(): String? {
+        val sessionID = sharedPrefs.getString(TMDB_SESSION_ID, null)
+        Logger.i("Session id: ${sessionID}")
+        return sessionID
+    }
 
     fun getTmdbGuestSessionID(): String? = sharedPrefs.getString(TMDB_GUEST_SESSION_ID, null)
 
