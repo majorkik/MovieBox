@@ -280,6 +280,18 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/networks_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                android:paddingLeft="12dp"
+                android:paddingTop="8dp"
+                android:paddingRight="12dp"
+                android:paddingBottom="24dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/btn_tv_genres"
                 android:layout_width="match_parent"

@@ -20,6 +20,8 @@ import com.majorik.moviebox.feature.navigation.data.repositories.TrendingReposit
 import com.majorik.moviebox.feature.navigation.databinding.FragmentTvsBinding
 import com.majorik.moviebox.feature.navigation.domain.movie.TVCollectionType
 import com.majorik.moviebox.feature.navigation.presentation.adapters.*
+import com.majorik.moviebox.feature.navigation.presentation.adapters.tvs.NetworksAdapter
+import com.majorik.moviebox.feature.navigation.presentation.constants.Networks
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -35,6 +37,7 @@ class TVsFragment : Fragment(R.layout.fragment_tvs) {
     private val trailersAdapter = TrailersAdapter()
     private val genresAdapter = GenreAdapter()
     private val trendingTVsAdapter = TVTrendAdapter()
+    private val networksAdapter = NetworksAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,6 +85,9 @@ class TVsFragment : Fragment(R.layout.fragment_tvs) {
             viewBinding.rvTvGenres.setAdapterWithFixedSize(genresAdapter, true)
 
             viewBinding.vpTrendTvs.adapter = trendingTVsAdapter
+
+            viewBinding.networksList.adapter = networksAdapter
+            networksAdapter.addItems(Networks.networks)
         }
     }
 

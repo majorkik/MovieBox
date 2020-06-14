@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="4dp"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/network_card"
+        style="@style/BaseClickableCard"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:cardBackgroundColor="@color/alabaster"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp">
+
+        <ImageView
+            android:id="@+id/network_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:scaleType="center" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/network_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/cc_montserrat_semibold"
+        android:gravity="center"
+        android:maxWidth="96dp"
+        android:maxLines="2"
+        android:textColor="@color/mine_shaft"
+        android:textSize="12sp"
+        tools:text="Warner Bros" />
+</LinearLayout>
