@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="?attr/actionBarSize"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimary"
+    android:paddingBottom="?attr/actionBarSize">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -73,17 +73,23 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/navigation_collection_popular"
+                        android:fontFamily="@font/cc_montserrat_black"
+                        android:textColor="@color/mine_shaft"
+                        android:textSize="18sp"
                         android:theme="@style/HeaderMedium" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/cc_montserrat_black"
+                        android:gravity="center"
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
                         android:text="@string/navigation_more"
-                        android:textColor="@color/colorAccent"
-                        android:theme="@style/HeaderSmall" />
+                        android:textAllCaps="true"
+                        android:textColor="@color/mine_shaft"
+                        android:textSize="10sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -119,6 +125,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="@font/cc_montserrat_black"
+                        android:textColor="@color/mine_shaft"
+                        android:textSize="18sp"
                         android:text="@string/navigation_now_playing"
                         android:theme="@style/HeaderMedium" />
 
@@ -126,11 +135,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/cc_montserrat_black"
+                        android:gravity="center"
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
                         android:text="@string/navigation_more"
-                        android:textColor="@color/colorAccent"
-                        android:theme="@style/HeaderSmall" />
+                        android:textAllCaps="true"
+                        android:textColor="@color/mine_shaft"
+                        android:textSize="10sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -172,17 +184,23 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/navigation_in_trends"
+                        android:fontFamily="@font/cc_montserrat_black"
+                        android:textColor="@color/mine_shaft"
+                        android:textSize="18sp"
                         android:theme="@style/HeaderMedium" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/cc_montserrat_black"
+                        android:gravity="center"
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
                         android:text="@string/navigation_more"
-                        android:textColor="@color/colorAccent"
-                        android:theme="@style/HeaderSmall" />
+                        android:textAllCaps="true"
+                        android:textColor="@color/mine_shaft"
+                        android:textSize="10sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -219,17 +237,23 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/navigation_upcoming"
+                        android:fontFamily="@font/cc_montserrat_black"
+                        android:textColor="@color/mine_shaft"
+                        android:textSize="18sp"
                         android:theme="@style/HeaderMedium" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/cc_montserrat_black"
+                        android:gravity="center"
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
                         android:text="@string/navigation_more"
-                        android:textColor="@color/colorAccent"
-                        android:theme="@style/HeaderSmall" />
+                        android:textAllCaps="true"
+                        android:textColor="@color/mine_shaft"
+                        android:textSize="10sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -269,6 +293,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="@font/cc_montserrat_black"
+                        android:textColor="@color/mine_shaft"
+                        android:textSize="18sp"
                         android:text="@string/navigation_genres"
                         android:theme="@style/HeaderMedium" />
 
@@ -276,11 +303,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/cc_montserrat_black"
+                        android:gravity="center"
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
                         android:text="@string/navigation_more"
-                        android:textColor="@color/colorAccent"
-                        android:theme="@style/HeaderSmall" />
+                        android:textAllCaps="true"
+                        android:textColor="@color/mine_shaft"
+                        android:textSize="10sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -320,6 +350,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="@font/cc_montserrat_black"
+                        android:textColor="@color/mine_shaft"
+                        android:textSize="18sp"
                         android:text="@string/navigation_trailers"
                         android:theme="@style/HeaderMedium" />
 
@@ -327,11 +360,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/cc_montserrat_black"
+                        android:gravity="center"
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
                         android:text="@string/navigation_more"
-                        android:textColor="@color/colorAccent"
-                        android:theme="@style/HeaderSmall" />
+                        android:textAllCaps="true"
+                        android:textColor="@color/mine_shaft"
+                        android:textSize="10sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -371,6 +407,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="@font/cc_montserrat_black"
+                        android:textColor="@color/mine_shaft"
+                        android:textSize="18sp"
                         android:text="@string/navigation_popular_peoples"
                         android:theme="@style/HeaderMedium" />
 
@@ -378,11 +417,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/cc_montserrat_black"
+                        android:gravity="center"
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
                         android:text="@string/navigation_more"
-                        android:textColor="@color/colorAccent"
-                        android:theme="@style/HeaderSmall" />
+                        android:textAllCaps="true"
+                        android:textColor="@color/mine_shaft"
+                        android:textSize="10sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 

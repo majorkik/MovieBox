@@ -99,17 +99,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cc_montserrat_medium"
+                android:gravity="center"
                 android:text="@string/nav_login_with_tmdb"
                 android:textColor="@color/mine_shaft"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cc_montserrat_regular"
+                android:gravity="center"
                 android:text="@string/nav_recommendation"
                 android:textColor="@color/mine_shaft"
-                android:textSize="12sp" />
+                android:textSize="10sp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -145,17 +147,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cc_montserrat_medium"
+                android:gravity="center"
                 android:text="@string/nav_login_with_guest"
                 android:textColor="@color/mine_shaft"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cc_montserrat_regular"
+                android:gravity="center"
                 android:text="@string/nav_most_features_will_not_be_available"
                 android:textColor="@color/mine_shaft"
-                android:textSize="12sp" />
+                android:textSize="10sp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
