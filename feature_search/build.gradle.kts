@@ -57,5 +57,7 @@ android {
 dependencies {
     implementation(project(ModuleDependency.FEATURE_NAVIGATION))
 
+    implementation("com.github.Jay-Goo:RangeSeekBar:3.0.0")
+
     addTestDependencies()
 }

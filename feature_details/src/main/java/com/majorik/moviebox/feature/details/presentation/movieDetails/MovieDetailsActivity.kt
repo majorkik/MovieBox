@@ -5,31 +5,31 @@ import android.view.Menu
 import android.view.View
 import androidx.lifecycle.Observer
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.majorik.moviebox.feature.details.domain.tmdbModels.account.AccountStates
-import com.majorik.moviebox.feature.details.domain.tmdbModels.image.Images
-import com.majorik.moviebox.feature.details.domain.tmdbModels.video.Videos
-import com.majorik.moviebox.feature.details.presentation.adapters.CastAdapter
-import com.majorik.moviebox.feature.details.presentation.adapters.ImageSliderAdapter
-import com.majorik.library.base.extensions.*
 import com.majorik.library.base.base.BaseSlidingActivity
 import com.majorik.library.base.constants.AppConfig
 import com.majorik.library.base.constants.UrlConstants
+import com.majorik.library.base.extensions.*
 import com.majorik.library.base.storage.CredentialsPrefsManager
-import com.soywiz.klock.*
+import com.majorik.moviebox.feature.details.R
+import com.majorik.moviebox.feature.details.domain.tmdbModels.account.AccountStates
+import com.majorik.moviebox.feature.details.domain.tmdbModels.cast.Cast
+import com.majorik.moviebox.feature.details.domain.tmdbModels.genre.Genre
+import com.majorik.moviebox.feature.details.domain.tmdbModels.image.Images
+import com.majorik.moviebox.feature.details.domain.tmdbModels.movie.MovieDetails
+import com.majorik.moviebox.feature.details.domain.tmdbModels.production.ProductionCompany
+import com.majorik.moviebox.feature.details.domain.tmdbModels.video.Videos
+import com.majorik.moviebox.feature.details.presentation.adapters.CastAdapter
+import com.majorik.moviebox.feature.details.presentation.adapters.ImageSliderAdapter
+import com.majorik.moviebox.feature.details.presentation.watch_online.WatchOnlineDialog
+import com.soywiz.klock.KlockLocale
 import com.stfalcon.imageviewer.StfalconImageViewer
 import kotlinx.android.synthetic.main.activity_movie_details.*
 import kotlinx.android.synthetic.main.layout_movie_details.*
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.DecimalFormat
 import java.util.*
 import kotlin.math.floor
-import org.koin.android.ext.android.inject
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import com.majorik.moviebox.feature.details.R
-import com.majorik.moviebox.feature.details.domain.tmdbModels.cast.Cast
-import com.majorik.moviebox.feature.details.domain.tmdbModels.genre.Genre
-import com.majorik.moviebox.feature.details.domain.tmdbModels.movie.MovieDetails
-import com.majorik.moviebox.feature.details.domain.tmdbModels.production.ProductionCompany
-import com.majorik.moviebox.feature.details.presentation.watch_online.WatchOnlineDialog
 
 class MovieDetailsActivity : BaseSlidingActivity() {
     private val movieDetailsViewModel: MovieDetailsViewModel by viewModel()

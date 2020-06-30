@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialog_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="@color/colorWhite"
+    android:clipToPadding="false">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="56dp"
+        app:layout_behavior="@string/bottom_sheet_behavior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/text_type_movie"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/cc_montserrat_bold"
+                    android:gravity="end"
+                    android:paddingHorizontal="16dp"
+                    android:text="@string/filters_dialog_switch_filter_type_off"
+                    android:textColor="@color/mine_shaft"
+                    android:textSize="14sp" />
+
+                <Switch
+                    android:id="@+id/s_filter_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:gravity="center"
+                    android:paddingHorizontal="8dp"
+                    android:thumb="@drawable/thumb_switch"
+                    android:track="@drawable/bg_switch_neutral_track" />
+
+                <TextView
+                    android:id="@+id/text_type_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/cc_montserrat_bold"
+                    android:gravity="start"
+                    android:paddingHorizontal="16dp"
+                    android:text="@string/filters_dialog_switch_filter_type_on"
+                    android:textColor="@color/mine_shaft"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/text_sort_by"
+                style="@style/Filters.HeaderTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/filters_dialog_header_sort_by"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+            <LinearLayout
+                android:id="@+id/layout_sort_by_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_sort_by">
+
+
+                <TextView
+                    android:id="@+id/text_sort_desc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/cc_montserrat_bold"
+                    android:gravity="end"
+                    android:paddingHorizontal="16dp"
+                    android:text="@string/filters_dialog_sort_by_desc_title"
+                    android:textColor="@color/mine_shaft"
+                    android:textSize="14sp" />
+
+                <Switch
+                    android:id="@+id/s_sort_by"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:gravity="center"
+                    android:paddingHorizontal="8dp"
+                    android:thumb="@drawable/thumb_switch"
+                    android:track="@drawable/bg_switch_neutral_track" />
+
+                <TextView
+                    android:id="@+id/text_sort_asc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/cc_montserrat_bold"
+                    android:gravity="start"
+                    android:paddingHorizontal="16dp"
+                    android:text="@string/filters_dialog_sort_by_asc_title"
+                    android:textColor="@color/mine_shaft"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/sort_type_chip_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp"
+                app:checkedChip="@+id/chip_sort_popularity"
+                app:layout_constraintTop_toBottomOf="@+id/layout_sort_by_type"
+                app:selectionRequired="true"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_sort_release_date"
+                    style="@style/Filters.ChipChoiceStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filters_dialog_chip_release_date" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_sort_popularity"
+                    style="@style/Filters.ChipChoiceStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filters_dialog_chip_popularity" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_sort_rating"
+                    style="@style/Filters.ChipChoiceStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filters_dialog_chip_rating" />
+            </com.google.android.material.chip.ChipGroup>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_release_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingVertical="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sort_type_chip_group">
+
+                <TextView
+                    android:id="@+id/text_release_date"
+                    style="@style/Filters.HeaderTextStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/filters_dialog_header_release_date"
+                    app:layout_constraintEnd_toStartOf="@+id/description_release_date"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/text_release_date_options"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:text="@string/filters_dialog_release_date_option_text"
+                    android:textColor="@color/mine_shaft"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toStartOf="@+id/description_release_date"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_release_date" />
+
+                <TextView
+                    android:id="@+id/description_release_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/filters_dialog_release_date_description_any"
+                    android:textColor="@color/mine_shaft"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_release_date"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/text_release_date" />
+
+                <com.jaygoo.widget.RangeSeekBar
+                    android:id="@+id/release_date_range_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="16dp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@+id/text_release_date_options"
+                    app:rsb_gravity="center"
+                    app:rsb_progress_color="@color/dodger_blue_dark"
+                    app:rsb_progress_default_color="@color/gallery"
+                    app:rsb_progress_height="6dp"
+                    app:rsb_thumb_drawable="@drawable/thumb_range_bar"
+                    app:rsb_thumb_height="20dp"
+                    app:rsb_thumb_width="20dp"
+                    tools:layout_editor_absoluteX="16dp"
+                    tools:visibility="visible" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/release_date_chip_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:visibility="gone"
+                    app:checkedChip="@id/chip_date_any_dates"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/release_date_range_bar"
+                    app:selectionRequired="true"
+                    app:singleSelection="true"
+                    tools:visibility="visible">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_date_any_dates"
+                        style="@style/Filters.ChipChoiceStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/filters_dialog_sort_by_any_date" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_date_between_dates"
+                        style="@style/Filters.ChipChoiceStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/filters_dialog_sort_by_between_dates" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_date_one_year"
+                        style="@style/Filters.ChipChoiceStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/filters_dialog_sort_by_one_year" />
+                </com.google.android.material.chip.ChipGroup>
+
+                <com.jaygoo.widget.RangeSeekBar
+                    android:id="@+id/release_date_year_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="8dp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@+id/release_date_chip_group"
+                    app:rsb_gravity="center"
+                    app:rsb_mode="single"
+                    app:rsb_progress_color="@color/gallery"
+                    app:rsb_progress_default_color="@color/gallery"
+                    app:rsb_progress_height="6dp"
+                    app:rsb_thumb_drawable="@drawable/thumb_range_bar"
+                    app:rsb_thumb_height="20dp"
+                    app:rsb_thumb_width="20dp"
+                    tools:layout_editor_absoluteX="16dp"
+                    tools:visibility="visible" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/text_rating"
+                style="@style/Filters.HeaderTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/filters_dialog_header_rating"
+                app:layout_constraintEnd_toStartOf="@+id/description_rating"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_release_date" />
+
+            <TextView
+                android:id="@+id/description_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/filters_dialog_rating_description_any"
+                android:textColor="@color/mine_shaft"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/text_rating"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/text_rating" />
+
+            <com.jaygoo.widget.RangeSeekBar
+                android:id="@+id/rating_bar"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/text_rating"
+                app:rsb_gravity="center"
+                app:rsb_max="100"
+                app:rsb_min="0"
+                app:rsb_progress_color="@color/dodger_blue_dark"
+                app:rsb_progress_default_color="@color/gallery"
+                app:rsb_progress_height="6dp"
+                app:rsb_step_auto_bonding="true"
+                app:rsb_steps="10"
+                app:rsb_thumb_drawable="@drawable/thumb_range_bar"
+                app:rsb_thumb_height="20dp"
+                app:rsb_thumb_width="20dp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/genres_block"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingVertical="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rating_bar">
+
+                <TextView
+                    android:id="@+id/text_genres"
+                    style="@style/Filters.HeaderTextStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/filters_dialog_header_genres"
+                    app:layout_constraintEnd_toStartOf="@+id/description_genres"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/text_genres_option"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:text="@string/filters_dialog_genres_option_text"
+                    android:textColor="@color/mine_shaft"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_genres" />
+
+                <TextView
+                    android:id="@+id/description_genres"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/filters_dialog_genres_description_any"
+                    android:textColor="@color/mine_shaft"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_genres"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/text_genres" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/genres_chip_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@+id/text_genres_option"
+                    app:singleSelection="false"
+                    tools:visibility="visible" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/keywords_block"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/genres_block">
+
+                <TextView
+                    android:id="@+id/text_keywords"
+                    style="@style/Filters.HeaderTextStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/filters_dialog_header_keywords"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_add_keywords"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/btn_add_keywords"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:paddingHorizontal="16dp"
+                    android:text="@string/filters_dialog_keyword_add_button"
+                    android:textColor="@color/mine_shaft"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/keywords_chip_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/keywords_block"
+                app:singleSelection="false"
+                tools:visibility="visible" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/credits_block"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/keywords_chip_group">
+
+                <TextView
+                    android:id="@+id/text_credits"
+                    style="@style/Filters.HeaderTextStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/filters_dialog_header_credits"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_add_credits"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/btn_add_credits"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:paddingHorizontal="16dp"
+                    android:text="@string/filters_dialog_credits_add_button"
+                    android:textColor="@color/mine_shaft"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/credits_chip_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/credits_block"
+                app:singleSelection="false"
+                tools:visibility="visible" />
+
+            <Switch
+                android:id="@+id/s_include_adult"
+                style="@style/Filters.HeaderTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:text="@string/filters_dialog_header_show_adult"
+                android:thumb="@drawable/thumb_switch"
+                android:track="@drawable/bg_switch_track"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/credits_chip_group" />
+
+            <Switch
+                android:id="@+id/s_with_trailers"
+                style="@style/Filters.HeaderTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="32dp"
+                android:gravity="center_vertical"
+                android:text="@string/filters_dialog_header_show_with_trailers"
+                android:thumb="@drawable/thumb_switch"
+                android:track="@drawable/bg_switch_track"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/s_include_adult"
+                app:layout_constraintVertical_bias="0.0" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <FrameLayout
+        android:id="@+id/frameLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/dialog_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="56dp"
+            android:fontFamily="@font/rubik_one_regular"
+            android:gravity="center"
+            android:text="@string/filters_dialog_title"
+            android:textAllCaps="true"
+            android:textColor="@color/mine_shaft"
+            android:textSize="18sp" />
+
+        <ImageButton
+            android:id="@+id/btn_close"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/ic_arrow_down"
+            android:tint="@color/mine_shaft"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/btn_reset_filters"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/cc_montserrat_semibold"
+            android:gravity="center"
+            android:paddingHorizontal="16dp"
+            android:text="@string/filters_dialog_button_reset"
+            android:textAllCaps="false"
+            android:textColor="@color/mine_shaft"
+            android:textSize="12sp" />
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

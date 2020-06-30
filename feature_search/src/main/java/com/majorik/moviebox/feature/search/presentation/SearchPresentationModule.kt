@@ -1,5 +1,6 @@
 package com.majorik.moviebox.feature.search.presentation
 
+import com.majorik.moviebox.feature.search.presentation.ui.filters.DiscoverFiltersViewModel
 import com.majorik.moviebox.feature.search.presentation.ui.movie.SearchMovieViewModel
 import com.majorik.moviebox.feature.search.presentation.ui.people.SearchPeopleViewModel
 import com.majorik.moviebox.feature.search.presentation.ui.tv.SearchTVViewModel
@@ -10,4 +11,5 @@ val presentationModule = module {
     viewModel { SearchMovieViewModel(get()) }
     viewModel { SearchTVViewModel(get()) }
     viewModel { SearchPeopleViewModel(get()) }
+    viewModel { DiscoverFiltersViewModel(get(), get()) }
 }
