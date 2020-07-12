@@ -38,4 +38,6 @@
     <string name="filters_dialog_sort_by_between_dates">Между датами</string>
     <string name="filters_dialog_sort_by_one_year">Один год</string>
     <string name="filters_dialog_release_date_option_text">Нажмите, чтобы открыть настройки даты</string>
+
+    <string name="discover_screen_title">Подбор</string>
 </resources>

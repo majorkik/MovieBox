@@ -9,7 +9,7 @@ private object LibraryVersion {
     const val APP_COMPAT = "1.2.0-alpha03"
     const val MATERIAL = "1.2.0-alpha05"
     const val MULTIDEX = "1.0.3"
-    const val NAVIGATION_DYNAMIC_FEATURE_FRAGMENT = "2.3.0-alpha05"
+    const val NAVIGATION_DYNAMIC_FEATURE_FRAGMENT = "2.3.0"
 
     const val PLAY_CORE = "1.7.3"
 
@@ -18,7 +18,7 @@ private object LibraryVersion {
     const val LIFECYCLE_KTX = "2.2.0"
     const val ANNOTATION = "1.1.0"
     const val VECTOR_DRAWABLE = "1.1.0"
-    const val NAVIGATION = "2.2.2"
+    const val NAVIGATION = "2.3.0"
     const val RECYCLERVIEW = "1.2.0-alpha03"
     const val SUPPORT_DESIGN = "28.0.0-rc02"
     const val VIEWPAGER_2 = "1.0.0"
@@ -32,17 +32,17 @@ private object LibraryVersion {
     const val TIMBER = "4.7.1"
     const val PRETTY_LOGGER = "2.2.0"
 
-    const val KOIN = "2.1.5"
+    const val KOIN = "2.1.6"
 
     const val STFALCON = "1.0.10"
     const val PHOTOVIEW = "2.3.0"
     const val CIRCLE_IMAGE = "3.1.0"
     const val KLOCK = "1.8.4"
-    const val LOTTIE = "3.4.0"
+    const val LOTTIE = "3.4.1"
     const val LOCALIZATION = "1.2.5"
     const val COIL = "0.11.0"
     const val RECYCLER_VIEW_ANIMATION = "3.0.0"
-    const val VIEWBINDING_DELEGATES_VERSION = "0.3"
+    const val VIEWBINDING_DELEGATES_VERSION = "0.4.1"
 
     const val FIREBASE_ANALYTICS = "17.4.2"
     const val FIREBASE_CRASHLYTICS = "17.0.0"

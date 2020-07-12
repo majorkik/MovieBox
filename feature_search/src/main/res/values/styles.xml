@@ -25,4 +25,10 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="Discover" />
+
+    <style name="Discover.ToolbarTheme">
+        <item name="colorControlNormal">@color/mine_shaft</item>
+    </style>
+
 </resources>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/discover_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--        android:id="@+id/toolbar"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent">-->
+
+    <!--        <ImageButton-->
+    <!--            android:id="@+id/btn_close"-->
+    <!--            android:layout_width="56dp"-->
+    <!--            android:layout_height="56dp"-->
+    <!--            android:background="?attr/selectableItemBackground"-->
+    <!--            android:src="@drawable/ic_arrow_down"-->
+    <!--            android:tint="@color/mine_shaft"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintBottom_toTopOf="@+id/decor_line"-->
+    <!--            app:layout_constraintTop_toTopOf="parent"-->
+    <!--            tools:ignore="ContentDescription" />-->
+
+    <!--        <TextView-->
+    <!--            android:id="@+id/textView8"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_gravity="center"-->
+    <!--            android:layout_marginHorizontal="56dp"-->
+    <!--            android:fontFamily="@font/rubik_one_regular"-->
+    <!--            android:gravity="center"-->
+    <!--            android:text="Подбор"-->
+    <!--            android:textAllCaps="true"-->
+    <!--            android:textColor="@color/mine_shaft"-->
+    <!--            android:textSize="18sp"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintBottom_toTopOf="@+id/decor_line"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--        <ImageButton-->
+    <!--            android:id="@+id/btn_type"-->
+    <!--            android:layout_width="56dp"-->
+    <!--            android:layout_height="56dp"-->
+    <!--            android:background="?attr/selectableItemBackground"-->
+    <!--            android:src="@drawable/ic_arrow_down"-->
+    <!--            android:tint="@color/mine_shaft"-->
+    <!--            app:layout_constraintBottom_toTopOf="@+id/decor_line"-->
+    <!--            app:layout_constraintEnd_toEndOf="@+id/textView8"-->
+    <!--            app:layout_constraintTop_toTopOf="parent"-->
+    <!--            tools:ignore="ContentDescription" />-->
+
+    <!--        <ImageButton-->
+    <!--            android:id="@+id/btn_filters"-->
+    <!--            android:layout_width="56dp"-->
+    <!--            android:layout_height="56dp"-->
+    <!--            android:background="?attr/selectableItemBackground"-->
+    <!--            android:src="@drawable/ic_arrow_down"-->
+    <!--            android:tint="@color/mine_shaft"-->
+    <!--            app:layout_constraintBottom_toTopOf="@+id/decor_line"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintTop_toTopOf="parent"-->
+    <!--            tools:ignore="ContentDescription" />-->
+
+
+    <!--        <View-->
+    <!--            android:id="@+id/decor_line"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="2dp"-->
+    <!--            android:background="@color/dodger_blue_dark"-->
+    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent" />-->
+    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:elevation="0dp"
+        android:popupTheme="@style/AppTheme.PopupOverlay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rubik_one_regular"
+                android:gravity="center"
+                android:text="@string/discover_screen_title"
+                android:textAllCaps="true"
+                android:textColor="@color/mine_shaft"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/count_results"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cc_montserrat_semibold"
+                android:textColor="@color/silver_light"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar_title"
+                tools:text="544" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <View
+        android:id="@+id/decor_line"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

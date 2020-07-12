@@ -28,11 +28,6 @@ class MainActivity : LocalizationActivity() {
         if (savedInstanceState == null) {
             setupBottomNavigationBar()
         }
-
-        //TODO test dialog fragment
-
-        val bottomSheetDialog = discoverFiltersDialog.loadFragmentOrReturnNull() as? BottomSheetDialogFragment
-        bottomSheetDialog?.show(supportFragmentManager, "bottom_sheet_test")
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {

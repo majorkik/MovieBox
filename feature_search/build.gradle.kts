@@ -2,6 +2,7 @@ plugins {
     id(GradlePluginId.ANDROID_DYNAMIC_FEATURE)
     id(GradlePluginId.KOTLIN_ANDROID)
     id(GradlePluginId.KOTLIN_ANDROID_EXTENSIONS)
+    id("kotlin-android")
 }
 
 android {
@@ -58,6 +59,8 @@ dependencies {
     implementation(project(ModuleDependency.FEATURE_NAVIGATION))
 
     implementation("com.github.Jay-Goo:RangeSeekBar:3.0.0")
+    implementation("androidx.appcompat:appcompat:1.1.0")
+    implementation("androidx.constraintlayout:constraintlayout:1.1.3")
 
     addTestDependencies()
 }

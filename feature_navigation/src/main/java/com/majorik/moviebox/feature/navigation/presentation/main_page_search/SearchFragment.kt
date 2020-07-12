@@ -21,5 +21,9 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         viewBinding.searchBar.setSafeOnClickListener {
             context?.startActivityWithAnim(ScreenLinks.searchableActivity)
         }
+
+        viewBinding.btnDiscover.setSafeOnClickListener {
+            context?.startActivityWithAnim(ScreenLinks.discoverActivity)
+        }
     }
 }
