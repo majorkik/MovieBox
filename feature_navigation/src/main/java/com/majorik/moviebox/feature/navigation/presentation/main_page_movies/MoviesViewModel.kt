@@ -13,6 +13,9 @@ import com.majorik.moviebox.feature.navigation.domain.tmdbModels.person.Person
 import com.majorik.moviebox.feature.navigation.domain.youtubeModels.SearchResponse
 import com.majorik.library.base.models.results.ResultWrapper
 import com.majorik.moviebox.BuildConfig
+import com.majorik.moviebox.feature.navigation.domain.tmdbModels.genre.GenreResponse
+import com.majorik.moviebox.feature.navigation.domain.tmdbModels.movie.MovieResponse
+import com.majorik.moviebox.feature.navigation.domain.tmdbModels.person.PersonResponse
 import kotlinx.coroutines.launch
 
 class MoviesViewModel(
@@ -21,77 +24,35 @@ class MoviesViewModel(
     private val trendingRepository: TrendingRepository,
     private val youTubeRepository: YouTubeRepository
 ) : ViewModel() {
-    var popularMoviesLiveData = MutableLiveData<List<Movie>>()
-    val upcomingMoviesLiveData = MutableLiveData<List<Movie>>()
-    val nowPlayingMoviesLiveData = MutableLiveData<List<Movie>>()
-    val popularPeoplesLiveData = MutableLiveData<List<Person>>()
-    val genresLiveData = MutableLiveData<List<Genre>>()
-    val trendingMoviesLiveData = MutableLiveData<List<Movie>>()
-    val trailersLiveData = MutableLiveData<List<SearchResponse.Item>>()
+    var popularMoviesLiveData = MutableLiveData<ResultWrapper<MovieResponse>>()
+    val upcomingMoviesLiveData = MutableLiveData<ResultWrapper<MovieResponse>>()
+    val nowPlayingMoviesLiveData = MutableLiveData<ResultWrapper<MovieResponse>>()
+    val popularPeoplesLiveData = MutableLiveData<ResultWrapper<PersonResponse>>()
+    val genresLiveData = MutableLiveData<ResultWrapper<GenreResponse>>()
+    val trendingMoviesLiveData = MutableLiveData<ResultWrapper<MovieResponse>>()
+    val trailersLiveData = MutableLiveData<ResultWrapper<SearchResponse>>()
 
-    fun fetchPopularMovies(
-        language: String?,
-        page: Int?,
-        region: String?
-    ) {
+    fun fetchPopularMovies(language: String?, page: Int?, region: String?) {
         viewModelScope.launch {
             val response = movieRepository.getPopularMovies(language, page, region)
 
-            when (response) {
-                is ResultWrapper.NetworkError -> {
-                }
-
-                is ResultWrapper.GenericError -> {
-                }
-
-                is ResultWrapper.Success -> {
-                    popularMoviesLiveData.postValue(response.value.results)
-                }
-            }
+            popularMoviesLiveData.postValue(response)
         }
     }
 
-    fun fetchUpcomingMovies(
-        language: String?,
-        page: Int?,
-        region: String?
-    ) {
+    fun fetchUpcomingMovies(language: String?, page: Int?, region: String?) {
         viewModelScope.launch {
             val response = movieRepository.getUpcomingMovies(language, page, region)
 
-            when (response) {
-                is ResultWrapper.NetworkError -> {
-                }
-
-                is ResultWrapper.GenericError -> {
-                }
-
-                is ResultWrapper.Success -> {
-                    upcomingMoviesLiveData.postValue(response.value.results)
-                }
-            }
+            upcomingMoviesLiveData.postValue(response)
         }
     }
 
-    fun fetchNowPlayingMovies(
-        language: String?,
-        page: Int?,
-        region: String?
-    ) {
+    fun fetchNowPlayingMovies(language: String?, page: Int?, region: String?) {
         viewModelScope.launch {
             val response = movieRepository.getNowPlayingMovies(language, page, region)
 
-            when (response) {
-                is ResultWrapper.NetworkError -> {
-                }
-
-                is ResultWrapper.GenericError -> {
-                }
-
-                is ResultWrapper.Success -> {
-                    nowPlayingMoviesLiveData.postValue(response.value.results)
-                }
-            }
+            nowPlayingMoviesLiveData.postValue(response)
         }
     }
 
@@ -99,17 +60,7 @@ class MoviesViewModel(
         viewModelScope.launch {
             val response = movieRepository.getMovieGenres(language)
 
-            when (response) {
-                is ResultWrapper.NetworkError -> {
-                }
-
-                is ResultWrapper.GenericError -> {
-                }
-
-                is ResultWrapper.Success -> {
-                    genresLiveData.postValue(response.value.genres)
-                }
-            }
+            genresLiveData.postValue(response)
         }
     }
 
@@ -117,17 +68,7 @@ class MoviesViewModel(
         viewModelScope.launch {
             val response = personRepository.getPopularPeoples(language, page)
 
-            when (response) {
-                is ResultWrapper.NetworkError -> {
-                }
-
-                is ResultWrapper.GenericError -> {
-                }
-
-                is ResultWrapper.Success -> {
-                    popularPeoplesLiveData.postValue(response.value.results)
-                }
-            }
+            popularPeoplesLiveData.postValue(response)
         }
     }
 
@@ -139,17 +80,7 @@ class MoviesViewModel(
         viewModelScope.launch {
             val response = trendingRepository.getTrendingMovies(timeWindow, page, language)
 
-            when (response) {
-                is ResultWrapper.NetworkError -> {
-                }
-
-                is ResultWrapper.GenericError -> {
-                }
-
-                is ResultWrapper.Success -> {
-                    trendingMoviesLiveData.postValue(response.value.results)
-                }
-            }
+            trendingMoviesLiveData.postValue(response)
         }
     }
 
@@ -164,17 +95,7 @@ class MoviesViewModel(
                 "UCi8e0iOVk1fEOogdfu4YgfA"
             )
 
-            when (response) {
-                is ResultWrapper.NetworkError -> {
-                }
-
-                is ResultWrapper.GenericError -> {
-                }
-
-                is ResultWrapper.Success -> {
-                    trailersLiveData.postValue(response.value.items)
-                }
-            }
+            trailersLiveData.postValue(response)
         }
     }
 }

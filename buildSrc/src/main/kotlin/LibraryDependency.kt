@@ -137,5 +137,6 @@ object LibraryDependency {
     const val LOCALIZATION = "com.akexorcist:localization:${LibraryVersion.LOCALIZATION}"
     const val COIL = "io.coil-kt:coil:${LibraryVersion.COIL}"
     const val RECYCLER_VIEW_ANIMATION = "jp.wasabeef:recyclerview-animators:${LibraryVersion.RECYCLER_VIEW_ANIMATION}"
-    const val VIEWBINDING_DELEGATES = "com.github.kirich1409:ViewBindingPropertyDelegate:${LibraryVersion.VIEWBINDING_DELEGATES_VERSION}"
+    const val VIEWBINDING_DELEGATES =
+        "com.github.kirich1409:ViewBindingPropertyDelegate:${LibraryVersion.VIEWBINDING_DELEGATES_VERSION}"
 }

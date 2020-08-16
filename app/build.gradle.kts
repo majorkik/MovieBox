@@ -81,6 +81,8 @@ dependencies {
     api(project(ModuleDependency.LIBRARY_BASE))
 
     api(LibraryDependency.NAVIGATION_FRAGMENT_KTX)
+    api(LibraryDependency.LIFECYCLE_LIVEDATA_KTX)
+    api(LibraryDependency.LIFECYCLE_RUNTIME_KTX)
     api(LibraryDependency.NAVIGATION_UI_KTX)
 
     implementation(LibraryDependency.MULTIDEX)

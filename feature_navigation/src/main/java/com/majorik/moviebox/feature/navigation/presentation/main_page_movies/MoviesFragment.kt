@@ -14,16 +14,19 @@ import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.library.base.enums.GenresType
 import com.majorik.library.base.enums.SELECTED_GENRES_TYPE
 import com.majorik.library.base.extensions.*
+import com.majorik.library.base.models.results.ResultWrapper
 import com.majorik.library.base.utils.GenresStorageObject
 import com.majorik.moviebox.feature.navigation.R
 import com.majorik.moviebox.feature.navigation.data.repositories.TrendingRepository.TimeWindow
 import com.majorik.moviebox.feature.navigation.databinding.FragmentMoviesBinding
 import com.majorik.moviebox.feature.navigation.domain.movie.MovieCollectionType
 import com.majorik.moviebox.feature.navigation.domain.movie.MovieCollectionType.*
+import com.majorik.moviebox.feature.navigation.domain.tmdbModels.genre.GenreResponse
+import com.majorik.moviebox.feature.navigation.domain.tmdbModels.movie.MovieResponse
+import com.majorik.moviebox.feature.navigation.domain.tmdbModels.person.PersonResponse
+import com.majorik.moviebox.feature.navigation.domain.youtubeModels.SearchResponse
 import com.majorik.moviebox.feature.navigation.presentation.adapters.*
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.majorik.moviebox.R as AppResources
 
@@ -31,7 +34,11 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
     private val viewBinding: FragmentMoviesBinding by viewBinding()
 
-    private val moviesViewModel: MoviesViewModel by viewModel()
+    private val viewModel: MoviesViewModel by viewModel()
+
+    /**
+     * Adapters
+     */
 
     private val nowPlayingMoviesAdapter = MovieCollectionAdapter()
     private val upcomingMoviesAdapter = MovieDateCardAdapter()
@@ -41,9 +48,14 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
     private val genresAdapter = GenreAdapter()
     private val trendingMovieAdapter = MovieTrendAdapter()
 
+    /**
+     * Default methods
+     */
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        setupAdapters()
         fetchData()
     }
 
@@ -72,41 +84,44 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
     private fun initAdapters() {
         lifecycleScope.launchWhenCreated {
-            //            popularMoviesAdapter.setHasStableIds(true)
             viewBinding.vpPopularMovies.setShowSideItems(16.toPx(), 16.toPx())
             viewBinding.vpPopularMovies.adapter = popularMoviesAdapter
 
-//            nowPlayingMoviesAdapter.setHasStableIds(true)
             viewBinding.rvNowPlayingMovies.setAdapterWithFixedSize(
                 ScaleInAnimationAdapter(nowPlayingMoviesAdapter),
                 true
             )
 
-//            upcomingMoviesAdapter.setHasStableIds(true)
             viewBinding.rvUpcomingMovies.setAdapterWithFixedSize(
                 upcomingMoviesAdapter,
                 true
             )
 
-//            trailersAdapter.setHasStableIds(true)
             viewBinding.rvTrailers.setAdapterWithFixedSize(trailersAdapter, true)
 
-//            peopleAdapter.setHasStableIds(true)
             viewBinding.rvTrendingPeoples.setAdapterWithFixedSize(
                 peopleAdapter,
                 false
             )
 
-//            genresAdapter.setHasStableIds(true)
             viewBinding.rvMovieGenres.setAdapterWithFixedSize(genresAdapter, true)
 
-//            trendingMovieAdapter.setHasStableIds(true)
             viewBinding.vpTrendMovies.adapter = trendingMovieAdapter
         }
     }
 
+    private fun setupAdapters() {
+        popularMoviesAdapter.setHasStableIds(true)
+        nowPlayingMoviesAdapter.setHasStableIds(true)
+        upcomingMoviesAdapter.setHasStableIds(true)
+        trailersAdapter.setHasStableIds(true)
+        peopleAdapter.setHasStableIds(true)
+        genresAdapter.setHasStableIds(true)
+        trendingMovieAdapter.setHasStableIds(true)
+    }
+
     private fun fetchData() {
-        moviesViewModel.run {
+        viewModel.run {
             fetchPopularMovies(AppConfig.REGION, 1, "")
 
             fetchNowPlayingMovies(AppConfig.REGION, 1, "RU")
@@ -124,118 +139,63 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
     }
 
     private fun setClickListeners() {
-        viewBinding.btnSearch.setOnClickListener {
-            context?.startActivityWithAnim(ScreenLinks.searchableActivity)
+        viewBinding.apply {
+            btnSearch.setOnClickListener {
+                context?.startActivityWithAnim(ScreenLinks.searchableActivity)
+            }
 
-//            parentFragmentManager.beginTransaction()
-//                .setCustomAnimations(
-//                    AppResources.anim.slide_in_up,
-//                    AppResources.anim.slide_out_up,
-//                    AppResources.anim.slide_exit_in_up,
-//                    AppResources.anim.slide_exit_out_up
-//                )
-//                .add(
-//                    AppResources.id.splash_container,
-//                    "$PACKAGE_NAME.feature.navigation.presentation.main_page_tvs.TVsFragment".loadFragmentOrReturnNull()!!
-//                )
-//                .addToBackStack("tvs_fragment")
-//                .commit()
+            btnPopularMovies.setOnClickListener { openNewActivityWithTab(ScreenLinks.movieCollection, POPULAR) }
 
-//            findNavController().navigate(AppResources.id.nav_tvs)
-        }
+            btnUpcomingMovies.setOnClickListener {
+                openNewActivityWithTab(
+                    ScreenLinks.movieCollection,
+                    UPCOMING
+                )
+            }
 
-        viewBinding.btnPopularMovies.setOnClickListener { openNewActivityWithTab(ScreenLinks.movieCollection, POPULAR) }
+            btnNowPlayingMovies.setOnClickListener {
+                openNewActivityWithTab(
+                    ScreenLinks.movieCollection,
+                    NOW_PLAYING
+                )
+            }
 
-        viewBinding.btnUpcomingMovies.setOnClickListener {
-            openNewActivityWithTab(
-                ScreenLinks.movieCollection,
-                UPCOMING
-            )
-        }
-
-        viewBinding.btnNowPlayingMovies.setOnClickListener {
-            openNewActivityWithTab(
-                ScreenLinks.movieCollection,
-                NOW_PLAYING
-            )
-        }
-
-        viewBinding.btnMovieGenres.setSafeOnClickListener {
-            context?.startActivityWithAnim(ScreenLinks.genresActivity, Intent().apply {
-                putExtra(SELECTED_GENRES_TYPE, GenresType.MOVIE_GENRES)
-            })
+            btnMovieGenres.setSafeOnClickListener {
+                context?.startActivityWithAnim(ScreenLinks.genresActivity, Intent().apply {
+                    putExtra(SELECTED_GENRES_TYPE, GenresType.MOVIE_GENRES)
+                })
+            }
         }
     }
 
     private fun setObservers() {
-        moviesViewModel.run {
+        viewModel.run {
             popularMoviesLiveData.observe(viewLifecycleOwner, Observer {
-                popularMoviesAdapter.addItems(it)
+                setPopularMovies(it)
             })
 
             nowPlayingMoviesLiveData.observe(viewLifecycleOwner, Observer {
-                lifecycleScope.launchWhenCreated {
-                    delay(150)
-
-                    nowPlayingMoviesAdapter.addItems(it)
-                }
+                setNowPlayingMovies(it)
             })
 
             trendingMoviesLiveData.observe(viewLifecycleOwner, Observer {
-                lifecycleScope.launchWhenCreated {
-                    if (GenresStorageObject.movieGenres.isEmpty()) {
-                        GenresConstants.movieGenres.forEach {
-                            GenresStorageObject.movieGenres.put(it.id, it.name)
-                        }
-                    }
-
-                    delay(300)
-
-                    trendingMovieAdapter.addItems(it)
-                }
+                setTrendingMovies(it)
             })
 
             upcomingMoviesLiveData.observe(viewLifecycleOwner, Observer {
-                lifecycleScope.launch {
-                    val items = it.sortedBy { it.releaseDate?.toDate()?.utc?.unixMillisLong ?: 0L }
-
-                    delay(500)
-
-                    upcomingMoviesAdapter.addItems(items)
-                }
+                setUpcomingMovies(it)
             })
 
             genresLiveData.observe(viewLifecycleOwner, Observer {
-                lifecycleScope.launchWhenCreated {
-                    if (GenresStorageObject.movieGenres.isEmpty()) {
-                        it.map { genre ->
-                            GenresStorageObject.movieGenres.put(
-                                genre.id,
-                                genre.name
-                            )
-                        }
-                    }
-
-                    delay(700)
-
-                    genresAdapter.addItems(it)
-                }
+                setMovieGenres(it)
             })
 
             trailersLiveData.observe(viewLifecycleOwner, Observer {
-                lifecycleScope.launchWhenCreated {
-                    delay(900)
-
-                    trailersAdapter.addItems(it)
-                }
+                setTrailers(it)
             })
 
             popularPeoplesLiveData.observe(viewLifecycleOwner, Observer {
-                lifecycleScope.launchWhenCreated {
-                    delay(1100)
-
-                    peopleAdapter.addItems(it)
-                }
+                setPopularPeoples(it)
             })
         }
     }
@@ -249,5 +209,124 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
         intent.putExtra("collection_name", collectionType.name)
 
         startActivity(intent)
+    }
+
+    /**
+     * Setters
+     */
+
+    private fun setPopularMovies(result: ResultWrapper<MovieResponse>) {
+        when (result) {
+            is ResultWrapper.GenericError -> {
+            }
+
+            is ResultWrapper.NetworkError -> {
+            }
+
+            is ResultWrapper.Success -> {
+                popularMoviesAdapter.addItems(result.value.results)
+            }
+        }
+    }
+
+    private fun setNowPlayingMovies(result: ResultWrapper<MovieResponse>?) {
+        when (result) {
+            is ResultWrapper.GenericError -> {
+            }
+
+            is ResultWrapper.NetworkError -> {
+            }
+
+            is ResultWrapper.Success -> {
+                nowPlayingMoviesAdapter.addItems(result.value.results)
+            }
+        }
+    }
+
+    private fun setTrendingMovies(result: ResultWrapper<MovieResponse>?) {
+        when (result) {
+            is ResultWrapper.GenericError -> {
+            }
+
+            is ResultWrapper.NetworkError -> {
+            }
+
+            is ResultWrapper.Success -> {
+                if (GenresStorageObject.movieGenres.isEmpty()) {
+                    GenresConstants.movieGenres.forEach {
+                        GenresStorageObject.movieGenres.put(it.id, it.name)
+                    }
+                }
+
+                trendingMovieAdapter.addItems(result.value.results)
+            }
+        }
+    }
+
+    private fun setUpcomingMovies(result: ResultWrapper<MovieResponse>) {
+        when (result) {
+            is ResultWrapper.GenericError -> {
+            }
+
+            is ResultWrapper.NetworkError -> {
+            }
+
+            is ResultWrapper.Success -> {
+                val items = result.value.results.sortedBy { it.releaseDate?.toDate()?.utc?.unixMillisLong ?: 0L }
+
+                upcomingMoviesAdapter.addItems(items)
+            }
+        }
+    }
+
+    private fun setMovieGenres(result: ResultWrapper<GenreResponse>?) {
+        when (result) {
+            is ResultWrapper.GenericError -> {
+            }
+
+            is ResultWrapper.NetworkError -> {
+            }
+
+            is ResultWrapper.Success -> {
+                if (GenresStorageObject.movieGenres.isEmpty()) {
+                    result.value.genres.map { genre ->
+                        GenresStorageObject.movieGenres.put(
+                            genre.id,
+                            genre.name
+                        )
+                    }
+                }
+
+                genresAdapter.addItems(result.value.genres)
+            }
+        }
+    }
+
+    private fun setTrailers(result: ResultWrapper<SearchResponse>?) {
+        when (result) {
+            is ResultWrapper.GenericError -> {
+            }
+
+            is ResultWrapper.NetworkError -> {
+            }
+
+            is ResultWrapper.Success -> {
+                trailersAdapter.addItems(result.value.items)
+            }
+        }
+    }
+
+    private fun setPopularPeoples(result: ResultWrapper<PersonResponse>?) {
+        when (result) {
+            is ResultWrapper.GenericError -> {
+            }
+
+            is ResultWrapper.NetworkError -> {
+            }
+
+            is ResultWrapper.Success -> {
+                peopleAdapter.addItems(result.value.results)
+            }
+        }
     }
 }

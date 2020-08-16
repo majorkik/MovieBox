@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Build
 import androidx.multidex.MultiDex
 import com.akexorcist.localizationactivity.core.LocalizationApplicationDelegate
+import com.google.android.play.core.splitcompat.SplitCompat
 import com.google.android.play.core.splitcompat.SplitCompatApplication
 import com.majorik.moviebox.feature.KoinManager
 import com.orhanobut.logger.AndroidLogAdapter
@@ -46,6 +47,8 @@ class MovieBoxApplication : SplitCompatApplication() {
         localizationDelegate.setDefaultLanguage(base, locale)
 
         super.attachBaseContext(base)
+
+        SplitCompat.installActivity(this)
 
         MultiDex.install(this)
     }
