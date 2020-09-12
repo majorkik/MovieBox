@@ -31,7 +31,7 @@ class MovieBoxApplication : SplitCompatApplication() {
         })
 
         startKoin {
-            androidLogger(Level.DEBUG)
+            androidLogger(Level.ERROR)
             androidContext(this@MovieBoxApplication)
             modules(KoinManager.koinModules)
         }

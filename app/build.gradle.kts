@@ -85,6 +85,8 @@ dependencies {
     api(LibraryDependency.LIFECYCLE_RUNTIME_KTX)
     api(LibraryDependency.NAVIGATION_UI_KTX)
 
+    api(LibraryDependency.ANNOTATION)
+
     implementation(LibraryDependency.MULTIDEX)
     implementation(LibraryDependency.PLAY_CORE)
 

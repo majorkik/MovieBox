@@ -14,11 +14,15 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.majorik.library.base.constants.AppConfig
 import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.library.base.extensions.*
+import com.majorik.library.base.models.results.ResultWrapper
 import com.majorik.library.base.utils.GenresStorageObject
 import com.majorik.moviebox.feature.navigation.R
 import com.majorik.moviebox.feature.navigation.data.repositories.TrendingRepository
 import com.majorik.moviebox.feature.navigation.databinding.FragmentTvsBinding
 import com.majorik.moviebox.feature.navigation.domain.movie.TVCollectionType
+import com.majorik.moviebox.feature.navigation.domain.tmdbModels.genre.GenreResponse
+import com.majorik.moviebox.feature.navigation.domain.tmdbModels.tv.TVResponse
+import com.majorik.moviebox.feature.navigation.domain.youtubeModels.SearchResponse
 import com.majorik.moviebox.feature.navigation.presentation.adapters.*
 import com.majorik.moviebox.feature.navigation.presentation.adapters.tvs.NetworksAdapter
 import com.majorik.moviebox.feature.navigation.presentation.constants.Networks
@@ -26,12 +30,11 @@ import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TVsFragment : Fragment(R.layout.fragment_tvs) {
-
     private val viewBinding: FragmentTvsBinding by viewBinding()
 
     private val tvViewModel: TVsViewModel by viewModel()
 
-    private lateinit var popularTVsAdapter: TVCardAdapter
+    private var popularTVsAdapter: TVCardAdapter? = null
     private val airTodayAdapter = TVCollectionAdapter()
     private val onTheAirAdapter = TVCollectionAdapter()
     private val trailersAdapter = TrailersAdapter()
@@ -42,11 +45,8 @@ class TVsFragment : Fragment(R.layout.fragment_tvs) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        setupAdapters()
         fetchData()
-
-        requireActivity().onBackPressedDispatcher.addCallback(this) {
-            parentFragmentManager.popBackStack()
-        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -89,6 +89,17 @@ class TVsFragment : Fragment(R.layout.fragment_tvs) {
             viewBinding.networksList.adapter = networksAdapter
             networksAdapter.addItems(Networks.networks)
         }
+    }
+
+
+    private fun setupAdapters() {
+        popularTVsAdapter?.setHasStableIds(true)
+        airTodayAdapter.setHasStableIds(true)
+        onTheAirAdapter.setHasStableIds(true)
+        trailersAdapter.setHasStableIds(true)
+        genresAdapter.setHasStableIds(true)
+        trendingTVsAdapter.setHasStableIds(true)
+        networksAdapter.setHasStableIds(true)
     }
 
     private fun setClickListeners() {
@@ -145,38 +156,27 @@ class TVsFragment : Fragment(R.layout.fragment_tvs) {
     private fun setObservers() {
         tvViewModel.run {
             popularTVsLiveData.observe(viewLifecycleOwner, Observer {
-                popularTVsAdapter.addItems(it)
+                setPopularTVs(it)
             })
 
             airTodayTVsLiveData.observe(viewLifecycleOwner, Observer {
-                airTodayAdapter.addItems(it)
+                setAirTodayTVs(it)
             })
 
             trendingTVsLiveData.observe(viewLifecycleOwner, Observer {
-                trendingTVsAdapter.addItems(it)
+                setTrendingTVs(it)
             })
 
             onTheAirTVsLiveData.observe(viewLifecycleOwner, Observer {
-                onTheAirAdapter.addItems(it)
+                setOnTheAirTVs(it)
             })
 
             genresLiveData.observe(viewLifecycleOwner, Observer {
-                lifecycleScope.launchWhenCreated {
-                    if (GenresStorageObject.tvGenres.isEmpty()) {
-                        it.map { genre ->
-                            GenresStorageObject.movieGenres.put(
-                                genre.id,
-                                genre.name
-                            )
-                        }
-                    }
-
-                    genresAdapter.addItems(it)
-                }
+                setGenresAdapter(it)
             })
 
             trailersLiveData.observe(viewLifecycleOwner, Observer {
-                trailersAdapter.addItems(it)
+                setTrailersAdapter(it)
             })
         }
     }
@@ -190,5 +190,98 @@ class TVsFragment : Fragment(R.layout.fragment_tvs) {
         intent?.putExtra("collection_name", collectionType.name)
 
         startActivity(intent)
+    }
+
+    private fun setPopularTVs(result: ResultWrapper<TVResponse>) {
+        when (result) {
+            is ResultWrapper.GenericError -> {
+            }
+
+            is ResultWrapper.NetworkError -> {
+            }
+
+            is ResultWrapper.Success -> {
+                popularTVsAdapter?.addItems(result.value.results)
+            }
+        }
+    }
+
+    private fun setAirTodayTVs(result: ResultWrapper<TVResponse>) {
+        when (result) {
+            is ResultWrapper.GenericError -> {
+            }
+
+            is ResultWrapper.NetworkError -> {
+            }
+
+            is ResultWrapper.Success -> {
+                airTodayAdapter.addItems(result.value.results)
+            }
+        }
+    }
+
+    private fun setTrendingTVs(result: ResultWrapper<TVResponse>) {
+        when (result) {
+            is ResultWrapper.GenericError -> {
+            }
+
+            is ResultWrapper.NetworkError -> {
+            }
+
+            is ResultWrapper.Success -> {
+                trendingTVsAdapter.addItems(result.value.results)
+            }
+        }
+    }
+
+    private fun setOnTheAirTVs(result: ResultWrapper<TVResponse>) {
+        when (result) {
+            is ResultWrapper.GenericError -> {
+            }
+
+            is ResultWrapper.NetworkError -> {
+            }
+
+            is ResultWrapper.Success -> {
+                onTheAirAdapter.addItems(result.value.results)
+            }
+        }
+    }
+
+    private fun setGenresAdapter(result: ResultWrapper<GenreResponse>) {
+        when (result) {
+            is ResultWrapper.GenericError -> {
+            }
+
+            is ResultWrapper.NetworkError -> {
+            }
+
+            is ResultWrapper.Success -> {
+                if (GenresStorageObject.tvGenres.isEmpty()) {
+                    result.value.genres.map { genre ->
+                        GenresStorageObject.tvGenres.put(
+                            genre.id,
+                            genre.name
+                        )
+                    }
+                }
+
+                genresAdapter.addItems(result.value.genres)
+            }
+        }
+    }
+
+    private fun setTrailersAdapter(result: ResultWrapper<SearchResponse>) {
+        when (result) {
+            is ResultWrapper.GenericError -> {
+            }
+
+            is ResultWrapper.NetworkError -> {
+            }
+
+            is ResultWrapper.Success -> {
+                trailersAdapter.addItems(result.value.items)
+            }
+        }
     }
 }

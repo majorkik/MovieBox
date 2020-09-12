@@ -11,6 +11,8 @@ import com.majorik.moviebox.feature.navigation.domain.tmdbModels.tv.TV
 import com.majorik.moviebox.feature.navigation.domain.youtubeModels.SearchResponse
 import com.majorik.library.base.models.results.ResultWrapper
 import com.majorik.moviebox.BuildConfig
+import com.majorik.moviebox.feature.navigation.domain.tmdbModels.genre.GenreResponse
+import com.majorik.moviebox.feature.navigation.domain.tmdbModels.tv.TVResponse
 import com.orhanobut.logger.Logger
 import kotlinx.coroutines.launch
 
@@ -20,82 +22,38 @@ class TVsViewModel(
     private val youTubeRepository: YouTubeRepository
 ) : ViewModel() {
 
-    val popularTVsLiveData = MutableLiveData<List<TV>>()
-    val airTodayTVsLiveData = MutableLiveData<List<TV>>()
-    val trendingTVsLiveData = MutableLiveData<List<TV>>()
-    val onTheAirTVsLiveData = MutableLiveData<List<TV>>()
-    val genresLiveData = MutableLiveData<List<Genre>>()
-    val trailersLiveData = MutableLiveData<List<SearchResponse.Item>>()
+    val popularTVsLiveData = MutableLiveData<ResultWrapper<TVResponse>>()
+    val airTodayTVsLiveData = MutableLiveData<ResultWrapper<TVResponse>>()
+    val trendingTVsLiveData = MutableLiveData<ResultWrapper<TVResponse>>()
+    val onTheAirTVsLiveData = MutableLiveData<ResultWrapper<TVResponse>>()
+    val genresLiveData = MutableLiveData<ResultWrapper<GenreResponse>>()
+    val trailersLiveData = MutableLiveData<ResultWrapper<SearchResponse>>()
 
     fun fetchPopularTVs(language: String?, page: Int?) {
         viewModelScope.launch {
             val response = tvRepository.getPopularTVs(language, page)
-
-            when (response) {
-                is ResultWrapper.NetworkError -> {
-                }
-
-                is ResultWrapper.GenericError -> {
-                }
-
-                is ResultWrapper.Success -> {
-                    popularTVsLiveData.postValue(response.value.results)
-                }
-            }
+            popularTVsLiveData.postValue(response)
         }
     }
 
     fun fetchAirTodayTVs(language: String?, page: Int?) {
         viewModelScope.launch {
             val response = tvRepository.getAiringTodayTVs(language, page)
-
-            when (response) {
-                is ResultWrapper.NetworkError -> {
-                }
-
-                is ResultWrapper.GenericError -> {
-                }
-
-                is ResultWrapper.Success -> {
-                    airTodayTVsLiveData.postValue(response.value.results)
-                }
-            }
+            airTodayTVsLiveData.postValue(response)
         }
     }
 
     fun fetchOnTheAirTVs(language: String?, page: Int?) {
         viewModelScope.launch {
             val response = tvRepository.getOnTheAirTVs(language, page)
-
-            when (response) {
-                is ResultWrapper.NetworkError -> {
-                }
-
-                is ResultWrapper.GenericError -> {
-                }
-
-                is ResultWrapper.Success -> {
-                    onTheAirTVsLiveData.postValue(response.value.results)
-                }
-            }
+            onTheAirTVsLiveData.postValue(response)
         }
     }
 
     fun fetchTVGenres(language: String?) {
         viewModelScope.launch {
             val response = tvRepository.getTVGenres(language)
-
-            when (response) {
-                is ResultWrapper.NetworkError -> {
-                }
-
-                is ResultWrapper.GenericError -> {
-                }
-
-                is ResultWrapper.Success -> {
-                    genresLiveData.postValue(response.value.genres)
-                }
-            }
+            genresLiveData.postValue(response)
         }
     }
 
@@ -106,19 +64,7 @@ class TVsViewModel(
     ) {
         viewModelScope.launch {
             val response = trendingRepository.getTrendingTVs(timeWindow, page, language)
-
-            when (response) {
-                is ResultWrapper.NetworkError -> {
-                }
-
-                is ResultWrapper.GenericError -> {
-                    Logger.d("GenericError - fetchTrendingTVs()")
-                }
-
-                is ResultWrapper.Success -> {
-                    trendingTVsLiveData.postValue(response.value.results)
-                }
-            }
+            trendingTVsLiveData.postValue(response)
         }
     }
 
@@ -132,18 +78,7 @@ class TVsViewModel(
                 "date",
                 "UCTxYD92kxevI1I1-oITiQzg"
             )
-
-            when (response) {
-                is ResultWrapper.NetworkError -> {
-                }
-
-                is ResultWrapper.GenericError -> {
-                }
-
-                is ResultWrapper.Success -> {
-                    trailersLiveData.postValue(response.value.items)
-                }
-            }
+            trailersLiveData.postValue(response)
         }
     }
 }

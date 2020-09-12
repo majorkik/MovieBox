@@ -4,10 +4,10 @@ private object LibraryVersion {
     const val ACTIVITY_KTX = "1.2.0-alpha04"
     const val FRAGMENT_KTX = "1.3.0-alpha04"
     const val COORDINATOR_LAYOUT = "1.1.0"
-    const val CONSTRAINT_LAYOUT = "2.0.0-beta4"
+    const val CONSTRAINT_LAYOUT = "2.0.1"
     const val PAGING_LIBRARY = "2.1.2"
     const val APP_COMPAT = "1.2.0-alpha03"
-    const val MATERIAL = "1.2.0-alpha05"
+    const val MATERIAL = "1.2.1"
     const val MULTIDEX = "1.0.3"
     const val NAVIGATION_DYNAMIC_FEATURE_FRAGMENT = "2.3.0"
 
@@ -37,12 +37,12 @@ private object LibraryVersion {
     const val STFALCON = "1.0.10"
     const val PHOTOVIEW = "2.3.0"
     const val CIRCLE_IMAGE = "3.1.0"
-    const val KLOCK = "1.8.4"
+    const val KLOCK = "1.12.0"
     const val LOTTIE = "3.4.1"
-    const val LOCALIZATION = "1.2.5"
-    const val COIL = "0.11.0"
+    const val LOCALIZATION = "1.2.6"
+    const val COIL = "0.13.0"
     const val RECYCLER_VIEW_ANIMATION = "3.0.0"
-    const val VIEWBINDING_DELEGATES_VERSION = "0.4.1"
+    const val VIEWBINDING_DELEGATES_VERSION = "1.0.0"
 
     const val FIREBASE_ANALYTICS = "17.4.2"
     const val FIREBASE_CRASHLYTICS = "17.0.0"
@@ -138,5 +138,7 @@ object LibraryDependency {
     const val COIL = "io.coil-kt:coil:${LibraryVersion.COIL}"
     const val RECYCLER_VIEW_ANIMATION = "jp.wasabeef:recyclerview-animators:${LibraryVersion.RECYCLER_VIEW_ANIMATION}"
     const val VIEWBINDING_DELEGATES =
+        "com.github.kirich1409:ViewBindingPropertyDelegate:${LibraryVersion.VIEWBINDING_DELEGATES_VERSION}"
+    const val VIEWBINDING_DELEGATES_WITHOUT_REFLECTION =
         "com.github.kirich1409:ViewBindingPropertyDelegate:${LibraryVersion.VIEWBINDING_DELEGATES_VERSION}"
 }
