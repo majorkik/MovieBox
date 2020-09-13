@@ -6,6 +6,7 @@ private object LibraryVersion {
     const val COORDINATOR_LAYOUT = "1.1.0"
     const val CONSTRAINT_LAYOUT = "2.0.1"
     const val PAGING_LIBRARY = "2.1.2"
+    const val PAGING_LIBRARY_V3 = "3.0.0-alpha06"
     const val APP_COMPAT = "1.2.0-alpha03"
     const val MATERIAL = "1.2.1"
     const val MULTIDEX = "1.0.3"
@@ -23,7 +24,7 @@ private object LibraryVersion {
     const val SUPPORT_DESIGN = "28.0.0-rc02"
     const val VIEWPAGER_2 = "1.0.0"
 
-    const val KOTLIN_KTX = "1.3.0"
+    const val KOTLIN_KTX = "1.3.1"
 
     const val RETROFIT = "2.9.0"
     const val RETROFIT_COROUTINES = "0.9.2"
@@ -101,6 +102,7 @@ object LibraryDependency {
      */
     const val VECTOR_DRAWABLE = "androidx.vectordrawable:vectordrawable:${LibraryVersion.VECTOR_DRAWABLE}"
     const val PAGING_RUNTIME = "androidx.paging:paging-runtime:${LibraryVersion.PAGING_LIBRARY}"
+    const val PAGING_RUNTIME_V3 = "androidx.paging:paging-runtime:${LibraryVersion.PAGING_LIBRARY_V3}"
     const val RECYCLERVIEW = "androidx.recyclerview:recyclerview:${LibraryVersion.RECYCLERVIEW}"
     const val FRAGMENT_KTX = "androidx.fragment:fragment-ktx:${LibraryVersion.FRAGMENT_KTX}"
     const val ACTIVITY_KTX = "androidx.activity:activity-ktx:${LibraryVersion.ACTIVITY_KTX}"

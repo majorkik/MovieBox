@@ -98,6 +98,7 @@ dependencies {
     api(LibraryDependency.COORDINATOR_LAYOUT)
     api(LibraryDependency.VIEWPAGER_2)
     api(LibraryDependency.PAGING_RUNTIME)
+    api(LibraryDependency.PAGING_RUNTIME_V3)
 
     api(LibraryDependency.LOTTIE)
 
@@ -106,9 +107,6 @@ dependencies {
     api(LibraryDependency.CIRCLE_IMAGEVIEW)
 
     api(LibraryDependency.RECYCLER_VIEW_ANIMATION)
-    api("androidx.appcompat:appcompat:1.1.0")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:${CoreVersion.KOTLIN}")
-    api("androidx.constraintlayout:constraintlayout:1.1.3")
 
     addTestDependencies()
 }

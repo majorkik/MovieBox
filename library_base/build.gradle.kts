@@ -48,7 +48,7 @@ android {
 }
 
 dependencies {
-    api(LibraryDependency.KOTLIN)
+    api(LibraryDependency.KOTLIN_STDLIB)
     api(LibraryDependency.KOTLIN_REFLECT)
     api(LibraryDependency.KOTLINX_COROUTINES_ANDROID)
 
