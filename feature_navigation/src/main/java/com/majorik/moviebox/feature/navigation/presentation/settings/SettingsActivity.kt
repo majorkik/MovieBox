@@ -2,7 +2,6 @@ package com.majorik.moviebox.feature.navigation.presentation.settings
 
 import android.app.usage.StorageStatsManager
 import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageStats
 import android.os.Build
 import android.os.Bundle

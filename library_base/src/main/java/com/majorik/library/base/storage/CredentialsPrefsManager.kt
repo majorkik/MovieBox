@@ -57,7 +57,7 @@ class CredentialsPrefsManager(context: Context) {
 
     fun getTmdbSessionID(): String? {
         val sessionID = sharedPrefs.getString(TMDB_SESSION_ID, null)
-        Logger.i("Session id: ${sessionID}")
+        Logger.i("Session id: $sessionID")
         return sessionID
     }
 

@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.majorik.library.base.constants.BaseIntentKeys
-import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.moviebox.feature.details.domain.tmdbModels.cast.TVCast
 import com.majorik.library.base.extensions.*
 import com.majorik.moviebox.feature.details.presentation.tvDetails.TVDetailsActivity
@@ -97,9 +96,12 @@ class TVCreditsAdapter(
         private fun bindClickListener(cast: TVCast) {
             itemView.collection_card.setSafeOnClickListener {
                 it.context.apply {
-                    it.context.startActivityWithAnim(TVDetailsActivity::class.java, Intent().apply {
-                        putExtra(BaseIntentKeys.ITEM_ID, cast.id)
-                    })
+                    it.context.startActivityWithAnim(
+                        TVDetailsActivity::class.java,
+                        Intent().apply {
+                            putExtra(BaseIntentKeys.ITEM_ID, cast.id)
+                        }
+                    )
                 }
             }
         }
@@ -126,9 +128,12 @@ class TVCreditsAdapter(
 
         private fun bindClickListener(cast: TVCast) {
             itemView.inline_credit_layout.setSafeOnClickListener {
-                it.context.startActivityWithAnim(TVDetailsActivity::class.java, Intent().apply {
-                    putExtra(BaseIntentKeys.ITEM_ID, cast.id)
-                })
+                it.context.startActivityWithAnim(
+                    TVDetailsActivity::class.java,
+                    Intent().apply {
+                        putExtra(BaseIntentKeys.ITEM_ID, cast.id)
+                    }
+                )
             }
         }
     }

@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.addCallback
 import androidx.core.util.isEmpty
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -91,7 +90,6 @@ class TVsFragment : Fragment(R.layout.fragment_tvs) {
         }
     }
 
-
     private fun setupAdapters() {
         popularTVsAdapter?.setHasStableIds(true)
         airTodayAdapter.setHasStableIds(true)
@@ -155,29 +153,47 @@ class TVsFragment : Fragment(R.layout.fragment_tvs) {
 
     private fun setObservers() {
         tvViewModel.run {
-            popularTVsLiveData.observe(viewLifecycleOwner, Observer {
-                setPopularTVs(it)
-            })
+            popularTVsLiveData.observe(
+                viewLifecycleOwner,
+                Observer {
+                    setPopularTVs(it)
+                }
+            )
 
-            airTodayTVsLiveData.observe(viewLifecycleOwner, Observer {
-                setAirTodayTVs(it)
-            })
+            airTodayTVsLiveData.observe(
+                viewLifecycleOwner,
+                Observer {
+                    setAirTodayTVs(it)
+                }
+            )
 
-            trendingTVsLiveData.observe(viewLifecycleOwner, Observer {
-                setTrendingTVs(it)
-            })
+            trendingTVsLiveData.observe(
+                viewLifecycleOwner,
+                Observer {
+                    setTrendingTVs(it)
+                }
+            )
 
-            onTheAirTVsLiveData.observe(viewLifecycleOwner, Observer {
-                setOnTheAirTVs(it)
-            })
+            onTheAirTVsLiveData.observe(
+                viewLifecycleOwner,
+                Observer {
+                    setOnTheAirTVs(it)
+                }
+            )
 
-            genresLiveData.observe(viewLifecycleOwner, Observer {
-                setGenresAdapter(it)
-            })
+            genresLiveData.observe(
+                viewLifecycleOwner,
+                Observer {
+                    setGenresAdapter(it)
+                }
+            )
 
-            trailersLiveData.observe(viewLifecycleOwner, Observer {
-                setTrailersAdapter(it)
-            })
+            trailersLiveData.observe(
+                viewLifecycleOwner,
+                Observer {
+                    setTrailersAdapter(it)
+                }
+            )
         }
     }
 

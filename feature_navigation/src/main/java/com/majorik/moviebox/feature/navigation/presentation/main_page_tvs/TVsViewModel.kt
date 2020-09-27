@@ -6,14 +6,11 @@ import androidx.lifecycle.viewModelScope
 import com.majorik.moviebox.feature.navigation.data.repositories.TVRepository
 import com.majorik.moviebox.feature.navigation.data.repositories.TrendingRepository
 import com.majorik.moviebox.feature.navigation.data.repositories.YouTubeRepository
-import com.majorik.moviebox.feature.navigation.domain.tmdbModels.genre.Genre
-import com.majorik.moviebox.feature.navigation.domain.tmdbModels.tv.TV
 import com.majorik.moviebox.feature.navigation.domain.youtubeModels.SearchResponse
 import com.majorik.library.base.models.results.ResultWrapper
 import com.majorik.moviebox.BuildConfig
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.genre.GenreResponse
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.tv.TVResponse
-import com.orhanobut.logger.Logger
 import kotlinx.coroutines.launch
 
 class TVsViewModel(

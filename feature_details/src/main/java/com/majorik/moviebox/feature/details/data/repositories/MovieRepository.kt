@@ -8,7 +8,7 @@ import com.majorik.moviebox.feature.details.data.api.DetailsRetrofitService
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
- class MovieRepository(private val api: DetailsRetrofitService) : BaseRepository() {
+class MovieRepository(private val api: DetailsRetrofitService) : BaseRepository() {
 
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 

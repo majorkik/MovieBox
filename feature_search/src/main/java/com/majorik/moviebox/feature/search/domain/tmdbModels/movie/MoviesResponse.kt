@@ -2,7 +2,7 @@ package com.majorik.moviebox.feature.search.domain.tmdbModels.movie
 
 import com.squareup.moshi.Json
 
-internal data class MovieResponse(
+data class MoviesResponse(
     @field:Json(name = "page") val page: Int,
     @field:Json(name = "results") val results: List<Movie>,
     @field:Json(name = "total_results") val totalResults: Int,

@@ -19,6 +19,7 @@
     <string name="filters_dialog_chip_release_date">Дата выхода</string>
     <string name="filters_dialog_chip_popularity">Популярность</string>
     <string name="filters_dialog_chip_rating">Оценка</string>
+    <string name="filters_dialog_chip_vote_count">Количество оценок</string>
     <string name="filters_dialog_header_release_date">Дата выхода</string>
     <string name="filters_dialog_release_date_description_any">Любая</string>
     <string name="filters_dialog_header_rating">Оценка</string>
@@ -27,6 +28,7 @@
     <string name="filters_dialog_header_keywords">Ключевые слова</string>
     <string name="filters_dialog_header_credits">Актёры</string>
     <string name="filters_dialog_header_show_adult">Показывать 18+</string>
+    <string name="filters_dialog_header_show_tvs_with_air_date_null">Отобразить только сериалы, которые не вышли</string>
     <string name="filters_dialog_header_show_with_trailers">Показывать только с трейлерами</string>
     <string name="filters_dialog_header_sort_by">Сортировать по</string>
     <string name="filters_dialog_genres_description_any">Любые</string>

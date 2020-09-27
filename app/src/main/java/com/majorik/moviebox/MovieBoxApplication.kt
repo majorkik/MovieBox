@@ -1,11 +1,11 @@
 package com.majorik.moviebox
 
+import android.app.Application
 import android.content.Context
 import android.os.Build
 import androidx.multidex.MultiDex
 import com.akexorcist.localizationactivity.core.LocalizationApplicationDelegate
 import com.google.android.play.core.splitcompat.SplitCompat
-import com.google.android.play.core.splitcompat.SplitCompatApplication
 import com.majorik.moviebox.feature.KoinManager
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
@@ -17,7 +17,7 @@ import timber.log.Timber
 import timber.log.Timber.DebugTree
 import java.util.*
 
-class MovieBoxApplication : SplitCompatApplication() {
+class MovieBoxApplication : Application() {
     private var localizationDelegate = LocalizationApplicationDelegate()
 
     override fun onCreate() {
@@ -38,6 +38,7 @@ class MovieBoxApplication : SplitCompatApplication() {
     }
 
     override fun attachBaseContext(base: Context) {
+
         val locale: Locale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             base.resources.configuration.locales.get(0) ?: Locale.ENGLISH
         } else {
@@ -48,7 +49,7 @@ class MovieBoxApplication : SplitCompatApplication() {
 
         super.attachBaseContext(base)
 
-        SplitCompat.installActivity(this)
+        SplitCompat.install(this)
 
         MultiDex.install(this)
     }

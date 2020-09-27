@@ -83,26 +83,35 @@ class AuthorizationFragment : Fragment(R.layout.fragment_authorization) {
     }
 
     private fun setObservers() {
-        viewModel.tmdbRequestTokenLiveData.observe(viewLifecycleOwner, Observer {
-            requestToken = it.requestToken
-            openBrowser(it.requestToken)
-        })
-
-        viewModel.tmdbSessionLiveData.observe(viewLifecycleOwner, Observer {
-            credentialsManager.saveTmdbSession(it.success ?: false, it.sessionId)
-            if (it.success == true && it.sessionId != null) {
-                startMainActivity()
+        viewModel.tmdbRequestTokenLiveData.observe(
+            viewLifecycleOwner,
+            Observer {
+                requestToken = it.requestToken
+                openBrowser(it.requestToken)
             }
-        })
+        )
 
-        viewModel.tmdbGuestSessionLiveData.observe(viewLifecycleOwner, Observer {
-            credentialsManager.saveGuestLoginStatus(it.success ?: false)
-
-            if (it.success == true) {
-                credentialsManager.saveGuestSessionID(it.requestToken)
-                startMainActivity()
+        viewModel.tmdbSessionLiveData.observe(
+            viewLifecycleOwner,
+            Observer {
+                credentialsManager.saveTmdbSession(it.success ?: false, it.sessionId)
+                if (it.success == true && it.sessionId != null) {
+                    startMainActivity()
+                }
             }
-        })
+        )
+
+        viewModel.tmdbGuestSessionLiveData.observe(
+            viewLifecycleOwner,
+            Observer {
+                credentialsManager.saveGuestLoginStatus(it.success ?: false)
+
+                if (it.success == true) {
+                    credentialsManager.saveGuestSessionID(it.requestToken)
+                    startMainActivity()
+                }
+            }
+        )
     }
 
     private fun setAboutTmdbTextStyle() {

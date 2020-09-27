@@ -12,7 +12,6 @@ import com.majorik.moviebox.feature.details.domain.tmdbModels.cast.MovieCast
 import com.majorik.library.base.extensions.*
 import com.majorik.moviebox.feature.details.presentation.movieDetails.MovieDetailsActivity
 import com.majorik.library.base.constants.UrlConstants
-import com.majorik.moviebox.feature.details.presentation.tvDetails.TVDetailsActivity
 import kotlinx.android.synthetic.main.item_medium_poster_card_details.view.*
 import kotlinx.android.synthetic.main.item_medium_poster_card_details.view.collection_card
 import kotlinx.android.synthetic.main.item_medium_poster_card_details.view.collection_image
@@ -94,9 +93,12 @@ class MovieCreditsAdapter(
 
         private fun bindClickListener(cast: MovieCast) {
             itemView.collection_card.setSafeOnClickListener {
-                it.context.startActivityWithAnim(MovieDetailsActivity::class.java, Intent().apply {
-                    putExtra(BaseIntentKeys.ITEM_ID, cast.id)
-                })
+                it.context.startActivityWithAnim(
+                    MovieDetailsActivity::class.java,
+                    Intent().apply {
+                        putExtra(BaseIntentKeys.ITEM_ID, cast.id)
+                    }
+                )
             }
         }
     }
@@ -122,9 +124,12 @@ class MovieCreditsAdapter(
 
         private fun bindClickListener(cast: MovieCast) {
             itemView.inline_credit_layout.setSafeOnClickListener {
-                it.context.startActivityWithAnim(MovieDetailsActivity::class.java, Intent().apply {
-                    putExtra(BaseIntentKeys.ITEM_ID, cast.id)
-                })
+                it.context.startActivityWithAnim(
+                    MovieDetailsActivity::class.java,
+                    Intent().apply {
+                        putExtra(BaseIntentKeys.ITEM_ID, cast.id)
+                    }
+                )
             }
         }
     }

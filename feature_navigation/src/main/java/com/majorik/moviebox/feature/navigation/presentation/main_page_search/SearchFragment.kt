@@ -7,7 +7,6 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startActivityWithAnim
-import com.majorik.library.base.utils.PACKAGE_NAME
 import com.majorik.moviebox.feature.navigation.R
 import com.majorik.moviebox.feature.navigation.databinding.FragmentSearchBinding
 

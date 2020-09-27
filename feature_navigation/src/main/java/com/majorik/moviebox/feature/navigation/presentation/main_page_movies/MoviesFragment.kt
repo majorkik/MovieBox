@@ -161,42 +161,66 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
             }
 
             btnMovieGenres.setSafeOnClickListener {
-                context?.startActivityWithAnim(ScreenLinks.genresActivity, Intent().apply {
-                    putExtra(SELECTED_GENRES_TYPE, GenresType.MOVIE_GENRES)
-                })
+                context?.startActivityWithAnim(
+                    ScreenLinks.genresActivity,
+                    Intent().apply {
+                        putExtra(SELECTED_GENRES_TYPE, GenresType.MOVIE_GENRES)
+                    }
+                )
             }
         }
     }
 
     private fun setObservers() {
         viewModel.run {
-            popularMoviesLiveData.observe(viewLifecycleOwner, Observer {
-                setPopularMovies(it)
-            })
+            popularMoviesLiveData.observe(
+                viewLifecycleOwner,
+                Observer {
+                    setPopularMovies(it)
+                }
+            )
 
-            nowPlayingMoviesLiveData.observe(viewLifecycleOwner, Observer {
-                setNowPlayingMovies(it)
-            })
+            nowPlayingMoviesLiveData.observe(
+                viewLifecycleOwner,
+                Observer {
+                    setNowPlayingMovies(it)
+                }
+            )
 
-            trendingMoviesLiveData.observe(viewLifecycleOwner, Observer {
-                setTrendingMovies(it)
-            })
+            trendingMoviesLiveData.observe(
+                viewLifecycleOwner,
+                Observer {
+                    setTrendingMovies(it)
+                }
+            )
 
-            upcomingMoviesLiveData.observe(viewLifecycleOwner, Observer {
-                setUpcomingMovies(it)
-            })
+            upcomingMoviesLiveData.observe(
+                viewLifecycleOwner,
+                Observer {
+                    setUpcomingMovies(it)
+                }
+            )
 
-            genresLiveData.observe(viewLifecycleOwner, Observer {
-                setMovieGenres(it)
-            })
+            genresLiveData.observe(
+                viewLifecycleOwner,
+                Observer {
+                    setMovieGenres(it)
+                }
+            )
 
-            trailersLiveData.observe(viewLifecycleOwner, Observer {
-                setTrailers(it)
-            })
+            trailersLiveData.observe(
+                viewLifecycleOwner,
+                Observer {
+                    setTrailers(it)
+                }
+            )
 
-            popularPeoplesLiveData.observe(viewLifecycleOwner, Observer {
-                setPopularPeoples(it)
-            })
+            popularPeoplesLiveData.observe(
+                viewLifecycleOwner,
+                Observer {
+                    setPopularPeoples(it)
+                }
+            )
         }
     }
 

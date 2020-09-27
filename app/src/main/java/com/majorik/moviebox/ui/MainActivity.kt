@@ -4,11 +4,8 @@ import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
 import com.majorik.library.base.constants.AppConfig
-import com.majorik.library.base.constants.ScreenLinks.discoverFiltersDialog
-import com.majorik.library.base.extensions.loadFragmentOrReturnNull
 import com.majorik.library.base.extensions.setupWithNavController
 import com.majorik.moviebox.R
 import com.orhanobut.logger.Logger

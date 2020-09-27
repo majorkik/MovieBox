@@ -17,8 +17,11 @@ import com.majorik.moviebox.feature.search.presentation.adapters.PaginationOnCli
 import kotlinx.android.synthetic.main.fragment_searchable.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-internal class SearchPeopleFragment : Fragment(), SearchQueryChangeListener,
-    PaginationOnClickListener, SearchViewTypeChangeListener {
+internal class SearchPeopleFragment :
+    Fragment(),
+    SearchQueryChangeListener,
+    PaginationOnClickListener,
+    SearchViewTypeChangeListener {
 
     private val searchViewModel: SearchPeopleViewModel by viewModel()
 
@@ -60,10 +63,12 @@ internal class SearchPeopleFragment : Fragment(), SearchQueryChangeListener,
     private fun configureObservables() {
         searchViewModel.networkState?.observe(
             viewLifecycleOwner,
-            Observer { adapter.updateNetworkState(it) })
+            Observer { adapter.updateNetworkState(it) }
+        )
         searchViewModel.searchResults.observe(
             viewLifecycleOwner,
-            Observer { adapter.submitList(it) })
+            Observer { adapter.submitList(it) }
+        )
     }
 
     private fun updateUIWhenEmptyList(size: Int, networkState: NetworkState?) {

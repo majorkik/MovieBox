@@ -69,29 +69,44 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     }
 
     private fun setObservers() {
-        viewModel.accountDetails.observe(viewLifecycleOwner, Observer {
-            setAccountData(it)
-        })
+        viewModel.accountDetails.observe(
+            viewLifecycleOwner,
+            Observer {
+                setAccountData(it)
+            }
+        )
 
-        viewModel.favoriteMovies.observe(viewLifecycleOwner, Observer {
-            favoriteMoviesAdapter.addItems(it)
-            viewBinding.favoriteMoviesStub.setVisibilityOption(it.count() == 0)
-        })
+        viewModel.favoriteMovies.observe(
+            viewLifecycleOwner,
+            Observer {
+                favoriteMoviesAdapter.addItems(it)
+                viewBinding.favoriteMoviesStub.setVisibilityOption(it.count() == 0)
+            }
+        )
 
-        viewModel.favoriteTVs.observe(viewLifecycleOwner, Observer {
-            favoriteTVsAdapter.addItems(it)
-            viewBinding.favoriteTvsStub.setVisibilityOption(it.count() == 0)
-        })
+        viewModel.favoriteTVs.observe(
+            viewLifecycleOwner,
+            Observer {
+                favoriteTVsAdapter.addItems(it)
+                viewBinding.favoriteTvsStub.setVisibilityOption(it.count() == 0)
+            }
+        )
 
-        viewModel.watchlistMovies.observe(viewLifecycleOwner, Observer {
-            willWatchMoviesAdapter.addItems(it)
-            viewBinding.willWatchMoviesStub.setVisibilityOption(it.count() == 0)
-        })
+        viewModel.watchlistMovies.observe(
+            viewLifecycleOwner,
+            Observer {
+                willWatchMoviesAdapter.addItems(it)
+                viewBinding.willWatchMoviesStub.setVisibilityOption(it.count() == 0)
+            }
+        )
 
-        viewModel.watchlistTVs.observe(viewLifecycleOwner, Observer {
-            willWatchTVsAdapter.addItems(it)
-            viewBinding.willWatchTvsStub.setVisibilityOption(it.count() == 0)
-        })
+        viewModel.watchlistTVs.observe(
+            viewLifecycleOwner,
+            Observer {
+                willWatchTVsAdapter.addItems(it)
+                viewBinding.willWatchTvsStub.setVisibilityOption(it.count() == 0)
+            }
+        )
     }
 
     private fun setAccountData(account: AccountDetails) {

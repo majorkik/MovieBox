@@ -11,7 +11,6 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 fun getBaseOkHttpClient() = OkHttpClient()
 
-
 /**
  * Base
  */
@@ -48,7 +47,6 @@ fun createTmdbV3OkHttpClient(): OkHttpClient {
         .build()
 }
 
-
 fun getTmdbV3Retrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
     .client(okHttpClient)
     .baseUrl(UrlConstants.TMDB_BASE_URL_V3)
@@ -81,7 +79,6 @@ fun createTmdbV4OkHttpClient(): OkHttpClient {
         .build()
 }
 
-
 fun getTmdbV4Retrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
     .client(okHttpClient)
     .baseUrl(UrlConstants.TMDB_BASE_URL_V4)
@@ -92,7 +89,6 @@ fun getTmdbV4Retrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
 inline fun <reified T> createTmdbV4WebService(): T =
     getTmdbV4Retrofit(createTmdbV4OkHttpClient())
         .create(T::class.java)
-
 
 /**
  * Trakt
@@ -126,7 +122,6 @@ fun getTraktRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
 inline fun <reified T> createTraktWebService(): T =
     getTraktRetrofit(createTraktOkHttpClient())
         .create(T::class.java)
-
 
 /**
  * Youtube

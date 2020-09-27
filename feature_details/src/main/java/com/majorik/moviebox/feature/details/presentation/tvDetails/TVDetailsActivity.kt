@@ -21,7 +21,6 @@ import com.majorik.moviebox.feature.details.domain.tmdbModels.tv.TVDetails
 import com.majorik.moviebox.feature.details.domain.tmdbModels.video.Videos
 import com.majorik.moviebox.feature.details.presentation.adapters.CastAdapter
 import com.majorik.moviebox.feature.details.presentation.adapters.ImageSliderAdapter
-import com.majorik.moviebox.feature.details.presentation.movieDetails.MovieExtraMenuBottomDialog
 import com.majorik.moviebox.feature.details.presentation.watch_online.WatchOnlineDialog
 import com.soywiz.klock.KlockLocale
 import com.stfalcon.imageviewer.StfalconImageViewer
@@ -160,45 +159,57 @@ class TVDetailsActivity : BaseSlidingActivity() {
 
     @OptIn(ExperimentalStdlibApi::class)
     private fun setObserver() {
-        tvDetailsViewModel.tvDetailsLiveData.observe(this, Observer { tv ->
-            setHeader(tv.name, tv.voteAverage, tv.status, tv.genres, tv.firstAirDate)
-            setVisibilityPlaceholder(false)
-            setTrailerButtonClickListener(tv.videos)
-            setOverview(tv.overview)
-            setFacts(tv)
-            setPeoples(tv.credits.casts)
-            setImages(tv.images, tv.backdropPath, tv.posterPath)
-        })
-
-        tvDetailsViewModel.tvStatesLiveData.observe(this, Observer {
-            it?.apply { setAccountState(this) }
-        })
-
-        tvDetailsViewModel.responseFavoriteLiveData.observe(this, Observer {
-            if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
-                Toast.makeText(this, "Сериал успешно добавлен в избранное", Toast.LENGTH_LONG)
-                    .show()
-            } else {
-                Toast.makeText(this, "Неудалось добавить сериал в избранное", Toast.LENGTH_LONG)
-                    .show()
+        tvDetailsViewModel.tvDetailsLiveData.observe(
+            this,
+            Observer { tv ->
+                setHeader(tv.name, tv.voteAverage, tv.status, tv.genres, tv.firstAirDate)
+                setVisibilityPlaceholder(false)
+                setTrailerButtonClickListener(tv.videos)
+                setOverview(tv.overview)
+                setFacts(tv)
+                setPeoples(tv.credits.casts)
+                setImages(tv.images, tv.backdropPath, tv.posterPath)
             }
-        })
+        )
 
-        tvDetailsViewModel.responseWatchlistLiveData.observe(this, Observer {
-            if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
-                Toast.makeText(
-                    this,
-                    "Сериал успешно добавлен в 'Буду смотреть'",
-                    Toast.LENGTH_LONG
-                ).show()
-            } else {
-                Toast.makeText(
-                    this,
-                    "Неудалось добавить сериал в 'Буду смотреть'",
-                    Toast.LENGTH_LONG
-                ).show()
+        tvDetailsViewModel.tvStatesLiveData.observe(
+            this,
+            Observer {
+                it?.apply { setAccountState(this) }
             }
-        })
+        )
+
+        tvDetailsViewModel.responseFavoriteLiveData.observe(
+            this,
+            Observer {
+                if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
+                    Toast.makeText(this, "Сериал успешно добавлен в избранное", Toast.LENGTH_LONG)
+                        .show()
+                } else {
+                    Toast.makeText(this, "Неудалось добавить сериал в избранное", Toast.LENGTH_LONG)
+                        .show()
+                }
+            }
+        )
+
+        tvDetailsViewModel.responseWatchlistLiveData.observe(
+            this,
+            Observer {
+                if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
+                    Toast.makeText(
+                        this,
+                        "Сериал успешно добавлен в 'Буду смотреть'",
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else {
+                    Toast.makeText(
+                        this,
+                        "Неудалось добавить сериал в 'Буду смотреть'",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+        )
     }
 
     private fun setAccountState(accountStates: AccountStates) {
@@ -233,7 +244,8 @@ class TVDetailsActivity : BaseSlidingActivity() {
     private fun setProductionCompanies(productionCompanies: List<ProductionCompany>) {
         t_companies.text = combineString(
             getString(R.string.details_company_production),
-            productionCompanies.joinToString(", ") { it.name })
+            productionCompanies.joinToString(", ") { it.name }
+        )
     }
 
     private fun setOverview(overview: String) {
@@ -255,7 +267,7 @@ class TVDetailsActivity : BaseSlidingActivity() {
         t_seasons_and_series.text =
             combineString(
                 getString(R.string.details_fact_seasons_and_episodes),
-                ("${numberOfSeasons} сезон(ов) ${numberOfEpisodes} серий")
+                ("$numberOfSeasons сезон(ов) $numberOfEpisodes серий")
             )
     }
 

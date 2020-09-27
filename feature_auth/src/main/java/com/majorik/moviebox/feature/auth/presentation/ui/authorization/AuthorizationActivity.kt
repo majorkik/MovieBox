@@ -40,9 +40,12 @@ class AuthorizationActivity : AppCompatActivity(R.layout.activity_authorization)
     private fun sendRequestToken(approved: String?) {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.splash_container) as NavHostFragment
 
-        navHostFragment.navController.navigate(R.id.nav_authorization, Bundle().apply {
-            putString(KEY_APPROVED, approved)
-        })
+        navHostFragment.navController.navigate(
+            R.id.nav_authorization,
+            Bundle().apply {
+                putString(KEY_APPROVED, approved)
+            }
+        )
     }
 
     companion object {

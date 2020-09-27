@@ -1,7 +1,6 @@
 package com.majorik.moviebox.feature.collections.presentation.adapters.movie
 
 import android.content.Intent
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -96,9 +95,12 @@ class MovieCreditsAdapter(
 
         private fun bindClickListener(cast: MovieCast) {
             itemView.collection_card.setSafeOnClickListener {
-                it.context.startActivityWithAnim(ScreenLinks.movieDetails, Intent().apply {
-                    putExtra(ITEM_ID, cast.id)
-                })
+                it.context.startActivityWithAnim(
+                    ScreenLinks.movieDetails,
+                    Intent().apply {
+                        putExtra(ITEM_ID, cast.id)
+                    }
+                )
             }
         }
     }
@@ -124,9 +126,12 @@ class MovieCreditsAdapter(
 
         private fun bindClickListener(cast: MovieCast) {
             itemView.inline_credit_layout.setSafeOnClickListener {
-                it.context.startActivityWithAnim(ScreenLinks.movieDetails, Intent().apply {
-                    putExtra(ITEM_ID, cast.id)
-                })
+                it.context.startActivityWithAnim(
+                    ScreenLinks.movieDetails,
+                    Intent().apply {
+                        putExtra(ITEM_ID, cast.id)
+                    }
+                )
             }
         }
     }

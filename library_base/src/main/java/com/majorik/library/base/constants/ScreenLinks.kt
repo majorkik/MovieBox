@@ -29,6 +29,6 @@ object ScreenLinks {
      * Fragments
      */
 
-    //Search discover filters
+    // Search discover filters
     const val discoverFiltersDialog = "$PACKAGE_NAME.feature.search.presentation.ui.filters.DiscoverFiltersBottomSheetFragment"
 }

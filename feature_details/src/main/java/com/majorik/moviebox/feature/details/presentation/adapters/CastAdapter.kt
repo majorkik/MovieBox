@@ -42,9 +42,12 @@ class CastAdapter(private val people: List<Cast>) :
 
         private fun setClickListener(castID: Int) {
             itemView.person_profile_image.setSafeOnClickListener {
-                parent.context.startActivityWithAnim(PersonDetailsActivity::class.java, Intent().apply {
-                    putExtra(ITEM_ID, castID)
-                })
+                parent.context.startActivityWithAnim(
+                    PersonDetailsActivity::class.java,
+                    Intent().apply {
+                        putExtra(ITEM_ID, castID)
+                    }
+                )
             }
         }
     }

@@ -5,7 +5,6 @@ import android.content.Intent
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
-import android.text.style.TypefaceSpan
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
@@ -85,7 +84,7 @@ fun Context.combineString(
 
     spannableString.setSpan(
         ForegroundColorSpan(ContextCompat.getColor(this, leftColor)),
-    0,
+        0,
         leftString.length + 1,
         Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
     )

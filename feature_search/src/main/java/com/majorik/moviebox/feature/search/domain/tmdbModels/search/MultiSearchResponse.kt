@@ -2,7 +2,7 @@ package com.majorik.moviebox.feature.search.domain.tmdbModels.search
 
 import com.squareup.moshi.Json
 
-internal data class MultiSearchResponse(
+data class MultiSearchResponse(
     @field:Json(name = "page") val page: Int,
     @field:Json(name = "results") val results: List<MultiSearchItem>,
     @field:Json(name = "total_pages") val totalPages: Int,

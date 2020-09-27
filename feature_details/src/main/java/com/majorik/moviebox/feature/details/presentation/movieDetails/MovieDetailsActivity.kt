@@ -96,36 +96,48 @@ class MovieDetailsActivity : BaseSlidingActivity() {
     }
 
     private fun setObserver() {
-        movieDetailsViewModel.movieDetailsLiveData.observe(this, Observer { movie ->
-            setVisibilityPlaceholder(false)
+        movieDetailsViewModel.movieDetailsLiveData.observe(
+            this,
+            Observer { movie ->
+                setVisibilityPlaceholder(false)
 
-            setHeader(movie.title, movie.voteAverage, movie.status, movie.genres, movie.releaseDate)
-            setOverview(movie.overview)
-            setFacts(movie)
-            setImages(movie.images, movie.backdropPath, movie.posterPath)
-            setPeoples(movie.credits.casts)
-            setTrailerButtonClickListener(movie.videos)
-        })
-
-        movieDetailsViewModel.movieStatesLiveData.observe(this, Observer {
-            it?.apply { setAccountStates(this) }
-        })
-
-        movieDetailsViewModel.responseFavoriteLiveData.observe(this, Observer {
-            if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
-                showToastMessage("Фильм успешно добавлен в избранное")
-            } else {
-                showToastMessage("Неудалось добавить фильм в избранное")
+                setHeader(movie.title, movie.voteAverage, movie.status, movie.genres, movie.releaseDate)
+                setOverview(movie.overview)
+                setFacts(movie)
+                setImages(movie.images, movie.backdropPath, movie.posterPath)
+                setPeoples(movie.credits.casts)
+                setTrailerButtonClickListener(movie.videos)
             }
-        })
+        )
 
-        movieDetailsViewModel.responseWatchlistLiveData.observe(this, Observer {
-            if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
-                showToastMessage("Фильм успешно добавлен в 'Буду смотреть'")
-            } else {
-                showToastMessage("Неудалось добавить фильм в 'Буду смотреть'")
+        movieDetailsViewModel.movieStatesLiveData.observe(
+            this,
+            Observer {
+                it?.apply { setAccountStates(this) }
             }
-        })
+        )
+
+        movieDetailsViewModel.responseFavoriteLiveData.observe(
+            this,
+            Observer {
+                if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
+                    showToastMessage("Фильм успешно добавлен в избранное")
+                } else {
+                    showToastMessage("Неудалось добавить фильм в избранное")
+                }
+            }
+        )
+
+        movieDetailsViewModel.responseWatchlistLiveData.observe(
+            this,
+            Observer {
+                if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
+                    showToastMessage("Фильм успешно добавлен в 'Буду смотреть'")
+                } else {
+                    showToastMessage("Неудалось добавить фильм в 'Буду смотреть'")
+                }
+            }
+        )
     }
 
     private fun setPeoples(casts: List<Cast>) {
@@ -241,7 +253,8 @@ class MovieDetailsActivity : BaseSlidingActivity() {
     private fun setCompanies(productionCompanies: List<ProductionCompany>) {
         m_companies.text = combineString(
             getString(R.string.details_company_production),
-            productionCompanies.joinToString(", ") { it.name })
+            productionCompanies.joinToString(", ") { it.name }
+        )
     }
 
     private fun setOriginalTitle(originalTitle: String) {
@@ -300,7 +313,8 @@ class MovieDetailsActivity : BaseSlidingActivity() {
                 resources.getQuantityString(R.plurals.minutes, minutes, minutes)
 
             m_runtime.text = combineString(
-                getString(R.string.details_runtime), getString(
+                getString(R.string.details_runtime),
+                getString(
                     R.string.details_runtime_mask,
                     stringHours,
                     stringMinutes

@@ -9,7 +9,7 @@ import com.majorik.library.base.models.results.ResultWrapper
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
- class TVRepository(private val api: DetailsRetrofitService) : BaseRepository() {
+class TVRepository(private val api: DetailsRetrofitService) : BaseRepository() {
 
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 

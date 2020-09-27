@@ -146,30 +146,33 @@ class PersonDetailsActivity : BaseSlidingActivity() {
     }
 
     private fun setObservers() {
-        personViewModel.personDetailsLiveData.observe(this, Observer { personDetails ->
-            person_name.text = personDetails.name
-            person_translate_name.text = personDetails.alsoKnownAs.getOrNull(0) ?: ""
-            person_type.text = personDetails.knownForDepartment
+        personViewModel.personDetailsLiveData.observe(
+            this,
+            Observer { personDetails ->
+                person_name.text = personDetails.name
+                person_translate_name.text = personDetails.alsoKnownAs.getOrNull(0) ?: ""
+                person_type.text = personDetails.knownForDepartment
 
-            btn_biography.setOnClickListener {
-                BiographyDialog.newInstance(
-                    personDetails.biography,
-                    personDetails.birthday,
-                    personDetails.placeOfBirth
-                ).show(supportFragmentManager, "biography_dialog")
+                btn_biography.setOnClickListener {
+                    BiographyDialog.newInstance(
+                        personDetails.biography,
+                        personDetails.birthday,
+                        personDetails.placeOfBirth
+                    ).show(supportFragmentManager, "biography_dialog")
+                }
+
+                displayPersonMainPhoto(personDetails.profilePath)
+
+                p_bottom_sheet.setVisibilityOption(true)
+
+                filmographyAdapter = PersonFilmographyPagerAdapter(
+                    personDetails.movieCredits.cast,
+                    personDetails.tvCredits.cast
+                )
+
+                setupPager()
             }
-
-            displayPersonMainPhoto(personDetails.profilePath)
-
-            p_bottom_sheet.setVisibilityOption(true)
-
-            filmographyAdapter = PersonFilmographyPagerAdapter(
-                personDetails.movieCredits.cast,
-                personDetails.tvCredits.cast
-            )
-
-            setupPager()
-        })
+        )
     }
 
     private fun displayPersonMainPhoto(profilePath: String?) {

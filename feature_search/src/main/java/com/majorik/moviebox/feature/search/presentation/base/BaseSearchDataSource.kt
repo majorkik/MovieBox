@@ -9,7 +9,7 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancelChildren
 
-internal abstract class BaseSearchDataSource<T: Any> : PageKeyedDataSource<Int, T>() {
+internal abstract class BaseSearchDataSource<T : Any> : PageKeyedDataSource<Int, T>() {
 
     protected var supervisorJob = SupervisorJob()
     protected val networkState = MutableLiveData<NetworkState>()

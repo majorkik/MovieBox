@@ -1,24 +1,25 @@
 package com.majorik.moviebox.feature.search.presentation.ui.filters
 
 import android.animation.LayoutTransition
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.Chip
 import com.jaygoo.widget.OnRangeChangedListener
 import com.jaygoo.widget.RangeSeekBar
-import com.majorik.library.base.constants.ScreenLinks
-import com.majorik.library.base.extensions.loadIntentOrReturnNull
 import com.majorik.library.base.extensions.setVisibilityOption
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.genre.Genre
 import com.majorik.moviebox.feature.search.R
 import com.majorik.moviebox.feature.search.databinding.DialogDiscoverFiltersBinding
+import com.majorik.moviebox.feature.search.domain.enums.*
+import com.majorik.moviebox.feature.search.domain.models.discover.DiscoverFiltersModel
 import com.orhanobut.logger.Logger
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
@@ -30,13 +31,13 @@ class DiscoverFiltersBottomSheetFragment : BottomSheetDialogFragment() {
 
     private val viewModel: DiscoverFiltersViewModel by viewModel()
 
-    private val selectedMovieGenres = mutableSetOf<Int>()
-    private val selectedTVGenres = mutableSetOf<Int>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setStyle(DialogFragment.STYLE_NORMAL, AppRes.style.Widget_AppTheme_BottomSheet)
+
+        viewModel.filtersModel =
+            (arguments?.getSerializable(KEY_FILTERS) as? DiscoverFiltersModel) ?: DiscoverFiltersModel()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -48,25 +49,48 @@ class DiscoverFiltersBottomSheetFragment : BottomSheetDialogFragment() {
 
         fetchGenres()
         setClickListeners()
-        initReleaseDateRangeBar()
-        initReleaseDateYearBar()
+        setListeners()
+
+        initReleaseDateRange()
+        initReleaseDateSingle()
         initRatingBar()
+
         setAnimateReleaseDateBlock()
         setObservers()
+        setupFilters()
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+
+        saveFiltersToModel()
+
+        setFragmentResult(
+            KEY_DISCOVER_FILTERS_REQUEST,
+            Bundle().apply {
+                putSerializable(KEY_FILTERS_MODEL, viewModel.filtersModel)
+            }
+        )
     }
 
     private fun setObservers() {
-        viewModel.movieGenresLiveData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-            if (viewBinding.sFilterType.isChecked) { // Если выбран тип - Фильмы
-                addGenresBlock(it.genres)
+        viewModel.movieGenresLiveData.observe(
+            viewLifecycleOwner,
+            androidx.lifecycle.Observer {
+                getDiscoverType().isMoviesTypeWithAction { // Если выбран тип - Фильмы
+                    addGenresBlock(it.genres)
+                }
             }
-        })
+        )
 
-        viewModel.tvGenresLiveData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-            if (!viewBinding.sFilterType.isChecked) { // Если выбран тип - Сериалы
-                addGenresBlock(it.genres)
+        viewModel.tvGenresLiveData.observe(
+            viewLifecycleOwner,
+            androidx.lifecycle.Observer {
+                getDiscoverType().isTVsTypeWithAction { // Если выбран тип - Сериалы
+                    addGenresBlock(it.genres)
+                }
             }
-        })
+        )
     }
 
     private fun fetchGenres() {
@@ -101,8 +125,8 @@ class DiscoverFiltersBottomSheetFragment : BottomSheetDialogFragment() {
             }
 
             sFilterType.setOnClickListener {
-                changeFilterTypeElements()
-                chipGenreSelectedAction()
+                chipGenresSelectedChanged()
+                changeFiltersType()
             }
 
             genresBlock.setOnClickListener {
@@ -115,12 +139,18 @@ class DiscoverFiltersBottomSheetFragment : BottomSheetDialogFragment() {
 
             btnAddCredits.setOnClickListener {
                 openSearchCreditsScreen()
-            }   
+            }
         }
     }
 
-    private fun changeFilterTypeElements() {
-        if (viewBinding.sFilterType.isChecked) {
+    private fun setListeners() {
+        setReleaseDateRangeListener()
+        setReleaseDateSingleListener()
+        setRatingBarListener()
+    }
+
+    private fun changeFiltersType() {
+        if (getDiscoverType().isMoviesType()) {
             if (viewModel.movieGenresLiveData.value?.genres.isNullOrEmpty()) {
                 viewModel.getMovieGenres()
             } else {
@@ -133,31 +163,52 @@ class DiscoverFiltersBottomSheetFragment : BottomSheetDialogFragment() {
                 addGenresBlock(viewModel.tvGenresLiveData.value!!.genres)
             }
         }
+
+        setupIncludeAdultUI()
+        setupIncludeTVsWithoutDates()
+    }
+
+    private fun saveFiltersToModel() {
+        viewModel.filtersModel?.apply {
+            discoverType = getDiscoverType()
+
+            sortType = getSortType()
+            sortFeature = getSortFeature()
+
+            minYear = getMinReleaseDate()
+            maxYear = getMaxReleaseDate()
+
+            voteAverageMin = viewBinding.ratingBar.leftSeekBar.progress
+            voteAverageMax = viewBinding.ratingBar.rightSeekBar.progress
+
+            includeAdult = viewBinding.sIncludeAdult.isChecked
+
+            movieGenresIds = viewModel.selectedMovieGenres.toList()
+            tvGenresIds = viewModel.selectedTVGenres.toList()
+
+            includeTVsWithNullAirDate = viewBinding.sIncludeTvsWithNullDate.isChecked
+        }
     }
 
     /**
      * Release Date block
      */
 
-    private fun initReleaseDateRangeBar() {
+    private fun initReleaseDateRange() {
         val currentYear = Calendar.getInstance().get(Calendar.YEAR)
 
-        viewBinding.releaseDateRangeBar.apply {
+        viewBinding.releaseDateRange.apply {
             setRange(RELEASE_DATE_MIN_YEAR.toFloat(), (currentYear + RELEASE_DATE_RANGE_OFFSET).toFloat(), 1f)
 
-            setProgress(
-                viewBinding.releaseDateRangeBar.minProgress,
-                viewBinding.releaseDateRangeBar.maxProgress
-            )
+            setProgress(minProgress, maxProgress)
         }
-
-        setReleaseDateRangeBarListener(currentYear)
     }
 
-    private fun setReleaseDateRangeBarListener(currentYear: Int) {
-        val maxProgress = viewBinding.releaseDateRangeBar.maxProgress.roundToInt()
+    private fun setReleaseDateRangeListener() {
+        val currentYear = Calendar.getInstance().get(Calendar.YEAR)
+        val maxProgress = viewBinding.releaseDateRange.maxProgress.roundToInt()
 
-        viewBinding.releaseDateRangeBar.setOnRangeChangedListener(object : OnRangeChangedListener {
+        viewBinding.releaseDateRange.setOnRangeChangedListener(object : OnRangeChangedListener {
             override fun onStartTrackingTouch(view: RangeSeekBar?, isLeft: Boolean) {
             }
 
@@ -169,7 +220,7 @@ class DiscoverFiltersBottomSheetFragment : BottomSheetDialogFragment() {
                     if (maxProgress == rightInt) "${currentYear + RELEASE_DATE_RANGE_OFFSET}+" else rightInt
                         .toString()
 
-                viewBinding.descriptionReleaseDate.text = "${leftInt} - ${maxYear}"
+                viewBinding.descriptionReleaseDate.text = "$leftInt - $maxYear"
             }
 
             override fun onStopTrackingTouch(view: RangeSeekBar?, isLeft: Boolean) {
@@ -177,20 +228,18 @@ class DiscoverFiltersBottomSheetFragment : BottomSheetDialogFragment() {
         })
     }
 
-    private fun initReleaseDateYearBar() {
+    private fun initReleaseDateSingle() {
         val currentYear = Calendar.getInstance().get(Calendar.YEAR)
 
-        viewBinding.releaseDateYearBar.apply {
+        viewBinding.releaseDateSingle.apply {
             setRange(RELEASE_DATE_MIN_YEAR.toFloat(), (currentYear + RELEASE_DATE_SINGLE_OFFSET).toFloat(), 1f)
 
             setProgress(currentYear.toFloat())
         }
-
-        setReleaseDateYearBarListener()
     }
 
-    private fun setReleaseDateYearBarListener() {
-        viewBinding.releaseDateYearBar.setOnRangeChangedListener(object : OnRangeChangedListener {
+    private fun setReleaseDateSingleListener() {
+        viewBinding.releaseDateSingle.setOnRangeChangedListener(object : OnRangeChangedListener {
             override fun onStartTrackingTouch(view: RangeSeekBar?, isLeft: Boolean) {
             }
 
@@ -210,7 +259,7 @@ class DiscoverFiltersBottomSheetFragment : BottomSheetDialogFragment() {
             }
 
             ReleaseDateType.BETWEEN_DATES -> {
-                displayReleaseDateRangeBar()
+                displayreleaseDateRange()
             }
 
             ReleaseDateType.ONE_YEAR -> {
@@ -224,9 +273,8 @@ class DiscoverFiltersBottomSheetFragment : BottomSheetDialogFragment() {
             if (releaseDateChipGroup.visibility == View.VISIBLE) {
                 changeReleaseDateType()
             } else {
-                releaseDateRangeBar.setVisibilityOption(false)
-                releaseDateYearBar.setVisibilityOption(false)
-
+                releaseDateRange.setVisibilityOption(false)
+                releaseDateSingle.setVisibilityOption(false)
                 releaseDateChipGroup.setVisibilityOption(true)
             }
         }
@@ -240,24 +288,24 @@ class DiscoverFiltersBottomSheetFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private fun displayReleaseDateRangeBar() {
+    private fun displayreleaseDateRange() {
         viewBinding.apply {
             releaseDateChipGroup.setVisibilityOption(false)
-            releaseDateRangeBar.setVisibilityOption(true)
+            releaseDateRange.setVisibilityOption(true)
 
-            val leftProgress = releaseDateRangeBar.leftSeekBar.progress
-            val rightProgress = releaseDateRangeBar.rightSeekBar.progress
-            releaseDateRangeBar.setProgress(leftProgress, rightProgress)
+            val leftProgress = releaseDateRange.leftSeekBar.progress
+            val rightProgress = releaseDateRange.rightSeekBar.progress
+            releaseDateRange.setProgress(leftProgress, rightProgress)
         }
     }
 
     private fun displayReleaseDateSingleBar() {
         viewBinding.apply {
             releaseDateChipGroup.setVisibilityOption(false)
-            releaseDateYearBar.setVisibilityOption(true)
+            releaseDateSingle.setVisibilityOption(true)
 
-            val progress = releaseDateYearBar.leftSeekBar.progress
-            releaseDateYearBar.setProgress(progress)
+            val progress = releaseDateSingle.leftSeekBar.progress
+            releaseDateSingle.setProgress(progress)
         }
     }
 
@@ -277,11 +325,7 @@ class DiscoverFiltersBottomSheetFragment : BottomSheetDialogFragment() {
             isStepsAutoBonding = true
             steps = 1
             setRange(0f, 100f, 10f)
-            setProgress(0f, 100f)
-
         }
-
-        setRatingBarListener()
     }
 
     private fun setRatingBarListener() {
@@ -317,7 +361,7 @@ class DiscoverFiltersBottomSheetFragment : BottomSheetDialogFragment() {
             chip.isChecked = checkGenresSelected(genre.id)
 
             chip.setOnClickListener {
-                if (viewBinding.sFilterType.isChecked) {
+                if (getDiscoverType().isMoviesType()) {
                     clickMovieGenre(chip.isChecked, genre.id)
                 } else {
                     clickTVGenre(chip.isChecked, genre.id)
@@ -330,37 +374,37 @@ class DiscoverFiltersBottomSheetFragment : BottomSheetDialogFragment() {
 
     private fun clickMovieGenre(chipChecked: Boolean, genreId: Int) {
         if (chipChecked) {
-            selectedMovieGenres.add(genreId)
+            viewModel.selectedMovieGenres.add(genreId)
         } else {
-            selectedMovieGenres.remove(genreId)
+            viewModel.selectedMovieGenres.remove(genreId)
         }
 
-        chipGenreSelectedAction()
+        chipGenresSelectedChanged()
     }
 
     private fun clickTVGenre(chipChecked: Boolean, genreId: Int) {
         if (chipChecked) {
-            selectedTVGenres.add(genreId)
+            viewModel.selectedTVGenres.add(genreId)
         } else {
-            selectedTVGenres.remove(genreId)
+            viewModel.selectedTVGenres.remove(genreId)
         }
 
-        chipGenreSelectedAction()
+        chipGenresSelectedChanged()
     }
 
     private fun checkGenresSelected(genreId: Int): Boolean {
-        return if (viewBinding.sFilterType.isChecked) {
-            selectedMovieGenres.contains(genreId)
+        return if (getDiscoverType().isMoviesType()) {
+            viewModel.selectedMovieGenres.contains(genreId)
         } else {
-            selectedTVGenres.contains(genreId)
+            viewModel.selectedTVGenres.contains(genreId)
         }
     }
 
-    private fun chipGenreSelectedAction() {
-        val countActiveGenres = if (viewBinding.sFilterType.isChecked) {
-            selectedMovieGenres.count()
+    private fun chipGenresSelectedChanged() {
+        val countActiveGenres = if (getDiscoverType().isMoviesType()) {
+            viewModel.selectedMovieGenres.count()
         } else {
-            selectedTVGenres.count()
+            viewModel.selectedTVGenres.count()
         }
 
         if (countActiveGenres == 0) {
@@ -384,11 +428,6 @@ class DiscoverFiltersBottomSheetFragment : BottomSheetDialogFragment() {
      */
 
     private fun openSearchKeywordsScreen() {
-        val keywordResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            Logger.i(it.data?.getStringExtra("da") ?: "is null")
-        }
-
-        keywordResult.launch(ScreenLinks.movieDetails.loadIntentOrReturnNull())
     }
 
     /**
@@ -396,7 +435,162 @@ class DiscoverFiltersBottomSheetFragment : BottomSheetDialogFragment() {
      */
 
     private fun openSearchCreditsScreen() {
+    }
 
+    /**
+     * Методы для изменения интерфейса по фильтрам
+     */
+
+    private fun setupFilters() {
+        if (viewModel.filtersModel == null) viewModel.filtersModel = DiscoverFiltersModel()
+
+        viewBinding.sFilterType.isChecked = viewModel.filtersModel?.discoverType?.isTVsType() ?: false
+
+        viewModel.selectedMovieGenres.addAll(viewModel.filtersModel?.movieGenresIds ?: emptyList())
+        viewModel.selectedTVGenres.addAll(viewModel.filtersModel?.tvGenresIds ?: emptyList())
+
+        setupYearsUI()
+        setupVoteAverageUI()
+        setupSortUI()
+        setupIncludeAdultUI()
+        setupIncludeTVsWithoutDates()
+
+        chipGenresSelectedChanged()
+    }
+
+    private fun setupYearsUI() {
+        viewBinding.apply {
+            if (viewModel.filtersModel?.minYear == null && viewModel.filtersModel?.maxYear == null) {
+                releaseDateType = ReleaseDateType.ANY
+                chipDateAnyDates.isChecked = true
+            } else if (viewModel.filtersModel?.minYear != null && viewModel.filtersModel?.maxYear == null) {
+                releaseDateType = ReleaseDateType.ONE_YEAR
+                chipDateOneYear.isChecked = true
+                releaseDateSingle.setProgress(
+                    viewModel.filtersModel?.minYear?.toFloat() ?: Calendar.getInstance().get(Calendar.YEAR).toFloat()
+                )
+            } else {
+                releaseDateType = ReleaseDateType.BETWEEN_DATES
+
+                chipDateBetweenDates.isChecked = true
+
+                Logger.i("${viewModel.filtersModel?.minYear}, ${viewModel.filtersModel?.maxYear}")
+
+                releaseDateRange.setProgress(
+                    viewModel.filtersModel?.minYear?.toFloat() ?: releaseDateRange.minProgress,
+                    viewModel.filtersModel?.maxYear?.toFloat() ?: releaseDateRange.maxProgress
+                )
+            }
+        }
+
+        changeReleaseDateType()
+    }
+
+    private fun setupVoteAverageUI() {
+        viewBinding.apply {
+            ratingBar.setProgress(
+                viewModel.filtersModel?.voteAverageMin ?: ratingBar.minProgress,
+                viewModel.filtersModel?.voteAverageMax ?: ratingBar.maxProgress
+            )
+        }
+    }
+
+    private fun setupSortUI() {
+        viewBinding.apply {
+            sSortBy.isChecked = viewModel.filtersModel?.sortFeature == SortFeature.ASCENDING
+
+            when (viewModel.filtersModel?.sortType) {
+                SortType.BY_POPULARITY -> chipSortPopularity.isChecked = true
+
+                SortType.BY_DATE -> chipSortReleaseDate.isChecked = true
+
+                SortType.BY_VOTE_AVERAGE -> chipSortRating.isChecked = true
+
+                SortType.BY_VOTE_COUNT -> chipSortVoteCount.isChecked = true
+
+                null -> chipSortPopularity.isChecked = true
+            }
+        }
+    }
+
+    private fun setupIncludeTVsWithoutDates() {
+        viewBinding.sIncludeTvsWithNullDate.isChecked = viewModel.filtersModel?.includeTVsWithNullAirDate ?: false
+
+        if (getDiscoverType().isMoviesType()) {
+            viewBinding.sIncludeTvsWithNullDate.isEnabled = false
+            viewBinding.sIncludeTvsWithNullDate.alpha = 0.33f
+        } else {
+            viewBinding.sIncludeTvsWithNullDate.isEnabled = true
+            viewBinding.sIncludeTvsWithNullDate.alpha = 1f
+        }
+    }
+
+    private fun setupIncludeAdultUI() {
+        viewBinding.sIncludeAdult.isChecked = viewModel.filtersModel?.includeAdult ?: false
+
+        if (getDiscoverType().isMoviesType()) {
+            viewBinding.sIncludeAdult.isEnabled = true
+            viewBinding.sIncludeAdult.alpha = 1f
+        } else {
+            viewBinding.sIncludeAdult.isEnabled = false
+            viewBinding.sIncludeAdult.alpha = 0.33f
+        }
+    }
+
+    /**
+     * Методы для получения фильтров из UI
+     */
+
+    private fun getDiscoverType() = if (viewBinding.sFilterType.isChecked) {
+        DiscoverType.TVS
+    } else {
+        DiscoverType.MOVIES
+    }
+
+    private fun getSortFeature() = if (viewBinding.sSortBy.isChecked) {
+        SortFeature.ASCENDING
+    } else {
+        SortFeature.DESCENDING
+    }
+
+    private fun getMinReleaseDate() = when (releaseDateType) {
+        ReleaseDateType.ANY -> {
+            null
+        }
+
+        ReleaseDateType.ONE_YEAR -> {
+            viewBinding.releaseDateSingle.leftSeekBar.progress.roundToInt()
+        }
+
+        ReleaseDateType.BETWEEN_DATES -> {
+            viewBinding.releaseDateRange.leftSeekBar.progress.roundToInt()
+        }
+    }
+
+    private fun getMaxReleaseDate() = when (releaseDateType) {
+        ReleaseDateType.ANY -> {
+            null
+        }
+
+        ReleaseDateType.ONE_YEAR -> {
+            null
+        }
+
+        ReleaseDateType.BETWEEN_DATES -> {
+            viewBinding.releaseDateRange.rightSeekBar.progress.roundToInt()
+        }
+    }
+
+    private fun getSortType(): SortType {
+        if (viewBinding.chipSortPopularity.isChecked) return SortType.BY_POPULARITY
+
+        if (viewBinding.chipSortRating.isChecked) return SortType.BY_VOTE_AVERAGE
+
+        if (viewBinding.chipSortReleaseDate.isChecked) return SortType.BY_DATE
+
+        if (viewBinding.chipSortVoteCount.isChecked) return SortType.BY_VOTE_COUNT
+
+        return SortType.BY_POPULARITY
     }
 
     /**
@@ -404,10 +598,20 @@ class DiscoverFiltersBottomSheetFragment : BottomSheetDialogFragment() {
      */
 
     companion object {
+        const val KEY_FILTERS = "key_filters"
+        const val KEY_DISCOVER_FILTERS_REQUEST = "key_discover_filters_request"
+        const val KEY_FILTERS_MODEL = "key_filters_model"
+
         const val RELEASE_DATE_MIN_YEAR = 1940
         const val RELEASE_DATE_RANGE_OFFSET = 5
         const val RELEASE_DATE_SINGLE_OFFSET = 10
 
         private var releaseDateType = ReleaseDateType.ANY
+
+        fun newInstance(filtersModel: DiscoverFiltersModel) = DiscoverFiltersBottomSheetFragment().apply {
+            arguments = Bundle().apply {
+                putSerializable(KEY_FILTERS, filtersModel)
+            }
+        }
     }
 }

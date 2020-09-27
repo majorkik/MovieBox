@@ -124,7 +124,7 @@ fun Context.getCurrentLocale(): Locale {
     }
 }
 
-//YouTube intents
+// YouTube intents
 fun Context.openYouTube(key: String) {
     try {
         startActivity(getYouTubeAppIntent(key))

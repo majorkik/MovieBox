@@ -1,10 +1,10 @@
 package com.majorik.moviebox.feature.search.data.repositories
 
 import com.majorik.moviebox.feature.search.data.api.SearchApiService
-import com.majorik.moviebox.feature.search.domain.tmdbModels.movie.MovieResponse
+import com.majorik.moviebox.feature.search.domain.tmdbModels.movie.MoviesResponse
 import com.majorik.moviebox.feature.search.domain.tmdbModels.person.PersonResponse
 import com.majorik.moviebox.feature.search.domain.tmdbModels.search.MultiSearchResponse
-import com.majorik.moviebox.feature.search.domain.tmdbModels.tv.TVResponse
+import com.majorik.moviebox.feature.search.domain.tmdbModels.tv.TVsResponse
 import com.majorik.library.base.base.BaseRepository
 import com.majorik.library.base.models.results.ResultWrapper
 import kotlinx.coroutines.CoroutineDispatcher
@@ -33,7 +33,7 @@ internal class SearchRepository(private val api: SearchApiService) : BaseReposit
         region: String?,
         year: Int?,
         primaryReleaseYear: Int?
-    ): ResultWrapper<MovieResponse> {
+    ): ResultWrapper<MoviesResponse> {
         return safeApiCall(dispatcher) {
             api.searchMovies(
                 language,
@@ -52,7 +52,7 @@ internal class SearchRepository(private val api: SearchApiService) : BaseReposit
         query: String,
         page: Int?,
         firstAirDateYear: Int?
-    ): ResultWrapper<TVResponse> {
+    ): ResultWrapper<TVsResponse> {
         return safeApiCall(dispatcher) {
             api.searchTVSeries(language, query, page, firstAirDateYear)
         }

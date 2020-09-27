@@ -11,7 +11,6 @@ import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startActivityWithAnim
 import com.majorik.library.base.storage.CredentialsPrefsManager
-import com.majorik.library.base.utils.PACKAGE_NAME
 import kotlinx.android.synthetic.main.dialog_logout.view.*
 import org.koin.android.ext.android.inject
 

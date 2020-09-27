@@ -2,7 +2,7 @@ package com.majorik.moviebox.feature.search.domain.tmdbModels.movie
 
 import com.squareup.moshi.Json
 
-internal data class Movie(
+data class Movie(
     @field:Json(name = "poster_path") val posterPath: String?,
     @field:Json(name = "adult") val adult: Boolean,
     @field:Json(name = "overview") val overview: String,

@@ -15,7 +15,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import com.majorik.moviebox.feature.collections.R
 
-class TVCollectionsFragment(tvCollectionType: TVCollectionType) : Fragment(),
+class TVCollectionsFragment(tvCollectionType: TVCollectionType) :
+    Fragment(),
     PagingTVCollectionAdapter.OnClickListener {
     private val tvViewModel: TVCollectionsViewModel by viewModel { parametersOf(tvCollectionType) }
     private lateinit var adapter: PagingTVCollectionAdapter
@@ -46,13 +47,19 @@ class TVCollectionsFragment(tvCollectionType: TVCollectionType) : Fragment(),
     }
 
     private fun configureObservables() {
-        tvViewModel.networkState?.observe(viewLifecycleOwner, Observer {
-            adapter.updateNetworkState(it)
-        })
+        tvViewModel.networkState?.observe(
+            viewLifecycleOwner,
+            Observer {
+                adapter.updateNetworkState(it)
+            }
+        )
 
-        tvViewModel.tvResults.observe(viewLifecycleOwner, Observer {
-            adapter.submitList(it)
-        })
+        tvViewModel.tvResults.observe(
+            viewLifecycleOwner,
+            Observer {
+                adapter.submitList(it)
+            }
+        )
     }
 
     override fun onClickRetry() {

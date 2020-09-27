@@ -17,7 +17,8 @@ import kotlinx.android.synthetic.main.fragment_collection_page.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class MovieCollectionsFragment(collectionType: MovieCollectionType) : Fragment(),
+class MovieCollectionsFragment(collectionType: MovieCollectionType) :
+    Fragment(),
     PagingMovieCollectionAdapter.OnClickListener {
 
     private val movieViewModel: MovieCollectionsViewModel by viewModel {
@@ -52,13 +53,19 @@ class MovieCollectionsFragment(collectionType: MovieCollectionType) : Fragment()
     }
 
     private fun configureObservables() {
-        movieViewModel.networkState?.observe(viewLifecycleOwner, Observer {
-            adapter.updateNetworkState(it)
-        })
+        movieViewModel.networkState?.observe(
+            viewLifecycleOwner,
+            Observer {
+                adapter.updateNetworkState(it)
+            }
+        )
 
-        movieViewModel.movieResults.observe(viewLifecycleOwner, Observer {
-            adapter.submitList(it)
-        })
+        movieViewModel.movieResults.observe(
+            viewLifecycleOwner,
+            Observer {
+                adapter.submitList(it)
+            }
+        )
     }
 
     override fun onClickRetry() {

@@ -9,7 +9,7 @@ import com.majorik.moviebox.feature.details.domain.tmdbModels.request.RequestMar
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
- class AccountRepository(private val api: DetailsRetrofitService) : BaseRepository() {
+class AccountRepository(private val api: DetailsRetrofitService) : BaseRepository() {
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 
     suspend fun markIsFavorite(

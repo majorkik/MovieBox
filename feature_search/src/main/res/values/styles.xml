@@ -11,6 +11,21 @@
         <item name="android:layout_marginStart">16dp</item>
     </style>
 
+    <style name="Filters.SwitchCompatControlStyleDefault">
+        <item name="android:thumb">@drawable/thumb_switch</item>
+        <item name="track">@drawable/bg_switch_track</item>
+    </style>
+
+    <style name="Filters.SwitchCompatControlStyleNeutral">
+        <item name="android:thumb">@drawable/thumb_switch</item>
+        <item name="track">@drawable/bg_switch_neutral_track</item>
+    </style>
+
+    <style name="Filters.SwitchCompatControlStyleDefault.HeaderTextStyle" parent="Filters.HeaderTextStyle">
+        <item name="android:thumb">@drawable/thumb_switch</item>
+        <item name="track">@drawable/bg_switch_track</item>
+    </style>
+
     <style name="Filters.ChipChoiceStyle" parent="@style/Widget.MaterialComponents.Chip.Action">
         <item name="android:textAppearance">@style/Filters.ChipTextStyleAppearance</item>
         <item name="android:textColor">@color/selector_text_color_chip</item>
@@ -31,4 +46,8 @@
         <item name="colorControlNormal">@color/mine_shaft</item>
     </style>
 
+    <style name="AppTheme.ImageViewWithCorners_8">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
 </resources>

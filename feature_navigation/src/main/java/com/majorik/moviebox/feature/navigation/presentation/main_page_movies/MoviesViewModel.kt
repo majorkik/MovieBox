@@ -7,9 +7,6 @@ import com.majorik.moviebox.feature.navigation.data.repositories.MovieRepository
 import com.majorik.moviebox.feature.navigation.data.repositories.PersonRepository
 import com.majorik.moviebox.feature.navigation.data.repositories.TrendingRepository
 import com.majorik.moviebox.feature.navigation.data.repositories.YouTubeRepository
-import com.majorik.moviebox.feature.navigation.domain.tmdbModels.genre.Genre
-import com.majorik.moviebox.feature.navigation.domain.tmdbModels.movie.Movie
-import com.majorik.moviebox.feature.navigation.domain.tmdbModels.person.Person
 import com.majorik.moviebox.feature.navigation.domain.youtubeModels.SearchResponse
 import com.majorik.library.base.models.results.ResultWrapper
 import com.majorik.moviebox.BuildConfig
