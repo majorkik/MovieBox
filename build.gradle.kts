@@ -7,6 +7,7 @@ plugins {
     id(GradlePluginId.ANDROID_APPLICATION) version GradlePluginVersion.ANDROID_GRADLE apply false
     id(GradlePluginId.ANDROID_LIBRARY) version GradlePluginVersion.ANDROID_GRADLE apply false
     id(GradlePluginId.ANDROID_DYNAMIC_FEATURE) version GradlePluginVersion.ANDROID_GRADLE apply false
+    id(GradlePluginId.SAFE_ARGS) version GradlePluginVersion.SAFE_ARGS apply false
 }
 
 // all projects = root project + sub projects

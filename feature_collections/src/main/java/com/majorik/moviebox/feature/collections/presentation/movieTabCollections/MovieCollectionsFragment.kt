@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import com.majorik.library.base.extensions.toPx
+import com.majorik.library.base.extensions.px
 import com.majorik.library.base.utils.SpacingDecoration
 import com.majorik.moviebox.feature.collections.R
 import com.majorik.moviebox.feature.collections.domain.NetworkState
@@ -48,7 +48,7 @@ class MovieCollectionsFragment(collectionType: MovieCollectionType) :
 
     private fun configureRecyclerView() {
         adapter = PagingMovieCollectionAdapter(this)
-        grid_items.addItemDecoration(SpacingDecoration(16.toPx(), 16.toPx(), true))
+        grid_items.addItemDecoration(SpacingDecoration(16.px(), 16.px(), true))
         grid_items.adapter = ScaleInAnimationAdapter(adapter)
     }
 

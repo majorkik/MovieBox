@@ -7,7 +7,7 @@ import androidx.lifecycle.Observer
 import com.majorik.moviebox.feature.collections.domain.NetworkState
 import com.majorik.moviebox.feature.collections.domain.movie.TVCollectionType
 import com.majorik.moviebox.feature.collections.presentation.adapters.PagingTVCollectionAdapter
-import com.majorik.library.base.extensions.toPx
+import com.majorik.library.base.extensions.px
 import com.majorik.library.base.utils.SpacingDecoration
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.fragment_collection_page.*
@@ -42,7 +42,7 @@ class TVCollectionsFragment(tvCollectionType: TVCollectionType) :
 
     private fun configureRecyclerView() {
         adapter = PagingTVCollectionAdapter(this)
-        grid_items.addItemDecoration(SpacingDecoration(16.toPx(), 16.toPx(), true))
+        grid_items.addItemDecoration(SpacingDecoration(16.px(), 16.px(), true))
         grid_items.adapter = ScaleInAnimationAdapter(adapter)
     }
 

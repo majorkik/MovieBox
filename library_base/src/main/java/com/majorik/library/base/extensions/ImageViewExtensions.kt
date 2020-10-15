@@ -42,7 +42,7 @@ fun ImageView.setGrayscaleTransformation() {
 }
 
 fun ImageView.setCorners(sizeDp: Int) {
-    val curveRadius = sizeDp.toPx()
+    val curveRadius = sizeDp.px()
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
         this.outlineProvider = object : ViewOutlineProvider() {

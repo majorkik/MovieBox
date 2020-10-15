@@ -13,7 +13,7 @@ import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startActivityWithAnim
 import com.majorik.moviebox.feature.navigation.databinding.ItemPersonProfileCardBinding
 
-class PersonAdapter : RecyclerView.Adapter<PersonAdapter.PersonViewHolder>() {
+class PersonAdapter() : RecyclerView.Adapter<PersonAdapter.PersonViewHolder>() {
 
     private var people: List<Person> = emptyList()
 

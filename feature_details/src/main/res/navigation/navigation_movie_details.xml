@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:moduleName="feature_details"
+    app:startDestination="@id/nav_movie_details">
+
+    <dialog
+        android:id="@+id/nav_movie_details"
+        android:name="com.majorik.moviebox.feature.details.presentation.movieDetails.MovieDetailsFragment"
+        app:moduleName="feature_details"
+        tools:layout="@layout/fragment_movie_details">
+
+        <argument
+            android:name="id"
+            android:defaultValue="0"
+            app:argType="integer"
+            app:nullable="false" />
+    </dialog>
+</navigation>

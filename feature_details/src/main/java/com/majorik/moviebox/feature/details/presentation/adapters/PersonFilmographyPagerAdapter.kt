@@ -11,7 +11,7 @@ import com.majorik.moviebox.feature.details.domain.tmdbModels.cast.TVCast
 import com.majorik.moviebox.feature.details.presentation.adapters.PersonFilmographyPagerAdapter.PageViewHolder
 import com.majorik.moviebox.feature.details.presentation.adapters.movie.MovieCreditsAdapter
 import com.majorik.moviebox.feature.details.presentation.adapters.tv.TVCreditsAdapter
-import com.majorik.library.base.extensions.toPx
+import com.majorik.library.base.extensions.px
 import com.majorik.library.base.utils.SpacingDecoration
 import kotlinx.android.synthetic.main.item_filmography_details.view.*
 
@@ -54,7 +54,7 @@ class PersonFilmographyPagerAdapter(
     }
 
     class PageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val itemDecoration = SpacingDecoration(16.toPx(), 16.toPx(), true)
+        private val itemDecoration = SpacingDecoration(16.px(), 16.px(), true)
 
         fun bindMovies(
             spanCount: Int,

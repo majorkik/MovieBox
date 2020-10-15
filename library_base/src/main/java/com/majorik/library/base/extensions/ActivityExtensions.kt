@@ -13,6 +13,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentActivity
 import com.majorik.base.R
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.utils.FontSpan
@@ -24,6 +26,18 @@ import java.util.*
 fun AppCompatActivity.setWindowTransparency(listener: OnSystemInsetsChangedListener = { _, _ -> }) {
     InsetUtil.removeSystemInsets(window.decorView, listener)
     window.statusBarColor = Color.TRANSPARENT
+}
+
+fun FragmentActivity.setWindowTransparency(listener: OnSystemInsetsChangedListener = { _, _ -> }) {
+    InsetUtil.removeSystemInsets(window.decorView, listener)
+    window.statusBarColor = Color.TRANSPARENT
+}
+
+fun DialogFragment.setWindowTransparency(listener: OnSystemInsetsChangedListener = { _, _ -> }) {
+    if (dialog?.window == null) return
+
+    InsetUtil.removeSystemInsets(dialog?.window!!.decorView, listener)
+    dialog?.window!!.statusBarColor = Color.TRANSPARENT
 }
 
 fun Context.startActivityWithAnim(
@@ -73,7 +87,7 @@ fun Context.startActivityWithAnim(
     (this as? AppCompatActivity)?.overridePendingTransition(animIn, animOut)
 }
 
-fun AppCompatActivity.showToastMessage(message: String) {
+fun Context.showToastMessage(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_LONG).show()
 }
 

@@ -1,20 +1,16 @@
 package com.majorik.moviebox.feature.navigation.presentation.adapters
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.majorik.library.base.constants.BaseIntentKeys
-import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.extensions.displayImageWithCenterCrop
 import com.majorik.library.base.extensions.setSafeOnClickListener
-import com.majorik.library.base.extensions.startActivityWithAnim
 import com.majorik.moviebox.feature.navigation.databinding.ItemSmallPosterCardBinding
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.movie.Movie
 import com.majorik.moviebox.feature.navigation.presentation.adapters.MovieCollectionAdapter.MovieViewHolder
 
-class MovieCollectionAdapter : RecyclerView.Adapter<MovieViewHolder>() {
+class MovieCollectionAdapter(private val clickAction: (id: Int) -> Unit) : RecyclerView.Adapter<MovieViewHolder>() {
 
     private var movies: List<Movie> = emptyList()
 
@@ -30,7 +26,13 @@ class MovieCollectionAdapter : RecyclerView.Adapter<MovieViewHolder>() {
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         holder.bindTo(movies[position])
+
+        holder.viewBinding.collectionCard.setSafeOnClickListener {
+            clickAction(movies[position].id)
+        }
     }
+
+    override fun getItemId(position: Int): Long = movies[position].id.toLong()
 
     fun addItems(items: List<Movie>) {
         val startPosition = movies.size
@@ -38,27 +40,14 @@ class MovieCollectionAdapter : RecyclerView.Adapter<MovieViewHolder>() {
         notifyItemRangeInserted(startPosition, items.size)
     }
 
-    override fun getItemId(position: Int): Long {
-        return movies[position].id.toLong()
-    }
+    class MovieViewHolder(val viewBinding: ItemSmallPosterCardBinding) : RecyclerView.ViewHolder(viewBinding.root) {
 
-    class MovieViewHolder(private val parent: ItemSmallPosterCardBinding) :
-        RecyclerView.ViewHolder(parent.root) {
         fun bindTo(movie: Movie) {
-            parent.placeholderText.text = movie.title
+            viewBinding.placeholderText.text = movie.title
 
-            parent.collectionImage.displayImageWithCenterCrop(
+            viewBinding.collectionImage.displayImageWithCenterCrop(
                 UrlConstants.TMDB_POSTER_SIZE_185 + movie.posterPath
             )
-
-            parent.collectionCard.setSafeOnClickListener {
-                parent.root.context.startActivityWithAnim(
-                    ScreenLinks.movieDetails,
-                    Intent().apply {
-                        putExtra(BaseIntentKeys.ITEM_ID, movie.id)
-                    }
-                )
-            }
         }
     }
 }

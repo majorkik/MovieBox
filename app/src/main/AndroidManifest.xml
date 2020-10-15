@@ -41,7 +41,7 @@
             android:name=".ui.MainActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/AppTheme.Transparent.NoActionBar"
             tools:ignore="LockedOrientationActivity" />
     </application>
 

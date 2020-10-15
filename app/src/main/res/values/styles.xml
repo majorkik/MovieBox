@@ -189,9 +189,22 @@
 
     <style name="Widget.AppTheme.BottomSheet" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
         <item name="android:windowIsFloating">false</item> <!-- This is important -->
-        <item name="android:statusBarColor">@color/transparent</item> <!-- And then this will be needed -->
+        <item name="android:statusBarColor">@color/transparent
+        </item> <!-- And then this will be needed -->
         <item name="android:navigationBarColor">@color/colorWhite</item>
         <item name="android:colorBackground">@color/colorWhite</item>
     </style>
 
+    <style name="AppTheme.DialogFragmentTransparentStyle">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
 </resources>

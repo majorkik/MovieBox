@@ -151,7 +151,7 @@ fun DiscoverFiltersModel.getFiltersMapForTVs(): Map<String, String> {
     if (minYear != null && maxYear == null) {
         minYear?.let { mapFilters[FIRST_AIR_DATE_YEAR] = it.toString() }
     } else {
-        minYear?.let { mapFilters["$AIR_DATE.$TYPE_GTE"] = "$it-01-01"  }
+        minYear?.let { mapFilters["$AIR_DATE.$TYPE_GTE"] = "$it-01-01" }
         maxYear?.let { mapFilters["$AIR_DATE.$TYPE_LTE"] = "$it-12-31" }
     }
 

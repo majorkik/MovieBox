@@ -38,7 +38,16 @@ class MovieBoxApplication : Application() {
     }
 
     override fun attachBaseContext(base: Context) {
+        attachLocaleToBaseContext(base)
 
+        super.attachBaseContext(base)
+
+        SplitCompat.install(this)
+
+        MultiDex.install(this)
+    }
+
+    private fun attachLocaleToBaseContext(base: Context) {
         val locale: Locale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             base.resources.configuration.locales.get(0) ?: Locale.ENGLISH
         } else {
@@ -46,11 +55,5 @@ class MovieBoxApplication : Application() {
         }
 
         localizationDelegate.setDefaultLanguage(base, locale)
-
-        super.attachBaseContext(base)
-
-        SplitCompat.install(this)
-
-        MultiDex.install(this)
     }
 }

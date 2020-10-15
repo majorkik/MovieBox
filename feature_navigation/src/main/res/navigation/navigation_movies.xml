@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@+id/nav_movies"
+    tools:ignore="UnusedNavigation">
+
+    <fragment
+        android:id="@+id/nav_movies"
+        android:name="com.majorik.moviebox.feature.navigation.presentation.main_page_movies.MoviesFragment"
+        android:label="@string/title_nav_movies">
+
+        <action
+            android:id="@+id/action_nav_movies_to_nav_details"
+            app:destination="@id/nav_movie_details">
+
+            <argument
+                android:name="id"
+                android:defaultValue="0"
+                app:argType="integer"
+                app:nullable="false" />
+        </action>
+    </fragment>
+
+    <include-dynamic
+        android:id="@+id/nav_movie_details"
+        app:graphPackage="com.majorik.moviebox.feature_details"
+        app:graphResName="navigation_movie_details"
+        app:moduleName="feature_details" />
+
+    <!--    <include-dynamic-->
+    <!--        android:id="@+id/nav_movie_details_test"-->
+    <!--        android:name="com.majorik.moviebox.feature.details.presentation.movieDetails.MovieDetailsActivity"-->
+    <!--        app:moduleName="feature_details"-->
+    <!--        app:graphResName="navigation_movie_details"-->
+    <!--        tools:layout="@layout/activity_movie_details">-->
+
+    <!--    </include-dynamic>-->
+</navigation>

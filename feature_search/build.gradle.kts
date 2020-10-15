@@ -3,6 +3,7 @@ plugins {
     id(GradlePluginId.KOTLIN_ANDROID)
     id(GradlePluginId.KOTLIN_ANDROID_EXTENSIONS)
     id("kotlin-android")
+    id(GradlePluginId.SAFE_ARGS)
 }
 
 android {

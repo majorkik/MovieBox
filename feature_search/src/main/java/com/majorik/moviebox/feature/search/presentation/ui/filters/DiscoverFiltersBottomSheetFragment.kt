@@ -74,14 +74,11 @@ class DiscoverFiltersBottomSheetFragment : BottomSheetDialogFragment() {
     }
 
     private fun setObservers() {
-        viewModel.movieGenresLiveData.observe(
-            viewLifecycleOwner,
-            androidx.lifecycle.Observer {
-                getDiscoverType().isMoviesTypeWithAction { // Если выбран тип - Фильмы
-                    addGenresBlock(it.genres)
-                }
+        viewModel.movieGenresLiveData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            getDiscoverType().isMoviesTypeWithAction { // Если выбран тип - Фильмы
+                addGenresBlock(it.genres)
             }
-        )
+        })
 
         viewModel.tvGenresLiveData.observe(
             viewLifecycleOwner,
@@ -259,7 +256,7 @@ class DiscoverFiltersBottomSheetFragment : BottomSheetDialogFragment() {
             }
 
             ReleaseDateType.BETWEEN_DATES -> {
-                displayreleaseDateRange()
+                displayReleaseDateRange()
             }
 
             ReleaseDateType.ONE_YEAR -> {
@@ -288,7 +285,7 @@ class DiscoverFiltersBottomSheetFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private fun displayreleaseDateRange() {
+    private fun displayReleaseDateRange() {
         viewBinding.apply {
             releaseDateChipGroup.setVisibilityOption(false)
             releaseDateRange.setVisibilityOption(true)

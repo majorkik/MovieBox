@@ -5,7 +5,7 @@ object GradlePluginVersion {
     //    const val DETEKT = "1.4.0"
     const val GRADLE_VERSION_PLUGIN = "0.28.0"
     const val KOTLIN = CoreVersion.KOTLIN
-//    const val SAFE_ARGS = CoreVersion.NAVIGATION
+    const val SAFE_ARGS = "2.3.0"
 }
 
 object GradlePluginId {
@@ -18,7 +18,7 @@ object GradlePluginId {
     const val KOTLIN_ANDROID = "org.jetbrains.kotlin.android"
     const val KOTLIN_ANDROID_EXTENSIONS = "org.jetbrains.kotlin.android.extensions"
     const val GRADLE_VERSION_PLUGIN = "com.github.ben-manes.versions"
-//    const val SAFE_ARGS = "androidx.navigation.safeargs.kotlin"
+    const val SAFE_ARGS = "androidx.navigation.safeargs.kotlin"
 }
 
 object GradleOldWayPlugins {

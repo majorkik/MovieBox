@@ -7,6 +7,7 @@ import androidx.core.util.isEmpty
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.majorik.library.base.constants.AppConfig
 import com.majorik.library.base.constants.GenresConstants
@@ -40,13 +41,13 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
      * Adapters
      */
 
-    private val nowPlayingMoviesAdapter = MovieCollectionAdapter()
-    private val upcomingMoviesAdapter = MovieDateCardAdapter()
+    private val nowPlayingMoviesAdapter = MovieCollectionAdapter(::actionClickMovie)
+    private val upcomingMoviesAdapter = MovieDateCardAdapter(::actionClickMovie)
     private val trailersAdapter = TrailersAdapter()
     private val peopleAdapter = PersonAdapter()
-    private val popularMoviesAdapter = MovieCardAdapter()
+    private val popularMoviesAdapter = MovieCardAdapter(::actionClickMovie)
     private val genresAdapter = GenreAdapter()
-    private val trendingMovieAdapter = MovieTrendAdapter()
+    private val trendingMovieAdapter = MovieTrendAdapter(::actionClickMovie)
 
     /**
      * Default methods
@@ -84,7 +85,7 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
     private fun initAdapters() {
         lifecycleScope.launchWhenCreated {
-            viewBinding.vpPopularMovies.setShowSideItems(16.toPx(), 16.toPx())
+            viewBinding.vpPopularMovies.setShowSideItems(16.px(), 16.px())
             viewBinding.vpPopularMovies.adapter = popularMoviesAdapter
 
             viewBinding.rvNowPlayingMovies.setAdapterWithFixedSize(
@@ -123,17 +124,11 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
     private fun fetchData() {
         viewModel.run {
             fetchPopularMovies(AppConfig.REGION, 1, "")
-
             fetchNowPlayingMovies(AppConfig.REGION, 1, "RU")
-
             fetchTrendingMovies(TimeWindow.WEEK, 1, AppConfig.REGION)
-
             fetchUpcomingMovies(AppConfig.REGION, 1, "RU")
-
             fetchMovieGenres(AppConfig.REGION)
-
             searchYouTubeVideosByChannel()
-
             fetchPopularPeoples(AppConfig.REGION, 1)
         }
     }
@@ -141,7 +136,7 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
     private fun setClickListeners() {
         viewBinding.apply {
             btnSearch.setOnClickListener {
-                context?.startActivityWithAnim(ScreenLinks.searchableActivity)
+                findNavController().navigate(MoviesFragmentDirections.actionNavMoviesToNavDetails(458888))
             }
 
             btnPopularMovies.setOnClickListener { openNewActivityWithTab(ScreenLinks.movieCollection, POPULAR) }
@@ -236,17 +231,19 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
     }
 
     /**
+     * Actions
+     */
+
+    private fun actionClickMovie(id: Int) {
+        findNavController().navigate(MoviesFragmentDirections.actionNavMoviesToNavDetails(id))
+    }
+
+    /**
      * Setters
      */
 
     private fun setPopularMovies(result: ResultWrapper<MovieResponse>) {
         when (result) {
-            is ResultWrapper.GenericError -> {
-            }
-
-            is ResultWrapper.NetworkError -> {
-            }
-
             is ResultWrapper.Success -> {
                 popularMoviesAdapter.addItems(result.value.results)
             }
@@ -255,12 +252,6 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
     private fun setNowPlayingMovies(result: ResultWrapper<MovieResponse>?) {
         when (result) {
-            is ResultWrapper.GenericError -> {
-            }
-
-            is ResultWrapper.NetworkError -> {
-            }
-
             is ResultWrapper.Success -> {
                 nowPlayingMoviesAdapter.addItems(result.value.results)
             }
@@ -269,12 +260,6 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
     private fun setTrendingMovies(result: ResultWrapper<MovieResponse>?) {
         when (result) {
-            is ResultWrapper.GenericError -> {
-            }
-
-            is ResultWrapper.NetworkError -> {
-            }
-
             is ResultWrapper.Success -> {
                 if (GenresStorageObject.movieGenres.isEmpty()) {
                     GenresConstants.movieGenres.forEach {
@@ -289,12 +274,6 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
     private fun setUpcomingMovies(result: ResultWrapper<MovieResponse>) {
         when (result) {
-            is ResultWrapper.GenericError -> {
-            }
-
-            is ResultWrapper.NetworkError -> {
-            }
-
             is ResultWrapper.Success -> {
                 val items = result.value.results.sortedBy { it.releaseDate?.toDate()?.utc?.unixMillisLong ?: 0L }
 
@@ -305,12 +284,6 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
     private fun setMovieGenres(result: ResultWrapper<GenreResponse>?) {
         when (result) {
-            is ResultWrapper.GenericError -> {
-            }
-
-            is ResultWrapper.NetworkError -> {
-            }
-
             is ResultWrapper.Success -> {
                 if (GenresStorageObject.movieGenres.isEmpty()) {
                     result.value.genres.map { genre ->
@@ -328,12 +301,6 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
     private fun setTrailers(result: ResultWrapper<SearchResponse>?) {
         when (result) {
-            is ResultWrapper.GenericError -> {
-            }
-
-            is ResultWrapper.NetworkError -> {
-            }
-
             is ResultWrapper.Success -> {
                 trailersAdapter.addItems(result.value.items)
             }
@@ -342,12 +309,6 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
     private fun setPopularPeoples(result: ResultWrapper<PersonResponse>?) {
         when (result) {
-            is ResultWrapper.GenericError -> {
-            }
-
-            is ResultWrapper.NetworkError -> {
-            }
-
             is ResultWrapper.Success -> {
                 peopleAdapter.addItems(result.value.results)
             }

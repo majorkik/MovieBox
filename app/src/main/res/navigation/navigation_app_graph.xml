@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:startDestination="@id/navigation_movies"
+    android:id="@+id/navigation_app_graph">
+
+    <include-dynamic
+        android:id="@+id/navigation_movies"
+        app:graphPackage="com.majorik.moviebox.feature_navigation"
+        app:graphResName="navigation_movies"
+        app:moduleName="feature_navigation" />
+
+    <include-dynamic
+        android:id="@+id/navigation_tvs"
+        app:graphPackage="com.majorik.moviebox.feature_navigation"
+        app:graphResName="navigation_tvs"
+        app:moduleName="feature_navigation" />
+
+    <include-dynamic
+        android:id="@+id/navigation_discover"
+        app:graphPackage="com.majorik.moviebox.feature_navigation"
+        app:graphResName="navigation_discover"
+        app:moduleName="feature_navigation" />
+
+    <include-dynamic
+        android:id="@+id/navigation_profile"
+        app:graphPackage="com.majorik.moviebox.feature_navigation"
+        app:graphResName="navigation_profile"
+        app:moduleName="feature_navigation" />
+</navigation>

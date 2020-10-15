@@ -1,21 +1,17 @@
 package com.majorik.moviebox.feature.navigation.presentation.adapters
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.majorik.library.base.constants.BaseIntentKeys
-import com.majorik.library.base.constants.ScreenLinks
-import com.majorik.moviebox.feature.navigation.domain.tmdbModels.movie.Movie
 import com.majorik.library.base.extensions.setSafeOnClickListener
-import com.majorik.library.base.extensions.startActivityWithAnim
 import com.majorik.library.base.extensions.toDate
 import com.majorik.library.base.utils.GenresStorageObject
 import com.majorik.moviebox.feature.navigation.databinding.ItemTrendCardWithTitleBinding
 import com.majorik.moviebox.feature.navigation.databinding.ItemTrendLastItemCardBinding
+import com.majorik.moviebox.feature.navigation.domain.tmdbModels.movie.Movie
 import kotlin.math.roundToInt
 
-class MovieTrendAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MovieTrendAdapter(private val clickAction: (id: Int) -> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     enum class TrendViewType {
         ITEM, LAST_ITEM
@@ -68,13 +64,8 @@ class MovieTrendAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             is MovieTrendViewHolder -> {
                 holder.bindTo(movies[position])
 
-                holder.parent.root.setSafeOnClickListener {
-                    holder.itemView.context.startActivityWithAnim(
-                        ScreenLinks.movieDetails,
-                        Intent().apply {
-                            putExtra(BaseIntentKeys.ITEM_ID, movies[position].id)
-                        }
-                    )
+                holder.viewBinding.root.setSafeOnClickListener {
+                    clickAction(movies[position].id)
                 }
             }
 
@@ -85,18 +76,18 @@ class MovieTrendAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    class MovieTrendViewHolder(val parent: ItemTrendCardWithTitleBinding) :
-        RecyclerView.ViewHolder(parent.root) {
+    class MovieTrendViewHolder(val viewBinding: ItemTrendCardWithTitleBinding) :
+        RecyclerView.ViewHolder(viewBinding.root) {
         fun bindTo(movie: Movie) {
-            parent.mTrendTitle.text = movie.title
+            viewBinding.mTrendTitle.text = movie.title
 
-            parent.mTrendYear.text = movie.releaseDate?.toDate()?.yearInt?.toString() ?: ""
-            parent.mTrendGenres.text =
+            viewBinding.mTrendYear.text = movie.releaseDate?.toDate()?.yearInt?.toString() ?: ""
+            viewBinding.mTrendGenres.text =
                 movie.genreIds.map { GenresStorageObject.movieGenres.get(it) }
                     .take(2)
                     .joinToString(" - ") { it ?: "" }
 
-            parent.mTrendRating.text = "${(movie.voteAverage * 10).roundToInt()}%"
+            viewBinding.mTrendRating.text = "${(movie.voteAverage * 10).roundToInt()}%"
         }
     }
 

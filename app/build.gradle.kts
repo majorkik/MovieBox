@@ -6,6 +6,7 @@ plugins {
     id(GradlePluginId.KOTLIN_ANDROID)
     id(GradlePluginId.KOTLIN_ANDROID_EXTENSIONS)
     id(GradlePluginId.KTLINT_GRADLE)
+    id(GradlePluginId.SAFE_ARGS)
     id("kotlin-android")
     id("kotlin-android-extensions")
 }

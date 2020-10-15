@@ -66,7 +66,7 @@ class TVsFragment : Fragment(R.layout.fragment_tvs) {
 
     private fun initAdapters() {
         lifecycleScope.launchWhenCreated {
-            viewBinding.vpPopularTvs.setShowSideItems(16.toPx(), 16.toPx())
+            viewBinding.vpPopularTvs.setShowSideItems(16.px(), 16.px())
             viewBinding.vpPopularTvs.adapter = ScaleInAnimationAdapter(popularTVsAdapter)
 
             viewBinding.rvAirTodayTvs.setAdapterWithFixedSize(

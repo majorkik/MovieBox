@@ -9,7 +9,7 @@ import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.moviebox.feature.navigation.databinding.ItemTrailerSmallCardBinding
 import com.majorik.moviebox.feature.navigation.domain.youtubeModels.SearchResponse
 
-class TrailersAdapter : RecyclerView.Adapter<TrailersAdapter.TrailerViewHolder>() {
+class TrailersAdapter() : RecyclerView.Adapter<TrailersAdapter.TrailerViewHolder>() {
 
     private var items: List<SearchResponse.Item> = emptyList()
 

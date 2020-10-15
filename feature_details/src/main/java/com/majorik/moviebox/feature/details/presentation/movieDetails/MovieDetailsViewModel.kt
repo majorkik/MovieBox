@@ -11,12 +11,17 @@ import com.majorik.moviebox.feature.details.domain.tmdbModels.request.RequestMar
 import com.majorik.moviebox.feature.details.data.repositories.AccountRepository
 import com.majorik.moviebox.feature.details.data.repositories.MovieRepository
 import com.majorik.library.base.models.results.ResultWrapper
+import com.majorik.library.base.storage.CredentialsPrefsManager
 import kotlinx.coroutines.launch
 
 class MovieDetailsViewModel(
     private val movieRepository: MovieRepository,
-    private val accountRepository: AccountRepository
+    private val accountRepository: AccountRepository,
+    private val credentialsManager: CredentialsPrefsManager
 ) : ViewModel() {
+
+    private val tmdbSessionId = credentialsManager.getTmdbSessionID() ?: ""
+
     var movieDetailsLiveData = MutableLiveData<MovieDetails>()
     var movieStatesLiveData = MutableLiveData<AccountStates?>()
     var responseFavoriteLiveData = MutableLiveData<ApiResponse>()
@@ -44,10 +49,14 @@ class MovieDetailsViewModel(
         }
     }
 
-    fun fetchAccountStateForMovie(movieId: Int, sessionId: String) {
+    fun fetchAccountStateForMovie(movieId: Int) {
         viewModelScope.launch {
             val response =
-                movieRepository.getAccountStatesForMovie(movieId, sessionId, guestSessionId = null)
+                movieRepository.getAccountStatesForMovie(
+                    movieId,
+                    tmdbSessionId,
+                    guestSessionId = null
+                )
 
             when (response) {
                 is ResultWrapper.NetworkError -> {
@@ -61,10 +70,11 @@ class MovieDetailsViewModel(
         }
     }
 
-    fun markMovieIsFavorite(mediaId: Int, state: Boolean, sessionId: String) {
+    fun markMovieIsFavorite(mediaId: Int, state: Boolean) {
         viewModelScope.launch {
             val requestMarkAsFavorite = RequestMarkAsFavorite("movie", mediaId, state)
-            val response = accountRepository.markIsFavorite(requestMarkAsFavorite, sessionId)
+            val response =
+                accountRepository.markIsFavorite(requestMarkAsFavorite, tmdbSessionId)
 
             when (response) {
                 is ResultWrapper.NetworkError -> {
@@ -78,11 +88,14 @@ class MovieDetailsViewModel(
         }
     }
 
-    fun addMovieToWatchlist(mediaId: Int, state: Boolean, sessionId: String) {
+    fun addMovieToWatchlist(mediaId: Int, state: Boolean) {
         viewModelScope.launch {
             val requestAddToWatchlist = RequestAddToWatchlist("movie", mediaId, state)
 
-            when (val response = accountRepository.addToWatchlist(requestAddToWatchlist, sessionId)) {
+            when (
+                val response =
+                    accountRepository.addToWatchlist(requestAddToWatchlist, tmdbSessionId)
+            ) {
                 is ResultWrapper.NetworkError -> {
                 }
                 is ResultWrapper.GenericError -> {

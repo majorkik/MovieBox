@@ -6,13 +6,12 @@ import android.view.MenuItem
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentResultListener
-import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.majorik.library.base.base.BaseSlidingActivity
 import com.majorik.library.base.extensions.setWindowTransparency
-import com.majorik.library.base.extensions.toPx
+import com.majorik.library.base.extensions.px
 import com.majorik.library.base.extensions.updateMargin
 import com.majorik.library.base.utils.SpacingDecoration
 import com.majorik.moviebox.feature.search.R
@@ -118,7 +117,7 @@ class DiscoverActivity : BaseSlidingActivity() {
     private fun configAdapters() {
         viewBinding.discoverList.setHasFixedSize(true)
         viewBinding.discoverList.adapter = discoverAdapter
-        viewBinding.discoverList.addItemDecoration(SpacingDecoration(16.toPx(), 16.toPx(), true))
+        viewBinding.discoverList.addItemDecoration(SpacingDecoration(16.px(), 16.px(), true))
     }
 
     private fun openFiltersDialog() {

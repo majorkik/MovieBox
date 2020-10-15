@@ -1,16 +1,19 @@
 package com.majorik.moviebox.feature.details.presentation.movieDetails
 
 import android.os.Bundle
-import android.view.Menu
 import android.view.View
+import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.majorik.library.base.base.BaseSlidingActivity
 import com.majorik.library.base.constants.AppConfig
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.extensions.*
-import com.majorik.library.base.storage.CredentialsPrefsManager
+import com.majorik.library.base.view.PullDownLayout
 import com.majorik.moviebox.feature.details.R
+import com.majorik.moviebox.feature.details.databinding.FragmentMovieDetailsBinding
 import com.majorik.moviebox.feature.details.domain.tmdbModels.account.AccountStates
 import com.majorik.moviebox.feature.details.domain.tmdbModels.cast.Cast
 import com.majorik.moviebox.feature.details.domain.tmdbModels.genre.Genre
@@ -23,76 +26,58 @@ import com.majorik.moviebox.feature.details.presentation.adapters.ImageSliderAda
 import com.majorik.moviebox.feature.details.presentation.watch_online.WatchOnlineDialog
 import com.soywiz.klock.KlockLocale
 import com.stfalcon.imageviewer.StfalconImageViewer
-import kotlinx.android.synthetic.main.activity_movie_details.*
+import kotlinx.android.synthetic.main.activity_tv_details.*
+import kotlinx.android.synthetic.main.fragment_movie_details.*
+import kotlinx.android.synthetic.main.fragment_movie_details.bottom_bar
+import kotlinx.android.synthetic.main.fragment_movie_details.btn_extra_menu
 import kotlinx.android.synthetic.main.layout_movie_details.*
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.DecimalFormat
 import java.util.*
 import kotlin.math.floor
+import com.majorik.moviebox.R as AppRes
 
-class MovieDetailsActivity : BaseSlidingActivity() {
+class MovieDetailsFragment : DialogFragment(R.layout.fragment_movie_details), PullDownLayout.Callback {
+    private val viewBinding: FragmentMovieDetailsBinding by viewBinding()
+
     private val movieDetailsViewModel: MovieDetailsViewModel by viewModel()
-    private val sharedPrefs: CredentialsPrefsManager by inject()
 
     private var movieState: AccountStates? = null
 
-    override fun getRootView(): View = window.decorView.rootView
+    private val args: MovieDetailsFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_movie_details)
+
+        setStyle(STYLE_NORMAL, AppRes.style.AppTheme_DialogFragmentTransparentStyle)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewBinding.root.setCallback(this)
 
         setWindowTransparency(::updateMargins)
 
-        setSupportActionBar(md_toolbar)
-
-        supportActionBar?.run {
-            setDisplayUseLogoEnabled(true)
-            setDisplayShowTitleEnabled(false)
-        }
-
-        fetchDetails(intent.extras)
+        fetchDetails()
         setClickListeners()
         setObserver()
     }
 
     private fun updateMargins(statusBarSize: Int, navigationBarSize: Int) {
-        bottom_bar.updateMargin(bottom = navigationBarSize)
-        md_toolbar.updateMargin(top = statusBarSize)
+        viewBinding.bottomBar.updateMargin(bottom = navigationBarSize)
+        images_block.updateMargin(bottom = navigationBarSize)
     }
 
-    override fun onSlidingFinished() {}
+    private fun fetchDetails() {
+        movieDetailsViewModel.fetchMovieDetails(
+            args.id,
+            AppConfig.REGION,
+            "images,credits,videos",
+            "ru,en,null"
+        )
 
-    override fun onSlidingStarted() {}
-
-    override fun canSlideDown() =
-        BottomSheetBehavior.from(md_bottom_sheet).state == BottomSheetBehavior.STATE_COLLAPSED
-
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.details_page_menu, menu)
-        return true
-    }
-
-    private fun fetchDetails(extras: Bundle?) {
-        if (extras != null) {
-            movieDetailsViewModel.fetchMovieDetails(
-                extras.getInt("id"),
-                AppConfig.REGION,
-                "images,credits,videos",
-                "ru,en,null"
-            )
-
-            movieDetailsViewModel.fetchAccountStateForMovie(
-                extras.getInt("id"),
-                sharedPrefs.getTmdbSessionID() ?: ""
-            )
-        }
+        movieDetailsViewModel.fetchAccountStateForMovie(args.id)
     }
 
     private fun setObserver() {
@@ -121,9 +106,9 @@ class MovieDetailsActivity : BaseSlidingActivity() {
             this,
             Observer {
                 if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
-                    showToastMessage("Фильм успешно добавлен в избранное")
+                    context?.showToastMessage("Фильм успешно добавлен в избранное")
                 } else {
-                    showToastMessage("Неудалось добавить фильм в избранное")
+                    context?.showToastMessage("Неудалось добавить фильм в избранное")
                 }
             }
         )
@@ -132,9 +117,9 @@ class MovieDetailsActivity : BaseSlidingActivity() {
             this,
             Observer {
                 if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
-                    showToastMessage("Фильм успешно добавлен в 'Буду смотреть'")
+                    context?.showToastMessage("Фильм успешно добавлен в 'Буду смотреть'")
                 } else {
-                    showToastMessage("Неудалось добавить фильм в 'Буду смотреть'")
+                    context?.showToastMessage("Неудалось добавить фильм в 'Буду смотреть'")
                 }
             }
         )
@@ -172,21 +157,13 @@ class MovieDetailsActivity : BaseSlidingActivity() {
     private fun setClickListeners() {
         toggle_favorite.setOnClickListener {
             movieState?.let {
-                movieDetailsViewModel.markMovieIsFavorite(
-                    it.id,
-                    !it.favorite,
-                    sharedPrefs.getTmdbSessionID() ?: ""
-                )
+                movieDetailsViewModel.markMovieIsFavorite(it.id, !it.favorite)
             }
         }
 
         toggle_watchlist.setOnClickListener {
             movieState?.let {
-                movieDetailsViewModel.addMovieToWatchlist(
-                    it.id,
-                    !it.watchlist,
-                    sharedPrefs.getTmdbSessionID() ?: ""
-                )
+                movieDetailsViewModel.addMovieToWatchlist(it.id, !it.watchlist)
             }
         }
 
@@ -201,17 +178,17 @@ class MovieDetailsActivity : BaseSlidingActivity() {
 
     private fun openWatchOnlineDialog() {
         val watchOnlineDialog = WatchOnlineDialog()
-        watchOnlineDialog.show(supportFragmentManager, "watch_online_dialog")
+        watchOnlineDialog.show(childFragmentManager, "watch_online_dialog")
     }
 
     private fun openExtraMenuDialog() {
         val extraMenuBottomDialog = MovieExtraMenuBottomDialog()
-        extraMenuBottomDialog.show(supportFragmentManager, "extra_menu_dialog")
+        extraMenuBottomDialog.show(childFragmentManager, "extra_menu_dialog")
     }
 
     private fun setClickListenerForImages(images: Images) {
         m_backdrop_image.setOnClickListener {
-            StfalconImageViewer.Builder(this, images.backdrops.map { it.filePath }) { view, image ->
+            StfalconImageViewer.Builder(requireContext(), images.backdrops.map { it.filePath }) { view, image ->
                 view.displayImageWithCenterInside(UrlConstants.TMDB_BACKDROP_SIZE_1280 + image)
             }.withOverlayView(
                 layoutInflater.inflate(
@@ -224,7 +201,7 @@ class MovieDetailsActivity : BaseSlidingActivity() {
         }
 
         m_poster_image.setOnClickListener {
-            StfalconImageViewer.Builder(this, images.posters.map { it.filePath }) { view, image ->
+            StfalconImageViewer.Builder(requireContext(), images.posters.map { it.filePath }) { view, image ->
                 view.displayImageWithCenterInside(UrlConstants.TMDB_BACKDROP_SIZE_1280 + image)
             }.withHiddenStatusBar(false).show()
         }
@@ -244,39 +221,46 @@ class MovieDetailsActivity : BaseSlidingActivity() {
     ) {
         m_title.text = title
         m_vote_average.text = voteAverage.toString()
-        m_status.text = combineString(getString(R.string.details_status), status)
+        m_status.text = context?.combineString(getString(R.string.details_status), status)
         vote_average_indicator.setIndicatorColor(voteAverage)
 
         setGenres(genres, releaseDate)
     }
 
     private fun setCompanies(productionCompanies: List<ProductionCompany>) {
-        m_companies.text = combineString(
+        m_companies.text = viewBinding.root.context.combineString(
             getString(R.string.details_company_production),
             productionCompanies.joinToString(", ") { it.name }
         )
     }
 
     private fun setOriginalTitle(originalTitle: String) {
-        m_original_title.text = combineString(getString(R.string.details_original_title), originalTitle)
+        m_original_title.text =
+            viewBinding.root.context.combineString(getString(R.string.details_original_title), originalTitle)
     }
 
     private fun setRevenue(revenue: Long) {
         val numFormat = DecimalFormat("#,###,###")
 
         m_revenue.text =
-            combineString(getString(R.string.details_revenue), (numFormat.format(revenue) + " $"))
+            viewBinding.root.context.combineString(
+                getString(R.string.details_revenue),
+                (numFormat.format(revenue) + " $")
+            )
     }
 
     private fun setBudget(budget: Int) {
         val numFormat = DecimalFormat("#,###,###")
 
-        m_budget.text = combineString(getString(R.string.details_budget), (numFormat.format(budget) + " $"))
+        m_budget.text = viewBinding.root.context.combineString(
+            getString(R.string.details_budget),
+            (numFormat.format(budget) + " $")
+        )
     }
 
     private fun setReleaseDate(releaseDate: String) {
         m_release_date.text =
-            combineString(
+            viewBinding.root.context.combineString(
                 getString(R.string.details_release_date),
                 KlockLocale.default.formatDateLong.format(releaseDate.toDate(getString(R.string.details_yyyy_mm_dd)))
             )
@@ -285,7 +269,7 @@ class MovieDetailsActivity : BaseSlidingActivity() {
     @OptIn(ExperimentalStdlibApi::class)
     private fun setOriginalLanguage(originalLanguage: String) {
         m_original_language.text =
-            combineString(
+            viewBinding.root.context.combineString(
                 getString(R.string.details_original_language),
                 Locale(originalLanguage).displayLanguage.capitalize(AppConfig.APP_LOCALE)
             )
@@ -312,7 +296,7 @@ class MovieDetailsActivity : BaseSlidingActivity() {
             val stringMinutes =
                 resources.getQuantityString(R.plurals.minutes, minutes, minutes)
 
-            m_runtime.text = combineString(
+            m_runtime.text = viewBinding.root.context.combineString(
                 getString(R.string.details_runtime),
                 getString(
                     R.string.details_runtime_mask,
@@ -321,7 +305,7 @@ class MovieDetailsActivity : BaseSlidingActivity() {
                 )
             )
         } else {
-            m_runtime.text = combineString(
+            m_runtime.text = context?.combineString(
                 getString(R.string.details_runtime),
                 getString(R.string.details_unknown)
             )
@@ -346,8 +330,26 @@ class MovieDetailsActivity : BaseSlidingActivity() {
     private fun setTrailerButtonClickListener(videos: Videos) {
         if (videos.results.isNotEmpty()) {
             btn_watch_trailer.setOnClickListener {
-                openYouTube(videos.results[0].key)
+                context?.openYouTube(videos.results[0].key)
             }
         }
+    }
+
+    /**
+     * PullDownLayout methods
+     */
+
+    override fun onPullStart() = Unit
+
+    override fun onPull(progress: Float) = Unit
+
+    override fun onPullCancel() = Unit
+
+    override fun onPullComplete() {
+        findNavController().popBackStack()
+    }
+
+    override fun pullDownReady(): Boolean {
+        return BottomSheetBehavior.from(md_bottom_sheet).state == BottomSheetBehavior.STATE_COLLAPSED
     }
 }

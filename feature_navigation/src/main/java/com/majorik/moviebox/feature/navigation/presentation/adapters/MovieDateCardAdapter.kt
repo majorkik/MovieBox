@@ -16,7 +16,8 @@ import com.majorik.moviebox.feature.navigation.databinding.ItemSmallPosterDateCa
 import com.soywiz.klock.KlockLocale
 import com.soywiz.klock.locale.russian
 
-class MovieDateCardAdapter : RecyclerView.Adapter<MovieDateCardAdapter.MovieViewHolder>() {
+class MovieDateCardAdapter(private val clickAction: (id: Int) -> Unit) :
+    RecyclerView.Adapter<MovieDateCardAdapter.MovieViewHolder>() {
     private var movies: MutableList<Movie> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
@@ -52,33 +53,24 @@ class MovieDateCardAdapter : RecyclerView.Adapter<MovieDateCardAdapter.MovieView
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         holder.bindTo(movies[position])
+
+        holder.viewBinding.collectionCard.setSafeOnClickListener {
+            clickAction(movies[position].id)
+        }
     }
 
-    class MovieViewHolder(private val parent: ItemSmallPosterDateCardBinding) :
-        RecyclerView.ViewHolder(parent.root) {
+    class MovieViewHolder(val viewBinding: ItemSmallPosterDateCardBinding) : RecyclerView.ViewHolder(viewBinding.root) {
+
         fun bindTo(movie: Movie) {
             val releaseDate = movie.releaseDate?.toDate()
-            parent.placeholderText.text = movie.title
+            viewBinding.placeholderText.text = movie.title
 
-            parent.mReleaseDate.text =
+            viewBinding.mReleaseDate.text =
                 "${releaseDate?.dayOfMonth ?: ""} ${releaseDate?.month?.localShortName(KlockLocale.russian) ?: ""}"
 
-            parent.collectionImage.displayImageWithCenterCrop(
+            viewBinding.collectionImage.displayImageWithCenterCrop(
                 UrlConstants.TMDB_POSTER_SIZE_185 + movie.posterPath
             )
-
-            bindClickListener(movie)
-        }
-
-        private fun bindClickListener(movie: Movie) {
-            parent.collectionCard.setSafeOnClickListener {
-                parent.root.context.startActivityWithAnim(
-                    ScreenLinks.movieDetails,
-                    Intent().apply {
-                        putExtra(BaseIntentKeys.ITEM_ID, movie.id)
-                    }
-                )
-            }
         }
     }
 }

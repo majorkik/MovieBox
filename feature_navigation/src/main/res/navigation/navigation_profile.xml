@@ -2,13 +2,12 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/navigation_discover"
-    app:startDestination="@+id/nav_discover"
+    app:startDestination="@+id/nav_profile"
     tools:ignore="UnusedNavigation">
 
     <fragment
-        android:id="@+id/nav_discover"
-        android:name="com.majorik.moviebox.feature.navigation.presentation.main_page_search.SearchFragment"
-        android:label="@string/title_nav_discover">
+        android:id="@+id/nav_profile"
+        android:name="com.majorik.moviebox.feature.navigation.presentation.main_page_profile.ProfileFragment"
+        android:label="@string/title_nav_tvs">
     </fragment>
 </navigation>

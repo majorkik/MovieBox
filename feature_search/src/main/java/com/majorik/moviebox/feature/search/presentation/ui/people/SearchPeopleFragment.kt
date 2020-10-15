@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.majorik.moviebox.feature.search.presentation.adapters.search.SearchPeopleAdapter
 import com.majorik.moviebox.feature.search.domain.NetworkState
-import com.majorik.library.base.extensions.toPx
+import com.majorik.library.base.extensions.px
 import com.majorik.moviebox.feature.search.presentation.ui.SearchQueryChangeListener
 import com.majorik.moviebox.feature.search.presentation.ui.SearchViewTypeChangeListener
 import com.majorik.library.base.utils.SpacingDecoration
@@ -57,7 +57,7 @@ internal class SearchPeopleFragment :
         adapter = SearchPeopleAdapter(this)
         search_list.adapter = adapter
 
-        search_list.addItemDecoration(SpacingDecoration(16.toPx(), 16.toPx(), true))
+        search_list.addItemDecoration(SpacingDecoration(16.px(), 16.px(), true))
     }
 
     private fun configureObservables() {

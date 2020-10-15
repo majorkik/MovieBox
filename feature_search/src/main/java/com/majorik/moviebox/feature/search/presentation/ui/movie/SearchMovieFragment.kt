@@ -12,7 +12,7 @@ import com.majorik.moviebox.feature.search.domain.NetworkState
 import com.majorik.moviebox.feature.search.presentation.ui.SearchQueryChangeListener
 import com.majorik.moviebox.feature.search.presentation.ui.SearchViewTypeChangeListener
 import com.majorik.library.base.extensions.setAdapterWithFixedSize
-import com.majorik.library.base.extensions.toPx
+import com.majorik.library.base.extensions.px
 import com.majorik.library.base.utils.SpacingDecoration
 import com.majorik.moviebox.feature.search.presentation.adapters.PaginationOnClickListener
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
@@ -59,7 +59,7 @@ internal class SearchMovieFragment :
         adapter = SearchMovieAdapter(this)
 
         search_list.setAdapterWithFixedSize(ScaleInAnimationAdapter(adapter), true)
-        search_list.addItemDecoration(SpacingDecoration(16.toPx(), 16.toPx(), true))
+        search_list.addItemDecoration(SpacingDecoration(16.px(), 16.px(), true))
     }
 
     private fun configureObservables() {
