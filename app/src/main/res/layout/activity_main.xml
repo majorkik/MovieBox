@@ -4,8 +4,8 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorWhite"
+    android:fitsSystemWindows="true">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/splash_container"
@@ -29,8 +29,8 @@
             android:id="@+id/nav_view"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:fitsSystemWindows="false"
             android:background="@drawable/nav_bar_gradient_with_corners"
+            android:fitsSystemWindows="false"
             app:itemIconTint="@drawable/drawer_selectable_color"
             app:labelVisibilityMode="unlabeled"
             app:menu="@menu/bottom_nav_menu" />

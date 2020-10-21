@@ -34,7 +34,7 @@ import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.majorik.moviebox.R as AppResources
 
-class MoviesFragment : Fragment(R.layout.fragment_movies), UpdateMargins {
+class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
     private val viewBinding: FragmentMoviesBinding by viewBinding()
 
@@ -78,19 +78,19 @@ class MoviesFragment : Fragment(R.layout.fragment_movies), UpdateMargins {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.doOnApplyWindowInsets { view, insets, rect ->
-            viewBinding.scrollViewLinearLayout.updatePadding(bottom = insets.systemWindowInsetBottom + 56.px())
-
-            insets
-        }
+        updateMargins()
 
         initAdapters()
         setObservers()
         setClickListeners()
     }
 
-    override fun updateMargins(statusBarSize: Int, navigationBarSize: Int) {
-        viewBinding.moviesScrollView.updateMargin(top = statusBarSize)
+    private fun updateMargins() {
+        viewBinding.root.doOnApplyWindowInsets { view, insets, rect ->
+            viewBinding.scrollViewLinearLayout.updatePadding(bottom = insets.systemWindowInsetBottom + 56.px())
+
+            insets
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
