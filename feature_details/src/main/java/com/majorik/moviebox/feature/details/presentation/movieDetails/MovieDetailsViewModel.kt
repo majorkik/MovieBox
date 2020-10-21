@@ -22,6 +22,8 @@ class MovieDetailsViewModel(
 
     private val tmdbSessionId = credentialsManager.getTmdbSessionID() ?: ""
 
+    var movieState: AccountStates? = null
+
     var movieDetailsLiveData = MutableLiveData<MovieDetails>()
     var movieStatesLiveData = MutableLiveData<AccountStates?>()
     var responseFavoriteLiveData = MutableLiveData<ApiResponse>()
@@ -39,9 +41,13 @@ class MovieDetailsViewModel(
 
             when (response) {
                 is ResultWrapper.NetworkError -> {
+
                 }
+
                 is ResultWrapper.GenericError -> {
+
                 }
+
                 is ResultWrapper.Success -> {
                     movieDetailsLiveData.postValue(response.value)
                 }
@@ -49,25 +55,12 @@ class MovieDetailsViewModel(
         }
     }
 
-    fun fetchAccountStateForMovie(movieId: Int) {
-        viewModelScope.launch {
-            val response =
-                movieRepository.getAccountStatesForMovie(
-                    movieId,
-                    tmdbSessionId,
-                    guestSessionId = null
-                )
-
-            when (response) {
-                is ResultWrapper.NetworkError -> {
-                }
-                is ResultWrapper.GenericError -> {
-                }
-                is ResultWrapper.Success -> {
-                    movieStatesLiveData.postValue(response.value)
-                }
-            }
-        }
+    suspend fun fetchAccountStateForMovie(movieId: Int): ResultWrapper<AccountStates> {
+        return movieRepository.getAccountStatesForMovie(
+            movieId,
+            tmdbSessionId,
+            guestSessionId = null
+        )
     }
 
     fun markMovieIsFavorite(mediaId: Int, state: Boolean) {
@@ -95,7 +88,7 @@ class MovieDetailsViewModel(
             when (
                 val response =
                     accountRepository.addToWatchlist(requestAddToWatchlist, tmdbSessionId)
-            ) {
+                ) {
                 is ResultWrapper.NetworkError -> {
                 }
                 is ResultWrapper.GenericError -> {

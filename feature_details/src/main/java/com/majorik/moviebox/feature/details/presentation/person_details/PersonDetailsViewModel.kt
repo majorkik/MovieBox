@@ -17,9 +17,7 @@ class PersonDetailsViewModel(private val personRepository: PersonRepository) : V
         appendToResponse: String?
     ) {
         viewModelScope.launch {
-            val response = personRepository.getPersonById(personId, language, appendToResponse)
-
-            when (response) {
+            when (val response = personRepository.getPersonById(personId, language, appendToResponse)) {
                 is ResultWrapper.NetworkError -> {
                 }
 

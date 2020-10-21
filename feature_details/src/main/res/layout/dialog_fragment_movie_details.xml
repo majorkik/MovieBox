@@ -6,14 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/transparent"
-    android:fitsSystemWindows="false">
+    tools:context="com.majorik.moviebox.feature.details.presentation.movieDetails.MovieDetailsDialogFragment">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/movie_details_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorWhite"
-        tools:context="com.majorik.moviebox.feature.details.presentation.movieDetails.MovieDetailsFragment">
+        android:background="@color/colorWhite">
 
         <LinearLayout
             android:id="@+id/md_pager_layout"

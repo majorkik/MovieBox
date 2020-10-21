@@ -7,11 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.majorik.library.base.constants.BaseIntentKeys.ITEM_ID
 import com.majorik.moviebox.feature.details.domain.tmdbModels.movie.Movie
 import com.majorik.moviebox.feature.details.presentation.adapters.movie.MovieCardAdapter.*
-import com.majorik.library.base.extensions.displayImageWithCenterCrop
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startActivityWithAnim
-import com.majorik.moviebox.feature.details.presentation.movieDetails.MovieDetailsFragment
+import com.majorik.moviebox.feature.details.presentation.movieDetails.MovieDetailsDialogFragment
 import com.majorik.library.base.constants.UrlConstants
+import com.majorik.library.base.extensions.displayImageWithCenterCrop
 import com.majorik.moviebox.feature.details.databinding.ItemDetailsBigImageWithCornersBinding
 import kotlinx.android.synthetic.main.item_big_image_with_corners_details.view.*
 
@@ -33,7 +33,7 @@ class MovieCardAdapter : RecyclerView.Adapter<MovieCardViewHolder>() {
 
         holder.itemView.slider_layout.setSafeOnClickListener {
             holder.itemView.context.startActivityWithAnim(
-                MovieDetailsFragment::class.java,
+                MovieDetailsDialogFragment::class.java,
                 Intent().apply {
                     putExtra(ITEM_ID, movies[position].id)
                 }

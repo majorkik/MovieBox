@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.majorik.library.base.constants.BaseIntentKeys
 import com.majorik.moviebox.feature.details.domain.tmdbModels.cast.MovieCast
 import com.majorik.library.base.extensions.*
-import com.majorik.moviebox.feature.details.presentation.movieDetails.MovieDetailsFragment
+import com.majorik.moviebox.feature.details.presentation.movieDetails.MovieDetailsDialogFragment
 import com.majorik.library.base.constants.UrlConstants
 import kotlinx.android.synthetic.main.item_medium_poster_card_details.view.*
 import kotlinx.android.synthetic.main.item_medium_poster_card_details.view.collection_card
@@ -94,7 +94,7 @@ class MovieCreditsAdapter(
         private fun bindClickListener(cast: MovieCast) {
             itemView.collection_card.setSafeOnClickListener {
                 it.context.startActivityWithAnim(
-                    MovieDetailsFragment::class.java,
+                    MovieDetailsDialogFragment::class.java,
                     Intent().apply {
                         putExtra(BaseIntentKeys.ITEM_ID, cast.id)
                     }
@@ -125,7 +125,7 @@ class MovieCreditsAdapter(
         private fun bindClickListener(cast: MovieCast) {
             itemView.inline_credit_layout.setSafeOnClickListener {
                 it.context.startActivityWithAnim(
-                    MovieDetailsFragment::class.java,
+                    MovieDetailsDialogFragment::class.java,
                     Intent().apply {
                         putExtra(BaseIntentKeys.ITEM_ID, cast.id)
                     }

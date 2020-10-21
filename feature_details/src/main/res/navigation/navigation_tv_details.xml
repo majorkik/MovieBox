@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     app:moduleName="feature_details"
-    app:startDestination="@id/nav_movie_details">
+    app:startDestination="@id/nav_tv_details">
 
     <dialog
-        android:id="@+id/nav_movie_details"
+        android:id="@+id/nav_tv_details"
         android:name="com.majorik.moviebox.feature.details.presentation.movieDetails.MovieDetailsDialogFragment"
         app:moduleName="feature_details"
         tools:layout="@layout/dialog_fragment_movie_details">

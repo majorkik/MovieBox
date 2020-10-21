@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    android:paddingBottom="?attr/actionBarSize">
+    android:background="@color/colorPrimary">
 
     <ScrollView
+        android:id="@+id/movies_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/scroll_view_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -72,8 +72,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/navigation_collection_popular"
                         android:fontFamily="@font/cc_montserrat_black"
+                        android:text="@string/navigation_collection_popular"
                         android:textColor="@color/mine_shaft"
                         android:textSize="18sp"
                         android:theme="@style/HeaderMedium" />
@@ -126,9 +126,9 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/cc_montserrat_black"
+                        android:text="@string/navigation_now_playing"
                         android:textColor="@color/mine_shaft"
                         android:textSize="18sp"
-                        android:text="@string/navigation_now_playing"
                         android:theme="@style/HeaderMedium" />
 
                     <TextView
@@ -183,8 +183,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/navigation_in_trends"
                         android:fontFamily="@font/cc_montserrat_black"
+                        android:text="@string/navigation_in_trends"
                         android:textColor="@color/mine_shaft"
                         android:textSize="18sp"
                         android:theme="@style/HeaderMedium" />
@@ -236,8 +236,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/navigation_upcoming"
                         android:fontFamily="@font/cc_montserrat_black"
+                        android:text="@string/navigation_upcoming"
                         android:textColor="@color/mine_shaft"
                         android:textSize="18sp"
                         android:theme="@style/HeaderMedium" />
@@ -294,9 +294,9 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/cc_montserrat_black"
+                        android:text="@string/navigation_genres"
                         android:textColor="@color/mine_shaft"
                         android:textSize="18sp"
-                        android:text="@string/navigation_genres"
                         android:theme="@style/HeaderMedium" />
 
                     <TextView
@@ -351,9 +351,9 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/cc_montserrat_black"
+                        android:text="@string/navigation_trailers"
                         android:textColor="@color/mine_shaft"
                         android:textSize="18sp"
-                        android:text="@string/navigation_trailers"
                         android:theme="@style/HeaderMedium" />
 
                     <TextView
@@ -408,9 +408,9 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/cc_montserrat_black"
+                        android:text="@string/navigation_popular_peoples"
                         android:textColor="@color/mine_shaft"
                         android:textSize="18sp"
-                        android:text="@string/navigation_popular_peoples"
                         android:theme="@style/HeaderMedium" />
 
                     <TextView
@@ -442,4 +442,4 @@
                 tools:listitem="@layout/item_genre" />
         </LinearLayout>
     </ScrollView>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</FrameLayout>

@@ -10,10 +10,13 @@ import android.os.Build
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.view.View
+import android.view.Window
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.majorik.base.R
 import com.majorik.library.base.constants.UrlConstants
@@ -31,6 +34,10 @@ fun AppCompatActivity.setWindowTransparency(listener: OnSystemInsetsChangedListe
 fun FragmentActivity.setWindowTransparency(listener: OnSystemInsetsChangedListener = { _, _ -> }) {
     InsetUtil.removeSystemInsets(window.decorView, listener)
     window.statusBarColor = Color.TRANSPARENT
+}
+
+fun Fragment.setWindowTransparency(view: View, listener: OnSystemInsetsChangedListener = { _, _ -> }) {
+    InsetUtil.removeSystemInsets(view, listener)
 }
 
 fun DialogFragment.setWindowTransparency(listener: OnSystemInsetsChangedListener = { _, _ -> }) {
@@ -153,3 +160,21 @@ private fun getYouTubeAppIntent(key: String) =
 private fun getYouTubeWebIntent(key: String) = Intent(
     Intent.ACTION_VIEW, Uri.parse(UrlConstants.YOUTUBE_WEB__LINK + key)
 )
+
+fun AppCompatActivity.setDarkNavigationBarColor() {
+    window.navigationBarColor = ContextCompat.getColor(this, R.color.mine_shaft)
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        window.decorView.systemUiVisibility =
+            View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+    }
+}
+
+fun FragmentActivity.setDarkNavigationBarColor() {
+    window.navigationBarColor = ContextCompat.getColor(this, R.color.mine_shaft)
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        window.decorView.systemUiVisibility =
+            View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+    }
+}

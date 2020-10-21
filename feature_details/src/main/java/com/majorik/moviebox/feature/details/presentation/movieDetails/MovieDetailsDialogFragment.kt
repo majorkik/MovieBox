@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -11,9 +12,10 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.majorik.library.base.constants.AppConfig
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.extensions.*
+import com.majorik.library.base.models.results.ResultWrapper
 import com.majorik.library.base.view.PullDownLayout
 import com.majorik.moviebox.feature.details.R
-import com.majorik.moviebox.feature.details.databinding.FragmentMovieDetailsBinding
+import com.majorik.moviebox.feature.details.databinding.DialogFragmentMovieDetailsBinding
 import com.majorik.moviebox.feature.details.domain.tmdbModels.account.AccountStates
 import com.majorik.moviebox.feature.details.domain.tmdbModels.cast.Cast
 import com.majorik.moviebox.feature.details.domain.tmdbModels.genre.Genre
@@ -26,10 +28,7 @@ import com.majorik.moviebox.feature.details.presentation.adapters.ImageSliderAda
 import com.majorik.moviebox.feature.details.presentation.watch_online.WatchOnlineDialog
 import com.soywiz.klock.KlockLocale
 import com.stfalcon.imageviewer.StfalconImageViewer
-import kotlinx.android.synthetic.main.activity_tv_details.*
-import kotlinx.android.synthetic.main.fragment_movie_details.*
-import kotlinx.android.synthetic.main.fragment_movie_details.bottom_bar
-import kotlinx.android.synthetic.main.fragment_movie_details.btn_extra_menu
+import kotlinx.android.synthetic.main.dialog_fragment_movie_details.*
 import kotlinx.android.synthetic.main.layout_movie_details.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.DecimalFormat
@@ -37,14 +36,12 @@ import java.util.*
 import kotlin.math.floor
 import com.majorik.moviebox.R as AppRes
 
-class MovieDetailsFragment : DialogFragment(R.layout.fragment_movie_details), PullDownLayout.Callback {
-    private val viewBinding: FragmentMovieDetailsBinding by viewBinding()
+class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie_details), PullDownLayout.Callback {
+    private val viewBinding: DialogFragmentMovieDetailsBinding by viewBinding()
 
-    private val movieDetailsViewModel: MovieDetailsViewModel by viewModel()
+    private val viewModel: MovieDetailsViewModel by viewModel()
 
-    private var movieState: AccountStates? = null
-
-    private val args: MovieDetailsFragmentArgs by navArgs()
+    private val args: MovieDetailsDialogFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +57,7 @@ class MovieDetailsFragment : DialogFragment(R.layout.fragment_movie_details), Pu
         setWindowTransparency(::updateMargins)
 
         fetchDetails()
+        fetchMovieStates()
         setClickListeners()
         setObserver()
     }
@@ -70,39 +68,40 @@ class MovieDetailsFragment : DialogFragment(R.layout.fragment_movie_details), Pu
     }
 
     private fun fetchDetails() {
-        movieDetailsViewModel.fetchMovieDetails(
+        viewModel.fetchMovieDetails(
             args.id,
             AppConfig.REGION,
             "images,credits,videos",
             "ru,en,null"
         )
+    }
 
-        movieDetailsViewModel.fetchAccountStateForMovie(args.id)
+    private fun fetchMovieStates() {
+        lifecycleScope.launchWhenResumed {
+            when (val result = viewModel.fetchAccountStateForMovie(args.id)) {
+                is ResultWrapper.Success -> {
+                    viewModel.movieState = result.value
+                }
+            }
+        }
     }
 
     private fun setObserver() {
-        movieDetailsViewModel.movieDetailsLiveData.observe(
+        viewModel.movieDetailsLiveData.observe(
             this,
             Observer { movie ->
-                setVisibilityPlaceholder(false)
-
-                setHeader(movie.title, movie.voteAverage, movie.status, movie.genres, movie.releaseDate)
-                setOverview(movie.overview)
-                setFacts(movie)
-                setImages(movie.images, movie.backdropPath, movie.posterPath)
-                setPeoples(movie.credits.casts)
-                setTrailerButtonClickListener(movie.videos)
+                setMovieDetails(movie)
             }
         )
 
-        movieDetailsViewModel.movieStatesLiveData.observe(
+        viewModel.movieStatesLiveData.observe(
             this,
             Observer {
                 it?.apply { setAccountStates(this) }
             }
         )
 
-        movieDetailsViewModel.responseFavoriteLiveData.observe(
+        viewModel.responseFavoriteLiveData.observe(
             this,
             Observer {
                 if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
@@ -113,7 +112,7 @@ class MovieDetailsFragment : DialogFragment(R.layout.fragment_movie_details), Pu
             }
         )
 
-        movieDetailsViewModel.responseWatchlistLiveData.observe(
+        viewModel.responseWatchlistLiveData.observe(
             this,
             Observer {
                 if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
@@ -125,45 +124,21 @@ class MovieDetailsFragment : DialogFragment(R.layout.fragment_movie_details), Pu
         )
     }
 
-    private fun setPeoples(casts: List<Cast>) {
-        m_persons.setAdapterWithFixedSize(CastAdapter(casts), true)
-    }
-
-    private fun setImages(images: Images, backdropPath: String?, posterPath: String?) {
-        m_backdrop_image.displayImageWithCenterCrop(UrlConstants.TMDB_BACKDROP_SIZE_780 + backdropPath)
-        m_poster_image.displayImageWithCenterCrop(UrlConstants.TMDB_POSTER_SIZE_500 + posterPath)
-        setImageSlider(images.backdrops.map { imageInfo -> imageInfo.filePath }.take(6))
-        setClickListenerForImages(images)
-    }
-
-    private fun setFacts(movie: MovieDetails?) {
-        if (movie == null) return
-
-        setOriginalLanguage(movie.originalLanguage)
-        setOriginalTitle(movie.originalTitle)
-        setRevenue(movie.revenue)
-        setBudget(movie.budget)
-        setReleaseDate(movie.releaseDate)
-        setRuntime(movie.runtime)
-        setCompanies(movie.productionCompanies)
-    }
-
     private fun setAccountStates(accountStates: AccountStates) {
-        movieState = accountStates
         toggle_favorite.isChecked = accountStates.favorite
         toggle_watchlist.isChecked = accountStates.watchlist
     }
 
     private fun setClickListeners() {
         toggle_favorite.setOnClickListener {
-            movieState?.let {
-                movieDetailsViewModel.markMovieIsFavorite(it.id, !it.favorite)
+            viewModel.movieState?.let {
+                viewModel.markMovieIsFavorite(it.id, !it.favorite)
             }
         }
 
         toggle_watchlist.setOnClickListener {
-            movieState?.let {
-                movieDetailsViewModel.addMovieToWatchlist(it.id, !it.watchlist)
+            viewModel.movieState?.let {
+                viewModel.addMovieToWatchlist(it.id, !it.watchlist)
             }
         }
 
@@ -210,6 +185,52 @@ class MovieDetailsFragment : DialogFragment(R.layout.fragment_movie_details), Pu
     private fun setVisibilityPlaceholder(isVisible: Boolean) {
         placeholder_main_details_page.setVisibilityOption(isVisible)
         main_layout.setVisibilityOption(!isVisible)
+    }
+
+    private fun setTrailerButtonClickListener(videos: Videos) {
+        if (videos.results.isNotEmpty()) {
+            btn_watch_trailer.setOnClickListener {
+                context?.openYouTube(videos.results[0].key)
+            }
+        }
+    }
+
+    /**
+     * Details
+     */
+
+    private fun setMovieDetails(movie: MovieDetails) {
+        setVisibilityPlaceholder(false)
+
+        setHeader(movie.title, movie.voteAverage, movie.status, movie.genres, movie.releaseDate)
+        setOverview(movie.overview)
+        setFacts(movie)
+        setImages(movie.images, movie.backdropPath, movie.posterPath)
+        setPeoples(movie.credits.casts)
+        setTrailerButtonClickListener(movie.videos)
+    }
+
+    private fun setPeoples(casts: List<Cast>) {
+        m_persons.setAdapterWithFixedSize(CastAdapter(casts), true)
+    }
+
+    private fun setImages(images: Images, backdropPath: String?, posterPath: String?) {
+        m_backdrop_image.displayImageWithCenterCrop(UrlConstants.TMDB_BACKDROP_SIZE_780 + backdropPath)
+        m_poster_image.displayImageWithCenterCrop(UrlConstants.TMDB_POSTER_SIZE_500 + posterPath)
+        setImageSlider(images.backdrops.map { imageInfo -> imageInfo.filePath }.take(6))
+        setClickListenerForImages(images)
+    }
+
+    private fun setFacts(movie: MovieDetails?) {
+        if (movie == null) return
+
+        setOriginalLanguage(movie.originalLanguage)
+        setOriginalTitle(movie.originalTitle)
+        setRevenue(movie.revenue)
+        setBudget(movie.budget)
+        setReleaseDate(movie.releaseDate)
+        setRuntime(movie.runtime)
+        setCompanies(movie.productionCompanies)
     }
 
     private fun setHeader(
@@ -325,14 +346,6 @@ class MovieDetailsFragment : DialogFragment(R.layout.fragment_movie_details), Pu
 
     private fun setImageSlider(images: List<String>) {
         md_image_slider.adapter = ImageSliderAdapter(images)
-    }
-
-    private fun setTrailerButtonClickListener(videos: Videos) {
-        if (videos.results.isNotEmpty()) {
-            btn_watch_trailer.setOnClickListener {
-                context?.openYouTube(videos.results[0].key)
-            }
-        }
     }
 
     /**

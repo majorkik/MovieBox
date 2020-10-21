@@ -17,7 +17,7 @@ import timber.log.Timber
 import timber.log.Timber.DebugTree
 import java.util.*
 
-class MovieBoxApplication : Application() {
+class MovieBoxApplication() : Application() {
     private var localizationDelegate = LocalizationApplicationDelegate()
 
     override fun onCreate() {

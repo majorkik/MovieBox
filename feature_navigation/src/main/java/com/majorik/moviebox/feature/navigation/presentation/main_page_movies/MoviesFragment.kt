@@ -4,11 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.core.util.isEmpty
+import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.majorik.library.base.base.UpdateMargins
 import com.majorik.library.base.constants.AppConfig
 import com.majorik.library.base.constants.GenresConstants
 import com.majorik.library.base.constants.ScreenLinks
@@ -27,11 +29,12 @@ import com.majorik.moviebox.feature.navigation.domain.tmdbModels.movie.MovieResp
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.person.PersonResponse
 import com.majorik.moviebox.feature.navigation.domain.youtubeModels.SearchResponse
 import com.majorik.moviebox.feature.navigation.presentation.adapters.*
+import com.orhanobut.logger.Logger
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.majorik.moviebox.R as AppResources
 
-class MoviesFragment : Fragment(R.layout.fragment_movies) {
+class MoviesFragment : Fragment(R.layout.fragment_movies), UpdateMargins {
 
     private val viewBinding: FragmentMoviesBinding by viewBinding()
 
@@ -56,6 +59,8 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        activity?.setDarkNavigationBarColor()
+
         setupAdapters()
         fetchData()
     }
@@ -73,9 +78,19 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        view.doOnApplyWindowInsets { view, insets, rect ->
+            viewBinding.scrollViewLinearLayout.updatePadding(bottom = insets.systemWindowInsetBottom + 56.px())
+
+            insets
+        }
+
         initAdapters()
         setObservers()
         setClickListeners()
+    }
+
+    override fun updateMargins(statusBarSize: Int, navigationBarSize: Int) {
+        viewBinding.moviesScrollView.updateMargin(top = statusBarSize)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

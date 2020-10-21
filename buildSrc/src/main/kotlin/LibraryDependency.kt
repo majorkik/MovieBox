@@ -43,7 +43,7 @@ private object LibraryVersion {
     const val LOCALIZATION = "1.2.6"
     const val COIL = "0.13.0"
     const val RECYCLER_VIEW_ANIMATION = "3.0.0"
-    const val VIEWBINDING_DELEGATES_VERSION = "1.0.0"
+    const val VIEWBINDING_DELEGATES_VERSION = "1.2.2"
 
     const val FIREBASE_ANALYTICS = "17.4.2"
     const val FIREBASE_CRASHLYTICS = "17.0.0"
@@ -140,7 +140,5 @@ object LibraryDependency {
     const val COIL = "io.coil-kt:coil:${LibraryVersion.COIL}"
     const val RECYCLER_VIEW_ANIMATION = "jp.wasabeef:recyclerview-animators:${LibraryVersion.RECYCLER_VIEW_ANIMATION}"
     const val VIEWBINDING_DELEGATES =
-        "com.github.kirich1409:ViewBindingPropertyDelegate:${LibraryVersion.VIEWBINDING_DELEGATES_VERSION}"
-    const val VIEWBINDING_DELEGATES_WITHOUT_REFLECTION =
         "com.github.kirich1409:ViewBindingPropertyDelegate:${LibraryVersion.VIEWBINDING_DELEGATES_VERSION}"
 }
