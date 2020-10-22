@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    id экранов навигации-->
+    <item name="nav_movies_id" type="id" />
+    <item name="nav_tvs_id" type="id" />
+    <item name="nav_discover_id" type="id" />
+    <item name="nav_profile_id" type="id" />
+
+</resources>

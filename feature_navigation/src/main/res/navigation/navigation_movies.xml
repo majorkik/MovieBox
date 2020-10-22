@@ -2,11 +2,11 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@+id/nav_movies"
+    app:startDestination="@id/nav_movies_id"
     tools:ignore="UnusedNavigation">
 
     <fragment
-        android:id="@+id/nav_movies"
+        android:id="@id/nav_movies_id"
         android:name="com.majorik.moviebox.feature.navigation.presentation.main_page_movies.MoviesFragment"
         android:label="@string/title_nav_movies">
 

@@ -18,25 +18,14 @@ import com.orhanobut.logger.Logger
 class MainActivity : LocalizationActivity() {
     private val viewBinding: ActivityMainBinding by viewBinding(R.id.container)
 
-    private var currentNavController: LiveData<NavController>? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        viewBinding.root.doOnApplyWindowInsets { view, insets, rect ->
-            viewBinding.cardNavView.updateMargin(bottom = insets.systemWindowInsetBottom.getOrDefault(16.px()))
-            viewBinding.splashContainer.updateMargin(top = insets.systemWindowInsetTop)
-
-            insets
-        }
-
-        viewBinding.navView.doOnApplyWindowInsets { view, insets, rect ->
-            view.updatePadding(bottom = 0)
-            insets
-        }
-
         checkLoadModules()
+
+        updateMargins()
+        updateBottomNavPaddings()
 
         AppConfig.REGION = getCurrentLanguage().toString()
 
@@ -45,8 +34,20 @@ class MainActivity : LocalizationActivity() {
         }
     }
 
-    private fun updateMargins(statusBarSize: Int, navigationBarSize: Int) {
-        viewBinding.cardNavView.updateMargin(bottom = navigationBarSize + 16.px())
+    private fun updateMargins() {
+        viewBinding.root.doOnApplyWindowInsets { view, insets, rect ->
+            viewBinding.cardNavView.updateMargin(bottom = insets.systemWindowInsetBottom.getOrDefault(16.px()))
+            viewBinding.mainFragmentContainer.updateMargin(top = insets.systemWindowInsetTop)
+
+            insets
+        }
+    }
+
+    private fun updateBottomNavPaddings() {
+        viewBinding.navView.doOnApplyWindowInsets { view, insets, rect ->
+            view.updatePadding(bottom = 0)
+            insets
+        }
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
@@ -56,14 +57,34 @@ class MainActivity : LocalizationActivity() {
     }
 
     private fun setupBottomNavigationBar() {
-        val navHost = supportFragmentManager.findFragmentById(R.id.splash_container) as DynamicNavHostFragment
+        val navHost = supportFragmentManager.findFragmentById(R.id.main_fragment_container) as DynamicNavHostFragment
+
+        val controller = navHost.navController
 
         viewBinding.navView.setupWithNavController(navHost.navController)
+
+        val listener = NavController.OnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                in getNavigationIdsForBottomNavVisible() -> {
+                    viewBinding.cardNavView.setVisibilityOption(true)
+                }
+
+                else -> {
+                    viewBinding.cardNavView.setVisibilityOption(false)
+                }
+            }
+        }
+
+        controller.removeOnDestinationChangedListener(listener)
+        controller.addOnDestinationChangedListener(listener)
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        return currentNavController?.value?.navigateUp() ?: false
-    }
+    private fun getNavigationIdsForBottomNavVisible() = listOf(
+        R.id.nav_movies_id,
+        R.id.nav_tvs_id,
+        R.id.nav_discover_id,
+        R.id.nav_profile_id
+    )
 
     /**
      * Проверяем все ли модули успешно подключены (только для логов)

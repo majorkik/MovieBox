@@ -2,11 +2,11 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@+id/nav_discover"
+    app:startDestination="@id/nav_discover_id"
     tools:ignore="UnusedNavigation">
 
     <fragment
-        android:id="@+id/nav_discover"
+        android:id="@id/nav_discover_id"
         android:name="com.majorik.moviebox.feature.navigation.presentation.main_page_search.SearchFragment"
         android:label="@string/title_nav_discover">
     </fragment>
