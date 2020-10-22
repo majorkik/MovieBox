@@ -34,7 +34,11 @@
 
         <action
             android:id="@+id/action_nav_movies_to_nav_tv_collections"
-            app:destination="@id/nav_tv_collections">
+            app:destination="@id/nav_tv_collections"
+            app:enterAnim="@anim/fragment_enter_slide_up"
+            app:exitAnim="@anim/fade_none"
+            app:popEnterAnim="@anim/fade_none"
+            app:popExitAnim="@anim/fragment_exit_slide_down">
 
             <argument
                 android:name="movie_collection_type"

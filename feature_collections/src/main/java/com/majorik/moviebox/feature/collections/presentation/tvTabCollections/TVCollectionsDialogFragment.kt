@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.tabs.TabLayoutMediator
@@ -15,7 +16,7 @@ import com.majorik.moviebox.domain.enums.collections.TVCollectionType
 import com.majorik.moviebox.feature.collections.presentation.adapters.FragmentsPagerAdapter
 import kotlinx.android.synthetic.main.dialog_fragment_tab_collections.*
 
-class TVCollectionsDialogFragment : DialogFragment(R.layout.dialog_fragment_tab_collections) {
+class TVCollectionsDialogFragment : Fragment(R.layout.dialog_fragment_tab_collections) {
     private val viewBinding: DialogFragmentTabCollectionsBinding by viewBinding()
 
     private val args: TVCollectionsDialogFragmentArgs by navArgs()
@@ -32,10 +33,17 @@ class TVCollectionsDialogFragment : DialogFragment(R.layout.dialog_fragment_tab_
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setWindowTransparency(::updateMargins)
+//        setWindowTransparency(::updateMargins)
 
         configureTabLayout()
         setPage(args.tvCollectionType)
+        setClickListener()
+    }
+
+    private fun setClickListener() {
+        viewBinding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     private fun setPage(collectionName: TVCollectionType) {

@@ -5,7 +5,7 @@
     app:moduleName="feature_details"
     app:startDestination="@id/nav_movie_details">
 
-    <dialog
+    <fragment
         android:id="@+id/nav_movie_details"
         android:name="com.majorik.moviebox.feature.collections.presentation.tvTabCollections.TVCollectionsDialogFragment"
         app:moduleName="feature_details"
@@ -16,5 +16,5 @@
             android:defaultValue="POPULAR"
             app:argType="com.majorik.moviebox.domain.enums.collections.TVCollectionType"
             app:nullable="false" />
-    </dialog>
+    </fragment>
 </navigation>
