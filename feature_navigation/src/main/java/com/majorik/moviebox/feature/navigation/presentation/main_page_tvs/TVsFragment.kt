@@ -9,6 +9,7 @@ import androidx.core.util.isEmpty
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.majorik.library.base.constants.AppConfig
 import com.majorik.library.base.constants.ScreenLinks
@@ -111,27 +112,19 @@ class TVsFragment : Fragment(R.layout.fragment_tvs) {
         }
 
         viewBinding.btnPopularTvs.setSafeOnClickListener {
-            openNewActivityWithTab(
-                ScreenLinks.tvCollection,
-                TVCollectionType.POPULAR
-            )
+            findNavController().navigate(TVsFragmentDirections.actionNavMoviesToNavTvCollections(TVCollectionType.POPULAR))
         }
 
         viewBinding.btnAirTodayTvs.setSafeOnClickListener {
-            openNewActivityWithTab(
-                ScreenLinks.tvCollection,
-                TVCollectionType.AIRING_TODAY
-            )
+            findNavController().navigate(TVsFragmentDirections.actionNavMoviesToNavTvCollections(TVCollectionType.AIRING_TODAY))
         }
 
         viewBinding.btnOnTheAirTvs.setSafeOnClickListener {
-            openNewActivityWithTab(
-                ScreenLinks.tvCollection,
-                TVCollectionType.ON_THE_AIR
-            )
+            findNavController().navigate(TVsFragmentDirections.actionNavMoviesToNavTvCollections(TVCollectionType.ON_THE_AIR))
         }
 
         viewBinding.btnTrendingTvs.setSafeOnClickListener {
+            findNavController().navigate(TVsFragmentDirections.actionNavMoviesToNavTvCollections(TVCollectionType.TOP_RATED))
         }
     }
 

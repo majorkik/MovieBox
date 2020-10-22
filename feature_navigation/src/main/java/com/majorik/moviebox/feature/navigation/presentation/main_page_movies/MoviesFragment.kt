@@ -18,7 +18,6 @@ import com.majorik.library.base.enums.SELECTED_GENRES_TYPE
 import com.majorik.library.base.extensions.*
 import com.majorik.library.base.models.results.ResultWrapper
 import com.majorik.library.base.utils.GenresStorageObject
-import com.majorik.moviebox.domain.enums.collections.MovieCollectionType
 import com.majorik.moviebox.domain.enums.collections.MovieCollectionType.*
 import com.majorik.moviebox.feature.navigation.R
 import com.majorik.moviebox.feature.navigation.data.repositories.TrendingRepository.TimeWindow
@@ -28,7 +27,6 @@ import com.majorik.moviebox.feature.navigation.domain.tmdbModels.movie.MovieResp
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.person.PersonResponse
 import com.majorik.moviebox.feature.navigation.domain.youtubeModels.SearchResponse
 import com.majorik.moviebox.feature.navigation.presentation.adapters.*
-import com.orhanobut.logger.Logger
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.majorik.moviebox.R as AppResources
@@ -82,8 +80,6 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
         initAdapters()
         setObservers()
         setClickListeners()
-
-        Logger.i("onViewCreated")
     }
 
     private fun updateMargins() {
@@ -152,11 +148,7 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
     private fun setClickListeners() {
         viewBinding.apply {
             btnSearch.setOnClickListener {
-
-                Logger.i("click search")
-//                context?.startActivityWithAnim(ScreenLinks.searchableActivity)
-
-                findNavController().navigate(MoviesFragmentDirections.actionNavMoviesToNavTvCollections())
+                context?.startActivityWithAnim(ScreenLinks.searchableActivity)
             }
 
             btnPopularMovies.setOnClickListener {
@@ -173,6 +165,10 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
             btnNowPlayingMovies.setOnClickListener {
                 findNavController().navigate(MoviesFragmentDirections.actionNavMoviesToNavMovieCollections(NOW_PLAYING))
+            }
+
+            btnTrendingMovies.setOnClickListener {
+                findNavController().navigate(MoviesFragmentDirections.actionNavMoviesToNavMovieCollections(POPULAR))
             }
 
             btnMovieGenres.setSafeOnClickListener {
@@ -322,17 +318,5 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
                 peopleAdapter.addItems(result.value.results)
             }
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        Logger.i("onResume")
-    }
-
-    override fun onPause() {
-        super.onPause()
-
-        Logger.i("onPause")
     }
 }

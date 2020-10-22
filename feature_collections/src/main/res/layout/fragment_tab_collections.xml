@@ -5,8 +5,7 @@
     android:id="@+id/collections_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    android:fitsSystemWindows="true">
+    android:background="@color/colorPrimary">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/collection_view_pager"

@@ -1,16 +1,12 @@
 package com.majorik.moviebox.feature.navigation.presentation.adapters
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.majorik.library.base.constants.BaseIntentKeys
-import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.movie.Movie
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.extensions.displayImageWithCenterCrop
 import com.majorik.library.base.extensions.setSafeOnClickListener
-import com.majorik.library.base.extensions.startActivityWithAnim
 import com.majorik.library.base.extensions.toDate
 import com.majorik.moviebox.feature.navigation.databinding.ItemSmallPosterDateCardBinding
 import com.soywiz.klock.KlockLocale

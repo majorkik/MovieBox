@@ -10,7 +10,6 @@ import android.os.Build
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.view.View
-import android.view.Window
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat

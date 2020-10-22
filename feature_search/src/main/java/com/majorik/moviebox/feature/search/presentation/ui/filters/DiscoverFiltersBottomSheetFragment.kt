@@ -74,11 +74,14 @@ class DiscoverFiltersBottomSheetFragment : BottomSheetDialogFragment() {
     }
 
     private fun setObservers() {
-        viewModel.movieGenresLiveData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-            getDiscoverType().isMoviesTypeWithAction { // Если выбран тип - Фильмы
-                addGenresBlock(it.genres)
+        viewModel.movieGenresLiveData.observe(
+            viewLifecycleOwner,
+            androidx.lifecycle.Observer {
+                getDiscoverType().isMoviesTypeWithAction { // Если выбран тип - Фильмы
+                    addGenresBlock(it.genres)
+                }
             }
-        })
+        )
 
         viewModel.tvGenresLiveData.observe(
             viewLifecycleOwner,

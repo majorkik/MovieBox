@@ -26,7 +26,6 @@ import com.majorik.moviebox.feature.details.domain.tmdbModels.video.Videos
 import com.majorik.moviebox.feature.details.presentation.adapters.CastAdapter
 import com.majorik.moviebox.feature.details.presentation.adapters.ImageSliderAdapter
 import com.majorik.moviebox.feature.details.presentation.watch_online.WatchOnlineDialog
-import com.orhanobut.logger.Logger
 import com.soywiz.klock.KlockLocale
 import com.stfalcon.imageviewer.StfalconImageViewer
 import kotlinx.android.synthetic.main.dialog_fragment_movie_details.*
@@ -94,29 +93,41 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
     }
 
     private fun setObserver() {
-        viewModel.movieDetailsLiveData.observe(this, Observer { movie ->
-            setMovieDetails(movie)
-        })
-
-        viewModel.movieStatesLiveData.observe(this, Observer {
-            it?.apply { setAccountStates(this) }
-        })
-
-        viewModel.responseFavoriteLiveData.observe(this, Observer {
-            if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
-                context?.showToastMessage("Фильм успешно добавлен в избранное")
-            } else {
-                context?.showToastMessage("Неудалось добавить фильм в избранное")
+        viewModel.movieDetailsLiveData.observe(
+            this,
+            Observer { movie ->
+                setMovieDetails(movie)
             }
-        })
+        )
 
-        viewModel.responseWatchlistLiveData.observe(this, Observer {
-            if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
-                context?.showToastMessage("Фильм успешно добавлен в 'Буду смотреть'")
-            } else {
-                context?.showToastMessage("Неудалось добавить фильм в 'Буду смотреть'")
+        viewModel.movieStatesLiveData.observe(
+            this,
+            Observer {
+                it?.apply { setAccountStates(this) }
             }
-        })
+        )
+
+        viewModel.responseFavoriteLiveData.observe(
+            this,
+            Observer {
+                if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
+                    context?.showToastMessage("Фильм успешно добавлен в избранное")
+                } else {
+                    context?.showToastMessage("Неудалось добавить фильм в избранное")
+                }
+            }
+        )
+
+        viewModel.responseWatchlistLiveData.observe(
+            this,
+            Observer {
+                if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
+                    context?.showToastMessage("Фильм успешно добавлен в 'Буду смотреть'")
+                } else {
+                    context?.showToastMessage("Неудалось добавить фильм в 'Буду смотреть'")
+                }
+            }
+        )
     }
 
     private fun setAccountStates(accountStates: AccountStates) {

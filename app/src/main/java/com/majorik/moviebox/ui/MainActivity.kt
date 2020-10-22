@@ -1,9 +1,6 @@
 package com.majorik.moviebox.ui
 
-import android.graphics.Color
 import android.os.Bundle
-import android.view.WindowManager
-import androidx.core.view.ViewCompat
 import androidx.core.view.updatePadding
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController

@@ -1,42 +1,38 @@
-package com.majorik.moviebox.feature.collections.presentation.tvTabCollections
+package com.majorik.moviebox.feature.collections.presentation.movieTabCollections
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.tabs.TabLayoutMediator
-import com.majorik.library.base.extensions.setWindowTransparency
 import com.majorik.library.base.extensions.updateMargin
 import com.majorik.moviebox.feature.collections.R
-import com.majorik.moviebox.feature.collections.databinding.DialogFragmentTabCollectionsBinding
-import com.majorik.moviebox.domain.enums.collections.TVCollectionType
+import com.majorik.moviebox.domain.enums.collections.MovieCollectionType
+import com.majorik.moviebox.feature.collections.databinding.FragmentTabCollectionsBinding
 import com.majorik.moviebox.feature.collections.presentation.adapters.FragmentsPagerAdapter
-import kotlinx.android.synthetic.main.dialog_fragment_tab_collections.*
+import kotlinx.android.synthetic.main.fragment_tab_collections.*
 
-class TVCollectionsDialogFragment : Fragment(R.layout.dialog_fragment_tab_collections) {
-    private val viewBinding: DialogFragmentTabCollectionsBinding by viewBinding()
+class TabsMovieCollectionsFragment : Fragment(R.layout.fragment_tab_collections) {
+    private val viewBinding: FragmentTabCollectionsBinding by viewBinding()
 
-    private val args: TVCollectionsDialogFragmentArgs by navArgs()
+    private val args: TabsMovieCollectionsFragmentArgs by navArgs()
 
     private lateinit var pagerAdapter: FragmentsPagerAdapter
 
     private val fragments = listOf<Fragment>(
-        TVCollectionsFragment(TVCollectionType.POPULAR),
-        TVCollectionsFragment(TVCollectionType.AIRING_TODAY),
-        TVCollectionsFragment(TVCollectionType.ON_THE_AIR),
-        TVCollectionsFragment(TVCollectionType.TOP_RATED)
+        MovieCollectionsFragment(MovieCollectionType.NOW_PLAYING),
+        MovieCollectionsFragment(MovieCollectionType.POPULAR),
+        MovieCollectionsFragment(MovieCollectionType.TOP_RATED),
+        MovieCollectionsFragment(MovieCollectionType.UPCOMING)
     )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        setWindowTransparency(::updateMargins)
-
         configureTabLayout()
-        setPage(args.tvCollectionType)
+        setPage(args.movieCollectionType)
         setClickListener()
     }
 
@@ -46,40 +42,37 @@ class TVCollectionsDialogFragment : Fragment(R.layout.dialog_fragment_tab_collec
         }
     }
 
-    private fun setPage(collectionName: TVCollectionType) {
+    private fun setPage(collectionName: MovieCollectionType) {
         when (collectionName) {
-            TVCollectionType.POPULAR -> {
+            MovieCollectionType.NOW_PLAYING -> {
                 collection_view_pager.setCurrentItem(0, true)
             }
 
-            TVCollectionType.AIRING_TODAY -> {
+            MovieCollectionType.POPULAR -> {
                 collection_view_pager.setCurrentItem(1, true)
             }
 
-            TVCollectionType.ON_THE_AIR -> {
+            MovieCollectionType.TOP_RATED -> {
                 collection_view_pager.setCurrentItem(2, true)
             }
 
-            TVCollectionType.TOP_RATED -> {
+            MovieCollectionType.UPCOMING -> {
                 collection_view_pager.setCurrentItem(3, true)
             }
         }
     }
 
-    private fun updateMargins(
-        statusBarSize: Int,
-        @Suppress("UNUSED_PARAMETER") navigationBarSize: Int
-    ) {
+    private fun updateMargins(statusBarSize: Int, @Suppress("UNUSED_PARAMETER") navigationBarSize: Int) {
         viewBinding.collectionsToolbar.updateMargin(top = statusBarSize)
     }
 
     private fun configureTabLayout() {
         val pagerTitles: Array<String> =
             arrayOf(
+                getString(R.string.collections_now_playing),
                 getString(R.string.collections_collection_popular),
-                getString(R.string.collections_air_today),
-                getString(R.string.collections_on_the_air),
-                getString(R.string.collections_collection_top_rated)
+                getString(R.string.collections_collection_top_rated),
+                getString(R.string.collections_upcoming)
             )
 
         pagerAdapter = FragmentsPagerAdapter(

@@ -41,11 +41,9 @@ class MovieDetailsViewModel(
 
             when (response) {
                 is ResultWrapper.NetworkError -> {
-
                 }
 
                 is ResultWrapper.GenericError -> {
-
                 }
 
                 is ResultWrapper.Success -> {
@@ -88,7 +86,7 @@ class MovieDetailsViewModel(
             when (
                 val response =
                     accountRepository.addToWatchlist(requestAddToWatchlist, tmdbSessionId)
-                ) {
+            ) {
                 is ResultWrapper.NetworkError -> {
                 }
                 is ResultWrapper.GenericError -> {

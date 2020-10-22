@@ -8,6 +8,27 @@
     <fragment
         android:id="@+id/nav_tvs"
         android:name="com.majorik.moviebox.feature.navigation.presentation.main_page_tvs.TVsFragment"
-        android:label="@string/title_nav_tvs" >
+        android:label="@string/title_nav_tvs">
+
+        <action
+            android:id="@+id/action_nav_movies_to_nav_tv_collections"
+            app:destination="@+id/nav_tv_collections"
+            app:enterAnim="@anim/fragment_enter_slide_up"
+            app:exitAnim="@anim/fade_none"
+            app:popEnterAnim="@anim/fade_none"
+            app:popExitAnim="@anim/fragment_exit_slide_down">
+
+            <argument
+                android:name="tv_collection_type"
+                android:defaultValue="POPULAR"
+                app:argType="com.majorik.moviebox.domain.enums.collections.TVCollectionType"
+                app:nullable="false" />
+        </action>
     </fragment>
+
+    <include-dynamic
+        android:id="@+id/nav_tv_collections"
+        app:graphPackage="com.majorik.moviebox.feature_collections"
+        app:graphResName="navigation_tv_collections"
+        app:moduleName="feature_collections" />
 </navigation>
