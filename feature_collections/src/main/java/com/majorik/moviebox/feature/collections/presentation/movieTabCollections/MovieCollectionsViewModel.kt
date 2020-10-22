@@ -8,7 +8,7 @@ import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.majorik.moviebox.feature.collections.data.repositories.MovieRepository
 import com.majorik.moviebox.feature.collections.domain.NetworkState
-import com.majorik.moviebox.feature.collections.domain.movie.MovieCollectionType
+import com.majorik.moviebox.domain.enums.collections.MovieCollectionType
 import com.majorik.moviebox.feature.collections.presentation.collections.MovieCollectionsDataSourceFactory
 
 class MovieCollectionsViewModel(movieRepository: MovieRepository, movieCollectionType: MovieCollectionType) :

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:moduleName="feature_details"
+    app:startDestination="@id/nav_movie_details">
+
+    <dialog
+        android:id="@+id/nav_movie_details"
+        android:name="com.majorik.moviebox.feature.collections.presentation.tvTabCollections.TVCollectionsDialogFragment"
+        app:moduleName="feature_details"
+        tools:layout="@layout/dialog_fragment_tab_collections">
+
+        <argument
+            android:name="tv_collection_type"
+            android:defaultValue="POPULAR"
+            app:argType="com.majorik.moviebox.domain.enums.collections.TVCollectionType"
+            app:nullable="false" />
+    </dialog>
+</navigation>

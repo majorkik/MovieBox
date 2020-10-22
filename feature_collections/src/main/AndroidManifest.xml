@@ -20,13 +20,13 @@
         tools:ignore="GoogleAppIndexingWarning,MissingApplicationIcon">
 
         <activity
-            android:name=".presentation.movieTabCollections.MovieCollectionsActivity"
+            android:name=".presentation.movieTabCollections.MovieCollectionsDialogFragment"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Transparent.NoActionBar.Dark"
             tools:ignore="LockedOrientationActivity" />
 
         <activity
-            android:name=".presentation.tvTabCollections.TVCollectionsActivity"
+            android:name=".presentation.tvTabCollections.TVCollectionsDialogFragment"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="LockedOrientationActivity" />

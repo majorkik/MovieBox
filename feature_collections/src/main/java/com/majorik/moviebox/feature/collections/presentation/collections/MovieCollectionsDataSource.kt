@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
 import com.majorik.moviebox.feature.collections.data.repositories.MovieRepository
 import com.majorik.moviebox.feature.collections.domain.NetworkState
-import com.majorik.moviebox.feature.collections.domain.movie.MovieCollectionType
+import com.majorik.moviebox.domain.enums.collections.MovieCollectionType
 import com.majorik.moviebox.feature.collections.domain.tmdbModels.movie.Movie
 import com.majorik.moviebox.feature.collections.domain.tmdbModels.movie.MovieResponse
 import com.majorik.library.base.constants.AppConfig

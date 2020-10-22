@@ -1,7 +1,7 @@
 package com.majorik.moviebox.feature.collections.presentation
 
-import com.majorik.moviebox.feature.collections.domain.movie.MovieCollectionType
-import com.majorik.moviebox.feature.collections.domain.movie.TVCollectionType
+import com.majorik.moviebox.domain.enums.collections.MovieCollectionType
+import com.majorik.moviebox.domain.enums.collections.TVCollectionType
 import com.majorik.moviebox.feature.collections.presentation.genres.GenresViewModel
 import com.majorik.moviebox.feature.collections.presentation.movieTabCollections.MovieCollectionsViewModel
 import com.majorik.moviebox.feature.collections.presentation.tvTabCollections.TVCollectionsViewModel

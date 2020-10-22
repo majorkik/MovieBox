@@ -10,15 +10,14 @@ import com.majorik.library.base.extensions.px
 import com.majorik.library.base.utils.SpacingDecoration
 import com.majorik.moviebox.feature.collections.R
 import com.majorik.moviebox.feature.collections.domain.NetworkState
-import com.majorik.moviebox.feature.collections.domain.movie.MovieCollectionType
+import com.majorik.moviebox.domain.enums.collections.MovieCollectionType
 import com.majorik.moviebox.feature.collections.presentation.adapters.PagingMovieCollectionAdapter
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.fragment_collection_page.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class MovieCollectionsFragment(collectionType: MovieCollectionType) :
-    Fragment(),
+class MovieCollectionsFragment(collectionType: MovieCollectionType) : Fragment(),
     PagingMovieCollectionAdapter.OnClickListener {
 
     private val movieViewModel: MovieCollectionsViewModel by viewModel {

@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/collections_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
@@ -17,29 +18,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tab_frame_layout" />
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/m_toolbar_collections"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:navigationIcon="@drawable/ic_arrow_down"
+    <FrameLayout
+        android:id="@+id/collections_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/AppTheme.PopupOverlay"
-        app:theme="@style/AppTheme.AppBarOverlay">
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_arrow_down"
+            android:tint="@color/mine_shaft" />
+
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="56dp"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="56dp"
             android:fontFamily="@font/rubik_one_regular"
             android:gravity="center"
             android:text="@string/collections_collections"
             android:textAllCaps="true"
             android:textColor="@color/mine_shaft"
             android:textSize="18sp" />
-
-    </androidx.appcompat.widget.Toolbar>
+    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/tab_frame_layout"
@@ -50,7 +59,7 @@
         android:paddingEnd="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/m_toolbar_collections">
+        app:layout_constraintTop_toBottomOf="@+id/collections_toolbar">
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/p_tab_layout"

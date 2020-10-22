@@ -26,6 +26,7 @@ import com.majorik.moviebox.feature.details.domain.tmdbModels.video.Videos
 import com.majorik.moviebox.feature.details.presentation.adapters.CastAdapter
 import com.majorik.moviebox.feature.details.presentation.adapters.ImageSliderAdapter
 import com.majorik.moviebox.feature.details.presentation.watch_online.WatchOnlineDialog
+import com.orhanobut.logger.Logger
 import com.soywiz.klock.KlockLocale
 import com.stfalcon.imageviewer.StfalconImageViewer
 import kotlinx.android.synthetic.main.dialog_fragment_movie_details.*
@@ -64,7 +65,13 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
 
     private fun updateMargins(statusBarSize: Int, navigationBarSize: Int) {
         viewBinding.bottomBar.updateMargin(bottom = navigationBarSize)
-        images_block.updateMargin(bottom = navigationBarSize)
+        viewBinding.contentCoordinator.updateMargin(top = statusBarSize)
+
+        val height = viewBinding.root.height
+        val peekHeight = height - viewBinding.mdImageSlider.height
+
+        val contentBottomSheet = BottomSheetBehavior.from(md_bottom_sheet)
+        contentBottomSheet.setPeekHeight(peekHeight, false)
     }
 
     private fun fetchDetails() {
@@ -87,41 +94,29 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
     }
 
     private fun setObserver() {
-        viewModel.movieDetailsLiveData.observe(
-            this,
-            Observer { movie ->
-                setMovieDetails(movie)
-            }
-        )
+        viewModel.movieDetailsLiveData.observe(this, Observer { movie ->
+            setMovieDetails(movie)
+        })
 
-        viewModel.movieStatesLiveData.observe(
-            this,
-            Observer {
-                it?.apply { setAccountStates(this) }
-            }
-        )
+        viewModel.movieStatesLiveData.observe(this, Observer {
+            it?.apply { setAccountStates(this) }
+        })
 
-        viewModel.responseFavoriteLiveData.observe(
-            this,
-            Observer {
-                if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
-                    context?.showToastMessage("Фильм успешно добавлен в избранное")
-                } else {
-                    context?.showToastMessage("Неудалось добавить фильм в избранное")
-                }
+        viewModel.responseFavoriteLiveData.observe(this, Observer {
+            if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
+                context?.showToastMessage("Фильм успешно добавлен в избранное")
+            } else {
+                context?.showToastMessage("Неудалось добавить фильм в избранное")
             }
-        )
+        })
 
-        viewModel.responseWatchlistLiveData.observe(
-            this,
-            Observer {
-                if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
-                    context?.showToastMessage("Фильм успешно добавлен в 'Буду смотреть'")
-                } else {
-                    context?.showToastMessage("Неудалось добавить фильм в 'Буду смотреть'")
-                }
+        viewModel.responseWatchlistLiveData.observe(this, Observer {
+            if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
+                context?.showToastMessage("Фильм успешно добавлен в 'Буду смотреть'")
+            } else {
+                context?.showToastMessage("Неудалось добавить фильм в 'Буду смотреть'")
             }
-        )
+        })
     }
 
     private fun setAccountStates(accountStates: AccountStates) {
@@ -182,11 +177,6 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
         }
     }
 
-    private fun setVisibilityPlaceholder(isVisible: Boolean) {
-        placeholder_main_details_page.setVisibilityOption(isVisible)
-        main_layout.setVisibilityOption(!isVisible)
-    }
-
     private fun setTrailerButtonClickListener(videos: Videos) {
         if (videos.results.isNotEmpty()) {
             btn_watch_trailer.setOnClickListener {
@@ -200,8 +190,6 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
      */
 
     private fun setMovieDetails(movie: MovieDetails) {
-        setVisibilityPlaceholder(false)
-
         setHeader(movie.title, movie.voteAverage, movie.status, movie.genres, movie.releaseDate)
         setOverview(movie.overview)
         setFacts(movie)

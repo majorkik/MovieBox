@@ -10,7 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.majorik.library.base.base.UpdateMargins
 import com.majorik.library.base.constants.AppConfig
 import com.majorik.library.base.constants.GenresConstants
 import com.majorik.library.base.constants.ScreenLinks
@@ -19,17 +18,16 @@ import com.majorik.library.base.enums.SELECTED_GENRES_TYPE
 import com.majorik.library.base.extensions.*
 import com.majorik.library.base.models.results.ResultWrapper
 import com.majorik.library.base.utils.GenresStorageObject
+import com.majorik.moviebox.domain.enums.collections.MovieCollectionType
+import com.majorik.moviebox.domain.enums.collections.MovieCollectionType.*
 import com.majorik.moviebox.feature.navigation.R
 import com.majorik.moviebox.feature.navigation.data.repositories.TrendingRepository.TimeWindow
 import com.majorik.moviebox.feature.navigation.databinding.FragmentMoviesBinding
-import com.majorik.moviebox.feature.navigation.domain.movie.MovieCollectionType
-import com.majorik.moviebox.feature.navigation.domain.movie.MovieCollectionType.*
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.genre.GenreResponse
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.movie.MovieResponse
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.person.PersonResponse
 import com.majorik.moviebox.feature.navigation.domain.youtubeModels.SearchResponse
 import com.majorik.moviebox.feature.navigation.presentation.adapters.*
-import com.orhanobut.logger.Logger
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.majorik.moviebox.R as AppResources
@@ -151,23 +149,23 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
     private fun setClickListeners() {
         viewBinding.apply {
             btnSearch.setOnClickListener {
-                findNavController().navigate(MoviesFragmentDirections.actionNavMoviesToNavDetails(458888))
+                context?.startActivityWithAnim(ScreenLinks.searchableActivity)
             }
 
-            btnPopularMovies.setOnClickListener { openNewActivityWithTab(ScreenLinks.movieCollection, POPULAR) }
+            btnPopularMovies.setOnClickListener {
+                findNavController().navigate(
+                    MoviesFragmentDirections.actionNavMoviesToNavMovieCollections(
+                        POPULAR
+                    )
+                )
+            }
 
             btnUpcomingMovies.setOnClickListener {
-                openNewActivityWithTab(
-                    ScreenLinks.movieCollection,
-                    UPCOMING
-                )
+                findNavController().navigate(MoviesFragmentDirections.actionNavMoviesToNavMovieCollections(UPCOMING))
             }
 
             btnNowPlayingMovies.setOnClickListener {
-                openNewActivityWithTab(
-                    ScreenLinks.movieCollection,
-                    NOW_PLAYING
-                )
+                findNavController().navigate(MoviesFragmentDirections.actionNavMoviesToNavMovieCollections(NOW_PLAYING))
             }
 
             btnMovieGenres.setSafeOnClickListener {
@@ -232,17 +230,6 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
                 }
             )
         }
-    }
-
-    private fun openNewActivityWithTab(
-        collectionsActivity: String,
-        collectionType: MovieCollectionType
-    ) {
-        val intent = Intent().setClassName(requireContext(), collectionsActivity)
-
-        intent.putExtra("collection_name", collectionType.name)
-
-        startActivity(intent)
     }
 
     /**

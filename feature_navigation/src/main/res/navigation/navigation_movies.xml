@@ -20,6 +20,28 @@
                 app:argType="integer"
                 app:nullable="false" />
         </action>
+
+        <action
+            android:id="@+id/action_nav_movies_to_nav_movie_collections"
+            app:destination="@id/nav_movie_collections">
+
+            <argument
+                android:name="movie_collection_type"
+                android:defaultValue="POPULAR"
+                app:argType="com.majorik.moviebox.domain.enums.collections.MovieCollectionType"
+                app:nullable="false" />
+        </action>
+
+        <action
+            android:id="@+id/action_nav_movies_to_nav_tv_collections"
+            app:destination="@id/nav_tv_collections">
+
+            <argument
+                android:name="movie_collection_type"
+                android:defaultValue="POPULAR"
+                app:argType="com.majorik.moviebox.domain.enums.collections.MovieCollectionType"
+                app:nullable="false" />
+        </action>
     </fragment>
 
     <include-dynamic
@@ -27,6 +49,18 @@
         app:graphPackage="com.majorik.moviebox.feature_details"
         app:graphResName="navigation_movie_details"
         app:moduleName="feature_details" />
+
+    <include-dynamic
+        android:id="@+id/nav_movie_collections"
+        app:graphPackage="com.majorik.moviebox.feature_collections"
+        app:graphResName="navigation_movie_collections"
+        app:moduleName="feature_collections" />
+
+    <include-dynamic
+        android:id="@+id/nav_tv_collections"
+        app:graphPackage="com.majorik.moviebox.feature_collections"
+        app:graphResName="navigation_tv_collections"
+        app:moduleName="feature_collections" />
 
     <!--    <include-dynamic-->
     <!--        android:id="@+id/nav_movie_details_test"-->

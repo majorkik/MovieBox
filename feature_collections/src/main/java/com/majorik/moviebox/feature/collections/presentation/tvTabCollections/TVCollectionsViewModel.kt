@@ -8,7 +8,7 @@ import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.majorik.moviebox.feature.collections.data.repositories.TVRepository
 import com.majorik.moviebox.feature.collections.domain.NetworkState
-import com.majorik.moviebox.feature.collections.domain.movie.TVCollectionType
+import com.majorik.moviebox.domain.enums.collections.TVCollectionType
 import com.majorik.moviebox.feature.collections.presentation.collections.TVCollectionsDataSourceFactory
 
 class TVCollectionsViewModel(tvRepository: TVRepository, tvCollectionType: TVCollectionType) :

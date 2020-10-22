@@ -1,4 +1,4 @@
-package com.majorik.moviebox.feature.navigation.domain.movie
+package com.majorik.moviebox.domain.enums.collections
 
 enum class MovieCollectionType {
     POPULAR,

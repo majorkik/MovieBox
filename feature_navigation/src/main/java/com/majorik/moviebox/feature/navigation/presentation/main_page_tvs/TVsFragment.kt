@@ -15,10 +15,10 @@ import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.library.base.extensions.*
 import com.majorik.library.base.models.results.ResultWrapper
 import com.majorik.library.base.utils.GenresStorageObject
+import com.majorik.moviebox.domain.enums.collections.TVCollectionType
 import com.majorik.moviebox.feature.navigation.R
 import com.majorik.moviebox.feature.navigation.data.repositories.TrendingRepository
 import com.majorik.moviebox.feature.navigation.databinding.FragmentTvsBinding
-import com.majorik.moviebox.feature.navigation.domain.movie.TVCollectionType
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.genre.GenreResponse
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.tv.TVResponse
 import com.majorik.moviebox.feature.navigation.domain.youtubeModels.SearchResponse

@@ -1,4 +1,4 @@
-package com.majorik.moviebox.feature.collections.domain.movie
+package com.majorik.moviebox.domain.enums.collections
 
 enum class TVCollectionType {
     POPULAR,

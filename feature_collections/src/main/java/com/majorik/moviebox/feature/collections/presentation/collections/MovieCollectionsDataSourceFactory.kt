@@ -3,7 +3,7 @@ package com.majorik.moviebox.feature.collections.presentation.collections
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import com.majorik.moviebox.feature.collections.data.repositories.MovieRepository
-import com.majorik.moviebox.feature.collections.domain.movie.MovieCollectionType
+import com.majorik.moviebox.domain.enums.collections.MovieCollectionType
 import com.majorik.moviebox.feature.collections.domain.tmdbModels.movie.Movie
 import kotlinx.coroutines.CoroutineScope
 
