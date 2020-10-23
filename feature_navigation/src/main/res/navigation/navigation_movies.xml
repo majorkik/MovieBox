@@ -11,7 +11,7 @@
         android:label="@string/title_nav_movies">
 
         <action
-            android:id="@+id/action_nav_movies_to_nav_details"
+            android:id="@+id/action_to_movie_details"
             app:destination="@id/nav_movie_details">
 
             <argument
@@ -21,7 +21,7 @@
                 app:nullable="false" />
         </action>
         <action
-            android:id="@+id/action_nav_movies_to_nav_movie_collections"
+            android:id="@+id/action_to_movie_collections"
             app:destination="@id/nav_movie_collections"
             app:enterAnim="@anim/fragment_enter_slide_up"
             app:exitAnim="@anim/fade_none"

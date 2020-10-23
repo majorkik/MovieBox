@@ -28,8 +28,11 @@ import com.majorik.moviebox.feature.navigation.domain.tmdbModels.person.PersonRe
 import com.majorik.moviebox.feature.navigation.domain.youtubeModels.SearchResponse
 import com.majorik.moviebox.feature.navigation.presentation.adapters.*
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
+import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.majorik.moviebox.R as AppResources
+
+typealias Directions = MoviesFragmentDirections
 
 class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
@@ -43,11 +46,12 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
     private val nowPlayingMoviesAdapter = MovieCollectionAdapter(::actionClickMovie)
     private val upcomingMoviesAdapter = MovieDateCardAdapter(::actionClickMovie)
+    private val popularMoviesAdapter = MovieCardAdapter(::actionClickMovie)
+    private val trendingMovieAdapter = MovieTrendAdapter(::actionClickMovie)
+
+    private val genresAdapter = GenreAdapter()
     private val trailersAdapter = TrailersAdapter()
     private val peopleAdapter = PersonAdapter()
-    private val popularMoviesAdapter = MovieCardAdapter(::actionClickMovie)
-    private val genresAdapter = GenreAdapter()
-    private val trendingMovieAdapter = MovieTrendAdapter(::actionClickMovie)
 
     /**
      * Default methods
@@ -59,22 +63,10 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
         activity?.setDarkNavigationBarColor()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        setHasOptionsMenu(true)
-
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         updateMargins()
-
-        setupAdapters()
         fetchData()
 
         initAdapters()
@@ -88,11 +80,6 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
             insets
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(AppResources.menu.main_toolbar_menu, menu)
     }
 
     private fun initAdapters() {
@@ -123,23 +110,8 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
         }
     }
 
-    private fun setupAdapters() {
-//        popularMoviesAdapter.setHasStableIds(true)
-//        nowPlayingMoviesAdapter.setHasStableIds(true)
-//        upcomingMoviesAdapter.setHasStableIds(true)
-//        trailersAdapter.setHasStableIds(true)
-//        peopleAdapter.setHasStableIds(true)
-//        genresAdapter.setHasStableIds(true)
-//        trendingMovieAdapter.setHasStableIds(true)
-    }
-
     private fun fetchData() {
         viewModel.run {
-            fetchPopularMovies(AppConfig.REGION, 1, "")
-            fetchNowPlayingMovies(AppConfig.REGION, 1, "RU")
-            fetchTrendingMovies(TimeWindow.WEEK, 1, AppConfig.REGION)
-            fetchUpcomingMovies(AppConfig.REGION, 1, "RU")
-            fetchMovieGenres(AppConfig.REGION)
             searchYouTubeVideosByChannel()
             fetchPopularPeoples(AppConfig.REGION, 1)
         }
@@ -152,23 +124,19 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
             }
 
             btnPopularMovies.setOnClickListener {
-                findNavController().navigate(
-                    MoviesFragmentDirections.actionNavMoviesToNavMovieCollections(
-                        POPULAR
-                    )
-                )
+                findNavController().navigate(Directions.actionToMovieCollections(POPULAR))
             }
 
             btnUpcomingMovies.setOnClickListener {
-                findNavController().navigate(MoviesFragmentDirections.actionNavMoviesToNavMovieCollections(UPCOMING))
+                findNavController().navigate(Directions.actionToMovieCollections(UPCOMING))
             }
 
             btnNowPlayingMovies.setOnClickListener {
-                findNavController().navigate(MoviesFragmentDirections.actionNavMoviesToNavMovieCollections(NOW_PLAYING))
+                findNavController().navigate(Directions.actionToMovieCollections(NOW_PLAYING))
             }
 
             btnTrendingMovies.setOnClickListener {
-                findNavController().navigate(MoviesFragmentDirections.actionNavMoviesToNavMovieCollections(POPULAR))
+                findNavController().navigate(Directions.actionToMovieCollections(POPULAR))
             }
 
             btnMovieGenres.setSafeOnClickListener {
@@ -184,33 +152,29 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
     private fun setObservers() {
         viewModel.run {
-            popularMoviesLiveData.observe(
-                viewLifecycleOwner,
-                Observer {
-                    setPopularMovies(it)
+            lifecycleScope.launchWhenResumed {
+                nowPlayingMoviesFlow.collectLatest { pagingData ->
+                    nowPlayingMoviesAdapter.submitData(pagingData)
                 }
-            )
+            }
 
-            nowPlayingMoviesLiveData.observe(
-                viewLifecycleOwner,
-                Observer {
-                    setNowPlayingMovies(it)
+            lifecycleScope.launchWhenResumed {
+                upcomingMoviesFlow.collectLatest { pagingData ->
+                    upcomingMoviesAdapter.submitData(pagingData)
                 }
-            )
+            }
 
-            trendingMoviesLiveData.observe(
-                viewLifecycleOwner,
-                Observer {
-                    setTrendingMovies(it)
+            lifecycleScope.launchWhenResumed {
+                popularMoviesFlow.collectLatest { pagingData ->
+                    popularMoviesAdapter.submitData(pagingData)
                 }
-            )
+            }
 
-            upcomingMoviesLiveData.observe(
-                viewLifecycleOwner,
-                Observer {
-                    setUpcomingMovies(it)
+            lifecycleScope.launchWhenResumed {
+                trendingMoviesFlow.collectLatest { pagingData ->
+                    trendingMovieAdapter.submitData(pagingData)
                 }
-            )
+            }
 
             genresLiveData.observe(
                 viewLifecycleOwner,
@@ -240,52 +204,12 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
      */
 
     private fun actionClickMovie(id: Int) {
-        findNavController().navigate(MoviesFragmentDirections.actionNavMoviesToNavDetails(id))
+        findNavController().navigate(Directions.actionToMovieDetails(id))
     }
 
     /**
      * Setters
      */
-
-    private fun setPopularMovies(result: ResultWrapper<MovieResponse>) {
-        when (result) {
-            is ResultWrapper.Success -> {
-                popularMoviesAdapter.addItems(result.value.results)
-            }
-        }
-    }
-
-    private fun setNowPlayingMovies(result: ResultWrapper<MovieResponse>?) {
-        when (result) {
-            is ResultWrapper.Success -> {
-                nowPlayingMoviesAdapter.addItems(result.value.results)
-            }
-        }
-    }
-
-    private fun setTrendingMovies(result: ResultWrapper<MovieResponse>?) {
-        when (result) {
-            is ResultWrapper.Success -> {
-                if (GenresStorageObject.movieGenres.isEmpty()) {
-                    GenresConstants.movieGenres.forEach {
-                        GenresStorageObject.movieGenres.put(it.id, it.name)
-                    }
-                }
-
-                trendingMovieAdapter.addItems(result.value.results)
-            }
-        }
-    }
-
-    private fun setUpcomingMovies(result: ResultWrapper<MovieResponse>) {
-        when (result) {
-            is ResultWrapper.Success -> {
-                val items = result.value.results.sortedBy { it.releaseDate?.toDate()?.utc?.unixMillisLong ?: 0L }
-
-                upcomingMoviesAdapter.addItems(items)
-            }
-        }
-    }
 
     private fun setMovieGenres(result: ResultWrapper<GenreResponse>?) {
         when (result) {

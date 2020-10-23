@@ -1,445 +1,441 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/movies_scroll_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimary"
+    android:fillViewport="true">
 
-    <ScrollView
-        android:id="@+id/movies_scroll_view"
+    <LinearLayout
+        android:id="@+id/scroll_view_linear_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/scroll_view_linear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/cc_rubik_one"
+                android:text="@string/title_nav_movies"
+                android:textAllCaps="true"
+                android:textColor="@color/mine_shaft"
+                android:textSize="24sp"
+                android:textStyle="normal" />
+
+            <ImageButton
+                android:id="@+id/btn_search"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="8dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="20dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_search_new"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btn_popular_movies"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/transparent"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="16dp"
                     android:layout_weight="1"
-                    android:fontFamily="@font/cc_rubik_one"
-                    android:text="@string/title_nav_movies"
+                    android:fontFamily="@font/cc_montserrat_black"
+                    android:text="@string/navigation_collection_popular"
+                    android:textColor="@color/mine_shaft"
+                    android:textSize="18sp"
+                    android:theme="@style/HeaderMedium" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/cc_montserrat_black"
+                    android:gravity="center"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="@string/navigation_more"
                     android:textAllCaps="true"
                     android:textColor="@color/mine_shaft"
-                    android:textSize="24sp"
-                    android:textStyle="normal" />
-
-                <ImageButton
-                    android:id="@+id/btn_search"
-                    android:layout_width="56dp"
-                    android:layout_height="56dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginHorizontal="8dp"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:padding="20dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_search_new"
-                    tools:ignore="ContentDescription" />
+                    android:textSize="10sp" />
             </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/btn_popular_movies"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_popular_movies"
+            android:layout_width="match_parent"
+            android:layout_height="185dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="24dp"
+            android:clipChildren="false"
+            android:clipToPadding="false" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btn_now_playing_movies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/transparent"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="0dp">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                app:cardBackgroundColor="@color/transparent"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="0dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="8dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/cc_montserrat_black"
-                        android:text="@string/navigation_collection_popular"
-                        android:textColor="@color/mine_shaft"
-                        android:textSize="18sp"
-                        android:theme="@style/HeaderMedium" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:fontFamily="@font/cc_montserrat_black"
-                        android:gravity="center"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:text="@string/navigation_more"
-                        android:textAllCaps="true"
-                        android:textColor="@color/mine_shaft"
-                        android:textSize="10sp" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/vp_popular_movies"
-                android:layout_width="match_parent"
-                android:layout_height="185dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="24dp"
-                android:clipChildren="false"
-                android:clipToPadding="false" />
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/btn_now_playing_movies"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                app:cardBackgroundColor="@color/transparent"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="0dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="8dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/cc_montserrat_black"
-                        android:text="@string/navigation_now_playing"
-                        android:textColor="@color/mine_shaft"
-                        android:textSize="18sp"
-                        android:theme="@style/HeaderMedium" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:fontFamily="@font/cc_montserrat_black"
-                        android:gravity="center"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:text="@string/navigation_more"
-                        android:textAllCaps="true"
-                        android:textColor="@color/mine_shaft"
-                        android:textSize="10sp" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_now_playing_movies"
-                android:layout_width="match_parent"
-                android:layout_height="158dp"
-                android:clipToPadding="false"
                 android:orientation="horizontal"
-                android:paddingLeft="12dp"
-                android:paddingTop="8dp"
-                android:paddingRight="12dp"
-                android:paddingBottom="24dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_small_poster_card" />
+                android:padding="8dp">
 
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/btn_trending_movies"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                app:cardBackgroundColor="@color/transparent"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="0dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="8dp">
+                    android:layout_weight="1"
+                    android:fontFamily="@font/cc_montserrat_black"
+                    android:text="@string/navigation_now_playing"
+                    android:textColor="@color/mine_shaft"
+                    android:textSize="18sp"
+                    android:theme="@style/HeaderMedium" />
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/cc_montserrat_black"
-                        android:text="@string/navigation_in_trends"
-                        android:textColor="@color/mine_shaft"
-                        android:textSize="18sp"
-                        android:theme="@style/HeaderMedium" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:fontFamily="@font/cc_montserrat_black"
-                        android:gravity="center"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:text="@string/navigation_more"
-                        android:textAllCaps="true"
-                        android:textColor="@color/mine_shaft"
-                        android:textSize="10sp" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/vp_trend_movies"
-                android:layout_width="match_parent"
-                android:layout_height="72dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="24dp"
-                android:clipChildren="false"
-                android:clipToPadding="false" />
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/btn_upcoming_movies"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                app:cardBackgroundColor="@color/transparent"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="0dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="8dp">
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/cc_montserrat_black"
+                    android:gravity="center"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="@string/navigation_more"
+                    android:textAllCaps="true"
+                    android:textColor="@color/mine_shaft"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/cc_montserrat_black"
-                        android:text="@string/navigation_upcoming"
-                        android:textColor="@color/mine_shaft"
-                        android:textSize="18sp"
-                        android:theme="@style/HeaderMedium" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_now_playing_movies"
+            android:layout_width="match_parent"
+            android:layout_height="158dp"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:paddingLeft="12dp"
+            android:paddingTop="8dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="24dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_small_poster_card" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:fontFamily="@font/cc_montserrat_black"
-                        android:gravity="center"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:text="@string/navigation_more"
-                        android:textAllCaps="true"
-                        android:textColor="@color/mine_shaft"
-                        android:textSize="10sp" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_upcoming_movies"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btn_trending_movies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/transparent"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="0dp">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clipToPadding="false"
                 android:orientation="horizontal"
-                android:paddingLeft="12dp"
-                android:paddingTop="8dp"
-                android:paddingRight="12dp"
-                android:paddingBottom="24dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_small_poster_card" />
+                android:padding="8dp">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/btn_movie_genres"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                app:cardBackgroundColor="@color/transparent"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="0dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="8dp">
+                    android:layout_weight="1"
+                    android:fontFamily="@font/cc_montserrat_black"
+                    android:text="@string/navigation_in_trends"
+                    android:textColor="@color/mine_shaft"
+                    android:textSize="18sp"
+                    android:theme="@style/HeaderMedium" />
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/cc_montserrat_black"
-                        android:text="@string/navigation_genres"
-                        android:textColor="@color/mine_shaft"
-                        android:textSize="18sp"
-                        android:theme="@style/HeaderMedium" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:fontFamily="@font/cc_montserrat_black"
-                        android:gravity="center"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:text="@string/navigation_more"
-                        android:textAllCaps="true"
-                        android:textColor="@color/mine_shaft"
-                        android:textSize="10sp" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_movie_genres"
-                android:layout_width="match_parent"
-                android:layout_height="36dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="24dp"
-                android:clipToPadding="false"
-                android:orientation="horizontal"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_genre" />
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/btn_movie_trailers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                app:cardBackgroundColor="@color/transparent"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="0dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="8dp">
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/cc_montserrat_black"
+                    android:gravity="center"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="@string/navigation_more"
+                    android:textAllCaps="true"
+                    android:textColor="@color/mine_shaft"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/cc_montserrat_black"
-                        android:text="@string/navigation_trailers"
-                        android:textColor="@color/mine_shaft"
-                        android:textSize="18sp"
-                        android:theme="@style/HeaderMedium" />
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_trend_movies"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="24dp"
+            android:clipChildren="false"
+            android:clipToPadding="false" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:fontFamily="@font/cc_montserrat_black"
-                        android:gravity="center"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:text="@string/navigation_more"
-                        android:textAllCaps="true"
-                        android:textColor="@color/mine_shaft"
-                        android:textSize="10sp" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btn_upcoming_movies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/transparent"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="0dp">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_trailers"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clipToPadding="false"
                 android:orientation="horizontal"
-                android:paddingStart="8dp"
-                android:paddingTop="8dp"
-                android:paddingEnd="8dp"
-                android:paddingBottom="24dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_genre" />
+                android:padding="8dp">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/btn_trending_peoples"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                app:cardBackgroundColor="@color/transparent"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="0dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="8dp">
+                    android:layout_weight="1"
+                    android:fontFamily="@font/cc_montserrat_black"
+                    android:text="@string/navigation_upcoming"
+                    android:textColor="@color/mine_shaft"
+                    android:textSize="18sp"
+                    android:theme="@style/HeaderMedium" />
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/cc_montserrat_black"
-                        android:text="@string/navigation_popular_peoples"
-                        android:textColor="@color/mine_shaft"
-                        android:textSize="18sp"
-                        android:theme="@style/HeaderMedium" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/cc_montserrat_black"
+                    android:gravity="center"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="@string/navigation_more"
+                    android:textAllCaps="true"
+                    android:textColor="@color/mine_shaft"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:fontFamily="@font/cc_montserrat_black"
-                        android:gravity="center"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:text="@string/navigation_more"
-                        android:textAllCaps="true"
-                        android:textColor="@color/mine_shaft"
-                        android:textSize="10sp" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_upcoming_movies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:paddingLeft="12dp"
+            android:paddingTop="8dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="24dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_small_poster_card" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_trending_peoples"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btn_movie_genres"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/transparent"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="0dp">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clipToPadding="false"
                 android:orientation="horizontal"
-                android:paddingStart="12dp"
-                android:paddingTop="8dp"
-                android:paddingEnd="12dp"
-                android:paddingBottom="24dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_genre" />
-        </LinearLayout>
-    </ScrollView>
-</FrameLayout>
+                android:padding="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/cc_montserrat_black"
+                    android:text="@string/navigation_genres"
+                    android:textColor="@color/mine_shaft"
+                    android:textSize="18sp"
+                    android:theme="@style/HeaderMedium" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/cc_montserrat_black"
+                    android:gravity="center"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="@string/navigation_more"
+                    android:textAllCaps="true"
+                    android:textColor="@color/mine_shaft"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_movie_genres"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="24dp"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_genre" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btn_movie_trailers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/transparent"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/cc_montserrat_black"
+                    android:text="@string/navigation_trailers"
+                    android:textColor="@color/mine_shaft"
+                    android:textSize="18sp"
+                    android:theme="@style/HeaderMedium" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/cc_montserrat_black"
+                    android:gravity="center"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="@string/navigation_more"
+                    android:textAllCaps="true"
+                    android:textColor="@color/mine_shaft"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_trailers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:paddingStart="8dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="24dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_genre" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btn_trending_peoples"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/transparent"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/cc_montserrat_black"
+                    android:text="@string/navigation_popular_peoples"
+                    android:textColor="@color/mine_shaft"
+                    android:textSize="18sp"
+                    android:theme="@style/HeaderMedium" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/cc_montserrat_black"
+                    android:gravity="center"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="@string/navigation_more"
+                    android:textAllCaps="true"
+                    android:textColor="@color/mine_shaft"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_trending_peoples"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:paddingStart="12dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="24dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_genre" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

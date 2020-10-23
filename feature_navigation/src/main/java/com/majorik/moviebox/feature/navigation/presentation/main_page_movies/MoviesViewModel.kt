@@ -2,17 +2,23 @@ package com.majorik.moviebox.feature.navigation.presentation.main_page_movies
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.cachedIn
+import com.majorik.library.base.constants.AppConfig
+import com.majorik.library.base.models.results.ResultWrapper
+import com.majorik.moviebox.BuildConfig
+import com.majorik.moviebox.domain.enums.collections.MovieCollectionType
 import com.majorik.moviebox.feature.navigation.data.repositories.MovieRepository
 import com.majorik.moviebox.feature.navigation.data.repositories.PersonRepository
 import com.majorik.moviebox.feature.navigation.data.repositories.TrendingRepository
 import com.majorik.moviebox.feature.navigation.data.repositories.YouTubeRepository
-import com.majorik.moviebox.feature.navigation.domain.youtubeModels.SearchResponse
-import com.majorik.library.base.models.results.ResultWrapper
-import com.majorik.moviebox.BuildConfig
-import com.majorik.moviebox.feature.navigation.domain.tmdbModels.genre.GenreResponse
-import com.majorik.moviebox.feature.navigation.domain.tmdbModels.movie.MovieResponse
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.person.PersonResponse
+import com.majorik.moviebox.feature.navigation.domain.youtubeModels.SearchResponse
+import com.majorik.moviebox.feature.navigation.presentation.main_page_movies.datasources.MovieCollectionsPagingDataSource
+import com.majorik.moviebox.feature.navigation.presentation.main_page_movies.datasources.TrendingMoviesPagingDataSource
 import kotlinx.coroutines.launch
 
 class MoviesViewModel(
@@ -21,63 +27,74 @@ class MoviesViewModel(
     private val trendingRepository: TrendingRepository,
     private val youTubeRepository: YouTubeRepository
 ) : ViewModel() {
-    var popularMoviesLiveData = MutableLiveData<ResultWrapper<MovieResponse>>()
-    val upcomingMoviesLiveData = MutableLiveData<ResultWrapper<MovieResponse>>()
-    val nowPlayingMoviesLiveData = MutableLiveData<ResultWrapper<MovieResponse>>()
+
+    /**
+     * Popular movies
+     */
+
+    var nowPlayingDataSource: MovieCollectionsPagingDataSource? = null
+
+    var nowPlayingMoviesFlow = Pager(PagingConfig(pageSize = 20)) {
+        MovieCollectionsPagingDataSource(movieRepository, MovieCollectionType.NOW_PLAYING).also {
+            nowPlayingDataSource = it
+        }
+    }.flow.cachedIn(viewModelScope)
+
+    /**
+     * Upcoming movies
+     */
+
+    var upcomingDataSource: MovieCollectionsPagingDataSource? = null
+
+    var upcomingMoviesFlow = Pager(PagingConfig(pageSize = 20)) {
+        MovieCollectionsPagingDataSource(movieRepository, MovieCollectionType.UPCOMING).also {
+            upcomingDataSource = it
+        }
+    }.flow.cachedIn(viewModelScope)
+
+
+    /**
+     * Upcoming movies
+     */
+
+    var trendingDataSource: TrendingMoviesPagingDataSource? = null
+
+    var trendingMoviesFlow = Pager(PagingConfig(pageSize = 20)) {
+        TrendingMoviesPagingDataSource(trendingRepository, TrendingRepository.TimeWindow.WEEK, AppConfig.REGION).also {
+            trendingDataSource = it
+        }
+    }.flow.cachedIn(viewModelScope)
+
+
+    /**
+     * Upcoming movies
+     */
+
+    var popularDataSource: MovieCollectionsPagingDataSource? = null
+
+    var popularMoviesFlow = Pager(PagingConfig(pageSize = 20)) {
+        MovieCollectionsPagingDataSource(movieRepository, MovieCollectionType.POPULAR).also {
+            popularDataSource = it
+        }
+    }.flow.cachedIn(viewModelScope)
+
+    /**
+     * One-shot get genres list
+     */
+
+    val genresLiveData = liveData {
+        emit(movieRepository.getMovieGenres(AppConfig.REGION))
+    }
+
     val popularPeoplesLiveData = MutableLiveData<ResultWrapper<PersonResponse>>()
-    val genresLiveData = MutableLiveData<ResultWrapper<GenreResponse>>()
-    val trendingMoviesLiveData = MutableLiveData<ResultWrapper<MovieResponse>>()
+
     val trailersLiveData = MutableLiveData<ResultWrapper<SearchResponse>>()
-
-    fun fetchPopularMovies(language: String?, page: Int?, region: String?) {
-        viewModelScope.launch {
-            val response = movieRepository.getPopularMovies(language, page, region)
-
-            popularMoviesLiveData.postValue(response)
-        }
-    }
-
-    fun fetchUpcomingMovies(language: String?, page: Int?, region: String?) {
-        viewModelScope.launch {
-            val response = movieRepository.getUpcomingMovies(language, page, region)
-
-            upcomingMoviesLiveData.postValue(response)
-        }
-    }
-
-    fun fetchNowPlayingMovies(language: String?, page: Int?, region: String?) {
-        viewModelScope.launch {
-            val response = movieRepository.getNowPlayingMovies(language, page, region)
-
-            nowPlayingMoviesLiveData.postValue(response)
-        }
-    }
-
-    fun fetchMovieGenres(language: String?) {
-        viewModelScope.launch {
-            val response = movieRepository.getMovieGenres(language)
-
-            genresLiveData.postValue(response)
-        }
-    }
 
     fun fetchPopularPeoples(language: String?, page: Int?) {
         viewModelScope.launch {
             val response = personRepository.getPopularPeoples(language, page)
 
             popularPeoplesLiveData.postValue(response)
-        }
-    }
-
-    fun fetchTrendingMovies(
-        timeWindow: TrendingRepository.TimeWindow,
-        page: Int?,
-        language: String?
-    ) {
-        viewModelScope.launch {
-            val response = trendingRepository.getTrendingMovies(timeWindow, page, language)
-
-            trendingMoviesLiveData.postValue(response)
         }
     }
 

@@ -211,7 +211,6 @@
     </style>
 
     <style name="DialogFragmentAnimationSlideUpDown" parent="@android:style/Animation.Activity">
-
         <item name="android:windowEnterAnimation">@anim/fragment_enter_slide_up</item>
         <item name="android:windowExitAnimation">@anim/fragment_exit_slide_down</item>
     </style>
