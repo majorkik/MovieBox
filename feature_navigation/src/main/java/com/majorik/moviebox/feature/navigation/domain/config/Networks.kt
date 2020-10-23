@@ -1,4 +1,4 @@
-package com.majorik.moviebox.feature.navigation.presentation.constants
+package com.majorik.moviebox.feature.navigation.domain.config
 
 import com.majorik.moviebox.feature.navigation.R
 import com.majorik.moviebox.feature.navigation.domain.models.NetworkModel

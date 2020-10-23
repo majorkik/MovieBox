@@ -25,7 +25,7 @@ import com.majorik.moviebox.feature.navigation.domain.tmdbModels.tv.TVResponse
 import com.majorik.moviebox.feature.navigation.domain.youtubeModels.SearchResponse
 import com.majorik.moviebox.feature.navigation.presentation.adapters.*
 import com.majorik.moviebox.feature.navigation.presentation.adapters.tvs.NetworksAdapter
-import com.majorik.moviebox.feature.navigation.presentation.constants.Networks
+import com.majorik.moviebox.feature.navigation.domain.config.Networks
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
