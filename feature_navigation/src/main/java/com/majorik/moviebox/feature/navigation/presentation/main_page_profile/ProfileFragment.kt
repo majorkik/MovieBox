@@ -52,10 +52,10 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         super.onResume()
         if (credentialsManager.getTmdbLoggedStatus()) {
             viewBinding.profileLayout.setVisibilityOption(true)
-            viewBinding.btnAuthTitle.text = "Выход"
+            viewBinding.btnAuthTitle.text = getString(R.string.profile_screen_auth_button_logout)
         } else {
             viewBinding.profileLayout.setVisibilityOption(false)
-            viewBinding.btnAuthTitle.text = "Вход в аккаунт"
+            viewBinding.btnAuthTitle.text = getString(R.string.profile_screen_auth_button_log_in)
             viewBinding.iconNameLetter.text = getString(R.string.navigation_profile_screen_guest)[0].toString()
         }
     }

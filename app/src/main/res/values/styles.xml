@@ -214,4 +214,12 @@
         <item name="android:windowEnterAnimation">@anim/fragment_enter_slide_up</item>
         <item name="android:windowExitAnimation">@anim/fragment_exit_slide_down</item>
     </style>
+
+    <!--    ShapeableImageView styles-->
+
+    <style name="AppTheme.ImageViewWithCorners_8">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
 </resources>

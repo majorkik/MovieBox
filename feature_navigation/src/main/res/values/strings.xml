@@ -76,5 +76,7 @@
     <string name="navigation_profile_screen_movies_tvs_seasons">Фильмы, сериалы, сезоны</string>
     <string name="navigation_profile_screen_settings">Настройки</string>
     <string name="navigation_profile_screen_logout">Выход</string>
+    <string name="profile_screen_auth_button_logout">Выход</string>
+    <string name="profile_screen_auth_button_log_in">Вход в аккаунт</string>
 
 </resources>
