@@ -1,4 +1,4 @@
-package com.majorik.moviebox.feature.navigation.presentation.adapters
+package com.majorik.moviebox.feature.navigation.presentation.main_page_movies.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,10 +8,9 @@ import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.toDate
 import com.majorik.library.base.utils.GenresStorageObject
 import com.majorik.moviebox.feature.navigation.databinding.ItemTrendCardWithTitleBinding
-import com.majorik.moviebox.feature.navigation.databinding.ItemTrendLastItemCardBinding
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.movie.Movie
 import com.majorik.moviebox.feature.navigation.domain.utils.getMovieDiffUtils
-import com.majorik.moviebox.feature.navigation.presentation.adapters.MovieTrendAdapter.MovieTrendViewHolder
+import com.majorik.moviebox.feature.navigation.presentation.main_page_movies.adapters.MovieTrendAdapter.MovieTrendViewHolder
 import kotlin.math.roundToInt
 
 class MovieTrendAdapter(private val clickAction: (id: Int) -> Unit) :

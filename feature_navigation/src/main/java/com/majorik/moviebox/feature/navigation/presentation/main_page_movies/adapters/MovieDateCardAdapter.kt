@@ -1,4 +1,4 @@
-package com.majorik.moviebox.feature.navigation.presentation.adapters
+package com.majorik.moviebox.feature.navigation.presentation.main_page_movies.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -21,11 +21,13 @@ class MovieDateCardAdapter(private val clickAction: (id: Int) -> Unit) :
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = ItemSmallPosterDateCardBinding.inflate(layoutInflater, parent, false)
 
-        return MovieViewHolder(binding)
+        return MovieViewHolder(
+            binding
+        )
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        getItem(position)?.let {movie ->
+        getItem(position)?.let { movie ->
             holder.bindTo(movie)
 
             holder.viewBinding.collectionCard.setSafeOnClickListener {

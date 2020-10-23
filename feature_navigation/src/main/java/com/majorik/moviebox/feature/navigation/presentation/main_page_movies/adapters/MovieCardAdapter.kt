@@ -1,4 +1,4 @@
-package com.majorik.moviebox.feature.navigation.presentation.adapters
+package com.majorik.moviebox.feature.navigation.presentation.main_page_movies.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,10 +10,11 @@ import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.moviebox.feature.navigation.databinding.ItemBigImageWithCornersBinding
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.movie.Movie
 import com.majorik.moviebox.feature.navigation.domain.utils.getMovieDiffUtils
-import com.majorik.moviebox.feature.navigation.presentation.adapters.MovieCardAdapter.MovieCardViewHolder
+import com.majorik.moviebox.feature.navigation.presentation.main_page_movies.adapters.MovieCardAdapter.MovieCardViewHolder
 
 class MovieCardAdapter(private val clickAction: (id: Int) -> Unit) : PagingDataAdapter<Movie, MovieCardViewHolder>(
-    getMovieDiffUtils()) {
+    getMovieDiffUtils()
+) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieCardViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)

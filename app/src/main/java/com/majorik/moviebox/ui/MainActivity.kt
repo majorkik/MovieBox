@@ -2,7 +2,6 @@ package com.majorik.moviebox.ui
 
 import android.os.Bundle
 import androidx.core.view.updatePadding
-import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
 import androidx.navigation.dynamicfeatures.fragment.DynamicNavHostFragment
 import androidx.navigation.ui.setupWithNavController

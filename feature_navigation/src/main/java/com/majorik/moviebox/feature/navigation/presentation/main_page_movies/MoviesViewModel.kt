@@ -1,6 +1,5 @@
 package com.majorik.moviebox.feature.navigation.presentation.main_page_movies
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
@@ -8,18 +7,19 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.majorik.library.base.constants.AppConfig
-import com.majorik.library.base.models.results.ResultWrapper
 import com.majorik.moviebox.BuildConfig
 import com.majorik.moviebox.domain.enums.collections.MovieCollectionType
 import com.majorik.moviebox.feature.navigation.data.repositories.MovieRepository
 import com.majorik.moviebox.feature.navigation.data.repositories.PersonRepository
 import com.majorik.moviebox.feature.navigation.data.repositories.TrendingRepository
 import com.majorik.moviebox.feature.navigation.data.repositories.YouTubeRepository
-import com.majorik.moviebox.feature.navigation.domain.tmdbModels.person.PersonResponse
-import com.majorik.moviebox.feature.navigation.domain.youtubeModels.SearchResponse
+import com.majorik.moviebox.feature.navigation.domain.config.YouTubeConfig.YOUTUBE_MOVIES_COUNT_RESULTS
+import com.majorik.moviebox.feature.navigation.domain.config.YouTubeConfig.YOUTUBE_MOVIES_ORDER_BY_DATE
+import com.majorik.moviebox.feature.navigation.domain.config.YouTubeConfig.YOUTUBE_MOVIES_TRAILERS_CHANNEL_ID
+import com.majorik.moviebox.feature.navigation.domain.config.YouTubeConfig.YOUTUBE_PART_SNIPPET
 import com.majorik.moviebox.feature.navigation.presentation.main_page_movies.datasources.MovieCollectionsPagingDataSource
 import com.majorik.moviebox.feature.navigation.presentation.main_page_movies.datasources.TrendingMoviesPagingDataSource
-import kotlinx.coroutines.launch
+import com.majorik.moviebox.feature.navigation.presentation.main_page_movies.datasources.TrendingPeoplesPagingDataSource
 
 class MoviesViewModel(
     private val movieRepository: MovieRepository,
@@ -52,7 +52,6 @@ class MoviesViewModel(
         }
     }.flow.cachedIn(viewModelScope)
 
-
     /**
      * Upcoming movies
      */
@@ -64,7 +63,6 @@ class MoviesViewModel(
             trendingDataSource = it
         }
     }.flow.cachedIn(viewModelScope)
-
 
     /**
      * Upcoming movies
@@ -79,6 +77,18 @@ class MoviesViewModel(
     }.flow.cachedIn(viewModelScope)
 
     /**
+     * Peoples movies
+     */
+
+    var peoplesDataSource: TrendingPeoplesPagingDataSource? = null
+
+    var peoplesFlow = Pager(PagingConfig(pageSize = 20)) {
+        TrendingPeoplesPagingDataSource(personRepository, AppConfig.REGION).also {
+            peoplesDataSource = it
+        }
+    }.flow.cachedIn(viewModelScope)
+
+    /**
      * One-shot get genres list
      */
 
@@ -86,30 +96,20 @@ class MoviesViewModel(
         emit(movieRepository.getMovieGenres(AppConfig.REGION))
     }
 
-    val popularPeoplesLiveData = MutableLiveData<ResultWrapper<PersonResponse>>()
+    /**
+     * One-shot get movie trailers list
+     */
 
-    val trailersLiveData = MutableLiveData<ResultWrapper<SearchResponse>>()
+    val trailersLiveData = liveData {
+        val response = youTubeRepository.searchYouTubeVideos(
+            BuildConfig.GRADLE_YOU_TUBE_KEY,
+            YOUTUBE_PART_SNIPPET,
+            YOUTUBE_MOVIES_COUNT_RESULTS,
+            null,
+            YOUTUBE_MOVIES_ORDER_BY_DATE,
+            YOUTUBE_MOVIES_TRAILERS_CHANNEL_ID
+        )
 
-    fun fetchPopularPeoples(language: String?, page: Int?) {
-        viewModelScope.launch {
-            val response = personRepository.getPopularPeoples(language, page)
-
-            popularPeoplesLiveData.postValue(response)
-        }
-    }
-
-    fun searchYouTubeVideosByChannel() {
-        viewModelScope.launch {
-            val response = youTubeRepository.searchYouTubeVideos(
-                BuildConfig.GRADLE_YOU_TUBE_KEY,
-                "snippet",
-                20,
-                null,
-                "date",
-                "UCi8e0iOVk1fEOogdfu4YgfA"
-            )
-
-            trailersLiveData.postValue(response)
-        }
+        emit(response)
     }
 }

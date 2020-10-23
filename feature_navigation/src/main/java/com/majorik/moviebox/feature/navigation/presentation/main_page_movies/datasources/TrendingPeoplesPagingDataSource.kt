@@ -3,21 +3,20 @@ package com.majorik.moviebox.feature.navigation.presentation.main_page_movies.da
 import androidx.paging.PagingSource
 import com.majorik.library.base.models.results.ResultWrapper
 import com.majorik.moviebox.domain.enums.collections.MovieCollectionType.*
-import com.majorik.moviebox.feature.navigation.data.repositories.TrendingRepository
-import com.majorik.moviebox.feature.navigation.domain.tmdbModels.movie.Movie
+import com.majorik.moviebox.feature.navigation.data.repositories.PersonRepository
+import com.majorik.moviebox.feature.navigation.domain.tmdbModels.person.Person
 import com.orhanobut.logger.Logger
 
-class TrendingMoviesPagingDataSource(
-    private val repository: TrendingRepository,
-    private val timeWindow: TrendingRepository.TimeWindow,
+class TrendingPeoplesPagingDataSource(
+    private val repository: PersonRepository,
     private val language: String?
-) : PagingSource<Int, Movie>() {
+) : PagingSource<Int, Person>() {
 
     private var totalPages: Int? = null
 
     override suspend fun load(
         params: LoadParams<Int>
-    ): LoadResult<Int, Movie> {
+    ): LoadResult<Int, Person> {
         // Start refresh at page 1 if undefined.
         val nextPageNumber = params.key ?: 1
 
@@ -25,7 +24,7 @@ class TrendingMoviesPagingDataSource(
             return LoadResult.Error(Exception("Max page. nextPage: $nextPageNumber, maxPage: $totalPages"))
         }
 
-        return when (val response = repository.getTrendingMovies(timeWindow, nextPageNumber, language)) {
+        return when (val response = repository.getPopularPeoples(language, nextPageNumber)) {
             is ResultWrapper.GenericError -> {
                 Logger.e("Generic Error")
 

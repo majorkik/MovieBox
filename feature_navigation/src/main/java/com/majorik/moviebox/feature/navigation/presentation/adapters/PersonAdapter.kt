@@ -3,6 +3,7 @@ package com.majorik.moviebox.feature.navigation.presentation.adapters
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.majorik.library.base.constants.BaseIntentKeys
 import com.majorik.library.base.constants.ScreenLinks
@@ -12,56 +13,40 @@ import com.majorik.library.base.extensions.displayImageWithCenterInside
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startActivityWithAnim
 import com.majorik.moviebox.feature.navigation.databinding.ItemPersonProfileCardBinding
+import com.majorik.moviebox.feature.navigation.domain.utils.getPersonDiffUtils
 
-class PersonAdapter() : RecyclerView.Adapter<PersonAdapter.PersonViewHolder>() {
-
-    private var people: List<Person> = emptyList()
+class PersonAdapter() : PagingDataAdapter<Person, PersonAdapter.PersonViewHolder>(getPersonDiffUtils()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-
         val binding = ItemPersonProfileCardBinding.inflate(layoutInflater, parent, false)
 
         return PersonViewHolder(binding)
     }
 
-    override fun getItemCount() = people.size
-
-    override fun getItemId(position: Int): Long {
-        return people[position].id.toLong()
-    }
-
-    fun addItems(items: List<Person>) {
-        val startPosition = people.size
-        this.people = items
-        notifyItemRangeInserted(startPosition, items.size)
-    }
-
     override fun onBindViewHolder(holder: PersonViewHolder, position: Int) {
-        holder.bindTo(people[position])
+        getItem(position)?.let { person ->
+            holder.bindTo(person)
+
+            holder.viewBinding.personProfileImage.setSafeOnClickListener {
+                holder.itemView.context.startActivityWithAnim(
+                    ScreenLinks.peopleDetails,
+                    Intent().apply {
+                        putExtra(BaseIntentKeys.ITEM_ID, person.id)
+                    }
+                )
+            }
+        }
     }
 
-    class PersonViewHolder(private val parent: ItemPersonProfileCardBinding) :
-        RecyclerView.ViewHolder(parent.root) {
+    class PersonViewHolder(val viewBinding: ItemPersonProfileCardBinding) :
+        RecyclerView.ViewHolder(viewBinding.root) {
         fun bindTo(person: Person) {
-            parent.run {
+            viewBinding.run {
                 personName.text = person.name
 
                 personProfileImage.displayImageWithCenterInside(
                     UrlConstants.TMDB_PROFILE_SIZE_185 + person.profilePath
-                )
-            }
-
-            setClickListener(person.id)
-        }
-
-        private fun setClickListener(personID: Int) {
-            parent.personProfileImage.setSafeOnClickListener {
-                parent.root.context.startActivityWithAnim(
-                    ScreenLinks.peopleDetails,
-                    Intent().apply {
-                        putExtra(BaseIntentKeys.ITEM_ID, personID)
-                    }
                 )
             }
         }

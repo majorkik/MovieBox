@@ -1,4 +1,4 @@
-package com.majorik.moviebox.feature.navigation.presentation.adapters
+package com.majorik.moviebox.feature.navigation.presentation.main_page_movies.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,7 +10,7 @@ import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.moviebox.feature.navigation.databinding.ItemSmallPosterCardBinding
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.movie.Movie
 import com.majorik.moviebox.feature.navigation.domain.utils.getMovieDiffUtils
-import com.majorik.moviebox.feature.navigation.presentation.adapters.MovieCollectionAdapter.MovieViewHolder
+import com.majorik.moviebox.feature.navigation.presentation.main_page_movies.adapters.MovieCollectionAdapter.MovieViewHolder
 
 class MovieCollectionAdapter(private val clickAction: (id: Int) -> Unit) :
     PagingDataAdapter<Movie, MovieViewHolder>(getMovieDiffUtils()) {

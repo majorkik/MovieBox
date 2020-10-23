@@ -10,8 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.majorik.library.base.constants.AppConfig
-import com.majorik.library.base.constants.GenresConstants
 import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.library.base.enums.GenresType
 import com.majorik.library.base.enums.SELECTED_GENRES_TYPE
@@ -20,17 +18,17 @@ import com.majorik.library.base.models.results.ResultWrapper
 import com.majorik.library.base.utils.GenresStorageObject
 import com.majorik.moviebox.domain.enums.collections.MovieCollectionType.*
 import com.majorik.moviebox.feature.navigation.R
-import com.majorik.moviebox.feature.navigation.data.repositories.TrendingRepository.TimeWindow
 import com.majorik.moviebox.feature.navigation.databinding.FragmentMoviesBinding
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.genre.GenreResponse
-import com.majorik.moviebox.feature.navigation.domain.tmdbModels.movie.MovieResponse
-import com.majorik.moviebox.feature.navigation.domain.tmdbModels.person.PersonResponse
 import com.majorik.moviebox.feature.navigation.domain.youtubeModels.SearchResponse
 import com.majorik.moviebox.feature.navigation.presentation.adapters.*
+import com.majorik.moviebox.feature.navigation.presentation.main_page_movies.adapters.MovieCardAdapter
+import com.majorik.moviebox.feature.navigation.presentation.main_page_movies.adapters.MovieCollectionAdapter
+import com.majorik.moviebox.feature.navigation.presentation.main_page_movies.adapters.MovieDateCardAdapter
+import com.majorik.moviebox.feature.navigation.presentation.main_page_movies.adapters.MovieTrendAdapter
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import com.majorik.moviebox.R as AppResources
 
 typealias Directions = MoviesFragmentDirections
 
@@ -67,7 +65,6 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
         super.onViewCreated(view, savedInstanceState)
 
         updateMargins()
-        fetchData()
 
         initAdapters()
         setObservers()
@@ -107,13 +104,6 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
             viewBinding.rvMovieGenres.setAdapterWithFixedSize(genresAdapter, true)
 
             viewBinding.vpTrendMovies.adapter = trendingMovieAdapter
-        }
-    }
-
-    private fun fetchData() {
-        viewModel.run {
-            searchYouTubeVideosByChannel()
-            fetchPopularPeoples(AppConfig.REGION, 1)
         }
     }
 
@@ -176,6 +166,12 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
                 }
             }
 
+            lifecycleScope.launchWhenResumed {
+                viewModel.peoplesFlow.collectLatest { pagingData ->
+                    peopleAdapter.submitData(pagingData)
+                }
+            }
+
             genresLiveData.observe(
                 viewLifecycleOwner,
                 Observer {
@@ -187,13 +183,6 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
                 viewLifecycleOwner,
                 Observer {
                     setTrailers(it)
-                }
-            )
-
-            popularPeoplesLiveData.observe(
-                viewLifecycleOwner,
-                Observer {
-                    setPopularPeoples(it)
                 }
             )
         }
@@ -232,14 +221,6 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
         when (result) {
             is ResultWrapper.Success -> {
                 trailersAdapter.addItems(result.value.items)
-            }
-        }
-    }
-
-    private fun setPopularPeoples(result: ResultWrapper<PersonResponse>?) {
-        when (result) {
-            is ResultWrapper.Success -> {
-                peopleAdapter.addItems(result.value.results)
             }
         }
     }
