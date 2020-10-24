@@ -47,14 +47,8 @@
 
         <com.majorik.moviebox.feature.navigation.presentation.views.CollectionActionButton
             android:id="@+id/btn_popular_movies"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
+            style="@style/Navigation.CollectionActionButtonStyle"
             android:layout_marginTop="16dp"
-            android:background="@drawable/bg_collection_action_button_ripple_8"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="8dp"
             app:cb_title="@string/navigation_collection_popular" />
 
         <androidx.viewpager2.widget.ViewPager2
@@ -68,13 +62,7 @@
 
         <com.majorik.moviebox.feature.navigation.presentation.views.CollectionActionButton
             android:id="@+id/btn_now_playing_movies"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:background="@drawable/bg_collection_action_button_ripple_8"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="8dp"
+            style="@style/Navigation.CollectionActionButtonStyle"
             app:cb_title="@string/navigation_now_playing" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -92,13 +80,7 @@
 
         <com.majorik.moviebox.feature.navigation.presentation.views.CollectionActionButton
             android:id="@+id/btn_trending_movies"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:background="@drawable/bg_collection_action_button_ripple_8"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="8dp"
+            style="@style/Navigation.CollectionActionButtonStyle"
             app:cb_title="@string/navigation_in_trends" />
 
         <androidx.viewpager2.widget.ViewPager2
@@ -112,13 +94,7 @@
 
         <com.majorik.moviebox.feature.navigation.presentation.views.CollectionActionButton
             android:id="@+id/btn_upcoming_movies"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:background="@drawable/bg_collection_action_button_ripple_8"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="8dp"
+            style="@style/Navigation.CollectionActionButtonStyle"
             app:cb_title="@string/navigation_upcoming" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -136,13 +112,7 @@
 
         <com.majorik.moviebox.feature.navigation.presentation.views.CollectionActionButton
             android:id="@+id/btn_movie_genres"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:background="@drawable/bg_collection_action_button_ripple_8"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="8dp"
+            style="@style/Navigation.CollectionActionButtonStyle"
             app:cb_title="@string/navigation_genres" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -160,13 +130,7 @@
 
         <com.majorik.moviebox.feature.navigation.presentation.views.CollectionActionButton
             android:id="@+id/btn_movie_trailers"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:background="@drawable/bg_collection_action_button_ripple_8"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="8dp"
+            style="@style/Navigation.CollectionActionButtonStyle"
             app:cb_title="@string/navigation_trailers" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -184,13 +148,7 @@
 
         <com.majorik.moviebox.feature.navigation.presentation.views.CollectionActionButton
             android:id="@+id/btn_trending_peoples"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:background="@drawable/bg_collection_action_button_ripple_8"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="8dp"
+            style="@style/Navigation.CollectionActionButtonStyle"
             app:cb_title="@string/navigation_popular_peoples" />
 
         <androidx.recyclerview.widget.RecyclerView

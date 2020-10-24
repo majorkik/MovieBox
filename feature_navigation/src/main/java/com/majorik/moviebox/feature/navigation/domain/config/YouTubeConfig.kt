@@ -10,6 +10,10 @@ object YouTubeConfig {
      * TVs
      */
 
+    const val YOUTUBE_TVS_COUNT_RESULTS = 20
+    const val YOUTUBE_TVS_TRAILERS_CHANNEL_ID = "UCTxYD92kxevI1I1-oITiQzg"
+    const val YOUTUBE_TVS_ORDER_BY_DATE = "date"
+
     /**
      * Movies
      */

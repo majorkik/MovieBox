@@ -30,8 +30,6 @@ import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-typealias Directions = MoviesFragmentDirections
-
 class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
     private val viewBinding: FragmentMoviesBinding by viewBinding()
@@ -114,19 +112,19 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
             }
 
             btnPopularMovies.setOnClickListener {
-                findNavController().navigate(Directions.actionToMovieCollections(POPULAR))
+                findNavController().navigate(MoviesFragmentDirections.actionToMovieCollections(POPULAR))
             }
 
             btnUpcomingMovies.setOnClickListener {
-                findNavController().navigate(Directions.actionToMovieCollections(UPCOMING))
+                findNavController().navigate(MoviesFragmentDirections.actionToMovieCollections(UPCOMING))
             }
 
             btnNowPlayingMovies.setOnClickListener {
-                findNavController().navigate(Directions.actionToMovieCollections(NOW_PLAYING))
+                findNavController().navigate(MoviesFragmentDirections.actionToMovieCollections(NOW_PLAYING))
             }
 
             btnTrendingMovies.setOnClickListener {
-                findNavController().navigate(Directions.actionToMovieCollections(POPULAR))
+                findNavController().navigate(MoviesFragmentDirections.actionToMovieCollections(POPULAR))
             }
 
             btnMovieGenres.setSafeOnClickListener {
@@ -193,7 +191,7 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
      */
 
     private fun actionClickMovie(id: Int) {
-        findNavController().navigate(Directions.actionToMovieDetails(id))
+        findNavController().navigate(MoviesFragmentDirections.actionToMovieDetails(id))
     }
 
     /**

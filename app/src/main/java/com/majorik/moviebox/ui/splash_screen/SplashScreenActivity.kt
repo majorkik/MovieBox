@@ -53,6 +53,6 @@ class SplashScreenActivity : AppCompatActivity(R.layout.activity_splash_screen) 
 
     private fun startMainActivity() {
         finish()
-        startActivityWithAnim(MainActivity::class.java)
+        startActivityWithAnim(MainActivity::class.java, animIn = 0, animOut = 0)
     }
 }

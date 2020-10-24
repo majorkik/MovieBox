@@ -30,12 +30,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="LockedOrientationActivity" />
-
-        <activity
-            android:name=".presentation.tvDetails.TVDetailsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Transparent.NoActionBar"
-            tools:ignore="LockedOrientationActivity" />
     </application>
 </manifest>
 

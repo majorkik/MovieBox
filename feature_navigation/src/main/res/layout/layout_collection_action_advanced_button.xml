@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <ImageView
+        android:id="@+id/button_icon"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="4dp"
+        android:src="@drawable/ic_bookmark_with_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:orientation="vertical"
+        app:constraint_referenced_ids="button_subtitle,button_title"
+        app:layout_constraintBottom_toBottomOf="@+id/button_icon"
+        app:layout_constraintEnd_toStartOf="@+id/button_option_title"
+        app:layout_constraintStart_toEndOf="@+id/button_icon"
+        app:layout_constraintTop_toTopOf="@+id/button_icon" />
+
+    <TextView
+        android:id="@+id/button_subtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/cc_montserrat_medium"
+        android:text="@string/navigation_profile_screen_will_watch"
+        android:textColor="@color/silver_light"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/button_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/cc_montserrat_bold"
+        android:text="@string/navigation_profile_screen_movies"
+        android:textColor="@color/mine_shaft"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/button_option_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:fontFamily="@font/cc_montserrat_black"
+        android:gravity="center"
+        android:text="@string/navigation_profile_screen_watch_all"
+        android:textAllCaps="true"
+        android:textColor="@color/mine_shaft"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/button_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/button_icon" />
+</merge>

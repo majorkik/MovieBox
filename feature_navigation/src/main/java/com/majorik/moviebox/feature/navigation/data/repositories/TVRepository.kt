@@ -34,4 +34,10 @@ class TVRepository(private val api: TmdbApiService) : BaseRepository() {
             api.getOnTheAirTVs(language, page)
         }
     }
+
+    suspend fun getTopRatedTVs(language: String?, page: Int?): ResultWrapper<TVResponse> {
+        return safeApiCall(dispatcher) {
+            api.getTopRatedTVs(language, page)
+        }
+    }
 }

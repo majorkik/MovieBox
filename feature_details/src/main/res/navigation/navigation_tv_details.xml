@@ -7,9 +7,9 @@
 
     <dialog
         android:id="@+id/nav_tv_details"
-        android:name="com.majorik.moviebox.feature.details.presentation.movieDetails.MovieDetailsDialogFragment"
+        android:name="com.majorik.moviebox.feature.details.presentation.tvDetails.TVDetailsDialogFragment"
         app:moduleName="feature_details"
-        tools:layout="@layout/dialog_fragment_movie_details">
+        tools:layout="@layout/dialog_fragment_tv_details">
 
         <argument
             android:name="id"

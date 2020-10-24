@@ -11,11 +11,13 @@ import com.majorik.moviebox.feature.details.domain.tmdbModels.tv.TVDetails
 import com.majorik.moviebox.feature.details.data.repositories.AccountRepository
 import com.majorik.moviebox.feature.details.data.repositories.TVRepository
 import com.majorik.library.base.models.results.ResultWrapper
+import com.majorik.library.base.storage.CredentialsPrefsManager
 import kotlinx.coroutines.launch
 
 class TVDetailsViewModel(
     private val tvRepository: TVRepository,
-    private val accountRepository: AccountRepository
+    private val accountRepository: AccountRepository,
+    private val credentialsManager: CredentialsPrefsManager
 ) : ViewModel() {
     var tvDetailsLiveData = MutableLiveData<TVDetails>()
     var tvStatesLiveData = MutableLiveData<AccountStates?>()
@@ -46,10 +48,10 @@ class TVDetailsViewModel(
         }
     }
 
-    fun fetchAccountStateForTV(tvId: Int, sessionId: String) {
+    fun fetchAccountStateForTV(tvId: Int) {
         viewModelScope.launch {
             val response =
-                tvRepository.getAccountStatesForTV(tvId, "", sessionId, "")
+                tvRepository.getAccountStatesForTV(tvId, "", credentialsManager.getTmdbSessionID() ?: "", "")
 
             when (response) {
                 is ResultWrapper.NetworkError -> {
@@ -65,10 +67,11 @@ class TVDetailsViewModel(
         }
     }
 
-    fun markTVIsFavorite(mediaId: Int, state: Boolean, sessionId: String) {
+    fun markTVIsFavorite(mediaId: Int, state: Boolean) {
         viewModelScope.launch {
             val requestMarkAsFavorite = RequestMarkAsFavorite("tv", mediaId, state)
-            val response = accountRepository.markIsFavorite(requestMarkAsFavorite, sessionId)
+            val response =
+                accountRepository.markIsFavorite(requestMarkAsFavorite, credentialsManager.getTmdbSessionID() ?: "")
 
             when (response) {
                 is ResultWrapper.NetworkError -> {
@@ -84,10 +87,11 @@ class TVDetailsViewModel(
         }
     }
 
-    fun addTVToWatchlist(mediaId: Int, state: Boolean, sessionId: String) {
+    fun addTVToWatchlist(mediaId: Int, state: Boolean) {
         viewModelScope.launch {
             val requestAddToWatchlist = RequestAddToWatchlist("tv", mediaId, state)
-            val response = accountRepository.addToWatchlist(requestAddToWatchlist, sessionId)
+            val response =
+                accountRepository.addToWatchlist(requestAddToWatchlist, credentialsManager.getTmdbSessionID() ?: "")
 
             when (response) {
                 is ResultWrapper.NetworkError -> {

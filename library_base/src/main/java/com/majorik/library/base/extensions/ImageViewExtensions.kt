@@ -9,7 +9,7 @@ import android.view.ViewOutlineProvider
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
-import coil.api.load
+import coil.load
 import com.majorik.base.R
 
 fun ImageView.displayImageWithCenterInside(

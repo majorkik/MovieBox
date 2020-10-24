@@ -47,44 +47,11 @@
                     android:src="@drawable/ic_search_new" />
             </LinearLayout>
 
-            <androidx.cardview.widget.CardView
+            <com.majorik.moviebox.feature.navigation.presentation.views.CollectionActionButton
                 android:id="@+id/btn_popular_tvs"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                style="@style/Navigation.CollectionActionButtonStyle"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                app:cardBackgroundColor="@color/transparent"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="0dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="8dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/navigation_collection_popular"
-                        android:theme="@style/HeaderMedium" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:text="@string/navigation_more"
-                        android:textColor="@color/colorAccent"
-                        android:theme="@style/HeaderSmall" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                app:cb_title="@string/navigation_collection_popular" />
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/vp_popular_tvs"
@@ -95,43 +62,10 @@
                 android:clipChildren="false"
                 android:clipToPadding="false" />
 
-            <androidx.cardview.widget.CardView
+            <com.majorik.moviebox.feature.navigation.presentation.views.CollectionActionButton
                 android:id="@+id/btn_air_today_tvs"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                app:cardBackgroundColor="@color/transparent"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="0dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="8dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/navigation_air_today"
-                        android:theme="@style/HeaderMedium" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:text="@string/navigation_more"
-                        android:textColor="@color/colorAccent"
-                        android:theme="@style/HeaderSmall" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                style="@style/Navigation.CollectionActionButtonStyle"
+                app:cb_title="@string/navigation_air_today" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_air_today_tvs"
@@ -143,45 +77,13 @@
                 android:paddingTop="8dp"
                 android:paddingRight="12dp"
                 android:paddingBottom="24dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_small_poster_card" />
 
-            <androidx.cardview.widget.CardView
+            <com.majorik.moviebox.feature.navigation.presentation.views.CollectionActionButton
                 android:id="@+id/btn_trending_tvs"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                app:cardBackgroundColor="@color/transparent"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="0dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="8dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/navigation_in_trends"
-                        android:theme="@style/HeaderMedium" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:text="@string/navigation_more"
-                        android:textColor="@color/colorAccent"
-                        android:theme="@style/HeaderSmall" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                style="@style/Navigation.CollectionActionButtonStyle"
+                app:cb_title="@string/navigation_in_trends" />
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/vp_trend_tvs"
@@ -192,43 +94,10 @@
                 android:clipChildren="false"
                 android:clipToPadding="false" />
 
-            <androidx.cardview.widget.CardView
+            <com.majorik.moviebox.feature.navigation.presentation.views.CollectionActionButton
                 android:id="@+id/btn_on_the_air_tvs"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                app:cardBackgroundColor="@color/transparent"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="0dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="8dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/navigation_on_the_air"
-                        android:theme="@style/HeaderMedium" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:text="@string/navigation_more"
-                        android:textColor="@color/colorAccent"
-                        android:theme="@style/HeaderSmall" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                style="@style/Navigation.CollectionActionButtonStyle"
+                app:cb_title="@string/navigation_on_the_air" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_on_the_air_tvs"
@@ -240,45 +109,13 @@
                 android:paddingTop="8dp"
                 android:paddingRight="12dp"
                 android:paddingBottom="24dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_small_poster_card" />
 
-            <androidx.cardview.widget.CardView
+            <com.majorik.moviebox.feature.navigation.presentation.views.CollectionActionButton
                 android:id="@+id/btn_companies"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                app:cardBackgroundColor="@color/transparent"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="0dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="8dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/navigation_companies"
-                        android:theme="@style/HeaderMedium" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:text="@string/navigation_more"
-                        android:textColor="@color/colorAccent"
-                        android:theme="@style/HeaderSmall" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                style="@style/Navigation.CollectionActionButtonStyle"
+                app:cb_title="@string/navigation_companies" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/networks_list"
@@ -290,45 +127,13 @@
                 android:paddingTop="8dp"
                 android:paddingRight="12dp"
                 android:paddingBottom="24dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_network" />
 
-            <androidx.cardview.widget.CardView
+            <com.majorik.moviebox.feature.navigation.presentation.views.CollectionActionButton
                 android:id="@+id/btn_tv_genres"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                app:cardBackgroundColor="@color/transparent"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="0dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="8dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/navigation_genres"
-                        android:theme="@style/HeaderMedium" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:text="@string/navigation_more"
-                        android:textColor="@color/colorAccent"
-                        android:theme="@style/HeaderSmall" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                style="@style/Navigation.CollectionActionButtonStyle"
+                app:cb_title="@string/navigation_genres" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_tv_genres"
@@ -343,43 +148,10 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/item_genre" />
 
-            <androidx.cardview.widget.CardView
+            <com.majorik.moviebox.feature.navigation.presentation.views.CollectionActionButton
                 android:id="@+id/btn_tv_trailers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                app:cardBackgroundColor="@color/transparent"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="0dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="8dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/navigation_trailers"
-                        android:theme="@style/HeaderMedium" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:text="@string/navigation_more"
-                        android:textColor="@color/colorAccent"
-                        android:theme="@style/HeaderSmall" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                style="@style/Navigation.CollectionActionButtonStyle"
+                app:cb_title="@string/navigation_trailers" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_trailers"
@@ -392,8 +164,7 @@
                 android:paddingEnd="8dp"
                 android:paddingBottom="24dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_genre" />
-
+                tools:listitem="@layout/item_person_profile_card" />
         </LinearLayout>
     </ScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

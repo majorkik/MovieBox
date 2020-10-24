@@ -1,12 +1,12 @@
-package com.majorik.moviebox.feature.navigation.presentation.adapters.tvs
+package com.majorik.moviebox.feature.navigation.presentation.main_page_tvs.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import coil.api.load
+import coil.load
 import com.majorik.moviebox.feature.navigation.databinding.ItemNetworkBinding
 import com.majorik.moviebox.feature.navigation.domain.models.NetworkModel
-import com.majorik.moviebox.feature.navigation.presentation.adapters.tvs.NetworksAdapter.NetworkViewHolder
+import com.majorik.moviebox.feature.navigation.presentation.main_page_tvs.adapters.NetworksAdapter.NetworkViewHolder
 import org.jetbrains.annotations.NotNull
 
 class NetworksAdapter() : RecyclerView.Adapter<NetworkViewHolder>() {

@@ -186,7 +186,7 @@ class AuthorizationFragment : Fragment(R.layout.fragment_authorization) {
 
     private fun startMainActivity() {
         activity?.finish()
-        context?.startActivityWithAnim(MainActivity::class.java)
+        context?.startActivityWithAnim(MainActivity::class.java, animIn = 0, animOut = 0)
     }
 
     companion object {

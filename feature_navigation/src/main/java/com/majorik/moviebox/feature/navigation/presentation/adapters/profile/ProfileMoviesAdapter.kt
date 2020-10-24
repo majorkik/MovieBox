@@ -4,7 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import coil.api.load
+import coil.load
 import com.majorik.library.base.constants.BaseIntentKeys
 import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.library.base.constants.UrlConstants

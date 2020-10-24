@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.majorik.library.base.constants.BaseIntentKeys
 import com.majorik.moviebox.feature.details.domain.tmdbModels.cast.TVCast
 import com.majorik.library.base.extensions.*
-import com.majorik.moviebox.feature.details.presentation.tvDetails.TVDetailsActivity
+import com.majorik.moviebox.feature.details.presentation.tvDetails.TVDetailsDialogFragment
 import com.majorik.library.base.constants.UrlConstants
 import kotlinx.android.synthetic.main.item_medium_poster_card_details.view.*
 import kotlinx.android.synthetic.main.item_person_credit_in_line_details.view.*
@@ -97,7 +97,7 @@ class TVCreditsAdapter(
             itemView.collection_card.setSafeOnClickListener {
                 it.context.apply {
                     it.context.startActivityWithAnim(
-                        TVDetailsActivity::class.java,
+                        TVDetailsDialogFragment::class.java,
                         Intent().apply {
                             putExtra(BaseIntentKeys.ITEM_ID, cast.id)
                         }
@@ -129,7 +129,7 @@ class TVCreditsAdapter(
         private fun bindClickListener(cast: TVCast) {
             itemView.inline_credit_layout.setSafeOnClickListener {
                 it.context.startActivityWithAnim(
-                    TVDetailsActivity::class.java,
+                    TVDetailsDialogFragment::class.java,
                     Intent().apply {
                         putExtra(BaseIntentKeys.ITEM_ID, cast.id)
                     }

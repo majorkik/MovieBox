@@ -1,7 +1,7 @@
 package com.majorik.moviebox.feature.search.presentation.viewholders
 
 import androidx.recyclerview.widget.RecyclerView
-import coil.api.load
+import coil.load
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.moviebox.feature.search.databinding.ItemPersonSmallCardBinding
 import com.majorik.moviebox.feature.search.domain.tmdbModels.person.Person

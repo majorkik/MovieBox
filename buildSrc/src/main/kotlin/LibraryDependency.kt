@@ -41,7 +41,7 @@ private object LibraryVersion {
     const val KLOCK = "1.12.0"
     const val LOTTIE = "3.4.1"
     const val LOCALIZATION = "1.2.6"
-    const val COIL = "0.13.0"
+    const val COIL = "1.0.0"
     const val RECYCLER_VIEW_ANIMATION = "3.0.0"
     const val VIEWBINDING_DELEGATES_VERSION = "1.2.2"
 

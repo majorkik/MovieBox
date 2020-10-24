@@ -7,7 +7,7 @@ import android.widget.LinearLayout
 import com.majorik.moviebox.feature.navigation.R
 import kotlinx.android.synthetic.main.layout_collection_action_button.view.*
 
-internal class CollectionActionButton : LinearLayout {
+class CollectionActionButton : LinearLayout {
 
     var buttonTitle: String = ""
         set(value) {
@@ -53,6 +53,8 @@ internal class CollectionActionButton : LinearLayout {
             this.buttonTitle = "test"
             this.buttonOptionTitle = "test"
         }
+
+        orientation = HORIZONTAL
 
         ta.recycle()
     }
