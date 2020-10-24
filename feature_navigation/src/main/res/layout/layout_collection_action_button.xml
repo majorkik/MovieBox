@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:parentTag="android.widget.LinearLayout">
+
+    <TextView
+        android:id="@+id/button_title"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:fontFamily="@font/cc_montserrat_black"
+        android:gravity="center_vertical"
+        android:textColor="@color/mine_shaft"
+        android:textSize="18sp"
+        android:theme="@style/HeaderMedium"
+        tools:text="@string/navigation_collection_popular" />
+
+    <TextView
+        android:id="@+id/button_option_title"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:fontFamily="@font/cc_montserrat_black"
+        android:gravity="center"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:text="@string/navigation_more"
+        android:textAllCaps="true"
+        android:textColor="@color/mine_shaft"
+        android:textSize="10sp" />
+</merge>

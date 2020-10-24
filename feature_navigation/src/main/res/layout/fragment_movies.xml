@@ -45,50 +45,17 @@
                 tools:ignore="ContentDescription" />
         </LinearLayout>
 
-        <androidx.cardview.widget.CardView
+        <com.majorik.moviebox.feature.navigation.presentation.views.CollectionActionButton
             android:id="@+id/btn_popular_movies"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginHorizontal="8dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_collection_action_button_ripple_8"
             android:clickable="true"
             android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:cardBackgroundColor="@color/transparent"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="0dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/cc_montserrat_black"
-                    android:text="@string/navigation_collection_popular"
-                    android:textColor="@color/mine_shaft"
-                    android:textSize="18sp"
-                    android:theme="@style/HeaderMedium" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:fontFamily="@font/cc_montserrat_black"
-                    android:gravity="center"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:text="@string/navigation_more"
-                    android:textAllCaps="true"
-                    android:textColor="@color/mine_shaft"
-                    android:textSize="10sp" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+            android:padding="8dp"
+            app:cb_title="@string/navigation_collection_popular" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vp_popular_movies"
@@ -99,49 +66,16 @@
             android:clipChildren="false"
             android:clipToPadding="false" />
 
-        <androidx.cardview.widget.CardView
+        <com.majorik.moviebox.feature.navigation.presentation.views.CollectionActionButton
             android:id="@+id/btn_now_playing_movies"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginHorizontal="8dp"
+            android:background="@drawable/bg_collection_action_button_ripple_8"
             android:clickable="true"
             android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:cardBackgroundColor="@color/transparent"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="0dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/cc_montserrat_black"
-                    android:text="@string/navigation_now_playing"
-                    android:textColor="@color/mine_shaft"
-                    android:textSize="18sp"
-                    android:theme="@style/HeaderMedium" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:fontFamily="@font/cc_montserrat_black"
-                    android:gravity="center"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:text="@string/navigation_more"
-                    android:textAllCaps="true"
-                    android:textColor="@color/mine_shaft"
-                    android:textSize="10sp" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+            android:padding="8dp"
+            app:cb_title="@string/navigation_now_playing" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_now_playing_movies"
@@ -156,50 +90,16 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_small_poster_card" />
 
-
-        <androidx.cardview.widget.CardView
+        <com.majorik.moviebox.feature.navigation.presentation.views.CollectionActionButton
             android:id="@+id/btn_trending_movies"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginHorizontal="8dp"
+            android:background="@drawable/bg_collection_action_button_ripple_8"
             android:clickable="true"
             android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:cardBackgroundColor="@color/transparent"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="0dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/cc_montserrat_black"
-                    android:text="@string/navigation_in_trends"
-                    android:textColor="@color/mine_shaft"
-                    android:textSize="18sp"
-                    android:theme="@style/HeaderMedium" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:fontFamily="@font/cc_montserrat_black"
-                    android:gravity="center"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:text="@string/navigation_more"
-                    android:textAllCaps="true"
-                    android:textColor="@color/mine_shaft"
-                    android:textSize="10sp" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+            android:padding="8dp"
+            app:cb_title="@string/navigation_in_trends" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vp_trend_movies"
@@ -210,49 +110,16 @@
             android:clipChildren="false"
             android:clipToPadding="false" />
 
-        <androidx.cardview.widget.CardView
+        <com.majorik.moviebox.feature.navigation.presentation.views.CollectionActionButton
             android:id="@+id/btn_upcoming_movies"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginHorizontal="8dp"
+            android:background="@drawable/bg_collection_action_button_ripple_8"
             android:clickable="true"
             android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:cardBackgroundColor="@color/transparent"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="0dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/cc_montserrat_black"
-                    android:text="@string/navigation_upcoming"
-                    android:textColor="@color/mine_shaft"
-                    android:textSize="18sp"
-                    android:theme="@style/HeaderMedium" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:fontFamily="@font/cc_montserrat_black"
-                    android:gravity="center"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:text="@string/navigation_more"
-                    android:textAllCaps="true"
-                    android:textColor="@color/mine_shaft"
-                    android:textSize="10sp" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+            android:padding="8dp"
+            app:cb_title="@string/navigation_upcoming" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_upcoming_movies"
@@ -267,49 +134,16 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_small_poster_card" />
 
-        <androidx.cardview.widget.CardView
+        <com.majorik.moviebox.feature.navigation.presentation.views.CollectionActionButton
             android:id="@+id/btn_movie_genres"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginHorizontal="8dp"
+            android:background="@drawable/bg_collection_action_button_ripple_8"
             android:clickable="true"
             android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:cardBackgroundColor="@color/transparent"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="0dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/cc_montserrat_black"
-                    android:text="@string/navigation_genres"
-                    android:textColor="@color/mine_shaft"
-                    android:textSize="18sp"
-                    android:theme="@style/HeaderMedium" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:fontFamily="@font/cc_montserrat_black"
-                    android:gravity="center"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:text="@string/navigation_more"
-                    android:textAllCaps="true"
-                    android:textColor="@color/mine_shaft"
-                    android:textSize="10sp" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+            android:padding="8dp"
+            app:cb_title="@string/navigation_genres" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_movie_genres"
@@ -324,49 +158,16 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_genre" />
 
-        <androidx.cardview.widget.CardView
+        <com.majorik.moviebox.feature.navigation.presentation.views.CollectionActionButton
             android:id="@+id/btn_movie_trailers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginHorizontal="8dp"
+            android:background="@drawable/bg_collection_action_button_ripple_8"
             android:clickable="true"
             android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:cardBackgroundColor="@color/transparent"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="0dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/cc_montserrat_black"
-                    android:text="@string/navigation_trailers"
-                    android:textColor="@color/mine_shaft"
-                    android:textSize="18sp"
-                    android:theme="@style/HeaderMedium" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:fontFamily="@font/cc_montserrat_black"
-                    android:gravity="center"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:text="@string/navigation_more"
-                    android:textAllCaps="true"
-                    android:textColor="@color/mine_shaft"
-                    android:textSize="10sp" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+            android:padding="8dp"
+            app:cb_title="@string/navigation_trailers" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_trailers"
@@ -379,51 +180,18 @@
             android:paddingEnd="8dp"
             android:paddingBottom="24dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_genre" />
+            tools:listitem="@layout/item_trailer_small_card" />
 
-        <androidx.cardview.widget.CardView
+        <com.majorik.moviebox.feature.navigation.presentation.views.CollectionActionButton
             android:id="@+id/btn_trending_peoples"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginHorizontal="8dp"
+            android:background="@drawable/bg_collection_action_button_ripple_8"
             android:clickable="true"
             android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:cardBackgroundColor="@color/transparent"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="0dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/cc_montserrat_black"
-                    android:text="@string/navigation_popular_peoples"
-                    android:textColor="@color/mine_shaft"
-                    android:textSize="18sp"
-                    android:theme="@style/HeaderMedium" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:fontFamily="@font/cc_montserrat_black"
-                    android:gravity="center"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:text="@string/navigation_more"
-                    android:textAllCaps="true"
-                    android:textColor="@color/mine_shaft"
-                    android:textSize="10sp" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+            android:padding="8dp"
+            app:cb_title="@string/navigation_popular_peoples" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_trending_peoples"
@@ -436,6 +204,6 @@
             android:paddingEnd="12dp"
             android:paddingBottom="24dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_genre" />
+            tools:listitem="@layout/item_person_profile_card" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

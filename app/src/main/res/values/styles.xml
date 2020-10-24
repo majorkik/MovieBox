@@ -217,6 +217,11 @@
 
     <!--    ShapeableImageView styles-->
 
+    <style name="AppTheme.ImageViewCircle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
     <style name="AppTheme.ImageViewWithCorners_8">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">8dp</item>
