@@ -1,58 +1,39 @@
 package com.majorik.moviebox.feature.navigation.presentation.main_page_profile.adapters
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.majorik.library.base.constants.BaseIntentKeys
-import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.extensions.setSafeOnClickListener
-import com.majorik.library.base.extensions.startActivityWithAnim
 import com.majorik.moviebox.feature.navigation.databinding.ItemProfileCardBinding
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.movie.Movie
+import com.majorik.moviebox.feature.navigation.domain.utils.getMovieDiffUtils
 
-class ProfileMoviesAdapter : RecyclerView.Adapter<ProfileMoviesAdapter.ProfileMovieViewHolder>() {
-
-    private var items: List<Movie> = emptyList()
+class ProfileMoviesAdapter(private val actionClick: (id: Int) -> Unit) :
+    PagingDataAdapter<Movie, ProfileMoviesAdapter.ProfileMovieViewHolder>(getMovieDiffUtils()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfileMovieViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-
         val binding = ItemProfileCardBinding.inflate(layoutInflater, parent, false)
-        return ProfileMovieViewHolder(
-            binding
-        )
+
+        return ProfileMovieViewHolder(binding)
     }
 
-    override fun getItemCount() = items.count()
-
     override fun onBindViewHolder(holder: ProfileMovieViewHolder, position: Int) {
-        holder.bindTo(items[position])
+        getItem(position)?.let { movie ->
+            holder.bindTo(movie)
 
-        holder.itemView.setSafeOnClickListener {
-            holder.itemView.context.startActivityWithAnim(
-                ScreenLinks.movieDetails,
-                Intent().apply {
-                    putExtra(BaseIntentKeys.ITEM_ID, items[position].id)
-                }
-            )
+            holder.viewBinding.root.setSafeOnClickListener {
+                actionClick(movie.id)
+            }
         }
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return position
-    }
-
-    fun addItems(movies: List<Movie>) {
-        items = movies
-        notifyItemRangeInserted(0, movies.count())
-    }
-
-    class ProfileMovieViewHolder(private val view: ItemProfileCardBinding) : RecyclerView.ViewHolder(view.root) {
+    class ProfileMovieViewHolder(val viewBinding: ItemProfileCardBinding) : RecyclerView.ViewHolder(viewBinding.root) {
         fun bindTo(movie: Movie) {
-            view.imageView.load(UrlConstants.TMDB_POSTER_SIZE_185 + movie.posterPath)
+            viewBinding.imageView.load(UrlConstants.TMDB_POSTER_SIZE_185 + movie.posterPath)
         }
     }
 }

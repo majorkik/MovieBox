@@ -1,116 +1,107 @@
 package com.majorik.moviebox.feature.navigation.presentation.main_page_profile
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.cachedIn
+import com.majorik.library.base.constants.AppConfig
 import com.majorik.library.base.models.results.ResultWrapper
 import com.majorik.library.base.storage.CredentialsPrefsManager
 import com.majorik.moviebox.feature.navigation.data.repositories.AccountRepository
+import com.majorik.moviebox.feature.navigation.domain.enums.ProfileMoviesType
+import com.majorik.moviebox.feature.navigation.domain.enums.ProfileTVsType
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.account.AccountDetails
-import com.majorik.moviebox.feature.navigation.domain.tmdbModels.movie.Movie
-import com.majorik.moviebox.feature.navigation.domain.tmdbModels.tv.TV
-import com.orhanobut.logger.Logger
+import com.majorik.moviebox.feature.navigation.presentation.main_page_profile.datasources.ProfileMoviesPagingDataSource
+import com.majorik.moviebox.feature.navigation.presentation.main_page_profile.datasources.ProfileTVsPagingDataSource
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
 class ProfileViewModel(
     private val accountRepository: AccountRepository,
-    private val credentialsPrefsManager: CredentialsPrefsManager
+    val credentialsManager: CredentialsPrefsManager
 ) : ViewModel() {
 
-    val accountDetails = MutableLiveData<AccountDetails>()
-    val favoriteMovies = MutableLiveData<List<Movie>>()
-    val favoriteTVs = MutableLiveData<List<TV>>()
-    val watchlistMovies = MutableLiveData<List<Movie>>()
-    val watchlistTVs = MutableLiveData<List<TV>>()
+    /**
+     * Account details
+     */
+
+    val accountDetails = MutableStateFlow<ResultWrapper<AccountDetails>?>(null)
 
     fun getAccountDetails() {
-        val sessionId = credentialsPrefsManager.getTmdbSessionID() ?: ""
-
         viewModelScope.launch {
-            when (val response = accountRepository.getAccountDetails(sessionId)) {
-                is ResultWrapper.NetworkError -> {
-                }
+            val sessionId = credentialsManager.getTmdbSessionID() ?: ""
+            val response = accountRepository.getAccountDetails(sessionId)
 
-                is ResultWrapper.GenericError -> {
-                }
-
-                is ResultWrapper.Success -> {
-                    Logger.i(response.value.toString())
-                    accountDetails.postValue(response.value)
-                }
-            }
+            accountDetails.value = response
         }
     }
 
-    fun fetchFavoriteMovies(language: String?, page: Int?) {
-        val sessionId = credentialsPrefsManager.getTmdbSessionID() ?: ""
+    /**
+     * Favorite movies
+     */
 
-        viewModelScope.launch {
-            when (val response = accountRepository.getFavoriteMovies(language, sessionId, "created_at.asc", page)) {
-                is ResultWrapper.NetworkError -> {
-                }
+    var favoriteMoviesDataSource: ProfileMoviesPagingDataSource? = null
 
-                is ResultWrapper.GenericError -> {
-                }
-
-                is ResultWrapper.Success -> {
-                    favoriteMovies.postValue(response.value.results)
-                }
-            }
+    var favoriteMoviesFlow = Pager(PagingConfig(pageSize = 20)) {
+        ProfileMoviesPagingDataSource(
+            credentialsManager.getTmdbSessionID() ?: "",
+            accountRepository,
+            ProfileMoviesType.FAVORITE_MOVIES,
+            AppConfig.REGION
+        ).also {
+            favoriteMoviesDataSource = it
         }
-    }
+    }.flow.cachedIn(viewModelScope)
 
-    fun fetchFavoriteTVs(language: String?, page: Int?) {
-        val sessionId = credentialsPrefsManager.getTmdbSessionID() ?: ""
+    /**
+     * Watchlist movies
+     */
 
-        viewModelScope.launch {
-            when (val response = accountRepository.getFavoriteTVs(language, sessionId, "created_at.asc", page)) {
-                is ResultWrapper.NetworkError -> {
-                }
+    var watchlistMoviesDataSource: ProfileMoviesPagingDataSource? = null
 
-                is ResultWrapper.GenericError -> {
-                }
-
-                is ResultWrapper.Success -> {
-                    favoriteTVs.postValue(response.value.results)
-                }
-            }
+    var watchlistMoviesFlow = Pager(PagingConfig(pageSize = 20)) {
+        ProfileMoviesPagingDataSource(
+            credentialsManager.getTmdbSessionID() ?: "",
+            accountRepository,
+            ProfileMoviesType.WATCHLIST_MOVIES,
+            AppConfig.REGION
+        ).also {
+            watchlistMoviesDataSource = it
         }
-    }
+    }.flow.cachedIn(viewModelScope)
 
-    fun fetchWatchlistMovies(language: String?, page: Int?) {
-        val sessionId = credentialsPrefsManager.getTmdbSessionID() ?: ""
+    /**
+     * Favorite tv shows
+     */
 
-        viewModelScope.launch {
-            when (val response = accountRepository.getWatchlistMovies(language, sessionId, "created_at.asc", page)) {
-                is ResultWrapper.NetworkError -> {
-                }
+    var favoriteTVsDataSource: ProfileTVsPagingDataSource? = null
 
-                is ResultWrapper.GenericError -> {
-                }
-
-                is ResultWrapper.Success -> {
-                    watchlistMovies.postValue(response.value.results)
-                }
-            }
+    var favoriteTVsFlow = Pager(PagingConfig(pageSize = 20)) {
+        ProfileTVsPagingDataSource(
+            credentialsManager.getTmdbSessionID() ?: "",
+            accountRepository,
+            ProfileTVsType.FAVORITE_TVS,
+            AppConfig.REGION
+        ).also {
+            favoriteTVsDataSource = it
         }
-    }
+    }.flow.cachedIn(viewModelScope)
 
-    fun fetchWatchlistTVs(language: String?, page: Int?) {
-        val sessionId = credentialsPrefsManager.getTmdbSessionID() ?: ""
+    /**
+     * Watchlist tv shows
+     */
 
-        viewModelScope.launch {
-            when (val response = accountRepository.getWatchlistTVs(language, sessionId, "created_at.asc", page)) {
-                is ResultWrapper.NetworkError -> {
-                }
+    var watchlistTVsDataSource: ProfileTVsPagingDataSource? = null
 
-                is ResultWrapper.GenericError -> {
-                }
-
-                is ResultWrapper.Success -> {
-                    watchlistTVs.postValue(response.value.results)
-                }
-            }
+    var watchlistTVsFlow = Pager(PagingConfig(pageSize = 20)) {
+        ProfileTVsPagingDataSource(
+            credentialsManager.getTmdbSessionID() ?: "",
+            accountRepository,
+            ProfileTVsType.WATCHLIST_TVS,
+            AppConfig.REGION
+        ).also {
+            watchlistTVsDataSource = it
         }
-    }
+    }.flow.cachedIn(viewModelScope)
 }
