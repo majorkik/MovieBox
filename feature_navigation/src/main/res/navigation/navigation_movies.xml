@@ -20,6 +20,7 @@
                 app:argType="integer"
                 app:nullable="false" />
         </action>
+
         <action
             android:id="@+id/action_to_movie_collections"
             app:destination="@id/nav_movie_collections"
@@ -32,6 +33,17 @@
                 android:name="movie_collection_type"
                 android:defaultValue="POPULAR"
                 app:argType="com.majorik.moviebox.domain.enums.collections.MovieCollectionType"
+                app:nullable="false" />
+        </action>
+
+        <action
+            android:id="@+id/action_to_person_details"
+            app:destination="@id/nav_person_details">
+
+            <argument
+                android:name="id"
+                android:defaultValue="0"
+                app:argType="integer"
                 app:nullable="false" />
         </action>
     </fragment>
@@ -47,6 +59,13 @@
         app:graphPackage="com.majorik.moviebox.feature_collections"
         app:graphResName="navigation_movie_collections"
         app:moduleName="feature_collections" />
+
+    <include-dynamic
+        android:id="@+id/nav_person_details"
+        app:graphPackage="com.majorik.moviebox.feature_details"
+        app:graphResName="navigation_person_details"
+        app:moduleName="feature_details" />
+
 
     <!--    <include-dynamic-->
     <!--        android:id="@+id/nav_movie_details_test"-->

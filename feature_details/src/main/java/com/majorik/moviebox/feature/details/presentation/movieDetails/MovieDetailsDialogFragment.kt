@@ -210,7 +210,7 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
     }
 
     private fun setPeoples(casts: List<Cast>) {
-        m_persons.setAdapterWithFixedSize(CastAdapter(casts), true)
+        m_persons.setAdapterWithFixedSize(CastAdapter(::openPersonDetails, casts), true)
     }
 
     private fun setImages(images: Images, backdropPath: String?, posterPath: String?) {
@@ -345,6 +345,14 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
 
     private fun setImageSlider(images: List<String>) {
         md_image_slider.adapter = ImageSliderAdapter(images)
+    }
+
+    /**
+     * Actions
+     */
+
+    private fun openPersonDetails(id: Int) {
+        findNavController().navigate(MovieDetailsDialogFragmentDirections.actionToPersonDetails(id))
     }
 
     /**

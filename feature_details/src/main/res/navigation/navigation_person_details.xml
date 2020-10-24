@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     app:moduleName="feature_details"
-    app:startDestination="@id/nav_tv_details">
+    app:startDestination="@id/nav_person_details">
 
     <dialog
         android:id="@+id/nav_movie_details"

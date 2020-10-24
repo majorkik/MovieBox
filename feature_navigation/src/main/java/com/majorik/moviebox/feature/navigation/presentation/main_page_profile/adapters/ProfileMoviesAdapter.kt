@@ -1,4 +1,4 @@
-package com.majorik.moviebox.feature.navigation.presentation.adapters.profile
+package com.majorik.moviebox.feature.navigation.presentation.main_page_profile.adapters
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -21,7 +21,9 @@ class ProfileMoviesAdapter : RecyclerView.Adapter<ProfileMoviesAdapter.ProfileMo
         val layoutInflater = LayoutInflater.from(parent.context)
 
         val binding = ItemProfileCardBinding.inflate(layoutInflater, parent, false)
-        return ProfileMovieViewHolder(binding)
+        return ProfileMovieViewHolder(
+            binding
+        )
     }
 
     override fun getItemCount() = items.count()

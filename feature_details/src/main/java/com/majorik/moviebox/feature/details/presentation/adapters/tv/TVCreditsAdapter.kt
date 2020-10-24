@@ -1,24 +1,19 @@
 package com.majorik.moviebox.feature.details.presentation.adapters.tv
 
-import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.majorik.library.base.constants.BaseIntentKeys
-import com.majorik.moviebox.feature.details.domain.tmdbModels.cast.TVCast
-import com.majorik.library.base.extensions.*
-import com.majorik.moviebox.feature.details.presentation.tvDetails.TVDetailsDialogFragment
 import com.majorik.library.base.constants.UrlConstants
-import kotlinx.android.synthetic.main.item_medium_poster_card_details.view.*
-import kotlinx.android.synthetic.main.item_person_credit_in_line_details.view.*
-import kotlinx.android.synthetic.main.item_small_poster_card_details.view.collection_card
-import kotlinx.android.synthetic.main.item_small_poster_card_details.view.collection_image
-import com.majorik.moviebox.R as AppResources
+import com.majorik.library.base.extensions.*
 import com.majorik.moviebox.feature.details.R
+import com.majorik.moviebox.feature.details.databinding.ItemMediumPosterCardDetailsBinding
+import com.majorik.moviebox.feature.details.databinding.ItemPersonCreditInLineDetailsBinding
+import com.majorik.moviebox.feature.details.domain.tmdbModels.cast.TVCast
+import com.majorik.moviebox.R as AppResources
 
 class TVCreditsAdapter(
+    private val actionClick: (id: Int) -> Unit,
     private val layoutManager: GridLayoutManager?,
     private val credits: List<TVCast>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -28,23 +23,20 @@ class TVCreditsAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val layoutInflater = LayoutInflater.from(parent.context)
+
         return when (viewType) {
             ListType.GRID.ordinal -> {
-                val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_medium_poster_card_details, parent, false)
 
-                TVCreditsViewHolder(
-                    view
-                )
+                val viewBinding = ItemMediumPosterCardDetailsBinding.inflate(layoutInflater, parent, false)
+
+                TVCreditsViewHolder(viewBinding)
             }
 
             else -> {
-                val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_person_credit_in_line_details, parent, false)
+                val viewBinding = ItemPersonCreditInLineDetailsBinding.inflate(layoutInflater, parent, false)
 
-                InlineCreditViewHolder(
-                    view
-                )
+                InlineCreditViewHolder(viewBinding)
             }
         }
     }
@@ -55,6 +47,10 @@ class TVCreditsAdapter(
         when (holder) {
             is TVCreditsViewHolder -> {
                 holder.bindTo(credits[position])
+
+                holder.viewBinding.collectionCard.setSafeOnClickListener {
+                    actionClick(credits[position].id)
+                }
             }
             is InlineCreditViewHolder -> {
                 var withoutSpace = true
@@ -68,6 +64,10 @@ class TVCreditsAdapter(
                 }
 
                 holder.bindTo(credits[position], withoutSpace)
+
+                holder.viewBinding.inlineCreditLayout.setSafeOnClickListener {
+                    actionClick(credits[position].id)
+                }
             }
         }
     }
@@ -81,59 +81,35 @@ class TVCreditsAdapter(
         return year1?.toYear().equals(year2?.toYear())
     }
 
-    class TVCreditsViewHolder(parent: View) : RecyclerView.ViewHolder(parent) {
-        fun bindTo(cast: TVCast) {
-            itemView.title.text = cast.name
+    class TVCreditsViewHolder(val viewBinding: ItemMediumPosterCardDetailsBinding) :
+        RecyclerView.ViewHolder(viewBinding.root) {
 
-            itemView.collection_image.displayImageWithCenterCrop(
+        fun bindTo(cast: TVCast) {
+            viewBinding.title.text = cast.name
+
+            viewBinding.collectionImage.displayImageWithCenterCrop(
                 UrlConstants.TMDB_POSTER_SIZE_185 + cast.posterPath,
                 AppResources.drawable.ic_film_placeholder_colored
             )
-
-            bindClickListener(cast)
-        }
-
-        private fun bindClickListener(cast: TVCast) {
-            itemView.collection_card.setSafeOnClickListener {
-                it.context.apply {
-                    it.context.startActivityWithAnim(
-                        TVDetailsDialogFragment::class.java,
-                        Intent().apply {
-                            putExtra(BaseIntentKeys.ITEM_ID, cast.id)
-                        }
-                    )
-                }
-            }
         }
     }
 
-    class InlineCreditViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
-        fun bindTo(cast: TVCast, withoutSpace: Boolean) {
-            itemView.space_placeholder.setVisibilityOption(!withoutSpace)
+    class InlineCreditViewHolder(val viewBinding: ItemPersonCreditInLineDetailsBinding) :
+        RecyclerView.ViewHolder(viewBinding.root) {
 
-            itemView.known_for_department.text = view.context.convertStringForFilmography(
+        fun bindTo(cast: TVCast, withoutSpace: Boolean) {
+            viewBinding.spacePlaceholder.setVisibilityOption(!withoutSpace)
+
+            viewBinding.knownForDepartment.text = viewBinding.root.context.convertStringForFilmography(
                 cast.name,
-                view.context.getString(R.string.details_inline_filmography_delimiter),
+                viewBinding.root.context.getString(R.string.details_inline_filmography_delimiter),
                 cast.character
             )
 
-            itemView.pc_year.text = if (!cast.firstAirDate.isNullOrBlank()) {
+            viewBinding.pcYear.text = if (!cast.firstAirDate.isNullOrBlank()) {
                 cast.firstAirDate.toDate().year.year.toString()
             } else {
                 "????"
-            }
-
-            bindClickListener(cast)
-        }
-
-        private fun bindClickListener(cast: TVCast) {
-            itemView.inline_credit_layout.setSafeOnClickListener {
-                it.context.startActivityWithAnim(
-                    TVDetailsDialogFragment::class.java,
-                    Intent().apply {
-                        putExtra(BaseIntentKeys.ITEM_ID, cast.id)
-                    }
-                )
             }
         }
     }

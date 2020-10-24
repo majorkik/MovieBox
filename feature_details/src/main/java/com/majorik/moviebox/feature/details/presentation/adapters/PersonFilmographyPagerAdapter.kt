@@ -16,6 +16,8 @@ import com.majorik.library.base.utils.SpacingDecoration
 import kotlinx.android.synthetic.main.item_filmography_details.view.*
 
 class PersonFilmographyPagerAdapter(
+    private val actionMovieClick: (id: Int) -> Unit,
+    private val actionTVClick: (id: Int) -> Unit,
     private val movieCasts: List<MovieCast>,
     private val tvCast: List<TVCast>
 ) : RecyclerView.Adapter<PageViewHolder>() {
@@ -43,17 +45,16 @@ class PersonFilmographyPagerAdapter(
     }
 
     fun changeViewType(isGrid: Boolean) {
-        if (isGrid) {
-            spanCount = 3
+        spanCount = if (isGrid) {
+            3
         } else {
-            spanCount = 1
+            1
         }
 
-//        notifyItemRangeChanged(0, 2)
         notifyDataSetChanged()
     }
 
-    class PageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class PageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val itemDecoration = SpacingDecoration(16.px(), 16.px(), true)
 
         fun bindMovies(
@@ -70,11 +71,12 @@ class PersonFilmographyPagerAdapter(
                 itemView.filmographylist.removeItemDecoration(itemDecoration)
             }
 
-            itemView.filmographylist.adapter =
-                MovieCreditsAdapter(
-                    layoutManager,
-                    movieCasts
-                )
+            itemView.filmographylist.adapter = MovieCreditsAdapter(
+                { id ->
+                    actionMovieClick(id)
+                },
+                layoutManager, movieCasts
+            )
         }
 
         fun bindTVs(
@@ -91,11 +93,12 @@ class PersonFilmographyPagerAdapter(
                 itemView.filmographylist.removeItemDecoration(itemDecoration)
             }
 
-            itemView.filmographylist.adapter =
-                TVCreditsAdapter(
-                    layoutManager,
-                    tvCasts
-                )
+            itemView.filmographylist.adapter = TVCreditsAdapter(
+                { id ->
+                    actionTVClick(id)
+                },
+                layoutManager, tvCasts
+            )
         }
     }
 }

@@ -73,7 +73,7 @@
                 tools:text="T" />
 
             <LinearLayout
-                android:id="@+id/linearLayout"
+                android:id="@+id/person_toolbar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"

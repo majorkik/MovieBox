@@ -1,23 +1,18 @@
 package com.majorik.moviebox.feature.details.presentation.adapters.movie
 
-import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import com.majorik.moviebox.feature.details.R
 import androidx.recyclerview.widget.RecyclerView
-import com.majorik.library.base.constants.BaseIntentKeys
-import com.majorik.moviebox.feature.details.domain.tmdbModels.cast.MovieCast
-import com.majorik.library.base.extensions.*
-import com.majorik.moviebox.feature.details.presentation.movieDetails.MovieDetailsDialogFragment
 import com.majorik.library.base.constants.UrlConstants
-import kotlinx.android.synthetic.main.item_medium_poster_card_details.view.*
-import kotlinx.android.synthetic.main.item_medium_poster_card_details.view.collection_card
-import kotlinx.android.synthetic.main.item_medium_poster_card_details.view.collection_image
-import kotlinx.android.synthetic.main.item_person_credit_in_line_details.view.*
+import com.majorik.library.base.extensions.*
+import com.majorik.moviebox.feature.details.R
+import com.majorik.moviebox.feature.details.databinding.ItemMediumPosterCardDetailsBinding
+import com.majorik.moviebox.feature.details.databinding.ItemPersonCreditInLineDetailsBinding
+import com.majorik.moviebox.feature.details.domain.tmdbModels.cast.MovieCast
 
 class MovieCreditsAdapter(
+    private val actionClick: (id: Int) -> Unit,
     private val layoutManager: GridLayoutManager?,
     private val credits: List<MovieCast>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -27,23 +22,20 @@ class MovieCreditsAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val layoutInflater = LayoutInflater.from(parent.context)
+
         return when (viewType) {
             ListType.GRID.ordinal -> {
-                val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_medium_poster_card_details, parent, false)
 
-                MovieCreditsViewHolder(
-                    view
-                )
+                val viewBinding = ItemMediumPosterCardDetailsBinding.inflate(layoutInflater, parent, false)
+
+                MovieCreditsViewHolder(viewBinding)
             }
 
             else -> {
-                val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_person_credit_in_line_details, parent, false)
+                val viewBinding = ItemPersonCreditInLineDetailsBinding.inflate(layoutInflater, parent, false)
 
-                InlineCreditViewHolder(
-                    view
-                )
+                InlineCreditViewHolder(viewBinding)
             }
         }
     }
@@ -54,6 +46,10 @@ class MovieCreditsAdapter(
         when (holder) {
             is MovieCreditsViewHolder -> {
                 holder.bindTo(credits[position])
+
+                holder.viewBinding.collectionCard.setSafeOnClickListener {
+                    actionClick(credits[position].id)
+                }
             }
             is InlineCreditViewHolder -> {
                 var withoutSpace = true
@@ -67,6 +63,10 @@ class MovieCreditsAdapter(
                 }
 
                 holder.bindTo(credits[position], withoutSpace)
+
+                holder.viewBinding.inlineCreditLayout.setSafeOnClickListener {
+                    actionClick(credits[position].id)
+                }
             }
         }
     }
@@ -80,56 +80,35 @@ class MovieCreditsAdapter(
         return year1?.toYear().equals(year2?.toYear())
     }
 
-    class MovieCreditsViewHolder(private val parent: View) : RecyclerView.ViewHolder(parent) {
+    class MovieCreditsViewHolder(val viewBinding: ItemMediumPosterCardDetailsBinding) :
+        RecyclerView.ViewHolder(viewBinding.root) {
+
         fun bindTo(cast: MovieCast) {
-            itemView.title.text = cast.title
-            itemView.collection_image.displayImageWithCenterCrop(
+            viewBinding.title.text = cast.title
+            viewBinding.collectionImage.displayImageWithCenterCrop(
                 UrlConstants.TMDB_POSTER_SIZE_185 + (cast.posterPath ?: ""),
                 R.drawable.bg_placeholder_card_colored
             )
-
-            bindClickListener(cast)
-        }
-
-        private fun bindClickListener(cast: MovieCast) {
-            itemView.collection_card.setSafeOnClickListener {
-                it.context.startActivityWithAnim(
-                    MovieDetailsDialogFragment::class.java,
-                    Intent().apply {
-                        putExtra(BaseIntentKeys.ITEM_ID, cast.id)
-                    }
-                )
-            }
         }
     }
 
-    class InlineCreditViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
-        fun bindTo(cast: MovieCast, withoutSpace: Boolean) {
-            itemView.space_placeholder.setVisibilityOption(!withoutSpace)
+    class InlineCreditViewHolder(val viewBinding: ItemPersonCreditInLineDetailsBinding) :
+        RecyclerView.ViewHolder(viewBinding.root) {
 
-            itemView.known_for_department.text = view.context.convertStringForFilmography(
+        fun bindTo(cast: MovieCast, withoutSpace: Boolean) {
+
+            viewBinding.spacePlaceholder.setVisibilityOption(!withoutSpace)
+
+            viewBinding.knownForDepartment.text = viewBinding.root.context.convertStringForFilmography(
                 cast.title,
-                view.context.getString(R.string.details_inline_filmography_delimiter),
+                viewBinding.root.context.getString(R.string.details_inline_filmography_delimiter),
                 cast.character
             )
 
-            itemView.pc_year.text = if (!cast.releaseDate.isNullOrBlank()) {
+            viewBinding.pcYear.text = if (!cast.releaseDate.isNullOrBlank()) {
                 cast.releaseDate.toDate().year.year.toString()
             } else {
                 "????"
-            }
-
-            bindClickListener(cast)
-        }
-
-        private fun bindClickListener(cast: MovieCast) {
-            itemView.inline_credit_layout.setSafeOnClickListener {
-                it.context.startActivityWithAnim(
-                    MovieDetailsDialogFragment::class.java,
-                    Intent().apply {
-                        putExtra(BaseIntentKeys.ITEM_ID, cast.id)
-                    }
-                )
             }
         }
     }

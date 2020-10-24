@@ -31,7 +31,7 @@
     </FrameLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/person_toolbar"
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:orientation="horizontal"
@@ -82,7 +82,7 @@
         android:layout_height="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+        app:layout_constraintTop_toBottomOf="@+id/person_toolbar">
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/p_tab_layout"

@@ -47,7 +47,7 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
     private val genresAdapter = GenreAdapter()
     private val trailersAdapter = TrailersAdapter()
-    private val peopleAdapter = PersonAdapter()
+    private val peopleAdapter = PersonAdapter(::actionClickPerson)
 
     /**
      * Default methods
@@ -192,6 +192,10 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
     private fun actionClickMovie(id: Int) {
         findNavController().navigate(MoviesFragmentDirections.actionToMovieDetails(id))
+    }
+
+    private fun actionClickPerson(id: Int) {
+        findNavController().navigate(MoviesFragmentDirections.actionToPersonDetails(id))
     }
 
     /**

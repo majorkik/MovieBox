@@ -14,8 +14,8 @@ import com.majorik.library.base.storage.CredentialsPrefsManager
 import com.majorik.moviebox.feature.navigation.R
 import com.majorik.moviebox.feature.navigation.databinding.FragmentProfileBinding
 import com.majorik.moviebox.feature.navigation.domain.tmdbModels.account.AccountDetails
-import com.majorik.moviebox.feature.navigation.presentation.adapters.profile.ProfileMoviesAdapter
-import com.majorik.moviebox.feature.navigation.presentation.adapters.profile.ProfileTVsAdapter
+import com.majorik.moviebox.feature.navigation.presentation.main_page_profile.adapters.ProfileMoviesAdapter
+import com.majorik.moviebox.feature.navigation.presentation.main_page_profile.adapters.ProfileTVsAdapter
 import com.majorik.moviebox.feature.navigation.presentation.dialogs.LogoutDialog
 import com.majorik.moviebox.feature.navigation.presentation.settings.SettingsActivity
 import org.koin.android.ext.android.inject
@@ -29,10 +29,14 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     private val credentialsManager: CredentialsPrefsManager by inject()
 
-    private val willWatchMoviesAdapter = ProfileMoviesAdapter()
-    private val willWatchTVsAdapter = ProfileTVsAdapter()
-    private val favoriteMoviesAdapter = ProfileMoviesAdapter()
-    private val favoriteTVsAdapter = ProfileTVsAdapter()
+    private val willWatchMoviesAdapter =
+        ProfileMoviesAdapter()
+    private val willWatchTVsAdapter =
+        ProfileTVsAdapter()
+    private val favoriteMoviesAdapter =
+        ProfileMoviesAdapter()
+    private val favoriteTVsAdapter =
+        ProfileTVsAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

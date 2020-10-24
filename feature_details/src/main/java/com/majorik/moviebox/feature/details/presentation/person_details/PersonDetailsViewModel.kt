@@ -1,15 +1,20 @@
 package com.majorik.moviebox.feature.details.presentation.person_details
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.majorik.moviebox.feature.details.domain.tmdbModels.person.PersonDetails
-import com.majorik.moviebox.feature.details.data.repositories.PersonRepository
 import com.majorik.library.base.models.results.ResultWrapper
+import com.majorik.moviebox.feature.details.data.repositories.PersonRepository
+import com.majorik.moviebox.feature.details.domain.tmdbModels.person.PersonDetails
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
 class PersonDetailsViewModel(private val personRepository: PersonRepository) : ViewModel() {
-    var personDetailsLiveData = MutableLiveData<PersonDetails>()
+
+    /**
+     * Person details
+     */
+
+    var personDetailsFlow: MutableStateFlow<ResultWrapper<PersonDetails>?> = MutableStateFlow(null)
 
     fun fetchPersonDetails(
         personId: Int,
@@ -17,17 +22,9 @@ class PersonDetailsViewModel(private val personRepository: PersonRepository) : V
         appendToResponse: String?
     ) {
         viewModelScope.launch {
-            when (val response = personRepository.getPersonById(personId, language, appendToResponse)) {
-                is ResultWrapper.NetworkError -> {
-                }
+            val response = personRepository.getPersonById(personId, language, appendToResponse)
 
-                is ResultWrapper.GenericError -> {
-                }
-
-                is ResultWrapper.Success -> {
-                    personDetailsLiveData.postValue(response.value)
-                }
-            }
+            personDetailsFlow.value = response
         }
     }
 }

@@ -216,7 +216,7 @@ class TVDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_tv_detai
     }
 
     private fun setPeoples(casts: List<Cast>) {
-        t_persons.setAdapterWithFixedSize(CastAdapter(casts), true)
+        t_persons.setAdapterWithFixedSize(CastAdapter(::openPersonDetails, casts), true)
     }
 
     private fun setImages(images: Images, backdropPath: String?, posterPath: String?) {
@@ -318,6 +318,14 @@ class TVDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_tv_detai
             releaseDate.toDate(getString(R.string.details_yyyy_mm_dd)).yearInt.toString(),
             genresFormat
         )
+    }
+
+    /**
+     * Actions
+     */
+
+    private fun openPersonDetails(id: Int) {
+        findNavController().navigate(TVDetailsDialogFragmentDirections.actionToPersonDetails(id))
     }
 
     /**

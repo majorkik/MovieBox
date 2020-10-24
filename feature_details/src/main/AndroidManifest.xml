@@ -20,12 +20,6 @@
         tools:ignore="GoogleAppIndexingWarning,MissingApplicationIcon">
 
         <activity
-            android:name=".presentation.person_details.PersonDetailsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Transparent.NoActionBar"
-            tools:ignore="LockedOrientationActivity" />
-
-        <activity
             android:name=".presentation.seasonDetails.SeasonDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"

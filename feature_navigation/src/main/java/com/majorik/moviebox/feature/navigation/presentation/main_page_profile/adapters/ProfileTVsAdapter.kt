@@ -1,4 +1,4 @@
-package com.majorik.moviebox.feature.navigation.presentation.adapters.profile
+package com.majorik.moviebox.feature.navigation.presentation.main_page_profile.adapters
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -21,7 +21,9 @@ class ProfileTVsAdapter : RecyclerView.Adapter<ProfileTVsAdapter.ProfileTVViewHo
         val layoutInflater = LayoutInflater.from(parent.context)
 
         val binding = ItemProfileCardBinding.inflate(layoutInflater, parent, false)
-        return ProfileTVViewHolder(binding)
+        return ProfileTVViewHolder(
+            binding
+        )
     }
 
     override fun getItemCount() = items.count()

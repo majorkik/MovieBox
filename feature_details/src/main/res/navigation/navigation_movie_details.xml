@@ -16,5 +16,72 @@
             android:defaultValue="0"
             app:argType="integer"
             app:nullable="false" />
+
+        <action
+            android:id="@+id/action_to_person_details"
+            app:destination="@id/nav_person_details">
+
+            <argument
+                android:name="id"
+                android:defaultValue="0"
+                app:argType="integer"
+                app:nullable="false" />
+        </action>
+    </dialog>
+
+    <dialog
+        android:id="@+id/nav_person_details"
+        android:name="com.majorik.moviebox.feature.details.presentation.person_details.PersonDetailsDialogFragment"
+        tools:layout="@layout/dialog_fragment_person_details">
+
+        <argument
+            android:name="id"
+            android:defaultValue="0"
+            app:argType="integer"
+            app:nullable="false" />
+
+        <action
+            android:id="@+id/action_to_movie_details"
+            app:destination="@id/nav_movie_details">
+
+            <argument
+                android:name="id"
+                android:defaultValue="0"
+                app:argType="integer"
+                app:nullable="false" />
+        </action>
+        <action
+            android:id="@+id/action_to_tv_details"
+            app:destination="@id/nav_tv_details">
+
+            <argument
+                android:name="id"
+                android:defaultValue="0"
+                app:argType="integer"
+                app:nullable="false" />
+        </action>
+    </dialog>
+
+    <dialog
+        android:id="@+id/nav_tv_details"
+        android:name="com.majorik.moviebox.feature.details.presentation.tvDetails.TVDetailsDialogFragment"
+        tools:layout="@layout/dialog_fragment_tv_details">
+
+        <argument
+            android:name="id"
+            android:defaultValue="0"
+            app:argType="integer"
+            app:nullable="false" />
+
+        <action
+            android:id="@+id/action_to_person_details"
+            app:destination="@id/nav_person_details">
+
+            <argument
+                android:name="id"
+                android:defaultValue="0"
+                app:argType="integer"
+                app:nullable="false" />
+        </action>
     </dialog>
 </navigation>
