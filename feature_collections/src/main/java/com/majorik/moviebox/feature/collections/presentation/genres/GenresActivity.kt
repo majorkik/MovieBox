@@ -48,11 +48,8 @@ class GenresActivity : BaseSlidingActivity() {
     override fun canSlideDown(): Boolean = true
 
     private fun setObservers() {
-        genresViewModel.genresLiveData.observe(
-            this,
-            Observer {
-                list_genres.adapter = GenresInlineAdapter(it.genres)
-            }
-        )
+        genresViewModel.genresLiveData.observe(this, {
+            list_genres.adapter = GenresInlineAdapter(it.genres)
+        })
     }
 }

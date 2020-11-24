@@ -1,41 +1,28 @@
 package com.majorik.moviebox.feature.collections.presentation.tvTabCollections
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.LivePagedListBuilder
-import androidx.paging.PagedList
-import com.majorik.moviebox.feature.collections.data.repositories.TVRepository
-import com.majorik.moviebox.feature.collections.domain.NetworkState
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.cachedIn
+import com.majorik.library.base.constants.AppConfig
 import com.majorik.moviebox.domain.enums.collections.TVCollectionType
-import com.majorik.moviebox.feature.collections.presentation.collections.TVCollectionsDataSourceFactory
+import com.majorik.moviebox.feature.collections.data.repositories.TVRepository
+import com.majorik.moviebox.feature.collections.presentation.tvTabCollections.datasources.TVCollectionsPagingDataSource
 
 class TVCollectionsViewModel(tvRepository: TVRepository, tvCollectionType: TVCollectionType) :
     ViewModel() {
-    private val dataSourceFactory =
-        TVCollectionsDataSourceFactory(
-            tvRepository = tvRepository,
-            scope = viewModelScope,
-            tvCollectionType = tvCollectionType
-        )
 
-    val tvResults = LivePagedListBuilder(dataSourceFactory, pagedConfig()).build()
+    /**
+     * Movies flow
+     */
 
-    val networkState: LiveData<NetworkState>? =
-        Transformations.switchMap(dataSourceFactory.source) { it.getNetworkState() }
+    var datasource: TVCollectionsPagingDataSource? = null
 
-    fun fetchItems() {
-        dataSourceFactory.refresh()
-    }
+    var tvsFlow = Pager(PagingConfig(pageSize = 20)) {
+        TVCollectionsPagingDataSource(tvRepository, tvCollectionType, AppConfig.REGION).also {
+            datasource = it
+        }
+    }.flow.cachedIn(viewModelScope)
 
-    private fun pagedConfig() = PagedList.Config.Builder()
-        .setInitialLoadSizeHint(5)
-        .setEnablePlaceholders(false)
-        .setPageSize(20)
-        .build()
-
-    fun refreshFailedRequest() = dataSourceFactory.getSource()?.retryFailedQuery()
-
-    fun refreshAllList() = dataSourceFactory.getSource()?.refresh()
 }

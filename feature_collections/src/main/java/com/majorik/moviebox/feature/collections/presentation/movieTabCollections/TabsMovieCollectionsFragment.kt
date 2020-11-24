@@ -62,10 +62,6 @@ class TabsMovieCollectionsFragment : Fragment(R.layout.fragment_tab_collections)
         }
     }
 
-    private fun updateMargins(statusBarSize: Int, @Suppress("UNUSED_PARAMETER") navigationBarSize: Int) {
-        viewBinding.collectionsToolbar.updateMargin(top = statusBarSize)
-    }
-
     private fun configureTabLayout() {
         val pagerTitles: Array<String> =
             arrayOf(

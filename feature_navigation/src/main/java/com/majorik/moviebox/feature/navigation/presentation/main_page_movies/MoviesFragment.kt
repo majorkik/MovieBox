@@ -79,8 +79,8 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
 
     private fun initAdapters() {
         lifecycleScope.launchWhenCreated {
-            viewBinding.vpPopularMovies.setShowSideItems(16.px(), 16.px())
             viewBinding.vpPopularMovies.adapter = popularMoviesAdapter
+            viewBinding.vpPopularMovies.setShowSideItems(16.px(), 16.px())
 
             viewBinding.rvNowPlayingMovies.setAdapterWithFixedSize(
                 ScaleInAnimationAdapter(nowPlayingMoviesAdapter),

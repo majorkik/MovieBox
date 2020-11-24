@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     app:moduleName="feature_details"
-    app:startDestination="@id/nav_movie_details">
+    app:startDestination="@id/nav_tv_collections">
 
     <fragment
-        android:id="@+id/nav_movie_details"
+        android:id="@+id/nav_tv_collections"
         android:name="com.majorik.moviebox.feature.collections.presentation.tvTabCollections.TabsTVCollectionsFragment"
         app:moduleName="feature_details"
         tools:layout="@layout/fragment_tab_collections">
@@ -16,5 +16,22 @@
             android:defaultValue="POPULAR"
             app:argType="com.majorik.moviebox.domain.enums.collections.TVCollectionType"
             app:nullable="false" />
+
+        <action
+            android:id="@+id/action_to_tv_details"
+            app:destination="@id/nav_tv_details">
+
+            <argument
+                android:name="id"
+                android:defaultValue="0"
+                app:argType="integer"
+                app:nullable="false" />
+        </action>
     </fragment>
+
+    <include-dynamic
+        android:id="@+id/nav_tv_details"
+        app:graphPackage="com.majorik.moviebox.feature_details"
+        app:graphResName="navigation_tv_details"
+        app:moduleName="feature_details" />
 </navigation>

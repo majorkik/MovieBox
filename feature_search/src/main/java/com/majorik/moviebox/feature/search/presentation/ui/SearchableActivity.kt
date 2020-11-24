@@ -35,9 +35,7 @@ class SearchableActivity : AppCompatActivity() {
 
         setWindowTransparency(::updateMargins)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.navigationBarColor = ContextCompat.getColor(this, AppResources.color.mine_shaft)
-        }
+        window.navigationBarColor = ContextCompat.getColor(this, AppResources.color.mine_shaft)
 
         configureFloatingSearchView()
         configureTabLayout()

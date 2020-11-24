@@ -79,5 +79,4 @@
             app:tabTextColor="@color/mine_shaft"
             tools:layout_width="match_parent" />
     </FrameLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
