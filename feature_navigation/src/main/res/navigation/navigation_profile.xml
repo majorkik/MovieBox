@@ -49,7 +49,20 @@
         <action
             android:id="@+id/action_to_clear_cache"
             app:destination="@+id/clear_cache_dialog" />
+
+        <action
+            android:id="@+id/action_to_change_language"
+            app:destination="@id/change_language"
+            app:enterAnim="@anim/fragment_enter_slide_up"
+            app:exitAnim="@anim/fade_none"
+            app:popEnterAnim="@anim/fade_none"
+            app:popExitAnim="@anim/fragment_exit_slide_down" />
     </fragment>
+
+    <fragment
+        android:id="@+id/change_language"
+        android:name="com.majorik.moviebox.feature.navigation.presentation.language.LanguageFragment"
+        tools:layout="@layout/fragment_languages" />
 
     <dialog
         android:id="@+id/clear_cache_dialog"

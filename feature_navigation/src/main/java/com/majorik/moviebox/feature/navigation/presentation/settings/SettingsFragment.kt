@@ -51,7 +51,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings), ClearDialogListen
         }
 
         viewBinding.btnChangeLang.setSafeOnClickListener {
-//            startActivityWithAnim(LanguageActivity::class.java)
+            findNavController().navigate(SettingsFragmentDirections.actionToChangeLanguage())
         }
 
         viewBinding.btnBack.setOnClickListener {
