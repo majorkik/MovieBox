@@ -24,5 +24,4 @@ class TVCollectionsViewModel(tvRepository: TVRepository, tvCollectionType: TVCol
             datasource = it
         }
     }.flow.cachedIn(viewModelScope)
-
 }

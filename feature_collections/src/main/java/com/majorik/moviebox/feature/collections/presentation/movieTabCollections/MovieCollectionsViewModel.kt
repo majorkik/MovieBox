@@ -21,5 +21,4 @@ class MovieCollectionsViewModel(movieRepository: MovieRepository, movieCollectio
             datasource = it
         }
     }.flow.cachedIn(viewModelScope)
-
 }

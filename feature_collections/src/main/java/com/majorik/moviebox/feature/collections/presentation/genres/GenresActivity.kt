@@ -2,7 +2,6 @@ package com.majorik.moviebox.feature.collections.presentation.genres
 
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.Observer
 import com.majorik.moviebox.feature.collections.presentation.adapters.GenresInlineAdapter
 import com.majorik.library.base.base.BaseSlidingActivity
 import com.majorik.library.base.enums.GenresType
@@ -48,8 +47,11 @@ class GenresActivity : BaseSlidingActivity() {
     override fun canSlideDown(): Boolean = true
 
     private fun setObservers() {
-        genresViewModel.genresLiveData.observe(this, {
-            list_genres.adapter = GenresInlineAdapter(it.genres)
-        })
+        genresViewModel.genresLiveData.observe(
+            this,
+            {
+                list_genres.adapter = GenresInlineAdapter(it.genres)
+            }
+        )
     }
 }

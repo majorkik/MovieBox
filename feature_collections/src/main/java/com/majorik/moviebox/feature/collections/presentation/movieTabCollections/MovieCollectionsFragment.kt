@@ -12,7 +12,6 @@ import com.majorik.moviebox.domain.enums.collections.MovieCollectionType
 import com.majorik.moviebox.feature.collections.R
 import com.majorik.moviebox.feature.collections.databinding.FragmentCollectionPageBinding
 import com.majorik.moviebox.feature.collections.presentation.movieTabCollections.adapters.PagingMovieCollectionAdapter
-import com.orhanobut.logger.Logger
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.viewmodel.ext.android.viewModel

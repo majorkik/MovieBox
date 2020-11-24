@@ -7,7 +7,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.tabs.TabLayoutMediator
-import com.majorik.library.base.extensions.updateMargin
 import com.majorik.moviebox.feature.collections.R
 import com.majorik.moviebox.domain.enums.collections.MovieCollectionType
 import com.majorik.moviebox.feature.collections.databinding.FragmentTabCollectionsBinding
