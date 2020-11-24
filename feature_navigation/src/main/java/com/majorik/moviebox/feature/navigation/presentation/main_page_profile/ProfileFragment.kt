@@ -18,7 +18,7 @@ import com.majorik.moviebox.feature.navigation.domain.tmdbModels.account.Account
 import com.majorik.moviebox.feature.navigation.presentation.dialogs.LogoutDialog
 import com.majorik.moviebox.feature.navigation.presentation.main_page_profile.adapters.ProfileMoviesAdapter
 import com.majorik.moviebox.feature.navigation.presentation.main_page_profile.adapters.ProfileTVsAdapter
-import com.majorik.moviebox.feature.navigation.presentation.settings.SettingsActivity
+import com.majorik.moviebox.feature.navigation.presentation.settings.SettingsFragment
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -147,7 +147,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         }
 
         viewBinding.btnSettings.setSafeOnClickListener {
-            context?.startActivityWithAnim(SettingsActivity::class.java)
+            findNavController().navigate(ProfileFragmentDirections.actionToSettings())
         }
     }
 

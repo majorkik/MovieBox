@@ -31,7 +31,37 @@
                 app:argType="integer"
                 app:nullable="false" />
         </action>
+
+        <action
+            android:id="@+id/action_to_settings"
+            app:destination="@+id/settings"
+            app:enterAnim="@anim/fragment_enter_slide_up"
+            app:exitAnim="@anim/fade_none"
+            app:popEnterAnim="@anim/fade_none"
+            app:popExitAnim="@anim/fragment_exit_slide_down" />
     </fragment>
+
+    <fragment
+        android:id="@+id/settings"
+        android:name="com.majorik.moviebox.feature.navigation.presentation.settings.SettingsFragment"
+        tools:layout="@layout/fragment_settings">
+
+        <action
+            android:id="@+id/action_to_clear_cache"
+            app:destination="@+id/clear_cache_dialog" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/clear_cache_dialog"
+        android:name="com.majorik.moviebox.feature.navigation.presentation.settings.clear_dialog.ClearCacheDialog"
+        tools:layout="@layout/dialog_clear_cache">
+
+        <argument
+            android:name="cache_size"
+            android:defaultValue=""
+            app:argType="string"
+            app:nullable="false" />
+    </dialog>
 
     <include-dynamic
         android:id="@+id/nav_movie_details"

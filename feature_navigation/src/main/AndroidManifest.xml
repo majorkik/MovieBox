@@ -24,13 +24,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Transparent.NoActionBar.Dark"
             tools:ignore="LockedOrientationActivity" />
-
-        <activity
-            android:name=".presentation.settings.SettingsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Transparent.NoActionBar.Dark"
-            tools:ignore="LockedOrientationActivity" />
-
     </application>
 </manifest>
 

@@ -10,29 +10,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.DialogFragment
+import androidx.navigation.fragment.navArgs
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.utils.FontSpan
 import com.majorik.moviebox.feature.navigation.R
 import com.majorik.moviebox.R as AppResources
 import kotlinx.android.synthetic.main.dialog_clear_cache.*
 
-class ClearCacheDialog : DialogFragment() {
+class ClearCacheDialog : DialogFragment(R.layout.dialog_clear_cache) {
 
-    private var cacheSize: String = ""
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        cacheSize = arguments?.getString(CACHE_SIZE_ARG) ?: ""
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.dialog_clear_cache, container, false)
-    }
+    private val args: ClearCacheDialogArgs by navArgs()
 
     override fun onStart() {
         super.onStart()
@@ -47,7 +34,7 @@ class ClearCacheDialog : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        cache_size.text = getString(R.string.navigation_cache_size_with_format, cacheSize)
+        cache_size.text = getString(R.string.navigation_cache_size_with_format, args.cacheSize ?: "")
         setSpannableCacheSizeText()
 
         btn_cancel.setOnClickListener {
@@ -72,23 +59,12 @@ class ClearCacheDialog : DialogFragment() {
                             AppResources.font.cc_montserrat_semibold
                         )
                     ),
-                    cache_size.text.length - cacheSize.length,
+                    cache_size.text.length - args.cacheSize.length,
                     cache_size.text.length,
                     Spanned.SPAN_EXCLUSIVE_INCLUSIVE
                 )
                 cache_size.text = this
             }
         }
-    }
-
-    companion object {
-        const val CACHE_SIZE_ARG = "cache_size"
-
-        fun newInstance(cacheSizeFormattedToString: String?) =
-            ClearCacheDialog().apply {
-                arguments = Bundle().apply {
-                    putString(CACHE_SIZE_ARG, cacheSizeFormattedToString)
-                }
-            }
     }
 }
