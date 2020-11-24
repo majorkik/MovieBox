@@ -9,5 +9,19 @@
         android:id="@id/nav_discover_id"
         android:name="com.majorik.moviebox.feature.navigation.presentation.main_page_search.SearchFragment"
         android:label="@string/title_nav_discover">
+
+        <action
+            android:id="@+id/action_to_search"
+            app:destination="@+id/navigation_search"
+            app:enterAnim="@anim/fragment_enter_slide_up"
+            app:exitAnim="@anim/fade_none"
+            app:popEnterAnim="@anim/fade_none"
+            app:popExitAnim="@anim/fragment_exit_slide_down" />
     </fragment>
+
+    <include-dynamic
+        android:id="@+id/navigation_search"
+        app:graphPackage="com.majorik.moviebox.feature_search"
+        app:graphResName="navigation_search"
+        app:moduleName="feature_search" />
 </navigation>

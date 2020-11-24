@@ -20,13 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning,MissingApplicationIcon">
+
         <activity
             android:name=".presentation.ui.discover.DiscoverActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.SlidingActivity"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name=".presentation.ui.SearchableActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.SlidingActivity"
             tools:ignore="LockedOrientationActivity" />

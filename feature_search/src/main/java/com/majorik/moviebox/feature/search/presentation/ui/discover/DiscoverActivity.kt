@@ -17,7 +17,7 @@ import com.majorik.library.base.utils.SpacingDecoration
 import com.majorik.moviebox.feature.search.R
 import com.majorik.moviebox.feature.search.databinding.ActivityDiscoverBinding
 import com.majorik.moviebox.feature.search.domain.models.discover.DiscoverFiltersModel
-import com.majorik.moviebox.feature.search.presentation.adapters.discover.DiscoverAdapter
+import com.majorik.moviebox.feature.search.presentation.ui.discover.discover.DiscoverAdapter
 import com.majorik.moviebox.feature.search.presentation.ui.filters.DiscoverFiltersBottomSheetFragment
 import com.majorik.moviebox.feature.search.presentation.ui.filters.DiscoverFiltersBottomSheetFragment.Companion.KEY_DISCOVER_FILTERS_REQUEST
 import com.majorik.moviebox.feature.search.presentation.ui.filters.DiscoverFiltersBottomSheetFragment.Companion.KEY_FILTERS_MODEL

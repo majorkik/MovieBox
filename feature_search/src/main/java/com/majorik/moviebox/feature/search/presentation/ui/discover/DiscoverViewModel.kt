@@ -8,7 +8,7 @@ import androidx.paging.cachedIn
 import com.majorik.library.base.constants.AppConfig
 import com.majorik.moviebox.feature.search.data.repositories.DiscoverRepository
 import com.majorik.moviebox.feature.search.domain.models.discover.DiscoverFiltersModel
-import com.majorik.moviebox.feature.search.presentation.datasources.DiscoverPagingDataSource
+import com.majorik.moviebox.feature.search.presentation.ui.discover.datasources.DiscoverPagingDataSource
 
 class DiscoverViewModel(private val repository: DiscoverRepository) : ViewModel() {
 

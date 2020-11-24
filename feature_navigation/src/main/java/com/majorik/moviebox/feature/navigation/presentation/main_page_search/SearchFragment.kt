@@ -3,6 +3,7 @@ package com.majorik.moviebox.feature.navigation.presentation.main_page_search
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.library.base.extensions.setSafeOnClickListener
@@ -18,7 +19,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         super.onViewCreated(view, savedInstanceState)
 
         viewBinding.searchBar.setSafeOnClickListener {
-            context?.startActivityWithAnim(ScreenLinks.searchableActivity)
+            findNavController().navigate(SearchFragmentDirections.actionToSearch())
         }
 
         viewBinding.btnDiscover.setSafeOnClickListener {
