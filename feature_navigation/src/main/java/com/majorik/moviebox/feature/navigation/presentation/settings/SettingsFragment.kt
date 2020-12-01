@@ -15,10 +15,8 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import com.majorik.library.base.extensions.getCurrentLocale
 import com.majorik.library.base.extensions.setSafeOnClickListener
-import com.majorik.library.base.extensions.updateMargin
 import com.majorik.moviebox.feature.navigation.R
 import com.majorik.moviebox.feature.navigation.databinding.FragmentSettingsBinding
-import com.majorik.moviebox.feature.navigation.presentation.settings.clear_dialog.ClearCacheDialog
 import com.majorik.moviebox.feature.navigation.presentation.settings.clear_dialog.ClearDialogListener
 import com.orhanobut.logger.Logger
 

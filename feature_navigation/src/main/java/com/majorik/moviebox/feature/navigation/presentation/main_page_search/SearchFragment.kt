@@ -5,9 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.library.base.extensions.setSafeOnClickListener
-import com.majorik.library.base.extensions.startActivityWithAnim
 import com.majorik.moviebox.feature.navigation.R
 import com.majorik.moviebox.feature.navigation.databinding.FragmentSearchBinding
 
@@ -23,7 +21,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         }
 
         viewBinding.btnDiscover.setSafeOnClickListener {
-            context?.startActivityWithAnim(ScreenLinks.discoverActivity)
+            findNavController().navigate(SearchFragmentDirections.actionToDiscover())
         }
     }
 }

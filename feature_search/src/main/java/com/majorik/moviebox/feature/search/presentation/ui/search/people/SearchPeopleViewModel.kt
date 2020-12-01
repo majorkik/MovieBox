@@ -20,5 +20,4 @@ internal class SearchPeopleViewModel(repository: SearchRepository) : ViewModel()
             searchPeoplesDataSource = it
         }
     }.flow.cachedIn(viewModelScope)
-
 }

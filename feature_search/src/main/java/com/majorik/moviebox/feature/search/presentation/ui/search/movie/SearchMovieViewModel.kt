@@ -20,5 +20,4 @@ internal class SearchMovieViewModel(
             searchMoviesDataSource = it
         }
     }.flow.cachedIn(viewModelScope)
-
 }

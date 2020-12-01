@@ -5,13 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
-    android:paddingBottom="?attr/actionBarSize"
     tools:context="com.majorik.moviebox.feature.navigation.presentation.main_page_profile.ProfileFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:paddingBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,7 +18,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="150dp">
 
             <LinearLayout
                 android:id="@+id/linearLayout2"
@@ -553,6 +552,8 @@
                 android:layout_marginHorizontal="8dp"
                 android:layout_marginTop="8dp"
                 app:cardCornerRadius="8dp"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardBackgroundColor="@color/colorWhite"
                 app:cardElevation="0dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -622,6 +623,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
+                app:cardBackgroundColor="@color/colorWhite"
                 android:layout_marginTop="4dp"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="0dp"
@@ -634,17 +636,18 @@
                     android:layout_height="32dp"
                     android:layout_marginHorizontal="8dp"
                     android:layout_marginVertical="8dp"
-                    android:drawableStart="@drawable/ic_settings_with_bg"
                     android:drawablePadding="8dp"
                     android:fontFamily="@font/cc_montserrat_bold"
                     android:gravity="center_vertical"
                     android:text="@string/navigation_profile_screen_settings"
                     android:textColor="@color/mine_shaft"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    app:drawableStartCompat="@drawable/ic_settings_with_bg" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/btn_auth"
+                app:cardBackgroundColor="@color/colorWhite"
                 style="@style/BaseClickableCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -663,13 +666,13 @@
                     android:layout_height="32dp"
                     android:layout_marginHorizontal="8dp"
                     android:layout_marginVertical="8dp"
-                    android:drawableStart="@drawable/ic_exit_with_bg"
                     android:drawablePadding="8dp"
                     android:fontFamily="@font/cc_montserrat_bold"
                     android:gravity="center_vertical"
                     android:text="@string/navigation_profile_screen_logout"
                     android:textColor="@color/mine_shaft"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    app:drawableStartCompat="@drawable/ic_exit_with_bg" />
             </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

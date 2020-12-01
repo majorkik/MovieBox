@@ -7,15 +7,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.extensions.displayImageWithCenterCrop
 import com.majorik.library.base.extensions.setIndicatorColor
+import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.utils.GenresStorageObject
 import com.majorik.moviebox.feature.search.R
 import com.majorik.moviebox.feature.search.databinding.ItemCardWithDetailsBinding
 import com.majorik.moviebox.feature.search.databinding.ItemSearchMediumPosterCardBinding
+import com.majorik.moviebox.feature.search.domain.enums.DiscoverType
 import com.majorik.moviebox.feature.search.domain.extensions.getDiscoverDiffUtils
 import com.majorik.moviebox.feature.search.domain.models.discover.BaseDiscoverDomainModel
 
-class DiscoverAdapter(private val changeItemTypeAction: (isGrid: Boolean) -> Unit) :
-    PagingDataAdapter<BaseDiscoverDomainModel, RecyclerView.ViewHolder>(getDiscoverDiffUtils()) {
+class DiscoverAdapter(
+    private val changeItemTypeAction: (isGrid: Boolean) -> Unit,
+    private val actionClick: (Int, DiscoverType) -> Unit
+) : PagingDataAdapter<BaseDiscoverDomainModel, RecyclerView.ViewHolder>(getDiscoverDiffUtils()) {
 
     // Если нужно, чтобы элементы отображались в виде карточек 3х3, иначе будет отображаться в виде длинных карточек
     // с дополнительной информацией
@@ -40,13 +44,23 @@ class DiscoverAdapter(private val changeItemTypeAction: (isGrid: Boolean) -> Uni
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when (holder) {
-            is DiscoverCardViewHolder -> {
-                getItem(position)?.let { holder.bindTo(it) }
-            }
+        getItem(position)?.let { item ->
+            when (holder) {
+                is DiscoverCardViewHolder -> {
+                    holder.bindTo(item)
 
-            is DiscoverDetailsCardViewHolder -> {
-                getItem(position)?.let { holder.bindTo(it) }
+                    holder.viewBinding.collectionCard.setSafeOnClickListener {
+                        actionClick(item.id, item.type)
+                    }
+                }
+
+                is DiscoverDetailsCardViewHolder -> {
+                    holder.bindTo(item)
+
+                    holder.viewBinding.root.setSafeOnClickListener {
+                        actionClick(item.id, item.type)
+                    }
+                }
             }
         }
     }
@@ -68,7 +82,7 @@ class DiscoverAdapter(private val changeItemTypeAction: (isGrid: Boolean) -> Uni
         changeItemTypeAction(isGrid)
     }
 
-    class DiscoverCardViewHolder(private val viewBinding: ItemSearchMediumPosterCardBinding) :
+    class DiscoverCardViewHolder(val viewBinding: ItemSearchMediumPosterCardBinding) :
         RecyclerView.ViewHolder(viewBinding.root) {
 
         fun bindTo(item: BaseDiscoverDomainModel) {
@@ -77,7 +91,7 @@ class DiscoverAdapter(private val changeItemTypeAction: (isGrid: Boolean) -> Uni
         }
     }
 
-    class DiscoverDetailsCardViewHolder(private val viewBinding: ItemCardWithDetailsBinding) :
+    class DiscoverDetailsCardViewHolder(val viewBinding: ItemCardWithDetailsBinding) :
         RecyclerView.ViewHolder(viewBinding.root) {
 
         fun bindTo(item: BaseDiscoverDomainModel) {

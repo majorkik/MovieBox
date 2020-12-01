@@ -17,11 +17,25 @@
             app:exitAnim="@anim/fade_none"
             app:popEnterAnim="@anim/fade_none"
             app:popExitAnim="@anim/fragment_exit_slide_down" />
+
+        <action
+            android:id="@+id/action_to_discover"
+            app:destination="@+id/navigation_discover"
+            app:enterAnim="@anim/fragment_enter_slide_up"
+            app:exitAnim="@anim/fade_none"
+            app:popEnterAnim="@anim/fade_none"
+            app:popExitAnim="@anim/fragment_exit_slide_down" />
     </fragment>
 
     <include-dynamic
         android:id="@+id/navigation_search"
         app:graphPackage="com.majorik.moviebox.feature_search"
         app:graphResName="navigation_search"
+        app:moduleName="feature_search" />
+
+    <include-dynamic
+        android:id="@+id/navigation_discover"
+        app:graphPackage="com.majorik.moviebox.feature_search"
+        app:graphResName="navigation_search_discover"
         app:moduleName="feature_search" />
 </navigation>

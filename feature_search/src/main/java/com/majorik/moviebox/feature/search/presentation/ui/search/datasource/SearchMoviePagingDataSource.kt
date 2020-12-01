@@ -24,8 +24,10 @@ class SearchMoviePagingDataSource(
             return LoadResult.Error(Exception("Max page. nextPage: $nextPageNumber, maxPage: $totalPages"))
         }
 
-        return when (val response =
-            repository.searchMovies(AppConfig.REGION, query, nextPageNumber, false, null, null, null)) {
+        return when (
+            val response =
+                repository.searchMovies(AppConfig.REGION, query, nextPageNumber, false, null, null, null)
+        ) {
             is ResultWrapper.GenericError -> {
                 Logger.e("Generic Error")
 

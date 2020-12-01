@@ -20,7 +20,9 @@ import kotlinx.android.synthetic.main.fragment_search_page.*
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-internal class SearchMovieFragment : Fragment(R.layout.fragment_search_page), SearchQueryChangeListener,
+internal class SearchMovieFragment :
+    Fragment(R.layout.fragment_search_page),
+    SearchQueryChangeListener,
     SearchViewTypeChangeListener {
 
     private val viewModel: SearchMovieViewModel by viewModel()
@@ -51,7 +53,7 @@ internal class SearchMovieFragment : Fragment(R.layout.fragment_search_page), Se
 
     private fun configureObservables() {
         lifecycleScope.launchWhenResumed {
-            viewModel.searchMoviesFlow.collectLatest {pagingData ->
+            viewModel.searchMoviesFlow.collectLatest { pagingData ->
                 adapter.submitData(pagingData)
             }
         }

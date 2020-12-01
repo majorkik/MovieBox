@@ -4,7 +4,6 @@ import androidx.paging.PagingSource
 import com.majorik.library.base.constants.AppConfig
 import com.majorik.library.base.models.results.ResultWrapper
 import com.majorik.moviebox.feature.search.data.repositories.SearchRepository
-import com.majorik.moviebox.feature.search.domain.tmdbModels.movie.Movie
 import com.majorik.moviebox.feature.search.domain.tmdbModels.person.Person
 import com.orhanobut.logger.Logger
 
@@ -25,8 +24,10 @@ class SearchPersonPagingDataSource(
             return LoadResult.Error(Exception("Max page. nextPage: $nextPageNumber, maxPage: $totalPages"))
         }
 
-        return when (val response =
-            repository.searchPeoples(AppConfig.REGION, query, nextPageNumber, false, null)) {
+        return when (
+            val response =
+                repository.searchPeoples(AppConfig.REGION, query, nextPageNumber, false, null)
+        ) {
             is ResultWrapper.GenericError -> {
                 Logger.e("Generic Error")
 

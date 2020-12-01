@@ -45,7 +45,7 @@
                 app:goIcon="@drawable/ic_module"
                 app:iconifiedByDefault="false"
                 app:queryBackground="@color/transparent"
-                app:queryHint="Введите запрос"
+                app:queryHint="@string/search_screen_search_view_hint"
                 app:searchIcon="@null" />
 
             <ImageView
@@ -70,11 +70,12 @@
 
             <ToggleButton
                 android:id="@+id/toggle_is_grid_type"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:background="@drawable/selector_item_view_type"
+                android:layout_margin="8dp"
+                android:background="@drawable/selector_discover_item_view_type"
                 android:text=""
                 android:textOff=""
                 android:textOn="" />

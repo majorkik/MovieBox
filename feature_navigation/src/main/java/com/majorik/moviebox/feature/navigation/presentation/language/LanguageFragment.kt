@@ -14,7 +14,7 @@ import com.majorik.moviebox.feature.navigation.databinding.FragmentLanguagesBind
 class LanguageFragment : Fragment(R.layout.fragment_languages) {
 
     private val viewBinding: FragmentLanguagesBinding by viewBinding()
-    
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

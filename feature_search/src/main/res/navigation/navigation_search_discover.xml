@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:moduleName="feature_search"
+    app:startDestination="@id/discover_fragment">
+
+    <fragment
+        android:id="@+id/discover_fragment"
+        android:name="com.majorik.moviebox.feature.search.presentation.ui.discover.DiscoverFragment"
+        tools:layout="@layout/fragment_discover">
+
+        <action
+            android:id="@+id/action_to_movie_details"
+            app:destination="@id/nav_movie_details">
+
+            <argument
+                android:name="id"
+                android:defaultValue="0"
+                app:argType="integer"
+                app:nullable="false" />
+        </action>
+
+        <action
+            android:id="@+id/action_to_tv_details"
+            app:destination="@id/nav_tv_details">
+
+            <argument
+                android:name="id"
+                android:defaultValue="0"
+                app:argType="integer"
+                app:nullable="false" />
+        </action>
+    </fragment>
+
+    <include-dynamic
+        android:id="@+id/nav_movie_details"
+        app:graphPackage="com.majorik.moviebox.feature_details"
+        app:graphResName="navigation_movie_details"
+        app:moduleName="feature_details" />
+
+    <include-dynamic
+        android:id="@+id/nav_tv_details"
+        app:graphPackage="com.majorik.moviebox.feature_details"
+        app:graphResName="navigation_tv_details"
+        app:moduleName="feature_details" />
+</navigation>

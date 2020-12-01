@@ -41,6 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="@color/colorWhite"
+            app:cardBackgroundColor="@color/colorWhite"
             app:cardCornerRadius="0dp"
             app:cardElevation="12sp"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -76,7 +76,7 @@ class DiscoverFiltersBottomSheetFragment : BottomSheetDialogFragment() {
     private fun setObservers() {
         viewModel.movieGenresLiveData.observe(
             viewLifecycleOwner,
-            androidx.lifecycle.Observer {
+            {
                 getDiscoverType().isMoviesTypeWithAction { // Если выбран тип - Фильмы
                     addGenresBlock(it.genres)
                 }
@@ -85,7 +85,7 @@ class DiscoverFiltersBottomSheetFragment : BottomSheetDialogFragment() {
 
         viewModel.tvGenresLiveData.observe(
             viewLifecycleOwner,
-            androidx.lifecycle.Observer {
+            {
                 getDiscoverType().isTVsTypeWithAction { // Если выбран тип - Сериалы
                     addGenresBlock(it.genres)
                 }
@@ -582,15 +582,13 @@ class DiscoverFiltersBottomSheetFragment : BottomSheetDialogFragment() {
     }
 
     private fun getSortType(): SortType {
-        if (viewBinding.chipSortPopularity.isChecked) return SortType.BY_POPULARITY
-
-        if (viewBinding.chipSortRating.isChecked) return SortType.BY_VOTE_AVERAGE
-
-        if (viewBinding.chipSortReleaseDate.isChecked) return SortType.BY_DATE
-
-        if (viewBinding.chipSortVoteCount.isChecked) return SortType.BY_VOTE_COUNT
-
-        return SortType.BY_POPULARITY
+        return when {
+            viewBinding.chipSortPopularity.isChecked -> SortType.BY_POPULARITY
+            viewBinding.chipSortRating.isChecked -> SortType.BY_VOTE_AVERAGE
+            viewBinding.chipSortReleaseDate.isChecked -> SortType.BY_DATE
+            viewBinding.chipSortVoteCount.isChecked -> SortType.BY_VOTE_COUNT
+            else -> SortType.BY_POPULARITY
+        }
     }
 
     /**

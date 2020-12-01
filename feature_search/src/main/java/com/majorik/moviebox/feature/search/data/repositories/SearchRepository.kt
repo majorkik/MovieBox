@@ -10,7 +10,7 @@ import com.majorik.library.base.models.results.ResultWrapper
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
- class SearchRepository(private val api: SearchApiService) : BaseRepository() {
+class SearchRepository(private val api: SearchApiService) : BaseRepository() {
 
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 

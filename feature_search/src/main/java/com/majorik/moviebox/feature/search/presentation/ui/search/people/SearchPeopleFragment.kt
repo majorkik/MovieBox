@@ -3,7 +3,6 @@ package com.majorik.moviebox.feature.search.presentation.ui.search.people
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.PagingData
@@ -22,14 +21,16 @@ import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-internal class SearchPeopleFragment : Fragment(R.layout.fragment_search_page), SearchQueryChangeListener,
+internal class SearchPeopleFragment :
+    Fragment(R.layout.fragment_search_page),
+    SearchQueryChangeListener,
     SearchViewTypeChangeListener {
 
     private val viewBinding: FragmentSearchPageBinding by viewBinding()
 
     private val viewModel: SearchPeopleViewModel by viewModel()
 
-    private  var adapter: SearchPeoplePagingAdapter = SearchPeoplePagingAdapter {id ->
+    private var adapter: SearchPeoplePagingAdapter = SearchPeoplePagingAdapter { id ->
         findNavController().navigate(SearchableFragmentDirections.actionToPersonDetails(id))
     }
 
@@ -54,7 +55,7 @@ internal class SearchPeopleFragment : Fragment(R.layout.fragment_search_page), S
 
     private fun configureObservables() {
         lifecycleScope.launchWhenResumed {
-            viewModel.searchPeoplesFlow.collectLatest {pagingData ->
+            viewModel.searchPeoplesFlow.collectLatest { pagingData ->
                 adapter.submitData(pagingData)
             }
         }
