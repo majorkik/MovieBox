@@ -5,18 +5,20 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenStarted
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.library.base.extensions.loadIntentOrReturnNull
 import com.majorik.library.base.extensions.startActivityWithAnim
 import com.majorik.library.base.storage.CredentialsPrefsManager
 import com.majorik.moviebox.R
+import com.majorik.moviebox.databinding.ActivitySplashScreenBinding
 import com.majorik.moviebox.ui.MainActivity
-import kotlinx.android.synthetic.main.activity_splash_screen.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
 class SplashScreenActivity : AppCompatActivity(R.layout.activity_splash_screen) {
+    private val viewBinding: ActivitySplashScreenBinding by viewBinding()
     private val credentialsManager: CredentialsPrefsManager by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +28,7 @@ class SplashScreenActivity : AppCompatActivity(R.layout.activity_splash_screen) 
     }
 
     private fun setAnimation() {
-        bg_anim.addAnimatorListener(object : Animator.AnimatorListener {
+        viewBinding.bgAnim.addAnimatorListener(object : Animator.AnimatorListener {
             override fun onAnimationRepeat(animation: Animator?) {}
 
             override fun onAnimationEnd(animation: Animator?) {

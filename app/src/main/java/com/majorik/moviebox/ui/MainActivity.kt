@@ -34,7 +34,7 @@ class MainActivity : LocalizationActivity() {
     }
 
     private fun updateMargins() {
-        viewBinding.root.doOnApplyWindowInsets { view, insets, rect ->
+        viewBinding.root.doOnApplyWindowInsets { _, insets, _ ->
             viewBinding.cardNavView.updateMargin(bottom = insets.systemWindowInsetBottom.getOrDefault(16.px()))
             viewBinding.mainFragmentContainer.updateMargin(top = insets.systemWindowInsetTop)
 
@@ -43,7 +43,7 @@ class MainActivity : LocalizationActivity() {
     }
 
     private fun updateBottomNavPaddings() {
-        viewBinding.navView.doOnApplyWindowInsets { view, insets, rect ->
+        viewBinding.navView.doOnApplyWindowInsets { view, insets, _ ->
             view.updatePadding(bottom = 0)
             insets
         }

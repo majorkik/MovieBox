@@ -4,31 +4,29 @@ private object LibraryVersion {
     const val ACTIVITY_KTX = "1.2.0-alpha04"
     const val FRAGMENT_KTX = "1.3.0-alpha04"
     const val COORDINATOR_LAYOUT = "1.1.0"
-    const val CONSTRAINT_LAYOUT = "2.0.1"
+    const val CONSTRAINT_LAYOUT = "2.0.4"
     const val PAGING_LIBRARY = "2.1.2"
     const val PAGING_LIBRARY_V3 = "3.0.0-alpha06"
-    const val APP_COMPAT = "1.2.0-alpha03"
+    const val APP_COMPAT = "1.2.0"
     const val MATERIAL = "1.2.1"
     const val MULTIDEX = "1.0.3"
-    const val NAVIGATION_DYNAMIC_FEATURE_FRAGMENT = "2.3.0"
+    const val NAVIGATION_DYNAMIC_FEATURE_FRAGMENT = "2.3.1"
 
     const val PLAY_CORE = "1.7.3"
 
-    const val LEGACY_SUPPORT = "1.0.0"
     const val LIFECYCLE_EXT = "2.2.0"
     const val LIFECYCLE_KTX = "2.2.0"
     const val ANNOTATION = "1.1.0"
     const val VECTOR_DRAWABLE = "1.1.0"
-    const val NAVIGATION = "2.3.0"
+    const val NAVIGATION = "2.3.1"
     const val RECYCLERVIEW = "1.2.0-alpha03"
-    const val SUPPORT_DESIGN = "28.0.0-rc02"
     const val VIEWPAGER_2 = "1.0.0"
 
     const val KOTLIN_KTX = "1.3.1"
 
     const val RETROFIT = "2.9.0"
     const val RETROFIT_COROUTINES = "0.9.2"
-    const val OKHTTP3 = "4.7.2"
+    const val OKHTTP3 = "4.9.0"
 
     const val TIMBER = "4.7.1"
     const val PRETTY_LOGGER = "2.2.0"
@@ -41,9 +39,9 @@ private object LibraryVersion {
     const val KLOCK = "1.12.0"
     const val LOTTIE = "3.4.1"
     const val LOCALIZATION = "1.2.6"
-    const val COIL = "1.0.0"
-    const val RECYCLER_VIEW_ANIMATION = "3.0.0"
-    const val VIEWBINDING_DELEGATES_VERSION = "1.2.2"
+    const val COIL = "1.1.0"
+    const val RECYCLER_VIEW_ANIMATION = "4.0.1"
+    const val VIEWBINDING_DELEGATES_VERSION = "1.3.1"
 
     const val FIREBASE_ANALYTICS = "17.4.2"
     const val FIREBASE_CRASHLYTICS = "17.0.0"
@@ -74,11 +72,9 @@ object LibraryDependency {
     const val KOTLIN_COROUTINES_ADAPTER =
         "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:${LibraryVersion.RETROFIT_COROUTINES}"
 
-    const val SUPPORT_DESIGN = "androidx.support:design:${LibraryVersion.SUPPORT_DESIGN}"
     const val MATERIAL = "com.google.android.material:material:${LibraryVersion.MATERIAL}"
     const val APP_COMPAT = "androidx.appcompat:appcompat:${LibraryVersion.APP_COMPAT}"
     const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:${LibraryVersion.CONSTRAINT_LAYOUT}"
-    const val LEGACY_SUPPORT = "androidx.legacy:legacy-support-v4:${LibraryVersion.LEGACY_SUPPORT}"
     const val COORDINATOR_LAYOUT = "androidx.coordinatorlayout:coordinatorlayout:${LibraryVersion.COORDINATOR_LAYOUT}"
 
     /**

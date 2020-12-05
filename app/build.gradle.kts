@@ -3,12 +3,10 @@ import com.android.build.gradle.internal.dsl.DefaultConfig
 
 plugins {
     id(GradlePluginId.ANDROID_APPLICATION)
-    id(GradlePluginId.KOTLIN_ANDROID)
-    id(GradlePluginId.KOTLIN_ANDROID_EXTENSIONS)
-    id(GradlePluginId.KTLINT_GRADLE)
-    id(GradlePluginId.SAFE_ARGS)
     id("kotlin-android")
     id("kotlin-android-extensions")
+    id(GradlePluginId.KTLINT_GRADLE)
+    id(GradlePluginId.SAFE_ARGS)
 }
 
 android {
@@ -43,17 +41,6 @@ android {
         getByName(BuildType.DEBUG) {
             isMinifyEnabled = BuildTypeDebug.isMinifyEnabled
         }
-
-        testOptions {
-            unitTests.isReturnDefaultValues = TestOptions.IS_RETURN_DEFAULT_VALUES
-        }
-
-        compileOptions {
-            sourceCompatibility = JavaVersion.VERSION_1_8
-            targetCompatibility = JavaVersion.VERSION_1_8
-        }
-
-//        android.buildFeatures.viewBinding = true
     }
 
     viewBinding {
@@ -108,13 +95,18 @@ dependencies {
     api(LibraryDependency.CIRCLE_IMAGEVIEW)
 
     api(LibraryDependency.RECYCLER_VIEW_ANIMATION)
-
-    addTestDependencies()
 }
+
+//tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java).configureEach {
+//    kotlinOptions {
+//        jvmTarget = "1.8"
+//        freeCompilerArgs = freeCompilerArgs + listOf("-Xallow-jvm-ir-dependencies", "-Xskip-prerelease-check")
+//    }
+//}
 
 fun BaseFlavor.buildConfigFieldFromGradleProperty(gradlePropertyName: String) {
     val propertyValue =
-            com.android.build.gradle.internal.cxx.configure.gradleLocalProperties(rootDir)[gradlePropertyName] as? String
+        com.android.build.gradle.internal.cxx.configure.gradleLocalProperties(rootDir)[gradlePropertyName] as? String
     checkNotNull(propertyValue) { "Gradle property $gradlePropertyName is null" }
 
     val androidResourceName = "GRADLE_${gradlePropertyName.toSnakeCase()}".toUpperCase()
@@ -122,8 +114,8 @@ fun BaseFlavor.buildConfigFieldFromGradleProperty(gradlePropertyName: String) {
 }
 
 fun getDynamicFeatureModuleNames() = ModuleDependency.getDynamicFeatureModules()
-        .map { it.replace(":feature_", "") }
-        .toSet()
+    .map { it.replace(":feature_", "") }
+    .toSet()
 
 fun String.toSnakeCase() = this.split(Regex("(?=[A-Z])")).joinToString("_") { it.toLowerCase() }
 
@@ -134,3 +126,4 @@ fun DefaultConfig.buildConfigField(name: String, value: Set<String>) {
     })
     buildConfigField("String[]", name, strValue)
 }
+

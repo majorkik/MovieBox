@@ -1,9 +1,9 @@
 object GradlePluginVersion {
-    const val ANDROID_GRADLE = "4.0.0"
+    const val ANDROID_GRADLE = "7.0.0-alpha02"
     const val KTLINT_GRADLE = "9.2.1"
 
     //    const val DETEKT = "1.4.0"
-    const val GRADLE_VERSION_PLUGIN = "0.28.0"
+    const val GRADLE_VERSION_PLUGIN = "0.36.0"
     const val KOTLIN = CoreVersion.KOTLIN
     const val SAFE_ARGS = "2.3.0"
 }

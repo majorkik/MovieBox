@@ -3,20 +3,6 @@ import org.gradle.api.artifacts.ProjectDependency
 import org.gradle.api.artifacts.dsl.DependencyHandler
 
 /*
-Define common dependencies, so they can be easily updated across feature modules
- */
-fun DependencyHandler.addTestDependencies() {
-//    testImplementation(project(ModuleDependency.LIBRARY_TEST_UTILS))
-
-    testImplementation(TestLibraryDependency.JUNIT)
-    testImplementation(TestLibraryDependency.MOCKWEBSERVER)
-    testImplementation(TestLibraryDependency.TEST_CORE)
-    androidTestImplementation(TestLibraryDependency.TEST_RUNNER)
-    androidTestImplementation(TestLibraryDependency.ESPRESSO_CORE)
-    androidTestImplementation(TestLibraryDependency.JUNIT_EXT)
-}
-
-/*
  * These extensions mimic the extensions that are generated on the fly by Gradle.
  * They are used here to provide above dependency syntax that mimics Gradle Kotlin DSL
  * syntax in module\build.gradle.kts files.
@@ -35,9 +21,6 @@ private fun DependencyHandler.kapt(dependencyNotation: Any): Dependency? =
 
 private fun DependencyHandler.testImplementation(dependencyNotation: Any): Dependency? =
     add("testImplementation", dependencyNotation)
-
-private fun DependencyHandler.androidTestImplementation(dependencyNotation: Any): Dependency? =
-    add("androidTestImplementation", dependencyNotation)
 
 private fun DependencyHandler.project(
     path: String,

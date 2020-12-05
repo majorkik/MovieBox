@@ -1,7 +1,7 @@
 plugins {
     id(GradlePluginId.ANDROID_DYNAMIC_FEATURE)
-    id(GradlePluginId.KOTLIN_ANDROID)
-    id(GradlePluginId.KOTLIN_ANDROID_EXTENSIONS)
+    id("kotlin-android")
+    id("kotlin-android-extensions")
     id(GradlePluginId.SAFE_ARGS)
 }
 
@@ -59,6 +59,4 @@ dependencies {
     implementation(project(ModuleDependency.FEATURE_NAVIGATION))
     implementation(project(ModuleDependency.FEATURE_SEARCH))
     implementation(project(ModuleDependency.FEATURE_COLLECTIONS))
-
-    addTestDependencies()
 }
