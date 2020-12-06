@@ -5,21 +5,23 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import com.majorik.moviebox.feature.navigation.R
-import kotlinx.android.synthetic.main.layout_collection_action_button.view.*
+import com.majorik.moviebox.feature.navigation.databinding.LayoutCollectionActionButtonBinding
 
 class CollectionActionButton : LinearLayout {
+
+    private val viewBinding: LayoutCollectionActionButtonBinding? = null
 
     var buttonTitle: String = ""
         set(value) {
             field = value
-            button_title.text = value
+            viewBinding?.buttonTitle?.text = value
         }
 
     var buttonOptionTitle: String? = ""
         set(value) {
             field = value
 
-            button_option_title.text = value
+            viewBinding?.buttonOptionTitle?.text = value
         }
 
     constructor(context: Context) : super(context) {
@@ -39,7 +41,8 @@ class CollectionActionButton : LinearLayout {
     }
 
     private fun init(context: Context, attrs: AttributeSet? = null) {
-        LayoutInflater.from(context).inflate(R.layout.layout_collection_action_button, this, true)
+        val layoutInflater = LayoutInflater.from(context)
+        LayoutCollectionActionButtonBinding.inflate(layoutInflater, this)
 
         val ta = context.obtainStyledAttributes(attrs, R.styleable.CollectionActionButton)
 

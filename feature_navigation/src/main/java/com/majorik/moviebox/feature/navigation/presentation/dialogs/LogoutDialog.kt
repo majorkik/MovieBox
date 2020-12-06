@@ -3,28 +3,23 @@ package com.majorik.moviebox.feature.navigation.presentation.dialogs
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startActivityWithAnim
 import com.majorik.library.base.storage.CredentialsPrefsManager
-import kotlinx.android.synthetic.main.dialog_logout.view.*
+import com.majorik.moviebox.feature.navigation.R
+import com.majorik.moviebox.feature.navigation.databinding.DialogLogoutBinding
 import org.koin.android.ext.android.inject
 
-class LogoutDialog : DialogFragment() {
+class LogoutDialog : DialogFragment(R.layout.dialog_logout) {
+
+    private val viewBinding: DialogLogoutBinding by viewBinding()
 
     private val credentialsManager: CredentialsPrefsManager by inject()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(com.majorik.moviebox.feature.navigation.R.layout.dialog_logout, container, false)
-    }
 
     override fun onStart() {
         super.onStart()
@@ -39,11 +34,11 @@ class LogoutDialog : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.btn_cancel.setOnClickListener {
+        viewBinding.btnCancel.setOnClickListener {
             dismiss()
         }
 
-        view.btn_logout_confirm.setSafeOnClickListener {
+        viewBinding.btnLogoutConfirm.setSafeOnClickListener {
             credentialsManager.clearAll()
             context?.startActivityWithAnim(ScreenLinks.authorization)
             activity?.finish()

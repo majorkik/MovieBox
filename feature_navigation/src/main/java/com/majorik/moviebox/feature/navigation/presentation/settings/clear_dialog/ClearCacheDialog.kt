@@ -10,13 +10,16 @@ import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.navArgs
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.utils.FontSpan
 import com.majorik.moviebox.feature.navigation.R
+import com.majorik.moviebox.feature.navigation.databinding.DialogClearCacheBinding
 import com.majorik.moviebox.R as AppResources
-import kotlinx.android.synthetic.main.dialog_clear_cache.*
 
 class ClearCacheDialog : DialogFragment(R.layout.dialog_clear_cache) {
+
+    private val viewBinding: DialogClearCacheBinding by viewBinding()
 
     private val args: ClearCacheDialogArgs by navArgs()
 
@@ -33,14 +36,14 @@ class ClearCacheDialog : DialogFragment(R.layout.dialog_clear_cache) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        cache_size.text = getString(R.string.navigation_cache_size_with_format, args.cacheSize ?: "")
+        viewBinding.cacheSize.text = getString(R.string.navigation_cache_size_with_format, args.cacheSize ?: "")
         setSpannableCacheSizeText()
 
-        btn_cancel.setOnClickListener {
+        viewBinding.btnCancel.setOnClickListener {
             dismiss()
         }
 
-        btn_clear_now.setSafeOnClickListener {
+        viewBinding.btnClearNow.setSafeOnClickListener {
             context?.cacheDir?.deleteRecursively()
             (activity as? ClearDialogListener)?.onDialogDismiss()
             dismiss()
@@ -48,22 +51,20 @@ class ClearCacheDialog : DialogFragment(R.layout.dialog_clear_cache) {
     }
 
     private fun setSpannableCacheSizeText() {
-        context?.run {
-            SpannableStringBuilder(cache_size.text).apply {
-                setSpan(
-                    FontSpan(
-                        "cc_montserrat_semibold",
-                        ResourcesCompat.getFont(
-                            this@run,
-                            AppResources.font.cc_montserrat_semibold
-                        )
-                    ),
-                    cache_size.text.length - args.cacheSize.length,
-                    cache_size.text.length,
-                    Spanned.SPAN_EXCLUSIVE_INCLUSIVE
-                )
-                cache_size.text = this
-            }
+        SpannableStringBuilder(viewBinding.cacheSize.text).apply {
+            setSpan(
+                FontSpan(
+                    "cc_montserrat_semibold",
+                    ResourcesCompat.getFont(
+                        viewBinding.root.context,
+                        AppResources.font.cc_montserrat_semibold
+                    )
+                ),
+                viewBinding.cacheSize.text.length - args.cacheSize.length,
+                viewBinding.cacheSize.text.length,
+                Spanned.SPAN_EXCLUSIVE_INCLUSIVE
+            )
+            viewBinding.cacheSize.text = this
         }
     }
 }
