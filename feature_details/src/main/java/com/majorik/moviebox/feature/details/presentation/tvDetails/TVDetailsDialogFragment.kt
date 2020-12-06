@@ -27,8 +27,6 @@ import com.majorik.moviebox.feature.details.presentation.adapters.ImageSliderAda
 import com.majorik.moviebox.feature.details.presentation.watch_online.WatchOnlineDialog
 import com.soywiz.klock.KlockLocale
 import com.stfalcon.imageviewer.StfalconImageViewer
-import kotlinx.android.synthetic.main.dialog_fragment_tv_details.*
-import kotlinx.android.synthetic.main.layout_tv_details.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
@@ -66,7 +64,7 @@ class TVDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_tv_detai
         val height = viewBinding.root.height
         val peekHeight = height - viewBinding.tdImageSlider.height
 
-        val contentBottomSheet = BottomSheetBehavior.from(td_bottom_sheet)
+        val contentBottomSheet = BottomSheetBehavior.from(viewBinding.layoutContent.root)
         contentBottomSheet.setPeekHeight(peekHeight, false)
     }
 
@@ -82,30 +80,20 @@ class TVDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_tv_detai
     }
 
     private fun setClickListeners() {
-        toggle_favorite.setOnClickListener {
-            tvState?.let {
-                tvDetailsViewModel.markTVIsFavorite(
-                    it.id,
-                    !it.favorite
-                )
-            }
+        viewBinding.layoutContent.toggleFavorite.setOnClickListener {
+            tvState?.let { tvDetailsViewModel.markTVIsFavorite(it.id, !it.favorite) }
         }
 
-        toggle_watchlist.setOnClickListener {
-            tvState?.let {
-                tvDetailsViewModel.addTVToWatchlist(
-                    it.id,
-                    !it.watchlist
-                )
-            }
+        viewBinding.layoutContent.toggleWatchlist.setOnClickListener {
+            tvState?.let { tvDetailsViewModel.addTVToWatchlist(it.id, !it.watchlist) }
         }
 
-        btn_extra_menu.setSafeOnClickListener {
-            openExtraMenuDialog()
-        }
-
-        bottom_bar.setSafeOnClickListener {
+        viewBinding.bottomBar.setSafeOnClickListener {
             openWatchOnlineDialog()
+        }
+
+        viewBinding.btnExtraMenu.setSafeOnClickListener {
+            openExtraMenuDialog()
         }
     }
 
@@ -122,77 +110,60 @@ class TVDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_tv_detai
     private fun setClickListenerForImages(
         images: Images
     ) {
-        t_backdrop_image.setOnClickListener {
+        viewBinding.layoutContent.tBackdropImage.setOnClickListener {
             StfalconImageViewer.Builder(context, images.backdrops.map { it.filePath }) { view, image ->
                 view.displayImageWithCenterInside(UrlConstants.TMDB_BACKDROP_SIZE_1280 + image)
             }.withHiddenStatusBar(false).show()
         }
 
-        t_poster_image.setOnClickListener {
+        viewBinding.layoutContent.tPosterImage.setOnClickListener {
             StfalconImageViewer.Builder(context, images.posters.map { it.filePath }) { view, image ->
                 view.displayImageWithCenterInside(UrlConstants.TMDB_BACKDROP_SIZE_1280 + image)
             }.withHiddenStatusBar(false).show()
         }
     }
 
-    @OptIn(ExperimentalStdlibApi::class)
     private fun setObserver() {
-        tvDetailsViewModel.tvDetailsLiveData.observe(
-            this,
-            Observer { tv ->
-                setTVDetails(tv)
-            }
-        )
+        tvDetailsViewModel.tvDetailsLiveData.observe(this, { tv -> setTVDetails(tv) })
 
-        tvDetailsViewModel.tvStatesLiveData.observe(
-            this,
-            Observer {
-                it?.apply { setAccountState(this) }
-            }
-        )
+        tvDetailsViewModel.tvStatesLiveData.observe(this, { it?.apply { setAccountState(this) } })
 
-        tvDetailsViewModel.responseFavoriteLiveData.observe(
-            this,
-            Observer {
-                if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
-                    Toast.makeText(context, "Сериал успешно добавлен в избранное", Toast.LENGTH_LONG)
-                        .show()
-                } else {
-                    Toast.makeText(context, "Неудалось добавить сериал в избранное", Toast.LENGTH_LONG)
-                        .show()
-                }
+        tvDetailsViewModel.responseFavoriteLiveData.observe(this, {
+            if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
+                Toast.makeText(context, "Сериал успешно добавлен в избранное", Toast.LENGTH_LONG)
+                    .show()
+            } else {
+                Toast.makeText(context, "Неудалось добавить сериал в избранное", Toast.LENGTH_LONG)
+                    .show()
             }
-        )
+        })
 
-        tvDetailsViewModel.responseWatchlistLiveData.observe(
-            this,
-            Observer {
-                if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
-                    Toast.makeText(
-                        context,
-                        "Сериал успешно добавлен в 'Буду смотреть'",
-                        Toast.LENGTH_LONG
-                    ).show()
-                } else {
-                    Toast.makeText(
-                        context,
-                        "Неудалось добавить сериал в 'Буду смотреть'",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
+        tvDetailsViewModel.responseWatchlistLiveData.observe(this, {
+            if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
+                Toast.makeText(
+                    context,
+                    "Сериал успешно добавлен в 'Буду смотреть'",
+                    Toast.LENGTH_LONG
+                ).show()
+            } else {
+                Toast.makeText(
+                    context,
+                    "Неудалось добавить сериал в 'Буду смотреть'",
+                    Toast.LENGTH_LONG
+                ).show()
             }
-        )
+        })
     }
 
     private fun setAccountState(accountStates: AccountStates) {
         tvState = accountStates
-        toggle_favorite.isChecked = accountStates.favorite
-        toggle_watchlist.isChecked = accountStates.watchlist
+        viewBinding.layoutContent.toggleFavorite.isChecked = accountStates.favorite
+        viewBinding.layoutContent.toggleWatchlist.isChecked = accountStates.watchlist
     }
 
     private fun setTrailerButtonClickListener(videos: Videos) {
         if (videos.results.isNotEmpty()) {
-            btn_watch_trailer.setOnClickListener {
+            viewBinding.layoutContent.btnWatchTrailer.setOnClickListener {
                 context?.openYouTube(videos.results[0].key)
             }
         }
@@ -212,16 +183,16 @@ class TVDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_tv_detai
     }
 
     private fun setImageSlider(images: List<String>) {
-        td_image_slider.adapter = ImageSliderAdapter(images)
+        viewBinding.tdImageSlider.adapter = ImageSliderAdapter(images)
     }
 
     private fun setPeoples(casts: List<Cast>) {
-        t_persons.setAdapterWithFixedSize(CastAdapter(::openPersonDetails, casts), true)
+        viewBinding.layoutContent.tPersons.setAdapterWithFixedSize(CastAdapter(::openPersonDetails, casts), true)
     }
 
     private fun setImages(images: Images, backdropPath: String?, posterPath: String?) {
-        t_backdrop_image.displayImageWithCenterCrop(UrlConstants.TMDB_BACKDROP_SIZE_780 + backdropPath)
-        t_poster_image.displayImageWithCenterCrop(UrlConstants.TMDB_POSTER_SIZE_500 + posterPath)
+        viewBinding.layoutContent.tBackdropImage.displayImageWithCenterCrop(UrlConstants.TMDB_BACKDROP_SIZE_780 + backdropPath)
+        viewBinding.layoutContent.tPosterImage.displayImageWithCenterCrop(UrlConstants.TMDB_POSTER_SIZE_500 + posterPath)
 
         setImageSlider(images.backdrops.map { imageInfo -> imageInfo.filePath }.take(6))
         setClickListenerForImages(images)
@@ -239,7 +210,7 @@ class TVDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_tv_detai
     }
 
     private fun setProductionCompanies(productionCompanies: List<ProductionCompany>) {
-        t_companies.text = viewBinding.root.context.combineString(
+        viewBinding.layoutContent.tCompanies.text = viewBinding.root.context.combineString(
             getString(R.string.details_company_production),
             productionCompanies.joinToString(", ") { it.name }
         )
@@ -247,22 +218,22 @@ class TVDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_tv_detai
 
     private fun setOverview(overview: String) {
         if (overview.isBlank()) {
-            t_overview_empty.setVisibilityOption(true)
-            t_overview.setVisibilityOption(false)
+            viewBinding.layoutContent.tOverviewEmpty.setVisibilityOption(true)
+            viewBinding.layoutContent.tOverview.setVisibilityOption(false)
         } else {
-            t_overview_empty.setVisibilityOption(false)
-            t_overview.setVisibilityOption(true)
-            t_overview.text = overview
+            viewBinding.layoutContent.tOverviewEmpty.setVisibilityOption(false)
+            viewBinding.layoutContent.tOverview.setVisibilityOption(true)
+            viewBinding.layoutContent.tOverview.text = overview
         }
     }
 
     private fun setRuntime(episodeRunTime: List<Int>) {
-        t_runtime.text =
+        viewBinding.layoutContent.tRuntime.text =
             viewBinding.root.context.combineString(getString(R.string.details_runtime), episodeRunTime.toString())
     }
 
     private fun setSeasonsAndEpisodes(numberOfSeasons: Int, numberOfEpisodes: Int) {
-        t_seasons_and_series.text =
+        viewBinding.layoutContent.tSeasonsAndSeries.text =
             viewBinding.root.context.combineString(
                 getString(R.string.details_fact_seasons_and_episodes),
                 ("$numberOfSeasons сезон(ов) $numberOfEpisodes серий")
@@ -270,12 +241,12 @@ class TVDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_tv_detai
     }
 
     private fun setOriginalTitle(originalName: String) {
-        t_original_title.text =
+        viewBinding.layoutContent.tOriginalTitle.text =
             viewBinding.root.context.combineString(getString(R.string.details_original_title), originalName)
     }
 
     private fun setOriginalLanguage(originalLanguage: String) {
-        t_original_language.text = viewBinding.root.context.combineString(
+        viewBinding.layoutContent.tOriginalLanguage.text = viewBinding.root.context.combineString(
             getString(R.string.details_original_language),
             Locale(originalLanguage).displayLanguage.capitalize()
         )
@@ -288,10 +259,11 @@ class TVDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_tv_detai
         genres: List<Genre>,
         releaseDate: String
     ) {
-        t_title.text = title
-        t_vote_average.text = voteAverage.toString()
-        t_status.text = viewBinding.root.context.combineString(getString(R.string.details_status), status)
-        vote_average_indicator.setIndicatorColor(voteAverage)
+        viewBinding.layoutContent.tTitle.text = title
+        viewBinding.layoutContent.tVoteAverage.text = voteAverage.toString()
+        viewBinding.layoutContent.tStatus.text =
+            viewBinding.root.context.combineString(getString(R.string.details_status), status)
+        viewBinding.layoutContent.voteAverageIndicator.setIndicatorColor(voteAverage)
 
         setGenres(genres, releaseDate)
     }
@@ -304,16 +276,16 @@ class TVDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_tv_detai
         val formatFirstAirDate = klockInstance.format(firstAirDate.toDate(dateFormat))
         val formatLastAirDate = klockInstance.format(lastAirDate.toDate(dateFormat))
 
-        t_first_air_date.text =
+        viewBinding.layoutContent.tFirstAirDate.text =
             viewBinding.root.context.combineString(getString(R.string.details_fact_first_air_date), formatFirstAirDate)
-        t_last_air_date.text =
+        viewBinding.layoutContent.tLastAirDate.text =
             viewBinding.root.context.combineString(getString(R.string.details_fact_last_air_date), formatLastAirDate)
     }
 
     private fun setGenres(genres: List<Genre>, releaseDate: String) {
         val genresFormat = genres.joinToString(", ") { it.name.capitalize() }
 
-        t_add_info.text = getString(
+        viewBinding.layoutContent.tAddInfo.text = getString(
             R.string.details_short_info_mask,
             releaseDate.toDate(getString(R.string.details_yyyy_mm_dd)).yearInt.toString(),
             genresFormat
@@ -343,6 +315,6 @@ class TVDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_tv_detai
     }
 
     override fun pullDownReady(): Boolean {
-        return BottomSheetBehavior.from(td_bottom_sheet).state == BottomSheetBehavior.STATE_COLLAPSED
+        return BottomSheetBehavior.from(viewBinding.layoutContent.root).state == BottomSheetBehavior.STATE_COLLAPSED
     }
 }

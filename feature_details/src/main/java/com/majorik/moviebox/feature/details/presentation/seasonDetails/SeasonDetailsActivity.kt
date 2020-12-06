@@ -2,19 +2,22 @@ package com.majorik.moviebox.feature.details.presentation.seasonDetails
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import com.majorik.moviebox.feature.details.presentation.adapters.EpisodeAdapter
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.majorik.library.base.extensions.setAdapterWithFixedSize
-import kotlinx.android.synthetic.main.activity_season_details.*
+import com.majorik.moviebox.feature.details.R
+import com.majorik.moviebox.feature.details.databinding.ActivitySeasonDetailsBinding
+import com.majorik.moviebox.feature.details.presentation.adapters.EpisodeAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SeasonDetailsActivity : AppCompatActivity() {
+
+    private val viewBinding: ActivitySeasonDetailsBinding by viewBinding()
 
     private val seasonDetailsViewModel: SeasonDetailsViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.majorik.moviebox.feature.details.R.layout.activity_season_details)
+        setContentView(R.layout.activity_season_details)
 
         val extras = intent.extras
         if (extras != null) {
@@ -26,11 +29,8 @@ class SeasonDetailsActivity : AppCompatActivity() {
             )
         }
 
-        seasonDetailsViewModel.seasonDetailsLiveData.observe(
-            this,
-            Observer {
-                tv_episodes_list.setAdapterWithFixedSize(EpisodeAdapter(it.episodes))
-            }
-        )
+        seasonDetailsViewModel.seasonDetailsLiveData.observe(this, {
+            viewBinding.tvEpisodesList.setAdapterWithFixedSize(EpisodeAdapter(it.episodes))
+        })
     }
 }

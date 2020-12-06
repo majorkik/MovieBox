@@ -28,8 +28,6 @@ import com.majorik.moviebox.feature.details.presentation.adapters.ImageSliderAda
 import com.majorik.moviebox.feature.details.presentation.watch_online.WatchOnlineDialog
 import com.soywiz.klock.KlockLocale
 import com.stfalcon.imageviewer.StfalconImageViewer
-import kotlinx.android.synthetic.main.dialog_fragment_movie_details.*
-import kotlinx.android.synthetic.main.layout_movie_details.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.DecimalFormat
 import java.util.*
@@ -69,7 +67,7 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
         val height = viewBinding.root.height
         val peekHeight = height - viewBinding.mdImageSlider.height
 
-        val contentBottomSheet = BottomSheetBehavior.from(md_bottom_sheet)
+        val contentBottomSheet = BottomSheetBehavior.from(viewBinding.layoutMovieDetails.root)
         contentBottomSheet.setPeekHeight(peekHeight, false)
     }
 
@@ -93,66 +91,52 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
     }
 
     private fun setObserver() {
-        viewModel.movieDetailsLiveData.observe(
-            this,
-            Observer { movie ->
-                setMovieDetails(movie)
-            }
-        )
+        viewModel.movieDetailsLiveData.observe(this, { movie ->
+            setMovieDetails(movie)
+        })
 
-        viewModel.movieStatesLiveData.observe(
-            this,
-            Observer {
-                it?.apply { setAccountStates(this) }
-            }
-        )
+        viewModel.movieStatesLiveData.observe(this, { it?.apply { setAccountStates(this) } })
 
-        viewModel.responseFavoriteLiveData.observe(
-            this,
-            Observer {
-                if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
-                    context?.showToastMessage("Фильм успешно добавлен в избранное")
-                } else {
-                    context?.showToastMessage("Неудалось добавить фильм в избранное")
-                }
+        viewModel.responseFavoriteLiveData.observe(this, {
+            if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
+                context?.showToastMessage("Фильм успешно добавлен в избранное")
+            } else {
+                context?.showToastMessage("Неудалось добавить фильм в избранное")
             }
-        )
+        })
 
-        viewModel.responseWatchlistLiveData.observe(
-            this,
-            Observer {
-                if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
-                    context?.showToastMessage("Фильм успешно добавлен в 'Буду смотреть'")
-                } else {
-                    context?.showToastMessage("Неудалось добавить фильм в 'Буду смотреть'")
-                }
+        viewModel.responseWatchlistLiveData.observe(this, {
+            if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
+                context?.showToastMessage("Фильм успешно добавлен в 'Буду смотреть'")
+            } else {
+                context?.showToastMessage("Неудалось добавить фильм в 'Буду смотреть'")
             }
-        )
+        })
     }
 
     private fun setAccountStates(accountStates: AccountStates) {
-        toggle_favorite.isChecked = accountStates.favorite
-        toggle_watchlist.isChecked = accountStates.watchlist
+        viewBinding.layoutMovieDetails.toggleFavorite.isChecked = accountStates.favorite
+        viewBinding.layoutMovieDetails.toggleWatchlist.isChecked = accountStates.watchlist
     }
 
     private fun setClickListeners() {
-        toggle_favorite.setOnClickListener {
+        viewBinding.layoutMovieDetails.toggleFavorite.setOnClickListener {
             viewModel.movieState?.let {
                 viewModel.markMovieIsFavorite(it.id, !it.favorite)
             }
         }
 
-        toggle_watchlist.setOnClickListener {
+        viewBinding.layoutMovieDetails.toggleWatchlist.setOnClickListener {
             viewModel.movieState?.let {
                 viewModel.addMovieToWatchlist(it.id, !it.watchlist)
             }
         }
 
-        btn_extra_menu.setSafeOnClickListener {
+        viewBinding.btnExtraMenu.setSafeOnClickListener {
             openExtraMenuDialog()
         }
 
-        bottom_bar.setSafeOnClickListener {
+        viewBinding.bottomBar.setSafeOnClickListener {
             openWatchOnlineDialog()
         }
     }
@@ -168,7 +152,7 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
     }
 
     private fun setClickListenerForImages(images: Images) {
-        m_backdrop_image.setOnClickListener {
+        viewBinding.layoutMovieDetails.mBackdropImage.setOnClickListener {
             StfalconImageViewer.Builder(requireContext(), images.backdrops.map { it.filePath }) { view, image ->
                 view.displayImageWithCenterInside(UrlConstants.TMDB_BACKDROP_SIZE_1280 + image)
             }.withOverlayView(
@@ -181,7 +165,7 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
                 .show()
         }
 
-        m_poster_image.setOnClickListener {
+        viewBinding.layoutMovieDetails.mPosterImage.setOnClickListener {
             StfalconImageViewer.Builder(requireContext(), images.posters.map { it.filePath }) { view, image ->
                 view.displayImageWithCenterInside(UrlConstants.TMDB_BACKDROP_SIZE_1280 + image)
             }.withHiddenStatusBar(false).show()
@@ -190,7 +174,7 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
 
     private fun setTrailerButtonClickListener(videos: Videos) {
         if (videos.results.isNotEmpty()) {
-            btn_watch_trailer.setOnClickListener {
+            viewBinding.layoutMovieDetails.btnWatchTrailer.setOnClickListener {
                 context?.openYouTube(videos.results[0].key)
             }
         }
@@ -210,12 +194,12 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
     }
 
     private fun setPeoples(casts: List<Cast>) {
-        m_persons.setAdapterWithFixedSize(CastAdapter(::openPersonDetails, casts), true)
+        viewBinding.layoutMovieDetails.mPersons.setAdapterWithFixedSize(CastAdapter(::openPersonDetails, casts), true)
     }
 
     private fun setImages(images: Images, backdropPath: String?, posterPath: String?) {
-        m_backdrop_image.displayImageWithCenterCrop(UrlConstants.TMDB_BACKDROP_SIZE_780 + backdropPath)
-        m_poster_image.displayImageWithCenterCrop(UrlConstants.TMDB_POSTER_SIZE_500 + posterPath)
+        viewBinding.layoutMovieDetails.mBackdropImage.displayImageWithCenterCrop(UrlConstants.TMDB_BACKDROP_SIZE_780 + backdropPath)
+        viewBinding.layoutMovieDetails.mPosterImage.displayImageWithCenterCrop(UrlConstants.TMDB_POSTER_SIZE_500 + posterPath)
         setImageSlider(images.backdrops.map { imageInfo -> imageInfo.filePath }.take(6))
         setClickListenerForImages(images)
     }
@@ -239,30 +223,31 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
         genres: List<Genre>,
         releaseDate: String
     ) {
-        m_title.text = title
-        m_vote_average.text = voteAverage.toString()
-        m_status.text = context?.combineString(getString(R.string.details_status), status)
-        vote_average_indicator.setIndicatorColor(voteAverage)
-
+        viewBinding.layoutMovieDetails.apply {
+            mTitle.text = title
+            mVoteAverage.text = voteAverage.toString()
+            mStatus.text = context?.combineString(getString(R.string.details_status), status)
+            voteAverageIndicator.setIndicatorColor(voteAverage)
+        }
         setGenres(genres, releaseDate)
     }
 
     private fun setCompanies(productionCompanies: List<ProductionCompany>) {
-        m_companies.text = viewBinding.root.context.combineString(
+        viewBinding.layoutMovieDetails.mCompanies.text = viewBinding.root.context.combineString(
             getString(R.string.details_company_production),
             productionCompanies.joinToString(", ") { it.name }
         )
     }
 
     private fun setOriginalTitle(originalTitle: String) {
-        m_original_title.text =
+        viewBinding.layoutMovieDetails.mOriginalTitle.text =
             viewBinding.root.context.combineString(getString(R.string.details_original_title), originalTitle)
     }
 
     private fun setRevenue(revenue: Long) {
         val numFormat = DecimalFormat("#,###,###")
 
-        m_revenue.text =
+        viewBinding.layoutMovieDetails.mRevenue.text =
             viewBinding.root.context.combineString(
                 getString(R.string.details_revenue),
                 (numFormat.format(revenue) + " $")
@@ -272,34 +257,32 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
     private fun setBudget(budget: Int) {
         val numFormat = DecimalFormat("#,###,###")
 
-        m_budget.text = viewBinding.root.context.combineString(
+        viewBinding.layoutMovieDetails.mBudget.text = viewBinding.root.context.combineString(
             getString(R.string.details_budget),
             (numFormat.format(budget) + " $")
         )
     }
 
     private fun setReleaseDate(releaseDate: String) {
-        m_release_date.text =
+        viewBinding.layoutMovieDetails.mReleaseDate.text =
             viewBinding.root.context.combineString(
                 getString(R.string.details_release_date),
                 KlockLocale.default.formatDateLong.format(releaseDate.toDate(getString(R.string.details_yyyy_mm_dd)))
             )
     }
 
-    @OptIn(ExperimentalStdlibApi::class)
     private fun setOriginalLanguage(originalLanguage: String) {
-        m_original_language.text =
+        viewBinding.layoutMovieDetails.mOriginalLanguage.text =
             viewBinding.root.context.combineString(
                 getString(R.string.details_original_language),
                 Locale(originalLanguage).displayLanguage.capitalize(AppConfig.APP_LOCALE)
             )
     }
 
-    @OptIn(ExperimentalStdlibApi::class)
     private fun setGenres(genres: List<Genre>, releaseDate: String) {
         val genresFormat = genres.joinToString(", ") { it.name.capitalize(AppConfig.APP_LOCALE) }
 
-        m_add_info.text = getString(
+        viewBinding.layoutMovieDetails.mAddInfo.text = getString(
             R.string.details_short_info_mask,
             releaseDate.toDate(getString(R.string.details_yyyy_mm_dd)).yearInt.toString(),
             genresFormat
@@ -316,7 +299,7 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
             val stringMinutes =
                 resources.getQuantityString(R.plurals.minutes, minutes, minutes)
 
-            m_runtime.text = viewBinding.root.context.combineString(
+            viewBinding.layoutMovieDetails.mRuntime.text = viewBinding.root.context.combineString(
                 getString(R.string.details_runtime),
                 getString(
                     R.string.details_runtime_mask,
@@ -325,7 +308,7 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
                 )
             )
         } else {
-            m_runtime.text = context?.combineString(
+            viewBinding.layoutMovieDetails.mRuntime.text = context?.combineString(
                 getString(R.string.details_runtime),
                 getString(R.string.details_unknown)
             )
@@ -334,17 +317,17 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
 
     private fun setOverview(overview: String?) {
         if (overview.isNullOrBlank()) {
-            m_overview_empty.setVisibilityOption(true)
-            m_overview.setVisibilityOption(false)
+            viewBinding.layoutMovieDetails.mOverviewEmpty.setVisibilityOption(true)
+            viewBinding.layoutMovieDetails.mOverview.setVisibilityOption(false)
         } else {
-            m_overview_empty.setVisibilityOption(false)
-            m_overview.setVisibilityOption(true)
-            m_overview.text = overview
+            viewBinding.layoutMovieDetails.mOverviewEmpty.setVisibilityOption(false)
+            viewBinding.layoutMovieDetails.mOverview.setVisibilityOption(true)
+            viewBinding.layoutMovieDetails.mOverview.text = overview
         }
     }
 
     private fun setImageSlider(images: List<String>) {
-        md_image_slider.adapter = ImageSliderAdapter(images)
+        viewBinding.mdImageSlider.adapter = ImageSliderAdapter(images)
     }
 
     /**
@@ -370,6 +353,6 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
     }
 
     override fun pullDownReady(): Boolean {
-        return BottomSheetBehavior.from(md_bottom_sheet).state == BottomSheetBehavior.STATE_COLLAPSED
+        return BottomSheetBehavior.from(viewBinding.layoutMovieDetails.root).state == BottomSheetBehavior.STATE_COLLAPSED
     }
 }

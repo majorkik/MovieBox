@@ -1,19 +1,17 @@
 package com.majorik.moviebox.feature.details.presentation.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.majorik.moviebox.feature.details.domain.tmdbModels.cast.MovieCast
-import com.majorik.moviebox.feature.details.R
 import com.majorik.moviebox.feature.details.domain.tmdbModels.cast.TVCast
 import com.majorik.moviebox.feature.details.presentation.adapters.PersonFilmographyPagerAdapter.PageViewHolder
 import com.majorik.moviebox.feature.details.presentation.adapters.movie.MovieCreditsAdapter
 import com.majorik.moviebox.feature.details.presentation.adapters.tv.TVCreditsAdapter
 import com.majorik.library.base.extensions.px
 import com.majorik.library.base.utils.SpacingDecoration
-import kotlinx.android.synthetic.main.item_filmography_details.view.*
+import com.majorik.moviebox.feature.details.databinding.ItemFilmographyDetailsBinding
 
 class PersonFilmographyPagerAdapter(
     private val actionMovieClick: (id: Int) -> Unit,
@@ -24,10 +22,10 @@ class PersonFilmographyPagerAdapter(
     private var spanCount = 1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PageViewHolder {
-        val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_filmography_details, parent, false)
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val viewBinding = ItemFilmographyDetailsBinding.inflate(layoutInflater, parent, false)
 
-        return PageViewHolder(view)
+        return PageViewHolder(viewBinding)
     }
 
     override fun getItemCount() = 2
@@ -54,24 +52,24 @@ class PersonFilmographyPagerAdapter(
         notifyDataSetChanged()
     }
 
-    inner class PageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class PageViewHolder(val viewBinding: ItemFilmographyDetailsBinding) : RecyclerView.ViewHolder(viewBinding.root) {
         private val itemDecoration = SpacingDecoration(16.px(), 16.px(), true)
 
         fun bindMovies(
             spanCount: Int,
             movieCasts: List<MovieCast>
         ) {
-            val layoutManager = (itemView.filmographylist.layoutManager as? GridLayoutManager)
+            val layoutManager = (viewBinding.filmographylist.layoutManager as? GridLayoutManager)
             layoutManager?.spanCount = spanCount
 
             if (layoutManager?.spanCount == 3) {
-                itemView.filmographylist.removeItemDecoration(itemDecoration)
-                itemView.filmographylist.addItemDecoration(itemDecoration)
+                viewBinding.filmographylist.removeItemDecoration(itemDecoration)
+                viewBinding.filmographylist.addItemDecoration(itemDecoration)
             } else {
-                itemView.filmographylist.removeItemDecoration(itemDecoration)
+                viewBinding.filmographylist.removeItemDecoration(itemDecoration)
             }
 
-            itemView.filmographylist.adapter = MovieCreditsAdapter(
+            viewBinding.filmographylist.adapter = MovieCreditsAdapter(
                 { id ->
                     actionMovieClick(id)
                 },
@@ -83,17 +81,17 @@ class PersonFilmographyPagerAdapter(
             spanCount: Int,
             tvCasts: List<TVCast>
         ) {
-            val layoutManager = (itemView.filmographylist.layoutManager as? GridLayoutManager)
+            val layoutManager = (viewBinding.filmographylist.layoutManager as? GridLayoutManager)
             layoutManager?.spanCount = spanCount
 
             if (layoutManager?.spanCount == 3) {
-                itemView.filmographylist.removeItemDecoration(itemDecoration)
-                itemView.filmographylist.addItemDecoration(itemDecoration)
+                viewBinding.filmographylist.removeItemDecoration(itemDecoration)
+                viewBinding.filmographylist.addItemDecoration(itemDecoration)
             } else {
-                itemView.filmographylist.removeItemDecoration(itemDecoration)
+                viewBinding.filmographylist.removeItemDecoration(itemDecoration)
             }
 
-            itemView.filmographylist.adapter = TVCreditsAdapter(
+            viewBinding.filmographylist.adapter = TVCreditsAdapter(
                 { id ->
                     actionTVClick(id)
                 },

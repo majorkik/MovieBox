@@ -5,13 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.moviebox.feature.details.R
-import kotlinx.android.synthetic.main.dialog_movie_extra_menu.*
+import com.majorik.moviebox.feature.details.databinding.DialogMovieExtraMenuBinding
 import com.majorik.moviebox.R as AppRes
 
 class MovieExtraMenuBottomDialog : BottomSheetDialogFragment() {
+
+    private val viewBinding: DialogMovieExtraMenuBinding by viewBinding()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +33,7 @@ class MovieExtraMenuBottomDialog : BottomSheetDialogFragment() {
     }
 
     private fun setClickListener() {
-        btn_close.setSafeOnClickListener {
+        viewBinding.btnClose.setSafeOnClickListener {
             dismiss()
         }
     }

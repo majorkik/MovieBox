@@ -17,8 +17,6 @@ import com.majorik.library.base.constants.AppConfig
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.models.results.ResultWrapper
 import com.majorik.library.base.view.PullDownLayout
-import kotlinx.android.synthetic.main.dialog_fragment_person_details.*
-import kotlinx.android.synthetic.main.layout_person_credits.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.majorik.moviebox.feature.details.R
 import com.majorik.moviebox.feature.details.databinding.DialogFragmentPersonDetailsBinding
@@ -58,8 +56,8 @@ class PersonDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_pers
     }
 
     private fun updateMargins(statusBarSize: Int, @Suppress("UNUSED_PARAMETER") navigationBarSize: Int) {
-        md_toolbar.updateMargin(top = statusBarSize)
-        header_bottom_sheet.minimumHeight = statusBarSize
+        viewBinding.mdToolbar.updateMargin(top = statusBarSize)
+        viewBinding.layoutCredits.headerBottomSheet.minimumHeight = statusBarSize
     }
 
     private fun setupPager() {
@@ -70,9 +68,9 @@ class PersonDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_pers
             )
         val pagerAdapter = pagerAdapter
 
-        p_view_pager.adapter = pagerAdapter
+        viewBinding.layoutCredits.pViewPager.adapter = pagerAdapter
 
-        TabLayoutMediator(p_tab_layout, p_view_pager) { tab, position ->
+        TabLayoutMediator(viewBinding.layoutCredits.pTabLayout, viewBinding.layoutCredits.pViewPager) { tab, position ->
             tab.text = pagerTitles.getOrNull(position)
         }.attach()
     }
@@ -86,27 +84,27 @@ class PersonDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_pers
     }
 
     private fun setClickListeners() {
-        btn_close.setOnClickListener {
+        viewBinding.layoutCredits.btnClose.setOnClickListener {
             actionFilmographyCloseState()
         }
 
-        btn_view_type.setOnClickListener {
+        viewBinding.layoutCredits.btnViewType.setOnClickListener {
             actionChangeViewTypePagerItems()
         }
     }
 
     private fun setBottomSheetListener() {
-        val bottomSheet = BottomSheetBehavior.from(p_bottom_sheet)
+        val bottomSheet = BottomSheetBehavior.from(viewBinding.layoutCredits.root)
         bottomSheet.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
-                btn_close.rotation = (180 * (1 - slideOffset))
-                line_bottom_sheet_view.alpha = (1 - slideOffset)
+                viewBinding.layoutCredits.btnClose.rotation = (180 * (1 - slideOffset))
+                viewBinding.layoutCredits.lineBottomSheetView.alpha = (1 - slideOffset)
 
-                person_toolbar.alpha = slideOffset
+                viewBinding.layoutCredits.personToolbar.alpha = slideOffset
             }
 
             override fun onStateChanged(bottomSheet: View, newState: Int) {
-                btn_view_type.isEnabled = newState == BottomSheetBehavior.STATE_EXPANDED
+                viewBinding.layoutCredits.btnViewType.isEnabled = newState == BottomSheetBehavior.STATE_EXPANDED
                 activity?.setStatusBarMode(newState != BottomSheetBehavior.STATE_EXPANDED)
             }
         })
@@ -117,12 +115,15 @@ class PersonDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_pers
      */
 
     private fun actionFilmographyCloseState() {
-        if (BottomSheetBehavior.from(p_bottom_sheet).state == BottomSheetBehavior.STATE_COLLAPSED) {
-            BottomSheetBehavior.from(p_bottom_sheet).state =
-                BottomSheetBehavior.STATE_EXPANDED
-        } else {
-            BottomSheetBehavior.from(p_bottom_sheet).state =
-                BottomSheetBehavior.STATE_COLLAPSED
+        val bottomSheet = BottomSheetBehavior.from(viewBinding.layoutCredits.root)
+
+        when (bottomSheet.state) {
+            BottomSheetBehavior.STATE_COLLAPSED -> {
+                bottomSheet.state = BottomSheetBehavior.STATE_EXPANDED
+            }
+            else -> {
+                bottomSheet.state = BottomSheetBehavior.STATE_COLLAPSED
+            }
         }
     }
 
@@ -140,7 +141,7 @@ class PersonDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_pers
             ContextCompat.getDrawable(viewBinding.root.context, AppResources.drawable.ic_module)
         }
 
-        btn_view_type.setImageDrawable(viewTypeIcon)
+        viewBinding.layoutCredits.btnViewType.setImageDrawable(viewTypeIcon)
     }
 
     /**
@@ -180,11 +181,11 @@ class PersonDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_pers
      */
 
     private fun setPersonDetails(personDetails: PersonDetails) {
-        person_name.text = personDetails.name
-        person_translate_name.text = personDetails.alsoKnownAs.getOrNull(0) ?: ""
-        person_type.text = personDetails.knownForDepartment
+        viewBinding.personName.text = personDetails.name
+        viewBinding.personTranslateName.text = personDetails.alsoKnownAs.getOrNull(0) ?: ""
+        viewBinding.personType.text = personDetails.knownForDepartment
 
-        btn_biography.setOnClickListener {
+        viewBinding.btnBiography.setOnClickListener {
             BiographyDialog.newInstance(
                 personDetails.biography,
                 personDetails.birthday,
@@ -194,7 +195,7 @@ class PersonDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_pers
 
         displayPersonMainPhoto(personDetails.profilePath)
 
-        p_bottom_sheet.setVisibilityOption(true)
+        viewBinding.layoutCredits.root.setVisibilityOption(true)
 
         pagerAdapter = PersonFilmographyPagerAdapter(
             ::openMovieDetails,
@@ -207,9 +208,9 @@ class PersonDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_pers
     }
 
     private fun displayPersonMainPhoto(profilePath: String?) {
-        person_profile_image.displayImageWithCenterCrop(UrlConstants.TMDB_SIZE_ORIGINAL + profilePath)
+        viewBinding.personProfileImage.displayImageWithCenterCrop(UrlConstants.TMDB_SIZE_ORIGINAL + profilePath)
 //        person_profile_image.setGrayscaleTransformation()
-        person_image_container.setVisibilityOption(!profilePath.isNullOrEmpty())
+        viewBinding.personImageContainer.setVisibilityOption(!profilePath.isNullOrEmpty())
     }
 
     /**
@@ -227,6 +228,6 @@ class PersonDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_pers
     }
 
     override fun pullDownReady(): Boolean {
-        return BottomSheetBehavior.from(p_bottom_sheet).state == BottomSheetBehavior.STATE_COLLAPSED
+        return BottomSheetBehavior.from(viewBinding.layoutCredits.root).state == BottomSheetBehavior.STATE_COLLAPSED
     }
 }

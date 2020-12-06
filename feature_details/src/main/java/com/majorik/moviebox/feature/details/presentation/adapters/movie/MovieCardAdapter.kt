@@ -7,13 +7,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.majorik.library.base.constants.BaseIntentKeys.ITEM_ID
 import com.majorik.moviebox.feature.details.domain.tmdbModels.movie.Movie
 import com.majorik.moviebox.feature.details.presentation.adapters.movie.MovieCardAdapter.*
-import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.startActivityWithAnim
 import com.majorik.moviebox.feature.details.presentation.movieDetails.MovieDetailsDialogFragment
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.extensions.displayImageWithCenterCrop
+import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.moviebox.feature.details.databinding.ItemDetailsBigImageWithCornersBinding
-import kotlinx.android.synthetic.main.item_big_image_with_corners_details.view.*
 
 class MovieCardAdapter : RecyclerView.Adapter<MovieCardViewHolder>() {
 
@@ -31,7 +30,7 @@ class MovieCardAdapter : RecyclerView.Adapter<MovieCardViewHolder>() {
     override fun onBindViewHolder(holder: MovieCardViewHolder, position: Int) {
         holder.bindTo(movies[position])
 
-        holder.itemView.slider_layout.setSafeOnClickListener {
+        holder.viewBinding.sliderLayout.setSafeOnClickListener {
             holder.itemView.context.startActivityWithAnim(
                 MovieDetailsDialogFragment::class.java,
                 Intent().apply {
@@ -51,12 +50,12 @@ class MovieCardAdapter : RecyclerView.Adapter<MovieCardViewHolder>() {
         return movies[position].id.toLong()
     }
 
-    class MovieCardViewHolder(private val parent: ItemDetailsBigImageWithCornersBinding) :
-        RecyclerView.ViewHolder(parent.root) {
+    class MovieCardViewHolder(val viewBinding: ItemDetailsBigImageWithCornersBinding) :
+        RecyclerView.ViewHolder(viewBinding.root) {
         fun bindTo(movie: Movie) {
-            parent.placeholderText.text = movie.title
+            viewBinding.placeholderText.text = movie.title
 
-            parent.sliderImage.displayImageWithCenterCrop(
+            viewBinding.sliderImage.displayImageWithCenterCrop(
                 UrlConstants.TMDB_BACKDROP_SIZE_1280 + movie.backdropPath
             )
         }

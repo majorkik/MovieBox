@@ -1,21 +1,19 @@
 package com.majorik.moviebox.feature.details.presentation.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import com.majorik.moviebox.feature.details.R
 import androidx.recyclerview.widget.RecyclerView
+import com.majorik.moviebox.feature.details.databinding.ItemCompanyDetailsBinding
 import com.majorik.moviebox.feature.details.domain.tmdbModels.production.ProductionCompany
 import com.majorik.moviebox.feature.details.presentation.adapters.CompaniesAdapter.*
-import kotlinx.android.synthetic.main.item_company_details.view.*
 
 class CompaniesAdapter(private val companies: List<ProductionCompany>) :
     RecyclerView.Adapter<CompanyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CompanyViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_company_details, parent, false)
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val viewBinding = ItemCompanyDetailsBinding.inflate(layoutInflater, parent, false)
 
-        return CompanyViewHolder(view)
+        return CompanyViewHolder(viewBinding)
     }
 
     override fun getItemCount() = companies.size
@@ -24,9 +22,9 @@ class CompaniesAdapter(private val companies: List<ProductionCompany>) :
         holder.bindTo(companies[position])
     }
 
-    class CompanyViewHolder(parent: View) : RecyclerView.ViewHolder(parent) {
+    class CompanyViewHolder(val viewBinding: ItemCompanyDetailsBinding) : RecyclerView.ViewHolder(viewBinding.root) {
         fun bindTo(company: ProductionCompany) {
-            itemView.company_name.text = company.name
+            viewBinding.companyName.text = company.name
         }
     }
 }

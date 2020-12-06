@@ -8,13 +8,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.majorik.library.base.extensions.toDate
 import com.soywiz.klock.KlockLocale
 import com.soywiz.klock.locale.russian
-import kotlinx.android.synthetic.main.layout_biography_details.view.*
 import com.majorik.moviebox.feature.details.R
+import com.majorik.moviebox.feature.details.databinding.DialogBiographyDetailsBinding
 
 class BiographyDialog : DialogFragment() {
+
+    private val viewBinding: DialogBiographyDetailsBinding by viewBinding()
 
     private var biography = ""
     private var birthday = ""
@@ -23,8 +26,7 @@ class BiographyDialog : DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        biography = arguments?.getString(BIOGRAPHY_ARG)
-            ?: getString(R.string.details_is_absent)
+        biography = arguments?.getString(BIOGRAPHY_ARG) ?: getString(R.string.details_is_absent)
         birthday = arguments?.getString(BIRTHDAY_ARG) ?: "-"
         placeOfBirth = arguments?.getString(PLACE_OF_BIRTH_ARG) ?: ""
     }
@@ -35,7 +37,7 @@ class BiographyDialog : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(
-            R.layout.layout_biography_details,
+            R.layout.dialog_biography_details,
             container,
             false
         )
@@ -54,24 +56,31 @@ class BiographyDialog : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setData()
+        setClickListeners()
+    }
+
+    private fun setClickListeners() {
+        viewBinding.btnClose.setOnClickListener {
+            dismiss()
+        }
+    }
+
+    private fun setData() {
         if (biography.isNotEmpty()) {
-            view.biography.text = biography
+            viewBinding.biography.text = biography
         } else {
-            view.biography.gravity = Gravity.CENTER
-            view.biography.text = getString(R.string.details_is_absent)
+            viewBinding.biography.gravity = Gravity.CENTER
+            viewBinding.biography.text = getString(R.string.details_is_absent)
         }
 
         if (birthday.isNotEmpty() && birthday != "-") {
-            view.birthday.text = KlockLocale.russian.formatDateLong.format(birthday.toDate())
+            viewBinding.birthday.text = KlockLocale.russian.formatDateLong.format(birthday.toDate())
         } else {
-            view.birthday.text = birthday
+            viewBinding.birthday.text = birthday
         }
 
-        view.place_of_birth.text = placeOfBirth
-
-        view.btn_close.setOnClickListener {
-            dismiss()
-        }
+        viewBinding.placeOfBirth.text = placeOfBirth
     }
 
     companion object {

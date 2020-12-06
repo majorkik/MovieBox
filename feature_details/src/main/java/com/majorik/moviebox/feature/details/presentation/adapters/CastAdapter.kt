@@ -3,13 +3,12 @@ package com.majorik.moviebox.feature.details.presentation.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.majorik.moviebox.feature.details.domain.tmdbModels.cast.Cast
-import com.majorik.moviebox.feature.details.presentation.adapters.CastAdapter.CastViewHolder
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.extensions.displayImageWithCenterInside
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.moviebox.feature.details.databinding.ItemCastProfileCardDetailsBinding
-import kotlinx.android.synthetic.main.item_cast_profile_card_details.view.*
+import com.majorik.moviebox.feature.details.domain.tmdbModels.cast.Cast
+import com.majorik.moviebox.feature.details.presentation.adapters.CastAdapter.CastViewHolder
 
 class CastAdapter(private val actionClick: (id: Int) -> Unit, private val people: List<Cast>) :
     RecyclerView.Adapter<CastViewHolder>() {

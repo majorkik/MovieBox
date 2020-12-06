@@ -109,6 +109,7 @@
             app:title="" />
 
         <include
+            android:id="@+id/layout_credits"
             layout="@layout/layout_person_credits"
             android:visibility="gone" />
 
