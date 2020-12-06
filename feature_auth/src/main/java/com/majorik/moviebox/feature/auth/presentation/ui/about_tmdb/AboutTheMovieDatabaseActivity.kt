@@ -4,35 +4,32 @@ import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
-import android.view.View
 import android.webkit.WebChromeClient
 import android.webkit.WebViewClient
-import com.majorik.library.base.extensions.setWindowTransparency
-import com.majorik.library.base.extensions.updateMargin
-import com.majorik.library.base.base.BaseSlidingActivity
+import androidx.appcompat.app.AppCompatActivity
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.majorik.library.base.constants.UrlConstants
-import com.majorik.moviebox.feature.auth.R.*
-import kotlinx.android.synthetic.main.activity_about_the_movie_database.*
+import com.majorik.library.base.extensions.doOnApplyWindowInsets
+import com.majorik.library.base.extensions.updateMargin
+import com.majorik.moviebox.feature.auth.R
+import com.majorik.moviebox.feature.auth.databinding.ActivityAboutTheMovieDatabaseBinding
 
-class AboutTheMovieDatabaseActivity : BaseSlidingActivity() {
+class AboutTheMovieDatabaseActivity : AppCompatActivity(R.layout.activity_about_the_movie_database) {
 
-    override fun getRootView(): View = window.decorView.rootView
+    private val viewBinding: ActivityAboutTheMovieDatabaseBinding by viewBinding(R.id.about_container)
 
-    @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(layout.activity_about_the_movie_database)
 
-        setWindowTransparency(::updateMargins)
+        updateMargins()
 
-        setSupportActionBar(about_toolbar)
+        configWebView()
+        setClickListeners()
+    }
 
-        supportActionBar?.run {
-            setDisplayUseLogoEnabled(true)
-            setDisplayShowTitleEnabled(false)
-        }
-
-        webview.run {
+    @SuppressLint("SetJavaScriptEnabled")
+    private fun configWebView() {
+        viewBinding.webview.run {
             settings.javaScriptEnabled = true
             settings.javaScriptCanOpenWindowsAutomatically = true
             settings.userAgentString = "Android"
@@ -43,20 +40,19 @@ class AboutTheMovieDatabaseActivity : BaseSlidingActivity() {
         }
     }
 
-    private fun updateMargins(statusBarSize: Int, @Suppress("UNUSED_PARAMETER") navigationBarSize: Int) {
-        about_toolbar.updateMargin(top = statusBarSize)
+    private fun setClickListeners() {
+        viewBinding.btnBack.setOnClickListener {
+            onBackPressed()
+        }
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
+    private fun updateMargins() {
+        viewBinding.root.doOnApplyWindowInsets { _, windowInsetsCompat, _ ->
+            viewBinding.aboutToolbar.updateMargin(top = windowInsetsCompat.systemWindowInsetTop)
+
+            windowInsetsCompat
+        }
     }
-
-    override fun onSlidingStarted() {}
-
-    override fun onSlidingFinished() {}
-
-    override fun canSlideDown(): Boolean = false
 
     override fun applyOverrideConfiguration(overrideConfiguration: Configuration?) {
         if (Build.VERSION.SDK_INT in 21..25 && (resources.configuration.uiMode == resources.configuration.uiMode)) {

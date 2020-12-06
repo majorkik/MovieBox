@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/mine_shaft"
+    android:id="@+id/auth_container"
     android:fitsSystemWindows="false">
 
     <androidx.fragment.app.FragmentContainerView

@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/about_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/mine_shaft"
@@ -16,24 +17,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/about_toolbar" />
 
-    <androidx.appcompat.widget.Toolbar
+    <FrameLayout
         android:id="@+id/about_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:theme="@style/AppTheme.NoActionBar.Dark.GreenBackBtn"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:background="@color/mine_shaft"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/ic_arrow_down"
-        app:title="">
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_arrow_down"
+            android:tint="@color/caribbean_green_tmdb" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
+            android:layout_marginHorizontal="56dp"
             android:fontFamily="@font/cc_rubik_one"
+            android:gravity="center"
             android:text="@string/nav_the_movie_database"
             android:textAllCaps="true"
             android:textColor="@color/caribbean_green_tmdb" />
-    </androidx.appcompat.widget.Toolbar>
+
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

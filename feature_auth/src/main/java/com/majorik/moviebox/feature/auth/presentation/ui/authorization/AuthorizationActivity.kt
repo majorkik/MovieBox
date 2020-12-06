@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.text.TextUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.majorik.library.base.extensions.setWindowTransparency
 import com.majorik.library.base.extensions.updateMargin
 import com.majorik.moviebox.feature.auth.R
-import kotlinx.android.synthetic.main.activity_authorization.*
+import com.majorik.moviebox.feature.auth.databinding.ActivityAuthorizationBinding
 
 class AuthorizationActivity : AppCompatActivity(R.layout.activity_authorization) {
+    private val viewBinding: ActivityAuthorizationBinding by viewBinding(R.id.auth_container)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +23,7 @@ class AuthorizationActivity : AppCompatActivity(R.layout.activity_authorization)
         statusBarSize: Int,
         navigationBarSize: Int
     ) {
-        splash_container.updateMargin(bottom = navigationBarSize)
+        viewBinding.splashContainer.updateMargin(bottom = navigationBarSize)
     }
 
     override fun onResume() {

@@ -1,7 +1,6 @@
 plugins {
     id(Plugins.androidDynamicFeature)
     kotlin(Plugins.android)
-    id("kotlin-android-extensions")
     id(Plugins.navSafeArgs)
 }
 
