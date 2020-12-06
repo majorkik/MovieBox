@@ -18,13 +18,10 @@ import com.majorik.moviebox.feature.search.R
 import com.majorik.moviebox.feature.search.databinding.FragmentSearchPageBinding
 import com.majorik.moviebox.feature.search.presentation.ui.search.SearchableFragmentDirections
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
-import kotlinx.android.synthetic.main.fragment_search_page.*
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-internal class SearchTVFragment :
-    Fragment(R.layout.fragment_search_page),
-    SearchQueryChangeListener,
+internal class SearchTVFragment : Fragment(R.layout.fragment_search_page), SearchQueryChangeListener,
     SearchViewTypeChangeListener {
 
     private val viewBinding: FragmentSearchPageBinding by viewBinding()

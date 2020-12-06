@@ -7,6 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.GridLayoutManager
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.majorik.moviebox.feature.search.presentation.ui.search.adapters.SearchMoviePagingAdapter
 import com.majorik.moviebox.feature.search.presentation.ui.search.SearchQueryChangeListener
 import com.majorik.moviebox.feature.search.presentation.ui.search.SearchViewTypeChangeListener
@@ -14,16 +15,16 @@ import com.majorik.library.base.extensions.setAdapterWithFixedSize
 import com.majorik.library.base.extensions.px
 import com.majorik.library.base.utils.SpacingDecoration
 import com.majorik.moviebox.feature.search.R
+import com.majorik.moviebox.feature.search.databinding.FragmentSearchPageBinding
 import com.majorik.moviebox.feature.search.presentation.ui.search.SearchableFragmentDirections
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
-import kotlinx.android.synthetic.main.fragment_search_page.*
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-internal class SearchMovieFragment :
-    Fragment(R.layout.fragment_search_page),
-    SearchQueryChangeListener,
+internal class SearchMovieFragment : Fragment(R.layout.fragment_search_page), SearchQueryChangeListener,
     SearchViewTypeChangeListener {
+
+    private val viewBinding: FragmentSearchPageBinding by viewBinding()
 
     private val viewModel: SearchMovieViewModel by viewModel()
 
@@ -47,8 +48,8 @@ internal class SearchMovieFragment :
     }
 
     private fun configureRecyclerView() {
-        search_list.setAdapterWithFixedSize(ScaleInAnimationAdapter(adapter), true)
-        search_list.addItemDecoration(SpacingDecoration(16.px(), 16.px(), true))
+        viewBinding.searchList.setAdapterWithFixedSize(ScaleInAnimationAdapter(adapter), true)
+        viewBinding.searchList.addItemDecoration(SpacingDecoration(16.px(), 16.px(), true))
     }
 
     private fun configureObservables() {
@@ -61,9 +62,9 @@ internal class SearchMovieFragment :
 
     override fun changeViewType(isGrid: Boolean) {
         if (isGrid) {
-            search_list.layoutManager = GridLayoutManager(context, 3)
+            viewBinding.searchList.layoutManager = GridLayoutManager(context, 3)
         } else {
-            search_list.layoutManager = GridLayoutManager(context, 1)
+            viewBinding.searchList.layoutManager = GridLayoutManager(context, 1)
         }
 
         adapter.setViewType(isGrid)
