@@ -1,13 +1,11 @@
 package com.majorik.moviebox.feature.collections.presentation.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.majorik.moviebox.feature.collections.domain.tmdbModels.genre.Genre
-import com.majorik.moviebox.feature.collections.R
+import com.majorik.moviebox.feature.collections.databinding.ItemGenreInlineBinding
 import com.majorik.moviebox.feature.collections.presentation.adapters.GenresInlineAdapter.GenreViewHolder
-import kotlinx.android.synthetic.main.item_genre_inline.view.*
 
 class GenresInlineAdapter(private val genres: List<Genre>) :
     RecyclerView.Adapter<GenreViewHolder>() {
@@ -15,10 +13,10 @@ class GenresInlineAdapter(private val genres: List<Genre>) :
         parent: ViewGroup,
         viewType: Int
     ): GenreViewHolder {
-        val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_genre_inline, parent, false)
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val viewBinding = ItemGenreInlineBinding.inflate(layoutInflater, parent, false)
 
-        return GenreViewHolder(view)
+        return GenreViewHolder(viewBinding)
     }
 
     override fun getItemCount(): Int = genres.size
@@ -27,9 +25,9 @@ class GenresInlineAdapter(private val genres: List<Genre>) :
         holder.bindTo(genres[position])
     }
 
-    class GenreViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+    class GenreViewHolder(val viewBinding: ItemGenreInlineBinding) : RecyclerView.ViewHolder(viewBinding.root) {
         fun bindTo(genre: Genre) {
-            itemView.genre_name.text = genre.name
+            viewBinding.genreName.text = genre.name
         }
     }
 }

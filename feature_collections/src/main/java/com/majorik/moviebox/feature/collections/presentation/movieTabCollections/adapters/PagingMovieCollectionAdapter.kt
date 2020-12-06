@@ -6,27 +6,26 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.extensions.displayImageWithCenterCrop
-import com.majorik.moviebox.feature.collections.domain.tmdbModels.movie.Movie
 import com.majorik.library.base.extensions.setSafeOnClickListener
+import com.majorik.moviebox.feature.collections.domain.tmdbModels.movie.Movie
 import com.majorik.moviebox.feature.collections.databinding.ItemCollectionMediumPosterCardBinding
 import com.majorik.moviebox.feature.collections.domain.utils.getMovieDiffUtils
-import kotlinx.android.synthetic.main.item_collection_medium_poster_card.view.*
 
 class PagingMovieCollectionAdapter(private val actionClick: (id: Int) -> Unit) :
     PagingDataAdapter<Movie, PagingMovieCollectionAdapter.MoviePagedViewHolder>(getMovieDiffUtils()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviePagedViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val view = ItemCollectionMediumPosterCardBinding.inflate(layoutInflater, parent, false)
+        val viewBinding = ItemCollectionMediumPosterCardBinding.inflate(layoutInflater, parent, false)
 
-        return MoviePagedViewHolder(view)
+        return MoviePagedViewHolder(viewBinding)
     }
 
     override fun onBindViewHolder(holder: MoviePagedViewHolder, position: Int) {
         getItem(position)?.let { movie ->
             holder.bindTo(movie)
 
-            holder.itemView.collection_card.setSafeOnClickListener {
+            holder.viewBinding.collectionCard.setSafeOnClickListener {
                 actionClick(movie.id)
             }
         }

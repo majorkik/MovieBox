@@ -11,7 +11,6 @@ import com.majorik.moviebox.feature.collections.R
 import com.majorik.moviebox.domain.enums.collections.MovieCollectionType
 import com.majorik.moviebox.feature.collections.databinding.FragmentTabCollectionsBinding
 import com.majorik.moviebox.feature.collections.presentation.adapters.FragmentsPagerAdapter
-import kotlinx.android.synthetic.main.fragment_tab_collections.*
 
 class TabsMovieCollectionsFragment : Fragment(R.layout.fragment_tab_collections) {
     private val viewBinding: FragmentTabCollectionsBinding by viewBinding()
@@ -44,19 +43,19 @@ class TabsMovieCollectionsFragment : Fragment(R.layout.fragment_tab_collections)
     private fun setPage(collectionName: MovieCollectionType) {
         when (collectionName) {
             MovieCollectionType.NOW_PLAYING -> {
-                collection_view_pager.setCurrentItem(0, true)
+                viewBinding.collectionViewPager.setCurrentItem(0, true)
             }
 
             MovieCollectionType.POPULAR -> {
-                collection_view_pager.setCurrentItem(1, true)
+                viewBinding.collectionViewPager.setCurrentItem(1, true)
             }
 
             MovieCollectionType.TOP_RATED -> {
-                collection_view_pager.setCurrentItem(2, true)
+                viewBinding.collectionViewPager.setCurrentItem(2, true)
             }
 
             MovieCollectionType.UPCOMING -> {
-                collection_view_pager.setCurrentItem(3, true)
+                viewBinding.collectionViewPager.setCurrentItem(3, true)
             }
         }
     }
@@ -76,10 +75,10 @@ class TabsMovieCollectionsFragment : Fragment(R.layout.fragment_tab_collections)
             lifecycle
         )
 
-        collection_view_pager.adapter = pagerAdapter
-        collection_view_pager.offscreenPageLimit = fragments.size
+        viewBinding.collectionViewPager.adapter = pagerAdapter
+        viewBinding.collectionViewPager.offscreenPageLimit = fragments.size
 
-        TabLayoutMediator(p_tab_layout, collection_view_pager) { tab, position ->
+        TabLayoutMediator(viewBinding.pTabLayout, viewBinding.collectionViewPager) { tab, position ->
             tab.text = pagerTitles.getOrNull(position)
         }.attach()
     }

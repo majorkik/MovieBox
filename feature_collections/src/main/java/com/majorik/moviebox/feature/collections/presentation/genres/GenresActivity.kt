@@ -2,6 +2,7 @@ package com.majorik.moviebox.feature.collections.presentation.genres
 
 import android.os.Bundle
 import android.view.View
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.majorik.moviebox.feature.collections.presentation.adapters.GenresInlineAdapter
 import com.majorik.library.base.base.BaseSlidingActivity
 import com.majorik.library.base.enums.GenresType
@@ -9,10 +10,12 @@ import com.majorik.library.base.enums.SELECTED_GENRES_TYPE
 import com.majorik.moviebox.feature.collections.R
 import com.majorik.library.base.extensions.setWindowTransparency
 import com.majorik.library.base.extensions.updateMargin
-import kotlinx.android.synthetic.main.activity_genres.*
+import com.majorik.moviebox.feature.collections.databinding.ActivityGenresBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class GenresActivity : BaseSlidingActivity() {
+
+    private val viewBinding: ActivityGenresBinding by viewBinding(R.id.genres_container)
 
     private val genresViewModel: GenresViewModel by viewModel()
 
@@ -36,8 +39,8 @@ class GenresActivity : BaseSlidingActivity() {
         statusBarSize: Int,
         @Suppress("UNUSED_PARAMETER") navigationBarSize: Int
     ) {
-        genres_toolbar.updateMargin(top = statusBarSize)
-        nested_scroll_view.updateMargin(bottom = navigationBarSize)
+        viewBinding.genresToolbar.updateMargin(top = statusBarSize)
+        viewBinding.nestedScrollView.updateMargin(bottom = navigationBarSize)
     }
 
     override fun onSlidingStarted() {}
@@ -47,11 +50,8 @@ class GenresActivity : BaseSlidingActivity() {
     override fun canSlideDown(): Boolean = true
 
     private fun setObservers() {
-        genresViewModel.genresLiveData.observe(
-            this,
-            {
-                list_genres.adapter = GenresInlineAdapter(it.genres)
-            }
-        )
+        genresViewModel.genresLiveData.observe(this, {
+            viewBinding.listGenres.adapter = GenresInlineAdapter(it.genres)
+        })
     }
 }

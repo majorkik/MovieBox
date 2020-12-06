@@ -10,23 +10,22 @@ import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.moviebox.feature.collections.databinding.ItemCollectionMediumPosterCardBinding
 import com.majorik.moviebox.feature.collections.domain.tmdbModels.tv.TV
 import com.majorik.moviebox.feature.collections.domain.utils.getTVDiffUtils
-import kotlinx.android.synthetic.main.item_collection_medium_poster_card.view.*
 
 class PagingTVCollectionAdapter(private val actionClick: (id: Int) -> Unit) :
     PagingDataAdapter<TV, PagingTVCollectionAdapter.TVPagedViewHolder>(getTVDiffUtils()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TVPagedViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val view = ItemCollectionMediumPosterCardBinding.inflate(layoutInflater, parent, false)
+        val viewBinding = ItemCollectionMediumPosterCardBinding.inflate(layoutInflater, parent, false)
 
-        return TVPagedViewHolder(view)
+        return TVPagedViewHolder(viewBinding)
     }
 
     override fun onBindViewHolder(holder: TVPagedViewHolder, position: Int) {
         getItem(position)?.let { movie ->
             holder.bindTo(movie)
 
-            holder.itemView.collection_card.setSafeOnClickListener {
+            holder.viewBinding.collectionCard.setSafeOnClickListener {
                 actionClick(movie.id)
             }
         }
