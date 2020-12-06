@@ -18,7 +18,8 @@ import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
 class SplashScreenActivity : AppCompatActivity(R.layout.activity_splash_screen) {
-    private val viewBinding: ActivitySplashScreenBinding by viewBinding()
+    private val viewBinding: ActivitySplashScreenBinding by viewBinding(R.id.splash_container)
+
     private val credentialsManager: CredentialsPrefsManager by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {

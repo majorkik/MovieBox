@@ -9,14 +9,15 @@ pluginManagement {
             when (requested.id.id) {
                 "com.android.application",
                 "com.android.library",
-                "com.android.dynamic-feature" -> useModule("com.android.tools.build:gradle:7.0.0-alpha02")
-                "androidx.navigation.safeargs.kotlin" -> useModule("androidx.navigation:navigation-safe-args-gradle-plugin:2.3.0")
+                "com.android.dynamic-feature" -> useModule("com.android.tools.build:gradle:${requested.version}")
+                "androidx.navigation.safeargs.kotlin" -> useModule("androidx.navigation:navigation-safe-args-gradle-plugin:${requested.version}")
             }
         }
     }
 }
 
 rootProject.buildFileName = "build.gradle.kts"
+
 include(
     ":app",
     ":feature_collections",

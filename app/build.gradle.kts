@@ -2,25 +2,23 @@ import com.android.build.gradle.internal.dsl.BaseFlavor
 import com.android.build.gradle.internal.dsl.DefaultConfig
 
 plugins {
-    id(GradlePluginId.ANDROID_APPLICATION)
-    id("kotlin-android")
-    id("kotlin-android-extensions")
-    id(GradlePluginId.KTLINT_GRADLE)
-    id(GradlePluginId.SAFE_ARGS)
+    id(Plugins.androidApplication)
+    kotlin(Plugins.android)
+    id(Plugins.ktlint)
+    id(Plugins.navSafeArgs)
 }
 
 android {
-    compileSdkVersion(AndroidConfig.COMPILE_SDK_VERSION)
+    compileSdkVersion(AndroidConfig.compileSdk)
 
     defaultConfig {
-        applicationId = AndroidConfig.ID
-        minSdkVersion(AndroidConfig.MIN_SDK_VERSION)
-        targetSdkVersion(AndroidConfig.TARGET_SDK_VERSION)
-        buildToolsVersion(AndroidConfig.BUILD_TOOLS_VERSION)
+        applicationId = AndroidConfig.applicationId
+        minSdkVersion(AndroidConfig.minSdk)
+        targetSdkVersion(AndroidConfig.targetSdk)
+        buildToolsVersion(AndroidConfig.buildTools)
 
-        versionCode = AndroidConfig.VERSION_CODE
-        versionName = AndroidConfig.VERSION_NAME
-        testInstrumentationRunner = AndroidConfig.TEST_INSTRUMENTATION_RUNNER
+        versionCode = AndroidConfig.versionCode
+        versionName = AndroidConfig.versionName
 
         buildConfigFieldFromGradleProperty("keyTmdb")
         buildConfigFieldFromGradleProperty("keyTmdbv4")
@@ -43,8 +41,9 @@ android {
         }
     }
 
-    viewBinding {
-        isEnabled = true
+    buildFeatures {
+        viewBinding = true
+        compose = true
     }
 
     // Each feature module that is included in settings.gradle.kts is added here as dynamic feature
@@ -62,47 +61,35 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
+
+        freeCompilerArgs = freeCompilerArgs + listOf("-Xallow-jvm-ir-dependencies", "-Xskip-prerelease-check")
+    }
+
+    composeOptions {
+        kotlinCompilerVersion = "1.4.20"
+        kotlinCompilerExtensionVersion = "1.0.0-alpha08"
     }
 }
 
 dependencies {
-    api(project(ModuleDependency.LIBRARY_BASE))
+    api(project(ModuleDependency.libraryBase))
 
-    api(LibraryDependency.NAVIGATION_FRAGMENT_KTX)
-    api(LibraryDependency.LIFECYCLE_LIVEDATA_KTX)
-    api(LibraryDependency.LIFECYCLE_RUNTIME_KTX)
-    api(LibraryDependency.NAVIGATION_UI_KTX)
+    implementation("androidx.compose.runtime:runtime:1.0.0-alpha08")
 
-    api(LibraryDependency.ANNOTATION)
+    implementation(Libs.AndroidX.multidex)
+    implementation(Libs.Google.playCore)
 
-    implementation(LibraryDependency.MULTIDEX)
-    implementation(LibraryDependency.PLAY_CORE)
+    implementation(Libs.Network.OkHttp3.LOGGING_INTERCEPTOR)
 
-    implementation(LibraryDependency.LOGGING_INTERCEPTOR)
-
-    implementation(LibraryDependency.KOTLIN_COROUTINES_ADAPTER)
-
-    api(LibraryDependency.CONSTRAINT_LAYOUT)
-    api(LibraryDependency.COORDINATOR_LAYOUT)
-    api(LibraryDependency.VIEWPAGER_2)
-    api(LibraryDependency.PAGING_RUNTIME)
-    api(LibraryDependency.PAGING_RUNTIME_V3)
-
-    api(LibraryDependency.LOTTIE)
-
-    api(LibraryDependency.PHOTOVIEW)
-    api(LibraryDependency.STFALCON_IMAGEVIEWER)
-    api(LibraryDependency.CIRCLE_IMAGEVIEW)
-
-    api(LibraryDependency.RECYCLER_VIEW_ANIMATION)
+    implementation(Libs.Network.retrofitCoroutinesAdapter)
 }
 
-//tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java).configureEach {
-//    kotlinOptions {
-//        jvmTarget = "1.8"
-//        freeCompilerArgs = freeCompilerArgs + listOf("-Xallow-jvm-ir-dependencies", "-Xskip-prerelease-check")
-//    }
-//}
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java).configureEach {
+    kotlinOptions {
+        jvmTarget = "1.8"
+        freeCompilerArgs = freeCompilerArgs + listOf("-Xallow-jvm-ir-dependencies", "-Xskip-prerelease-check")
+    }
+}
 
 fun BaseFlavor.buildConfigFieldFromGradleProperty(gradlePropertyName: String) {
     val propertyValue =
@@ -126,4 +113,3 @@ fun DefaultConfig.buildConfigField(name: String, value: Set<String>) {
     })
     buildConfigField("String[]", name, strValue)
 }
-

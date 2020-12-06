@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/splash_container"
     android:fitsSystemWindows="false"
     tools:context=".ui.splash_screen.SplashScreenActivity">
 

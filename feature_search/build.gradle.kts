@@ -1,27 +1,22 @@
 plugins {
-    id(GradlePluginId.ANDROID_DYNAMIC_FEATURE)
-    id("kotlin-android")
+    id(Plugins.androidDynamicFeature)
+    kotlin(Plugins.android)
     id("kotlin-android-extensions")
-    id(GradlePluginId.SAFE_ARGS)
+    id(Plugins.navSafeArgs)
 }
 
 android {
-    compileSdkVersion(AndroidConfig.COMPILE_SDK_VERSION)
+    compileSdkVersion(AndroidConfig.compileSdk)
 
     defaultConfig {
-        minSdkVersion(AndroidConfig.MIN_SDK_VERSION)
-        targetSdkVersion(AndroidConfig.TARGET_SDK_VERSION)
+        minSdkVersion(AndroidConfig.minSdk)
+        targetSdkVersion(AndroidConfig.targetSdk)
 
-        versionCode = AndroidConfig.VERSION_CODE
-        versionName = AndroidConfig.VERSION_NAME
-        testInstrumentationRunner = AndroidConfig.TEST_INSTRUMENTATION_RUNNER
-
-//        android.buildFeatures.viewBinding = true
+        versionCode = AndroidConfig.versionCode
+        versionName = AndroidConfig.versionName
     }
 
-    viewBinding {
-        isEnabled = true
-    }
+    buildFeatures.viewBinding = true
 
     buildTypes {
         getByName(BuildType.RELEASE) {
@@ -41,6 +36,8 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
+
+        freeCompilerArgs = freeCompilerArgs + listOf("-Xallow-jvm-ir-dependencies", "-Xskip-prerelease-check")
     }
 
     // This "test" source set is a fix for SafeArgs classes not being available when running Unit tests from cmd
@@ -49,16 +46,17 @@ android {
         getByName("test").java.srcDir("${project.rootDir}/app/build/generated/source/navigation-args/debug")
     }
 
-    // Removes the need to mock need to mock classes that may be irrelevant from test perspective
-    testOptions {
-        unitTests.isReturnDefaultValues = TestOptions.IS_RETURN_DEFAULT_VALUES
+    composeOptions {
+        kotlinCompilerVersion = "1.4.20"
+        kotlinCompilerExtensionVersion = "1.0.0-alpha08"
     }
 }
 
 dependencies {
-    implementation(project(ModuleDependency.FEATURE_NAVIGATION))
+    implementation(project(ModuleDependency.featureNavigation))
 
-    implementation(LibraryDependency.APP_COMPAT)
-    implementation(LibraryDependency.CONSTRAINT_LAYOUT)
-    implementation("com.github.Jay-Goo:RangeSeekBar:3.0.0")
+    implementation(Libs.AndroidX.appCompat)
+    implementation(Libs.AndroidX.constraintLayout)
+
+    implementation(Libs.Others.rangeSeekBar)
 }

@@ -1,11 +1,11 @@
 plugins {
-    id(GradlePluginId.KTLINT_GRADLE) version GradlePluginVersion.KTLINT_GRADLE
-    id(GradlePluginId.GRADLE_VERSION_PLUGIN) version GradlePluginVersion.GRADLE_VERSION_PLUGIN
-    id(GradlePluginId.KOTLIN_JVM) version GradlePluginVersion.KOTLIN apply false
-    id(GradlePluginId.ANDROID_APPLICATION) version GradlePluginVersion.ANDROID_GRADLE apply false
-    id(GradlePluginId.ANDROID_LIBRARY) version GradlePluginVersion.ANDROID_GRADLE apply false
-    id(GradlePluginId.ANDROID_DYNAMIC_FEATURE) version GradlePluginVersion.ANDROID_GRADLE apply false
-    id(GradlePluginId.SAFE_ARGS) version GradlePluginVersion.SAFE_ARGS apply false
+    id(Plugins.ktlint) version Versions.ktlint
+    id(Plugins.gradleVersions) version Versions.gradleVersions
+    kotlin(Plugins.android) version Versions.kotlin apply false
+    id(Plugins.androidApplication) version Versions.androidGradle apply false
+    id(Plugins.androidLibrary) version Versions.androidGradle apply false
+    id(Plugins.androidDynamicFeature) version Versions.androidGradle apply false
+    id(Plugins.navSafeArgs) version Versions.navSafeArgs apply false
 }
 
 // all projects = root project + sub projects
@@ -17,16 +17,13 @@ allprojects {
     }
 
     // We want to apply ktlint at all project level because it also checks build gradle files
-    apply(plugin = GradlePluginId.KTLINT_GRADLE)
+    apply(plugin = Plugins.ktlint)
 
     // Ktlint configuration for sub-projects
     ktlint {
-        version.set(CoreVersion.KTLINT)
+        version.set(Versions.ktlint)
         verbose.set(true)
         android.set(true)
-
-        // Uncomment below line and run .\gradlew ktlintCheck to see check ktlint experimental rules
-        // enableExperimentalRules.set(true)
 
         reporters {
             reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE)

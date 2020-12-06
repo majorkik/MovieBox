@@ -1,26 +1,23 @@
 plugins {
-    id(GradlePluginId.ANDROID_LIBRARY)
-    id("kotlin-android")
+    id(Plugins.androidLibrary)
+    kotlin(Plugins.android)
     id("kotlin-android-extensions")
-    id(GradlePluginId.SAFE_ARGS)
+    id(Plugins.navSafeArgs)
 }
 
 android {
-    compileSdkVersion(AndroidConfig.COMPILE_SDK_VERSION)
+    compileSdkVersion(AndroidConfig.compileSdk)
 
     defaultConfig {
-        minSdkVersion(AndroidConfig.MIN_SDK_VERSION)
-        targetSdkVersion(AndroidConfig.TARGET_SDK_VERSION)
+        minSdkVersion(AndroidConfig.minSdk)
+        targetSdkVersion(AndroidConfig.targetSdk)
 
-        versionCode = AndroidConfig.VERSION_CODE
-        versionName = AndroidConfig.VERSION_NAME
-        testInstrumentationRunner = AndroidConfig.TEST_INSTRUMENTATION_RUNNER
-
-//        android.buildFeatures.viewBinding = true
+        versionCode = AndroidConfig.versionCode
+        versionName = AndroidConfig.versionName
     }
 
-    viewBinding {
-        isEnabled = true
+    buildFeatures {
+        viewBinding = true
     }
 
     buildTypes {
@@ -41,52 +38,62 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
-    }
 
-    testOptions {
-        unitTests.isReturnDefaultValues = TestOptions.IS_RETURN_DEFAULT_VALUES
+        freeCompilerArgs = freeCompilerArgs + listOf("-Xallow-jvm-ir-dependencies", "-Xskip-prerelease-check")
     }
 }
 
 dependencies {
-    api(LibraryDependency.KOTLIN_STDLIB)
-    api(LibraryDependency.KOTLIN_REFLECT)
-    api(LibraryDependency.KOTLINX_COROUTINES_ANDROID)
+    api(Libs.Kotlin.kotlinStdLib)
+    api(Libs.Kotlin.kotlinReflect)
+    api(Libs.Kotlin.kotlinxCoroutinesAndroid)
 
-    api(LibraryDependency.OKHTTP_3)
+    api(Libs.Network.OkHttp3.OKHTTP_3)
 
-    api(LibraryDependency.RETROFIT)
-    api(LibraryDependency.RETROFIT_MOSHI_CONVERTER)
+    api(Libs.Network.Retrofit.retrofit)
+    api(Libs.Network.Retrofit.retrofitMoshi)
 
-    api(LibraryDependency.CORE_KTX)
+    api(Libs.AndroidX.coreKTX)
 
-    api(LibraryDependency.KOIN_SCOPE)
-    api(LibraryDependency.KOIN_EXT)
-    api(LibraryDependency.KOIN_FRAGMENT)
-    api(LibraryDependency.KOIN_VIEWMODEL)
+    api(Libs.Koin.koinScope)
+    api(Libs.Koin.koinFragment)
+    api(Libs.Koin.koinViewModel)
 
-    api(LibraryDependency.TIMBER)
-    api(LibraryDependency.PRETTY_LOGGER)
+    api(Libs.Loggers.timber)
+    api(Libs.Loggers.prettyLogger)
 
-    api(LibraryDependency.APP_COMPAT)
-    api(LibraryDependency.FRAGMENT_KTX)
-    api(LibraryDependency.ACTIVITY_KTX)
-    api(LibraryDependency.RECYCLERVIEW)
-    api(LibraryDependency.VIEWPAGER_2)
-    api(LibraryDependency.VECTOR_DRAWABLE)
-    api(LibraryDependency.DYNAMIC_FEATURE_FRAGMENT)
-    api(LibraryDependency.MATERIAL)
-    api(LibraryDependency.VIEWBINDING_DELEGATES)
+    api(Libs.AndroidX.annotation)
+    api(Libs.AndroidX.appCompat)
+    api(Libs.AndroidX.fragmentKTX)
+    api(Libs.AndroidX.activityKTX)
+    api(Libs.AndroidX.recyclerView)
+    api(Libs.AndroidX.viewPager2)
+    api(Libs.AndroidX.vectorDrawable)
+    api(Libs.AndroidX.constraintLayout)
+    api(Libs.AndroidX.coordinatorLayout)
+    api(Libs.AndroidX.viewPager2)
+    api(Libs.AndroidX.pagingLibrary3)
 
-    api(LibraryDependency.LIFECYCLE_EXT)
-    api(LibraryDependency.LIFECYCLE_VIEWMODEL_KTX)
+    api(Libs.AndroidX.Navigation.navUiKtx)
+    api(Libs.AndroidX.Navigation.navFragmentKTX)
+    api(Libs.AndroidX.Navigation.navDynamicFragment)
 
-    api(LibraryDependency.COIL)
+    api(Libs.AndroidX.Lifecycle.lifecycleLiveDataKTX)
+    api(Libs.AndroidX.Lifecycle.lifecycleRuntimeKTX)
+    api(Libs.AndroidX.Lifecycle.lifecycleExt)
+    api(Libs.AndroidX.Lifecycle.lifecycleViewModelKTX)
 
-    api(LibraryDependency.KLOCK)
+    api(Libs.Google.material)
 
-    api(LibraryDependency.FIREBASE_ANALYTICS)
-    api(LibraryDependency.FIREBASE_CRASHLYTICS)
+    api(Libs.Others.viewBindingDelegates)
+    api(Libs.Others.coil)
+    api(Libs.Others.klock)
+    api(Libs.Others.localization)
 
-    api(LibraryDependency.LOCALIZATION)
+    api(Libs.Firebase.firebaseAnalytics)
+    api(Libs.Firebase.firebaseCrashlytics)
+
+    api(Libs.Others.lottie)
+    api(Libs.Others.stfalconImageViewer)
+    api(Libs.Others.recyclerViewAnimations)
 }

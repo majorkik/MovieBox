@@ -1,14 +1,13 @@
 object AndroidConfig {
-    const val COMPILE_SDK_VERSION = 29
-    const val MIN_SDK_VERSION = 23
-    const val TARGET_SDK_VERSION = 29
-    const val BUILD_TOOLS_VERSION = "29.0.2"
+    const val compileSdk = 29
+    const val minSdk = 23
+    const val targetSdk = 29
+    const val buildTools = "29.0.2"
 
-    const val VERSION_CODE = 1
-    const val VERSION_NAME = "1.0"
+    const val versionCode = 1
+    const val versionName = "1.0"
 
-    const val ID = "com.majorik.moviebox"
-    const val TEST_INSTRUMENTATION_RUNNER = "android.support.test.runner.AndroidJUnitRunner"
+    const val applicationId = "com.majorik.moviebox"
 }
 
 interface BuildType {

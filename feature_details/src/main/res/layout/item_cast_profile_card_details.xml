@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:background="@color/colorPrimaryDark">
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/person_profile_image"
         android:layout_width="72dp"
         android:layout_height="72dp"
