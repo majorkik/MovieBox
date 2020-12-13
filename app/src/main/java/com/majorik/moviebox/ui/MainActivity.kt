@@ -2,6 +2,7 @@ package com.majorik.moviebox.ui
 
 import android.os.Bundle
 import androidx.core.view.updatePadding
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.dynamicfeatures.fragment.DynamicNavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -13,6 +14,8 @@ import com.majorik.library.base.extensions.*
 import com.majorik.moviebox.R
 import com.majorik.moviebox.databinding.ActivityMainBinding
 import com.orhanobut.logger.Logger
+import kotlinx.coroutines.delay
+import java.lang.RuntimeException
 
 class MainActivity : LocalizationActivity() {
     private val viewBinding: ActivityMainBinding by viewBinding(R.id.container)

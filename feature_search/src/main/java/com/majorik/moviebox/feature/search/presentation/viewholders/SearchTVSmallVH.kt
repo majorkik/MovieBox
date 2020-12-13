@@ -6,13 +6,13 @@ import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.extensions.displayImageWithCenterCrop
 import com.majorik.moviebox.feature.search.databinding.ItemSearchMediumPosterCardBinding
 
-internal class SearchTVSmallVH(val parent: ItemSearchMediumPosterCardBinding) :
-    RecyclerView.ViewHolder(parent.root) {
-    @OptIn(ExperimentalStdlibApi::class)
+internal class SearchTVSmallVH(val viewBinding: ItemSearchMediumPosterCardBinding) :
+    RecyclerView.ViewHolder(viewBinding.root) {
+
     fun bindTo(item: TV?) {
         item?.let {
-            parent.collectionImage.displayImageWithCenterCrop(UrlConstants.TMDB_POSTER_SIZE_185 + it.posterPath)
-            parent.title.text = it.name
+            viewBinding.collectionImage.displayImageWithCenterCrop(UrlConstants.TMDB_POSTER_SIZE_185 + it.posterPath)
+            viewBinding.title.text = it.name
         }
     }
 }

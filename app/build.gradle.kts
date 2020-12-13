@@ -6,6 +6,8 @@ plugins {
     kotlin(Plugins.android)
     id(Plugins.ktlint)
     id(Plugins.navSafeArgs)
+    id(Plugins.gms)
+    id(Plugins.crashlytics)
 }
 
 android {
@@ -75,6 +77,12 @@ dependencies {
     api(project(ModuleDependency.libraryBase))
 
     implementation("androidx.compose.runtime:runtime:1.0.0-alpha08")
+    implementation("androidx.compose.ui:ui-tooling:1.0.0-alpha08")
+    implementation("androidx.compose.ui:ui:1.0.0-alpha08")
+    implementation("androidx.compose.material:material:1.0.0-alpha08")
+    implementation("androidx.compose.compiler:compiler:1.0.0-alpha08")
+    implementation("androidx.compose.animation:animation:1.0.0-alpha08")
+    implementation("androidx.compose.foundation:foundation:1.0.0-alpha08")
 
     implementation(Libs.AndroidX.multidex)
     implementation(Libs.Google.playCore)

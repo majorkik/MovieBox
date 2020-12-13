@@ -7,10 +7,10 @@ import com.majorik.moviebox.feature.search.databinding.ItemPersonSmallCardBindin
 import com.majorik.moviebox.feature.search.domain.tmdbModels.person.Person
 import com.majorik.moviebox.feature.search.R
 
-internal class SearchPeopleSmallVH(val parent: ItemPersonSmallCardBinding) : RecyclerView.ViewHolder(parent.root) {
+internal class SearchPeopleSmallVH(val viewBinding: ItemPersonSmallCardBinding) : RecyclerView.ViewHolder(viewBinding.root) {
     fun bindTo(item: Person?) {
         item?.let {
-            parent.pImage.load(UrlConstants.TMDB_PROFILE_SIZE_185 + it.profilePath) {
+            viewBinding.pImage.load(UrlConstants.TMDB_PROFILE_SIZE_185 + it.profilePath) {
                 error(R.drawable.placholder_profile_image)
                 placeholder(R.drawable.placholder_profile_image)
             }

@@ -6,6 +6,8 @@ plugins {
     id(Plugins.androidLibrary) version Versions.androidGradle apply false
     id(Plugins.androidDynamicFeature) version Versions.androidGradle apply false
     id(Plugins.navSafeArgs) version Versions.navSafeArgs apply false
+    id(Plugins.gms) version Versions.gms apply false
+    id(Plugins.crashlytics) version Versions.crashlytics apply false
 }
 
 // all projects = root project + sub projects

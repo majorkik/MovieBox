@@ -44,7 +44,7 @@ internal class SearchPeoplePagingAdapter(private val actionClick: (id: Int) -> U
             is SearchPeopleViewHolder -> {
                 holder.bindTo(item)
 
-                holder.parent.root.setSafeOnClickListener {
+                holder.viewBinding.root.setSafeOnClickListener {
                     actionClick(item.id)
                 }
             }
@@ -52,7 +52,7 @@ internal class SearchPeoplePagingAdapter(private val actionClick: (id: Int) -> U
             is SearchPeopleSmallVH -> {
                 holder.bindTo(item)
 
-                holder.parent.root.setSafeOnClickListener {
+                holder.viewBinding.root.setSafeOnClickListener {
                     actionClick(item.id)
                 }
             }

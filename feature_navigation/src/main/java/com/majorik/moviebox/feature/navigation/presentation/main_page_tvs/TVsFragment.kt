@@ -86,12 +86,6 @@ class TVsFragment : Fragment(R.layout.fragment_tvs) {
 
     private fun setClickListeners() {
         viewBinding.btnSearch.setOnClickListener {
-            startActivity(
-                Intent().setClassName(
-                    requireContext(),
-                    ScreenLinks.searchableActivity
-                )
-            )
         }
 
         viewBinding.btnPopularTvs.setSafeOnClickListener {

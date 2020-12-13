@@ -108,7 +108,6 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
     private fun setClickListeners() {
         viewBinding.apply {
             btnSearch.setOnClickListener {
-                context?.startActivityWithAnim(ScreenLinks.searchableActivity)
             }
 
             btnPopularMovies.setOnClickListener {

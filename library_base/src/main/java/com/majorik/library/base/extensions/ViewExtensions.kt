@@ -9,6 +9,8 @@ import androidx.core.view.marginTop
 import androidx.core.view.updateLayoutParams
 import androidx.core.view.updateMargins
 import com.majorik.library.base.utils.DebounceSafeClickListener
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlin.coroutines.resume
 
 fun View.updateMargin(
     left: Int = marginLeft,
@@ -27,4 +29,37 @@ fun View.setSafeOnClickListener(onSafeClick: (View) -> Unit) {
         onSafeClick(it)
     }
     setOnClickListener(safeClickListener)
+}
+
+suspend fun View.awaitNextLayout() = suspendCancellableCoroutine<Unit> { cont ->
+    // This lambda is invoked immediately, allowing us to create
+    // a callback/listener
+
+    val listener = object : View.OnLayoutChangeListener {
+        override fun onLayoutChange(
+            v: View,
+            left: Int,
+            top: Int,
+            right: Int,
+            bottom: Int,
+            oldLeft: Int,
+            oldTop: Int,
+            oldRight: Int,
+            oldBottom: Int
+        ) {
+            // The next layout has happened!
+            // First remove the listener to not leak the coroutine
+            v.removeOnLayoutChangeListener(this)
+            // Finally resume the continuation, and
+            // wake the coroutine up
+            cont.resume(Unit)
+        }
+    }
+    // If the coroutine is cancelled, remove the listener
+    cont.invokeOnCancellation { removeOnLayoutChangeListener(listener) }
+    // And finally add the listener to view
+    addOnLayoutChangeListener(listener)
+
+    // The coroutine will now be suspended. It will only be resumed
+    // when calling cont.resume() in the listener above
 }

@@ -47,7 +47,7 @@ class PersonDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_pers
 
         viewBinding.root.setCallback(this)
 
-        setWindowTransparency(::updateMargins)
+        updateMargins()
 
         fetchPersonDetails()
         setObservers()
@@ -55,9 +55,13 @@ class PersonDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_pers
         setBottomSheetListener()
     }
 
-    private fun updateMargins(statusBarSize: Int, @Suppress("UNUSED_PARAMETER") navigationBarSize: Int) {
-        viewBinding.mdToolbar.updateMargin(top = statusBarSize)
-        viewBinding.layoutCredits.headerBottomSheet.minimumHeight = statusBarSize
+    private fun updateMargins() {
+        viewBinding.root.doOnApplyWindowInsets { view, insets, rect ->
+            viewBinding.mdToolbar.updateMargin(top = insets.systemWindowInsetTop)
+            viewBinding.layoutCredits.headerBottomSheet.minimumHeight = insets.systemWindowInsetTop
+
+            insets
+        }
     }
 
     private fun setupPager() {

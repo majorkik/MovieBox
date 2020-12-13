@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -27,6 +28,7 @@ import com.majorik.moviebox.feature.details.presentation.adapters.ImageSliderAda
 import com.majorik.moviebox.feature.details.presentation.watch_online.WatchOnlineDialog
 import com.soywiz.klock.KlockLocale
 import com.stfalcon.imageviewer.StfalconImageViewer
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
@@ -50,22 +52,30 @@ class TVDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_tv_detai
 
         viewBinding.root.setCallback(this)
 
-        setWindowTransparency(::updateMargins)
+        updateMargins()
 
         fetchDetails()
         setClickListeners()
         setObserver()
     }
 
-    private fun updateMargins(statusBarSize: Int, navigationBarSize: Int) {
-        viewBinding.bottomBar.updateMargin(bottom = navigationBarSize)
-        viewBinding.contentCoordinator.updateMargin(top = statusBarSize)
+    private fun updateMargins() {
+        viewBinding.root.doOnApplyWindowInsets { _, insets, _ ->
+            lifecycleScope.launch {
+                viewBinding.bottomBar.updateMargin(bottom = insets.systemWindowInsetBottom)
+                viewBinding.contentCoordinator.updateMargin(top = insets.systemWindowInsetTop)
 
-        val height = viewBinding.root.height
-        val peekHeight = height - viewBinding.tdImageSlider.height
+                viewBinding.root.awaitNextLayout()
 
-        val contentBottomSheet = BottomSheetBehavior.from(viewBinding.layoutContent.root)
-        contentBottomSheet.setPeekHeight(peekHeight, false)
+                val height = viewBinding.root.height
+                val peekHeight = height - viewBinding.tdImageSlider.height
+
+                val contentBottomSheet = BottomSheetBehavior.from(viewBinding.layoutContent.root)
+                contentBottomSheet.setPeekHeight(peekHeight, false)
+            }
+
+            insets
+        }
     }
 
     private fun fetchDetails() {

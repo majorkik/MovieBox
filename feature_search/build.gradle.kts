@@ -2,6 +2,8 @@ plugins {
     id(Plugins.androidDynamicFeature)
     kotlin(Plugins.android)
     id(Plugins.navSafeArgs)
+    id(Plugins.gms)
+    id(Plugins.crashlytics)
 }
 
 android {

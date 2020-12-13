@@ -44,7 +44,7 @@ internal class SearchMoviePagingAdapter(private val actionClick: (id: Int) -> Un
             is SearchMovieDetailedVH -> {
                 holder.bindTo(item)
 
-                holder.parent.root.setSafeOnClickListener {
+                holder.viewBinding.root.setSafeOnClickListener {
                     actionClick(item.id)
                 }
             }
@@ -52,7 +52,7 @@ internal class SearchMoviePagingAdapter(private val actionClick: (id: Int) -> Un
             is SearchMovieSmallVH -> {
                 holder.bindTo(item)
 
-                holder.parent.collectionCard.setSafeOnClickListener {
+                holder.viewBinding.collectionCard.setSafeOnClickListener {
                     actionClick(item.id)
                 }
             }

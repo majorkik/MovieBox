@@ -40,12 +40,11 @@ class GenreAdapter : RecyclerView.Adapter<GenreAdapter.GenreViewHolder>() {
         holder.bindTo(genres[position])
     }
 
-    class GenreViewHolder(private val parent: ItemGenreBinding) :
-        RecyclerView.ViewHolder(parent.root) {
+    class GenreViewHolder(private val viewBinding: ItemGenreBinding) :
+        RecyclerView.ViewHolder(viewBinding.root) {
 
-        @OptIn(ExperimentalStdlibApi::class)
         fun bindTo(genre: Genre) {
-            parent.genreName.text = genre.name.capitalize(Locale.getDefault())
+            viewBinding.genreName.text = genre.name.capitalize(Locale.getDefault())
         }
     }
 }

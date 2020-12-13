@@ -13,6 +13,9 @@ object Versions {
 
     const val gradleVersions = "0.36.0"
     const val ktlint = "9.2.1"
+
+    const val crashlytics = "2.4.1"
+    const val gms = "4.3.4"
 }
 
 object Plugins {
@@ -22,6 +25,8 @@ object Plugins {
     const val androidLibrary = "com.android.library"
     const val gradleVersions = "com.github.ben-manes.versions"
     const val navSafeArgs = "androidx.navigation.safeargs.kotlin"
+    const val crashlytics = "com.google.firebase.crashlytics"
+    const val gms = "com.google.gms.google-services"
     const val android = "android"
 }
 
@@ -84,8 +89,8 @@ object Libs {
     }
 
     object Firebase {
-        const val firebaseAnalytics = "com.google.firebase:firebase-analytics:17.4.2"
-        const val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics:17.0.0"
+        const val firebaseAnalytics = "com.google.firebase:firebase-analytics:18.0.0"
+        const val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics:17.3.0"
     }
 
     object Network {

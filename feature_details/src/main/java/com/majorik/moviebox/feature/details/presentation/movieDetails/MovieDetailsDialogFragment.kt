@@ -2,6 +2,7 @@ package com.majorik.moviebox.feature.details.presentation.movieDetails
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
@@ -28,9 +29,12 @@ import com.majorik.moviebox.feature.details.presentation.adapters.ImageSliderAda
 import com.majorik.moviebox.feature.details.presentation.watch_online.WatchOnlineDialog
 import com.soywiz.klock.KlockLocale
 import com.stfalcon.imageviewer.StfalconImageViewer
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.suspendCancellableCoroutine
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.DecimalFormat
 import java.util.*
+import kotlin.coroutines.resume
 import kotlin.math.floor
 import com.majorik.moviebox.R as AppRes
 
@@ -52,7 +56,7 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
 
         viewBinding.root.setCallback(this)
 
-        setWindowTransparency(::updateMargins)
+        updateMargins()
 
         fetchDetails()
         fetchMovieStates()
@@ -60,15 +64,23 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
         setObserver()
     }
 
-    private fun updateMargins(statusBarSize: Int, navigationBarSize: Int) {
-        viewBinding.bottomBar.updateMargin(bottom = navigationBarSize)
-        viewBinding.contentCoordinator.updateMargin(top = statusBarSize)
+    private fun updateMargins() {
+        viewBinding.root.doOnApplyWindowInsets { _, insets, _ ->
+            lifecycleScope.launch {
+                viewBinding.bottomBar.updateMargin(bottom = insets.systemWindowInsetBottom)
+                viewBinding.contentCoordinator.updateMargin(top = insets.systemWindowInsetTop)
 
-        val height = viewBinding.root.height
-        val peekHeight = height - viewBinding.mdImageSlider.height
+                viewBinding.root.awaitNextLayout()
 
-        val contentBottomSheet = BottomSheetBehavior.from(viewBinding.layoutMovieDetails.root)
-        contentBottomSheet.setPeekHeight(peekHeight, false)
+                val height = viewBinding.root.height
+                val peekHeight = height - viewBinding.mdImageSlider.height
+
+                val contentBottomSheet = BottomSheetBehavior.from(viewBinding.layoutMovieDetails.root)
+                contentBottomSheet.setPeekHeight(peekHeight, false)
+            }
+
+            insets
+        }
     }
 
     private fun fetchDetails() {

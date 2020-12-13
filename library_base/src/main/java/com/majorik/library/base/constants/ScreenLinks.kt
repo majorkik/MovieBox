@@ -12,5 +12,4 @@ object ScreenLinks {
 
     //  Navigation module
     const val genresActivity = "$PACKAGE_NAME.feature.collections.presentation.genres.GenresActivity"
-    const val searchableActivity = "$PACKAGE_NAME.feature.search.presentation.ui.SearchableActivity"
 }
