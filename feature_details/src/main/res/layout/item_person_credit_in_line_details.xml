@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="8dp"
-            android:src="@drawable/ic_dot"
+            android:src="@drawable/ic_dot_pulse_12"
             app:layout_constraintBottom_toBottomOf="@+id/known_for_department"
             app:layout_constraintStart_toEndOf="@+id/pc_year"
             app:layout_constraintTop_toTopOf="@+id/known_for_department" />

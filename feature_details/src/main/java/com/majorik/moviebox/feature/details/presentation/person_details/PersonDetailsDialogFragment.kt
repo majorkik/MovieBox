@@ -139,10 +139,10 @@ class PersonDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_pers
         val viewTypeIcon = if (isGrid) {
             ContextCompat.getDrawable(
                 viewBinding.root.context,
-                R.drawable.ic_list
+                AppResources.drawable.ic_list_agenda_24
             )
         } else {
-            ContextCompat.getDrawable(viewBinding.root.context, AppResources.drawable.ic_module)
+            ContextCompat.getDrawable(viewBinding.root.context, AppResources.drawable.ic_module_3x2_24)
         }
 
         viewBinding.layoutCredits.btnViewType.setImageDrawable(viewTypeIcon)

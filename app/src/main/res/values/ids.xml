@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--    Необходимы для перехода из других модулей-->
+
     <!--    id экранов навигации-->
     <item name="nav_movies_id" type="id" />
     <item name="nav_tvs_id" type="id" />

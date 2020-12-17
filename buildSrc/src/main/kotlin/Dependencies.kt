@@ -120,6 +120,7 @@ object Libs {
         const val coil = "io.coil-kt:coil:1.1.0"
         const val recyclerViewAnimations = "jp.wasabeef:recyclerview-animators:4.0.1"
         const val viewBindingDelegates = "com.github.kirich1409:ViewBindingPropertyDelegate:1.3.1"
+        const val viewBindingDelegatesNoReflect = "com.kirich1409.viewbindingpropertydelegate:vbpd-noreflection:1.3.1"
         const val rangeSeekBar = "com.github.Jay-Goo:RangeSeekBar:3.0.0"
     }
 }

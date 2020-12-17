@@ -45,7 +45,7 @@
             android:background="?attr/selectableItemBackground"
             android:padding="16dp"
             android:rotation="180"
-            android:src="@drawable/ic_arrow_down"
+            android:src="@drawable/ic_arrow_down_24"
             android:tint="@color/mine_shaft"
             tools:ignore="ContentDescription" />
 
@@ -69,7 +69,7 @@
             android:alpha="0"
             android:background="?attr/selectableItemBackground"
             android:padding="16dp"
-            android:src="@drawable/ic_module"
+            android:src="@drawable/ic_module_3x2_24"
             android:tint="@color/mine_shaft"
             tools:alpha="1"
             tools:ignore="ContentDescription" />

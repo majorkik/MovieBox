@@ -11,7 +11,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
+import by.kirich1409.viewbindingdelegate.CreateMethod
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.majorik.library.base.extensions.setSafeOnClickListener
 import com.majorik.library.base.extensions.setVisibilityOption
@@ -32,7 +32,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.majorik.moviebox.R as AppResources
 
 class AuthorizationFragment : Fragment(R.layout.fragment_authorization) {
-    private val viewBinding: FragmentAuthorizationBinding by viewBinding()
+    private val viewBinding: FragmentAuthorizationBinding by viewBinding(createMethod = CreateMethod.BIND)
 
     private val viewModel: AuthorizationViewModel by viewModel()
 
@@ -42,6 +42,7 @@ class AuthorizationFragment : Fragment(R.layout.fragment_authorization) {
         super.onViewCreated(view, savedInstanceState)
 
         setAboutTmdbTextStyle()
+        setApplicationTitleStyle()
         setClickListener()
         setObservers()
     }
@@ -49,7 +50,7 @@ class AuthorizationFragment : Fragment(R.layout.fragment_authorization) {
     override fun onResume() {
         super.onResume()
 
-        viewBinding.logoTitle.setVisibilityOption(true)
+        viewBinding.applicationTitle.setVisibilityOption(true)
         viewBinding.btnAboutTmdb.setVisibilityOption(true)
         viewBinding.loginWithTmdb.setVisibilityOption(true)
         viewBinding.loginWithGuest.setVisibilityOption(true)
@@ -83,35 +84,26 @@ class AuthorizationFragment : Fragment(R.layout.fragment_authorization) {
     }
 
     private fun setObservers() {
-        viewModel.tmdbRequestTokenLiveData.observe(
-            viewLifecycleOwner,
-            Observer {
-                requestToken = it.requestToken
-                openBrowser(it.requestToken)
-            }
-        )
+        viewModel.tmdbRequestTokenLiveData.observe(viewLifecycleOwner, {
+            requestToken = it.requestToken
+            openBrowser(it.requestToken)
+        })
 
-        viewModel.tmdbSessionLiveData.observe(
-            viewLifecycleOwner,
-            Observer {
-                credentialsManager.saveTmdbSession(it.success ?: false, it.sessionId)
-                if (it.success == true && it.sessionId != null) {
-                    startMainActivity()
-                }
+        viewModel.tmdbSessionLiveData.observe(viewLifecycleOwner, {
+            credentialsManager.saveTmdbSession(it.success ?: false, it.sessionId)
+            if (it.success == true && it.sessionId != null) {
+                startMainActivity()
             }
-        )
+        })
 
-        viewModel.tmdbGuestSessionLiveData.observe(
-            viewLifecycleOwner,
-            Observer {
-                credentialsManager.saveGuestLoginStatus(it.success ?: false)
+        viewModel.tmdbGuestSessionLiveData.observe(viewLifecycleOwner, {
+            credentialsManager.saveGuestLoginStatus(it.success ?: false)
 
-                if (it.success == true) {
-                    credentialsManager.saveGuestSessionID(it.requestToken)
-                    startMainActivity()
-                }
+            if (it.success == true) {
+                credentialsManager.saveGuestSessionID(it.requestToken)
+                startMainActivity()
             }
-        )
+        })
     }
 
     private fun setAboutTmdbTextStyle() {
@@ -119,6 +111,7 @@ class AuthorizationFragment : Fragment(R.layout.fragment_authorization) {
         val tmdb = getString(R.string.nav_the_movie_database)
 
         val fullText = "$what $tmdb?"
+
         SpannableStringBuilder(fullText).apply {
             setSpan(
                 FontSpan(
@@ -146,6 +139,27 @@ class AuthorizationFragment : Fragment(R.layout.fragment_authorization) {
             )
 
             viewBinding.aboutTmdb.text = this
+        }
+    }
+
+    private fun setApplicationTitleStyle() {
+        val firstTextHalf = getString(R.string.nav_app_logo_movie)
+        val secondTextHalf = getString(R.string.nav_app_logo_box)
+
+        SpannableStringBuilder("$firstTextHalf$secondTextHalf").apply {
+            setSpan(
+                ForegroundColorSpan(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        AppResources.color.sunglow
+                    )
+                ),
+                firstTextHalf.length,
+                (firstTextHalf + secondTextHalf).length,
+                Spanned.SPAN_EXCLUSIVE_INCLUSIVE
+            )
+
+            viewBinding.applicationTitle.text = this
         }
     }
 

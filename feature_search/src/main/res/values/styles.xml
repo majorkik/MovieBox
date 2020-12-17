@@ -40,12 +40,6 @@
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="Discover" />
-
-    <style name="Discover.ToolbarTheme">
-        <item name="colorControlNormal">@color/mine_shaft</item>
-    </style>
-
     <style name="AppTheme.ImageViewWithCorners_8">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">16dp</item>

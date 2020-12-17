@@ -25,7 +25,7 @@
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:contentDescription="@string/navigation_desc_collection_image"
-            android:src="@drawable/placeholder_portrait" />
+            android:src="@drawable/bg_placeholder_portrait" />
 
         <TextView
             android:id="@+id/placeholder_text"

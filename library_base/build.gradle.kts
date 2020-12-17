@@ -85,6 +85,7 @@ dependencies {
     api(Libs.Google.material)
 
     api(Libs.Others.viewBindingDelegates)
+//    api(Libs.Others.viewBindingDelegatesNoReflect)
     api(Libs.Others.coil)
     api(Libs.Others.klock)
     api(Libs.Others.localization)

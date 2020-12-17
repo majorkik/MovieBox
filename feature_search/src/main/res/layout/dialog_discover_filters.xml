@@ -535,7 +535,7 @@
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:background="?attr/selectableItemBackground"
-            android:src="@drawable/ic_arrow_down"
+            android:src="@drawable/ic_arrow_down_24"
             android:tint="@color/mine_shaft"
             tools:ignore="ContentDescription" />
 

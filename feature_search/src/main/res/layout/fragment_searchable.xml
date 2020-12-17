@@ -40,9 +40,9 @@
                 android:paddingStart="-0dp"
                 android:paddingEnd="-8dp"
                 android:theme="@style/SearchViewStyle"
-                app:closeIcon="@drawable/ic_clear"
+                app:closeIcon="@drawable/ic_close_round_16"
                 app:defaultQueryHint="Введите запрос"
-                app:goIcon="@drawable/ic_module"
+                app:goIcon="@drawable/ic_module_3x2_24"
                 app:iconifiedByDefault="false"
                 app:queryBackground="@color/transparent"
                 app:queryHint="@string/search_screen_search_view_hint"
@@ -58,7 +58,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:padding="12dp"
-                android:src="@drawable/ic_arrow_down"
+                android:src="@drawable/ic_arrow_down_24"
                 app:tint="@color/mine_shaft"
                 tools:ignore="ContentDescription" />
 

@@ -4,8 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.majorik.library.base.models.results.ResultWrapper
-import com.majorik.moviebox.feature.auth.domain.RequestTokenResponse
-import com.majorik.moviebox.feature.auth.domain.ResponseSession
+import com.majorik.moviebox.feature.auth.data.responses.RequestTokenResponse
+import com.majorik.moviebox.feature.auth.data.responses.ResponseSession
 import com.majorik.moviebox.feature.auth.data.repository.AuthTmdbRepository
 import kotlinx.coroutines.launch
 

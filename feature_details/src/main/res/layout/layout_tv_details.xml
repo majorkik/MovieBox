@@ -114,13 +114,13 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
-                        android:drawableEnd="@drawable/ic_play"
                         android:drawablePadding="16dp"
                         android:fontFamily="@font/cc_montserrat_medium"
                         android:gravity="center"
                         android:text="@string/details_watch_trailer"
                         android:textColor="@color/mine_shaft"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        app:drawableEndCompat="@drawable/ic_round_play_stroke_16" />
                 </androidx.cardview.widget.CardView>
 
                 <View

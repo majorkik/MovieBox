@@ -8,36 +8,22 @@
     android:fitsSystemWindows="false"
     tools:background="@color/mine_shaft">
 
-    <LinearLayout
-        android:id="@+id/logo_title"
+    <TextView
+        android:id="@+id/application_title"
         android:layout_width="wrap_content"
+        android:textColor="@color/colorWhite"
+        android:text="@string/nav_app_logo_movie"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp"
+        android:fontFamily="@font/rubik_one_regular"
+        android:textAllCaps="true"
+        android:textSize="48sp"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/btn_about_tmdb"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/rubik_one_regular"
-            android:text="@string/nav_app_logo_movie"
-            android:textAllCaps="true"
-            android:textColor="@color/colorWhite"
-            android:textSize="48sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/rubik_one_regular"
-            android:text="@string/nav_app_logo_box"
-            android:textAllCaps="true"
-            android:textColor="@color/colorAccent"
-            android:textSize="48sp" />
-    </LinearLayout>
+        tools:visibility="visible" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/btn_about_tmdb"

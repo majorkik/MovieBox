@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">MovieBox</string>
-    <string name="app_name_caps" translatable="false">MOVIEBOX</string>
 
     <!--    Навигация-->
     <string name="title_nav_movies">Фильмы</string>
     <string name="title_nav_tvs">Сериалы</string>
     <string name="title_nav_discover">Поиск</string>
-    <string name="title_nav_profile">Профиль</string>
+    <string name="title_nav_profile">Профилы</string>
 
-    <!--    Описание кнопок-->
-    <string name="button_search">Поиск</string>
-
+    <!--    Dynamic feature module-->
     <string name="title_feature_auth">Auth module</string>
     <string name="title_feature_collections">Collections module</string>
     <string name="title_feature_details">Details module</string>

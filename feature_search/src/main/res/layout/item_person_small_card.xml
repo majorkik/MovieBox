@@ -5,6 +5,7 @@
     style="@style/BaseClickableCard"
     android:layout_width="match_parent"
     android:layout_height="128dp"
+    tools:layout_width="128dp"
     app:cardBackgroundColor="@color/gallery">
 
     <ImageView
@@ -12,7 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="128dp"
         android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
         android:src="@drawable/placholder_profile_image" />
 
 </androidx.cardview.widget.CardView>

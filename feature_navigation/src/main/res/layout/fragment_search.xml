@@ -84,7 +84,7 @@
                         android:background="@color/mine_shaft"
                         android:padding="10dp"
                         android:rotation="90"
-                        android:src="@drawable/ic_controls_tune"
+                        android:src="@drawable/ic_filters_horizontal_24"
                         app:tint="@color/colorWhite"
                         tools:ignore="ContentDescription" />
                 </androidx.cardview.widget.CardView>
@@ -160,7 +160,7 @@
                     android:layout_height="60dp"
                     android:layout_marginHorizontal="4dp"
                     android:layout_weight="1"
-                    app:cardBackgroundColor="@color/colorYellow"
+                    app:cardBackgroundColor="@color/sunglow"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="0dp">
 

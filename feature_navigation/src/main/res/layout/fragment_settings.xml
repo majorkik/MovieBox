@@ -35,7 +35,7 @@
             android:layout_height="32dp"
             android:layout_margin="12dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_arrow_down"
+            android:src="@drawable/ic_arrow_down_24"
             android:tint="@color/mine_shaft" />
     </FrameLayout>
 
@@ -100,13 +100,13 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:drawableEnd="@drawable/ic_arrow_right"
             android:fontFamily="@font/cc_montserrat_regular"
             android:gravity="center_vertical"
             android:paddingHorizontal="16dp"
             android:textColor="@color/mine_shaft"
             android:textSize="14sp"
-            tools:text="Русский" />
+            tools:text="Русский"
+            app:drawableEndCompat="@drawable/ic_arrow_right_24" />
 
     </androidx.cardview.widget.CardView>
 

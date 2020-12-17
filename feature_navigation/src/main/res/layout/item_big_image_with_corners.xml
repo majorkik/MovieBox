@@ -17,7 +17,7 @@
         android:adjustViewBounds="true"
         android:contentDescription="@string/navigation_desc_backdrop"
         android:scaleType="centerCrop"
-        android:src="@drawable/placeholder_landscape" />
+        android:src="@drawable/bg_placeholder_landscape" />
 
     <TextView
         android:id="@+id/placeholder_text"

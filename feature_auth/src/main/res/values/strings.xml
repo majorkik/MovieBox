@@ -9,6 +9,7 @@
     <!--    Страница логина-->
     <string name="nav_app_logo_box" translatable="false">Box</string>
     <string name="nav_app_logo_movie" translatable="false">Movie</string>
+
     <string name="nav_about_the_movie_database">Что такое <b>The Movie Database?</b></string>
     <string name="nav_what">Что такое</string>
     <string name="nav_login_with_tmdb">Войти через TMDb</string>

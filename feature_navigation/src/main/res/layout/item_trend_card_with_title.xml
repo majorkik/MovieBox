@@ -93,7 +93,8 @@
                     android:layout_height="12dp"
                     android:layout_gravity="center"
                     android:layout_marginStart="8dp"
-                    android:src="@drawable/ic_heart" />
+                    android:src="@drawable/ic_favorite_24_enabled"
+                    app:tint="@color/sunglow" />
 
                 <TextView
                     android:id="@+id/m_trend_rating"

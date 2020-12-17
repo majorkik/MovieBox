@@ -2,11 +2,13 @@ package com.majorik.moviebox.feature.collections.presentation.genres
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.updatePadding
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.majorik.moviebox.feature.collections.presentation.adapters.GenresInlineAdapter
 import com.majorik.library.base.base.BaseSlidingActivity
 import com.majorik.library.base.enums.GenresType
 import com.majorik.library.base.enums.SELECTED_GENRES_TYPE
+import com.majorik.library.base.extensions.px
 import com.majorik.moviebox.feature.collections.R
 import com.majorik.library.base.extensions.setWindowTransparency
 import com.majorik.library.base.extensions.updateMargin
@@ -40,7 +42,7 @@ class GenresActivity : BaseSlidingActivity() {
         @Suppress("UNUSED_PARAMETER") navigationBarSize: Int
     ) {
         viewBinding.genresToolbar.updateMargin(top = statusBarSize)
-        viewBinding.nestedScrollView.updateMargin(bottom = navigationBarSize)
+        viewBinding.listGenres.updatePadding(bottom = navigationBarSize + 16.px())
     }
 
     override fun onSlidingStarted() {}

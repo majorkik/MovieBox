@@ -89,7 +89,7 @@ class TVCreditsAdapter(
 
             viewBinding.collectionImage.displayImageWithCenterCrop(
                 UrlConstants.TMDB_POSTER_SIZE_185 + cast.posterPath,
-                AppResources.drawable.ic_film_placeholder_colored
+                AppResources.drawable.bg_movie_placeholder_colored
             )
         }
     }
