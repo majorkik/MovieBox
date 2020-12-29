@@ -2,7 +2,7 @@ package com.majorik.moviebox.feature.details.presentation.movieDetails
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
@@ -13,11 +13,9 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.majorik.library.base.constants.AppConfig
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.extensions.*
-import com.majorik.library.base.models.results.ResultWrapper
 import com.majorik.library.base.view.PullDownLayout
 import com.majorik.moviebox.feature.details.R
 import com.majorik.moviebox.feature.details.databinding.DialogFragmentMovieDetailsBinding
-import com.majorik.moviebox.feature.details.domain.tmdbModels.account.AccountStates
 import com.majorik.moviebox.feature.details.domain.tmdbModels.cast.Cast
 import com.majorik.moviebox.feature.details.domain.tmdbModels.genre.Genre
 import com.majorik.moviebox.feature.details.domain.tmdbModels.image.Images
@@ -29,12 +27,13 @@ import com.majorik.moviebox.feature.details.presentation.adapters.ImageSliderAda
 import com.majorik.moviebox.feature.details.presentation.watch_online.WatchOnlineDialog
 import com.soywiz.klock.KlockLocale
 import com.stfalcon.imageviewer.StfalconImageViewer
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.suspendCancellableCoroutine
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.DecimalFormat
 import java.util.*
-import kotlin.coroutines.resume
 import kotlin.math.floor
 import com.majorik.moviebox.R as AppRes
 
@@ -44,6 +43,24 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
     private val viewModel: MovieDetailsViewModel by viewModel()
 
     private val args: MovieDetailsDialogFragmentArgs by navArgs()
+
+    private val stateObserver = Observer<MovieDetailsViewModel.ViewState> { state ->
+        viewBinding.circularProgressBar.isVisible = state.isLoading
+        viewBinding.linearProgressBar.isVisible = state.isLoading
+        viewBinding.btnRefresh.isVisible = state.networkError
+
+        if (state.details != null && state.isContentLoaded == true) {
+            setMovieDetails(state.details)
+        }
+
+        state.isFavorite?.let {
+            viewBinding.layoutMovieDetails.toggleFavorite.isChecked = it
+        }
+
+        state.isWatchlist?.let {
+            viewBinding.layoutMovieDetails.toggleWatchlist.isChecked = it
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,10 +75,15 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
 
         updateMargins()
 
-        fetchDetails()
-        fetchMovieStates()
+        viewModel.fetchMovieDetails(
+            args.id,
+            AppConfig.REGION,
+            "images,credits,videos",
+            "ru,en,null"
+        )
         setClickListeners()
-        setObserver()
+
+        observe(viewModel.stateLiveData, stateObserver)
     }
 
     private fun updateMargins() {
@@ -69,6 +91,7 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
             lifecycleScope.launch {
                 viewBinding.bottomBar.updateMargin(bottom = insets.systemWindowInsetBottom)
                 viewBinding.contentCoordinator.updateMargin(top = insets.systemWindowInsetTop)
+                viewBinding.loadingStubLayout.updateMargin(top = 220.px() - insets.systemWindowInsetTop)
 
                 viewBinding.root.awaitNextLayout()
 
@@ -83,65 +106,13 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
         }
     }
 
-    private fun fetchDetails() {
-        viewModel.fetchMovieDetails(
-            args.id,
-            AppConfig.REGION,
-            "images,credits,videos",
-            "ru,en,null"
-        )
-    }
-
-    private fun fetchMovieStates() {
-        lifecycleScope.launchWhenResumed {
-            when (val result = viewModel.fetchAccountStateForMovie(args.id)) {
-                is ResultWrapper.Success -> {
-                    viewModel.movieState = result.value
-                }
-            }
-        }
-    }
-
-    private fun setObserver() {
-        viewModel.movieDetailsLiveData.observe(this, { movie ->
-            setMovieDetails(movie)
-        })
-
-        viewModel.movieStatesLiveData.observe(this, { it?.apply { setAccountStates(this) } })
-
-        viewModel.responseFavoriteLiveData.observe(this, {
-            if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
-                context?.showToastMessage("Фильм успешно добавлен в избранное")
-            } else {
-                context?.showToastMessage("Неудалось добавить фильм в избранное")
-            }
-        })
-
-        viewModel.responseWatchlistLiveData.observe(this, {
-            if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
-                context?.showToastMessage("Фильм успешно добавлен в 'Буду смотреть'")
-            } else {
-                context?.showToastMessage("Неудалось добавить фильм в 'Буду смотреть'")
-            }
-        })
-    }
-
-    private fun setAccountStates(accountStates: AccountStates) {
-        viewBinding.layoutMovieDetails.toggleFavorite.isChecked = accountStates.favorite
-        viewBinding.layoutMovieDetails.toggleWatchlist.isChecked = accountStates.watchlist
-    }
-
     private fun setClickListeners() {
         viewBinding.layoutMovieDetails.toggleFavorite.setOnClickListener {
-            viewModel.movieState?.let {
-                viewModel.markMovieIsFavorite(it.id, !it.favorite)
-            }
+            viewModel.markMovieIsFavorite(viewBinding.layoutMovieDetails.toggleFavorite.isChecked)
         }
 
         viewBinding.layoutMovieDetails.toggleWatchlist.setOnClickListener {
-            viewModel.movieState?.let {
-                viewModel.addMovieToWatchlist(it.id, !it.watchlist)
-            }
+            viewModel.addMovieToWatchlist(viewBinding.layoutMovieDetails.toggleWatchlist.isChecked)
         }
 
         viewBinding.btnExtraMenu.setSafeOnClickListener {
@@ -150,6 +121,17 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
 
         viewBinding.bottomBar.setSafeOnClickListener {
             openWatchOnlineDialog()
+        }
+
+        viewBinding.run {
+            btnRefresh.setSafeOnClickListener {
+                viewModel.fetchMovieDetails(
+                    args.id,
+                    AppConfig.REGION,
+                    "images,credits,videos",
+                    "ru,en,null"
+                )
+            }
         }
     }
 
@@ -197,6 +179,11 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
      */
 
     private fun setMovieDetails(movie: MovieDetails) {
+        viewBinding.layoutMovieDetails.root.isVisible = true
+        viewBinding.btnRefresh.isVisible = false
+        viewBinding.bottomBar.isVisible = true
+        viewBinding.loadingStubLayout.isVisible = false
+
         setHeader(movie.title, movie.voteAverage, movie.status, movie.genres, movie.releaseDate)
         setOverview(movie.overview)
         setFacts(movie)

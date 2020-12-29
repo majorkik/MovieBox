@@ -6,320 +6,314 @@
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
     android:clipToPadding="false"
-    app:behavior_peekHeight="500dp"
     android:fillViewport="true"
     app:behavior_hideable="false"
+    app:behavior_peekHeight="500dp"
     app:layout_behavior="@string/bottom_sheet_behavior">
 
     <LinearLayout
+        android:id="@+id/main_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:clipChildren="false"
+        android:orientation="vertical"
+        tools:visibility="visible">
 
         <LinearLayout
-            android:id="@+id/main_layout"
+            style="@style/Details.HorizontalDimens"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clipChildren="false"
-            android:orientation="vertical"
-            tools:visibility="visible">
+            android:layout_marginTop="16dp"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/m_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="@font/cc_montserrat_black"
+                android:maxLines="2"
+                android:textColor="@color/mine_shaft"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                tools:text="Джон Уик 3" />
 
             <LinearLayout
-                style="@style/Details.HorizontalDimens"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:weightSum="1">
+                android:layout_gravity="center"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/m_title"
-                    android:layout_width="0dp"
+                    android:id="@+id/m_vote_average"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
                     android:fontFamily="@font/cc_montserrat_black"
-                    android:maxLines="2"
                     android:textColor="@color/mine_shaft"
                     android:textSize="18sp"
-                    android:textStyle="normal"
-                    tools:text="Джон Уик 3" />
+                    tools:text="8.1" />
 
-                <LinearLayout
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="horizontal">
+                    android:layout_gravity="bottom"
+                    android:layout_marginStart="2dp"
+                    android:fontFamily="@font/cc_montserrat_semibold"
+                    android:text="@string/details_max_rate_with_slash"
+                    android:textColor="@color/mercury"
+                    android:textSize="12sp" />
 
-                    <TextView
-                        android:id="@+id/m_vote_average"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/cc_montserrat_black"
-                        android:textColor="@color/mine_shaft"
-                        android:textSize="18sp"
-                        tools:text="8.1" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:layout_marginStart="2dp"
-                        android:fontFamily="@font/cc_montserrat_semibold"
-                        android:text="@string/details_max_rate_with_slash"
-                        android:textColor="@color/mercury"
-                        android:textSize="12sp" />
-
-                    <ImageView
-                        android:id="@+id/vote_average_indicator"
-                        android:layout_width="6dp"
-                        android:layout_height="6dp"
-                        android:src="@drawable/indicator_vote_average"
-                        tools:ignore="ContentDescription" />
-                </LinearLayout>
+                <ImageView
+                    android:id="@+id/vote_average_indicator"
+                    android:layout_width="6dp"
+                    android:layout_height="6dp"
+                    android:src="@drawable/indicator_vote_average"
+                    tools:ignore="ContentDescription" />
             </LinearLayout>
+        </LinearLayout>
 
-            <TextView
-                android:id="@+id/m_add_info"
-                style="@style/Details.HorizontalDimens"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/cc_montserrat_medium"
-                android:textColor="@color/silver"
-                android:textSize="12sp"
-                tools:text="2019 Криминал, боевик, триллер"
-                tools:visibility="visible" />
+        <TextView
+            android:id="@+id/m_add_info"
+            style="@style/Details.HorizontalDimens"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/cc_montserrat_medium"
+            android:textColor="@color/silver"
+            android:textSize="12sp"
+            tools:text="2019 Криминал, боевик, триллер"
+            tools:visibility="visible" />
 
-            <LinearLayout
-                style="@style/Details.HorizontalDimens"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:clipToPadding="false"
-                android:orientation="horizontal">
+        <LinearLayout
+            style="@style/Details.HorizontalDimens"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:clipToPadding="false"
+            android:orientation="horizontal">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/btn_watch_trailer"
-                    style="@style/BaseClickableCard"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    app:cardBackgroundColor="@color/alabaster_light">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btn_watch_trailer"
+                style="@style/BaseClickableCard"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                app:cardBackgroundColor="@color/alabaster_light">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:drawablePadding="16dp"
-                        android:fontFamily="@font/cc_montserrat_medium"
-                        android:gravity="center"
-                        android:text="@string/details_watch_trailer"
-                        android:textColor="@color/mine_shaft"
-                        android:textSize="14sp"
-                        app:drawableEndCompat="@drawable/ic_round_play_stroke_16" />
-                </androidx.cardview.widget.CardView>
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1" />
-
-                <RelativeLayout
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
-                    android:background="@drawable/bg_button"
-                    android:padding="8dp">
-
-                    <ToggleButton
-                        android:id="@+id/toggle_watchlist"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:background="@drawable/button_watchlist"
-                        android:text=""
-                        android:textOff=""
-                        android:textOn="" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_button"
-                    android:padding="8dp">
-
-                    <ToggleButton
-                        android:id="@+id/toggle_favorite"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:background="@drawable/button_favorite"
-                        android:text=""
-                        android:textOff=""
-                        android:textOn="" />
-                </RelativeLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                style="@style/Details.HeaderDimens"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/details_overview"
-                    android:textAppearance="@style/Details.Header" />
-
-                <TextView
-                    android:id="@+id/m_overview_empty"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/cc_montserrat_regular"
-                    android:text="Отсутствует"
+                    android:drawablePadding="16dp"
+                    android:fontFamily="@font/cc_montserrat_medium"
+                    android:gravity="center"
+                    android:text="@string/details_watch_trailer"
                     android:textColor="@color/mine_shaft"
-                    android:textSize="12sp"
-                    android:visibility="gone" />
-            </LinearLayout>
+                    android:textSize="14sp"
+                    app:drawableEndCompat="@drawable/ic_round_play_stroke_16" />
+            </androidx.cardview.widget.CardView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_weight="1" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_button"
+                android:padding="8dp">
+
+                <ToggleButton
+                    android:id="@+id/toggle_watchlist"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/button_watchlist"
+                    android:text=""
+                    android:textOff=""
+                    android:textOn="" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_button"
+                android:padding="8dp">
+
+                <ToggleButton
+                    android:id="@+id/toggle_favorite"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/button_favorite"
+                    android:text=""
+                    android:textOff=""
+                    android:textOn="" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/Details.HeaderDimens"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/m_overview"
-                style="@style/Details.HorizontalDimens"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_weight="1"
+                android:text="@string/details_overview"
+                android:textAppearance="@style/Details.Header" />
+
+            <TextView
+                android:id="@+id/m_overview_empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:fontFamily="@font/cc_montserrat_regular"
-                android:textColor="@color/mine_shaft_alpha_50"
-                android:textSize="14sp"
-                android:textStyle="normal"
+                android:text="Отсутствует"
+                android:textColor="@color/mine_shaft"
+                android:textSize="12sp"
                 android:visibility="gone" />
+        </LinearLayout>
 
-            <TextView
-                style="@style/Details.HeaderDimens"
-                android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/m_overview"
+            style="@style/Details.HorizontalDimens"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/cc_montserrat_regular"
+            android:textColor="@color/mine_shaft_alpha_50"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            android:visibility="gone" />
+
+        <TextView
+            style="@style/Details.HeaderDimens"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/details_facts"
+            android:textAppearance="@style/Details.Header" />
+
+        <TextView
+            android:id="@+id/m_original_title"
+            style="@style/Details.FactsStyle"
+            android:layout_marginTop="12dp"
+            android:textSize="14sp"
+            tools:text="John WicK: Chapter 3 - Parabellum" />
+
+        <TextView
+            android:id="@+id/m_status"
+            style="@style/Details.FactsStyle"
+            android:textSize="14sp"
+            tools:text="Выпущено" />
+
+        <TextView
+            android:id="@+id/m_runtime"
+            style="@style/Details.FactsStyle"
+            android:textSize="14sp"
+            tools:text="2 часа 11 минут" />
+
+
+        <TextView
+            android:id="@+id/m_original_language"
+            style="@style/Details.FactsStyle"
+            android:textSize="14sp"
+            tools:text="Английский" />
+
+        <TextView
+            android:id="@+id/m_release_date"
+            style="@style/Details.FactsStyle"
+            android:textSize="14sp"
+            tools:text="25 декабря 2019" />
+
+        <TextView
+            android:id="@+id/m_budget"
+            style="@style/Details.FactsStyle"
+            android:textSize="14sp"
+            tools:text="$55,000,000" />
+
+        <TextView
+            android:id="@+id/m_revenue"
+            style="@style/Details.FactsStyle"
+            android:textSize="14sp"
+            tools:text="$293,061,998" />
+
+        <TextView
+            android:id="@+id/m_companies"
+            style="@style/Details.FactsStyle"
+            android:textSize="14sp"
+            tools:text="Sony Pictures Television, High Bridge Productions, Gran Via Productions" />
+
+        <TextView
+            style="@style/Details.HeaderDimens"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/details_persons"
+            android:textAppearance="@style/Details.Header" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/m_persons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:layout_height="100dp"
+            tools:listitem="@layout/item_cast_profile_card_details" />
+
+        <TextView
+            style="@style/Details.HeaderDimens"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/details_images"
+            android:textAppearance="@style/Details.Header" />
+
+        <LinearLayout
+            android:id="@+id/images_block"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="16dp"
+            android:weightSum="1">
+
+            <androidx.cardview.widget.CardView
+                style="@style/BaseClickableCard"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/details_facts"
-                android:textAppearance="@style/Details.Header" />
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/m_original_title"
-                style="@style/Details.FactsStyle"
-                android:layout_marginTop="12dp"
-                android:textSize="14sp"
-                tools:text="John WicK: Chapter 3 - Parabellum" />
+                <ImageView
+                    android:id="@+id/m_backdrop_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="155dp"
+                    android:layout_gravity="center" />
+            </androidx.cardview.widget.CardView>
 
-            <TextView
-                android:id="@+id/m_status"
-                style="@style/Details.FactsStyle"
-                android:textSize="14sp"
-                tools:text="Выпущено" />
-
-            <TextView
-                android:id="@+id/m_runtime"
-                style="@style/Details.FactsStyle"
-                android:textSize="14sp"
-                tools:text="2 часа 11 минут" />
-
-
-            <TextView
-                android:id="@+id/m_original_language"
-                style="@style/Details.FactsStyle"
-                android:textSize="14sp"
-                tools:text="Английский" />
-
-            <TextView
-                android:id="@+id/m_release_date"
-                style="@style/Details.FactsStyle"
-                android:textSize="14sp"
-                tools:text="25 декабря 2019" />
-
-            <TextView
-                android:id="@+id/m_budget"
-                style="@style/Details.FactsStyle"
-                android:textSize="14sp"
-                tools:text="$55,000,000" />
-
-            <TextView
-                android:id="@+id/m_revenue"
-                style="@style/Details.FactsStyle"
-                android:textSize="14sp"
-                tools:text="$293,061,998" />
-
-            <TextView
-                android:id="@+id/m_companies"
-                style="@style/Details.FactsStyle"
-                android:textSize="14sp"
-                tools:text="Sony Pictures Television, High Bridge Productions, Gran Via Productions" />
-
-            <TextView
-                style="@style/Details.HeaderDimens"
-                android:layout_width="wrap_content"
+            <androidx.cardview.widget.CardView
+                style="@style/BaseClickableCard"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
-                android:text="@string/details_persons"
-                android:textAppearance="@style/Details.Header" />
+                android:layout_marginStart="8dp">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/m_persons"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:clipToPadding="false"
-                android:orientation="horizontal"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:layout_height="100dp"
-                tools:listitem="@layout/item_cast_profile_card_details" />
-
-            <TextView
-                style="@style/Details.HeaderDimens"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/details_images"
-                android:textAppearance="@style/Details.Header" />
-
-            <LinearLayout
-                android:id="@+id/images_block"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:clipToPadding="false"
-                android:orientation="horizontal"
-                android:paddingStart="16dp"
-                android:paddingTop="16dp"
-                android:paddingEnd="16dp"
-                android:weightSum="1">
-
-                <androidx.cardview.widget.CardView
-                    style="@style/BaseClickableCard"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_weight="1">
-
-                    <ImageView
-                        android:id="@+id/m_backdrop_image"
-                        android:layout_width="match_parent"
-                        android:layout_height="155dp"
-                        android:layout_gravity="center" />
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    style="@style/BaseClickableCard"
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp">
-
-                    <ImageView
-                        android:id="@+id/m_poster_image"
-                        android:layout_width="match_parent"
-                        android:layout_height="155dp"
-                        tools:ignore="ContentDescription" />
-                </androidx.cardview.widget.CardView>
-            </LinearLayout>
+                <ImageView
+                    android:id="@+id/m_poster_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="155dp"
+                    tools:ignore="ContentDescription" />
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

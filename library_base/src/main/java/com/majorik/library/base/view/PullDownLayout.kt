@@ -20,9 +20,14 @@ class PullDownLayout @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
-    private val dragger = ViewDragHelper.create(this, 1f, ViewDragCallback())
+    private val draggerCallback = ViewDragCallback()
+    private val dragger = ViewDragHelper.create(this, 1f, draggerCallback)
     private val minimumFlingVelocity = ViewConfiguration.get(context).scaledMinimumFlingVelocity
     private var callback: Callback? = null
+
+    fun dismissLayoutProgrammatically() {
+        draggerCallback.closeDownAndDismiss(this)
+    }
 
     fun setCallback(callback: Callback) {
         this.callback = callback
@@ -97,7 +102,7 @@ class PullDownLayout @JvmOverloads constructor(
             }
         }
 
-        private fun closeDownAndDismiss(root: View) {
+        fun closeDownAndDismiss(root: View) {
             val start = root.y
             val finish = root.measuredHeight.toFloat()
             val positionAnimator = ObjectAnimator.ofFloat(root, "y", start, finish)

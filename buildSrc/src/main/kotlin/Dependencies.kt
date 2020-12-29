@@ -34,7 +34,7 @@ object Libs {
 
     object Google {
         const val playCore = "com.google.android.play:core:1.7.3"
-        const val material = "com.google.android.material:material:1.2.1"
+        const val material = "com.google.android.material:material:1.3.0-alpha04"
     }
 
     object Kotlin {

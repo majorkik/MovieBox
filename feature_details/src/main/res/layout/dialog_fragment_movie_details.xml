@@ -14,68 +14,122 @@
         android:layout_height="match_parent"
         android:background="@color/colorWhite">
 
-        <LinearLayout
-            android:id="@+id/md_pager_layout"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg_landscape_placeholder_with_app_name"
+                tools:ignore="ContentDescription" />
 
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/md_image_slider"
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
                 android:clipToPadding="false" />
-        </LinearLayout>
+        </FrameLayout>
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/content_coordinator"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <FrameLayout
+                android:id="@+id/loading_stub_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="220dp">
+
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/linear_progress_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_gravity="top"
+                    android:indeterminate="true"
+                    app:indicatorColor="@color/colorWhite"
+                    app:trackColor="@color/sunglow" />
+
+                <ProgressBar
+                    android:id="@+id/circular_progress_bar"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:indeterminateTint="@color/sunglow" />
+            </FrameLayout>
+
             <include
                 android:id="@+id/layout_movie_details"
-                layout="@layout/layout_movie_details" />
+                layout="@layout/layout_movie_details"
+                android:visibility="gone"
+                tools:visibility="visible" />
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-        <androidx.cardview.widget.CardView
-            style="@style/BaseClickableCard"
+        <FrameLayout
+            android:id="@+id/btn_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/sunset_orange"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:layout_gravity="center"
+                android:background="@color/sunset_orange"
+                android:drawablePadding="8dp"
+                android:fontFamily="@font/cc_rubik_one"
+                android:gravity="center"
+                android:text="Обновить"
+                android:textAllCaps="true"
+                android:textColor="@color/colorWhite"
+                android:textSize="16sp"
+                app:drawableStartCompat="@drawable/ic_refresh_16" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/bottom_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="@color/colorWhite"
-            app:cardBackgroundColor="@color/colorWhite"
-            app:cardCornerRadius="0dp"
-            app:cardElevation="12sp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <FrameLayout
-                android:id="@+id/bottom_bar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_marginHorizontal="56dp"
+                android:drawablePadding="16dp"
+                android:fontFamily="@font/cc_rubik_one"
+                android:gravity="center"
+                android:text="@string/movie_details_screen_watch_online"
+                android:textAllCaps="true"
+                android:textColor="@color/mine_shaft"
+                android:textSize="18sp"
+                app:drawableEndCompat="@drawable/ic_play_with_border" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="56dp"
-                    android:layout_gravity="top|center_horizontal"
-                    android:drawableEnd="@drawable/ic_play_with_border"
-                    android:drawablePadding="16dp"
-                    android:fontFamily="@font/cc_rubik_one"
-                    android:gravity="center"
-                    android:text="@string/movie_details_screen_watch_online"
-                    android:textAllCaps="true"
-                    android:textColor="@color/mine_shaft"
-                    android:textSize="18sp" />
-
-                <ImageButton
-                    android:id="@+id/btn_extra_menu"
-                    android:layout_width="56dp"
-                    android:layout_height="56dp"
-                    android:layout_gravity="end|center_vertical"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:src="@drawable/ic_menu_black_yellow_with_bg" />
-            </FrameLayout>
-        </androidx.cardview.widget.CardView>
+            <ImageButton
+                android:id="@+id/btn_extra_menu"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_gravity="end|center_vertical"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_menu_black_yellow_with_bg" />
+        </FrameLayout>
     </FrameLayout>
 </com.majorik.library.base.view.PullDownLayout>
