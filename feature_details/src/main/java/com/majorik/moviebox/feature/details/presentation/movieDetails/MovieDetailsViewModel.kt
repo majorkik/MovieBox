@@ -1,6 +1,7 @@
 package com.majorik.moviebox.feature.details.presentation.movieDetails
 
 import androidx.lifecycle.viewModelScope
+import com.majorik.library.base.enums.TmdbMediaType
 import com.majorik.library.base.models.results.ResultWrapper
 import com.majorik.library.base.storage.CredentialsPrefsManager
 import com.majorik.library.base.viewmodel.BaseAction
@@ -64,7 +65,7 @@ internal class MovieDetailsViewModel(
             val id = stateLiveData.value?.details?.id
 
             if (id != null) {
-                val requestMarkAsFavorite = RequestMarkAsFavorite("movie", id, state)
+                val requestMarkAsFavorite = RequestMarkAsFavorite(TmdbMediaType.MOVIE.path, id, state)
                 val response =
                     accountRepository.markIsFavorite(requestMarkAsFavorite, tmdbSessionId)
 
@@ -116,7 +117,6 @@ internal class MovieDetailsViewModel(
         val isFavorite: Boolean? = null,
         val isWatchlist: Boolean? = null
     ) : BaseViewState
-
 
     /**
      * Actions
