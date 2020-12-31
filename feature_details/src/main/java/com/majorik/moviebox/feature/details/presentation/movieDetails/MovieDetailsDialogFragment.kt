@@ -2,6 +2,7 @@ package com.majorik.moviebox.feature.details.presentation.movieDetails
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
@@ -81,6 +82,7 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
             "images,credits,videos",
             "ru,en,null"
         )
+
         setClickListeners()
 
         observe(viewModel.stateLiveData, stateObserver)
@@ -107,23 +109,15 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
     }
 
     private fun setClickListeners() {
-        viewBinding.layoutMovieDetails.toggleFavorite.setOnClickListener {
-            viewModel.markMovieIsFavorite(viewBinding.layoutMovieDetails.toggleFavorite.isChecked)
-        }
-
-        viewBinding.layoutMovieDetails.toggleWatchlist.setOnClickListener {
-            viewModel.addMovieToWatchlist(viewBinding.layoutMovieDetails.toggleWatchlist.isChecked)
-        }
-
-        viewBinding.btnExtraMenu.setSafeOnClickListener {
-            openExtraMenuDialog()
-        }
-
-        viewBinding.bottomBar.setSafeOnClickListener {
-            openWatchOnlineDialog()
-        }
-
         viewBinding.run {
+            layoutMovieDetails.toggleFavorite.setOnClickListener { viewModel.markMovieIsFavorite(layoutMovieDetails.toggleFavorite.isChecked) }
+
+            layoutMovieDetails.toggleWatchlist.setOnClickListener { viewModel.addMovieToWatchlist(layoutMovieDetails.toggleWatchlist.isChecked) }
+
+            btnExtraMenu.setSafeOnClickListener { openExtraMenuDialog() }
+
+            bottomBar.setSafeOnClickListener { openWatchOnlineDialog() }
+
             btnRefresh.setSafeOnClickListener {
                 viewModel.fetchMovieDetails(
                     args.id,
@@ -136,13 +130,11 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
     }
 
     private fun openWatchOnlineDialog() {
-        val watchOnlineDialog = WatchOnlineDialog()
-        watchOnlineDialog.show(childFragmentManager, "watch_online_dialog")
+        findNavController().navigate(R.id.dialog_watch_online)
     }
 
     private fun openExtraMenuDialog() {
-        val extraMenuBottomDialog = MovieExtraMenuBottomDialog()
-        extraMenuBottomDialog.show(childFragmentManager, "extra_menu_dialog")
+        findNavController().navigate(R.id.dialog_movie_extras)
     }
 
     private fun setClickListenerForImages(images: Images) {

@@ -84,4 +84,14 @@
                 app:nullable="false" />
         </action>
     </dialog>
+
+    <dialog
+        android:id="@+id/dialog_watch_online"
+        android:name="com.majorik.moviebox.feature.details.presentation.watch_online.WatchOnlineDialog"
+        tools:layout="@layout/dialog_watch_online" />
+
+    <dialog
+        android:id="@+id/dialog_movie_extras"
+        android:name="com.majorik.moviebox.feature.details.presentation.watch_online.WatchOnlineDialog"
+        tools:layout="@layout/dialog_watch_online" />
 </navigation>
