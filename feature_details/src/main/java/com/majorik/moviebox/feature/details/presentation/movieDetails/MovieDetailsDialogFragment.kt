@@ -2,6 +2,7 @@ package com.majorik.moviebox.feature.details.presentation.movieDetails
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
@@ -25,6 +26,7 @@ import com.majorik.moviebox.feature.details.domain.tmdbModels.production.Product
 import com.majorik.moviebox.feature.details.domain.tmdbModels.video.Videos
 import com.majorik.moviebox.feature.details.presentation.adapters.CastAdapter
 import com.majorik.moviebox.feature.details.presentation.adapters.ImageSliderAdapter
+import com.majorik.moviebox.feature.details.presentation.recommendations.MovieRecommendationsDialogFragmentArgs
 import com.majorik.moviebox.feature.details.presentation.watch_online.WatchOnlineDialog
 import com.soywiz.klock.KlockLocale
 import com.stfalcon.imageviewer.StfalconImageViewer
@@ -44,24 +46,6 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
     private val viewModel: MovieDetailsViewModel by viewModel()
 
     private val args: MovieDetailsDialogFragmentArgs by navArgs()
-
-    private val stateObserver = Observer<MovieDetailsViewModel.ViewState> { state ->
-        viewBinding.circularProgressBar.isVisible = state.isLoading
-        viewBinding.linearProgressBar.isVisible = state.isLoading
-        viewBinding.btnRefresh.isVisible = state.networkError
-
-        if (state.details != null && state.isContentLoaded == true) {
-            setMovieDetails(state.details)
-        }
-
-        state.isFavorite?.let {
-            viewBinding.layoutMovieDetails.toggleFavorite.isChecked = it
-        }
-
-        state.isWatchlist?.let {
-            viewBinding.layoutMovieDetails.toggleWatchlist.isChecked = it
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,7 +69,25 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
 
         setClickListeners()
 
-        observe(viewModel.stateLiveData, stateObserver)
+        lifecycleScope.launchWhenStarted {
+            viewModel.stateLiveData.collectLatest { state ->
+                viewBinding.circularProgressBar.isVisible = state.isLoading
+                viewBinding.linearProgressBar.isVisible = state.isLoading
+                viewBinding.btnRefresh.isVisible = state.networkError
+
+                if (state.details != null && state.isContentLoaded == true) {
+                    setMovieDetails(state.details)
+                }
+
+                state.isFavorite?.let {
+                    viewBinding.layoutMovieDetails.toggleFavorite.isChecked = it
+                }
+
+                state.isWatchlist?.let {
+                    viewBinding.layoutMovieDetails.toggleWatchlist.isChecked = it
+                }
+            }
+        }
     }
 
     private fun updateMargins() {
@@ -134,7 +136,10 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
     }
 
     private fun openExtraMenuDialog() {
-        findNavController().navigate(R.id.dialog_movie_extras)
+        findNavController().navigate(
+            R.id.dialog_recommendations,
+            MovieRecommendationsDialogFragmentArgs(args.id).toBundle()
+        )
     }
 
     private fun setClickListenerForImages(images: Images) {

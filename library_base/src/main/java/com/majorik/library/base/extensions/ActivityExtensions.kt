@@ -97,22 +97,6 @@ fun Context.showToastMessage(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_LONG).show()
 }
 
-// TODO remove this
-@TargetApi(23)
-fun AppCompatActivity.setStatusBarModeForApi24(isDark: Boolean) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-        var flags: Int = window.decorView.systemUiVisibility
-
-        flags = if (isDark) {
-            flags and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
-        } else {
-            View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-        }
-
-        window.decorView.systemUiVisibility = flags
-    }
-}
-
 fun FragmentActivity.setStatusBarMode(isDark: Boolean) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
         var flags: Int = window.decorView.systemUiVisibility

@@ -27,6 +27,17 @@
                 app:argType="integer"
                 app:nullable="false" />
         </action>
+
+        <action
+            android:id="@+id/action_to_recommendations"
+            app:destination="@+id/dialog_recommendations">
+
+            <argument
+                android:name="movie_id"
+                android:defaultValue="0"
+                app:argType="integer"
+                app:nullable="false" />
+        </action>
     </dialog>
 
     <dialog
@@ -94,4 +105,15 @@
         android:id="@+id/dialog_movie_extras"
         android:name="com.majorik.moviebox.feature.details.presentation.watch_online.WatchOnlineDialog"
         tools:layout="@layout/dialog_watch_online" />
+
+    <dialog
+        android:id="@+id/dialog_recommendations"
+        android:name="com.majorik.moviebox.feature.details.presentation.recommendations.MovieRecommendationsDialogFragment">
+
+        <argument
+            android:name="movie_id"
+            android:defaultValue="0"
+            app:argType="integer"
+            app:nullable="false" />
+    </dialog>
 </navigation>

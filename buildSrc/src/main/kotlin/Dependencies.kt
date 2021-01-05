@@ -4,9 +4,9 @@ import Versions.coroutines
 import Versions.kotlin
 
 object Versions {
-    const val androidGradle = "7.0.0-alpha02"
+    const val androidGradle = "7.0.0-alpha03"
 
-    const val kotlin = "1.4.20"
+    const val kotlin = "1.4.21"
     const val coroutines = "1.4.2"
 
     const val navSafeArgs = "2.3.0"
@@ -73,6 +73,22 @@ object Libs {
             const val navUiKtx = "androidx.navigation:navigation-ui-ktx:$navVersion"
             const val navDynamicFragment = "androidx.navigation:navigation-dynamic-features-fragment:$navVersion"
         }
+
+        object Compose {
+            const val version = "1.0.0-alpha09"
+
+            const val animation = "androidx.compose.animation:animation:$version"
+            const val foundation = "androidx.compose.foundation:foundation:$version"
+            const val layout = "androidx.compose.foundation:foundation-layout:$version"
+            const val iconsExtended = "androidx.compose.material:material-icons-extended:$version"
+            const val material = "androidx.compose.material:material:$version"
+            const val runtime = "androidx.compose.runtime:runtime:$version"
+            const val tooling = "androidx.compose.ui:ui-tooling:$version"
+            const val ui = "androidx.compose.ui:ui:$version"
+            const val uiUtil = "androidx.compose.ui:ui-util:$version"
+
+            const val paging = "androidx.paging:paging-compose:1.0.0-alpha04"
+        }
     }
 
     object Loggers {
@@ -122,5 +138,12 @@ object Libs {
         const val viewBindingDelegates = "com.github.kirich1409:ViewBindingPropertyDelegate:1.3.1"
         const val viewBindingDelegatesNoReflect = "com.kirich1409.viewbindingpropertydelegate:vbpd-noreflection:1.3.1"
         const val rangeSeekBar = "com.github.Jay-Goo:RangeSeekBar:3.0.0"
+    }
+
+    object Accompanist {
+        private const val version = "0.4.1"
+
+        const val coil = "dev.chrisbanes.accompanist:accompanist-coil:$version"
+        const val insets = "dev.chrisbanes.accompanist:accompanist-insets:$version"
     }
 }

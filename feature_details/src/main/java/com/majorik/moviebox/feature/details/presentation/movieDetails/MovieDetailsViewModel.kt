@@ -6,6 +6,7 @@ import com.majorik.library.base.models.results.ResultWrapper
 import com.majorik.library.base.storage.CredentialsPrefsManager
 import com.majorik.library.base.viewmodel.BaseAction
 import com.majorik.library.base.viewmodel.BaseViewModel
+import com.majorik.library.base.viewmodel.BaseViewModelFlow
 import com.majorik.library.base.viewmodel.BaseViewState
 import com.majorik.moviebox.feature.details.data.repositories.AccountRepository
 import com.majorik.moviebox.feature.details.data.repositories.MovieRepository
@@ -19,7 +20,7 @@ internal class MovieDetailsViewModel(
     private val movieRepository: MovieRepository,
     private val accountRepository: AccountRepository,
     credentialsManager: CredentialsPrefsManager
-) : BaseViewModel<MovieDetailsViewModel.ViewState, MovieDetailsViewModel.Action>(ViewState()) {
+) : BaseViewModelFlow<MovieDetailsViewModel.ViewState, MovieDetailsViewModel.Action>(ViewState()) {
 
     private val tmdbSessionId = credentialsManager.getTmdbSessionID() ?: ""
 

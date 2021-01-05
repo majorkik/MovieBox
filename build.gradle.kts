@@ -48,6 +48,15 @@ subprojects {
 //        config = files("${project.rootDir}/detekt.yml")
 //        parallel = true
 //    }
+
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+        kotlinOptions {
+            jvmTarget = "1.8"
+            // Opt-in to experimental compose APIs
+            freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+            freeCompilerArgs += "-Xallow-jvm-ir-dependencies"
+        }
+    }
 }
 
 // JVM target applied to all Kotlin tasks across all sub-projects

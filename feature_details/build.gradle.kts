@@ -18,6 +18,7 @@ android {
     }
 
     buildFeatures.viewBinding = true
+    buildFeatures.compose = true
 
     buildTypes {
         getByName(BuildType.RELEASE) {
@@ -47,14 +48,9 @@ android {
         getByName("test").java.srcDir("${project.rootDir}/app/build/generated/source/navigation-args/debug")
     }
 
-    // Removes the need to mock need to mock classes that may be irrelevant from test perspective
-    testOptions {
-        unitTests.isReturnDefaultValues = TestOptions.IS_RETURN_DEFAULT_VALUES
-    }
-
     composeOptions {
-        kotlinCompilerVersion = "1.4.20"
-        kotlinCompilerExtensionVersion = "1.0.0-alpha08"
+        kotlinCompilerVersion = Versions.kotlin
+        kotlinCompilerExtensionVersion = Libs.AndroidX.Compose.version
     }
 }
 

@@ -2,6 +2,7 @@ package com.majorik.moviebox.feature.details.presentation
 
 import com.majorik.moviebox.feature.details.presentation.movieDetails.MovieDetailsViewModel
 import com.majorik.moviebox.feature.details.presentation.person_details.PersonDetailsViewModel
+import com.majorik.moviebox.feature.details.presentation.recommendations.MovieRecommendationsViewModel
 import com.majorik.moviebox.feature.details.presentation.seasonDetails.SeasonDetailsViewModel
 import com.majorik.moviebox.feature.details.presentation.tvDetails.TVDetailsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -12,4 +13,5 @@ val presentationModule = module {
     viewModel { TVDetailsViewModel(get(), get(), get()) }
     viewModel { PersonDetailsViewModel(get()) }
     viewModel { SeasonDetailsViewModel(get()) }
+    viewModel { MovieRecommendationsViewModel(get()) }
 }

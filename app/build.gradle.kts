@@ -68,21 +68,13 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerVersion = "1.4.20"
-        kotlinCompilerExtensionVersion = "1.0.0-alpha08"
+        kotlinCompilerVersion = Versions.kotlin
+        kotlinCompilerExtensionVersion = Libs.AndroidX.Compose.version
     }
 }
 
 dependencies {
     api(project(ModuleDependency.libraryBase))
-
-    implementation("androidx.compose.runtime:runtime:1.0.0-alpha08")
-    implementation("androidx.compose.ui:ui-tooling:1.0.0-alpha08")
-    implementation("androidx.compose.ui:ui:1.0.0-alpha08")
-    implementation("androidx.compose.material:material:1.0.0-alpha08")
-    implementation("androidx.compose.compiler:compiler:1.0.0-alpha08")
-    implementation("androidx.compose.animation:animation:1.0.0-alpha08")
-    implementation("androidx.compose.foundation:foundation:1.0.0-alpha08")
 
     implementation(Libs.AndroidX.multidex)
     implementation(Libs.Google.playCore)

@@ -3,6 +3,7 @@ package com.majorik.moviebox.feature.details.data.api
 import com.majorik.moviebox.feature.details.domain.tmdbModels.ApiResponse
 import com.majorik.moviebox.feature.details.domain.tmdbModels.account.AccountStates
 import com.majorik.moviebox.feature.details.domain.tmdbModels.movie.MovieDetails
+import com.majorik.moviebox.feature.details.domain.tmdbModels.movie.MovieResponse
 import com.majorik.moviebox.feature.details.domain.tmdbModels.person.PersonDetails
 import com.majorik.moviebox.feature.details.domain.tmdbModels.request.RequestAddToWatchlist
 import com.majorik.moviebox.feature.details.domain.tmdbModels.request.RequestMarkAsFavorite
@@ -79,4 +80,17 @@ interface DetailsRetrofitService {
         @Body requestAddToWatchlist: RequestAddToWatchlist,
         @Query("session_id") sessionId: String
     ): ApiResponse
+
+    //todo после удалить
+
+
+    // Movies
+
+    @GET("movie/{movie_id}/recommendations")
+    suspend fun getRecommendations(
+        @Path("movie_id") movieId: Int,
+        @Query("language") language: String?,
+        @Query("page") page: Int?,
+        @Query("region") region: String?
+    ): MovieResponse
 }

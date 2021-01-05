@@ -78,5 +78,4 @@
     <string name="navigation_profile_screen_logout">Выход</string>
     <string name="profile_screen_auth_button_logout">Выход</string>
     <string name="profile_screen_auth_button_log_in">Вход в аккаунт</string>
-
 </resources>

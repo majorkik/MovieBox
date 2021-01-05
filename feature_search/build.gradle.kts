@@ -17,6 +17,7 @@ android {
         versionName = AndroidConfig.versionName
     }
 
+    buildFeatures.compose = true
     buildFeatures.viewBinding = true
 
     buildTypes {
@@ -48,8 +49,8 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerVersion = "1.4.20"
-        kotlinCompilerExtensionVersion = "1.0.0-alpha08"
+        kotlinCompilerVersion = Versions.kotlin
+        kotlinCompilerExtensionVersion = Libs.AndroidX.Compose.version
     }
 }
 

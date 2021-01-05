@@ -67,7 +67,7 @@
 
     <!--    Extra menu-->
     <string name="details_extra_menu_title">Дополнительно</string>
-    
+
     <string name="details_extra_menu_will_watch">Добавить в Буду смотреть</string>
     <string name="details_extra_menu_add_to_favorites">Добавить в избраноое</string>
     <string name="details_extra_menu_recommendation_and_similar">Рекомендации и похожее</string>
@@ -84,6 +84,9 @@
     <string name="details_watch_online_add_site">Добавить сайт</string>
     <string name="details_watch_online_google_search">Найти в Google</string>
     <string name="details_watch_online_title">Где посмотреть</string>
+
+    <!--    Рекомендации-->
+    <string name="recommendations_screen_title">Рекомендации</string>
 
     <!--    Plurals-->
     <plurals name="minutes">
