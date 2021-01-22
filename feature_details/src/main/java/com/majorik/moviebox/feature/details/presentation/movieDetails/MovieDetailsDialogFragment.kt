@@ -5,7 +5,9 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
+import androidx.core.view.updatePadding
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -26,6 +28,7 @@ import com.majorik.moviebox.feature.details.domain.tmdbModels.production.Product
 import com.majorik.moviebox.feature.details.domain.tmdbModels.video.Videos
 import com.majorik.moviebox.feature.details.presentation.adapters.CastAdapter
 import com.majorik.moviebox.feature.details.presentation.adapters.ImageSliderAdapter
+import com.majorik.moviebox.feature.details.presentation.movieDetails.MovieExtraMenuBottomDialog.Companion.CODE_RECOMMENDATIONS
 import com.majorik.moviebox.feature.details.presentation.recommendations.MovieRecommendationsDialogFragmentArgs
 import com.majorik.moviebox.feature.details.presentation.watch_online.WatchOnlineDialog
 import com.soywiz.klock.KlockLocale
@@ -68,7 +71,21 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
         )
 
         setClickListeners()
+        setViewStateObserver()
 
+        setFragmentResultListener(MovieExtraMenuBottomDialog.KEY_EXTRAS_SELECTED) { resultKey: String, bundle: Bundle ->
+            when (bundle["code"]) {
+                CODE_RECOMMENDATIONS -> {
+                    findNavController().navigate(
+                        R.id.dialog_recommendations,
+                        MovieRecommendationsDialogFragmentArgs(args.id).toBundle()
+                    )
+                }
+            }
+        }
+    }
+
+    private fun setViewStateObserver() {
         lifecycleScope.launchWhenStarted {
             viewModel.stateLiveData.collectLatest { state ->
                 viewBinding.circularProgressBar.isVisible = state.isLoading
@@ -93,9 +110,10 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
     private fun updateMargins() {
         viewBinding.root.doOnApplyWindowInsets { _, insets, _ ->
             lifecycleScope.launch {
-                viewBinding.bottomBar.updateMargin(bottom = insets.systemWindowInsetBottom)
+                viewBinding.bottomBar.updatePadding(bottom = insets.systemWindowInsetBottom)
                 viewBinding.contentCoordinator.updateMargin(top = insets.systemWindowInsetTop)
                 viewBinding.loadingStubLayout.updateMargin(top = 220.px() - insets.systemWindowInsetTop)
+                viewBinding.layoutMovieDetails.root.updatePadding(bottom = insets.systemWindowInsetBottom + viewBinding.bottomBar.measuredHeight)
 
                 viewBinding.root.awaitNextLayout()
 
@@ -136,10 +154,7 @@ class MovieDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_movie
     }
 
     private fun openExtraMenuDialog() {
-        findNavController().navigate(
-            R.id.dialog_recommendations,
-            MovieRecommendationsDialogFragmentArgs(args.id).toBundle()
-        )
+        findNavController().navigate(R.id.dialog_movie_extras)
     }
 
     private fun setClickListenerForImages(images: Images) {

@@ -4,7 +4,7 @@ import Versions.coroutines
 import Versions.kotlin
 
 object Versions {
-    const val androidGradle = "7.0.0-alpha03"
+    const val androidGradle = "7.0.0-alpha04"
 
     const val kotlin = "1.4.21"
     const val coroutines = "1.4.2"
@@ -47,7 +47,7 @@ object Libs {
         const val activityKTX = "androidx.activity:activity-ktx:1.2.0-alpha04"
         const val fragmentKTX = "androidx.fragment:fragment-ktx:1.3.0-alpha04"
         const val vectorDrawable = "androidx.vectordrawable:vectordrawable:1.1.0"
-        const val pagingLibrary3 = "androidx.paging:paging-runtime:3.0.0-alpha06"
+        const val pagingLibrary3 = "androidx.paging:paging-runtime:3.0.0-alpha12"
         const val recyclerView = "androidx.recyclerview:recyclerview:1.2.0-alpha03"
         const val viewPager2 = "androidx.viewpager2:viewpager2:1.0.0"
         const val annotation = "androidx.annotation:annotation:1.1.0"
@@ -75,7 +75,7 @@ object Libs {
         }
 
         object Compose {
-            const val version = "1.0.0-alpha09"
+            const val version = "1.0.0-alpha10"
 
             const val animation = "androidx.compose.animation:animation:$version"
             const val foundation = "androidx.compose.foundation:foundation:$version"
@@ -87,7 +87,7 @@ object Libs {
             const val ui = "androidx.compose.ui:ui:$version"
             const val uiUtil = "androidx.compose.ui:ui-util:$version"
 
-            const val paging = "androidx.paging:paging-compose:1.0.0-alpha04"
+            const val paging = "androidx.paging:paging-compose:1.0.0-alpha05"
         }
     }
 

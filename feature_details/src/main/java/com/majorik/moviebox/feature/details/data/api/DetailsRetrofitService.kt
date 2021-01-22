@@ -86,9 +86,9 @@ interface DetailsRetrofitService {
 
     // Movies
 
-    @GET("movie/{movie_id}/recommendations")
+    @GET("movie/popular")
     suspend fun getRecommendations(
-        @Path("movie_id") movieId: Int,
+        @Query("movie_id") movieId: Int,
         @Query("language") language: String?,
         @Query("page") page: Int?,
         @Query("region") region: String?

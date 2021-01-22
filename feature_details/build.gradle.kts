@@ -58,4 +58,6 @@ dependencies {
     implementation(project(ModuleDependency.featureNavigation))
     implementation(project(ModuleDependency.featureSearch))
     implementation(project(ModuleDependency.featureCollections))
+
+    implementation(Libs.AndroidX.Compose.paging)
 }

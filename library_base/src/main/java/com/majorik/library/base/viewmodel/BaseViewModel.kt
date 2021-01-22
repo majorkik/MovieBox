@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import com.majorik.base.BuildConfig
 import com.majorik.library.base.extensions.asLiveData
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlin.properties.Delegates
 

@@ -103,8 +103,8 @@
 
     <dialog
         android:id="@+id/dialog_movie_extras"
-        android:name="com.majorik.moviebox.feature.details.presentation.watch_online.WatchOnlineDialog"
-        tools:layout="@layout/dialog_watch_online" />
+        android:name="com.majorik.moviebox.feature.details.presentation.movieDetails.MovieExtraMenuBottomDialog"
+        tools:layout="@layout/dialog_movie_extra_menu" />
 
     <dialog
         android:id="@+id/dialog_recommendations"

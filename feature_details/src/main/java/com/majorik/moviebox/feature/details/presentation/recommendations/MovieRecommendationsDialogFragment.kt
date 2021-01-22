@@ -5,31 +5,43 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
+import android.widget.Space
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.onActive
+import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight.Companion.W500
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.navArgs
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.items
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.common.resources.montserratFamily
 import com.majorik.library.base.common.lists.LazyGridFor
 import com.majorik.library.base.common.toolbar.SimpleToolbar
 import com.majorik.moviebox.feature.details.R
 import com.majorik.moviebox.feature.details.domain.tmdbModels.movie.Movie
+import com.orhanobut.logger.Logger
 import dev.chrisbanes.accompanist.coil.CoilImage
 import dev.chrisbanes.accompanist.insets.ProvideWindowInsets
 import dev.chrisbanes.accompanist.insets.statusBarsPadding
@@ -68,18 +80,47 @@ class MovieRecommendationsDialogFragment : DialogFragment() {
                                 modifier = Modifier.statusBarsPadding(),
                                 backPressedClick = { dismiss() })
 
-                            val data = viewModel.stateLiveData.collectAsState()
+//                            val data = viewModel.stateLiveData.collectAsState()
 
-                            WithPageState(pageState = data) {
-                                LazyGridFor(data.value.items) { movie, index ->
-                                    onActive { //this block will make sure this is triggered only once when renderring item on screen
-                                        if (index == data.value.items.lastIndex) viewModel.nextPage()
-                                    }
-                                    GridItem(movie = movie) {
-                                        //handle click
+//                            WithPageState(pageState = data) {
+//                                LazyGridFor(data.value.items) { movie, index ->
+//                                    onActive { //this block will make sure this is triggered only once when renderring item on screen
+//                                        if (index == data.value.items.lastIndex) viewModel.nextPage()
+//                                    }
+//                                    GridItem(movie = movie) {
+//                                        //handle click
+//                                    }
+//                                }
+//                            }
+
+
+                            val items = viewModel.moviesFlow.collectAsLazyPagingItems()
+
+                            LazyColumn {
+                                fakeGridItems(
+                                    lazyPagingItems = items,
+                                    columns = 3,
+                                    contentPadding = PaddingValues(4.dp),
+                                    verticalItemPadding = 2.dp,
+                                    horizontalItemPadding = 2.dp
+                                ) { entry ->
+                                    if (entry != null) {
+                                        GridItem(movie = entry, onClick = {})
                                     }
                                 }
+
+                                spacerItem(16.dp)
+
+                                items(items) { movie ->
+                                }
                             }
+
+
+//                            LazyColumn {
+//                                items(items) { movie ->
+//                                    GridItem(movie = movie!!) {}
+//                                }
+//                            }
                         }
                     }
                 }
@@ -87,7 +128,7 @@ class MovieRecommendationsDialogFragment : DialogFragment() {
         }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel.fetchMovies()
+//        viewModel.fetchMovies()
     }
 }
 
@@ -159,7 +200,10 @@ fun GridItem(movie: Movie, onClick: () -> Unit) {
     ) {
         Card(
             elevation = 0.dp,
-            modifier = Modifier.fillMaxWidth().aspectRatio(0.666f).clickable { onClick() },
+            modifier = Modifier.fillMaxWidth()
+                .aspectRatio(0.666f)
+                .clip(RoundedCornerShape(8.dp))
+                .clickable { onClick() },
             shape = RoundedCornerShape(8.dp)
         ) {
             CoilImage(
@@ -180,12 +224,67 @@ fun GridItem(movie: Movie, onClick: () -> Unit) {
     }
 }
 
-//@Preview(name = "Empty text", widthDp = 350, heightDp = 850, backgroundColor = 0xFFFFFF)
-//@Composable
-//fun PreviewEmptyText() {
-//    Surface(color = Color.White, modifier = Modifier.fillMaxSize()) {
-//        Box(contentAlignment = Center) {
+@Preview(name = "Empty text", widthDp = 350, heightDp = 850, backgroundColor = 0xFFFFFF)
+@Composable
+fun PreviewEmptyText() {
+    Surface(color = Color.White, modifier = Modifier.fillMaxSize()) {
+        Box(contentAlignment = Center) {
 //            EmptyText(text = "example Empty text")
-//        }
-//    }
-//}
+        }
+    }
+}
+
+fun LazyListScope.spacerItem(height: Dp) {
+    item {
+        Spacer(Modifier.preferredHeight(height).fillParentMaxWidth())
+    }
+}
+
+/**
+ * Displays a 'fake' grid using [LazyColumn]'s DSL. It's fake in that we just we add individual
+ * column items, with a inner fake row.
+ */
+fun <T : Any> LazyListScope.fakeGridItems(
+    lazyPagingItems: LazyPagingItems<T>,
+    columns: Int,
+    contentPadding: PaddingValues = PaddingValues(),
+    horizontalItemPadding: Dp = 0.dp,
+    verticalItemPadding: Dp = 0.dp,
+    itemContent: @Composable (T?) -> Unit
+) {
+    val rows = when {
+        lazyPagingItems.itemCount % columns == 0 -> lazyPagingItems.itemCount / columns
+        else -> (lazyPagingItems.itemCount / columns) + 1
+    }
+
+    Logger.d("rows: $rows, items: ${lazyPagingItems.itemCount}")
+
+    for (row in 0 until rows) {
+        if (row == 0) spacerItem(contentPadding.top)
+
+        item {
+            Row(
+                Modifier.fillMaxWidth()
+                    .padding(start = contentPadding.start, end = contentPadding.end)
+            ) {
+                for (column in 0 until columns) {
+                    Box(modifier = Modifier.weight(1f)) {
+                        val index = (row * columns) + column
+                        if (index < lazyPagingItems.itemCount) {
+                            itemContent(lazyPagingItems[index])
+                        }
+                    }
+                    if (column < columns - 1) {
+                        Spacer(modifier = Modifier.preferredWidth(horizontalItemPadding))
+                    }
+                }
+            }
+        }
+
+        if (row < rows - 1) {
+            spacerItem(verticalItemPadding)
+        } else {
+            spacerItem(contentPadding.bottom)
+        }
+    }
+}

@@ -87,6 +87,7 @@
 
     <!--    Рекомендации-->
     <string name="recommendations_screen_title">Рекомендации</string>
+    <string name="details_screen_refresh">Обновить</string>
 
     <!--    Plurals-->
     <plurals name="minutes">

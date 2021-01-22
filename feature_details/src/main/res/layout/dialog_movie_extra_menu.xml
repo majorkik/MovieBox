@@ -123,6 +123,7 @@
 
         <androidx.cardview.widget.CardView
             style="@style/BaseClickableCard"
+            android:id="@+id/btn_recommendations"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
@@ -134,13 +135,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
                 android:layout_marginVertical="8dp"
-                android:drawableStart="@drawable/ic_fire_with_bg_32"
                 android:drawablePadding="8dp"
                 android:fontFamily="@font/cc_montserrat_semibold"
                 android:gravity="center_vertical"
                 android:text="@string/details_extra_menu_recommendation_and_similar"
                 android:textColor="@color/mine_shaft"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                app:drawableStartCompat="@drawable/ic_fire_with_bg_32" />
 
         </androidx.cardview.widget.CardView>
 

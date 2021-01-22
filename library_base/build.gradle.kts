@@ -115,4 +115,6 @@ dependencies {
 
     api(Libs.Accompanist.coil)
     api(Libs.Accompanist.insets)
+
+//    api(Libs.AndroidX.Compose.paging)
 }
