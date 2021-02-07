@@ -29,8 +29,11 @@ class SeasonDetailsActivity : AppCompatActivity() {
             )
         }
 
-        seasonDetailsViewModel.seasonDetailsLiveData.observe(this, {
-            viewBinding.tvEpisodesList.setAdapterWithFixedSize(EpisodeAdapter(it.episodes))
-        })
+        seasonDetailsViewModel.seasonDetailsLiveData.observe(
+            this,
+            {
+                viewBinding.tvEpisodesList.setAdapterWithFixedSize(EpisodeAdapter(it.episodes))
+            }
+        )
     }
 }

@@ -81,8 +81,7 @@ interface DetailsRetrofitService {
         @Query("session_id") sessionId: String
     ): ApiResponse
 
-    //todo после удалить
-
+    // todo после удалить
 
     // Movies
 

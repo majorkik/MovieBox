@@ -4,12 +4,12 @@ import Versions.coroutines
 import Versions.kotlin
 
 object Versions {
-    const val androidGradle = "7.0.0-alpha04"
+    const val androidGradle = "7.0.0-alpha05"
 
-    const val kotlin = "1.4.21"
+    const val kotlin = "1.4.21-2"
     const val coroutines = "1.4.2"
 
-    const val navSafeArgs = "2.3.0"
+    const val navSafeArgs = "2.3.3"
 
     const val gradleVersions = "0.36.0"
     const val ktlint = "9.2.1"
@@ -34,7 +34,7 @@ object Libs {
 
     object Google {
         const val playCore = "com.google.android.play:core:1.7.3"
-        const val material = "com.google.android.material:material:1.3.0-alpha04"
+        const val material = "com.google.android.material:material:1.3.0"
     }
 
     object Kotlin {
@@ -47,7 +47,7 @@ object Libs {
         const val activityKTX = "androidx.activity:activity-ktx:1.2.0-alpha04"
         const val fragmentKTX = "androidx.fragment:fragment-ktx:1.3.0-alpha04"
         const val vectorDrawable = "androidx.vectordrawable:vectordrawable:1.1.0"
-        const val pagingLibrary3 = "androidx.paging:paging-runtime:3.0.0-alpha12"
+        const val pagingLibrary3 = "androidx.paging:paging-runtime:3.0.0-alpha13"
         const val recyclerView = "androidx.recyclerview:recyclerview:1.2.0-alpha03"
         const val viewPager2 = "androidx.viewpager2:viewpager2:1.0.0"
         const val annotation = "androidx.annotation:annotation:1.1.0"
@@ -55,7 +55,7 @@ object Libs {
         const val appCompat = "androidx.appcompat:appcompat:1.2.0"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.4"
         const val coordinatorLayout = "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
-        const val coreKTX = "androidx.core:core-ktx:1.3.1"
+        const val coreKTX = "androidx.core:core-ktx:1.3.2"
 
         object Lifecycle {
             private const val version = "2.2.0"
@@ -67,7 +67,7 @@ object Libs {
         }
 
         object Navigation {
-            private const val navVersion = "2.3.1"
+            private const val navVersion = "2.3.3"
 
             const val navFragmentKTX = "androidx.navigation:navigation-fragment-ktx:$navVersion"
             const val navUiKtx = "androidx.navigation:navigation-ui-ktx:$navVersion"
@@ -75,7 +75,7 @@ object Libs {
         }
 
         object Compose {
-            const val version = "1.0.0-alpha10"
+            const val version = "1.0.0-alpha11"
 
             const val animation = "androidx.compose.animation:animation:$version"
             const val foundation = "androidx.compose.foundation:foundation:$version"
@@ -87,7 +87,7 @@ object Libs {
             const val ui = "androidx.compose.ui:ui:$version"
             const val uiUtil = "androidx.compose.ui:ui-util:$version"
 
-            const val paging = "androidx.paging:paging-compose:1.0.0-alpha05"
+            const val paging = "androidx.paging:paging-compose:1.0.0-alpha06"
         }
     }
 
@@ -97,7 +97,7 @@ object Libs {
     }
 
     object Koin {
-        private const val version = "2.1.6"
+        private const val version = "2.2.2"
 
         const val koinScope = "org.koin:koin-androidx-scope:$version"
         const val koinViewModel = "org.koin:koin-androidx-viewmodel:$version"
@@ -131,17 +131,17 @@ object Libs {
     object Others {
         const val stfalconImageViewer = "com.github.stfalcon:stfalcon-imageviewer:1.0.10"
         const val klock = "com.soywiz.korlibs.klock:klock:1.12.0"
-        const val lottie = "com.airbnb.android:lottie:3.4.1"
+        const val lottie = "com.airbnb.android:lottie:3.6.0"
         const val localization = "com.akexorcist:localization:1.2.6"
-        const val coil = "io.coil-kt:coil:1.1.0"
+        const val coil = "io.coil-kt:coil:1.1.1"
         const val recyclerViewAnimations = "jp.wasabeef:recyclerview-animators:4.0.1"
-        const val viewBindingDelegates = "com.github.kirich1409:ViewBindingPropertyDelegate:1.3.1"
-        const val viewBindingDelegatesNoReflect = "com.kirich1409.viewbindingpropertydelegate:vbpd-noreflection:1.3.1"
+        const val viewBindingDelegates = "com.github.kirich1409:ViewBindingPropertyDelegate:1.4.1"
+        const val viewBindingDelegatesNoReflect = "com.kirich1409.viewbindingpropertydelegate:vbpd-noreflection:1.4.1"
         const val rangeSeekBar = "com.github.Jay-Goo:RangeSeekBar:3.0.0"
     }
 
     object Accompanist {
-        private const val version = "0.4.1"
+        private const val version = "0.5.0"
 
         const val coil = "dev.chrisbanes.accompanist:accompanist-coil:$version"
         const val insets = "dev.chrisbanes.accompanist:accompanist-insets:$version"

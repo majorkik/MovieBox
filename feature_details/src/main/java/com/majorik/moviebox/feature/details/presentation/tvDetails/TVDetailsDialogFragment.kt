@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -138,31 +137,37 @@ class TVDetailsDialogFragment : DialogFragment(R.layout.dialog_fragment_tv_detai
 
         tvDetailsViewModel.tvStatesLiveData.observe(this, { it?.apply { setAccountState(this) } })
 
-        tvDetailsViewModel.responseFavoriteLiveData.observe(this, {
-            if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
-                Toast.makeText(context, "Сериал успешно добавлен в избранное", Toast.LENGTH_LONG)
-                    .show()
-            } else {
-                Toast.makeText(context, "Неудалось добавить сериал в избранное", Toast.LENGTH_LONG)
-                    .show()
+        tvDetailsViewModel.responseFavoriteLiveData.observe(
+            this,
+            {
+                if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
+                    Toast.makeText(context, "Сериал успешно добавлен в избранное", Toast.LENGTH_LONG)
+                        .show()
+                } else {
+                    Toast.makeText(context, "Неудалось добавить сериал в избранное", Toast.LENGTH_LONG)
+                        .show()
+                }
             }
-        })
+        )
 
-        tvDetailsViewModel.responseWatchlistLiveData.observe(this, {
-            if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
-                Toast.makeText(
-                    context,
-                    "Сериал успешно добавлен в 'Буду смотреть'",
-                    Toast.LENGTH_LONG
-                ).show()
-            } else {
-                Toast.makeText(
-                    context,
-                    "Неудалось добавить сериал в 'Буду смотреть'",
-                    Toast.LENGTH_LONG
-                ).show()
+        tvDetailsViewModel.responseWatchlistLiveData.observe(
+            this,
+            {
+                if (it.statusCode == 1 || it.statusCode == 12 || it.statusCode == 13) {
+                    Toast.makeText(
+                        context,
+                        "Сериал успешно добавлен в 'Буду смотреть'",
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else {
+                    Toast.makeText(
+                        context,
+                        "Неудалось добавить сериал в 'Буду смотреть'",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
             }
-        })
+        )
     }
 
     private fun setAccountState(accountStates: AccountStates) {

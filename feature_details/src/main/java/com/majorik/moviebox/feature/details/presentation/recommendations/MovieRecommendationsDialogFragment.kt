@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
-import android.widget.Space
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -14,8 +13,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.onActive
 import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
@@ -37,7 +34,6 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.majorik.library.base.constants.UrlConstants
 import com.majorik.library.base.common.resources.montserratFamily
-import com.majorik.library.base.common.lists.LazyGridFor
 import com.majorik.library.base.common.toolbar.SimpleToolbar
 import com.majorik.moviebox.feature.details.R
 import com.majorik.moviebox.feature.details.domain.tmdbModels.movie.Movie
@@ -78,7 +74,8 @@ class MovieRecommendationsDialogFragment : DialogFragment() {
                                 heightDp = 56,
                                 title = context.getString(R.string.recommendations_screen_title),
                                 modifier = Modifier.statusBarsPadding(),
-                                backPressedClick = { dismiss() })
+                                backPressedClick = { dismiss() }
+                            )
 
 //                            val data = viewModel.stateLiveData.collectAsState()
 
@@ -92,7 +89,6 @@ class MovieRecommendationsDialogFragment : DialogFragment() {
 //                                    }
 //                                }
 //                            }
-
 
                             val items = viewModel.moviesFlow.collectAsLazyPagingItems()
 
@@ -114,7 +110,6 @@ class MovieRecommendationsDialogFragment : DialogFragment() {
                                 items(items) { movie ->
                                 }
                             }
-
 
 //                            LazyColumn {
 //                                items(items) { movie ->
@@ -184,7 +179,6 @@ fun WithPageState(
         }
 
         state.items.isNullOrEmpty() -> {
-
         }
 
         state.items.isNotEmpty() -> {
@@ -208,6 +202,7 @@ fun GridItem(movie: Movie, onClick: () -> Unit) {
         ) {
             CoilImage(
                 data = UrlConstants.TMDB_POSTER_SIZE_185 + movie.posterPath,
+                contentDescription = null,
                 contentScale = ContentScale.Crop,
                 fadeIn = true
             )

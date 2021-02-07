@@ -1,6 +1,7 @@
 package com.majorik.moviebox.feature.collections.presentation.tvTabCollections.datasources
 
 import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import com.majorik.library.base.models.results.ResultWrapper
 import com.majorik.moviebox.domain.enums.collections.TVCollectionType
 import com.majorik.moviebox.feature.collections.data.repositories.TVRepository
@@ -15,6 +16,8 @@ class TVCollectionsPagingDataSource(
 ) : PagingSource<Int, TV>() {
 
     private var totalPages: Int? = null
+
+    override fun getRefreshKey(state: PagingState<Int, TV>): Int? = null
 
     override suspend fun load(
         params: LoadParams<Int>

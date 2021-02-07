@@ -5,7 +5,6 @@ import com.majorik.library.base.enums.TmdbMediaType
 import com.majorik.library.base.models.results.ResultWrapper
 import com.majorik.library.base.storage.CredentialsPrefsManager
 import com.majorik.library.base.viewmodel.BaseAction
-import com.majorik.library.base.viewmodel.BaseViewModel
 import com.majorik.library.base.viewmodel.BaseViewModelFlow
 import com.majorik.library.base.viewmodel.BaseViewState
 import com.majorik.moviebox.feature.details.data.repositories.AccountRepository

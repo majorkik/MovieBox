@@ -1,11 +1,7 @@
 package com.majorik.moviebox.feature.details.presentation.recommendations
 
 import androidx.lifecycle.viewModelScope
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingSource
-import androidx.paging.cachedIn
-import com.majorik.library.base.constants.AppConfig
+import androidx.paging.*
 import com.majorik.library.base.models.results.ResultWrapper
 import com.majorik.library.base.viewmodel.BaseAction
 import com.majorik.library.base.viewmodel.BaseViewModelFlow
@@ -15,8 +11,6 @@ import com.majorik.moviebox.feature.details.domain.tmdbModels.movie.Movie
 import com.majorik.moviebox.feature.details.domain.tmdbModels.movie.MovieResponse
 import com.majorik.moviebox.feature.details.presentation.recommendations.MovieRecommendationsViewModel.Action
 import com.majorik.moviebox.feature.details.presentation.recommendations.MovieRecommendationsViewModel.ViewState
-import com.majorik.moviebox.feature.navigation.data.repositories.TrendingRepository
-import com.majorik.moviebox.feature.navigation.presentation.main_page_movies.datasources.TrendingMoviesPagingDataSource
 import com.orhanobut.logger.Logger
 import kotlinx.coroutines.launch
 
@@ -34,8 +28,10 @@ class MovieRecommendationsViewModel(private val repository: MovieRepository) :
     }.flow.cachedIn(viewModelScope)
 
     fun fetchMovies() = viewModelScope.launch {
-        when (val result =
-            repository.getRecommendations(movieId = movieId!!, language = null, page = page, region = null)) {
+        when (
+            val result =
+                repository.getRecommendations(movieId = movieId!!, language = null, page = page, region = null)
+        ) {
 
             is ResultWrapper.NetworkError -> sendAction(Action.NetworkError)
             is ResultWrapper.GenericError -> sendAction(Action.ContentLoadFailure)
@@ -99,8 +95,10 @@ class RecommendationsMoviesPagingDataSource(
             return LoadResult.Error(Exception("Max page. nextPage: $nextPageNumber, maxPage: $totalPages"))
         }
 
-        return when (val response =
-            repository.getRecommendations(movieId = movieId, language = null, page = nextPageNumber, region = null)) {
+        return when (
+            val response =
+                repository.getRecommendations(movieId = movieId, language = null, page = nextPageNumber, region = null)
+        ) {
             is ResultWrapper.GenericError -> {
                 Logger.e("Generic Error")
 
@@ -127,4 +125,6 @@ class RecommendationsMoviesPagingDataSource(
             }
         }
     }
+
+    override fun getRefreshKey(state: PagingState<Int, Movie>): Int? = null
 }

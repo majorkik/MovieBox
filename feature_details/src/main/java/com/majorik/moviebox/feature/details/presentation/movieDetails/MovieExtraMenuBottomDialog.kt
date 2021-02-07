@@ -18,7 +18,6 @@ class MovieExtraMenuBottomDialog : BottomSheetDialogFragment() {
 
     private val viewBinding: DialogMovieExtraMenuBinding by viewBinding()
 
-
     companion object {
         const val KEY_EXTRAS_SELECTED = "key_extras_selected"
 

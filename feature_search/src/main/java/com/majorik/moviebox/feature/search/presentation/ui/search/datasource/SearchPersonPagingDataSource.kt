@@ -1,6 +1,7 @@
 package com.majorik.moviebox.feature.search.presentation.ui.search.datasource
 
 import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import com.majorik.library.base.constants.AppConfig
 import com.majorik.library.base.models.results.ResultWrapper
 import com.majorik.moviebox.feature.search.data.repositories.SearchRepository
@@ -54,4 +55,6 @@ class SearchPersonPagingDataSource(
             }
         }
     }
+
+    override fun getRefreshKey(state: PagingState<Int, Person>): Int? = null
 }

@@ -44,9 +44,12 @@ fun RatingView(
             fontFamily = montserratFamily,
             fontWeight = FontWeight.W600
         )
-        Canvas(modifier = Modifier.size(dotSizeDp.dp), onDraw = {
-            drawCircle(color = indicatorColor)
-        })
+        Canvas(
+            modifier = Modifier.size(dotSizeDp.dp),
+            onDraw = {
+                drawCircle(color = indicatorColor)
+            }
+        )
     }
 }
 

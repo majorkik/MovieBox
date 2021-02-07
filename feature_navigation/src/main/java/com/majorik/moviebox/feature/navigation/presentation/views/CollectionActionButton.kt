@@ -5,7 +5,6 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import com.majorik.moviebox.feature.navigation.R
-import com.majorik.moviebox.feature.navigation.databinding.LayoutCollectionActionAdvancedButtonBinding
 import com.majorik.moviebox.feature.navigation.databinding.LayoutCollectionActionButtonBinding
 
 class CollectionActionButton : LinearLayout {

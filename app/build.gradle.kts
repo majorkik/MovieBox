@@ -1,4 +1,3 @@
-import com.android.build.gradle.internal.dsl.BaseFlavor
 import com.android.build.gradle.internal.dsl.DefaultConfig
 
 plugins {
@@ -91,7 +90,7 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java).conf
     }
 }
 
-fun BaseFlavor.buildConfigFieldFromGradleProperty(gradlePropertyName: String) {
+fun com.android.build.api.dsl.BaseFlavor.buildConfigFieldFromGradleProperty(gradlePropertyName: String) {
     val propertyValue =
         com.android.build.gradle.internal.cxx.configure.gradleLocalProperties(rootDir)[gradlePropertyName] as? String
     checkNotNull(propertyValue) { "Gradle property $gradlePropertyName is null" }

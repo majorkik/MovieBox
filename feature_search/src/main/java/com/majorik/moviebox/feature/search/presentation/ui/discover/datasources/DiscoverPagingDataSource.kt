@@ -1,6 +1,7 @@
 package com.majorik.moviebox.feature.search.presentation.ui.discover.datasources
 
 import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import com.majorik.library.base.models.results.ResultWrapper
 import com.majorik.moviebox.feature.search.data.repositories.DiscoverRepository
 import com.majorik.moviebox.feature.search.domain.enums.DiscoverType
@@ -95,4 +96,6 @@ class DiscoverPagingDataSource(
             }
         }
     }
+
+    override fun getRefreshKey(state: PagingState<Int, BaseDiscoverDomainModel>): Int? = null
 }

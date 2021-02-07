@@ -1,5 +1,3 @@
 package com.majorik.moviebox.feature.details.presentation.recommendations
 
-class PagedResponse<T> {
-
-}
+class PagedResponse<T>

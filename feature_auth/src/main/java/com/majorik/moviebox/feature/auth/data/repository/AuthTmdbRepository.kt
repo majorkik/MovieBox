@@ -3,7 +3,6 @@ package com.majorik.moviebox.feature.auth.data.repository
 import com.majorik.moviebox.feature.auth.data.retrofit.AuthRetrofitService
 import com.majorik.library.base.base.BaseRepository
 import com.majorik.library.base.models.results.ResultWrapper
-import com.majorik.moviebox.feature.auth.data.requests.RequestSession
 import com.majorik.moviebox.feature.auth.data.requests.RequestToken
 import com.majorik.moviebox.feature.auth.data.responses.RequestTokenResponse
 import com.majorik.moviebox.feature.auth.data.responses.ResponseSession

@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
-import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.library.base.extensions.setSafeOnClickListener
@@ -20,7 +19,6 @@ import com.majorik.moviebox.feature.navigation.domain.tmdbModels.account.Account
 import com.majorik.moviebox.feature.navigation.presentation.dialogs.LogoutDialog
 import com.majorik.moviebox.feature.navigation.presentation.main_page_profile.adapters.ProfileMoviesAdapter
 import com.majorik.moviebox.feature.navigation.presentation.main_page_profile.adapters.ProfileTVsAdapter
-import com.orhanobut.logger.Logger
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -137,7 +135,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         viewBinding.favoriteMoviesList.adapter = favoriteMoviesAdapter
         viewBinding.favoriteTvsList.adapter = favoriteTVsAdapter
     }
-
 
     private fun setClickListener() {
         viewBinding.btnAuth.setSafeOnClickListener {

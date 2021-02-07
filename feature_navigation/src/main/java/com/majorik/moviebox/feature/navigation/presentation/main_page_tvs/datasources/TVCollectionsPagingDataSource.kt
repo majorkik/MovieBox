@@ -1,6 +1,7 @@
 package com.majorik.moviebox.feature.navigation.presentation.main_page_tvs.datasources
 
 import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import com.majorik.library.base.models.results.ResultWrapper
 import com.majorik.moviebox.domain.enums.collections.MovieCollectionType.*
 import com.majorik.moviebox.domain.enums.collections.TVCollectionType
@@ -71,4 +72,6 @@ class TVCollectionsPagingDataSource(
             }
         }
     }
+
+    override fun getRefreshKey(state: PagingState<Int, TV>): Int? = null
 }

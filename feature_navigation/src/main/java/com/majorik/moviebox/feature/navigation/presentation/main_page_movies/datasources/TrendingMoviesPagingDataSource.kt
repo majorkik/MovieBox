@@ -1,6 +1,7 @@
 package com.majorik.moviebox.feature.navigation.presentation.main_page_movies.datasources
 
 import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import com.majorik.library.base.models.results.ResultWrapper
 import com.majorik.moviebox.domain.enums.collections.MovieCollectionType.*
 import com.majorik.moviebox.feature.navigation.data.repositories.TrendingRepository
@@ -14,6 +15,8 @@ class TrendingMoviesPagingDataSource(
 ) : PagingSource<Int, Movie>() {
 
     private var totalPages: Int? = null
+
+    override fun getRefreshKey(state: PagingState<Int, Movie>): Int? = null
 
     override suspend fun load(
         params: LoadParams<Int>

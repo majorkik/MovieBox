@@ -21,7 +21,9 @@ import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-internal class SearchTVFragment : Fragment(R.layout.fragment_search_page), SearchQueryChangeListener,
+internal class SearchTVFragment :
+    Fragment(R.layout.fragment_search_page),
+    SearchQueryChangeListener,
     SearchViewTypeChangeListener {
 
     private val viewBinding: FragmentSearchPageBinding by viewBinding()

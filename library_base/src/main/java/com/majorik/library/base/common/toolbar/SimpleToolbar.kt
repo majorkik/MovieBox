@@ -35,18 +35,19 @@ fun SimpleToolbar(
 
     Surface(color = backgroundColor, modifier = modifier) {
         Row(modifier = Modifier.height(height = heightDp.dp)) {
-            //Кнопка назад
+            // Кнопка назад
             IconButton(
                 onClick = backPressedClick,
                 modifier = Modifier.width(widthButtonDp.dp).height(heightDp.dp),
             ) {
                 Icon(
                     imageVector = vectorResource(id = R.drawable.ic_arrow_down_24),
+                    contentDescription = null,
                     tint = buttonIconColor
                 )
             }
 
-            //Название экрана
+            // Название экрана
             Text(
                 text = title.toUpperCase(Locale.getDefault()),
                 color = titleColor,
@@ -73,6 +74,7 @@ private fun SimpleToolbarPreview() {
             Modifier.statusBarsPadding(),
             backgroundColor = Color.White,
             backPressedClick = {
-            })
+            }
+        )
     }
 }

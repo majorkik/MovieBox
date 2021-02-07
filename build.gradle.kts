@@ -23,7 +23,7 @@ allprojects {
 
     // Ktlint configuration for sub-projects
     ktlint {
-        version.set(Versions.ktlint)
+        version.set("0.40.0")
         verbose.set(true)
         android.set(true)
 

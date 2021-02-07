@@ -2,13 +2,10 @@ package com.majorik.moviebox.feature.details.presentation.movieDetails
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.os.bundleOf
-import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
 import androidx.core.view.updatePadding
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.setFragmentResultListener
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -30,12 +27,9 @@ import com.majorik.moviebox.feature.details.presentation.adapters.CastAdapter
 import com.majorik.moviebox.feature.details.presentation.adapters.ImageSliderAdapter
 import com.majorik.moviebox.feature.details.presentation.movieDetails.MovieExtraMenuBottomDialog.Companion.CODE_RECOMMENDATIONS
 import com.majorik.moviebox.feature.details.presentation.recommendations.MovieRecommendationsDialogFragmentArgs
-import com.majorik.moviebox.feature.details.presentation.watch_online.WatchOnlineDialog
 import com.soywiz.klock.KlockLocale
 import com.stfalcon.imageviewer.StfalconImageViewer
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.DecimalFormat

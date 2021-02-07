@@ -28,13 +28,20 @@ fun HorizontalMediaItem(
     modifier: Modifier = Modifier
 ) {
     Card(
-        modifier = Modifier.padding(horizontal = cardPaddingDp.dp).fillMaxWidth().height(160.dp),
+        modifier = Modifier
+            .padding(horizontal = cardPaddingDp.dp)
+            .fillMaxWidth()
+            .height(160.dp),
         shape = RoundedCornerShape(8.dp)
     ) {
         Box(modifier = modifier) {
-            CoilImage(data = image, contentScale = ContentScale.Crop, fadeIn = true)
+            CoilImage(data = image, contentScale = ContentScale.Crop, fadeIn = true, contentDescription = null)
 
-            Column(modifier = Modifier.align(Alignment.BottomStart).padding(16.dp)) {
+            Column(
+                modifier = Modifier
+                    .align(Alignment.BottomStart)
+                    .padding(16.dp)
+            ) {
                 Text(
                     text = year.toString(),
                     fontFamily = montserratFamily,
@@ -58,7 +65,13 @@ fun HorizontalMediaItem(
                 )
             }
 
-            RatingView(rating = rating, modifier = Modifier.align(Alignment.TopEnd).padding(16.dp), textColor = Color.White)
+            RatingView(
+                rating = rating,
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(16.dp),
+                textColor = Color.White
+            )
         }
     }
 }
@@ -73,6 +86,8 @@ fun PreviewHorizontalMediaItem() {
         "Action, Fantasy",
         9.0,
         16,
-        Modifier.fillMaxWidth().height(160.dp)
+        Modifier
+            .fillMaxWidth()
+            .height(160.dp)
     )
 }

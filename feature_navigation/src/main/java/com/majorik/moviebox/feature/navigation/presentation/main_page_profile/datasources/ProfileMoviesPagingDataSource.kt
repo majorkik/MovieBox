@@ -1,6 +1,7 @@
 package com.majorik.moviebox.feature.navigation.presentation.main_page_profile.datasources
 
 import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import com.majorik.library.base.models.results.ResultWrapper
 import com.majorik.moviebox.feature.navigation.data.repositories.AccountRepository
 import com.majorik.moviebox.feature.navigation.domain.enums.ProfileMoviesType
@@ -72,4 +73,6 @@ class ProfileMoviesPagingDataSource(
             }
         }
     }
+
+    override fun getRefreshKey(state: PagingState<Int, Movie>): Int? = null
 }

@@ -1,6 +1,5 @@
 package com.majorik.moviebox.feature.navigation.presentation.main_page_tvs
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.majorik.library.base.constants.ScreenLinks
 import com.majorik.library.base.extensions.*
 import com.majorik.library.base.models.results.ResultWrapper
 import com.majorik.library.base.utils.GenresStorageObject
