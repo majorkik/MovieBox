@@ -5,8 +5,43 @@
     app:moduleName="feature_details"
     app:startDestination="@id/nav_movie_details">
 
-    <dialog
+    <fragment
         android:id="@+id/nav_movie_details"
+        android:name="com.majorik.moviebox.feature.details.presentation.compose_movie_details.MovieDetailsComposeFragment"
+        app:moduleName="feature_details"
+        tools:layout="@layout/dialog_fragment_movie_details">
+
+        <argument
+            android:name="id"
+            android:defaultValue="0"
+            app:argType="integer"
+            app:nullable="false" />
+
+        <action
+            android:id="@+id/action_to_person_details"
+            app:destination="@id/nav_person_details">
+
+            <argument
+                android:name="id"
+                android:defaultValue="0"
+                app:argType="integer"
+                app:nullable="false" />
+        </action>
+
+        <action
+            android:id="@+id/action_to_recommendations"
+            app:destination="@+id/dialog_recommendations">
+
+            <argument
+                android:name="movie_id"
+                android:defaultValue="0"
+                app:argType="integer"
+                app:nullable="false" />
+        </action>
+    </fragment>
+
+    <dialog
+        android:id="@+id/nav_movie_details2"
         android:name="com.majorik.moviebox.feature.details.presentation.movieDetails.MovieDetailsDialogFragment"
         app:moduleName="feature_details"
         tools:layout="@layout/dialog_fragment_movie_details">

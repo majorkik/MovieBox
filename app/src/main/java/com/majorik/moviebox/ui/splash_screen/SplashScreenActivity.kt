@@ -25,7 +25,10 @@ class SplashScreenActivity : AppCompatActivity(R.layout.activity_splash_screen) 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setAnimation()
+//        setAnimation()
+        lifecycleScope.launchWhenResumed {
+            actionCheckCredentials()
+        }
     }
 
     private fun setAnimation() {
@@ -35,15 +38,7 @@ class SplashScreenActivity : AppCompatActivity(R.layout.activity_splash_screen) 
             override fun onAnimationEnd(animation: Animator?) {
                 lifecycleScope.launch {
                     whenStarted {
-                        if (credentialsManager.getTmdbLoggedStatus() || credentialsManager.getTmdbGuestLoggedStatus()) {
-                            delay(300)
-
-                            startMainActivity()
-                        } else {
-                            overridePendingTransition(0, 0)
-                            startActivity(ScreenLinks.authorization.loadIntentOrReturnNull())
-                            finish()
-                        }
+                        actionCheckCredentials()
                     }
                 }
             }
@@ -52,6 +47,18 @@ class SplashScreenActivity : AppCompatActivity(R.layout.activity_splash_screen) 
 
             override fun onAnimationStart(animation: Animator?) {}
         })
+    }
+
+    suspend fun actionCheckCredentials() {
+        if (credentialsManager.getTmdbLoggedStatus() || credentialsManager.getTmdbGuestLoggedStatus()) {
+            delay(300)
+
+            startMainActivity()
+        } else {
+            overridePendingTransition(0, 0)
+            startActivity(ScreenLinks.authorization.loadIntentOrReturnNull())
+            finish()
+        }
     }
 
     private fun startMainActivity() {

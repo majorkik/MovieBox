@@ -18,11 +18,11 @@ import com.majorik.library.base.common.resources.*
 
 @Composable
 fun RatingView(
+    modifier: Modifier = Modifier,
     rating: Double,
     maxRating: Int = 10,
     dotSizeDp: Int = 4,
-    textColor: Color = mineShaft,
-    modifier: Modifier
+    textColor: Color = mineShaft
 ) {
     val indicatorColor = when {
         rating >= 8.0 -> emerald
@@ -39,7 +39,10 @@ fun RatingView(
             fontWeight = FontWeight.W900
         )
         Text(
-            text = "/$maxRating", Modifier.align(Alignment.Bottom).padding(bottom = 2.dp), color = textColor,
+            text = "/$maxRating",
+            Modifier
+                .align(Alignment.Bottom)
+                .padding(bottom = 2.dp), color = textColor,
             fontSize = 12.sp,
             fontFamily = montserratFamily,
             fontWeight = FontWeight.W600
@@ -57,6 +60,6 @@ fun RatingView(
 @Composable
 private fun PreviewRatingView() {
     Box {
-        RatingView(9.0, modifier = Modifier)
+        RatingView(rating = 9.0)
     }
 }

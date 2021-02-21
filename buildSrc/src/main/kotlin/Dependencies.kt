@@ -6,7 +6,7 @@ import Versions.kotlin
 object Versions {
     const val androidGradle = "7.0.0-alpha05"
 
-    const val kotlin = "1.4.21-2"
+    const val kotlin = "1.4.30"
     const val coroutines = "1.4.2"
 
     const val navSafeArgs = "2.3.3"
@@ -75,7 +75,7 @@ object Libs {
         }
 
         object Compose {
-            const val version = "1.0.0-alpha11"
+            const val version = "1.0.0-alpha12"
 
             const val animation = "androidx.compose.animation:animation:$version"
             const val foundation = "androidx.compose.foundation:foundation:$version"
@@ -87,7 +87,7 @@ object Libs {
             const val ui = "androidx.compose.ui:ui:$version"
             const val uiUtil = "androidx.compose.ui:ui-util:$version"
 
-            const val paging = "androidx.paging:paging-compose:1.0.0-alpha06"
+            const val paging = "androidx.paging:paging-compose:1.0.0-alpha07"
         }
     }
 
@@ -141,7 +141,7 @@ object Libs {
     }
 
     object Accompanist {
-        private const val version = "0.5.0"
+        private const val version = "0.5.1"
 
         const val coil = "dev.chrisbanes.accompanist:accompanist-coil:$version"
         const val insets = "dev.chrisbanes.accompanist:accompanist-insets:$version"

@@ -12,8 +12,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.majorik.base.R
 import com.majorik.library.base.common.resources.mineShaft
 import com.majorik.library.base.common.resources.rubikFontFamily
@@ -53,7 +53,7 @@ fun SimpleToolbar(
                 color = titleColor,
                 fontFamily = rubikFontFamily,
                 textAlign = TextAlign.Center,
-                fontSize = TextUnit.Companion.Sp(18),
+                fontSize = 18.sp,
                 modifier = Modifier.align(Alignment.CenterVertically).padding(end = widthButtonDp.dp).fillMaxWidth()
             )
         }

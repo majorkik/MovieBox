@@ -15,9 +15,14 @@ interface BuildType {
     companion object {
         const val RELEASE = "release"
         const val DEBUG = "debug"
+        const val PREVIEW = "preview"
     }
 
     val isMinifyEnabled: Boolean
+}
+
+object BuildTypePreview : BuildType {
+    override val isMinifyEnabled = false
 }
 
 object BuildTypeDebug : BuildType {

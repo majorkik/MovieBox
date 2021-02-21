@@ -62,7 +62,7 @@ class MovieRecommendationsDialogFragment : DialogFragment() {
         viewModel.movieId = args.movieId
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
         ComposeView(requireContext()).apply {
             layoutParams = ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT)
 
@@ -96,7 +96,7 @@ class MovieRecommendationsDialogFragment : DialogFragment() {
                                 fakeGridItems(
                                     lazyPagingItems = items,
                                     columns = 3,
-                                    contentPadding = PaddingValues(4.dp),
+                                    contentPadding = 4.dp,
                                     verticalItemPadding = 2.dp,
                                     horizontalItemPadding = 2.dp
                                 ) { entry ->
@@ -242,7 +242,7 @@ fun LazyListScope.spacerItem(height: Dp) {
 fun <T : Any> LazyListScope.fakeGridItems(
     lazyPagingItems: LazyPagingItems<T>,
     columns: Int,
-    contentPadding: PaddingValues = PaddingValues(),
+    contentPadding: Dp = 0.dp,
     horizontalItemPadding: Dp = 0.dp,
     verticalItemPadding: Dp = 0.dp,
     itemContent: @Composable (T?) -> Unit
@@ -255,12 +255,12 @@ fun <T : Any> LazyListScope.fakeGridItems(
     Logger.d("rows: $rows, items: ${lazyPagingItems.itemCount}")
 
     for (row in 0 until rows) {
-        if (row == 0) spacerItem(contentPadding.top)
+        if (row == 0) spacerItem(contentPadding)
 
         item {
             Row(
                 Modifier.fillMaxWidth()
-                    .padding(start = contentPadding.start, end = contentPadding.end)
+                    .padding(start = contentPadding, end = contentPadding)
             ) {
                 for (column in 0 until columns) {
                     Box(modifier = Modifier.weight(1f)) {
@@ -279,7 +279,7 @@ fun <T : Any> LazyListScope.fakeGridItems(
         if (row < rows - 1) {
             spacerItem(verticalItemPadding)
         } else {
-            spacerItem(contentPadding.bottom)
+            spacerItem(contentPadding)
         }
     }
 }
