@@ -4,7 +4,7 @@ import Versions.coroutines
 import Versions.kotlin
 
 object Versions {
-    const val androidGradle = "7.0.0-alpha05"
+    const val androidGradle = "7.0.0-alpha08"
 
     const val kotlin = "1.4.21-2"
     const val coroutines = "1.4.2"
