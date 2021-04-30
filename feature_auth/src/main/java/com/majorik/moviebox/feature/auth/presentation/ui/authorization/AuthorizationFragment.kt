@@ -63,6 +63,7 @@ class AuthorizationFragment : Fragment(R.layout.fragment_authorization) {
             "true" -> {
                 requestToken?.let {
                     Logger.d("requestToken = $it")
+
                     viewModel.createSessionToken(it)
                 } ?: run {
                     viewModel.getRequestToken()
