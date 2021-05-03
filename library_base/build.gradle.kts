@@ -17,7 +17,6 @@ android {
 
     buildFeatures {
         viewBinding = true
-        compose = true
     }
 
     buildTypes {
@@ -38,13 +37,6 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
-
-        freeCompilerArgs = freeCompilerArgs + listOf("-Xallow-jvm-ir-dependencies", "-Xskip-prerelease-check")
-    }
-
-    composeOptions {
-        kotlinCompilerVersion = Versions.kotlin
-        kotlinCompilerExtensionVersion = Libs.AndroidX.Compose.version
     }
 }
 
@@ -103,18 +95,6 @@ dependencies {
     api(Libs.Others.stfalconImageViewer)
     api(Libs.Others.recyclerViewAnimations)
 
-    api(Libs.AndroidX.Compose.runtime)
-    api(Libs.AndroidX.Compose.foundation)
-    api(Libs.AndroidX.Compose.layout)
-    api(Libs.AndroidX.Compose.ui)
-    api(Libs.AndroidX.Compose.uiUtil)
-    api(Libs.AndroidX.Compose.material)
-    api(Libs.AndroidX.Compose.animation)
-    api(Libs.AndroidX.Compose.iconsExtended)
-    api(Libs.AndroidX.Compose.tooling)
-
     api(Libs.Accompanist.coil)
     api(Libs.Accompanist.insets)
-
-//    api(Libs.AndroidX.Compose.paging)
 }

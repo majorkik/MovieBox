@@ -4,9 +4,9 @@ import Versions.coroutines
 import Versions.kotlin
 
 object Versions {
-    const val androidGradle = "7.0.0-alpha08"
+    const val androidGradle = "7.0.0-alpha14"
 
-    const val kotlin = "1.4.21-2"
+    const val kotlin = "1.4.32"
     const val coroutines = "1.4.2"
 
     const val navSafeArgs = "2.3.3"
@@ -72,22 +72,6 @@ object Libs {
             const val navFragmentKTX = "androidx.navigation:navigation-fragment-ktx:$navVersion"
             const val navUiKtx = "androidx.navigation:navigation-ui-ktx:$navVersion"
             const val navDynamicFragment = "androidx.navigation:navigation-dynamic-features-fragment:$navVersion"
-        }
-
-        object Compose {
-            const val version = "1.0.0-alpha11"
-
-            const val animation = "androidx.compose.animation:animation:$version"
-            const val foundation = "androidx.compose.foundation:foundation:$version"
-            const val layout = "androidx.compose.foundation:foundation-layout:$version"
-            const val iconsExtended = "androidx.compose.material:material-icons-extended:$version"
-            const val material = "androidx.compose.material:material:$version"
-            const val runtime = "androidx.compose.runtime:runtime:$version"
-            const val tooling = "androidx.compose.ui:ui-tooling:$version"
-            const val ui = "androidx.compose.ui:ui:$version"
-            const val uiUtil = "androidx.compose.ui:ui-util:$version"
-
-            const val paging = "androidx.paging:paging-compose:1.0.0-alpha06"
         }
     }
 

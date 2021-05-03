@@ -18,7 +18,6 @@ android {
     }
 
     buildFeatures.viewBinding = true
-    buildFeatures.compose = true
 
     buildTypes {
         getByName(BuildType.RELEASE) {
@@ -38,19 +37,6 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
-
-        freeCompilerArgs = freeCompilerArgs + listOf("-Xallow-jvm-ir-dependencies", "-Xskip-prerelease-check")
-    }
-
-    // This "test" source set is a fix for SafeArgs classes not being available when running Unit tests from cmd
-    // See: https://issuetracker.google.com/issues/139242292
-    sourceSets {
-        getByName("test").java.srcDir("${project.rootDir}/app/build/generated/source/navigation-args/debug")
-    }
-
-    composeOptions {
-        kotlinCompilerVersion = Versions.kotlin
-        kotlinCompilerExtensionVersion = Libs.AndroidX.Compose.version
     }
 }
 
@@ -58,6 +44,4 @@ dependencies {
     implementation(project(ModuleDependency.featureNavigation))
     implementation(project(ModuleDependency.featureSearch))
     implementation(project(ModuleDependency.featureCollections))
-
-    implementation(Libs.AndroidX.Compose.paging)
 }

@@ -44,11 +44,10 @@ android {
 
     buildFeatures {
         viewBinding = true
-        compose = true
     }
 
     // Each feature module that is included in settings.gradle.kts is added here as dynamic feature
-    dynamicFeatures = ModuleDependency.getDynamicFeatureModules().toMutableSet()
+    setDynamicFeatures(ModuleDependency.getDynamicFeatureModules().toMutableSet())
 
     lintOptions {
         // By default lint does not check test sources, but setting this option means that lint will not even parse them
@@ -62,13 +61,6 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
-
-        freeCompilerArgs = freeCompilerArgs + listOf("-Xallow-jvm-ir-dependencies", "-Xskip-prerelease-check")
-    }
-
-    composeOptions {
-        kotlinCompilerVersion = Versions.kotlin
-        kotlinCompilerExtensionVersion = Libs.AndroidX.Compose.version
     }
 }
 
@@ -86,7 +78,6 @@ dependencies {
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java).configureEach {
     kotlinOptions {
         jvmTarget = "1.8"
-        freeCompilerArgs = freeCompilerArgs + listOf("-Xallow-jvm-ir-dependencies", "-Xskip-prerelease-check")
     }
 }
 
