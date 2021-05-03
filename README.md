@@ -1,8 +1,9 @@
 # MovieBox
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![Kotlin Version](https://img.shields.io/badge/Kotlin-1.4.21-brightgreen)](https://kotlinlang.org) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2ce05b3df9f948f1988e48756d8b5901)](https://www.codacy.com/app/majorkik/MovieBox?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=majorkik/MovieBox&amp;utm_campaign=Badge_Grade)
+[![Kotlin Version](https://img.shields.io/badge/Kotlin-1.4.32-brightgreen)](https://kotlinlang.org) [![AGP](https://img.shields.io/badge/AGP-7.0.0--alpha14-orange)](https://developer.android.com/studio/releases/gradle-plugin) [![Gradle](https://img.shields.io/badge/Gradle-7.0-blue)](https://gradle.org) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2ce05b3df9f948f1988e48756d8b5901)](https://www.codacy.com/app/majorkik/MovieBox?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=majorkik/MovieBox&amp;utm_campaign=Badge_Grade)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) 
 
-### О проекте
+## О проекте
 
 MovieBox - pet-project для поиска, просмотра информации и отслеживания фильмов и сериалов. Цель
 проекта:
@@ -19,7 +20,7 @@ MovieBox - pet-project для поиска, просмотра информац�
 Есть идея реализации схожего по смыслу проекта, но с использованием Jetpack Compose, с продуманной
 архитектурой и исправлением недостатков этого проекта.
 
-### Технологии, паттерны и прочее, которые используются в проекте
+## Технологии, паттерны и прочее, которые используются в проекте
 
 - #### Tech-stack
 
@@ -113,7 +114,7 @@ MovieBox - pet-project для поиска, просмотра информац�
 
 
 
-### Немного истории и выводы
+## Немного истории и выводы
 
 #### История
 
