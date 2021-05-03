@@ -149,57 +149,6 @@ MovieBox - pet-project для поиска, просмотра информац�
 <img src="screenshots/settings.jpg" width="235" height="500"> <img src="screenshots/discover_cards.jpg" width="235" height="500">
 <img src="screenshots/discover_filters.jpg" width="235" height="500"> <img src="screenshots/discover_filters_2.jpg" width="235" height="500">
 
-## Технологии, паттерны и прочее, которые используются в проекте
-
-- #### Архитектура:
-
-  100% Kotlin
-
-  - MVVM
-
-  - Clean Arhitecture
-
-  - Dynamic delivery modules
-
-  - Gradle Kotlin DSL
-
-    
-
-  #### Core: 
-
-  - Kotlin 1.4.30
-  - Gradle 6.7.1 
-  - Android Gradle plugin 4.2.0-alpha18
-  - ViewBinding
-
-  #### Библиотеки:
-
-  - Retrofit
-  - OkHttp
-  - ViewBindingDelegates
-  - Kotlin Coroutines, Flow
-  - Moshi (Reflect + Codegen)
-  - Koin
-  - Paging Library
-  - Navigation Components
-  - Timber
-  - Pretty Logger
-  - Klock
-  - Localization
-  - Coil
-  - Firebase
-  - ViewPager2
-  - Ktlint
-  - Jetpack Compose (тест)
-  - и другие
-
-## Требования
-
-- **Android Studio 4.1**
-- **Java JDK 8**
-- **Android SDK**
-- **Kotlin 1.4.30**
-
 ## Часто используемые gradle таски
 
 `/gradle packageDebugUniversalApk` - собирает apk файлы вместе с динамическими модулями
