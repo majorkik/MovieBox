@@ -8,6 +8,7 @@ pluginManagement {
     resolutionStrategy {
         eachPlugin {
             when (requested.id.id) {
+                "com.android.tools.build",
                 "com.android.application",
                 "com.android.library",
                 "com.android.dynamic-feature" -> useModule("com.android.tools.build:gradle:${requested.version}")
