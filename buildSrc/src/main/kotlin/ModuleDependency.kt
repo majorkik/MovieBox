@@ -13,6 +13,17 @@ object ModuleDependency {
     const val featureNavigation = ":feature_navigation"
     const val libraryBase = ":library_base"
 
+    const val uiMovieDetails = ":ui_movie_details"
+    const val uiTVDetails = ":ui_tv_details"
+    const val uiNavMovies = ":ui_nav_movies"
+    const val uiNavTvs = ":ui_nav_tvs"
+    const val uiNavProfile = ":ui_nav_profile"
+    const val uiNavSearch = ":ui_nav_search"
+    const val uiCollection = ":ui_collection"
+    const val uiDiscover = ":ui_discover"
+    const val uiSearch = ":ui_search"
+    const val uiAuth = ":ui_auth"
+
     // False positive" function can be private"
     // See: https://youtrack.jetbrains.com/issue/KT-33610
     fun getAllModules() = ModuleDependency::class.memberProperties

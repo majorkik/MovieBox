@@ -71,6 +71,18 @@ android {
 dependencies {
     api(project(ModuleDependency.libraryBase))
 
+    implementation(project(ModuleDependency.uiAuth))
+    implementation(project(ModuleDependency.uiNavMovies))
+    implementation(project(ModuleDependency.uiNavTvs))
+    implementation(project(ModuleDependency.uiNavSearch))
+    implementation(project(ModuleDependency.uiNavProfile))
+    implementation(project(ModuleDependency.uiMovieDetails))
+    implementation(project(ModuleDependency.uiTVDetails))
+    implementation(project(ModuleDependency.uiDiscover))
+    implementation(project(ModuleDependency.uiSearch))
+    implementation(project(ModuleDependency.uiCollection))
+
+
     implementation(Libs.AndroidX.multidex)
     implementation(Libs.Google.playCore)
 

@@ -1,7 +1,3 @@
-import org.gradle.api.Project
-import org.gradle.api.plugins.ExtensionAware
-import org.gradle.kotlin.dsl.getByType
-
 object AndroidConfig {
     const val compileSdk = 30
     const val minSdk = 23
@@ -35,3 +31,4 @@ object BuildTypeRelease : BuildType {
 object TestOptions {
     const val IS_RETURN_DEFAULT_VALUES = true
 }
+

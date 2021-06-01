@@ -31,3 +31,25 @@ include(
     ":feature_navigation",
     ":library_base"
 )
+
+//Feature UI
+include(
+    //details
+    ":ui_movie_details",
+    ":ui_tv_details",
+    ":ui_person_details",
+    //nav
+    ":ui_nav_movies",
+    ":ui_nav_tvs",
+    ":ui_nav_search",
+    ":ui_nav_profile",
+    //collection
+    ":ui_collection",
+    //search
+    ":ui_search",
+    ":ui_discover",
+    //auth
+    ":ui_auth"
+)
+//Navigation
+include(":navigation")
