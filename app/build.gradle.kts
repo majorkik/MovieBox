@@ -27,9 +27,9 @@ android {
         buildConfigFieldFromGradleProperty("keyTrakTv")
 
         buildConfigField(
-            "kotlin.collections.Set<String>",
+            "String[]",
             "FEATURE_MODULE_NAMES",
-            getDynamicFeatureModuleNames().joinToString(",")
+            getDynamicFeatureModuleNames().joinToString(",", prefix = "{", postfix = "}") { "\"$it\""}
         )
 
         multiDexEnabled = true
