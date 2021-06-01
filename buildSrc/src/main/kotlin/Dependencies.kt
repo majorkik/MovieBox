@@ -1,10 +1,11 @@
 @file:Suppress("detekt.StringLiteralDuplication")
 
+import Versions.androidGradle
 import Versions.coroutines
 import Versions.kotlin
 
 object Versions {
-    const val androidGradle = "7.0.0-alpha14"
+    const val androidGradle = "7.1.0-alpha01"
 
     const val kotlin = "1.4.32"
     const val coroutines = "1.4.2"
@@ -19,6 +20,7 @@ object Versions {
 }
 
 object Plugins {
+    const val androidGradlePlugin = "com.android.tools.build"
     const val ktlint = "org.jlleitschuh.gradle.ktlint"
     const val androidApplication = "com.android.application"
     const val androidDynamicFeature = "com.android.dynamic-feature"
@@ -41,6 +43,8 @@ object Libs {
         const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib:$kotlin"
         const val kotlinxCoroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
         const val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:$kotlin"
+
+        const val gradlePlugin = "org.jetbrains.kotlin"
     }
 
     object AndroidX {

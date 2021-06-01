@@ -7,14 +7,11 @@ plugins {
 }
 
 android {
-    compileSdkVersion(AndroidConfig.compileSdk)
+    compileSdk = AndroidConfig.compileSdk
 
     defaultConfig {
-        minSdkVersion(AndroidConfig.minSdk)
-        targetSdkVersion(AndroidConfig.targetSdk)
-
-        versionCode = AndroidConfig.versionCode
-        versionName = AndroidConfig.versionName
+        minSdk = AndroidConfig.minSdk
+        buildToolsVersion = AndroidConfig.buildTools
     }
 
     buildFeatures.viewBinding = true

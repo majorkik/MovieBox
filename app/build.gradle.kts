@@ -10,13 +10,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion(AndroidConfig.compileSdk)
+    compileSdk = AndroidConfig.compileSdk
 
     defaultConfig {
         applicationId = AndroidConfig.applicationId
-        minSdkVersion(AndroidConfig.minSdk)
-        targetSdkVersion(AndroidConfig.targetSdk)
-        buildToolsVersion(AndroidConfig.buildTools)
+        minSdk = AndroidConfig.minSdk
+        targetSdk = AndroidConfig.targetSdk
+        buildToolsVersion = AndroidConfig.buildTools
 
         versionCode = AndroidConfig.versionCode
         versionName = AndroidConfig.versionName
@@ -26,7 +26,11 @@ android {
         buildConfigFieldFromGradleProperty("youTubeKey")
         buildConfigFieldFromGradleProperty("keyTrakTv")
 
-        buildConfigField("FEATURE_MODULE_NAMES", getDynamicFeatureModuleNames())
+        buildConfigField(
+            "String[]",
+            "FEATURE_MODULE_NAMES",
+            getDynamicFeatureModuleNames().joinToString(",", prefix = "{", postfix = "}") { "\"$it\""}
+        )
 
         multiDexEnabled = true
     }
@@ -47,7 +51,7 @@ android {
     }
 
     // Each feature module that is included in settings.gradle.kts is added here as dynamic feature
-    setDynamicFeatures(ModuleDependency.getDynamicFeatureModules().toMutableSet())
+    dynamicFeatures.addAll(ModuleDependency.getDynamicFeatureModules().toMutableSet())
 
     lintOptions {
         // By default lint does not check test sources, but setting this option means that lint will not even parse them
@@ -81,7 +85,9 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java).conf
     }
 }
 
-fun com.android.build.api.dsl.BaseFlavor.buildConfigFieldFromGradleProperty(gradlePropertyName: String) {
+fun com.android.build.api.dsl.BaseFlavor.buildConfigFieldFromGradleProperty(
+    gradlePropertyName: String
+) {
     val propertyValue =
         com.android.build.gradle.internal.cxx.configure.gradleLocalProperties(rootDir)[gradlePropertyName] as? String
     checkNotNull(propertyValue) { "Gradle property $gradlePropertyName is null" }
@@ -98,8 +104,11 @@ fun String.toSnakeCase() = this.split(Regex("(?=[A-Z])")).joinToString("_") { it
 
 fun DefaultConfig.buildConfigField(name: String, value: Set<String>) {
     // Generates String that holds Java String Array code
-    val strValue = value.joinToString(prefix = "{", separator = ",", postfix = "}", transform = {
-        "\"$it\""
-    })
+    val strValue = value.joinToString(
+        prefix = "{", separator = ",", postfix = "}",
+        transform = {
+            "\"$it\""
+        }
+    )
     buildConfigField("String[]", name, strValue)
 }
