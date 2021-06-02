@@ -47,5 +47,4 @@ android {
 }
 
 dependencies {
-
 }

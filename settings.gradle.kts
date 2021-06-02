@@ -11,7 +11,7 @@ pluginManagement {
                 "com.android.tools.build",
                 "com.android.application",
                 "com.android.library",
-                "com.android.dynamic-feature" -> useModule("com.android.tools.build:gradle:${requested.version}")
+                "com.android.dynamic-tmdb" -> useModule("com.android.tools.build:gradle:${requested.version}")
                 "androidx.navigation.safeargs.kotlin" -> useModule("androidx.navigation:navigation-safe-args-gradle-plugin:${requested.version}")
                 "com.google.firebase.crashlytics" -> useModule("com.google.firebase:firebase-crashlytics-gradle:${requested.version}")
                 "com.google.gms.google-services" -> useModule("com.google.gms:google-services:${requested.version}")
@@ -32,24 +32,36 @@ include(
     ":library_base"
 )
 
-//Feature UI
+// Feature UI
 include(
-    //details
+    // details
     ":ui_movie_details",
     ":ui_tv_details",
     ":ui_person_details",
-    //nav
+    // nav
     ":ui_nav_movies",
     ":ui_nav_tvs",
     ":ui_nav_search",
     ":ui_nav_profile",
-    //collection
+    // collection
     ":ui_collection",
-    //search
+    // search
     ":ui_search",
     ":ui_discover",
-    //auth
+    // api
     ":ui_auth"
 )
-//Navigation
+
+// Core
+include(
+    ":core_base",
+    ":core_ui",
+    ":core_strings",
+    ":core_network"
+)
+
+// Feature
+include(":feature_tmdb_api", ":feature_tmdb_impl")
+
+// Navigation
 include(":navigation")

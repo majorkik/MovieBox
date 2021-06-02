@@ -29,7 +29,7 @@ android {
         buildConfigField(
             "String[]",
             "FEATURE_MODULE_NAMES",
-            getDynamicFeatureModuleNames().joinToString(",", prefix = "{", postfix = "}") { "\"$it\""}
+            getDynamicFeatureModuleNames().joinToString(",", prefix = "{", postfix = "}") { "\"$it\"" }
         )
 
         multiDexEnabled = true
@@ -81,7 +81,6 @@ dependencies {
     implementation(project(ModuleDependency.uiDiscover))
     implementation(project(ModuleDependency.uiSearch))
     implementation(project(ModuleDependency.uiCollection))
-
 
     implementation(Libs.AndroidX.multidex)
     implementation(Libs.Google.playCore)
