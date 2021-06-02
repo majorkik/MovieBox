@@ -34,6 +34,8 @@ include(
 
 // Feature UI
 include(
+    // main
+    ":ui_main",
     // details
     ":ui_movie_details",
     ":ui_tv_details",
